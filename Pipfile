@@ -1,0 +1,28 @@
+[[source]]
+name = "pypi"
+url = "https://mirrors.aliyun.com/pypi/simple/"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+aiodns = "*"
+tqdm = "*"
+aiomultiprocess = "*"
+loguru = "*"
+dnspython = "*"
+requests = "*"
+records = "*"
+tldextract = "*"
+exrex = "*"
+aiohttp = "*"
+fire = "*"
+fake-useragent = "*"
+bs4 = "*"
+cchardet = "*"
+lxml = "*"
+brotlipy = "*"
+pysocks = "*"
+
+[requires]
+python_version = "3.7"
