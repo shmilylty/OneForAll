@@ -1,0 +1,70 @@
+#!/usr/bin/env python3
+# coding=utf-8
+
+"""
+检查域名证书收集子域名
+"""
+import ssl
+import time
+import queue
+import socket
+from config import logger
+from common import utils
+from common.module import Module
+
+
+class CheckCert(Module):
+    def __init__(self, domain):
+        Module.__init__(self)
+        self.domain = self.register(domain)
+        self.port = 443  # ssl port
+        self.module = 'Check'
+        self.source = 'CertInfo'
+
+    def check(self):
+        """
+        获取域名证书并匹配证书中的子域名
+        """
+        ctx = ssl.create_default_context()
+        sock = ctx.wrap_socket(socket.socket(), server_hostname=self.domain)
+        try:
+            sock.connect((self.domain, self.port))
+            cert_dict = sock.getpeercert()
+        except Exception as e:
+            logger.log('ERROR', e)
+            return
+        subdomains_find = utils.match_subdomain(self.domain, str(cert_dict))
+        self.subdomains = self.subdomains.union(subdomains_find)
+
+    def run(self, rx_queue):
+        """
+        类执行入口
+        """
+        logger.log('DEBUG', f'开始执行{self.source}检查{self.domain}域的证书中的子域')
+        start = time.time()
+        self.check()
+        end = time.time()
+        self.elapsed = round(end - start, 1)
+        logger.log('DEBUG', f'结束执行{self.source}检查{self.domain}域的证书中的子域')
+        self.save_json()
+        self.gen_result()
+        self.save_db()
+        rx_queue.put(self.results)
+
+
+def do(domain, rx_queue):  # 统一入口名字 方便多线程调用
+    """
+    类统一调用入口
+
+    :param str domain: 域名
+    :param rx_queue: 结果集队列
+    """
+    check = CheckCert(domain)
+    check.run(rx_queue)
+    logger.log('INFOR', f'{check.source}模块耗时{check.elapsed}秒发现子域{len(check.subdomains)}个')
+    logger.log('DEBUG', f'{check.source}模块发现的子域 {check.subdomains}')
+
+
+if __name__ == '__main__':
+    result_queue = queue.Queue()
+    do('owasp.org', result_queue)
