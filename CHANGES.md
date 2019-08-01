@@ -5,9 +5,9 @@ OneForAll的更新日志格式基于[Keep a Changelog](https://keepachangelog.co
 
 OneForAll遵守[语义化版本格式](https://semver.org/)。
 
-## [Unreleased](https://github.com/shmilylty/onefroall/compare/v1.0.0...HEAD)
+## Unreleased
 
-## [0.0.1](https://github.com/shmilylty/onefroall/releases/tag/v0.0.1) - 2019-08-01
+## [0.0.1](https://github.com/shmilylty/oneforall/releases/tag/v0.0.1) - 2019-08-02
 ### Added
 - 添加检查crossdomain.xml收集子域功能
 - 添加检查域名证书收集子域功能
