@@ -178,7 +178,7 @@ README: 简体中文 | [English](./README.en.md)
 
    ```bash
    cd OneForAll
-   pipenv run python dbexport.py.py --help
+   pipenv run python dbexport.py --help
    ```
 
    ```bash
