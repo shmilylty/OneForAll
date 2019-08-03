@@ -18,7 +18,7 @@ result_save_path = oneforall_relpath.joinpath('results')  # 结果保存目录
 save_module_result = True  # 保存模块中各脚本结果 默认保存
 enable_all_module = True  # 启用所有模块 默认启用
 enable_partial_module = []  # 启用部分模块 必须禁用enable_all_module才能生效
-# enable_partial_module = [('modules.search', 'google')]  # 启用部分模块 必须禁用enable_all_module才能生效
+# enable_partial_module = [('modules.search', 'ask')，('modules.search', 'baidu')]  # 只使用ask和baidu搜索引擎收集子域
 
 
 # 爆破模块设置
