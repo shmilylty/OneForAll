@@ -46,7 +46,7 @@ proxy_pool = [{'http': 'http://127.0.0.1:1080', 'https': 'https://127.0.0.1:1080
 # 网络请求设置
 enable_fake_header = True  # 启用伪造请求头
 request_delay = 1  # 请求时延
-request_timeout = 30  # 请求超时(AskSearch和YahooSearch比较慢)
+request_timeout = 60  # 请求超时
 request_verify = True  # 请求SSL验证
 
 # 搜索模块设置
