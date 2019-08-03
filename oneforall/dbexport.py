@@ -1,4 +1,12 @@
+#!/usr/bin/python3
 # coding=utf-8
+
+"""
+OneForAll数据库导出模块
+
+:copyright: Copyright (c) 2019, Jing Ling. All rights reserved.
+:license: GNU General Public License v3.0, see LICENSE for more details.
+"""
 
 import fire
 from common import database
@@ -7,7 +15,16 @@ from config import logger
 
 def export(table, db=None, valid=None, path=None, format='xlsx', output=False):
     """
-    将数据库导出为指定格式文件
+    OneForAll数据库导出模块
+
+    Example:
+        python dbexport.py --db result.db --table name --format csv --output False
+        python dbexport.py --db result.db --table name --format csv --path= ./result.csv
+
+    Note:
+        参数valid可选值1，0，None，分别表示导出有效，无效，全部子域
+        参数format可选格式：'csv','tsv','json','yaml','html','xls','xlsx','dbf','latex','ods'
+        参数path为None会根据format参数和域名名称在项目结果目录生成相应文件
 
     :param str table:   要导出的表
     :param str db:      要导出的数据库路径（默认为results/result.sqlite3）
@@ -15,15 +32,6 @@ def export(table, db=None, valid=None, path=None, format='xlsx', output=False):
     :param str format:  导出格式（默认xlsx）
     :param str path:    导出路径(默认None)
     :param bool output: 是否将导出数据输出到终端（默认False）
-
-    Note:
-        参数valid可选值1，0，None，分别表示导出有效，无效，全部子域
-        参数format可选格式：'csv','tsv','json','yaml','html','xls','xlsx','dbf','latex','ods'
-        参数path为None会根据format参数和域名名称在项目结果目录生成相应文件
-
-    Example:
-        python dbexport.py --db result.db --table name --format csv --output False
-        python dbexport.py --db result.db --table name --format csv --path= ./result.csv
     """
     db_conn = database.connect_db(db)
     if valid is None:
