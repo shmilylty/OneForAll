@@ -152,7 +152,7 @@ subdomains_common = {'i', 'w', 'm', 'en', 'us', 'zh', 'w3', 'app', 'bbs', 'web',
                      'data', 'help', 'live', 'mall', 'blogs', 'files', 'forum', 'store', 'mobile'}
 
 # 日志配置
-stdout_fmt = '<light-green>{time:HH:mm:ss,SSS}</light-green> ' \
+stdout_fmt = '<cyan>{time:HH:mm:ss,SSS}</cyan> ' \
           '[<level>{level: <5}</level>] ' \
           '<blue>{module}</blue>:<cyan>{line}</cyan> - ' \
           '<level>{message}</level>'
