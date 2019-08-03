@@ -33,16 +33,16 @@ class OneForAll(object):
     Note:
         参数valid可选值有1，0，None，分别表示导出有效，无效，全部子域
         参数port可选值有'small', 'medium', 'large', 'xlarge'，详见config.py配置
-        参数format可选格式有'csv','tsv','json','yaml','html','xls','xlsx','dbf','latex','ods'
+        参数format可选格式有'csv', 'tsv', 'json', 'yaml', 'html', 'xls', 'xlsx', 'dbf', 'latex', 'ods'
         参数path为None会根据format参数和域名名称在项目结果目录生成相应文件
 
     :param str target:  单个域名或者每行一个域名的文件路径
-    :param bool brute:  是否使用爆破模块（默认禁用）
-    :param str port:    HTTP请求验证的端口范围（默认medium）
-    :param int valid:   导出子域的有效性（默认1）
-    :param str format:  导出格式（默认xlsx）
+    :param bool brute:  是否使用爆破模块(默认禁用)
+    :param str port:    HTTP请求验证的端口范围(默认medium)
+    :param int valid:   导出子域的有效性(默认1)
+    :param str format:  导出格式(默认xlsx)
     :param str path:    导出路径(默认None)
-    :param bool output: 是否将导出数据输出到终端（默认False）
+    :param bool output: 是否将导出数据输出到终端(默认False)
     """
     def __init__(self, target, brute=False, port='medium', valid=1, path=None, format='xlsx', output=False):
         self.target = target

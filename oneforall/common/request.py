@@ -52,7 +52,7 @@ async def fetch(session, url, semaphore):
 
     :param session: session对象
     :param url: url地址
-    :param semaphore: 同步对象（控制并发量）
+    :param semaphore: 同步对象(控制并发量)
     :return: 响应对象和响应文本
     """
     timeout = aiohttp.ClientTimeout(total=config.get_timeout)

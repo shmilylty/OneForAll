@@ -140,14 +140,14 @@ class AIOBrute(Module):
         python aiobrute.py --target www.{fuzz}.example.com --fuzz True --rule [a-z][0-9] run
 
     :param str target:       单个域名或者每行一个域名的文件路径
-    :param int processes:    爆破的进程数（默认CPU核心数）
-    :param int coroutine:    每个爆破进程下的协程数（默认16）
-    :param str wordlist:     指定爆破所使用的字典路径（默认使用config.py配置）
-    :param bool recursive:   是否使用递归爆破（默认禁用）
-    :param int depth:        递归爆破的深度（默认2）
-    :param str namelist:     指定递归爆破所使用的字典路径（默认使用config.py配置）
-    :param bool fuzz:        是否使用fuzz模式进行爆破（默认禁用，开启必须指定fuzz正则规则）
-    :param str rule:         fuzz模式使用的正则规则（默认使用config.py配置）
+    :param int processes:    爆破的进程数(默认CPU核心数)
+    :param int coroutine:    每个爆破进程下的协程数(默认16)
+    :param str wordlist:     指定爆破所使用的字典路径(默认使用config.py配置)
+    :param bool recursive:   是否使用递归爆破(默认禁用)
+    :param int depth:        递归爆破的深度(默认2)
+    :param str namelist:     指定递归爆破所使用的字典路径(默认使用config.py配置)
+    :param bool fuzz:        是否使用fuzz模式进行爆破(默认禁用，开启必须指定fuzz正则规则)
+    :param str rule:         fuzz模式使用的正则规则(默认使用config.py配置)
     """
 
     def __init__(self, target, processes=None, coroutine=64, wordlist=None,

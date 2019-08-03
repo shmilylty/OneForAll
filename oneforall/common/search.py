@@ -37,7 +37,7 @@ class Search(Module):
     def match_location(self, domain, url):
         """
         匹配跳转之后的url
-        针对部分搜索引擎（如百度搜索）搜索展示url时有显示不全的情况
+        针对部分搜索引擎(如百度搜索)搜索展示url时有显示不全的情况
         此函数会向每条结果的链接发送head请求获取响应头的location值并做子域匹配
 
         :param str domain: 域名
