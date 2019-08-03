@@ -89,5 +89,5 @@ class OneForAll(object):
 
 
 if __name__ == '__main__':
-    # fire.Fire(OneForAll)
-    OneForAll('example.com').run()
+    fire.Fire(OneForAll)
+    # OneForAll('example.com').run()
