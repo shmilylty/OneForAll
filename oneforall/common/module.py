@@ -41,7 +41,7 @@ class Module(object):
         """
         输出模块开始信息
         """
-        logger.log('DEBUG', f'开始执行{self.source}模块查询{self.domain}的子域')
+        logger.log('DEBUG', f'开始执行{self.source}模块收集{self.domain}的子域')
 
     def finish(self):
         """
@@ -49,7 +49,7 @@ class Module(object):
         """
         self.end = time.time()
         self.elapsed = round(self.end - self.start, 1)
-        logger.log('DEBUG', f'结束执行{self.source}模块查询{self.domain}的子域')
+        logger.log('DEBUG', f'结束执行{self.source}模块收集{self.domain}的子域')
         logger.log('INFOR', f'{self.source}模块耗时{self.elapsed}秒发现子域{len(self.subdomains)}个')
         logger.log('DEBUG', f'{self.source}模块发现{self.domain}的子域 {self.subdomains}')
 

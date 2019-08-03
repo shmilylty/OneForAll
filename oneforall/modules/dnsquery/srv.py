@@ -74,15 +74,15 @@ class BruteSRV(Module):
         """
         类执行入口
         """
+        self.begin()
         logger.log('DEBUG', f'开始枚举{self.domain}域的SRV记录')
-
         self.brute()
-
         self.save_json()
         self.gen_result()
         self.save_db()
         rx_queue.put(self.results)
         logger.log('DEBUG', f'结束枚举{self.domain}域的SRV记录')
+        self.finish()
 
 
 def do(domain, rx_queue):  # 统一入口名字 方便多线程调用
@@ -93,8 +93,6 @@ def do(domain, rx_queue):  # 统一入口名字 方便多线程调用
     """
     brute = BruteSRV(domain)
     brute.run(rx_queue)
-    logger.log('INFOR', f'{brute.source}模块耗时{brute.elapsed}秒发现{brute.domain}的子域{len(brute.subdomains)}个')
-    logger.log('DEBUG', f'{brute.source}模块发现{brute.domain}的子域 {brute.subdomains}')
 
 
 if __name__ == '__main__':

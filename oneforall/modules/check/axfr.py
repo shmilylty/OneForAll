@@ -69,15 +69,15 @@ class CheckAXFR(Module):
         """
         类执行入口
         """
+        self.begin()
         logger.log('DEBUG', f'开始执行{self.source}检查{self.domain}的域传送漏洞')
-
         self.check()
-
-        logger.log('DEBUG', f'结束执行{self.source}检查{self.domain}的域传送漏洞')
         self.save_json()
         self.gen_result()
         self.save_db()
         rx_queue.put(self.results)
+        logger.log('DEBUG', f'结束执行{self.source}检查{self.domain}的域传送漏洞')
+        self.finish()
 
 
 def do(domain, rx_queue):  # 统一入口名字 方便多线程调用
@@ -88,8 +88,6 @@ def do(domain, rx_queue):  # 统一入口名字 方便多线程调用
     """
     check = CheckAXFR(domain)
     check.run(rx_queue)
-    logger.log('INFOR', f'{check.source}模块耗时{check.elapsed}秒发现子域{len(check.subdomains)}个')
-    logger.log('DEBUG', f'{check.source}模块发现的子域 {check.subdomains}')
 
 
 if __name__ == '__main__':
