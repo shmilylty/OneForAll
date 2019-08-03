@@ -1,4 +1,13 @@
+#!/usr/bin/python3
 # coding=utf-8
+
+"""
+OneForAll多进程多协程异步子域爆破模块
+
+:copyright: Copyright (c) 2019, Jing Ling. All rights reserved.
+:license: GNU General Public License v3.0, see LICENSE for more details.
+"""
+
 import os
 import time
 import queue
@@ -121,7 +130,14 @@ def gen_brute_domains(domain, path):
 
 class AIOBrute(Module):
     """
-    多进程多协程异步子域爆破
+    OneForAll多进程多协程异步子域爆破模块
+
+    Example：
+        python aiobrute.py --target example.com run
+        python aiobrute.py --target ./domains.txt run
+        python aiobrute.py --target example.com --processes 4 --coroutine 64 --wordlist data/subdomains.txt run
+        python aiobrute.py --target example.com --recursive True --depth 2 --namelist data/next_subdomains.txt run
+        python aiobrute.py --target www.{fuzz}.example.com --fuzz True --rule [a-z][0-9] run
 
     :param str target:       单个域名或者每行一个域名的文件路径
     :param int processes:    爆破的进程数（默认CPU核心数）
@@ -132,13 +148,6 @@ class AIOBrute(Module):
     :param str namelist:     指定递归爆破所使用的字典路径（默认使用config.py配置）
     :param bool fuzz:        是否使用fuzz模式进行爆破（默认禁用，开启必须指定fuzz正则规则）
     :param str rule:         fuzz模式使用的正则规则（默认使用config.py配置）
-
-    Example：
-    python aiobrute.py --target example.com run
-    python aiobrute.py --target ./domains.txt run
-    python aiobrute.py --target example.com --processes 4 --coroutine 64 --wordlist data/subdomains.txt run
-    python aiobrute.py --target example.com --recursive True --depth 2 --namelist data/next_subdomains.txt run
-    python aiobrute.py --target www.{fuzz}.example.com --fuzz True --rule [a-z][0-9] run
     """
 
     def __init__(self, target, processes=None, coroutine=64, wordlist=None,

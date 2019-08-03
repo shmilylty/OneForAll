@@ -2,7 +2,10 @@
 # coding=utf-8
 
 """
-OneForAll是一款强大的子域收集神器
+OneForAll是一款功能强大的子域收集工具
+
+:copyright: Copyright (c) 2019, Jing Ling. All rights reserved.
+:license: GNU General Public License v3.0, see LICENSE for more details.
 """
 
 import asyncio
@@ -14,19 +17,24 @@ from collect import Collect
 from aiobrute import AIOBrute
 from common import utils, database, resolve, request
 
-__author__ = 'Jing Ling, Black Star'
-__contact__ = 'admin@hackfun.org'
-__copyright__ = 'Copyright (c) 2019, Jing Ling. All rights reserved.'
-__license__ = 'GNU General Public License v3.0'
-__version__ = '0.0.1'
-
 
 class OneForAll(object):
     """
-    OneForAll是一款强大的子域收集神器
+    OneForAll是一款功能强大的子域收集工具
 
-    Version: 0.0.1
+    Version: 0.0.2
     Project: https://github.com/shmilylty/OneForAll/
+
+    Example:
+        python oneforall.py --target example.com run
+        python oneforall.py --target example.com --brute True --port medium valid 1 run
+        python oneforall.py --target ./domains.txt --format csv --path= ./result.csv  --output True run
+
+    Note:
+        参数valid可选值有1，0，None，分别表示导出有效，无效，全部子域
+        参数port可选值有'small', 'medium', 'large', 'xlarge'，详见config.py配置
+        参数format可选格式有'csv','tsv','json','yaml','html','xls','xlsx','dbf','latex','ods'
+        参数path为None会根据format参数和域名名称在项目结果目录生成相应文件
 
     :param str target:  单个域名或者每行一个域名的文件路径
     :param bool brute:  是否使用爆破模块（默认禁用）
@@ -35,17 +43,6 @@ class OneForAll(object):
     :param str format:  导出格式（默认xlsx）
     :param str path:    导出路径(默认None)
     :param bool output: 是否将导出数据输出到终端（默认False）
-
-    Note:
-        参数valid可选值有1，0，None，分别表示导出有效，无效，全部子域
-        参数port可选值有'small', 'medium', 'large', 'xlarge'，详见config.py配置
-        参数format可选格式有'csv','tsv','json','yaml','html','xls','xlsx','dbf','latex','ods'
-        参数path为None会根据format参数和域名名称在项目结果目录生成相应文件
-
-    Example:
-    python oneforall.py --target example.com run
-    python oneforall.py --target example.com --brute True --port medium valid 1 run
-    python oneforall.py --target ./domains.txt --format csv --path= ./result.csv  --output True run
     """
     def __init__(self, target, brute=False, port='medium', valid=1, path=None, format='xlsx', output=False):
         self.target = target
