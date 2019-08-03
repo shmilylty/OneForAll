@@ -2,17 +2,18 @@
 """
 检查crossdomain.xml文件收集子域名
 """
-import time
 import queue
-from config import logger
-from common.utils import match_subdomain
+
 from common.module import Module
+from common.utils import match_subdomain
+from config import logger
 
 
 class CheckCDX(Module):
     """
     检查crossdomain.xml文件收集子域名
     """
+
     def __init__(self, domain: str):
         Module.__init__(self)
         self.domain = self.register(domain)
@@ -37,10 +38,9 @@ class CheckCDX(Module):
         类执行入口
         """
         logger.log('DEBUG', f'开始执行{self.source}检查{self.domain}域的crossdomain.xml')
-        start = time.time()
+
         self.check()
-        end = time.time()
-        self.elapsed = round(end - start, 1)
+
         self.save_json()
         self.gen_result()
         self.save_db()
@@ -61,4 +61,5 @@ def do(domain, rx_queue):  # 统一入口名字 方便多线程调用
 
 
 if __name__ == '__main__':
-    do('163.com')
+    result_queue = queue.Queue()
+    do('163.com', result_queue)

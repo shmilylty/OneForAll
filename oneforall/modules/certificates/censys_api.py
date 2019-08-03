@@ -24,11 +24,10 @@ class CensysAPI(Query):
         self.header = self.get_header()
         self.proxy = self.get_proxy(self.source)
         data = {
-            'query': 'parsed.names: owasp.org',
+            'query': 'parsed.names: example.com',
             'page': 1,
             'fields': ['parsed.subject_dn'],
             'flatten': True}
-
         resp = self.post(self.addr, json=data, auth=(self.id, self.secret))
         if not resp:
             return
@@ -40,7 +39,7 @@ class CensysAPI(Query):
         subdomains_find = self.match(self.domain, str(resp_json))
         self.subdomains = self.subdomains.union(subdomains_find)
         pages = resp_json.get('metadata').get('pages')
-        for page in range(2, pages+1):
+        for page in range(2, pages + 1):
             time.sleep(self.delay)
             data['page'] = page
             resp = self.post(self.addr, json=data, auth=(self.id, self.secret))
@@ -57,16 +56,13 @@ class CensysAPI(Query):
             logger.log('ERROR', f'{self.source}模块API配置错误')
             logger.log('ALERT', f'不执行{self.source}模块')
             return
-        logger.log('DEBUG', f'开始执行{self.source}模块查询{self.domain}的子域')
-        start = time.time()
+        self.begin()
         self.query()
-        end = time.time()
-        self.elapsed = round(end - start, 1)
         self.save_json()
         self.gen_result()
         self.save_db()
         rx_queue.put(self.results)
-        logger.log('DEBUG', f'结束执行{self.source}模块查询{self.domain}的子域')
+        self.finish()
 
 
 def do(domain, rx_queue):  # 统一入口名字 方便多线程调用
@@ -78,10 +74,8 @@ def do(domain, rx_queue):  # 统一入口名字 方便多线程调用
     """
     query = CensysAPI(domain)
     query.run(rx_queue)
-    logger.log('INFOR', f'{query.source}模块耗时{query.elapsed}秒发现{query.domain}的子域{len(query.subdomains)}个')
-    logger.log('DEBUG', f'{query.source}模块发现{query.domain}的子域 {query.subdomains}')
 
 
 if __name__ == '__main__':
     result_queue = queue.Queue()
-    do('owasp.org', result_queue)
+    do('example.com', result_queue)

@@ -8,21 +8,22 @@ OneForAll多进程多协程异步子域爆破模块
 :license: GNU General Public License v3.0, see LICENSE for more details.
 """
 
-import os
-import time
-import queue
-import signal
-import pathlib
 import asyncio
+import os
+import queue
+import secrets
+import signal
+import time
+
+import aiomultiprocess
+import exrex
 import fire
 import tqdm
-import exrex
-import secrets
-import aiomultiprocess
+
 import config
-from config import logger
-from common import utils, database, resolve
+from common import database, resolve, utils
 from common.module import Module
+from config import logger
 
 
 def init_worker():
@@ -248,11 +249,10 @@ class AIOBrute(Module):
             # 递归爆破下一层的子域
             if self.recursive_brute and not self.fuzz:  # fuzz模式不使用递归爆破
                 for layer_num in range(1, self.recursive_depth):  # 之前已经做过1层子域爆破 当前实际递归层数是layer+1
-                    logger.log('INFOR', f'开始递归爆破{self.domain}的第{layer_num+1}层子域')
+                    logger.log('INFOR', f'开始递归爆破{self.domain}的第{layer_num + 1}层子域')
                     for subdomain in self.subdomains.copy():
                         if subdomain.count('.') - self.domain.count('.') == layer_num:  # 进行下一层子域爆破的限制条件
                             loop.run_until_complete(self.main(subdomain, rx_queue))
-
 
             while not rx_queue.empty():  # 队列不空就一直取数据存数据库
                 database.save_db(db_conn, table_name, rx_queue.get())  # 将结果存入数据库中
@@ -281,4 +281,4 @@ def do(domain, result):  # 统一入口名字 方便多线程调用
 if __name__ == '__main__':
     fire.Fire(AIOBrute)
     # result_queue = queue.Queue()
-    # do('owasp.org', result_queue)
+    # do('example.com', result_queue)

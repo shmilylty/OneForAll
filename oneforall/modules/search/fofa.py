@@ -1,8 +1,8 @@
 # coding=utf-8
-import time
-import queue
-import json
 import base64
+import queue
+import time
+
 import config
 from common.search import Search
 from config import logger
@@ -42,10 +42,9 @@ class FoFa(Search):
         类执行入口
         """
         logger.log('DEBUG', f'开始执行{self.source}模块搜索{self.domain}的子域')
-        start = time.time()
+
         self.search()
-        end = time.time()
-        self.elapsed = round(end - start, 1)
+
         self.save_json()
         self.gen_result()
         self.save_db()
@@ -62,10 +61,8 @@ def do(domain, rx_queue):  # 统一入口名字 方便多线程调用
     """
     search = FoFa(domain)
     search.run(rx_queue)
-    logger.log('INFOR', f'{search.source}模块耗时{search.elapsed}秒发现{search.domain}的子域{len(search.subdomains)}个')
-    logger.log('DEBUG', f'{search.source}模块发现{search.domain}的子域 {search.subdomains}')
 
 
 if __name__ == '__main__':
     result_queue = queue.Queue()
-    do('owasp.org', result_queue)
+    do('example.com', result_queue)

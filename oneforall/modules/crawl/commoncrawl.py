@@ -1,8 +1,9 @@
 # coding=utf-8
-import time
 import queue
-from tqdm import tqdm
+
 import cdx_toolkit
+from tqdm import tqdm
+
 from common.crawl import Crawl
 from config import logger
 
@@ -36,21 +37,17 @@ class CommonCrawl(Crawl):
         """
         类执行入口
         """
-        logger.log('DEBUG', f'开始执行{self.source}模块查询{self.domain}的子域')
-        start = time.time()
+        self.begin()
         self.crawl(self.domain, 50)
-
         # 爬取已发现的子域以发现新的子域
         for subdomain in self.subdomains:
             if subdomain != self.domain:
                 self.crawl(subdomain, 10)
-        end = time.time()
-        self.elapsed = round(end - start, 1)
         self.save_json()
         self.gen_result()
         self.save_db()
         rx_queue.put(self.results)
-        logger.log('DEBUG', f'结束执行{self.source}模块查询{self.domain}的子域')
+        self.finish()
 
 
 def do(domain, rx_queue):  # 统一入口名字 方便多线程调用
@@ -61,11 +58,11 @@ def do(domain, rx_queue):  # 统一入口名字 方便多线程调用
     :param rx_queue: 结果集队列
     """
     crawl = CommonCrawl(domain)
-    crawl.run(result)
+    crawl.run(rx_queue)
     logger.log('INFOR', f'{crawl.source}模块耗时{crawl.elapsed}秒发现{crawl.domain}的子域{len(crawl.subdomains)}个')
     logger.log('DEBUG', f'{crawl.source}模块发现{crawl.domain}的子域 {crawl.subdomains}')
 
 
 if __name__ == '__main__':
     result_queue = queue.Queue()
-    do('owasp.org', result_queue)
+    do('example.com', result_queue)

@@ -9,6 +9,7 @@ import importlib
 import config
 import dbexport
 from common import database
+from config import logger
 
 
 class Collect(object):
@@ -54,6 +55,7 @@ class Collect(object):
         类运行入口
         """
         start = time.time()
+        logger.log('INFOR', f'开始收集{self.domain}的子域')
         self.get_mod()
         self.import_func()
 
