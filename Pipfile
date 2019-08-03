@@ -16,12 +16,11 @@ records = "*"
 tldextract = "*"
 exrex = "*"
 aiohttp = "*"
-fire = "*"
+fire = "==0.2.1"
 fake-useragent = "*"
 bs4 = "*"
 cchardet = "*"
 lxml = "*"
-brotlipy = "*"
 pysocks = "*"
 
 [requires]
