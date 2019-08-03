@@ -12,10 +12,19 @@ import asyncio
 import fire
 import config
 import dbexport
+from datetime import datetime
 from config import logger
 from collect import Collect
 from aiobrute import AIOBrute
 from common import utils, database, resolve, request
+
+
+banner = """\033[01;33m
+             ___             _ _ 
+ ___ ___ ___|  _|___ ___ ___| | | \033[01;37m{\033[1;31mv0.0.2#dev\033[01;37m}\033[01;32m
+| . |   | -_|  _| . |  _| .'| | | \033[01;34m
+|___|_|_|___|_| |___|_| |__,|_|_| \033[0m\033[4;37mgit.io/fjHT1\033[0m\n
+        """
 
 
 class OneForAll(object):
@@ -57,6 +66,9 @@ class OneForAll(object):
         self.output = output
 
     def run(self):
+        print(banner)
+        dt = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        print(f'[*] Starting OneForAll @ {dt}\n')
         logger.log('INFOR', f'开始运行OneForAll')
         self.domains = utils.get_domains(self.target)
         if self.domains:
@@ -89,5 +101,5 @@ class OneForAll(object):
 
 
 if __name__ == '__main__':
-    fire.Fire(OneForAll)
-    # OneForAll('example.com').run()
+    # fire.Fire(OneForAll)
+    OneForAll('example.com').run()
