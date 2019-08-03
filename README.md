@@ -84,7 +84,7 @@ git clone https://github.com/shmilylty/OneForAll.git
 python3 oneforall.py --target example.com run
 ```
 
-![Example](./docs/useage_example.svg)
+![Example](./docs/usage_example.svg)
 
 **🤔使用帮助**
 
