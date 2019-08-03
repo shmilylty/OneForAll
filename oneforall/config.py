@@ -27,7 +27,6 @@ enable_wildcard_check = True  # 开启泛解析检测 会去掉泛解析的子�
 brute_processes_num = None  # 爆破时使用的进程数（根据系统中CPU数量情况设置 不宜大于CPU数量 默认None为系统中的CPU数量）
 brute_coroutine_num = 128  # 爆破时每个进程下的协程数（不宜大于1000）
 brute_wordlist_path = None  # 爆破所使用的字典路径 默认data/subdomains.dict
-use_general_wordlist = False  # 是否使用通用字典（默认禁用）
 enable_recursive_brute = False  # 是否使用递归爆破（默认禁用）
 brute_recursive_depth = 2  # 递归爆破深度（默认2层）
 recursive_namelist_path = None  # 爆破下一层子域所使用的字典路径 默认data/next_subdomains.dict
