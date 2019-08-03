@@ -20,7 +20,6 @@ class CheckAXFR(Module):
     """
     DNS域传送漏洞检查类
     """
-
     def __init__(self, domain: str):
         Module.__init__(self)
         self.domain = self.register(domain)
@@ -32,7 +31,6 @@ class CheckAXFR(Module):
     def check(self):
         """
         正则匹配响应头中的内容安全策略字段以发现子域名
-        :return: None
         """
         resolver = resolve.dns_resolver()
         try:
@@ -51,7 +49,7 @@ class CheckAXFR(Module):
                 zone = dns.zone.from_xfr(xfr)
             except Exception as e:
                 logger.log('DEBUG', str(e))
-                logger.log('INFOR', f'对{self.domain}的域名服务器{nsserver}进行域传送失败')
+                logger.log('DEBUG', f'对{self.domain}的域名服务器{nsserver}进行域传送失败')
                 continue
             else:
                 names = zone.nodes.keys()
@@ -61,7 +59,7 @@ class CheckAXFR(Module):
                     record = zone[name].to_text(name)
                     self.results.append(record)
             if self.results:
-                logger.log('INFOR', f'发现{self.domain}在{nsserver}上的域传送记录')
+                logger.log('DEBUG', f'发现{self.domain}在{nsserver}上的域传送记录')
                 logger.log('DEBUG', '\n'.join(self.results))
                 self.results = []
 
@@ -83,6 +81,7 @@ class CheckAXFR(Module):
 def do(domain, rx_queue):  # 统一入口名字 方便多线程调用
     """
     类统一调用入口
+
     :param str domain: 域名
     :param rx_queue: 结果集队列
     """
