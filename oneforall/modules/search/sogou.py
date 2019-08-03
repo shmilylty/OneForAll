@@ -1,6 +1,6 @@
 # coding=utf-8
-import time
 import queue
+
 from common.search import Search
 from config import logger
 
@@ -49,7 +49,7 @@ class Sogou(Search):
         类执行入口
         """
         logger.log('DEBUG', f'开始执行{self.source}模块搜索{self.domain}的子域')
-        start = time.time()
+
         self.search(self.domain, full_search=True)
 
         # 排除同一子域搜索结果过多的子域以发现新的子域
@@ -62,8 +62,7 @@ class Sogou(Search):
                 for subdomain in self.subdomains:
                     if subdomain.count('.') - self.domain.count('.') == layer_num:  # 进行下一层子域搜索的限制条件
                         self.search(subdomain)
-        end = time.time()
-        self.elapsed = round(end - start, 1)
+
         self.save_json()
         self.gen_result()
         self.save_db()
@@ -80,10 +79,8 @@ def do(domain, rx_queue):  # 统一入口名字 方便多线程调用
     """
     search = Sogou(domain)
     search.run(rx_queue)
-    logger.log('INFOR', f'{search.source}模块耗时{search.elapsed}秒发现{search.domain}的子域{len(search.subdomains)}个')
-    logger.log('DEBUG', f'{search.source}模块发现{search.domain}的子域 {search.subdomains}')
 
 
 if __name__ == '__main__':
     result_queue = queue.Queue()
-    do('owasp.org', result_queue)
+    do('example.com', result_queue)

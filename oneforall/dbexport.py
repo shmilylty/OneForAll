@@ -44,15 +44,17 @@ def export(table, db=None, valid=None, path=None, format='xlsx', output=False):
         print(rows.dataset)
     if not path:
         path = 'export.' + format
-    logger.log('INFOR', f'正在将数据库中{table}表导出到{path}')
+    logger.log('INFOR', f'正在将数据库中{table}表导出')
     try:
         with open(path, 'w') as file:
             file.write(rows.export(format))
             logger.log('INFOR', '成功完成导出')
+            logger.log('INFOR', path)
     except TypeError:
         with open(path, 'wb') as file:
             file.write(rows.export(format))
             logger.log('INFOR', '成功完成导出')
+            logger.log('INFOR', path)
     except Exception as e:
         logger.log('ERROR', e)
 

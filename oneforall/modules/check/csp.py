@@ -2,17 +2,18 @@
 """
 检查内容安全策略收集子域名收集子域名
 """
-import time
 import queue
-from config import logger
+
 from common import utils
 from common.module import Module
+from config import logger
 
 
 class CheckCSP(Module):
     """
     检查内容安全策略收集子域名
     """
+
     def __init__(self, domain, header):
         Module.__init__(self)
         self.domain = self.register(domain)
@@ -42,10 +43,9 @@ class CheckCSP(Module):
         类执行入口
         """
         logger.log('DEBUG', f'开始执行{self.source}检查{self.domain}域响应头中的内容安全策略字段')
-        start = time.time()
+
         self.check()
-        end = time.time()
-        self.elapsed = round(end - start, 1)
+
         logger.log('DEBUG', f'结束执行{self.source}检查{self.domain}域响应头中的内容安全策略字段')
         self.save_json()
         self.gen_result()
@@ -69,6 +69,7 @@ def do(domain, rx_queue, header=None):  # 统一入口名字 方便多线程调�
 
 if __name__ == '__main__':
     import requests
+
     # resp = requests.get('https://content-security-policy.com/')
     result_queue = queue.Queue()
     resp = requests.get('https://www.baidu.com/')

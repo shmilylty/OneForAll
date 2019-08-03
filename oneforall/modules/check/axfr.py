@@ -7,19 +7,20 @@ DNS域传送(DNS zone transfer)指的是一台备用域名服务器使用来自�
 目的是为了做冗余备份，防止主域名服务器出现故障时 dns 解析不可用。
 当主服务器开启DNS域传送同时又对来请求的备用服务器未作访问控制和身份验证便可以利用此漏洞获取某个域的所有记录。
 """
-import time
 import queue
 import dns.resolver
 import dns.zone
-from config import logger
-from common import utils, resolve
+
+from common import resolve, utils
 from common.module import Module
+from config import logger
 
 
 class CheckAXFR(Module):
     """
     DNS域传送漏洞检查类
     """
+
     def __init__(self, domain: str):
         Module.__init__(self)
         self.domain = self.register(domain)
@@ -55,7 +56,7 @@ class CheckAXFR(Module):
             else:
                 names = zone.nodes.keys()
                 for name in names:
-                    subdomain = utils.match_subdomain(self.domain, str(name)+'.'+self.domain)
+                    subdomain = utils.match_subdomain(self.domain, str(name) + '.' + self.domain)
                     self.subdomains = self.subdomains.union(subdomain)
                     record = zone[name].to_text(name)
                     self.results.append(record)
@@ -69,10 +70,9 @@ class CheckAXFR(Module):
         类执行入口
         """
         logger.log('DEBUG', f'开始执行{self.source}检查{self.domain}的域传送漏洞')
-        start = time.time()
+
         self.check()
-        end = time.time()
-        self.elapsed = round(end - start, 1)
+
         logger.log('DEBUG', f'结束执行{self.source}检查{self.domain}的域传送漏洞')
         self.save_json()
         self.gen_result()
@@ -95,4 +95,4 @@ def do(domain, rx_queue):  # 统一入口名字 方便多线程调用
 if __name__ == '__main__':
     # do('ZoneTransfer.me')
     result_queue = queue.Queue()
-    do('owasp.org', result_queue)
+    do('example.com', result_queue)

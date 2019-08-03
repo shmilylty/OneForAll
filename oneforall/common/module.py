@@ -6,6 +6,7 @@
 import json
 import re
 import threading
+import time
 
 import requests
 import config
@@ -32,7 +33,25 @@ class Module(object):
         self.subdomains = set()  # 存放发现的子域
         self.records = dict()  # 存放子域解析记录
         self.results = list()  # 存放模块结果
-        self.elapsed = 0.0  # 模块执行耗时
+        self.start = time.time()  # 模块开始执行时间
+        self.end = None
+        self.elapsed = time.time() - self.start  # 模块执行耗时
+
+    def begin(self):
+        """
+        输出模块开始信息
+        """
+        logger.log('DEBUG', f'开始执行{self.source}模块查询{self.domain}的子域')
+
+    def finish(self):
+        """
+        输出模块结束信息
+        """
+        self.end = time.time()
+        self.elapsed = round(self.end - self.start, 1)
+        logger.log('DEBUG', f'结束执行{self.source}模块查询{self.domain}的子域')
+        logger.log('INFOR', f'{self.source}模块耗时{self.elapsed}秒发现子域{len(self.subdomains)}个')
+        logger.log('DEBUG', f'{self.source}模块发现{self.domain}的子域 {self.subdomains}')
 
     def get(self, url, params=None, **kwargs):
         """

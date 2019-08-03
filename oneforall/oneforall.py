@@ -78,8 +78,6 @@ class OneForAll(object):
                 loop.close()
                 database.clear_table(db_conn, table_name)
                 database.save_db(db_conn, table_name, self.datas)
-                # database.deduplicate_subdomain(db_conn, table_name)
-                # database.remove_invalid(db_conn, table_name)
                 # 数据库导出
                 if not self.path:
                     self.path = config.result_save_path.joinpath(f'{self.domain}.{self.format}')
@@ -91,5 +89,5 @@ class OneForAll(object):
 
 
 if __name__ == '__main__':
-    fire.Fire(OneForAll)
-    # OneForAll('owasp.org').run()
+    # fire.Fire(OneForAll)
+    OneForAll('example.com').run()

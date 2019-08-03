@@ -4,13 +4,13 @@
 """
 检查域名证书收集子域名
 """
-import ssl
-import time
 import queue
 import socket
-from config import logger
+import ssl
+
 from common import utils
 from common.module import Module
+from config import logger
 
 
 class CheckCert(Module):
@@ -41,10 +41,9 @@ class CheckCert(Module):
         类执行入口
         """
         logger.log('DEBUG', f'开始执行{self.source}检查{self.domain}域的证书中的子域')
-        start = time.time()
+
         self.check()
-        end = time.time()
-        self.elapsed = round(end - start, 1)
+
         logger.log('DEBUG', f'结束执行{self.source}检查{self.domain}域的证书中的子域')
         self.save_json()
         self.gen_result()
@@ -67,4 +66,4 @@ def do(domain, rx_queue):  # 统一入口名字 方便多线程调用
 
 if __name__ == '__main__':
     result_queue = queue.Queue()
-    do('owasp.org', result_queue)
+    do('example.com', result_queue)

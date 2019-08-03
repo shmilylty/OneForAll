@@ -5,14 +5,15 @@
 通过枚举域名常见的SRV记录并做查询来发现子域
 """
 
-import time
-import queue
-import json
 import asyncio
+import json
+import queue
+
 import aiodns
-from common.module import Module
+
 from common import utils
-from config import logger, data_storage_path, resolver_nameservers
+from common.module import Module
+from config import data_storage_path, logger, resolver_nameservers
 
 
 class BruteSRV(Module):
@@ -74,10 +75,9 @@ class BruteSRV(Module):
         类执行入口
         """
         logger.log('DEBUG', f'开始枚举{self.domain}域的SRV记录')
-        start = time.time()
+
         self.brute()
-        end = time.time()
-        self.elapsed = round(end - start, 1)
+
         self.save_json()
         self.gen_result()
         self.save_db()
@@ -99,4 +99,4 @@ def do(domain, rx_queue):  # 统一入口名字 方便多线程调用
 
 if __name__ == '__main__':
     result_queue = queue.Queue()
-    do('owasp.org', result_queue)
+    do('example.com', result_queue)

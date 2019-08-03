@@ -152,7 +152,11 @@ subdomains_common = {'i', 'w', 'm', 'en', 'us', 'zh', 'w3', 'app', 'bbs', 'web',
                      'data', 'help', 'live', 'mall', 'blogs', 'files', 'forum', 'store', 'mobile'}
 
 # 日志配置
-log_fmt = '<light-green>{time:HH:mm:ss,SSS}</light-green> ' \
+stdout_fmt = '<light-green>{time:HH:mm:ss,SSS}</light-green> ' \
+          '[<level>{level: <5}</level>] ' \
+          '<blue>{module}</blue>:<cyan>{line}</cyan> - ' \
+          '<level>{message}</level>'
+logfile_fmt = '<light-green>{time:YYYY-MM-DD HH:mm:ss,SSS}</light-green> ' \
           '[<level>{level: <5}</level>] ' \
           '<cyan>{process.name}</cyan>:<cyan>{thread.name: <10}</cyan> | ' \
           '<blue>{module}</blue>.<blue>{function}</blue>:<blue>{line}</blue> - ' \
@@ -168,8 +172,8 @@ logger.level(name='ALERT', no=30, color='<yellow><bold>', icon='⚠️')
 logger.level(name='ERROR', no=40, color='<red><bold>', icon='❌️')
 logger.level(name='FATAL', no=50, color='<RED><bold>', icon='☠️')
 
-logger.add(sys.stdout, level='INFOR', format=log_fmt, enqueue=True)
-logger.add(log_path, level='TRACE', format=log_fmt, enqueue=True, encoding='utf-8')
+logger.add(sys.stdout, level='INFOR', format=stdout_fmt, enqueue=True)
+logger.add(log_path, level='TRACE', format=logfile_fmt, enqueue=True, encoding='utf-8')
 
 # 调试模式
 # import urllib3
