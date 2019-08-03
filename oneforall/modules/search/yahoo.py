@@ -11,8 +11,8 @@ class Yahoo(Search):
         self.domain = domain
         self.module = 'Search'
         self.source = 'YahooSearch'
-        self.init = 'https://hk.search.yahoo.com/'
-        self.addr = 'https://hk.search.yahoo.com/search'
+        self.init = 'https://search.yahoo.com/'
+        self.addr = 'https://search.yahoo.com/search'
         self.limit_num = 1000  # 限制搜索条数
         self.delay = 5
         self.per_page_num = 40
