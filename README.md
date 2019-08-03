@@ -255,7 +255,6 @@ D:.
     |
     +---common 公共调用模块
     +---data   存放一些所需数据
-    |       general.txt             子域爆破通用字典
     |       next_subdomains.txt     下一层子域字典
     |       public_suffix_list.dat  顶级域名后缀 
     |       srv_names.json          常见SRV记录前缀名
