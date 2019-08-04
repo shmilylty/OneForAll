@@ -2,10 +2,10 @@
 # coding=utf-8
 
 """
-测试
+示例
 """
 
-from oneforall import oneforall
+import oneforall
 
 test = oneforall.OneForAll(target='example.com')
 test.run()
