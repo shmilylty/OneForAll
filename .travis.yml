@@ -1,0 +1,24 @@
+sudo: false
+
+notifications:
+  email: false
+
+dist: xenial
+
+language: python
+
+python:
+  - "3.6"
+  - "3.7"
+  - "3.8-dev"
+
+install:
+  - pip install -U pip
+  - pip install codecov
+  - pip install -r requirements.txt
+
+script:
+ - coverage run tests/test_example.py
+
+after_success:
+ - codecov
