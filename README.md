@@ -1,18 +1,11 @@
 # OneForAll
 
 [![Build Status](https://travis-ci.org/shmilylty/OneForAll.svg?branch=master)](https://travis-ci.org/shmilylty/OneForAll)
-
 [![codecov](https://codecov.io/gh/shmilylty/OneForAll/branch/master/graph/badge.svg)](https://codecov.io/gh/shmilylty/OneForAll)
-
 [![Maintainability](https://api.codeclimate.com/v1/badges/1287668a6b4c72af683e/maintainability)](https://codeclimate.com/github/shmilylty/OneForAll/maintainability)
-
 [![License](https://img.shields.io/github/license/shmilylty/OneForAll)](./LICENSE)
-
 [![python](https://img.shields.io/badge/python-3.6%20%7C%203.7%20%7C%203.8-blue)](./)
-
 [![python](https://img.shields.io/badge/release-v0.0.2-brightgreen)](https://github.com/shmilylty/OneForAll/releases)
-
-
 
 👊**OneForAll是一款功能强大的子域收集工具**  📝[English Document](./README.en.md)
 
