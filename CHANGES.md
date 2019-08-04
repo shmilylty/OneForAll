@@ -7,6 +7,17 @@ OneForAll遵守[语义化版本格式](https://semver.org/)。
 
 ## Unreleased
 
+## [0.0.2](https://github.com/shmilylty/oneforall/releases/tag/v0.0.2) - 2019-08-04
+### 新增
+- 新增有关文档
+### 修改
+- 修改有关日志输出格式和信息
+### 修复
+- 升级fire库版本解决运行报错问题
+### 移除
+- 移除brotlipy依赖
+
+
 ## [0.0.1](https://github.com/shmilylty/oneforall/releases/tag/v0.0.1) - 2019-08-02
 ### 新增
 - 新增检查crossdomain.xml收集子域功能
