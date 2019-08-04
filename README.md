@@ -1,5 +1,19 @@
 # OneForAll
 
+[![Build Status](https://travis-ci.org/shmilylty/OneForAll.svg?branch=master)](https://travis-ci.org/shmilylty/OneForAll)
+
+[![codecov](https://codecov.io/gh/shmilylty/OneForAll/branch/master/graph/badge.svg)](https://codecov.io/gh/shmilylty/OneForAll)
+
+[![Maintainability](https://api.codeclimate.com/v1/badges/1287668a6b4c72af683e/maintainability)](https://codeclimate.com/github/shmilylty/OneForAll/maintainability)
+
+[![License](https://img.shields.io/github/license/shmilylty/OneForAll)](./LICENSE)
+
+[![python](https://img.shields.io/badge/python-3.6%20%7C%203.7%20%7C%203.8-blue)](./)
+
+[![python](https://img.shields.io/badge/release-v0.0.2-brightgreen)](https://github.com/shmilylty/OneForAll/releases)
+
+
+
 👊**OneForAll是一款功能强大的子域收集工具**  📝[English Document](./README.en.md)
 
 ![](./images/All_Might.jpg)
@@ -17,12 +31,11 @@
 
 为了解决以上痛点，此项目应用而生，OneForAll一词是来自我喜欢的一部日漫《[我的英雄学院](https://manhua.fzdm.com/131/)》，它是一种通过一代代的传承不断变强的潜力无穷的顶级个性，目前[番剧](https://www.bilibili.com/bangumi/media/md7452/)也更新到了第三季了，欢迎大佬们入坑😄。正如其名，我希望OneForAll是一款集百家之长，功能强大的全面快速子域收集终极神器🔨。
 
-目前OneForAll还在开发中，肯定有不少问题和需要改进的地方，欢迎大佬们提交[Issues](https://github.com/shmilylty/OneForAll/issues)和[PR](https://github.com/shmilylty/OneForAll/pulls)，用着还行给个小星星✨吧，目前有一个专门用于OneForAll交流和反馈QQ群👋：`824414244`，也可以给我发邮件📧[admin@hackfun.org]。
+目前OneForAll还在开发中，肯定有不少问题和需要改进的地方，欢迎大佬们提交[Issues](https://github.com/shmilylty/OneForAll/issues)和[PR](https://github.com/shmilylty/OneForAll/pulls)，用着还行给个小星星✨吧，目前有一个专门用于OneForAll交流和反馈QQ群👨‍👨‍👦‍👦：:[**824414244**](//shang.qq.com/wpa/qunwpa?idkey=3fb9de888e3dbac91abb5731fabf4cdac6a7c0de3db665ca8e79c2cd239a102d)，也可以给我发邮件📧[admin@hackfun.org]。
 
 ## 👍功能特性
 
 * **收集能力强大**，详细模块请阅读[搜索模块说明](./docs/collection_modules.md)。
-
   1. 利用证书透明度收集子域（目前有6个模块：`censys_api`，`certdb_api`，`certspotter`，`crtsh`，`entrust`，`google`）
 
   2. 常规检查收集子域（目前有4个模块：域传送漏洞利用`axfr`，检查跨域策略文件`cdx`，检查HTTPS证书`cert`，检查内容安全策略`csp`，后续会添加检查NSEC记录，NSEC记录等模块）
@@ -88,9 +101,11 @@ python3 oneforall.py --target example.com run
 
 **🤔使用帮助**
 
-命令行参数只提供了一些常用参数，更多详细的参数配置请见[config.py](./oneforall/config.py)，由于众所周知的原因，如果要使用一些被墙的收集接口请先到[config.py](./oneforall/config.py)配置代理，有些收集模块需要提供API（大多都是可以注册账号免费获取），如果需要使用请到[config.py](./oneforall/config.py)配置API信息，如果不使用请忽略有关报错提示。（详细模块请阅读[搜索模块说明](./docs/collection_modules.md)）
+命令行参数只提供了一些常用参数，更多详细的参数配置请见[config.py](./oneforall/config.py)，如果你认为有些参数是命令界面经常使用到的或缺少了什么参数等问题非常欢迎反馈。由于众所周知的原因，如果要使用一些被墙的收集接口请先到[config.py](./oneforall/config.py)配置代理，有些收集模块需要提供API（大多都是可以注册账号免费获取），如果需要使用请到[config.py](./oneforall/config.py)配置API信息，如果不使用请忽略有关报错提示。（详细模块请阅读[搜索模块说明](./docs/collection_modules.md)）
 
 OneForAll命令行界面基于[Fire](https://github.com/google/python-fire/)实现，有关Fire更高级使用方法请参阅[使用Fire CLI](https://github.com/google/python-fire/blob/master/docs/using-cli.md)，有任何使用疑惑欢迎加群交流。
+
+oneforall.py是主程序入口，oneforall.py里有调用aiobrute.py和dbexport.py，为了方便进行子域爆破和数据库导出独立出了aiobrute.py和dbexport.py，这两个文件可以单独运行，并且所接受参数要更丰富一点。
 
 1. oneforall.py使用帮助
 
