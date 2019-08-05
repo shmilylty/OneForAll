@@ -23,6 +23,9 @@ class NetCraft(Query):
         绕过NetCraft的JS验证
         """
         self.header = self.get_header()  # Netcraft会检查User-Agent
+        resp = self.get(self.init)
+        if not resp:
+            return None
         self.cookie = self.get(self.init).cookies
         cookie_value = self.cookie['netcraft_js_verification_challenge']
         verify_taken = hashlib.sha1(parse.unquote(cookie_value).encode('utf-8')).hexdigest()
@@ -32,7 +35,8 @@ class NetCraft(Query):
         """
         向接口查询子域并做子域匹配
         """
-        self.bypass_verification()
+        if not self.bypass_verification():
+            return
         last = ''
         while True:
             time.sleep(self.delay)
