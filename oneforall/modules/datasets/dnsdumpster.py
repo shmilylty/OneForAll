@@ -1,5 +1,4 @@
 # coding=utf-8
-import queue
 import time
 
 from common import utils
@@ -38,7 +37,7 @@ class DNSdumpster(Query):
         if subdomains_find:
             self.subdomains = self.subdomains.union(subdomains_find)  # 合并搜索子域名搜索结果
 
-    def run(self, rx_queue):
+    def run(self):
         """
         类执行入口
         """
@@ -47,21 +46,20 @@ class DNSdumpster(Query):
         self.save_json()
         self.gen_result()
         self.save_db()
-        rx_queue.put(self.results)
         self.finish()
 
 
-def do(domain, rx_queue):  # 统一入口名字 方便多线程调用
+def do(domain):  # 统一入口名字 方便多线程调用
     """
     类统一调用入口
 
     :param str domain: 域名
-    :param rx_queue: 结果集队列
+
     """
     query = DNSdumpster(domain)
-    query.run(rx_queue)
+    query.run()
 
 
 if __name__ == '__main__':
-    result_queue = queue.Queue()
-    do('example.com', result_queue)
+
+    do('example.com')

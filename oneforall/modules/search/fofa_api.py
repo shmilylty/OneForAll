@@ -1,6 +1,5 @@
 # coding=utf-8
 import base64
-import queue
 import time
 
 import config
@@ -37,34 +36,30 @@ class FoFa(Search):
             self.subdomains = self.subdomains.union(subdomain_find)
             self.page_num += 1
 
-    def run(self, rx_queue):
+    def run(self):
         """
         类执行入口
         """
-        if not self.email or not self.key:
-            logger.log('ERROR', f'{self.source}模块API配置错误')
-            logger.log('ALERT', f'不执行{self.source}模块')
+
+        if not self.check(self.email, self.key):
             return
-        logger.log('DEBUG', f'开始执行{self.source}模块搜索{self.domain}的子域')
+        self.begin()
         self.search()
         self.save_json()
         self.gen_result()
         self.save_db()
-        rx_queue.put(self.results)
-        logger.log('DEBUG', f'结束执行{self.source}模块搜索{self.domain}的子域')
+        self.finish()
 
 
-def do(domain, rx_queue):  # 统一入口名字 方便多线程调用
+def do(domain):  # 统一入口名字 方便多线程调用
     """
     类统一调用入口
 
     :param str domain: 域名
-    :param rx_queue: 结果集队列
     """
     search = FoFa(domain)
-    search.run(rx_queue)
+    search.run()
 
 
 if __name__ == '__main__':
-    result_queue = queue.Queue()
-    do('example.com', result_queue)
+    do('example.com')

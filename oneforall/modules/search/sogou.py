@@ -1,8 +1,6 @@
 # coding=utf-8
-import queue
 
 from common.search import Search
-from config import logger
 
 
 class Sogou(Search):
@@ -44,11 +42,11 @@ class Sogou(Search):
             if self.page_num * self.per_page_num >= self.limit_num:  # 搜索条数限制
                 break
 
-    def run(self, rx_queue):
+    def run(self):
         """
         类执行入口
         """
-        logger.log('DEBUG', f'开始执行{self.source}模块搜索{self.domain}的子域')
+        self.begin()
 
         self.search(self.domain, full_search=True)
 
@@ -66,21 +64,18 @@ class Sogou(Search):
         self.save_json()
         self.gen_result()
         self.save_db()
-        rx_queue.put(self.results)
-        logger.log('DEBUG', f'结束执行{self.source}模块搜索{self.domain}的子域')
+        self.finish()
 
 
-def do(domain, rx_queue):  # 统一入口名字 方便多线程调用
+def do(domain):  # 统一入口名字 方便多线程调用
     """
     类统一调用入口
 
     :param str domain: 域名
-    :param rx_queue: 结果集队列
     """
     search = Sogou(domain)
-    search.run(rx_queue)
+    search.run()
 
 
 if __name__ == '__main__':
-    result_queue = queue.Queue()
-    do('example.com', result_queue)
+    do('example.com')

@@ -2,7 +2,6 @@
 """
 检查crossdomain.xml文件收集子域名
 """
-import queue
 
 from common.module import Module
 from common.utils import match_subdomain
@@ -25,7 +24,6 @@ class CheckCDX(Module):
         检查crossdomain.xml收集子域名
         :return:
         """
-        url = f'http://{self.domain}/crossdomain.xml'
         urls = [f'http://{self.domain}/crossdomain.xml', f'https://{self.domain}/crossdomain.xml',
                 f'http://www.{self.domain}/crossdomain.xml', f'https://www.{self.domain}/crossdomain.xml']
         response = None
@@ -39,7 +37,7 @@ class CheckCDX(Module):
             return
         self.subdomains = match_subdomain(self.domain, response.text)
 
-    def run(self, rx_queue):
+    def run(self):
         """
         类执行入口
         """
@@ -49,21 +47,19 @@ class CheckCDX(Module):
         self.save_json()
         self.gen_result()
         self.save_db()
-        rx_queue.put(self.results)
         logger.log('DEBUG', f'结束执行{self.source}检查{self.domain}域的crossdomain.xml')
         self.finish()
 
 
-def do(domain, rx_queue):  # 统一入口名字 方便多线程调用
+def do(domain):  # 统一入口名字 方便多线程调用
     """
     类统一调用入口
+
     :param domain: 域名
-    :param rx_queue: 结果集队列
     """
     check = CheckCDX(domain)
-    check.run(rx_queue)
+    check.run()
 
 
 if __name__ == '__main__':
-    result_queue = queue.Queue()
-    do('163.com', result_queue)
+    do('example.com')

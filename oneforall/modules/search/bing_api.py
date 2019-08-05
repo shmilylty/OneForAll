@@ -1,9 +1,8 @@
 # coding=utf-8
 import time
-import queue
+
 import config
 from common.search import Search
-from config import logger
 
 
 class BingAPI(Search):
@@ -49,16 +48,13 @@ class BingAPI(Search):
             if self.page_num >= self.limit_num:  # 搜索条数限制
                 break
 
-    def run(self, rx_queue):
+    def run(self):
         """
         类执行入口
         """
-        if not (self.id and self.key):
-            logger.log('ERROR', f'{self.source}模块API配置错误')
-            logger.log('ALERT', f'不执行{self.source}模块')
+        if not self.check(self.id, self.key):
             return
-        logger.log('DEBUG', f'开始执行{self.source}模块搜索{self.domain}的子域')
-
+        self.begin()
         self.search(self.domain, full_search=True)
 
         # 排除同一子域搜索结果过多的子域以发现新的子域
@@ -75,21 +71,18 @@ class BingAPI(Search):
         self.save_json()
         self.gen_result()
         self.save_db()
-        rx_queue.put(self.results)
-        logger.log('DEBUG', f'结束执行{self.source}模块搜索{self.domain}的子域')
+        self.finish()
 
 
-def do(domain, rx_queue):  # 统一入口名字 方便多线程调用
+def do(domain):  # 统一入口名字 方便多线程调用
     """
     类统一调用入口
 
     :param str domain: 域名
-    :param rx_queue: 结果集队列
     """
     search = BingAPI(domain)
-    search.run(rx_queue)
+    search.run()
 
 
 if __name__ == '__main__':
-    result_queue = queue.Queue()
-    do('example.com', result_queue)
+    do('example.com')

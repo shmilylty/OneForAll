@@ -59,12 +59,10 @@ class Collect(object):
         self.get_mod()
         self.import_func()
 
-        if not rx_queue:
-            rx_queue = queue.Queue(maxsize=len(self.collect_func))  # 结果集队列
         threads = []
         # 创建多个子域收集线程
         for collect_func in self.collect_func:
-            thread = threading.Thread(target=collect_func, args=(self.domain, rx_queue), daemon=True)
+            thread = threading.Thread(target=collect_func, args=(self.domain,), daemon=True)
             threads.append(thread)
         # 启动所有线程
         for thread in threads:
