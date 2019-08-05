@@ -37,7 +37,7 @@ fuzz_rule = ''  # fuzz域名的正则 示例：[a-z][0-9] 第一位是字母 第
 ips_appear_maximum = 10  # 同一IP集合出现次数超过10认为是泛解析
 
 # 代理设置
-enable_proxy = True  # 是否使用代理 全局开关
+enable_proxy = False  # 是否使用代理 全局开关
 proxy_all_module = False  # 代理所有模块
 proxy_partial_module = ['GoogleQuery', 'AskSearch', 'DuckDuckGoSearch', 'GoogleAPISearch', 'GoogleSearch',
                         'YahooSearch', 'YandexSearch', 'CrossDomainXml', 'ContentSecurityPolicy']  # 代理自定义的模块
@@ -48,7 +48,7 @@ proxy_pool = [{'http': 'http://127.0.0.1:1080', 'https': 'https://127.0.0.1:1080
 # 网络请求设置
 enable_fake_header = True  # 启用伪造请求头
 request_delay = 1  # 请求时延
-request_timeout = 60  # 请求超时
+request_timeout = 30  # 请求超时
 request_verify = True  # 请求SSL验证
 
 # 搜索模块设置
