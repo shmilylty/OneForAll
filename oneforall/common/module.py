@@ -68,7 +68,7 @@ class Module(object):
         except Exception as e:
             logger.log('ERROR', e)
             return None
-        if resp.status_code != 200:
+        if resp.status_code != 200 or not resp.content:  # 状态码非200或者响应体为空
             logger.log('ALERT', f'GET {resp.url} {resp.status_code} - {resp.reason} {len(resp.content)}')
             content_type = resp.headers.get('Content-Type')
             if content_type:
@@ -93,7 +93,7 @@ class Module(object):
         except Exception as e:
             logger.log('ERROR', e)
             return None
-        if resp.status_code != 200:
+        if resp.status_code != 200 or not resp.content:  # 状态码非200或者响应体为空
             content_type = resp.headers.get('Content-Type')
             if content_type:
                 if 'json' in content_type:
