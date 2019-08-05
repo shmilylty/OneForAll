@@ -14,6 +14,7 @@ import queue
 import secrets
 import signal
 import time
+from functools import partial
 
 import aiomultiprocess
 import exrex
@@ -209,6 +210,7 @@ class AIOBrute(Module):
             self.enable_wildcard, self.wildcard_ips, self.wildcard_ttl = detect_wildcard(domain)
         tasks = self.gen_tasks(domain)
         logger.log('INFOR', f'正在爆破{domain}的域名')
+        sem = asyncio.Semaphore(utils.get_semaphore())
         for task in tqdm.tqdm(tasks, desc='Progress', smoothing=1.0, ncols=True):
             async with aiomultiprocess.Pool(processes=self.processes, initializer=init_worker,
                                             childconcurrency=self.coroutine) as pool:
