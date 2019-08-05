@@ -57,13 +57,19 @@
 
 **✔安装步骤**
 
-1.  下载
+1. 下载更新
 
    ```bash
-git clone https://github.com/shmilylty/OneForAll.git
+   git clone https://github.com/shmilylty/OneForAll.git
    ```
 
-   或者到[Releases](https://github.com/shmilylty/OneForAll/releases)手动下载。
+   ❗如果你之前已经克隆了项目运行之前请**备份**自己修改过的文件到项目外的地方（如**config.py**），然后执行以下命令**更新**项目：
+
+   ```bash
+   git fetch --all
+   git reset --hard origin/master
+   git pull
+   ```
 
 2. 安装依赖
 
