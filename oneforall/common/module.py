@@ -82,7 +82,7 @@ class Module(object):
         if resp.status_code != 200 or not resp.content:  # 状态码非200或者响应体为空
             logger.log('ALERT', f'GET {resp.url} {resp.status_code} - {resp.reason} {len(resp.content)}')
             content_type = resp.headers.get('Content-Type')
-            if content_type and 'json' in content_type and not resp.content:
+            if content_type and 'json' in content_type and resp.content:
                 logger.log('ALERT', resp.json())
             return None
         logger.log('DEBUG', f'GET {resp.url} {resp.status_code} - {resp.reason} {len(resp.content)}')
@@ -105,7 +105,7 @@ class Module(object):
             return None
         if resp.status_code != 200 or not resp.content:  # 状态码非200或者响应体为空
             content_type = resp.headers.get('Content-Type')
-            if content_type and 'json' in content_type and not resp.content:
+            if content_type and 'json' in content_type and resp.content:
                 logger.log('ALERT', resp.json())
             return None
         logger.log('DEBUG', f'POST {resp.url} {resp.status_code} - {resp.reason} {len(resp.content)}')
