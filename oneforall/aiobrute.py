@@ -14,7 +14,6 @@ import queue
 import secrets
 import signal
 import time
-from functools import partial
 
 import aiomultiprocess
 import exrex
@@ -210,7 +209,6 @@ class AIOBrute(Module):
             self.enable_wildcard, self.wildcard_ips, self.wildcard_ttl = detect_wildcard(domain)
         tasks = self.gen_tasks(domain)
         logger.log('INFOR', f'正在爆破{domain}的域名')
-        sem = asyncio.Semaphore(utils.get_semaphore())
         for task in tqdm.tqdm(tasks, desc='Progress', smoothing=1.0, ncols=True):
             async with aiomultiprocess.Pool(processes=self.processes, initializer=init_worker,
                                             childconcurrency=self.coroutine) as pool:
@@ -223,11 +221,10 @@ class AIOBrute(Module):
                     self.gen_result()
                     rx_queue.put(self.results)
                     return
-                else:
-                    self.deal_results(results)
-            self.save_json()
-            self.gen_result()
-            rx_queue.put(self.results)
+                self.deal_results(results)
+                self.save_json()
+                self.gen_result()
+                rx_queue.put(self.results)
 
     def run(self, rx_queue=None):
         self.domains = utils.get_domains(self.target)
@@ -257,7 +254,8 @@ class AIOBrute(Module):
                             loop.run_until_complete(self.main(subdomain, rx_queue))
 
             while not rx_queue.empty():  # 队列不空就一直取数据存数据库
-                database.save_db(db_conn, table_name, rx_queue.get())  # 将结果存入数据库中
+                source, results = rx_queue.get()
+                database.save_db(db_conn, table_name, results, source)  # 将结果存入数据库中
             database.copy_table(db_conn, table_name)
             database.deduplicate_subdomain(db_conn, table_name)
             database.remove_invalid(db_conn, table_name)
@@ -281,6 +279,6 @@ def do(domain, result):  # 统一入口名字 方便多线程调用
 
 
 if __name__ == '__main__':
-    fire.Fire(AIOBrute)
-    # result_queue = queue.Queue()
-    # do('example.com', result_queue)
+    # fire.Fire(AIOBrute)
+    result_queue = queue.Queue()
+    do('example.com', result_queue)

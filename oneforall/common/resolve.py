@@ -48,11 +48,14 @@ async def aiodns_query_a(hostname, semaphore=None):
     :return: 主机名或查询结果或查询异常
     """
     if semaphore is None:
-        semaphore = utils.get_semaphore()
-    async with semaphore:
         resolver = aiodns_resolver()
         answers = await resolver.query(hostname, 'A')
         return hostname, answers
+    else:
+        async with semaphore:
+            resolver = aiodns_resolver()
+            answers = await resolver.query(hostname, 'A')
+            return hostname, answers
 
 
 def resolve_callback(future, index, datas):
