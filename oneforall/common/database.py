@@ -90,7 +90,7 @@ def copy_table(db_conn, table_name):
     logger.log('DEBUG', f'正在将{table_name}表复制到{new_table_name}新表')
     try:
         db_conn.query(f'drop table if exists "{new_table_name}"')
-        db_conn.query(f'create table {new_table_name} as select * from "{table_name}"')
+        db_conn.query(f'create table "{new_table_name}" as select * from "{table_name}"')
     except Exception as e:
         logger.log('ERROR', e)
 
