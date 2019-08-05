@@ -140,10 +140,16 @@ class AIOBrute(Module):
         python aiobrute.py --target example.com --recursive True --depth 2 --namelist data/next_subdomains.txt run
         python aiobrute.py --target www.{fuzz}.example.com --fuzz True --rule [a-z][0-9] run
 
+    Note:
+        参数segment的设置受CPU性能，网络带宽，运营商限制等问题影响，默认设置500个子域为一任务组，
+        当你觉得你的环境不受以上因素影响，当前爆破速度较慢，那么强烈建议根据字典大小调整大小：
+        十万字典建议设置为5000，百万字典设置为50000
+
     :param str target:       单个域名或者每行一个域名的文件路径
     :param int processes:    爆破的进程数(默认CPU核心数)
     :param int coroutine:    每个爆破进程下的协程数(默认16)
     :param str wordlist:     指定爆破所使用的字典路径(默认使用config.py配置)
+    :param int segment:      爆破任务分割(默认500)
     :param bool recursive:   是否使用递归爆破(默认False)
     :param int depth:        递归爆破的深度(默认2)
     :param str namelist:     指定递归爆破所使用的字典路径(默认使用config.py配置)
@@ -151,7 +157,7 @@ class AIOBrute(Module):
     :param str rule:         fuzz模式使用的正则规则(默认使用config.py配置)
     """
 
-    def __init__(self, target, processes=None, coroutine=64, wordlist=None,
+    def __init__(self, target, processes=None, coroutine=64, wordlist=None, segment=500,
                  recursive=False, depth=2, namelist=None, fuzz=False, rule=None):
         Module.__init__(self)
         self.domains = set()
@@ -162,6 +168,7 @@ class AIOBrute(Module):
         self.processes = processes or config.brute_processes_num or os.cpu_count()
         self.coroutine = coroutine or config.brute_coroutine_num
         self.wordlist = wordlist or config.brute_wordlist_path or get_wordlist('subdomains.txt')
+        self.segment = segment or config.brute_task_segment
         self.recursive_brute = recursive or config.enable_recursive_brute
         self.recursive_depth = depth or config.brute_recursive_depth
         self.recursive_namelist = namelist or config.recursive_namelist_path or get_wordlist('next_subdomains.txt')
@@ -182,7 +189,7 @@ class AIOBrute(Module):
         else:
             domains = gen_brute_domains(domain, self.wordlist)
         domains = list(domains)
-        return utils.split_list(domains, 500)  # 分割任务组 500个子域为一组任务
+        return utils.split_list(domains, self.segment)  # 分割任务组
 
     def deal_results(self, results):
         for result in results:
