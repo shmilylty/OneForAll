@@ -161,7 +161,7 @@ class AIOBrute(Module):
         self.target = target
         self.processes = processes or config.brute_processes_num or os.cpu_count()
         self.coroutine = coroutine or config.brute_coroutine_num
-        self.wordlist = wordlist or config.brute_wordlist_path or get_wordlist('subdomains.txt')
+        self.wordlist = wordlist or config.brute_wordlist_path or get_wordlist('test.txt')
         self.recursive_brute = recursive or config.enable_recursive_brute
         self.recursive_depth = depth or config.brute_recursive_depth
         self.recursive_namelist = namelist or config.recursive_namelist_path or get_wordlist('next_subdomains.txt')
@@ -279,6 +279,6 @@ def do(domain, result):  # 统一入口名字 方便多线程调用
 
 
 if __name__ == '__main__':
-    # fire.Fire(AIOBrute)
-    result_queue = queue.Queue()
-    do('example.com', result_queue)
+    fire.Fire(AIOBrute)
+    # result_queue = queue.Queue()
+    # do('example.com', result_queue)
