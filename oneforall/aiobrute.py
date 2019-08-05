@@ -161,7 +161,7 @@ class AIOBrute(Module):
         self.target = target
         self.processes = processes or config.brute_processes_num or os.cpu_count()
         self.coroutine = coroutine or config.brute_coroutine_num
-        self.wordlist = wordlist or config.brute_wordlist_path or get_wordlist('test.txt')
+        self.wordlist = wordlist or config.brute_wordlist_path or get_wordlist('subdomains.txt')
         self.recursive_brute = recursive or config.enable_recursive_brute
         self.recursive_depth = depth or config.brute_recursive_depth
         self.recursive_namelist = namelist or config.recursive_namelist_path or get_wordlist('next_subdomains.txt')
