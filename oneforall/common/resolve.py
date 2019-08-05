@@ -39,7 +39,7 @@ def aiodns_resolver():
                               timeout=config.resolver_timeout)
 
 
-async def aiodns_query_a(hostname, semaphore):
+async def aiodns_query_a(hostname, semaphore=None):
     """
     异步查询A记录
 
@@ -47,6 +47,8 @@ async def aiodns_query_a(hostname, semaphore):
     :param semaphore: 并发查询数量
     :return: 主机名或查询结果或查询异常
     """
+    if semaphore is None:
+        semaphore = utils.get_semaphore()
     async with semaphore:
         resolver = aiodns_resolver()
         answers = await resolver.query(hostname, 'A')
