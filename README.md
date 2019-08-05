@@ -77,7 +77,7 @@
 
      ```bash
      pip3 install pipenv
-     cd OneForAll/oneforall
+     cd OneForAll/
      pipenv install python 3.7.4
      pipenv run python oneforall.py --help
      ```
@@ -85,7 +85,7 @@
    * 使用pip3
 
      ```bash
-     cd OneForAll/oneforall
+     cd OneForAll/
      pip3 install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
      python3 oneforall.py --help
      ```
@@ -96,6 +96,7 @@
 **✨使用演示**
 
 ```bash
+cd oneforall
 python3 oneforall.py --target example.com run
 ```
 
