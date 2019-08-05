@@ -40,7 +40,7 @@ def create_table(db_conn, table_name):
     """
     logger.log('DEBUG', f'正在创建{table_name}表')
     try:
-        db_conn.query(f'create table if not exists {table_name} ('
+        db_conn.query(f'create table if not exists "{table_name}" ('
                       f'id integer primary key,'
                       f'url text,'
                       f'subdomain text,'
@@ -71,7 +71,7 @@ def save_db(db_conn, table_name, results, module_name=None):
     logger.log('DEBUG', f'正在将{module_name}模块发现{table_name}的子域结果存入数据库')
     if results:
         try:
-            db_conn.bulk_query(f'insert into {table_name} (id, url, subdomain, port, ips, status,'
+            db_conn.bulk_query(f'insert into "{table_name}" (id, url, subdomain, port, ips, status,'
                                f'reason, valid, title, banner, module, source, elapsed, count)'
                                f'values (:id, :url, :subdomain, :port, :ips, :status, :reason, :valid,'
                                f':title, :banner, :module, :source, :elapsed, :count)', results)
@@ -89,8 +89,8 @@ def copy_table(db_conn, table_name):
     new_table_name = table_name + '_bak'
     logger.log('DEBUG', f'正在将{table_name}表复制到{new_table_name}新表')
     try:
-        db_conn.query(f'drop table if exists {new_table_name}')
-        db_conn.query(f'create table {new_table_name} as select * from {table_name}')
+        db_conn.query(f'drop table if exists "{new_table_name}"')
+        db_conn.query(f'create table {new_table_name} as select * from "{table_name}"')
     except Exception as e:
         logger.log('ERROR', e)
 
@@ -104,7 +104,7 @@ def clear_table(db_conn, table_name):
     """
     logger.log('DEBUG', f'正在清空{table_name}表中的数据')
     try:
-        db_conn.query(f'delete from {table_name}')
+        db_conn.query(f'delete from "{table_name}"')
     except Exception as e:
         logger.log('ERROR', e)
 
@@ -118,7 +118,7 @@ def deduplicate_subdomain(db_conn, table_name):
     """
     logger.log('DEBUG', f'正在去重{table_name}表中的子域')
     try:
-        db_conn.query(f'delete from {table_name} where id not in (select min(id) from {table_name} group by subdomain)')
+        db_conn.query(f'delete from "{table_name}" where id not in (select min(id) from "{table_name}" group by subdomain)')
     except Exception as e:
         logger.log('ERROR', e)
 
@@ -132,7 +132,7 @@ def remove_invalid(db_conn, table_name):
         """
     logger.log('DEBUG', f'正在去除{table_name}表中的无效子域')
     try:
-        db_conn.query(f'delete from {table_name} where subdomain is null or valid == 0')
+        db_conn.query(f'delete from "{table_name}" where subdomain is null or valid == 0')
     except Exception as e:
         logger.log('ERROR', e)
 
@@ -146,7 +146,7 @@ def get_data(db_conn, table_name):
     """
     logger.log('DEBUG', f'获取{table_name}表中的所有数据')
     try:
-        rows = db_conn.query(f'select * from {table_name}')
+        rows = db_conn.query(f'select * from "{table_name}"')
     except Exception as e:
         logger.log('ERROR', e)
     else:
@@ -163,7 +163,7 @@ def get_subdomain(db_conn, table_name, valid):
     """
     logger.log('DEBUG', f'获取{table_name}表中的所有数据')
     try:
-        rows = db_conn.query(f'select * from {table_name} where valid = {valid}')
+        rows = db_conn.query(f'select * from "{table_name}" where valid = {valid}')
     except Exception as e:
         logger.log('ERROR', e)
     else:
