@@ -1,8 +1,7 @@
 # coding=utf-8
 import time
-import queue
+
 from common.search import Search
-from config import logger
 
 
 class Ask(Search):
@@ -44,14 +43,12 @@ class Ask(Search):
             if '>Next<' not in resp.text:
                 break
 
-    def run(self, rx_queue):
+    def run(self):
         """
         类执行入口
         """
-        logger.log('DEBUG', f'开始执行{self.source}模块搜索{self.domain}的子域')
-
+        self.begin()
         self.search(self.domain, full_search=True)
-
         # 排除同一子域搜索结果过多的子域以发现新的子域
         for statement in self.filter(self.domain, self.subdomains):
             self.search(self.domain, filtered_subdomain=statement)
@@ -62,25 +59,21 @@ class Ask(Search):
                 for subdomain in self.subdomains:
                     if subdomain.count('.') - self.domain.count('.') == layer_num:  # 进行下一层子域搜索的限制条件
                         self.search(subdomain)
-
         self.save_json()
         self.gen_result()
         self.save_db()
-        rx_queue.put(self.results)
-        logger.log('DEBUG', f'结束执行{self.source}模块搜索{self.domain}的子域')
+        self.finish()
 
 
-def do(domain, rx_queue):  # 统一入口名字 方便多线程调用
+def do(domain):  # 统一入口名字 方便多线程调用
     """
     类统一调用入口
 
     :param str domain: 域名
-    :param rx_queue: 结果集队列
     """
     search = Ask(domain)
-    search.run(rx_queue)
+    search.run()
 
 
 if __name__ == '__main__':
-    result_queue = queue.Queue()
-    do('example.com', result_queue)
+    do('example.com')

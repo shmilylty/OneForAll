@@ -37,6 +37,17 @@ class Module(object):
         self.end = None
         self.elapsed = time.time() - self.start  # 模块执行耗时
 
+    def check(self, *apis):
+        """
+        简单检查是否配置了api信息
+        :param apis: api信息元组
+        :return: 检查结果
+        """
+        if not all(apis):
+            logger.log('ALERT', f'{self.source}模块API配置有误跳过执行')
+            return False
+        return True
+
     def begin(self):
         """
         输出模块开始信息

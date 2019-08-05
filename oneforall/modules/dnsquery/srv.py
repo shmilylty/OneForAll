@@ -7,7 +7,6 @@
 
 import asyncio
 import json
-import queue
 
 import aiodns
 
@@ -70,7 +69,7 @@ class BruteSRV(Module):
         if not len(self.subdomains):
             logger.log('DEBUG', f'没有找到{self.domain}的SRV记录')
 
-    def run(self, rx_queue):
+    def run(self):
         """
         类执行入口
         """
@@ -80,21 +79,20 @@ class BruteSRV(Module):
         self.save_json()
         self.gen_result()
         self.save_db()
-        rx_queue.put(self.results)
         logger.log('DEBUG', f'结束枚举{self.domain}域的SRV记录')
         self.finish()
 
 
-def do(domain, rx_queue):  # 统一入口名字 方便多线程调用
+def do(domain):  # 统一入口名字 方便多线程调用
     """
     类统一调用入口
+
     :param str domain: 域名
-    :param rx_queue: 结果集队列
     """
     brute = BruteSRV(domain)
-    brute.run(rx_queue)
+    brute.run()
 
 
 if __name__ == '__main__':
-    result_queue = queue.Queue()
-    do('example.com', result_queue)
+
+    do('example.com')

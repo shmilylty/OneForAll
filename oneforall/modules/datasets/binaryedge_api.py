@@ -1,9 +1,8 @@
 # coding=utf-8
 import time
-import queue
+
 import config
 from common.query import Query
-from config import logger
 
 
 class BinaryEdgeAPI(Query):
@@ -30,34 +29,30 @@ class BinaryEdgeAPI(Query):
         subdomains_find = self.match(self.domain, str(resp.json()))
         self.subdomains = self.subdomains.union(subdomains_find)
 
-    def run(self, rx_queue):
+    def run(self):
         """
         类执行入口
         """
-        if not self.api:
-            logger.log('ERROR', f'{self.source}模块API配置错误')
-            logger.log('ALERT', f'不执行{self.source}模块')
+        if not self.check(self.api):
             return
         self.begin()
         self.query()
         self.save_json()
         self.gen_result()
         self.save_db()
-        rx_queue.put(self.results)
         self.finish()
 
 
-def do(domain, rx_queue):  # 统一入口名字 方便多线程调用
+def do(domain):  # 统一入口名字 方便多线程调用
     """
     类统一调用入口
 
     :param str domain: 域名
-    :param rx_queue: 结果集队列
     """
     query = BinaryEdgeAPI(domain)
-    query.run(rx_queue)
+    query.run()
 
 
 if __name__ == '__main__':
-    result_queue = queue.Queue()
-    do('example.com', result_queue)
+
+    do('example.com')

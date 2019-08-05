@@ -7,7 +7,6 @@ DNS域传送(DNS zone transfer)指的是一台备用域名服务器使用来自�
 目的是为了做冗余备份，防止主域名服务器出现故障时 dns 解析不可用。
 当主服务器开启DNS域传送同时又对来请求的备用服务器未作访问控制和身份验证便可以利用此漏洞获取某个域的所有记录。
 """
-import queue
 import dns.resolver
 import dns.zone
 
@@ -63,7 +62,7 @@ class CheckAXFR(Module):
                 logger.log('DEBUG', '\n'.join(self.results))
                 self.results = []
 
-    def run(self, rx_queue):
+    def run(self):
         """
         类执行入口
         """
@@ -73,23 +72,19 @@ class CheckAXFR(Module):
         self.save_json()
         self.gen_result()
         self.save_db()
-        rx_queue.put(self.results)
         logger.log('DEBUG', f'结束执行{self.source}检查{self.domain}的域传送漏洞')
         self.finish()
 
 
-def do(domain, rx_queue):  # 统一入口名字 方便多线程调用
+def do(domain):  # 统一入口名字 方便多线程调用
     """
     类统一调用入口
 
     :param str domain: 域名
-    :param rx_queue: 结果集队列
     """
     check = CheckAXFR(domain)
-    check.run(rx_queue)
+    check.run()
 
 
 if __name__ == '__main__':
-    # do('ZoneTransfer.me')
-    result_queue = queue.Queue()
-    do('example.com', result_queue)
+    do('ZoneTransfer.me')
