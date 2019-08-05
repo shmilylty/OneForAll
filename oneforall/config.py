@@ -37,8 +37,8 @@ ips_appear_maximum = 10  # 同一IP集合出现次数超过10认为是泛解析
 # 代理设置
 enable_proxy = True  # 是否使用代理 全局开关
 proxy_all_module = False  # 代理所有模块
-proxy_partial_module = ['GoogleQuery', 'AskSearch', 'DuckDuckGoSearch', 'GoogleAPISearch',
-                        'GoogleSearch', 'YahooSearch', 'YandexSearch']  # 代理自定义的模块
+proxy_partial_module = ['GoogleQuery', 'AskSearch', 'DuckDuckGoSearch', 'GoogleAPISearch', 'GoogleSearch',
+                        'YahooSearch', 'YandexSearch', 'CrossDomainXml', 'ContentSecurityPolicy']  # 代理自定义的模块
 proxy_pool = [{'http': 'http://127.0.0.1:1080', 'https': 'https://127.0.0.1:1080'}]  # 代理池
 # proxy_pool = [{'http': 'socks5://127.0.0.1:10808', 'https': 'socks5://127.0.0.1:10808'}]  # 代理池
 

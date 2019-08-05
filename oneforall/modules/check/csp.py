@@ -18,7 +18,7 @@ class CheckCSP(Module):
         Module.__init__(self)
         self.domain = self.register(domain)
         self.module = 'Check'
-        self.source = 'Content-Security-Policy'
+        self.source = 'ContentSecurityPolicy'
         self.header = header
 
     def check(self):
@@ -26,11 +26,18 @@ class CheckCSP(Module):
         正则匹配响应头中的内容安全策略字段以发现子域名
         """
         if not self.header:
-            url = f'http://www.{self.domain}'
-            resp = self.get(url)
-            if not resp:
+            urls = [f'http://{self.domain}', f'https://{self.domain}',
+                    f'http://www.{self.domain}', f'https://www.{self.domain}']
+            response = None
+            for url in urls:
+                self.header = self.get_header()
+                self.proxy = self.get_proxy(self.source)
+                response = self.get(url)
+                if response:
+                    break
+            if not response:
                 return
-            self.header = resp.headers
+            self.header = response.headers
         csp = self.header.get('Content-Security-Policy')
         if not csp:
             logger.log('DEBUG', f'{self.domain}域的响应头不存在内容安全策略字段')
