@@ -99,7 +99,7 @@ async def bulk_get_request(datas, port):
     if config.fake_header:
         header = utils.gen_fake_header()
     resolver = AsyncResolver(nameservers=config.resolver_nameservers)  # 使用异步域名解析器 自定义域名服务器
-    conn = aiohttp.TCPConnector(verify_ssl=config.verify_ssl, limit=config.limit_open_conn,
+    conn = aiohttp.TCPConnector(verify_ssl=config.verify_ssl, ssl=config.verify_ssl, limit=config.limit_open_conn,
                                 limit_per_host=config.limit_per_host, resolver=resolver)
     semaphore = asyncio.Semaphore(utils.get_semaphore())
     async with ClientSession(connector=conn, headers=header) as session:
