@@ -26,12 +26,18 @@ class CheckCDX(Module):
         :return:
         """
         url = f'http://{self.domain}/crossdomain.xml'
-        self.header = self.get_header()
-        self.proxy = self.get_proxy(self.source)
-        resp = self.get(url)
-        if not resp:
+        urls = [f'http://{self.domain}/crossdomain.xml', f'https://{self.domain}/crossdomain.xml',
+                f'http://www.{self.domain}/crossdomain.xml', f'https://www.{self.domain}/crossdomain.xml']
+        response = None
+        for url in urls:
+            self.header = self.get_header()
+            self.proxy = self.get_proxy(self.source)
+            response = self.get(url)
+            if response:
+                break
+        if not response:
             return
-        self.subdomains = match_subdomain(self.domain, resp.text)
+        self.subdomains = match_subdomain(self.domain, response.text)
 
     def run(self, rx_queue):
         """
