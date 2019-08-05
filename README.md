@@ -83,6 +83,9 @@ git clone https://github.com/shmilylty/OneForAll.git
      pip3 install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
      python3 oneforall.py --help
      ```
+     
+
+如果在安装依赖过程中发现编译某个依赖库失败时可以参考[编译失败解决方法](./doc/building_fail_solution.md)，如果还没有解决欢迎加群反馈。
 
 **✨使用演示**
 
