@@ -198,6 +198,8 @@ class AIOBrute(Module):
                 continue
             if isinstance(result, tuple):
                 subdomain, answers = result
+                if not answers:
+                    continue
                 ips = {record.host for record in answers}
                 value = self.ips_times.setdefault(str(ips), 0)  # 取值 如果是首次出现的IP集合 出现次数先赋值0
                 self.ips_times[str(ips)] = value + 1
