@@ -1,7 +1,4 @@
-# coding=utf-8
-
 import config
-# from shodan import Shodan
 from common.search import Search
 
 

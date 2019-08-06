@@ -1,8 +1,5 @@
-# coding=utf-8
 import time
-
 from bs4 import BeautifulSoup
-
 from common.search import Search
 
 

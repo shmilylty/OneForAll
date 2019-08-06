@@ -1,8 +1,5 @@
-# coding=utf-8
-
 import config
 from common.query import Query
-from config import logger
 
 
 class ThreatBookAPI(Query):

@@ -1,4 +1,3 @@
-# coding=utf-8
 import random
 
 from common import utils

@@ -30,23 +30,20 @@ def init_worker():
     signal.signal(signal.SIGINT, signal.SIG_IGN)
 
 
-def get_wordlist(name):
-    return config.data_storage_path.joinpath(name)
-
-
 def detect_wildcard(domain):
     """
     探测域名是否使用泛解析
 
     :param str domain: 域名
-    :return: 如果没有使用泛解析返回False 使用返回泛解析的IP集合和ttl整型值
+    :return: 如果没有使用泛解析返回False 反之返回泛解析的IP集合和ttl整型值
     """
     logger.log('INFOR', f'正在探测{domain}是否使用泛解析')
     token = secrets.token_hex(16)
     random_subdomain = f'{token}.{domain}'
     try:
         answers = resolve.dns_query_a(random_subdomain)
-    except Exception as e:  # 如果查询随机域名A记录出错 说明不存在随机子域的A记录 即没有开启泛解析
+    # 如果查询随机域名A记录出错 说明不存在随机子域的A记录 即没有开启泛解析
+    except Exception as e:
         logger.log('DEBUG', e)
         logger.log('INFOR', f'{domain}没有使用泛解析')
         return False, None, None
@@ -134,44 +131,46 @@ class AIOBrute(Module):
     OneForAll多进程多协程异步子域爆破模块
 
     Example：
-        python aiobrute.py --target example.com run
-        python aiobrute.py --target ./domains.txt run
-        python aiobrute.py --target example.com --processes 4 --coroutine 64 --wordlist data/subdomains.txt run
-        python aiobrute.py --target example.com --recursive True --depth 2 --namelist data/next_subdomains.txt run
-        python aiobrute.py --target www.{fuzz}.example.com --fuzz True --rule [a-z][0-9] run
+        python3 aiobrute.py --target example.com run
+        python3 aiobrute.py --target ./domains.txt run
+        python3 aiobrute.py --target example.com --processes 4 --coroutine 64
+        python3 aiobrute.py --target example.com --wordlist subdomains.txt run
+        python3 aiobrute.py --target example.com --recursive True --depth 2 run
+        python3 aiobrute.py --target m.{fuzz}.a.bz --fuzz True --rule [a-z] run
 
     Note:
-        参数segment的设置受CPU性能，网络带宽，运营商限制等问题影响，默认设置500个子域为一任务组，
+        参数segment的设置受CPU性能，网络带宽，运营商限制等问题影响，默认设置500个子域为任务组，
         当你觉得你的环境不受以上因素影响，当前爆破速度较慢，那么强烈建议根据字典大小调整大小：
         十万字典建议设置为5000，百万字典设置为50000
 
     :param str target:       单个域名或者每行一个域名的文件路径
     :param int processes:    爆破的进程数(默认CPU核心数)
-    :param int coroutine:    每个爆破进程下的协程数(默认16)
+    :param int coroutine:    每个爆破进程下的协程数(默认64)
     :param str wordlist:     指定爆破所使用的字典路径(默认使用config.py配置)
     :param int segment:      爆破任务分割(默认500)
     :param bool recursive:   是否使用递归爆破(默认False)
     :param int depth:        递归爆破的深度(默认2)
     :param str namelist:     指定递归爆破所使用的字典路径(默认使用config.py配置)
-    :param bool fuzz:        是否使用fuzz模式进行爆破(默认False，开启必须指定fuzz正则规则)
+    :param bool fuzz:        是否使用fuzz模式进行爆破(默认False，开启须指定fuzz正则规则)
     :param str rule:         fuzz模式使用的正则规则(默认使用config.py配置)
     """
 
-    def __init__(self, target, processes=None, coroutine=64, wordlist=None, segment=500,
-                 recursive=False, depth=2, namelist=None, fuzz=False, rule=None):
+    def __init__(self, target, processes=None, coroutine=64, wordlist=None,
+                 segment=500, recursive=False, depth=2, namelist=None,
+                 fuzz=False, rule=None):
         Module.__init__(self)
         self.domains = set()
         self.domain = str()
         self.module = 'Brute'
         self.source = 'AIOBrute'
         self.target = target
-        self.processes = processes or config.brute_processes_num or os.cpu_count()
+        self.processes = processes or config.brute_processes_num
         self.coroutine = coroutine or config.brute_coroutine_num
-        self.wordlist = wordlist or config.brute_wordlist_path or get_wordlist('subdomains.txt')
+        self.wordlist = wordlist or config.brute_wordlist_path
         self.segment = segment or config.brute_task_segment
         self.recursive_brute = recursive or config.enable_recursive_brute
         self.recursive_depth = depth or config.brute_recursive_depth
-        self.recursive_namelist = namelist or config.recursive_namelist_path or get_wordlist('next_subdomains.txt')
+        self.recursive_namelist = namelist or config.recursive_namelist_path
         self.fuzz = fuzz or config.enable_fuzz
         self.rule = rule or config.fuzz_rule
         self.nameservers = config.resolver_nameservers
@@ -181,12 +180,15 @@ class AIOBrute(Module):
         self.wildcard_ttl = int()  # 泛解析TTL整型值
 
     def gen_tasks(self, domain):
-        logger.log('INFOR', f'正在生成{domain}的字典')
-        if self.domain != domain:  # 如果domain不是self.domain，而是self.domain的子域 生成递归爆破字典
+        # 如果domain不是self.domain，而是self.domain的子域 生成递归爆破字典
+        if self.domain != domain:
+            logger.log('INFOR', f'使用{self.recursive_namelist}字典')
             domains = gen_brute_domains(domain, self.recursive_namelist)
         elif self.fuzz and self.rule:  # 开启fuzz模式并指定了fuzz正则规则
+            logger.log('INFOR', f'正在生成{domain}的fuzz字典')
             domains = gen_fuzz_domains(domain, self.rule)
         else:
+            logger.log('INFOR', f'使用{self.wordlist}字典')
             domains = gen_brute_domains(domain, self.wordlist)
         domains = list(domains)
         return utils.split_list(domains, self.segment)  # 分割任务组
@@ -201,15 +203,19 @@ class AIOBrute(Module):
                 if not answers:
                     continue
                 ips = {record.host for record in answers}
-                value = self.ips_times.setdefault(str(ips), 0)  # 取值 如果是首次出现的IP集合 出现次数先赋值0
+                # 取值 如果是首次出现的IP集合 出现次数先赋值0
+                value = self.ips_times.setdefault(str(ips), 0)
                 self.ips_times[str(ips)] = value + 1
                 ttl = answers[0].ttl
                 if self.enable_wildcard:
-                    if wildcard_by_compare(ips, ttl, self.wildcard_ips, self.wildcard_ttl):
+                    if wildcard_by_compare(ips, ttl,
+                                           self.wildcard_ips,
+                                           self.wildcard_ttl):
                         continue
                 if wildcard_by_times(ips, self.ips_times):
                     continue
-                logger.log('INFOR', f'发现{self.domain}的子域: {subdomain} 解析IP: {ips} TTL: {ttl}')
+                logger.log('INFOR', f'发现{self.domain}的子域: {subdomain} '
+                                    f'解析IP: {ips} TTL: {ttl}')
                 self.subdomains.add(subdomain)
                 self.records[subdomain] = str(ips)
 
@@ -219,8 +225,10 @@ class AIOBrute(Module):
         tasks = self.gen_tasks(domain)
         logger.log('INFOR', f'正在爆破{domain}的域名')
         for task in tqdm.tqdm(tasks, desc='Progress', smoothing=1.0, ncols=True):
-            async with aiomultiprocess.Pool(processes=self.processes, initializer=init_worker,
-                                            childconcurrency=self.coroutine) as pool:
+            async with aiomultiprocess.Pool(processes=self.processes,
+                                            initializer=init_worker,
+                                            childconcurrency=self.coroutine)\
+                    as pool:
                 try:
                     results = await pool.map(resolve.aiodns_query_a, task)
                 except KeyboardInterrupt:
@@ -246,25 +254,31 @@ class AIOBrute(Module):
             if not rx_queue:
                 rx_queue = queue.Queue()
             logger.log('INFOR', f'开始执行{self.source}模块爆破域名{self.domain}')
-            logger.log('INFOR', f'{self.source}模块使用{self.processes}个进程乘{self.coroutine}个协程')
-            # logger.log('INFOR', f'{self.source}模块使用个进程乘{self.coroutine}个协程')
-            if self.recursive_brute and not self.fuzz:  # fuzz模式不使用递归爆破
+            logger.log('INFOR', f'使用{self.processes}进程乘{self.coroutine}协程')
+            # fuzz模式不使用递归爆破
+            if self.recursive_brute and not self.fuzz:
                 logger.log('INFOR', f'开始递归爆破{self.domain}的第1层子域')
             loop = asyncio.get_event_loop()
             asyncio.set_event_loop(loop)
             loop.run_until_complete(self.main(self.domain, rx_queue))
 
             # 递归爆破下一层的子域
-            if self.recursive_brute and not self.fuzz:  # fuzz模式不使用递归爆破
-                for layer_num in range(1, self.recursive_depth):  # 之前已经做过1层子域爆破 当前实际递归层数是layer+1
-                    logger.log('INFOR', f'开始递归爆破{self.domain}的第{layer_num + 1}层子域')
+            # fuzz模式不使用递归爆破
+            if self.recursive_brute and not self.fuzz:
+                for layer_num in range(1, self.recursive_depth):
+                    # 之前已经做过1层子域爆破 当前实际递归层数是layer+1
+                    logger.log('INFOR', f'开始递归爆破{self.domain}的'
+                                        f'第{layer_num + 1}层子域')
                     for subdomain in self.subdomains.copy():
-                        if subdomain.count('.') - self.domain.count('.') == layer_num:  # 进行下一层子域爆破的限制条件
-                            loop.run_until_complete(self.main(subdomain, rx_queue))
-
-            while not rx_queue.empty():  # 队列不空就一直取数据存数据库
+                        # 进行下一层子域爆破的限制条件
+                        if subdomain.count('.') - self.domain.count('.') == layer_num:
+                            loop.run_until_complete(self.main(subdomain,
+                                                              rx_queue))
+            # 队列不空就一直取数据存数据库
+            while not rx_queue.empty():
                 source, results = rx_queue.get()
-                database.save_db(db_conn, table_name, results, source)  # 将结果存入数据库中
+                # 将结果存入数据库中
+                database.save_db(db_conn, table_name, results, source)
             database.copy_table(db_conn, table_name)
             database.deduplicate_subdomain(db_conn, table_name)
             database.remove_invalid(db_conn, table_name)
@@ -272,8 +286,11 @@ class AIOBrute(Module):
             end = time.time()
             self.elapsed = round(end - start, 1)
             logger.log('INFOR', f'结束执行{self.source}模块爆破域名{self.domain}')
-            logger.log('INFOR', f'{self.source}模块耗时{self.elapsed}秒发现{self.domain}的域名{len(self.subdomains)}个')
-            logger.log('DEBUG', f'{self.source}模块发现{self.domain}的的域名 {self.subdomains}')
+            length = len(self.subdomains)
+            logger.log('INFOR', f'{self.source}模块耗时{self.elapsed}秒'
+                                f'发现{self.domain}的域名{length}个')
+            logger.log('DEBUG', f'{self.source}模块发现{self.domain}的域名:\n'
+                                f'{self.subdomains}')
 
 
 def do(domain, result):  # 统一入口名字 方便多线程调用

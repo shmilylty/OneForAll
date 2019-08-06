@@ -1,7 +1,5 @@
-# coding=utf-8
 import re
 import time
-
 from common.search import Search
 from config import logger
 

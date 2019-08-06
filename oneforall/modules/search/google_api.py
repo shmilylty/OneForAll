@@ -1,6 +1,4 @@
-# coding=utf-8
 import time
-
 import config
 from common.search import Search
 
