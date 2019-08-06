@@ -27,7 +27,8 @@ class NetCraft(Query):
             return None
         self.cookie = self.get(self.init).cookies
         cookie_value = self.cookie['netcraft_js_verification_challenge']
-        verify_taken = hashlib.sha1(parse.unquote(cookie_value).encode('utf-8')).hexdigest()
+        cookie_encode = parse.unquote(cookie_value).encode('utf-8')
+        verify_taken = hashlib.sha1(cookie_encode).hexdigest()
         self.cookie['netcraft_js_verification_response'] = verify_taken
 
     def query(self):
@@ -48,7 +49,8 @@ class NetCraft(Query):
             subdomains_find = self.match(self.domain, resp.text)
             if not subdomains_find:  # 搜索没有发现子域名则停止搜索
                 break
-            self.subdomains = self.subdomains.union(subdomains_find)  # 合并搜索子域名搜索结果
+            # 合并搜索子域名搜索结果
+            self.subdomains = self.subdomains.union(subdomains_find)
             if 'Next page' not in resp.text:  # 搜索页面没有出现下一页时停止搜索
                 break
             last = re.search(r'&last=.*' + self.domain, resp.text).group(0)
@@ -71,12 +73,10 @@ def do(domain):  # 统一入口名字 方便多线程调用
     类统一调用入口
 
     :param str domain: 域名
-
     """
     query = NetCraft(domain)
     query.run()
 
 
 if __name__ == '__main__':
-
     do('example.com')

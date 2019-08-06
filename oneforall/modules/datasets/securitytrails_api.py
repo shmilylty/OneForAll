@@ -25,10 +25,11 @@ class SecurityTrailsAPI(Query):
         resp = self.get(url, params)
         if not resp:
             return
-        subdomains_prefix = resp.json()['subdomains']
-        subdomains_find = [f'{prefix}.{self.domain}' for prefix in subdomains_prefix]
+        prefixs = resp.json()['subdomains']
+        subdomains_find = [f'{prefix}.{self.domain}' for prefix in prefixs]
         if subdomains_find:
-            self.subdomains = self.subdomains.union(subdomains_find)  # 合并搜索子域名搜索结果
+            # 合并搜索子域名搜索结果
+            self.subdomains = self.subdomains.union(subdomains_find)
 
     def run(self):
         """
@@ -49,12 +50,10 @@ def do(domain):  # 统一入口名字 方便多线程调用
     类统一调用入口
 
     :param str domain: 域名
-
     """
     query = SecurityTrailsAPI(domain)
     query.run()
 
 
 if __name__ == '__main__':
-
     do('example.com')

@@ -22,7 +22,8 @@ class Baidu(Search):
         """
         bs = BeautifulSoup(html, features='lxml')
         subdomains_all = set()
-        for find_res in bs.find_all('a', {'class': 'c-showurl'}):  # 获取搜索结果中所有的跳转URL地址
+        # 获取搜索结果中所有的跳转URL地址
+        for find_res in bs.find_all('a', {'class': 'c-showurl'}):
             url = find_res.get('href')
             subdomain = self.match_location(domain, url)
             subdomains_all = subdomains_all.union(subdomain)
@@ -42,22 +43,27 @@ class Baidu(Search):
             self.header = self.get_header()
             self.proxy = self.get_proxy(self.source)
             query = 'site:' + domain + filtered_subdomain
-            params = {'wd': query, 'pn': self.page_num, 'rn': self.per_page_num}
+            params = {'wd': query, 'pn': self.page_num,
+                      'rn': self.per_page_num}
             resp = self.get(self.addr, params)
             if not resp:
                 return
             if len(domain) > 12:  # 解决百度搜索结果中域名过长会显示不全的问题
-                subdomains_find = self.redirect_match(domain, resp.text)  # 获取百度跳转URL响应头的Location字段获取直链
+                # 获取百度跳转URL响应头的Location字段获取直链
+                subdomains_find = self.redirect_match(domain, resp.text)
             else:
                 subdomains_find = self.match(domain, resp.text)
             if not subdomains_find:  # 搜索没有发现子域名则停止搜索
                 break
             if not full_search:
-                if subdomains_find.issubset(self.subdomains):  # 搜索中发现搜索出的结果有完全重复的结果就停止搜索
+                # 搜索中发现搜索出的结果有完全重复的结果就停止搜索
+                if subdomains_find.issubset(self.subdomains):
                     break
-            self.subdomains = self.subdomains.union(subdomains_find)  # 合并搜索子域名搜索结果
+            # 合并搜索子域名搜索结果
+            self.subdomains = self.subdomains.union(subdomains_find)
             self.page_num += self.per_page_num
-            if '&pn={next_pn}&'.format(next_pn=self.page_num) not in resp.text:  # 搜索页面没有出现下一页时停止搜索
+            # 搜索页面没有出现下一页时停止搜索
+            if '&pn={next_pn}&'.format(next_pn=self.page_num) not in resp.text:
                 break
             if self.page_num >= self.limit_num:  # 搜索条数限制
                 break
@@ -76,9 +82,12 @@ class Baidu(Search):
 
         # 递归搜索下一层的子域
         if self.recursive_search:
-            for layer_num in range(1, self.recursive_times):  # 从1开始是之前已经做过1层子域搜索了,当前实际递归层数是layer+1
+            # 从1开始是之前已经做过1层子域搜索了,当前实际递归层数是layer+1
+            for layer_num in range(1, self.recursive_times):
                 for subdomain in self.subdomains:
-                    if subdomain.count('.') - self.domain.count('.') == layer_num:  # 进行下一层子域搜索的限制条件
+                    # 进行下一层子域搜索的限制条件
+                    count = subdomain.count('.') - self.domain.count('.')
+                    if count == layer_num:
                         self.search(subdomain)
 
         self.save_json()

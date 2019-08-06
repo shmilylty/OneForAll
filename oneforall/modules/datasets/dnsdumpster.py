@@ -4,10 +4,6 @@ from common.query import Query
 
 
 class DNSdumpster(Query):
-    """
-
-    """
-
     def __init__(self, domain):
         Query.__init__(self)
         self.domain = self.register(domain)
@@ -33,7 +29,8 @@ class DNSdumpster(Query):
             return
         subdomains_find = utils.match_subdomain(self.domain, resp.text)
         if subdomains_find:
-            self.subdomains = self.subdomains.union(subdomains_find)  # 合并搜索子域名搜索结果
+            # 合并搜索子域名搜索结果
+            self.subdomains = self.subdomains.union(subdomains_find)
 
     def run(self):
         """
@@ -52,7 +49,6 @@ def do(domain):  # 统一入口名字 方便多线程调用
     类统一调用入口
 
     :param str domain: 域名
-
     """
     query = DNSdumpster(domain)
     query.run()

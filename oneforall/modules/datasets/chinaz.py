@@ -48,5 +48,4 @@ def do(domain):  # 统一入口名字 方便多线程调用
 
 
 if __name__ == '__main__':
-
     do('example.com')

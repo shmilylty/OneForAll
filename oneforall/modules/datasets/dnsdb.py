@@ -28,16 +28,19 @@ class DNSdb(Query):
                 soup = BeautifulSoup(resp.text, features='lxml')
                 index_urls = set(map(lambda x: self.addr + self.domain + x.text, soup.find_all('a')))
                 for url in index_urls:
-                    self.delay = random.randint(2, 5)  # 休眠绕过CloudFlare的DDoS保护
+                    # 休眠绕过CloudFlare的DDoS保护
+                    self.delay = random.randint(2, 5)
                     time.sleep(self.delay)
                     resp = self.get(url)
                     if not resp:
                         return
                     subdomains_find = self.match(self.domain, resp.text)
-                    self.subdomains = self.subdomains.union(subdomains_find)  # 合并搜索子域名搜索结果
+                    # 合并搜索子域名搜索结果
+                    self.subdomains = self.subdomains.union(subdomains_find)
             else:
                 subdomains_find = self.match(self.domain, resp.text)
-                self.subdomains = self.subdomains.union(subdomains_find)  # 合并搜索子域名搜索结果
+                # 合并搜索子域名搜索结果
+                self.subdomains = self.subdomains.union(subdomains_find)
 
     def run(self):
         """

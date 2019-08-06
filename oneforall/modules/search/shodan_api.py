@@ -20,7 +20,8 @@ class ShodanAPI(Search):
         query = 'hostname:.' + self.domain
         page = 1
         while True:
-            params = {'key': self.key, 'page': page, 'query': query, 'minify': True, 'facets': {'hostnames'}}
+            params = {'key': self.key, 'page': page, 'query': query,
+                      'minify': True, 'facets': {'hostnames'}}
             resp = self.get(self.addr, params)
             if not resp:
                 return

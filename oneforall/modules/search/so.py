@@ -35,13 +35,16 @@ class So(Search):
             if not subdomain_find:
                 break
             if not full_search:
-                if subdomain_find.issubset(self.subdomains):  # 搜索中发现搜索出的结果有完全重复的结果就停止搜索
+                # 搜索中发现搜索出的结果有完全重复的结果就停止搜索
+                if subdomain_find.issubset(self.subdomains):
                     break
             self.subdomains = self.subdomains.union(subdomain_find)
             page_num += 1
-            if '<a id="snext"' not in resp.text:  # 搜索页面没有出现下一页时停止搜索
+            # 搜索页面没有出现下一页时停止搜索
+            if '<a id="snext"' not in resp.text:
                 break
-            if self.page_num * self.per_page_num >= self.limit_num:  # 搜索条数限制
+            # 搜索条数限制
+            if self.page_num * self.per_page_num >= self.limit_num:
                 break
 
     def run(self):
@@ -49,7 +52,6 @@ class So(Search):
         类执行入口
         """
         self.begin()
-
         self.search(self.domain, full_search=True)
 
         # 排除同一子域搜索结果过多的子域以发现新的子域
@@ -58,9 +60,12 @@ class So(Search):
 
         # 递归搜索下一层的子域
         if self.recursive_search:
-            for layer_num in range(1, self.recursive_times):  # 从1开始是之前已经做过1层子域搜索了,当前实际递归层数是layer+1
+            # 从1开始是之前已经做过1层子域搜索了,当前实际递归层数是layer+1
+            for layer_num in range(1, self.recursive_times):
                 for subdomain in self.subdomains:
-                    if subdomain.count('.') - self.domain.count('.') == layer_num:  # 进行下一层子域搜索的限制条件
+                    # 进行下一层子域搜索的限制条件
+                    count = subdomain.count('.') - self.domain.count('.')
+                    if count == layer_num:
                         self.search(subdomain)
 
         self.save_json()

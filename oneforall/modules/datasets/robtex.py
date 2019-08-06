@@ -34,7 +34,8 @@ class Robtex(Query):
                     return
                 subdomains_find = self.match(self.domain, resp.text)
                 if subdomains_find:
-                    self.subdomains = self.subdomains.union(subdomains_find)  # 合并搜索子域名搜索结果
+                    # 合并搜索子域名搜索结果
+                    self.subdomains = self.subdomains.union(subdomains_find)
 
     def run(self):
         """

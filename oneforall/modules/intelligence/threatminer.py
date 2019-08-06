@@ -18,12 +18,14 @@ class ThreatMiner(Query):
         time.sleep(self.delay)
         self.header = self.get_header()
         self.proxy = self.get_proxy(self.source)
-        params = {'e': 'subdomains_container', 'q': self.domain, 't': 0, 'rt': 10}
+        params = {'e': 'subdomains_container',
+                  'q': self.domain, 't': 0, 'rt': 10}
         resp = self.get(self.addr, params)
         if not resp:
             return
         subdomains_find = self.match(self.domain, resp.text)
-        self.subdomains = self.subdomains.union(subdomains_find)  # 合并搜索子域名搜索结果
+        # 合并搜索子域名搜索结果
+        self.subdomains = self.subdomains.union(subdomains_find)
 
     def run(self):
         """
@@ -48,5 +50,4 @@ def do(domain):  # 统一入口名字 方便多线程调用
 
 
 if __name__ == '__main__':
-
     do('example.com')

@@ -31,13 +31,17 @@ class Collect(object):
         :return: None
         """
         if config.enable_all_module:
-            # modules = ['brute', 'certificates', 'crawl', 'datasets', 'intelligence', 'search']
-            modules = ['certificates', 'check', 'datasets', 'dnsquery', 'intelligence', 'search']  # crawl模块还有点问题
+            # modules = ['brute', 'certificates', 'crawl',
+            # 'datasets', 'intelligence', 'search']
+            # crawl模块还有点问题
+            modules = ['certificates', 'check', 'datasets',
+                       'dnsquery', 'intelligence', 'search']
             # modules = ['intelligence']  # crawl模块还有点问题
             for module in modules:
                 module_path = config.oneforall_module_path.joinpath(module)
                 for path in module_path.rglob('*.py'):
-                    import_module = ('modules.' + module, path.stem)  # 需要导入的类
+                    # 需要导入的类
+                    import_module = ('modules.' + module, path.stem)
                     self.modules.append(import_module)
         else:
             self.modules = config.enable_partial_module
@@ -62,7 +66,9 @@ class Collect(object):
         threads = []
         # 创建多个子域收集线程
         for collect_func in self.collect_func:
-            thread = threading.Thread(target=collect_func, args=(self.domain,), daemon=True)
+            thread = threading.Thread(target=collect_func,
+                                      args=(self.domain,),
+                                      daemon=True)
             threads.append(thread)
         # 启动所有线程
         for thread in threads:
@@ -81,7 +87,8 @@ class Collect(object):
         # 数据库导出
         if self.export:
             if not self.path:
-                self.path = config.result_save_path.joinpath(f'{self.domain}.{self.format}')
+                name = f'{self.domain}.{self.format}'
+                self.path = config.result_save_path.joinpath(name)
             dbexport.export(table_name, path=self.path, format=self.format)
         end = time.time()
         self.elapsed = round(end - start, 1)

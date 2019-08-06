@@ -29,8 +29,10 @@ class SiteDossier(Query):
             subdomains_find = self.match(self.domain, resp.text)
             if not subdomains_find:  # 搜索没有发现子域名则停止搜索
                 break
-            self.subdomains = self.subdomains.union(subdomains_find)  # 合并搜索子域名搜索结果
-            if 'Show next 100 items' not in resp.text:  # 搜索页面没有出现下一页时停止搜索
+            # 合并搜索子域名搜索结果
+            self.subdomains = self.subdomains.union(subdomains_find)
+            # 搜索页面没有出现下一页时停止搜索
+            if 'Show next 100 items' not in resp.text:
                 break
             self.page_num += self.per_page_num
 
@@ -57,5 +59,4 @@ def do(domain):  # 统一入口名字 方便多线程调用
 
 
 if __name__ == '__main__':
-
     do('example.com')
