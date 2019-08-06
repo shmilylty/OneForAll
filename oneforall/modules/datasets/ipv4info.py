@@ -1,5 +1,3 @@
-# coding=utf-8
-
 import config
 from common.query import Query
 

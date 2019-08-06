@@ -1,6 +1,4 @@
-# coding=utf-8
 import cdx_toolkit
-
 from common.crawl import Crawl
 from config import logger
 

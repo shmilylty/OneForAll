@@ -2,7 +2,7 @@
 """
 OneForAll配置
 """
-
+import os
 import sys
 import pathlib
 from loguru import logger
@@ -24,14 +24,17 @@ enable_partial_module = []  # 启用部分模块 必须禁用enable_all_module�
 # 爆破模块设置
 enable_brute_module = False  # 使用爆破模块(默认禁用)
 enable_wildcard_check = True  # 开启泛解析检测 会去掉泛解析的子域
-brute_processes_num = None  # 爆破时使用的进程数(根据系统中CPU数量情况设置 不宜大于CPU数量 默认None为系统中的CPU数量)
+# 爆破时使用的进程数(根据系统中CPU数量情况设置 不宜大于CPU数量 默认为系统中的CPU数量)
+brute_processes_num = os.cpu_count()
 brute_coroutine_num = 128  # 爆破时每个进程下的协程数(不宜大于1000)
-brute_wordlist_path = None  # 爆破所使用的字典路径 默认data/subdomains.dict
+# 爆破所使用的字典路径 默认data/subdomains.txt
+brute_wordlist_path = 'data/subdomains.txt'
 brute_task_segment = 500  # 参数segment的设置受CPU性能，网络带宽，运营商限制等问题影响，默认设置500个子域为一任务组，
 # 当你觉得你的环境不受以上因素影响，当前爆破速度较慢，那么强烈建议根据字典大小调整大小：十万字典建议设置为5000，百万字典设置为50000
 enable_recursive_brute = False  # 是否使用递归爆破(默认禁用)
 brute_recursive_depth = 2  # 递归爆破深度(默认2层)
-recursive_namelist_path = None  # 爆破下一层子域所使用的字典路径 默认data/next_subdomains.dict
+# 爆破下一层子域所使用的字典路径 默认data/next_subdomains.txt
+recursive_namelist_path = 'data/next_subdomains.txt'
 enable_fuzz = False  # 是否使用fuzz模式枚举域名
 fuzz_rule = ''  # fuzz域名的正则 示例：[a-z][0-9] 第一位是字母 第二位是数字
 ips_appear_maximum = 10  # 同一IP集合出现次数超过10认为是泛解析

@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# coding=utf-8
 
 """
 通过枚举域名常见的SRV记录并做查询来发现子域

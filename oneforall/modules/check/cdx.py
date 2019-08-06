@@ -1,4 +1,3 @@
-# coding=utf-8
 """
 检查crossdomain.xml文件收集子域名
 """

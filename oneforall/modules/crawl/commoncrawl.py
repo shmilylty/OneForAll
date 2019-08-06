@@ -1,5 +1,3 @@
-# coding=utf-8
-
 import cdx_toolkit
 from tqdm import tqdm
 

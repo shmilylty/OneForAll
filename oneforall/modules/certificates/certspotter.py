@@ -1,6 +1,4 @@
-# coding=utf-8
 import time
-
 from common import utils
 from common.query import Query
 

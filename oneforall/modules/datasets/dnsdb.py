@@ -1,9 +1,6 @@
-# coding=utf-8
 import random
 import time
-
 from bs4 import BeautifulSoup
-
 from common.query import Query
 
 

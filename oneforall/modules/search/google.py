@@ -1,7 +1,5 @@
-# coding=utf-8
 import random
 import time
-
 from common.search import Search
 
 
