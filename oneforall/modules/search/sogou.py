@@ -23,7 +23,8 @@ class Sogou(Search):
             self.header = self.get_header()
             self.proxy = self.get_proxy(self.source)
             word = 'site:' + domain + filtered_subdomain
-            payload = {'query': word, 'page': self.page_num, "num": self.per_page_num}
+            payload = {'query': word, 'page': self.page_num,
+                       "num": self.per_page_num}
             resp = self.get(self.addr, payload)
             if not resp:
                 return
@@ -31,13 +32,16 @@ class Sogou(Search):
             if not subdomain_find:
                 break
             if not full_search:
-                if subdomain_find.issubset(self.subdomains):  # 搜索中发现搜索出的结果有完全重复的结果就停止搜索
+                # 搜索中发现搜索出的结果有完全重复的结果就停止搜索
+                if subdomain_find.issubset(self.subdomains):
                     break
             self.subdomains = self.subdomains.union(subdomain_find)
             self.page_num += 1
-            if '<a id="sogou_next"' not in resp.text:  # 搜索页面没有出现下一页时停止搜索
+            # 搜索页面没有出现下一页时停止搜索
+            if '<a id="sogou_next"' not in resp.text:
                 break
-            if self.page_num * self.per_page_num >= self.limit_num:  # 搜索条数限制
+            # 搜索条数限制
+            if self.page_num * self.per_page_num >= self.limit_num:
                 break
 
     def run(self):
@@ -54,9 +58,12 @@ class Sogou(Search):
 
         # 递归搜索下一层的子域
         if self.recursive_search:
-            for layer_num in range(1, self.recursive_times):  # 从1开始是之前已经做过1层子域搜索了,当前实际递归层数是layer+1
+            # 从1开始是之前已经做过1层子域搜索了,当前实际递归层数是layer+1
+            for layer_num in range(1, self.recursive_times):
                 for subdomain in self.subdomains:
-                    if subdomain.count('.') - self.domain.count('.') == layer_num:  # 进行下一层子域搜索的限制条件
+                    # 进行下一层子域搜索的限制条件
+                    count = subdomain.count('.') - self.domain.count('.')
+                    if count == layer_num:
                         self.search(subdomain)
 
         self.save_json()

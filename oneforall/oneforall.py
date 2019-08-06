@@ -53,7 +53,8 @@ class OneForAll(object):
     :param str path:    导出路径(默认None)
     :param bool output: 是否将导出数据输出到终端(默认False)
     """
-    def __init__(self, target, brute=False, port='medium', valid=1, path=None, format='xlsx', output=False):
+    def __init__(self, target, brute=False, port='medium', valid=1, path=None,
+                 format='xlsx', output=False):
         self.target = target
         self.port = port
         self.domains = set()
@@ -86,7 +87,8 @@ class OneForAll(object):
                 asyncio.set_event_loop(loop)
                 self.datas = loop.run_until_complete(resolve.bulk_query_a(self.datas))
                 self.datas = loop.run_until_complete(request.bulk_get_request(self.datas, self.port))
-                loop.run_until_complete(asyncio.sleep(0.25))  # 在关闭事件循环前加入一小段延迟让底层连接得到关闭的缓冲时间
+                # 在关闭事件循环前加入一小段延迟让底层连接得到关闭的缓冲时间
+                loop.run_until_complete(asyncio.sleep(0.25))
                 loop.close()
                 database.clear_table(db_conn, table_name)
                 database.save_db(db_conn, table_name, self.datas)

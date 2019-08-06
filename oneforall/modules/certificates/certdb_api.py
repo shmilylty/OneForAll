@@ -22,15 +22,19 @@ class CertDBAPI(Query):
             time.sleep(self.delay)
             self.header = self.get_header()
             self.proxy = self.get_proxy(self.source)
-            params = {'domain': self.domain, 'api_token': self.token, 'page': page_num}
+            params = {'domain': self.domain,
+                      'api_token': self.token,
+                      'page': page_num}
             resp = self.get(self.addr, params)
             if not resp:
                 return
-            resp_json = resp.json()
-            subdomains_find = utils.match_subdomain(self.domain, str(resp_json))
-            self.subdomains = self.subdomains.union(subdomains_find)  # 合并搜索子域名搜索结果
+            json = resp.json()
+            subdomains_find = utils.match_subdomain(self.domain, str(json))
+            # 合并搜索子域名搜索结果
+            self.subdomains = self.subdomains.union(subdomains_find)
             page_num += 1
-            if resp_json.get('count') < 30:  # 默认每次查询最多返回30条 当前条数小于30条说明已经查完
+            # 默认每次查询最多返回30条 当前条数小于30条说明已经查完
+            if json.get('count') < 30:
                 break
 
     def run(self):

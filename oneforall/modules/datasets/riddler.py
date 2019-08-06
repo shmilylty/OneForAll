@@ -22,7 +22,8 @@ class Riddler(Query):
         if not resp:
             return
         subdomains_find = self.match(self.domain, resp.text)
-        self.subdomains = self.subdomains.union(subdomains_find)  # 合并搜索子域名搜索结果
+        # 合并搜索子域名搜索结果
+        self.subdomains = self.subdomains.union(subdomains_find)
 
     def run(self):
         """
@@ -47,5 +48,4 @@ def do(domain):  # 统一入口名字 方便多线程调用
 
 
 if __name__ == '__main__':
-
     do('example.com')

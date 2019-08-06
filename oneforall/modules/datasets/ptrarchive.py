@@ -18,7 +18,8 @@ class PTRArchive(Query):
         """
         self.header = self.get_header()
         self.proxy = self.get_proxy(self.source)
-        self.cookie = {'pa_id': str(random.randint(0, 1000000000))}  # 绕过主页前端JS验证
+        # 绕过主页前端JS验证
+        self.cookie = {'pa_id': str(random.randint(0, 1000000000))}
         params = {'label': self.domain, 'date': 'ALL'}
         resp = self.get(self.addr, params)
         if not resp:
@@ -26,7 +27,8 @@ class PTRArchive(Query):
         if resp.status_code == 200:
             subdomains_find = utils.match_subdomain(self.domain, resp.text)
             if subdomains_find:
-                self.subdomains = self.subdomains.union(subdomains_find)  # 合并搜索子域名搜索结果
+                # 合并搜索子域名搜索结果
+                self.subdomains = self.subdomains.union(subdomains_find)
 
     def run(self):
         """
@@ -51,5 +53,4 @@ def do(domain):  # 统一入口名字 方便多线程调用
 
 
 if __name__ == '__main__':
-
     do('example.com')

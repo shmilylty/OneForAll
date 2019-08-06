@@ -18,12 +18,14 @@ class CertSpotter(Query):
         time.sleep(self.delay)
         self.header = self.get_header()
         self.proxy = self.get_proxy(self.source)
-        params = {'domain': self.domain, 'include_subdomains': 'true', 'expand': 'dns_names'}
+        params = {'domain': self.domain, 'include_subdomains': 'true',
+                  'expand': 'dns_names'}
         resp = self.get(self.addr, params)
         if not resp:
             return
         subdomains_find = utils.match_subdomain(self.domain, str(resp.json()))
-        self.subdomains = self.subdomains.union(subdomains_find)  # 合并搜索子域名搜索结果
+        # 合并搜索子域名搜索结果
+        self.subdomains = self.subdomains.union(subdomains_find)
 
     def run(self):
         """
@@ -49,5 +51,4 @@ def do(domain):  # 统一入口名字 方便多线程调用
 
 
 if __name__ == '__main__':
-
     do('example.com')

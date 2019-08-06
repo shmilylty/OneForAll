@@ -27,7 +27,8 @@ class Exalead(Search):
             self.header = self.get_header()
             self.proxy = self.get_proxy(self.source)
             query = 'site:' + domain + filtered_subdomain
-            params = {'q': query, 'elements_per_page': '30', "start_index": self.page_num}
+            params = {'q': query, 'elements_per_page': '30',
+                      "start_index": self.page_num}
             resp = self.get(url=self.addr, params=params)
             if not resp:
                 return
@@ -59,15 +60,17 @@ class Exalead(Search):
 
         # 递归搜索下一层的子域
         if self.recursive_search:
-            for layer_num in range(1, self.recursive_times):  # 从1开始是之前已经做过1层子域搜索了,当前实际递归层数是layer+1
+            # 从1开始是之前已经做过1层子域搜索了,当前实际递归层数是layer+1
+            for layer_num in range(1, self.recursive_times):
                 for subdomain in self.subdomains:
-                    if subdomain.count('.') - self.domain.count('.') == layer_num:  # 进行下一层子域搜索的限制条件
+                    # 进行下一层子域搜索的限制条件
+                    count = subdomain.count('.') - self.domain.count('.')
+                    if count == layer_num:
                         self.search(subdomain)
 
         self.save_json()
         self.gen_result()
         self.save_db()
-
         self.finish()
 
 

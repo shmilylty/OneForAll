@@ -31,7 +31,8 @@ class Bing(Search):
             time.sleep(self.delay)
             self.proxy = self.get_proxy(self.source)
             query = 'site:' + domain + filtered_subdomain
-            params = {'q': query, 'first': self.page_num, 'count': self.per_page_num}
+            params = {'q': query, 'first': self.page_num,
+                      'count': self.per_page_num}
             resp = self.get(self.addr, params)
             if not resp:
                 return
@@ -39,10 +40,13 @@ class Bing(Search):
             if not subdomains_find:  # 搜索没有发现子域名则停止搜索
                 break
             if not full_search:
-                if subdomains_find.issubset(self.subdomains):  # 搜索中发现搜索出的结果有完全重复的结果就停止搜索
+                # 搜索中发现搜索出的结果有完全重复的结果就停止搜索
+                if subdomains_find.issubset(self.subdomains):
                     break
-            self.subdomains = self.subdomains.union(subdomains_find)  # 合并搜索子域名搜索结果
-            if '<div class="sw_next>' not in resp.text:  # 搜索页面没有出现下一页时停止搜索
+            # 合并搜索子域名搜索结果
+            self.subdomains = self.subdomains.union(subdomains_find)
+            # 搜索页面没有出现下一页时停止搜索
+            if '<div class="sw_next>' not in resp.text:
                 break
             self.page_num += self.per_page_num
             if self.page_num >= self.limit_num:  # 搜索条数限制
@@ -53,7 +57,6 @@ class Bing(Search):
         类执行入口
         """
         self.begin()
-
         self.search(self.domain, full_search=True)
 
         # 排除同一子域搜索结果过多的子域以发现新的子域
@@ -62,15 +65,17 @@ class Bing(Search):
 
         # 递归搜索下一层的子域
         if self.recursive_search:
-            for layer_num in range(1, self.recursive_times):  # 从1开始是之前已经做过1层子域搜索了,当前实际递归层数是layer+1
+            # 从1开始是之前已经做过1层子域搜索了,当前实际递归层数是layer+1
+            for layer_num in range(1, self.recursive_times):
                 for subdomain in self.subdomains:
-                    if subdomain.count('.') - self.domain.count('.') == layer_num:  # 进行下一层子域搜索的限制条件
+                    # 进行下一层子域搜索的限制条件
+                    count = subdomain.count('.') - self.domain.count('.')
+                    if count == layer_num:
                         self.search(subdomain)
 
         self.save_json()
         self.gen_result()
         self.save_db()
-
         self.finish()
 
 

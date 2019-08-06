@@ -65,12 +65,10 @@ def do(domain):  # 统一入口名字 方便多线程调用
     类统一调用入口
 
     :param str domain: 域名
-
     """
     query = VirusTotal(domain)
     query.run()
 
 
 if __name__ == '__main__':
-
     do('example.com')

@@ -19,7 +19,8 @@ class IPv4InfoAPI(Query):
         while True:
             self.header = self.get_header()
             self.proxy = self.get_proxy(self.source)
-            params = {'type': 'SUBDOMAINS', 'key': self.api, 'value': self.domain, 'page': page}
+            params = {'type': 'SUBDOMAINS', 'key': self.api,
+                      'value': self.domain, 'page': page}
             resp = self.get(self.addr, params)
             if not resp:
                 return
@@ -29,9 +30,12 @@ class IPv4InfoAPI(Query):
             subdomains_find = self.match(self.domain, str(resp_json))
             if not subdomains_find:
                 break
-            self.subdomains = self.subdomains.union(subdomains_find)  # 合并搜索子域名搜索结果
-            subdomains = resp_json.get('Subdomains')  # 不直接使用subdomains是因为可能里面会出现不符合标准的子域名
-            if len(subdomains) < 300:  # ipv4info子域查询接口每次最多返回300个 用来判断是否还有下一页
+            # 合并搜索子域名搜索结果
+            self.subdomains = self.subdomains.union(subdomains_find)
+            # 不直接使用subdomains是因为可能里面会出现不符合标准的子域名
+            subdomains = resp_json.get('Subdomains')
+            # ipv4info子域查询接口每次最多返回300个 用来判断是否还有下一页
+            if len(subdomains) < 300:
                 break
             page += 1
             if page >= 50:  # ipv4info子域查询接口最多允许查询50页
@@ -54,12 +58,10 @@ def do(domain):  # 统一入口名字 方便多线程调用
     类统一调用入口
 
     :param str domain: 域名
-
     """
     query = IPv4InfoAPI(domain)
     query.run()
 
 
 if __name__ == '__main__':
-
     do('example.com')

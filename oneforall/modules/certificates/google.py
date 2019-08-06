@@ -9,7 +9,8 @@ class Google(Query):
         self.domain = self.register(domain)
         self.module = 'Certificate'
         self.source = 'GoogleQuery'
-        self.addr = 'https://transparencyreport.google.com/transparencyreport/api/v3/httpsreport/ct/certsearch'
+        self.addr = 'https://transparencyreport.google.com/' \
+                    'transparencyreport/api/v3/httpsreport/ct/certsearch'
 
     def query(self):
         """
@@ -18,12 +19,14 @@ class Google(Query):
         time.sleep(self.delay)
         self.header = self.get_header()
         self.proxy = self.get_proxy(self.source)
-        params = {'include_expired': 'true', 'include_subdomains': 'true', 'domain': self.domain}
+        params = {'include_expired': 'true', 'include_subdomains': 'true',
+                  'domain': self.domain}
         resp = self.get(self.addr, params)
         if not resp:
             return
         subdomains_find = utils.match_subdomain(self.domain, resp.text)
-        self.subdomains = self.subdomains.union(subdomains_find)  # 合并搜索子域名搜索结果
+        # 合并搜索子域名搜索结果
+        self.subdomains = self.subdomains.union(subdomains_find)
 
     def run(self):
         """

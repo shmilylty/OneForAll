@@ -23,8 +23,10 @@ class CheckCDX(Module):
         检查crossdomain.xml收集子域名
         :return:
         """
-        urls = [f'http://{self.domain}/crossdomain.xml', f'https://{self.domain}/crossdomain.xml',
-                f'http://www.{self.domain}/crossdomain.xml', f'https://www.{self.domain}/crossdomain.xml']
+        urls = [f'http://{self.domain}/crossdomain.xml',
+                f'https://{self.domain}/crossdomain.xml',
+                f'http://www.{self.domain}/crossdomain.xml',
+                f'https://www.{self.domain}/crossdomain.xml']
         response = None
         for url in urls:
             self.header = self.get_header()
@@ -41,12 +43,12 @@ class CheckCDX(Module):
         类执行入口
         """
         self.begin()
-        logger.log('DEBUG', f'开始执行{self.source}检查{self.domain}域的crossdomain.xml')
+        logger.log('DEBUG', f'开始执行{self.source}检查{self.domain}域的跨域策略')
         self.check()
         self.save_json()
         self.gen_result()
         self.save_db()
-        logger.log('DEBUG', f'结束执行{self.source}检查{self.domain}域的crossdomain.xml')
+        logger.log('DEBUG', f'结束执行{self.source}检查{self.domain}域的跨域策略')
         self.finish()
 
 

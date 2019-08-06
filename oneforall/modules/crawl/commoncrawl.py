@@ -28,7 +28,8 @@ class CommonCrawl(Crawl):
         for resp in tqdm(cdx.iter(url, limit=limit), total=limit):
             if resp.data.get('status') not in ['301', '302']:
                 subdomains_find = self.match(self.register(domain), resp.text)
-                self.subdomains = self.subdomains.union(subdomains_find)  # 合并搜索子域名搜索结果
+                # 合并搜索子域名搜索结果
+                self.subdomains = self.subdomains.union(subdomains_find)
 
     def run(self):
         """
@@ -54,10 +55,7 @@ def do(domain):  # 统一入口名字 方便多线程调用
     """
     crawl = CommonCrawl(domain)
     crawl.run()
-    logger.log('INFOR', f'{crawl.source}模块耗时{crawl.elapsed}秒发现{crawl.domain}的子域{len(crawl.subdomains)}个')
-    logger.log('DEBUG', f'{crawl.source}模块发现{crawl.domain}的子域 {crawl.subdomains}')
 
 
 if __name__ == '__main__':
-
     do('example.com')

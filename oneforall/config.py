@@ -18,7 +18,9 @@ result_save_path = oneforall_relpath.joinpath('results')  # 结果保存目录
 save_module_result = True  # 保存模块中各脚本结果 默认保存
 enable_all_module = True  # 启用所有模块 默认启用
 enable_partial_module = []  # 启用部分模块 必须禁用enable_all_module才能生效
-# enable_partial_module = [('modules.search', 'ask')，('modules.search', 'baidu')]  # 只使用ask和baidu搜索引擎收集子域
+# 只使用ask和baidu搜索引擎收集子域
+# enable_partial_module = [('modules.search', 'ask')
+#                          ('modules.search', 'baidu')]
 
 
 # 爆破模块设置
@@ -29,8 +31,10 @@ brute_processes_num = os.cpu_count()
 brute_coroutine_num = 128  # 爆破时每个进程下的协程数(不宜大于1000)
 # 爆破所使用的字典路径 默认data/subdomains.txt
 brute_wordlist_path = 'data/subdomains.txt'
-brute_task_segment = 500  # 参数segment的设置受CPU性能，网络带宽，运营商限制等问题影响，默认设置500个子域为一任务组，
-# 当你觉得你的环境不受以上因素影响，当前爆破速度较慢，那么强烈建议根据字典大小调整大小：十万字典建议设置为5000，百万字典设置为50000
+brute_task_segment = 500
+# 参数segment的设置受CPU性能，网络带宽，运营商限制等问题影响，默认设置500个子域为一任务组，
+# 当你觉得你的环境不受以上因素影响，当前爆破速度较慢，那么强烈建议根据字典大小调整大小：
+# 十万字典建议设置为5000，百万字典设置为50000
 enable_recursive_brute = False  # 是否使用递归爆破(默认禁用)
 brute_recursive_depth = 2  # 递归爆破深度(默认2层)
 # 爆破下一层子域所使用的字典路径 默认data/next_subdomains.txt
@@ -42,10 +46,14 @@ ips_appear_maximum = 10  # 同一IP集合出现次数超过10认为是泛解析
 # 代理设置
 enable_proxy = False  # 是否使用代理 全局开关
 proxy_all_module = False  # 代理所有模块
-proxy_partial_module = ['GoogleQuery', 'AskSearch', 'DuckDuckGoSearch', 'GoogleAPISearch', 'GoogleSearch',
-                        'YahooSearch', 'YandexSearch', 'CrossDomainXml', 'ContentSecurityPolicy']  # 代理自定义的模块
-proxy_pool = [{'http': 'http://127.0.0.1:1080', 'https': 'https://127.0.0.1:1080'}]  # 代理池
-# proxy_pool = [{'http': 'socks5://127.0.0.1:10808', 'https': 'socks5://127.0.0.1:10808'}]  # 代理池
+proxy_partial_module = ['GoogleQuery', 'AskSearch', 'DuckDuckGoSearch',
+                        'GoogleAPISearch', 'GoogleSearch', 'YahooSearch',
+                        'YandexSearch', 'CrossDomainXml',
+                        'ContentSecurityPolicy']  # 代理自定义的模块
+proxy_pool = [{'http': 'http://127.0.0.1:1080',
+               'https': 'https://127.0.0.1:1080'}]  # 代理池
+# proxy_pool = [{'http': 'socks5://127.0.0.1:10808',
+#                'https': 'socks5://127.0.0.1:10808'}]  # 代理池
 
 
 # 网络请求设置
@@ -84,14 +92,17 @@ xlarge_ports = {80, 81, 300, 443, 591, 593, 832, 981, 1010, 1311, 2082,
                 8500, 8834, 8880, 8888, 8983, 9000, 9043, 9060, 9080, 9090,
                 9091, 9200, 9443, 9800, 9981, 12443, 16080, 18091, 18092,
                 20720, 28017}
-ports = {'small': small_ports, 'medium': medium_ports, 'large': large_ports, 'xlarge': xlarge_ports}
+ports = {'small': small_ports, 'medium': medium_ports,
+         'large': large_ports, 'xlarge': xlarge_ports}
 verify_ssl = False
-get_proxy = None  # aiohttp 支持 HTTP/HTTPS形式的代理 proxy="http://user:pass@some.proxy.com"
+# aiohttp 支持 HTTP/HTTPS形式的代理
+get_proxy = None  # proxy="http://user:pass@some.proxy.com"
 get_timeout = 10  # http请求探测总超时时间 None或者0则表示不检测超时
 get_redirects = True  # 允许请求跳转
 fake_header = True  # 使用伪造请求头
 limit_open_conn = 100  # 限制同一时间打开的连接数(默认100)，0表示不限制
-limit_per_host = 0  # 限制同一时间在同一个端点((host, port, is_ssl) 3者都一样的情况)打开的连接数(默认0表示不限制)
+# 限制同一时间在同一个端点((host, port, is_ssl) 3者都一样的情况)打开的连接数
+limit_per_host = 0  # 默认0表示不限制
 
 
 # 模块API配置
@@ -106,7 +117,8 @@ binaryedge_api = ''
 # Binaryedge可以免费注册获取API：http://api.chinaz.com/ApiDetails/Alexa
 chinaz_api = ''
 
-# Bing可以免费注册获取API：https://azure.microsoft.com/zh-cn/services/cognitive-services/bing-web-search-api/#web-json
+# Bing可以免费注册获取API：https://azure.microsoft.com/zh-cn/services/
+# cognitive-services/bing-web-search-api/#web-json
 bing_api_id = ''
 bing_api_key = ''
 
@@ -117,7 +129,8 @@ securitytrails_api = ''
 fofa_api_email = ''  # fofa用户邮箱
 fofa_api_key = ''  # fofa用户key
 
-# Google可以免费注册获取API: https://developers.google.com/custom-search/v1/overview
+# Google可以免费注册获取API:
+# https://developers.google.com/custom-search/v1/overview
 # 免费的API只能查询前100条结果
 google_api_key = ''  # Google API搜索key
 google_api_cx = ''  # Google API搜索cx
@@ -153,8 +166,10 @@ dnsdb_api_key = ''
 # 免费的API有效期只有2天，到期之后可以再次生成，每天可以查询50次。
 ipv4info_api_key = ''
 
-subdomains_common = {'i', 'w', 'm', 'en', 'us', 'zh', 'w3', 'app', 'bbs', 'web', 'www', 'job', 'docs', 'news', 'blog',
-                     'data', 'help', 'live', 'mall', 'blogs', 'files', 'forum', 'store', 'mobile'}
+subdomains_common = {'i', 'w', 'm', 'en', 'us', 'zh', 'w3', 'app', 'bbs',
+                     'web', 'www', 'job', 'docs', 'news', 'blog', 'data',
+                     'help', 'live', 'mall', 'blogs', 'files', 'forum',
+                     'store', 'mobile'}
 
 # 日志配置
 stdout_fmt = '<cyan>{time:HH:mm:ss,SSS}</cyan> ' \
@@ -178,12 +193,5 @@ logger.level(name='ERROR', no=40, color='<red><bold>', icon='❌️')
 logger.level(name='FATAL', no=50, color='<RED><bold>', icon='☠️')
 
 logger.add(sys.stdout, level='INFOR', format=stdout_fmt, enqueue=True)
-logger.add(log_path, level='TRACE', format=logfile_fmt, enqueue=True, encoding='utf-8')
-
-# 调试模式
-# import urllib3
-# urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-# request_proxy = [{'http': 'http://127.0.0.1:8080', 'https': 'https://127.0.0.1:8080'}]
-# request_verify = False
-# enable_all_module = False  # 启用所有模块 默认启用
-# enable_partial_module = [('modules.certificates', 'censys_api')]  # 启用部分模块 必须禁用enable_all_module才能生效
+logger.add(log_path, level='TRACE', format=logfile_fmt, enqueue=True,
+           encoding='utf-8')
