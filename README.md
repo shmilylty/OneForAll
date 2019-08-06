@@ -24,11 +24,11 @@
 
 为了解决以上痛点，此项目应用而生，OneForAll一词是来自我喜欢的一部日漫《[我的英雄学院](https://manhua.fzdm.com/131/)》，它是一种通过一代代的传承不断变强的潜力无穷的顶级个性，目前[番剧](https://www.bilibili.com/bangumi/media/md7452/)也更新到了第三季了，欢迎大佬们入坑😄。正如其名，我希望OneForAll是一款集百家之长，功能强大的全面快速子域收集终极神器🔨。
 
-目前OneForAll还在开发中，肯定有不少问题和需要改进的地方，欢迎大佬们提交[Issues](https://github.com/shmilylty/OneForAll/issues)和[PR](https://github.com/shmilylty/OneForAll/pulls)，用着还行给个小星星✨吧，目前有一个专门用于OneForAll交流和反馈QQ群👨‍👨‍👦‍👦：:[**824414244**](//shang.qq.com/wpa/qunwpa?idkey=8e8f2a0678e1d1fe136d178a33a81265d5a9c249360fd46778e05e21892c95ba)，也可以给我发邮件📧[admin@hackfun.org]。
+目前OneForAll还在开发中，肯定有不少问题和需要改进的地方，欢迎大佬们提交[Issues](https://github.com/shmilylty/OneForAll/issues)和[PR](https://github.com/shmilylty/OneForAll/pulls)，用着还行给个小星星✨吧，目前有一个专门用于OneForAll交流和反馈QQ群👨‍👨‍👦‍👦：:[**824414244**](//shang.qq.com/wpa/qunwpa?idkey=3fb9de888e3dbac91abb5731fabf4cdac6a7c0de3db665ca8e79c2cd239a102d)，也可以给我发邮件📧[admin@hackfun.org]。
 
 ## 👍功能特性
 
-* **收集能力强大**，详细模块请阅读[搜索模块说明](./docs/collection_modules.md)。
+* **收集能力强大**，详细模块请阅读[收集模块说明](./docs/collection_modules.md)。
   1. 利用证书透明度收集子域（目前有6个模块：`censys_api`，`certdb_api`，`certspotter`，`crtsh`，`entrust`，`google`）
 
   2. 常规检查收集子域（目前有4个模块：域传送漏洞利用`axfr`，检查跨域策略文件`cdx`，检查HTTPS证书`cert`，检查内容安全策略`csp`，后续会添加检查NSEC记录，NSEC记录等模块）
@@ -77,7 +77,7 @@
 
      ```bash
      pip3 install pipenv
-     cd OneForAll/
+     cd OneForAll/oneforall
      pipenv install python 3.7.4
      pipenv run python oneforall.py --help
      ```
@@ -85,7 +85,7 @@
    * 使用pip3
 
      ```bash
-     cd OneForAll/
+     cd OneForAll/oneforall
      pip3 install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
      python3 oneforall.py --help
      ```
@@ -96,7 +96,6 @@
 **✨使用演示**
 
 ```bash
-cd oneforall
 python3 oneforall.py --target example.com run
 ```
 
@@ -104,7 +103,7 @@ python3 oneforall.py --target example.com run
 
 **🤔使用帮助**
 
-命令行参数只提供了一些常用参数，更多详细的参数配置请见[config.py](./oneforall/config.py)，如果你认为有些参数是命令界面经常使用到的或缺少了什么参数等问题非常欢迎反馈。由于众所周知的原因，如果要使用一些被墙的收集接口请先到[config.py](./oneforall/config.py)配置代理，有些收集模块需要提供API（大多都是可以注册账号免费获取），如果需要使用请到[config.py](./oneforall/config.py)配置API信息，如果不使用请忽略有关报错提示。（详细模块请阅读[搜索模块说明](./docs/collection_modules.md)）
+命令行参数只提供了一些常用参数，更多详细的参数配置请见[config.py](./oneforall/config.py)，如果你认为有些参数是命令界面经常使用到的或缺少了什么参数等问题非常欢迎反馈。由于众所周知的原因，如果要使用一些被墙的收集接口请先到[config.py](./oneforall/config.py)配置代理，有些收集模块需要提供API（大多都是可以注册账号免费获取），如果需要使用请到[config.py](./oneforall/config.py)配置API信息，如果不使用请忽略有关报错提示。（详细模块请阅读[收集模块说明](./docs/collection_modules.md)）
 
 OneForAll命令行界面基于[Fire](https://github.com/google/python-fire/)实现，有关Fire更高级使用方法请参阅[使用Fire CLI](https://github.com/google/python-fire/blob/master/docs/using-cli.md)，有任何使用疑惑欢迎加群交流。
 
@@ -158,46 +157,60 @@ oneforall.py是主程序入口，oneforall.py里有调用aiobrute.py和dbexport.
 
 2. aiobrute.py使用帮助
 
+   关于泛解析问题处理程序首先会访问一个随机的子域判断是否泛解析，如果使用了泛解析则是通过以下判断处理：
+   - 一是主要是与泛解析的IP集合和TTL值做对比，可以参考这篇文章http://sh3ll.me/archives/201704041222.txt)。
+   - 二是多次解析到同一IP集合次数（默认设置为10，可以在config.py设置大小）
+   - 考虑爆破效率问题目前还没有加上HTTP响应体相似度对比和响应体内容判断
+   经过测试在16核心的CPU，使用16进程64协程，100M带宽的环境下，设置任务分割为50000，跑两百万字典大概10分钟左右跑完，大概3333个子域每秒。
+
    ```bash
    pipenv run python aiobrute.py --help
    ```
 
    ```bash
-   NAME
-       aiobrute.py - OneForAll多进程多协程异步子域爆破模块
-   
-   SYNOPSIS
-       aiobrute.py --target=TARGET <flags>
-   
-   DESCRIPTION
-       Example：
-           python aiobrute.py --target example.com run
-           python aiobrute.py --target ./domains.txt run
-           python aiobrute.py --target example.com --processes 4 --coroutine 64 --wordlist data/subdomains.txt run
-           python aiobrute.py --target example.com --recursive True --depth 2 --namelist data/next_subdomains.txt run
-           python aiobrute.py --target www.{fuzz}.example.com --fuzz True --rule [a-z][0-9] run
-   
-   ARGUMENTS
-       TARGET
-           单个域名或者每行一个域名的文件路径
-   
-   FLAGS
-       --processes=PROCESSES
-           爆破的进程数(默认CPU核心数)
-       --coroutine=COROUTINE
-           每个爆破进程下的协程数(默认16)
-       --wordlist=WORDLIST
-           指定爆破所使用的字典路径(默认使用config.py配置)
-       --recursive=RECURSIVE
-           是否使用递归爆破(默认False)
-       --depth=DEPTH
-           递归爆破的深度(默认2)
-       --namelist=NAMELIST
-           指定递归爆破所使用的字典路径(默认使用config.py配置)
-       --fuzz=FUZZ
-           是否使用fuzz模式进行爆破(默认False，开启必须指定fuzz正则规则)
-       --rule=RULE
-           fuzz模式使用的正则规则(默认使用config.py配置)
+    NAME
+        aiobrute.py - OneForAll多进程多协程异步子域爆破模块
+
+    SYNOPSIS
+        aiobrute.py COMMAND | --target=TARGET <flags>
+
+    DESCRIPTION
+        Example：
+            python aiobrute.py --target example.com run
+            python aiobrute.py --target ./domains.txt run
+            python aiobrute.py --target example.com --processes 4 --coroutine 64 --wordlist data/subdomains.txt run
+            python aiobrute.py --target example.com --recursive True --depth 2 --namelist data/next_subdomains.txt run
+            python aiobrute.py --target www.{fuzz}.example.com --fuzz True --rule [a-z][0-9] run
+
+        Note:
+            参数segment的设置受CPU性能，网络带宽，运营商限制等问题影响，默认设置500个子域为一任务组，
+            当你觉得你的环境不受以上因素影响，当前爆破速度较慢，那么强烈建议根据字典大小调整大小：
+            十万字典建议设置为5000，百万字典设置为50000
+
+    ARGUMENTS
+        TARGET
+            单个域名或者每行一个域名的文件路径
+
+    FLAGS
+        --processes=PROCESSES
+            爆破的进程数(默认CPU核心数)
+        --coroutine=COROUTINE
+            每个爆破进程下的协程数(默认16)
+        --wordlist=WORDLIST
+            指定爆破所使用的字典路径(默认使用config.py配置)
+        --segment=SEGMENT
+            爆破任务分割(默认500)
+        --recursive=RECURSIVE
+            是否使用递归爆破(默认False)
+        --depth=DEPTH
+            递归爆破的深度(默认2)
+        --namelist=NAMELIST
+            指定递归爆破所使用的字典路径(默认使用config.py配置)
+        --fuzz=FUZZ
+            是否使用fuzz模式进行爆破(默认False，开启必须指定fuzz正则规则)
+        --rule=RULE
+            fuzz模式使用的正则规则(默认使用config.py配置)
+
    ```
 
 3. dbexport.py使用帮助
