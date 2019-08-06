@@ -39,9 +39,9 @@
 
   5. 利用DNS查询收集子域（目前有1个模块：通过枚举常见的SRV记录并做查询来收集子域`srv`，该模块还有待添加和完善）
 
-  6. 利用威胁情报平台数据收集子域（目前有5个模块：`riskiq`，`threatbook`，`threatminer`，`virustotal`，`virustotal_api`该模块还有待添加和完善）
+  6. 利用威胁情报平台数据收集子域（目前有5个模块：`riskiq_api`，`threatbook_api`，`threatminer`，`virustotal`，`virustotal_api`该模块还有待添加和完善）
 
-  7. 利用搜索引擎发现子域（目前有15个模块：`ask`, `bing_api`, `fofa`, `shodan_api`, `yahoo`, `baidu`, `duckduckgo`, `google`, `so`, `yandex`, `bing`, `exalead`, `google_api`, `sogou`, `zoomeye_api`），在搜索模块中除特殊搜索引擎，通用的搜索引擎都支持自动排除搜索，全量搜索，递归搜索。
+  7. 利用搜索引擎发现子域（目前有15个模块：`ask`, `bing_api`, `fofa_api`, `shodan_api`, `yahoo`, `baidu`, `duckduckgo`, `google`, `so`, `yandex`, `bing`, `exalead`, `google_api`, `sogou`, `zoomeye_api`），在搜索模块中除特殊搜索引擎，通用的搜索引擎都支持自动排除搜索，全量搜索，递归搜索。
 
 * **处理功能强大**，发现的子域结果支持自动去除，自动DNS解析，HTTP请求探测，自动移除无效子域，拓展子域的Banner信息，最终支持的导出格式有`csv`, `tsv`, `json`, `yaml`, `html`, `xls`, `xlsx`, `dbf`, `latex`, `ods`。
 
