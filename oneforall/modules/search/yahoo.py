@@ -76,7 +76,6 @@ class Yahoo(Search):
         self.save_json()
         self.gen_result()
         self.save_db()
-
         self.finish()
 
 
