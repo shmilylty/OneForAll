@@ -1,9 +1,8 @@
-sudo: false
+sudo: true
 
 notifications:
   email: false
 os:
- - windows
  - linux
  - osx
 
