@@ -27,7 +27,7 @@ class ZoomEyeAPI(Search):
             return
         resp_json = resp.json()
         if resp.status_code == 200:
-            # print('登陆成功')
+            logger.log('DEBUG', f'{self.source}模块登录成功')
             return resp_json.get('access_token')
         else:
             logger.log('ALERT', resp_json.get('message'))
