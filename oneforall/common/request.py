@@ -58,7 +58,8 @@ async def fetch(session, url, semaphore):
     timeout = aiohttp.ClientTimeout(total=config.get_timeout)
     async with semaphore:
         async with session.get(url, allow_redirects=config.get_redirects,
-                               timeout=timeout, proxy=config.get_proxy) as resp:
+                               timeout=timeout,
+                               proxy=config.get_proxy) as resp:
             text = await resp.text()
             return resp, text
 
@@ -77,7 +78,8 @@ def request_callback(future, index, datas):
             datas[index]['valid'] = 0
         else:
             headers = resp.headers
-            banner = str({'Server': headers.get('Server'), 'Via': headers.get('Via'),
+            banner = str({'Server': headers.get('Server'),
+                          'Via': headers.get('Via'),
                           'X-Powered-By': headers.get('X-Powered-By')})
             datas[index]['banner'] = banner
             soup = BeautifulSoup(text, 'lxml')
@@ -98,16 +100,21 @@ async def bulk_get_request(datas, port):
     header = None
     if config.fake_header:
         header = utils.gen_fake_header()
-    resolver = AsyncResolver(nameservers=config.resolver_nameservers)  # 使用异步域名解析器 自定义域名服务器
-    conn = aiohttp.TCPConnector(verify_ssl=config.verify_ssl, limit=config.limit_open_conn,
-                                limit_per_host=config.limit_per_host, resolver=resolver)
+    # 使用异步域名解析器 自定义域名服务器
+    resolver = AsyncResolver(nameservers=config.resolver_nameservers)
+    conn = aiohttp.TCPConnector(ssl=config.verify_ssl,
+                                limit=config.limit_open_conn,
+                                limit_per_host=config.limit_per_host,
+                                resolver=resolver)
     semaphore = asyncio.Semaphore(utils.get_semaphore())
     async with ClientSession(connector=conn, headers=header) as session:
         tasks = []
         for i, data in enumerate(new_datas):
             url = data.get('url')
             task = asyncio.ensure_future(fetch(session, url, semaphore))
-            task.add_done_callback(functools.partial(request_callback, index=i, datas=new_datas))
+            task.add_done_callback(functools.partial(request_callback,
+                                                     index=i,
+                                                     datas=new_datas))
             tasks.append(task)
         if tasks:  # 任务列表里有任务不空时才进行解析
             await asyncio.wait(tasks)  # 等待所有task完成
