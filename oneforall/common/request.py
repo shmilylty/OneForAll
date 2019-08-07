@@ -67,7 +67,7 @@ async def fetch(session, url, semaphore):
 def request_callback(future, index, datas):
     try:
         resp, text = future.result()
-    except Exception as e:
+    except BaseException as e:
         logger.log('DEBUG', e.args)
         datas[index]['reason'] = str(e.args)
         datas[index]['valid'] = 0
