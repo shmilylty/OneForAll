@@ -2,23 +2,32 @@ sudo: true
 
 notifications:
   email: false
-os:
- - linux
- - osx
-
-dist: xenial
 
 language: python
 
-python:
-  - "3.6"
-  - "3.7"
-  - "3.8-dev"
+matrix:
+  include:
+    - name: "Python 3.6 on Linux"
+      python: 3.6           # this works for Linux but is ignored on macOS or Windows
+    - name: "Python 3.7 on Xenial Linux"
+      python: 3.7           # this works for Linux but is ignored on macOS or Windows
+      dist: xenial          # required for Python >= 3.7
+    - name: "Python 3.7 on macOS"
+      os: osx
+      osx_image: xcode10.2  # Python 3.7 running on macOS 10.14.3
+      language: shell       # 'language: python' is an error on Travis CI macOS
+    - name: "Python 3.7 on Windows"
+      os: windows           # Windows 10.0.17134 N/A Build 17134
+      language: shell
+      before_install:
+        - choco install python
+        - python -m pip install --upgrade pip
+      env: PATH=/c/Python37:/c/Python37/Scripts:$PATH
 
 install:
-  - pip install -U pip
-  - pip install codecov
-  - pip install -r requirements.txt
+  - pip3 install -U pip
+  - pip3 install codecov
+  - pip3 install -r requirements.txt
 
 script:
  - coverage run oneforall/example.py
