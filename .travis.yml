@@ -2,6 +2,10 @@ sudo: false
 
 notifications:
   email: false
+os:
+ - windows
+ - linux
+ - osx
 
 dist: xenial
 
