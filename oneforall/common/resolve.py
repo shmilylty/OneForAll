@@ -85,7 +85,9 @@ async def bulk_query_a(datas):
         if not data.get('ips'):
             subdomain = data.get('subdomain')
             task = asyncio.ensure_future(aiodns_query_a(subdomain, semaphore))
-            task.add_done_callback(functools.partial(resolve_callback, index=i, datas=datas))  # 回调
+            task.add_done_callback(functools.partial(resolve_callback,
+                                                     index=i,
+                                                     datas=datas))  # 回调
             tasks.append(task)
     if tasks:  # 任务列表里有任务不空时才进行解析
         await asyncio.wait(tasks)  # 等待所有task完成

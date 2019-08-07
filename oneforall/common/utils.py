@@ -20,7 +20,8 @@ def match_subdomain(domain, text, distinct=True):
     :return: 匹配结果
     :rtype: set or list
     """
-    regexp = r'(?:[a-z0-9](?:[a-z0-9\-]{0,61}[a-z0-9])?\.){0,}' + domain.replace('.', r'\.')
+    regexp = r'(?:[a-z0-9](?:[a-z0-9\-]{0,61}[a-z0-9])?\.){0,}'\
+             + domain.replace('.', r'\.')
     result = re.findall(regexp, text, re.I)
     if not result:
         return set()
@@ -48,7 +49,8 @@ def gen_fake_header():
     ua = UserAgent()
     ip = gen_random_ip()
     headers = {
-        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+        'Accept': 'text/html,application/xhtml+xml,'
+                  'application/xml;q=0.9,*/*;q=0.8',
         'Accept-Encoding': 'gzip, deflate, br',
         'Accept-Language': 'en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7',
         'Cache-Control': 'max-age=0',

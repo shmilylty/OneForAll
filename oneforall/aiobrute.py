@@ -9,7 +9,6 @@ OneForAll多进程多协程异步子域爆破模块
 """
 
 import asyncio
-import os
 import queue
 import secrets
 import signal
