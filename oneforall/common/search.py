@@ -28,10 +28,12 @@ class Search(Module):
         :rtype: str
         """
         statements_list = []
-        subdomains_temp = set(map(lambda x: x + '.' + domain, config.subdomains_common))
+        subdomains_temp = set(map(lambda x: x + '.' + domain,
+                                  config.subdomains_common))
         subdomains_temp = list(subdomain.intersection(subdomains_temp))
         for i in range(0, len(subdomains_temp), 2):  # 同时排除2个子域
-            statements_list.append(''.join(set(map(lambda s: ' -site:' + s, subdomains_temp[i:i + 2]))))
+            statements_list.append(''.join(set(map(lambda s: ' -site:' + s,
+                                                   subdomains_temp[i:i + 2]))))
         return statements_list
 
     def match_location(self, domain, url):
@@ -45,6 +47,7 @@ class Search(Module):
         :return: 匹配的子域
         :rtype set
         """
-        resp = requests.head(url, headers=self.header, proxies=self.proxy, timeout=self.timeout, allow_redirects=False)
+        resp = requests.head(url, headers=self.header, proxies=self.proxy,
+                             timeout=self.timeout, allow_redirects=False)
         location = resp.headers.get('location')
         return set(utils.match_subdomain(domain, location))
