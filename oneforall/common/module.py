@@ -61,8 +61,10 @@ class Module(object):
         self.end = time.time()
         self.elapsed = round(self.end - self.start, 1)
         logger.log('DEBUG', f'结束执行{self.source}模块收集{self.domain}的子域')
-        logger.log('INFOR', f'{self.source}模块耗时{self.elapsed}秒发现子域{len(self.subdomains)}个')
-        logger.log('DEBUG', f'{self.source}模块发现{self.domain}的子域 {self.subdomains}')
+        logger.log('INFOR', f'{self.source}模块耗时{self.elapsed}秒发现子域'
+                   f'{len(self.subdomains)}个')
+        logger.log('DEBUG', f'{self.source}模块发现{self.domain}的子域\n'
+                   f'{self.subdomains}')
 
     def get(self, url, params=None, **kwargs):
         """
@@ -74,18 +76,27 @@ class Module(object):
         :return: requests响应对象
         """
         try:
-            resp = requests.get(url, params=params, cookies=self.cookie, headers=self.header,
-                                proxies=self.proxy, timeout=self.timeout, verify=self.verify, **kwargs)
+            resp = requests.get(url,
+                                params=params,
+                                cookies=self.cookie,
+                                headers=self.header,
+                                proxies=self.proxy,
+                                timeout=self.timeout,
+                                verify=self.verify,
+                                **kwargs)
         except Exception as e:
             logger.log('ERROR', e)
             return None
-        if resp.status_code != 200 or not resp.content:  # 状态码非200或者响应体为空
-            logger.log('ALERT', f'GET {resp.url} {resp.status_code} - {resp.reason} {len(resp.content)}')
+        # 状态码非200或者响应体为空
+        if resp.status_code != 200 or not resp.content:
+            logger.log('ALERT', f'GET {resp.url} {resp.status_code} - '
+                       f'{resp.reason} {len(resp.content)}')
             content_type = resp.headers.get('Content-Type')
             if content_type and 'json' in content_type and resp.content:
                 logger.log('ALERT', resp.json())
             return None
-        logger.log('DEBUG', f'GET {resp.url} {resp.status_code} - {resp.reason} {len(resp.content)}')
+        logger.log('DEBUG', f'GET {resp.url} {resp.status_code} - '
+                   f'{resp.reason} {len(resp.content)}')
         return resp
 
     def post(self, url, data=None, **kwargs):
@@ -98,17 +109,25 @@ class Module(object):
         :return: requests响应对象
         """
         try:
-            resp = requests.post(url, data=data, cookies=self.cookie, headers=self.header,
-                                 proxies=self.proxy, timeout=self.timeout, verify=self.verify, **kwargs)
+            resp = requests.post(url,
+                                 data=data,
+                                 cookies=self.cookie,
+                                 headers=self.header,
+                                 proxies=self.proxy,
+                                 timeout=self.timeout,
+                                 verify=self.verify,
+                                 **kwargs)
         except Exception as e:
             logger.log('ERROR', e)
             return None
-        if resp.status_code != 200 or not resp.content:  # 状态码非200或者响应体为空
+        # 状态码非200或者响应体为空
+        if resp.status_code != 200 or not resp.content:
             content_type = resp.headers.get('Content-Type')
             if content_type and 'json' in content_type and resp.content:
                 logger.log('ALERT', resp.json())
             return None
-        logger.log('DEBUG', f'POST {resp.url} {resp.status_code} - {resp.reason} {len(resp.content)}')
+        logger.log('DEBUG', f'POST {resp.url} {resp.status_code} - '
+                   f'{resp.reason} {len(resp.content)}')
         return resp
 
     def get_header(self):
@@ -155,12 +174,14 @@ class Module(object):
         :rtype: set or list
         """
         logger.log('DEBUG', f'正则匹配响应体中的子域')
-        regexp = r'(?:\>|\"|\'|\=|\,)(?:http\:\/\/|https\:\/\/)?(?:[a-z0-9](?:[a-z0-9\-]{0,61}[a-z0-9])?\.){0,}' \
+        regexp = r'(?:\>|\"|\'|\=|\,)(?:http\:\/\/|https\:\/\/)?' \
+                 r'(?:[a-z0-9](?:[a-z0-9\-]{0,61}[a-z0-9])?\.){0,}' \
                  + domain.replace('.', r'\.')
         result = re.findall(regexp, html, re.I)
         if not result:
             return set()
-        deal = map(lambda s: re.sub(r'(?:http://|https://)', '', s[1:].lower(), flags=re.I), result)
+        regexp = r'(?:http://|https://)'
+        deal = map(lambda s: re.sub(regexp, '', s[1:].lower()), result)
         if distinct:
             return set(deal)
         else:
@@ -182,30 +203,57 @@ class Module(object):
         """
         logger.log('DEBUG', f'将{self.source}模块发现的子域结果保存为json文件')
         if config.save_module_result:
-            dirpath = config.result_save_path.joinpath(self.domain, self.module)
-            dirpath.mkdir(parents=True, exist_ok=True)
+            dpath = config.result_save_path.joinpath(self.domain, self.module)
+            dpath.mkdir(parents=True, exist_ok=True)
             name = self.source + '.json'
-            path = dirpath.joinpath(name)
+            path = dpath.joinpath(name)
             with open(path, mode='w', encoding='utf-8') as file:
-                result = {'domain': self.domain, 'name': self.module, 'source': self.source, 'elapsed': self.elapsed,
-                          'count': len(self.subdomains), 'subdomains': list(self.subdomains), 'records': self.records}
+                result = {'domain': self.domain,
+                          'name': self.module,
+                          'source': self.source,
+                          'elapsed': self.elapsed,
+                          'count': len(self.subdomains),
+                          'subdomains': list(self.subdomains),
+                          'records': self.records}
                 json.dump(result, file, ensure_ascii=False, indent=4)
 
     def gen_result(self):
         results = list()
         if not len(self.subdomains):  # 一个子域都没有发现的情况
-            result = {'id': None, 'url': None, 'subdomain': None, 'port': None, 'ips': None, 'status': None,
-                      'reason': None, 'valid': 1, 'title': None, 'banner': None, 'module': self.module,
-                      'source': self.source, 'elapsed': self.elapsed, 'count': 0}
+            result = {'id': None,
+                      'url': None,
+                      'subdomain': None,
+                      'port': None,
+                      'ips': None,
+                      'status': None,
+                      'reason': None,
+                      'valid': 1,
+                      'title': None,
+                      'banner': None,
+                      'module': self.module,
+                      'source': self.source,
+                      'elapsed': self.elapsed,
+                      'count': 0}
             results.append(result)
             self.results = (self.source, results)
         else:
             for subdomain in self.subdomains:
                 url = 'http://' + subdomain
                 ips = self.records.get(subdomain)
-                result = {'id': None, 'url': url, 'subdomain': subdomain, 'port': None, 'ips': ips, 'status': None,
-                          'reason': None, 'valid': 1, 'title': None, 'banner': None, 'module': self.module,
-                          'source': self.source, 'elapsed': self.elapsed, 'count': len(self.subdomains)}
+                result = {'id': None,
+                          'url': url,
+                          'subdomain': subdomain,
+                          'port': None,
+                          'ips': ips,
+                          'status': None,
+                          'reason': None,
+                          'valid': 1,
+                          'title': None,
+                          'banner': None,
+                          'module': self.module,
+                          'source': self.source,
+                          'elapsed': self.elapsed,
+                          'count': len(self.subdomains)}
                 results.append(result)
             self.results = (self.source, results)
 
@@ -215,5 +263,6 @@ class Module(object):
         table_name = self.domain.replace('.', '_')
         database.create_table(db_conn, table_name)
         source, results = self.results
-        database.save_db(db_conn, table_name, results, source)  # 将结果存入数据库中
+        # 将结果存入数据库中
+        database.save_db(db_conn, table_name, results, source)
         lock.release()
