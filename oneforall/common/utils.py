@@ -5,9 +5,20 @@ import random
 import ipaddress
 import platform
 import config
-from fake_useragent import UserAgent
 from common.domain import Domain
 from config import logger
+
+user_agents = [
+    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '
+    '(KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36',
+    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 '
+    '(KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36',
+    'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 '
+    '(KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36',
+    'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:54.0) Gecko/20100101 Firefox/68.0',
+    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:61.0) '
+    'Gecko/20100101 Firefox/68.0',
+    'Mozilla/5.0 (X11; Linux i586; rv:31.0) Gecko/20100101 Firefox/68.0']
 
 
 def match_subdomain(domain, text, distinct=True):
@@ -20,7 +31,7 @@ def match_subdomain(domain, text, distinct=True):
     :return: 匹配结果
     :rtype: set or list
     """
-    regexp = r'(?:[a-z0-9](?:[a-z0-9\-]{0,61}[a-z0-9])?\.){0,}'\
+    regexp = r'(?:[a-z0-9](?:[a-z0-9\-]{0,61}[a-z0-9])?\.){0,}' \
              + domain.replace('.', r'\.')
     result = re.findall(regexp, text, re.I)
     if not result:
@@ -46,7 +57,7 @@ def gen_fake_header():
     """
     生成伪造请求头
     """
-    ua = UserAgent()
+    ua = random.choice(user_agents)
     ip = gen_random_ip()
     headers = {
         'Accept': 'text/html,application/xhtml+xml,'
@@ -58,7 +69,7 @@ def gen_fake_header():
         'DNT': '1',
         'Referer': 'https://www.google.com/',
         'Upgrade-Insecure-Requests': '1',
-        'User-Agent': ua.random,
+        'User-Agent': ua,
         'X-Forwarded-For': ip,
         'X-Real-IP': ip
     }
@@ -88,7 +99,7 @@ def split_list(ls, size):
     """
     if size == 0:
         return ls
-    return [ls[i:i+size] for i in range(0, len(ls), size)]
+    return [ls[i:i + size] for i in range(0, len(ls), size)]
 
 
 def get_domains(target):
@@ -129,4 +140,3 @@ def get_semaphore():
         return 1000
     elif system == 'Darwin':
         return 1000
-
