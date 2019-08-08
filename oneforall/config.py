@@ -192,7 +192,9 @@ logger.level(name='ALERT', no=30, color='<yellow><bold>', icon='⚠️')
 logger.level(name='ERROR', no=40, color='<red><bold>', icon='❌️')
 logger.level(name='FATAL', no=50, color='<RED><bold>', icon='☠️')
 
-sys.stderr.reconfigure(encoding='utf-8')
+if not os.environ.get('PYTHONIOENCODING'):  # 设置编码
+    os.environ['PYTHONIOENCODING'] = 'utf-8'
+
 logger.add(sys.stderr, level='INFOR', format=stdout_fmt, enqueue=True)
 logger.add(log_path, level='TRACE', format=logfile_fmt, enqueue=True,
            encoding='utf-8')
