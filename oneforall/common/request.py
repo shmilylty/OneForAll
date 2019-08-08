@@ -57,6 +57,7 @@ async def fetch(session, url, semaphore):
     timeout = aiohttp.ClientTimeout(total=config.get_timeout)
     async with semaphore:
         async with session.get(url,
+                               ssl=config.verify_ssl,
                                allow_redirects=config.get_redirects,
                                timeout=timeout,
                                proxy=config.get_proxy) as resp:
