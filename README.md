@@ -77,19 +77,21 @@
 
      ```bash
      pip3 install pipenv
-     cd OneForAll/oneforall
-     pipenv install python 3.7.4
-     pipenv run python oneforall.py --help
+     cd OneForAll/
+     pipenv install --python 3.7
+     cd oneforall
+     pipenv run python3 oneforall.py --help
      ```
-
-   * 使用pip3
-
+  ```
+   
+* 使用pip3
+   
      ```bash
      cd OneForAll/oneforall
      pip3 install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
      python3 oneforall.py --help
-     ```
-     
+  ```
+
 
 如果在安装依赖过程中发现编译某个依赖库失败时可以参考[编译失败解决方法](./docs/building_fail_solution.md)，如果还没有解决欢迎加群反馈。
 
