@@ -59,16 +59,26 @@ async def aiodns_query_a(hostname, semaphore=None):
 
 
 def resolve_callback(future, index, datas):
+    """
+    解析结果回调处理
+    :param future: future对象
+    :param index: 下标
+    :param datas: 结果集
+    """
     try:
         result = future.result()
-    except aiodns.error.DNSError as e:
+    except Exception as e:
         datas[index]['ips'] = str(e.args)
         datas[index]['valid'] = 0
     else:
         if isinstance(result, tuple):
             _, answers = result
-            ips = {record.host for record in answers}
-            datas[index]['ips'] = str(ips)
+            if answers:
+                ips = {record.host for record in answers}
+                datas[index]['ips'] = str(ips)
+            else:
+                datas[index]['ips'] = 'No answers'
+                datas[index]['valid'] = 0
 
 
 async def bulk_query_a(datas):
