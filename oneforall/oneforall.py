@@ -21,7 +21,7 @@ from common import utils, database, resolve, request
 
 banner = """\033[01;33m
              ___             _ _ 
- ___ ___ ___|  _|___ ___ ___| | | \033[01;37m{\033[1;31mv0.0.2#dev\033[01;37m}\033[01;32m
+ ___ ___ ___|  _|___ ___ ___| | | \033[01;37m{\033[1;31mv0.0.3#dev\033[01;37m}\033[01;32m
 | . |   | -_|  _| . |  _| .'| | | \033[01;34m
 |___|_|_|___|_| |___|_| |__,|_|_| \033[0m\033[4;37mgit.io/fjHT1\033[0m\n
         """
@@ -31,7 +31,7 @@ class OneForAll(object):
     """
     OneForAll是一款功能强大的子域收集工具
 
-    Version: 0.0.2
+    Version: 0.0.3
     Project: https://github.com/shmilylty/OneForAll/
 
     Example:

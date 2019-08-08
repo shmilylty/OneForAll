@@ -7,6 +7,12 @@ OneForAll遵守[语义化版本格式](https://semver.org/)。
 
 ## Unreleased
 
+## [0.0.3](https://github.com/shmilylty/oneforall/releases/tag/v0.0.3) - 2019-08-08
+### 修改
+- 代码PEP8格式化
+### 修改
+- 修改一些已知Bugs
+
 ## [0.0.2](https://github.com/shmilylty/oneforall/releases/tag/v0.0.2) - 2019-08-04
 ### 新增
 - 新增有关文档
