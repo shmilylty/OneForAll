@@ -8,7 +8,7 @@ class BingAPI(Search):
         Search.__init__(self)
         self.domain = domain
         self.module = 'Search'
-        self.source = 'BingCustomSearch'
+        self.source = 'BingAPISearch'
         self.addr = 'https://api.cognitive.microsoft.com/bingcustomsearch/v7.0/search'
         self.id = config.bing_api_id
         self.key = config.bing_api_key

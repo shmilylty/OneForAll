@@ -7,7 +7,7 @@ class RiskIQ(Query):
         Query.__init__(self)
         self.domain = self.register(domain)
         self.module = 'Intelligence'
-        self.source = 'RiskIQQuery'
+        self.source = 'RiskIQAPIQuery'
         self.addr = 'https://api.passivetotal.org/v2/enrichment/subdomains'
         self.user = config.riskiq_api_username
         self.key = config.riskiq_api_key

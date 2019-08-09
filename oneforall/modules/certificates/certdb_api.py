@@ -9,7 +9,7 @@ class CertDBAPI(Query):
         Query.__init__(self)
         self.domain = domain
         self.module = 'Certificate'
-        self.source = 'CertDBQuery'
+        self.source = 'CertDBAPIQuery'
         self.addr = 'https://api.spyse.com/v1/subdomains'
         self.token = config.certdb_api_token
 
