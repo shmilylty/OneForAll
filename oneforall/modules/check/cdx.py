@@ -3,7 +3,7 @@
 """
 
 from common.module import Module
-from common.utils import match_subdomain
+from common import utils
 from config import logger
 
 
@@ -36,7 +36,7 @@ class CheckCDX(Module):
                 break
         if not response:
             return
-        self.subdomains = match_subdomain(self.domain, response.text)
+        self.subdomains = utils.match_subdomain(self.domain, response.text)
 
     def run(self):
         """
