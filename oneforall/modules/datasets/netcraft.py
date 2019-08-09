@@ -62,10 +62,10 @@ class NetCraft(Query):
         """
         self.begin()
         self.query()
+        self.finish()
         self.save_json()
         self.gen_result()
         self.save_db()
-        self.finish()
 
 
 def do(domain):  # 统一入口名字 方便多线程调用

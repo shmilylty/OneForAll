@@ -41,10 +41,10 @@ class CommonCrawl(Crawl):
         for subdomain in self.subdomains:
             if subdomain != self.domain:
                 self.crawl(subdomain, 10)
+        self.finish()
         self.save_json()
         self.gen_result()
         self.save_db()
-        self.finish()
 
 
 def do(domain):  # 统一入口名字 方便多线程调用

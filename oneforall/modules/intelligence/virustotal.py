@@ -15,7 +15,7 @@ class VirusTotal(Query):
         self.addr = 'https://www.virustotal.com/ui/domains/{}/subdomains'
         self.domain = self.register(domain)
 
-    def query(self, domain):
+    def query(self):
         """
         向接口查询子域并做子域匹配
         """
@@ -27,7 +27,7 @@ class VirusTotal(Query):
                                 'TE': 'Trailers'})
             self.proxy = self.get_proxy(self.source)
             params = {'limit': '40', 'cursor': next_cursor}
-            resp = self.get(url=self.addr.format(domain), params=params)
+            resp = self.get(url=self.addr.format(self.domain), params=params)
             if not resp:
                 return
             resp_json = resp.json()
@@ -53,11 +53,11 @@ class VirusTotal(Query):
         类执行入口
         """
         self.begin()
-        self.query(self.domain)
+        self.query()
+        self.finish()
         self.save_json()
         self.gen_result()
         self.save_db()
-        self.finish()
 
 
 def do(domain):  # 统一入口名字 方便多线程调用

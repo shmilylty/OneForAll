@@ -26,8 +26,9 @@ class DNSdb(Query):
         if resp.status_code == 200:
             if 'index' in resp.text:
                 soup = BeautifulSoup(resp.text, features='lxml')
-                index_urls = set(map(lambda x: self.addr + self.domain + x.text, soup.find_all('a')))
-                for url in index_urls:
+                urls = set(map(lambda x: self.addr + self.domain + x.text,
+                               soup.find_all('a')))
+                for url in urls:
                     # 休眠绕过CloudFlare的DDoS保护
                     self.delay = random.randint(2, 5)
                     time.sleep(self.delay)
@@ -48,10 +49,10 @@ class DNSdb(Query):
         """
         self.begin()
         self.query()
+        self.finish()
         self.save_json()
         self.gen_result()
         self.save_db()
-        self.finish()
 
 
 def do(domain):  # 统一入口名字 方便多线程调用
@@ -59,12 +60,10 @@ def do(domain):  # 统一入口名字 方便多线程调用
     类统一调用入口
 
     :param str domain: 域名
-
     """
     query = DNSdb(domain)
     query.run()
 
 
 if __name__ == '__main__':
-
     do('example.com')

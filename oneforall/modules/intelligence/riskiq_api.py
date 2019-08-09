@@ -19,13 +19,16 @@ class RiskIQ(Query):
         self.header = self.get_header()
         self.proxy = self.get_proxy(self.source)
         params = {'query': self.domain}
-        resp = self.get(url=self.addr, params=params, auth=(self.user, self.key))
+        resp = self.get(url=self.addr,
+                        params=params,
+                        auth=(self.user, self.key))
         if not resp:
             return
         resp_json = resp.json()
-        subdomains_find = resp_json.get('subdomains')
-        if subdomains_find:
-            self.subdomains = set(map(lambda x: x + '.' + self.domain, subdomains_find))
+        subnames = resp_json.get('subdomains')
+        if subnames:
+            self.subdomains = set(map(lambda sub: f'{sub}.{self.domain}',
+                                      subnames))
 
     def run(self):
         """
@@ -35,10 +38,10 @@ class RiskIQ(Query):
             return
         self.begin()
         self.query()
+        self.finish()
         self.save_json()
         self.gen_result()
         self.save_db()
-        self.finish()
 
 
 def do(domain):  # 统一入口名字 方便多线程调用

@@ -35,7 +35,7 @@ class Module(object):
         self.results = list()  # 存放模块结果
         self.start = time.time()  # 模块开始执行时间
         self.end = None
-        self.elapsed = time.time() - self.start  # 模块执行耗时
+        self.elapsed = None  # 模块执行耗时
 
     def check(self, *apis):
         """
