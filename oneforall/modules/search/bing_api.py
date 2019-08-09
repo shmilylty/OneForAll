@@ -9,7 +9,8 @@ class BingAPI(Search):
         self.domain = domain
         self.module = 'Search'
         self.source = 'BingAPISearch'
-        self.addr = 'https://api.cognitive.microsoft.com/bingcustomsearch/v7.0/search'
+        self.addr = 'https://api.cognitive.microsoft.com/' \
+                    'bingcustomsearch/v7.0/search'
         self.id = config.bing_api_id
         self.key = config.bing_api_key
         self.limit_num = 1000  # 必应同一个搜索关键词限制搜索条数
@@ -70,11 +71,10 @@ class BingAPI(Search):
                     count = subdomain.count('.') - self.domain.count('.')
                     if count == layer_num:
                         self.search(subdomain)
-
+        self.finish()
         self.save_json()
         self.gen_result()
         self.save_db()
-        self.finish()
 
 
 def do(domain):  # 统一入口名字 方便多线程调用

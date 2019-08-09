@@ -73,13 +73,11 @@ class BruteSRV(Module):
         类执行入口
         """
         self.begin()
-        logger.log('DEBUG', f'开始枚举{self.domain}域的SRV记录')
         self.brute()
+        self.finish()
         self.save_json()
         self.gen_result()
         self.save_db()
-        logger.log('DEBUG', f'结束枚举{self.domain}域的SRV记录')
-        self.finish()
 
 
 def do(domain):  # 统一入口名字 方便多线程调用
