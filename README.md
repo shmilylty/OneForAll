@@ -86,8 +86,9 @@
    * 使用pip3
    
      ```bash
-     cd OneForAll/oneforall
+     cd OneForAll/
      pip3 install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
+     cd oneforall/
      python3 oneforall.py --help
      ```
 
