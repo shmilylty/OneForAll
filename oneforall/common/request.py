@@ -30,7 +30,7 @@ def get_ports(port):
 def gen_new_datas(datas, ports):
     logger.log('INFOR', f'正在生成请求地址')
     new_datas = []
-    protocols = ['http://', 'https://']
+    protocols = ['http://']
     for data in datas:
         if data.get('valid'):  # 有效的子域才进行http请求探测
             subdomain = data.get('subdomain')
@@ -54,9 +54,13 @@ async def fetch(session, url, semaphore):
     :param semaphore: 同步对象(控制并发量)
     :return: 响应对象和响应文本
     """
+    header = None
+    if config.fake_header:
+        header = utils.gen_fake_header()
     timeout = aiohttp.ClientTimeout(total=config.get_timeout)
     async with semaphore:
         async with session.get(url,
+                               headers=header,
                                ssl=config.verify_ssl,
                                allow_redirects=config.get_redirects,
                                timeout=timeout,
@@ -100,9 +104,7 @@ async def bulk_get_request(datas, port):
     logger.log('INFOR', f'正在异步进行子域的GET请求')
     ports = get_ports(port)
     new_datas = gen_new_datas(datas, ports)
-    header = None
-    if config.fake_header:
-        header = utils.gen_fake_header()
+
     # 使用异步域名解析器 自定义域名服务器
     resolver = AsyncResolver(nameservers=config.resolver_nameservers)
     conn = aiohttp.TCPConnector(ssl=config.verify_ssl,
@@ -110,7 +112,7 @@ async def bulk_get_request(datas, port):
                                 limit_per_host=config.limit_per_host,
                                 resolver=resolver)
     semaphore = asyncio.Semaphore(utils.get_semaphore())
-    async with ClientSession(connector=conn, headers=header) as session:
+    async with ClientSession(connector=conn) as session:
         tasks = []
         for i, data in enumerate(new_datas):
             url = data.get('url')
