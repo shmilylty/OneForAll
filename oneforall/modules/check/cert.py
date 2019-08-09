@@ -38,12 +38,11 @@ class CheckCert(Module):
         """
         类执行入口
         """
-        logger.log('DEBUG', f'开始执行{self.source}检查{self.domain}域的证书中的子域')
+        self.begin()
         self.check()
         self.save_json()
         self.gen_result()
         self.save_db()
-        logger.log('DEBUG', f'结束执行{self.source}检查{self.domain}域的证书中的子域')
         self.finish()
 
 
