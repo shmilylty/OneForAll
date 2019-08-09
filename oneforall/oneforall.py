@@ -36,7 +36,7 @@ class OneForAll(object):
 
     Example:
         python oneforall.py --target example.com run
-        python oneforall.py --target example.com --brute True --port medium valid 1 run
+        python oneforall.py --target example.com --brute True --port medium --valid 1 run
         python oneforall.py --target ./domains.txt --format csv --path= ./result.csv  --output True run
 
     Note:
