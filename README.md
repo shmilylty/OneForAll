@@ -129,7 +129,7 @@ oneforall.py是主程序入口，oneforall.py里有调用aiobrute.py和dbexport.
    
        Example:
            python oneforall.py --target example.com run
-           python oneforall.py --target example.com --brute True --port medium valid 1 run
+           python oneforall.py --target example.com --brute True --port medium --valid 1 run
            python oneforall.py --target ./domains.txt --format csv --path= ./result.csv  --output True run
    
        Note:
