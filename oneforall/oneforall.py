@@ -16,7 +16,8 @@ from datetime import datetime
 from config import logger
 from collect import Collect
 from aiobrute import AIOBrute
-from common import utils, database, resolve, request
+from common import utils, resolve, request
+from  common.database import Database
 
 
 banner = """\033[01;33m
@@ -80,9 +81,8 @@ class OneForAll(object):
                     # 由于爆破会有大量dns解析请求 并发常常会导致其他任务中的网络请求超时
                     brute = AIOBrute(self.domain)
                     brute.run()
-                table_name = self.domain.replace('.', '_')
-                db_conn = database.connect_db()
-                self.datas = database.get_data(db_conn, table_name).as_dict()
+                db = Database()
+                self.datas = db.get_data(self.domain).as_dict()
                 loop = asyncio.get_event_loop()
                 asyncio.set_event_loop(loop)
                 self.datas = loop.run_until_complete(resolve.bulk_query_a(self.datas))
@@ -90,13 +90,12 @@ class OneForAll(object):
                 # 在关闭事件循环前加入一小段延迟让底层连接得到关闭的缓冲时间
                 loop.run_until_complete(asyncio.sleep(0.25))
                 loop.close()
-                database.clear_table(db_conn, table_name)
-                database.save_db(db_conn, table_name, self.datas)
+                db.clear_table(self.domain)
+                db.save_db(self.domain, self.datas)
                 # 数据库导出
                 if not self.path:
                     self.path = config.result_save_path.joinpath(f'{self.domain}.{self.format}')
-                dbexport.export(table_name, db_conn, self.valid, self.path, self.format, self.output)
-                db_conn.close()
+                dbexport.export(self.domain, db.conn, self.valid, self.path, self.format, self.output)
         else:
             logger.log('FATAL', f'获取域名失败')
         logger.log('INFOR', f'结束运行OneForAll')

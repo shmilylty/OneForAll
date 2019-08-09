@@ -3,12 +3,11 @@
 被动收集类
 """
 import time
-import queue
 import threading
 import importlib
 import config
 import dbexport
-from common import database
+from common.database import Database
 from config import logger
 
 
@@ -54,7 +53,7 @@ class Collect(object):
             import_object = importlib.import_module('.'+name, package)
             self.collect_func.append(getattr(import_object, 'do'))
 
-    def run(self, rx_queue=None):
+    def run(self):
         """
         类运行入口
         """
@@ -77,19 +76,18 @@ class Collect(object):
         for thread in threads:
             thread.join()
 
-        db_conn = database.connect_db()
-        table_name = self.domain.replace('.', '_')
-        database.create_table(db_conn, table_name)
-        database.copy_table(db_conn, table_name)
-        database.deduplicate_subdomain(db_conn, table_name)
-        database.remove_invalid(db_conn, table_name)
-        db_conn.close()
+        db = Database()
+        db.create_table(self.domain)
+        db.copy_table(self.domain)
+        db.deduplicate_subdomain(self.domain)
+        db.remove_invalid(self.domain)
+        # conn.close()
         # 数据库导出
         if self.export:
             if not self.path:
                 name = f'{self.domain}.{self.format}'
                 self.path = config.result_save_path.joinpath(name)
-            dbexport.export(table_name, path=self.path, format=self.format)
+            dbexport.export(self.domain, path=self.path, format=self.format)
         end = time.time()
         self.elapsed = round(end - start, 1)
 

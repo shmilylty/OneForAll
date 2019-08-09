@@ -13,7 +13,7 @@ import config
 from config import logger
 from . import utils
 from .domain import Domain
-from common import database
+from common.database import Database
 
 
 lock = threading.Lock()
@@ -259,10 +259,9 @@ class Module(object):
 
     def save_db(self):
         lock.acquire()
-        db_conn = database.connect_db()
-        table_name = self.domain.replace('.', '_')
-        database.create_table(db_conn, table_name)
+        db = Database()
+        db.create_table(self.domain)
         source, results = self.results
         # 将结果存入数据库中
-        database.save_db(db_conn, table_name, results, source)
+        db.save_db(self.domain, results, source)
         lock.release()
