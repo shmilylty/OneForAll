@@ -7,7 +7,7 @@ class ShodanAPI(Search):
         Search.__init__(self)
         self.domain = self.register(domain)
         self.module = 'Search'
-        self.source = 'ShodanSearch'
+        self.source = 'ShodanAPISearch'
         self.addr = 'https://api.shodan.io/shodan/host/search'
         self.key = config.shodan_api_key
 

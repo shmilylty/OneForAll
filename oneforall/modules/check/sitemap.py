@@ -17,7 +17,7 @@ class CheckRobots(Module):
         Module.__init__(self)
         self.domain = self.register(domain)
         self.module = 'Check'
-        self.source = 'Robots.txt'
+        self.source = 'Sitemap'
 
     def check(self):
         """
