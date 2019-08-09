@@ -44,7 +44,7 @@ fuzz_rule = ''  # fuzz域名的正则 示例：[a-z][0-9] 第一位是字母 第
 ips_appear_maximum = 10  # 同一IP集合出现次数超过10认为是泛解析
 
 # 代理设置
-enable_proxy = True  # 是否使用代理 全局开关
+enable_proxy = False  # 是否使用代理 全局开关
 proxy_all_module = False  # 代理所有模块
 proxy_partial_module = ['GoogleQuery', 'AskSearch', 'DuckDuckGoSearch',
                         'GoogleAPISearch', 'GoogleSearch', 'YahooSearch',
