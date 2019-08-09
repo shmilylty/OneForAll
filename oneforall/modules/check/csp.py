@@ -48,12 +48,11 @@ class CheckCSP(Module):
         """
         类执行入口
         """
-        logger.log('DEBUG', f'开始执行{self.source}检查{self.domain}域响应头中的内容安全策略字段')
+        self.begin()
         self.check()
         self.save_json()
         self.gen_result()
         self.save_db()
-        logger.log('DEBUG', f'结束执行{self.source}检查{self.domain}域响应头中的内容安全策略字段')
         self.finish()
 
 
