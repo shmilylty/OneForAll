@@ -20,8 +20,9 @@ import fire
 import tqdm
 
 import config
-from common import database, resolve, utils
+from common import resolve, utils
 from common.module import Module
+from common.database import Database
 from config import logger
 
 
@@ -248,9 +249,8 @@ class AIOBrute(Module):
         while self.domains:
             self.domain = self.domains.pop()
             start = time.time()
-            db_conn = database.connect_db()
-            table_name = self.domain.replace('.', '_')
-            database.create_table(db_conn, table_name)
+            db = Database()
+            db.create_table(self.domain)
             if not rx_queue:
                 rx_queue = queue.Queue()
             logger.log('INFOR', f'开始执行{self.source}模块爆破域名{self.domain}')
@@ -278,10 +278,10 @@ class AIOBrute(Module):
             while not rx_queue.empty():
                 source, results = rx_queue.get()
                 # 将结果存入数据库中
-                database.save_db(db_conn, table_name, results, source)
-            database.copy_table(db_conn, table_name)
-            database.deduplicate_subdomain(db_conn, table_name)
-            database.remove_invalid(db_conn, table_name)
+                db.save_db(self.domain, results, source)
+            db.copy_table(self.domain)
+            db.deduplicate_subdomain(self.domain)
+            db.remove_invalid(self.domain)
 
             end = time.time()
             self.elapsed = round(end - start, 1)

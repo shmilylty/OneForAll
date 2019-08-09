@@ -9,7 +9,7 @@ OneForAll数据库导出模块
 """
 
 import fire
-from common import database
+from common.database import Database
 from config import logger
 
 
@@ -33,13 +33,13 @@ def export(table, db=None, valid=None, path=None, format='xlsx', output=False):
     :param str path:    导出路径(默认None)
     :param bool output: 是否将导出数据输出到终端(默认False)
     """
-    db_conn = database.connect_db(db)
+    database = Database(db)
     if valid is None:
-        rows = database.get_data(db_conn, table)
+        rows = database.get_data(table)
     elif isinstance(valid, int):
-        rows = database.get_subdomain(db_conn, table, valid)
+        rows = database.get_subdomain(table, valid)
     else:
-        rows = database.get_data(db_conn, table)  # 意外情况导出全部子域
+        rows = database.get_data(table)  # 意外情况导出全部子域
     if output:
         print(rows.dataset)
     if not path:
