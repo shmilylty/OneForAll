@@ -18,12 +18,13 @@ def export(table, db=None, valid=None, path=None, format='xlsx', output=False):
     OneForAll数据库导出模块
 
     Example:
-        python dbexport.py --db result.db --table name --format csv --output False
-        python dbexport.py --db result.db --table name --format csv --path= ./result.csv
+        python dbexport.py --table name --format csv --path= ./result.csv
+        python dbexport.py --db result.db --table name --output False
 
     Note:
         参数valid可选值1，0，None，分别表示导出有效，无效，全部子域
-        参数format可选格式：'csv', 'tsv', 'json', 'yaml', 'html', 'xls', 'xlsx', 'dbf', 'latex', 'ods'
+        参数format可选格式：'csv', 'tsv', 'json', 'yaml', 'html', 'xls', 'xlsx',
+                         'dbf', 'latex', 'ods'
         参数path为None会根据format参数和域名名称在项目结果目录生成相应文件
 
     :param str table:   要导出的表

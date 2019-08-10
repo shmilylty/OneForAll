@@ -78,7 +78,6 @@ def resolve_callback(future, index, datas):
                 datas[index]['ips'] = str(ips)
             else:
                 datas[index]['ips'] = 'No answers'
-                datas[index]['valid'] = 0
 
 
 async def bulk_query_a(datas):

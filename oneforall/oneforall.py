@@ -66,18 +66,65 @@ class OneForAll(object):
     :param str path:    导出路径(默认None)
     :param bool output: 是否将导出数据输出到终端(默认False)
     """
-    def __init__(self, target, brute=False, port='medium', valid=1, path=None,
+    def __init__(self, target, brute=None, port='medium', valid=1, path=None,
                  format='xlsx', output=False):
         self.target = target
         self.port = port
         self.domains = set()
-        self.domain = ''
+        self.domain = str()
         self.datas = list()
         self.brute = brute or config.enable_brute_module
         self.valid = valid
         self.path = path
         self.format = format
         self.output = output
+
+    def main(self):
+        collect = Collect(self.domain, export=False)
+        collect.run()
+        if self.brute:
+            # 由于爆破会有大量dns解析请求 并发爆破可能会导致其他任务中的网络请求异常
+            brute = AIOBrute(self.domain, export=False)
+            brute.run()
+
+        db = Database()
+        db.copy_table(self.domain, self.domain+'_ori')
+        db.remove_invalid(self.domain)
+        db.deduplicate_subdomain(self.domain)
+        self.datas = db.get_data(self.domain).as_dict()
+        loop = asyncio.get_event_loop()
+        asyncio.set_event_loop(loop)
+
+        # 解析域名地址
+        task = resolve.bulk_query_a(self.datas)
+        self.datas = loop.run_until_complete(task)
+
+        # 保存解析结果
+        resolve_table = self.domain + '_res'
+        db.drop_table(resolve_table)
+        db.create_table(resolve_table)
+        db.save_db(resolve_table, self.datas, 'resolve')
+
+        # 请求域名地址
+        task = request.bulk_get_request(self.datas, self.port)
+        self.datas = loop.run_until_complete(task)
+        # 在关闭事件循环前加入一小段延迟让底层连接得到关闭的缓冲时间
+        loop.run_until_complete(asyncio.sleep(0.25))
+        loop.close()
+
+        db.clear_table(self.domain)
+        db.save_db(self.domain, self.datas)
+
+        # 数据库导出
+        if not self.path:
+            name = f'{self.domain}.{self.format}'
+            self.path = config.result_save_path.joinpath(name)
+        dbexport.export(self.domain, db.conn, self.valid, self.path,
+                        self.format, self.output)
+
+        rename_table = self.domain + '_last'
+        db.drop_table(rename_table)
+        db.rename_table(self.domain, rename_table)
 
     def run(self):
         print(banner)
@@ -87,31 +134,7 @@ class OneForAll(object):
         self.domains = utils.get_domains(self.target)
         if self.domains:
             for self.domain in self.domains:
-                collect = Collect(self.domain, export=False)
-                collect.run()
-                if self.brute:
-                    # 由于爆破会有大量dns解析请求 并发常常会导致其他任务中的网络请求超时
-                    brute = AIOBrute(self.domain)
-                    brute.run()
-                db = Database()
-                self.datas = db.get_data(self.domain).as_dict()
-                loop = asyncio.get_event_loop()
-                asyncio.set_event_loop(loop)
-                task = resolve.bulk_query_a(self.datas)
-                self.datas = loop.run_until_complete(task)
-                task = request.bulk_get_request(self.datas, self.port)
-                self.datas = loop.run_until_complete(task)
-                # 在关闭事件循环前加入一小段延迟让底层连接得到关闭的缓冲时间
-                loop.run_until_complete(asyncio.sleep(0.25))
-                loop.close()
-                db.clear_table(self.domain)
-                db.save_db(self.domain, self.datas)
-                # 数据库导出
-                if not self.path:
-                    name = f'{self.domain}.{self.format}'
-                    self.path = config.result_save_path.joinpath(name)
-                dbexport.export(self.domain, db.conn, self.valid, self.path,
-                                self.format, self.output)
+                self.main()
         else:
             logger.log('FATAL', f'获取域名失败')
         logger.log('INFOR', f'结束运行OneForAll')

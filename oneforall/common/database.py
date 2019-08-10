@@ -75,27 +75,30 @@ class Database(object):
         if results:
             try:
                 self.conn.bulk_query(
-                    f'insert into "{table_name}" (id, url, subdomain, port, ips, status,'
-                    f'reason, valid, title, banner, module, source, elapsed, count)'
-                    f'values (:id, :url, :subdomain, :port, :ips, :status, :reason, :valid,'
-                    f':title, :banner, :module, :source, :elapsed, :count)',
+                    f'insert into "{table_name}" ('
+                    f'id, url, subdomain, port, ips, status, reason, valid,'
+                    f'title, banner, module, source, elapsed, count)'
+                    f'values (:id, :url, :subdomain, :port, :ips, :status,'
+                    f':reason, :valid, :title, :banner, :module, :source,'
+                    f':elapsed, :count)',
                     results)
             except Exception as e:
                 logger.log('ERROR', e)
 
-    def copy_table(self, table_name):
+    def copy_table(self, table_name, bak_table_name):
         """
         复制表创建备份
 
         :param str table_name: 表名
+        :param str bak_table_name: 新表名
         """
         table_name = table_name.replace('.', '_')
-        new_table_name = table_name + '_bak'
-        logger.log('DEBUG', f'正在将{table_name}表复制到{new_table_name}新表')
+        bak_table_name = bak_table_name.replace('.', '_')
+        logger.log('DEBUG', f'正在将{table_name}表复制到{bak_table_name}新表')
         try:
-            self.conn.query(f'drop table if exists "{new_table_name}"')
-            self.conn.query(
-                f'create table "{new_table_name}" as select * from "{table_name}"')
+            self.conn.query(f'drop table if exists "{bak_table_name}"')
+            self.conn.query(f'create table "{bak_table_name}" '
+                            f'as select * from "{table_name}"')
         except Exception as e:
             logger.log('ERROR', e)
 
@@ -112,9 +115,38 @@ class Database(object):
         except Exception as e:
             logger.log('ERROR', e)
 
+    def drop_table(self, table_name):
+        """
+        删除表
+
+        :param str table_name: 表名
+        """
+        table_name = table_name.replace('.', '_')
+        logger.log('DEBUG', f'正在删除{table_name}表')
+        try:
+            self.conn.query(f'drop table if exists "{table_name}"')
+        except Exception as e:
+            logger.log('ERROR', e)
+
+    def rename_table(self, table_name, new_table_name):
+        """
+        复制表创建备份
+
+        :param str table_name: 表名
+        :param str new_table_name: 新表名
+        """
+        table_name = table_name.replace('.', '_')
+        new_table_name = new_table_name.replace('.', '_')
+        logger.log('DEBUG', f'正在将{table_name}表重命名为{table_name}表')
+        try:
+            self.conn.query(f'alter table "{table_name}" '
+                            f'rename to "{new_table_name}"')
+        except Exception as e:
+            logger.log('ERROR', e)
+
     def deduplicate_subdomain(self, table_name):
         """
-        去重表中的子域并删除空值和无效值
+        去重表中的子域
 
         :param str table_name: 表名
         """
@@ -122,21 +154,23 @@ class Database(object):
         logger.log('DEBUG', f'正在去重{table_name}表中的子域')
         try:
             self.conn.query(
-                f'delete from "{table_name}" where id not in (select min(id) from "{table_name}" group by subdomain)')
+                f'delete from "{table_name}" where id not in (select min(id) '
+                f'from "{table_name}" group by subdomain)')
         except Exception as e:
             logger.log('ERROR', e)
 
     def remove_invalid(self, table_name):
         """
-            去除表中的空值或无效子域
+        去除表中的空值或无效子域
 
-            :param str table_name: 表名
-            """
+        :param str table_name: 表名
+        """
         table_name = table_name.replace('.', '_')
         logger.log('DEBUG', f'正在去除{table_name}表中的无效子域')
         try:
             self.conn.query(
-                f'delete from "{table_name}" where subdomain is null or valid == 0')
+                f'delete from "{table_name}" where '
+                f'subdomain is null or valid == 0')
         except Exception as e:
             logger.log('ERROR', e)
 
