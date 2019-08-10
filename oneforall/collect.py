@@ -1,7 +1,3 @@
-# coding=utf-8
-"""
-被动收集类
-"""
 import time
 import threading
 import importlib
@@ -27,7 +23,6 @@ class Collect(object):
     def get_mod(self):
         """
         获取要运行的模块
-        :return: None
         """
         if config.enable_all_module:
             # modules = ['brute', 'certificates', 'crawl',
@@ -76,12 +71,11 @@ class Collect(object):
         for thread in threads:
             thread.join()
 
-        db = Database()
-        db.create_table(self.domain)
-        db.copy_table(self.domain)
-        db.deduplicate_subdomain(self.domain)
-        db.remove_invalid(self.domain)
-        # conn.close()
+        # db = Database()
+        # db.create_table(self.domain)
+        # db.copy_table(self.domain, self.domain+'_collect')
+        # db.remove_invalid(self.domain)
+        # db.deduplicate_subdomain(self.domain)
         # 数据库导出
         if self.export:
             if not self.path:

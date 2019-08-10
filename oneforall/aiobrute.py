@@ -20,6 +20,7 @@ import fire
 import tqdm
 
 import config
+import dbexport
 from common import resolve, utils
 from common.module import Module
 from common.database import Database
@@ -142,6 +143,10 @@ class AIOBrute(Module):
         参数segment的设置受CPU性能，网络带宽，运营商限制等问题影响，默认设置500个子域为任务组，
         当你觉得你的环境不受以上因素影响，当前爆破速度较慢，那么强烈建议根据字典大小调整大小：
         十万字典建议设置为5000，百万字典设置为50000
+        参数valid可选值1，0，None，分别表示导出有效，无效，全部子域
+        参数format可选格式：'csv', 'tsv', 'json', 'yaml', 'html', 'xls', 'xlsx',
+                         'dbf', 'latex', 'ods'
+        参数path为None会根据format参数和域名名称在项目结果目录生成相应文件
 
     :param str target:       单个域名或者每行一个域名的文件路径
     :param int processes:    爆破的进程数(默认CPU核心数)
@@ -153,11 +158,17 @@ class AIOBrute(Module):
     :param str namelist:     指定递归爆破所使用的字典路径(默认使用config.py配置)
     :param bool fuzz:        是否使用fuzz模式进行爆破(默认False，开启须指定fuzz正则规则)
     :param str rule:         fuzz模式使用的正则规则(默认使用config.py配置)
+    :param bool export:      是否导出爆破结果(默认True)
+    :param int valid:        导出子域的有效性(默认None)
+    :param str format:       导出格式(默认xlsx)
+    :param str path:         导出路径(默认None)
+    :param
     """
 
     def __init__(self, target, processes=None, coroutine=64, wordlist=None,
                  segment=500, recursive=False, depth=2, namelist=None,
-                 fuzz=False, rule=None):
+                 fuzz=False, rule=None, export=True, valid=None, format='xlsx',
+                 path=None):
         Module.__init__(self)
         self.domains = set()
         self.domain = str()
@@ -173,6 +184,10 @@ class AIOBrute(Module):
         self.recursive_namelist = namelist or config.recursive_namelist_path
         self.fuzz = fuzz or config.enable_fuzz
         self.rule = rule or config.fuzz_rule
+        self.export = export
+        self.valid = valid
+        self.format = format
+        self.path = path
         self.nameservers = config.resolver_nameservers
         self.ips_times = dict()  # IP集合出现次数
         self.enable_wildcard = False  # 当前域名是否使用泛解析
@@ -279,9 +294,6 @@ class AIOBrute(Module):
                 source, results = rx_queue.get()
                 # 将结果存入数据库中
                 db.save_db(self.domain, results, source)
-            db.copy_table(self.domain)
-            db.deduplicate_subdomain(self.domain)
-            db.remove_invalid(self.domain)
 
             end = time.time()
             self.elapsed = round(end - start, 1)
@@ -291,6 +303,15 @@ class AIOBrute(Module):
                                 f'发现{self.domain}的域名{length}个')
             logger.log('DEBUG', f'{self.source}模块发现{self.domain}的域名:\n'
                                 f'{self.subdomains}')
+            # 数据库导出
+            if self.export:
+                if not self.path:
+                    name = f'{self.domain}_brute.{self.format}'
+                    self.path = config.result_save_path.joinpath(name)
+                dbexport.export(self.domain,
+                                valid=self.valid,
+                                path=self.path,
+                                format=self.format)
 
 
 def do(domain, result):  # 统一入口名字 方便多线程调用

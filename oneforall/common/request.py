@@ -32,7 +32,8 @@ def gen_new_datas(datas, ports):
     new_datas = []
     protocols = ['http://']
     for data in datas:
-        if data.get('valid'):  # 有效的子域才进行http请求探测
+        valid = data.get('valid')
+        if valid is None:  # 子域有效性未知的才进行http请求探测
             subdomain = data.get('subdomain')
             for port in ports:
                 for protocol in protocols:
@@ -83,6 +84,7 @@ def deal_results(datas, results):
             if resp.status == 400 or resp.status >= 500:
                 datas[index]['valid'] = 0
             else:
+                datas[index]['valid'] = 1
                 headers = resp.headers
                 banner = str({'Server': headers.get('Server'),
                               'Via': headers.get('Via'),
