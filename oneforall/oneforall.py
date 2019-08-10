@@ -17,15 +17,23 @@ from config import logger
 from collect import Collect
 from aiobrute import AIOBrute
 from common import utils, resolve, request
-from  common.database import Database
+from common.database import Database
 
+yellow = '\033[01;33m'
+white = '\033[01;37m'
+green = '\033[01;32m'
+blue = '\033[01;34m'
+red = '\033[1;31m'
+end = '\033[0m'
 
-banner = """\033[01;33m
+version = white + '{' + red + 'v0.0.3#dev' + white + '}'
+
+banner = f"""{yellow}
              ___             _ _ 
- ___ ___ ___|  _|___ ___ ___| | | \033[01;37m{\033[1;31mv0.0.3#dev\033[01;37m}\033[01;32m
-| . |   | -_|  _| . |  _| .'| | | \033[01;34m
-|___|_|_|___|_| |___|_| |__,|_|_| \033[0m\033[4;37mgit.io/fjHT1\033[0m\n
-        """
+ ___ ___ ___|  _|___ ___ ___| | | {version}{green}
+| . |   | -_|  _| . |  _| .'| | | {blue}
+|___|_|_|___|_| |___|_| |__,|_|_| {white}git.io/fjHT1{end}
+"""
 
 
 class OneForAll(object):
@@ -33,17 +41,21 @@ class OneForAll(object):
     OneForAll是一款功能强大的子域收集工具
 
     Version: 0.0.3
-    Project: https://github.com/shmilylty/OneForAll/
+    Project: https://git.io/fjHT1
 
     Example:
         python oneforall.py --target example.com run
-        python oneforall.py --target example.com --brute True --port medium --valid 1 run
-        python oneforall.py --target ./domains.txt --format csv --path= ./result.csv  --output True run
+        python oneforall.py --target ./domains.txt run
+        python oneforall.py --target example.com --brute True --port medium
+        python oneforall.py --target example.com --valid None run
+        python oneforall.py --target example.com --format csv --path result.csv
+        python oneforall.py --target example.com --output True run
 
     Note:
         参数valid可选值有1，0，None，分别表示导出有效，无效，全部子域
         参数port可选值有'small', 'medium', 'large', 'xlarge'，详见config.py配置
-        参数format可选格式有'csv', 'tsv', 'json', 'yaml', 'html', 'xls', 'xlsx', 'dbf', 'latex', 'ods'
+        参数format可选格式有'csv', 'tsv', 'json', 'yaml', 'html', 'xls', 'xlsx',
+                         'dbf', 'latex', 'ods'
         参数path为None会根据format参数和域名名称在项目结果目录生成相应文件
 
     :param str target:  单个域名或者每行一个域名的文件路径
@@ -85,8 +97,10 @@ class OneForAll(object):
                 self.datas = db.get_data(self.domain).as_dict()
                 loop = asyncio.get_event_loop()
                 asyncio.set_event_loop(loop)
-                self.datas = loop.run_until_complete(resolve.bulk_query_a(self.datas))
-                self.datas = loop.run_until_complete(request.bulk_get_request(self.datas, self.port))
+                task = resolve.bulk_query_a(self.datas)
+                self.datas = loop.run_until_complete(task)
+                task = request.bulk_get_request(self.datas, self.port)
+                self.datas = loop.run_until_complete(task)
                 # 在关闭事件循环前加入一小段延迟让底层连接得到关闭的缓冲时间
                 loop.run_until_complete(asyncio.sleep(0.25))
                 loop.close()
@@ -94,8 +108,10 @@ class OneForAll(object):
                 db.save_db(self.domain, self.datas)
                 # 数据库导出
                 if not self.path:
-                    self.path = config.result_save_path.joinpath(f'{self.domain}.{self.format}')
-                dbexport.export(self.domain, db.conn, self.valid, self.path, self.format, self.output)
+                    name = f'{self.domain}.{self.format}'
+                    self.path = config.result_save_path.joinpath(name)
+                dbexport.export(self.domain, db.conn, self.valid, self.path,
+                                self.format, self.output)
         else:
             logger.log('FATAL', f'获取域名失败')
         logger.log('INFOR', f'结束运行OneForAll')
