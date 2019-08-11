@@ -37,7 +37,10 @@ def gen_new_datas(datas, ports):
             subdomain = data.get('subdomain')
             for port in ports:
                 for protocol in protocols:
-                    url = f'{protocol}{subdomain}:{port}'
+                    if port == 443:
+                        url = f'https://{subdomain}:{port}'
+                    else:
+                        url = f'{protocol}{subdomain}:{port}'
                     data['id'] = None
                     data['url'] = url
                     data['port'] = port
