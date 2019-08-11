@@ -43,7 +43,7 @@ class CheckRobots(Module):
         for url in urls:
             self.header = self.get_header()
             self.proxy = self.get_proxy(self.source)
-            self.timeout = 5
+            self.timeout = 10
             response = self.get(url, allow_redirects=False)
             if response:
                 break

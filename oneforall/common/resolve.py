@@ -89,7 +89,7 @@ async def bulk_query_a(datas):
     """
     logger.log('INFOR', '正在异步查询子域的A记录')
     tasks = []
-    semaphore = asyncio.Semaphore(utils.get_semaphore())
+    semaphore = asyncio.Semaphore(config.limit_resolve_conn)
     for i, data in enumerate(datas):
         if not data.get('ips'):
             subdomain = data.get('subdomain')

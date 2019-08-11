@@ -25,7 +25,7 @@ class NetCraft(Query):
         resp = self.get(self.init)
         if not resp:
             return None
-        self.cookie = self.get(self.init).cookies
+        self.cookie = resp.cookies
         cookie_value = self.cookie['netcraft_js_verification_challenge']
         cookie_encode = parse.unquote(cookie_value).encode('utf-8')
         verify_taken = hashlib.sha1(cookie_encode).hexdigest()

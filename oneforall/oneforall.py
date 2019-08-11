@@ -9,6 +9,8 @@ OneForAll是一款功能强大的子域收集工具
 """
 
 import asyncio
+import sys
+
 import fire
 import config
 import dbexport

@@ -46,28 +46,26 @@ def gen_new_datas(datas, ports):
     return new_datas
 
 
-async def fetch(session, url, semaphore):
+async def fetch(session, url):
     """
     请求
 
     :param session: session对象
     :param url: url地址
-    :param semaphore: 同步对象(控制并发量)
     :return: 响应对象和响应文本
     """
     header = None
     if config.fake_header:
         header = utils.gen_fake_header()
     timeout = aiohttp.ClientTimeout(total=config.get_timeout)
-    async with semaphore:
-        async with session.get(url,
-                               headers=header,
-                               ssl=config.verify_ssl,
-                               allow_redirects=config.get_redirects,
-                               timeout=timeout,
-                               proxy=config.get_proxy) as resp:
-            text = await resp.text()
-            return resp, text
+    async with session.get(url,
+                           headers=header,
+                           ssl=config.verify_ssl,
+                           allow_redirects=config.get_redirects,
+                           timeout=timeout,
+                           proxy=config.get_proxy) as resp:
+        text = await resp.text()
+    return resp, text
 
 
 def deal_results(datas, results):
@@ -103,9 +101,9 @@ def deal_results(datas, results):
 
 
 async def bulk_get_request(datas, port):
-    logger.log('INFOR', f'正在异步进行子域的GET请求')
     ports = get_ports(port)
     new_datas = gen_new_datas(datas, ports)
+    logger.log('INFOR', f'正在异步进行子域的GET请求')
 
     # 使用异步域名解析器 自定义域名服务器
     resolver = AsyncResolver(nameservers=config.resolver_nameservers)
@@ -113,12 +111,13 @@ async def bulk_get_request(datas, port):
                                 limit=config.limit_open_conn,
                                 limit_per_host=config.limit_per_host,
                                 resolver=resolver)
-    semaphore = asyncio.Semaphore(utils.get_semaphore())
+    # semaphore = asyncio.Semaphore(utils.get_semaphore())
     async with ClientSession(connector=conn) as session:
         tasks = []
         for i, data in enumerate(new_datas):
             url = data.get('url')
-            task = asyncio.ensure_future(fetch(session, url, semaphore))
+            # task = asyncio.ensure_future(fetch(session, url, semaphore))
+            task = asyncio.ensure_future(fetch(session, url))
             tasks.append(task)
         if tasks:  # 任务列表里有任务不空时才进行解析
             # 等待所有task完成 错误聚合到结果列表里
