@@ -6,6 +6,9 @@ OneForAll的更新日志格式基于[Keep a Changelog](https://keepachangelog.co
 OneForAll遵守[语义化版本格式](https://semver.org/)。
 
 ## Unreleased
+## [0.0.4](https://github.com/shmilylty/oneforall/releases/tag/v0.0.4) - 2019-08-11
+### 修复
+- 修复一些已知Bugs
 
 ## [0.0.3](https://github.com/shmilylty/oneforall/releases/tag/v0.0.3) - 2019-08-08
 ### 修改
