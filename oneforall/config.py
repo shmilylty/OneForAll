@@ -44,7 +44,7 @@ fuzz_rule = ''  # fuzz域名的正则 示例：[a-z][0-9] 第一位是字母 第
 ips_appear_maximum = 10  # 同一IP集合出现次数超过10认为是泛解析
 
 # 代理设置
-enable_proxy = False  # 是否使用代理(全局开关)
+enable_proxy = True  # 是否使用代理(全局开关)
 proxy_all_module = False  # 代理所有模块
 proxy_partial_module = ['GoogleQuery', 'AskSearch', 'DuckDuckGoSearch',
                         'GoogleAPISearch', 'GoogleSearch', 'YahooSearch',
@@ -59,7 +59,7 @@ proxy_pool = [{'http': 'http://127.0.0.1:1080',
 # 网络请求设置
 enable_fake_header = True  # 启用伪造请求头
 request_delay = 1  # 请求时延
-request_timeout = 30  # 请求超时
+request_timeout = 60  # 请求超时
 request_verify = True  # 请求SSL验证
 
 # 搜索模块设置
@@ -78,6 +78,7 @@ resolver_nameservers = [
 ]  # 指定查询的DNS域名服务器
 resolver_timeout = 5.0  # 解析超时时间
 resolver_lifetime = 30.0  # 解析存活时间
+limit_resolve_conn = 50  # 限制同一时间解析的数量(默认50)
 
 # http探测设置
 small_ports = {80, 443}
@@ -97,7 +98,7 @@ ports = {'small': small_ports, 'medium': medium_ports,
 verify_ssl = False
 # aiohttp 支持 HTTP/HTTPS形式的代理
 get_proxy = None  # proxy="http://user:pass@some.proxy.com"
-get_timeout = 10  # http请求探测总超时时间 None或者0则表示不检测超时
+get_timeout = 120  # http请求探测总超时时间 None或者0则表示不检测超时
 get_redirects = True  # 允许请求跳转
 fake_header = True  # 使用伪造请求头
 limit_open_conn = 100  # 限制同一时间打开的连接数(默认100)，0表示不限制
