@@ -44,7 +44,7 @@ fuzz_rule = ''  # fuzz域名的正则 示例：[a-z][0-9] 第一位是字母 第
 ips_appear_maximum = 10  # 同一IP集合出现次数超过10认为是泛解析
 
 # 代理设置
-enable_proxy = True  # 是否使用代理(全局开关)
+enable_proxy = False  # 是否使用代理(全局开关)
 proxy_all_module = False  # 代理所有模块
 proxy_partial_module = ['GoogleQuery', 'AskSearch', 'DuckDuckGoSearch',
                         'GoogleAPISearch', 'GoogleSearch', 'YahooSearch',
@@ -101,9 +101,10 @@ get_proxy = None  # proxy="http://user:pass@some.proxy.com"
 get_timeout = 120  # http请求探测总超时时间 None或者0则表示不检测超时
 get_redirects = True  # 允许请求跳转
 fake_header = True  # 使用伪造请求头
-limit_open_conn = 100  # 限制同一时间打开的连接数(默认100)，0表示不限制
+# 限制同一时间打开的连接数(默认None，根据系统不同设置，Windows系统500 其他系统1000)
+limit_open_conn = None
 # 限制同一时间在同一个端点((host, port, is_ssl) 3者都一样的情况)打开的连接数
-limit_per_host = 0  # 默认0表示不限制
+limit_per_host = 10  # 默认0表示不限制
 
 
 # 模块API配置
@@ -180,8 +181,8 @@ stdout_fmt = '<cyan>{time:HH:mm:ss,SSS}</cyan> ' \
 logfile_fmt = '<light-green>{time:YYYY-MM-DD HH:mm:ss,SSS}</light-green> ' \
           '[<level>{level: <5}</level>] ' \
           '<cyan>{process.name}</cyan>:<cyan>{thread.name: <10}</cyan> | ' \
-          '<blue>{module}</blue>.<blue>{function}</blue>:<blue>{line}</blue> - ' \
-          '<level>{message}</level>'
+          '<blue>{module}</blue>.<blue>{function}</blue>:' \
+          '<blue>{line}</blue> - <level>{message}</level>'
 
 log_path = result_save_path.joinpath('oneforall.log')
 
