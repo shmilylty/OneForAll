@@ -26,6 +26,8 @@ class ShodanAPI(Search):
             if not resp:
                 return
             subdomain_find = self.match(self.domain, resp.text)
+            if not subdomain_find:  # 搜索没有发现子域名则停止搜索
+                break
             if subdomain_find:
                 self.subdomains = self.subdomains.union(subdomain_find)
             page += 1
