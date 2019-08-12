@@ -13,13 +13,13 @@ from common.database import Database
 from config import logger
 
 
-def export(table, db=None, valid=None, path=None, format='xlsx', output=False):
+def export(table, db=None, valid=None, path=None, format='xlsx', show=False):
     """
     OneForAll数据库导出模块
 
     Example:
         python dbexport.py --table name --format csv --path= ./result.csv
-        python dbexport.py --db result.db --table name --output False
+        python dbexport.py --db result.db --table name --show False
 
     Note:
         参数valid可选值1，0，None，分别表示导出有效，无效，全部子域
@@ -32,7 +32,7 @@ def export(table, db=None, valid=None, path=None, format='xlsx', output=False):
     :param int valid:   导出子域的有效性(默认None)
     :param str format:  导出格式(默认xlsx)
     :param str path:    导出路径(默认None)
-    :param bool output: 是否将导出数据输出到终端(默认False)
+    :param bool show:   终端显示导出数据(默认False)
     """
     database = Database(db)
     if valid is None:
@@ -41,7 +41,7 @@ def export(table, db=None, valid=None, path=None, format='xlsx', output=False):
         rows = database.get_subdomain(table, valid)
     else:
         rows = database.get_data(table)  # 意外情况导出全部子域
-    if output:
+    if show:
         print(rows.dataset)
     if not path:
         path = 'export.' + format
