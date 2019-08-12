@@ -30,6 +30,8 @@ class CertDBAPI(Query):
                 return
             json = resp.json()
             subdomains_find = utils.match_subdomain(self.domain, str(json))
+            if not subdomains_find:  # 搜索没有发现子域名则停止搜索
+                break
             # 合并搜索子域名搜索结果
             self.subdomains = self.subdomains.union(subdomains_find)
             page_num += 1
