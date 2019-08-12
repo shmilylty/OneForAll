@@ -31,7 +31,7 @@ enable_wildcard_check = True  # 开启泛解析检测 会去掉泛解析的子�
 brute_processes_num = os.cpu_count()
 brute_coroutine_num = 128  # 爆破时每个进程下的协程数(不宜大于1000)
 # 爆破所使用的字典路径 默认data/subdomains.txt
-brute_wordlist_path = 'data/subdomains.txt'
+brute_wordlist_path = data_storage_path.joinpath('subdomains.txt')
 brute_task_segment = 500
 # 参数segment的设置受CPU性能，网络带宽，运营商限制等问题影响，默认设置500个子域为一任务组，
 # 当你觉得你的环境不受以上因素影响，当前爆破速度较慢，那么强烈建议根据字典大小调整大小：
@@ -39,7 +39,7 @@ brute_task_segment = 500
 enable_recursive_brute = False  # 是否使用递归爆破(默认禁用)
 brute_recursive_depth = 2  # 递归爆破深度(默认2层)
 # 爆破下一层子域所使用的字典路径 默认data/next_subdomains.txt
-recursive_namelist_path = 'data/next_subdomains.txt'
+recursive_namelist_path = data_storage_path.joinpath('next_subdomains.txt')
 enable_fuzz = False  # 是否使用fuzz模式枚举域名
 fuzz_rule = ''  # fuzz域名的正则 示例：[a-z][0-9] 第一位是字母 第二位是数字
 ips_appear_maximum = 10  # 同一IP集合出现次数超过10认为是泛解析
