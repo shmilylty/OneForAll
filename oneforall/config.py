@@ -15,8 +15,8 @@ data_storage_path = oneforall_relpath.joinpath('data')  # 数据存放目录
 result_save_path = oneforall_relpath.joinpath('results')  # 结果保存目录
 
 # 模块设置
-save_module_result = True  # 保存模块中各脚本结果 默认保存
-enable_all_module = True  # 启用所有模块 默认启用
+save_module_result = True  # 保存模块中各脚本结果(默认True)
+enable_all_module = True  # 启用所有模块(默认True)
 enable_partial_module = []  # 启用部分模块 必须禁用enable_all_module才能生效
 # 只使用ask和baidu搜索引擎收集子域
 # enable_partial_module = [('modules.search', 'ask')
@@ -25,6 +25,7 @@ enable_partial_module = []  # 启用部分模块 必须禁用enable_all_module�
 
 # 爆破模块设置
 enable_brute_module = False  # 使用爆破模块(默认禁用)
+enable_verify_subdomain = True  # 验证子域有效性(默认True)
 enable_wildcard_check = True  # 开启泛解析检测 会去掉泛解析的子域
 # 爆破时使用的进程数(根据系统中CPU数量情况设置 不宜大于CPU数量 默认为系统中的CPU数量)
 brute_processes_num = os.cpu_count()
