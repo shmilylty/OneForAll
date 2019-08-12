@@ -87,7 +87,7 @@ class OneForAll(object):
         if self.brute is None:
             self.brute = config.enable_brute_module
         if self.verify is None:
-            self.brute = config.enable_verify_subdomain
+            self.verify = config.enable_verify_subdomain
         rename_table = self.domain + '_last'
         if not self.path:
             name = f'{self.domain}.{self.format}'
