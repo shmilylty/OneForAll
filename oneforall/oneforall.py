@@ -9,7 +9,6 @@ OneForAll是一款功能强大的子域收集工具
 """
 
 import asyncio
-import sys
 
 import fire
 import config
@@ -48,40 +47,51 @@ class OneForAll(object):
     Example:
         python oneforall.py --target example.com run
         python oneforall.py --target ./domains.txt run
-        python oneforall.py --target example.com --brute True --port medium
         python oneforall.py --target example.com --valid None run
+        python oneforall.py --target example.com --brute True --port medium run
         python oneforall.py --target example.com --format csv --path result.csv
-        python oneforall.py --target example.com --output True run
+        python oneforall.py --target example.com --verify False --show True run
 
     Note:
-        参数valid可选值有1，0，None，分别表示导出有效，无效，全部子域
+        参数valid可选值1，0，None分别表示导出有效，无效，全部子域
+        参数verify为True会尝试解析和请求子域并根据结果给子域有效性打上标签
         参数port可选值有'small', 'medium', 'large', 'xlarge'，详见config.py配置
         参数format可选格式有'csv', 'tsv', 'json', 'yaml', 'html', 'xls', 'xlsx',
                          'dbf', 'latex', 'ods'
         参数path为None会根据format参数和域名名称在项目结果目录生成相应文件
 
-    :param str target:  单个域名或者每行一个域名的文件路径
-    :param bool brute:  是否使用爆破模块(默认禁用)
-    :param str port:    HTTP请求验证的端口范围(默认medium)
+    :param str target:  单个域名或者每行一个域名的文件路径(必需参数)
+    :param bool brute:  使用爆破模块(默认False)
+    :param bool verify: 验证子域有效性(默认True)
+    :param str port:    请求验证的端口范围(默认medium)
     :param int valid:   导出子域的有效性(默认1)
     :param str format:  导出格式(默认xlsx)
     :param str path:    导出路径(默认None)
-    :param bool output: 是否将导出数据输出到终端(默认False)
+    :param bool show:   终端显示导出数据(默认False)
     """
-    def __init__(self, target, brute=None, port='medium', valid=1, path=None,
-                 format='xlsx', output=False):
+    def __init__(self, target, brute=None, verify=None, port='medium', valid=1,
+                 path=None, format='xlsx', show=False):
         self.target = target
         self.port = port
         self.domains = set()
         self.domain = str()
         self.datas = list()
-        self.brute = brute or config.enable_brute_module
+        self.brute = brute
+        self.verify = verify
         self.valid = valid
         self.path = path
         self.format = format
-        self.output = output
+        self.show = show
 
     def main(self):
+        if self.brute is None:
+            self.brute = config.enable_brute_module
+        if self.verify is None:
+            self.brute = config.enable_verify_subdomain
+        rename_table = self.domain + '_last'
+        if not self.path:
+            name = f'{self.domain}.{self.format}'
+            self.path = config.result_save_path.joinpath(name)
         collect = Collect(self.domain, export=False)
         collect.run()
         if self.brute:
@@ -93,6 +103,16 @@ class OneForAll(object):
         db.copy_table(self.domain, self.domain+'_ori')
         db.remove_invalid(self.domain)
         db.deduplicate_subdomain(self.domain)
+        # 不验证子域的情况
+        if not self.verify:
+            # 数据库导出
+            self.valid = None
+            dbexport.export(self.domain, db.conn, self.valid, self.path,
+                            self.format, self.show)
+            db.drop_table(rename_table)
+            db.rename_table(self.domain, rename_table)
+            return
+        # 开始验证子域工作
         self.datas = db.get_data(self.domain).as_dict()
         loop = asyncio.get_event_loop()
         asyncio.set_event_loop(loop)
@@ -118,13 +138,8 @@ class OneForAll(object):
         db.save_db(self.domain, self.datas)
 
         # 数据库导出
-        if not self.path:
-            name = f'{self.domain}.{self.format}'
-            self.path = config.result_save_path.joinpath(name)
         dbexport.export(self.domain, db.conn, self.valid, self.path,
-                        self.format, self.output)
-
-        rename_table = self.domain + '_last'
+                        self.format, self.show)
         db.drop_table(rename_table)
         db.rename_table(self.domain, rename_table)
 
