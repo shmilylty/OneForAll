@@ -162,13 +162,13 @@ class AIOBrute(Module):
     :param int valid:        导出子域的有效性(默认None)
     :param str format:       导出格式(默认xlsx)
     :param str path:         导出路径(默认None)
-    :param
+    :param bool show:        终端显示导出数据(默认False)
     """
 
     def __init__(self, target, processes=None, coroutine=64, wordlist=None,
                  segment=500, recursive=False, depth=2, namelist=None,
                  fuzz=False, rule=None, export=True, valid=None, format='xlsx',
-                 path=None):
+                 path=None, show=False):
         Module.__init__(self)
         self.domains = set()
         self.domain = str()
@@ -188,6 +188,7 @@ class AIOBrute(Module):
         self.valid = valid
         self.format = format
         self.path = path
+        self.show = show
         self.nameservers = config.resolver_nameservers
         self.ips_times = dict()  # IP集合出现次数
         self.enable_wildcard = False  # 当前域名是否使用泛解析
@@ -311,7 +312,8 @@ class AIOBrute(Module):
                 dbexport.export(self.domain,
                                 valid=self.valid,
                                 path=self.path,
-                                format=self.format)
+                                format=self.format,
+                                show=self.show)
 
 
 def do(domain, result):  # 统一入口名字 方便多线程调用
