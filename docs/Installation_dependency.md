@@ -8,9 +8,9 @@
 
     ```bash
     cd OneForAll/
-    python -m pip install -U pip setuptools wheel -i https://mirrors.aliyun.com/pypi/simple/
-    pip3 install pipenv -i https://mirrors.aliyun.com/pypi/simple/
-    pipenv install --python 3.7
+    python -m pip install --user -U pip setuptools wheel -i https://mirrors.aliyun.com/pypi/simple/
+    pip3 install --user pipenv -i https://mirrors.aliyun.com/pypi/simple/
+    pipenv install --user --python 3.7
     cd oneforall
     pipenv run python oneforall.py --help
     ```
@@ -19,8 +19,8 @@
 
     ```bash
     cd OneForAll/
-    python -m pip install -U pip setuptools wheel -i https://mirrors.aliyun.com/pypi/simple/
-    pip3 install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
+    python -m pip install --user  -U pip setuptools wheel -i https://mirrors.aliyun.com/pypi/simple/
+    pip3 install --user -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
     cd oneforall/
     python oneforall.py --help
     ```
@@ -29,17 +29,17 @@
     1. 使用pipenv
     ```bash
     cd OneForAll/
-    sudo python3 -m pip install -U pip setuptools wheel -i https://mirrors.aliyun.com/pypi/simple/
-    sudo pip3 install pipenv -i https://mirrors.aliyun.com/pypi/simple/
-    sudo pipenv install --python 3.7
+    python3 -m pip install --user -U pip setuptools wheel -i https://mirrors.aliyun.com/pypi/simple/
+    sudo pip3 install --user pipenv -i https://mirrors.aliyun.com/pypi/simple/
+    sudo pipenv install --user --python 3.7
     cd oneforall
     pipenv run python3 oneforall.py --help
     ```
     2. 使用pip3
     ```bash
     cd OneForAll/
-    sudo python3 -m pip install -U pip setuptools wheel -i https://mirrors.aliyun.com/pypi/simple/
-    sudo pip3 install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
+    python3 -m pip install --user -U pip setuptools wheel -i https://mirrors.aliyun.com/pypi/simple/
+    pip3 install --user -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
     cd oneforall/
     python3 oneforall.py --help
     ```
@@ -48,17 +48,17 @@
     1. 使用pipenv
     ```bash
     cd OneForAll/
-    python3 -m pip install -U pip setuptools wheel -i https://mirrors.aliyun.com/pypi/simple/
-    pip3 install pipenv -i https://mirrors.aliyun.com/pypi/simple/
-    pipenv install --python 3.7
+    python3 -m pip install --user -U pip setuptools wheel -i https://mirrors.aliyun.com/pypi/simple/
+    pip3 install --user pipenv -i https://mirrors.aliyun.com/pypi/simple/
+    pipenv install --user --python 3.7
     cd oneforall
     pipenv run python3 oneforall.py --help
     ```
     2. 使用pip3
     ```bash
     cd OneForAll/
-    python3 -m pip install -U pip setuptools wheel -i https://mirrors.aliyun.com/pypi/simple/
-    pip3 install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
+    python3 -m pip install --user -U pip setuptools wheel -i https://mirrors.aliyun.com/pypi/simple/
+    pip3 install --user -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
     cd oneforall/
     python3 oneforall.py --help
     ```
