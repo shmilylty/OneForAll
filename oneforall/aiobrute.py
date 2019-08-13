@@ -14,7 +14,7 @@ import secrets
 import signal
 import time
 
-import aiomultiprocess
+import aiomultiprocess as aiomp
 import exrex
 import fire
 import tqdm
@@ -242,10 +242,9 @@ class AIOBrute(Module):
         logger.log('INFOR', f'正在爆破{domain}的域名')
         for task in tqdm.tqdm(tasks, desc='Progress',
                               smoothing=1.0, ncols=True):
-            async with aiomultiprocess.Pool(processes=self.processes,
-                                            initializer=init_worker,
-                                            childconcurrency=self.coroutine)\
-                    as pool:
+            async with aiomp.Pool(processes=self.processes,
+                                  initializer=init_worker,
+                                  childconcurrency=self.coroutine) as pool:
                 try:
                     results = await pool.map(resolve.aiodns_query_a, task)
                 except KeyboardInterrupt:
