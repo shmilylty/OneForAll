@@ -23,8 +23,8 @@ def export(table, db=None, valid=None, path=None, format='xlsx', show=False):
 
     Note:
         参数valid可选值1，0，None，分别表示导出有效，无效，全部子域
-        参数format可选格式：'csv', 'tsv', 'json', 'yaml', 'html', 'xls', 'xlsx',
-                         'dbf', 'latex', 'ods'
+        参数format可选格式：'csv', 'tsv', 'json', 'yaml', 'html', 'jira',
+                          'xls', 'xlsx', 'dbf', 'latex', 'ods'
         参数path为None会根据format参数和域名名称在项目结果目录生成相应文件
 
     :param str table:   要导出的表
@@ -34,6 +34,11 @@ def export(table, db=None, valid=None, path=None, format='xlsx', show=False):
     :param str path:    导出路径(默认None)
     :param bool show:   终端显示导出数据(默认False)
     """
+    formats = ['csv', 'tsv', 'json', 'yaml', 'html',
+               'latex', 'xls', 'xlsx', 'dbf', 'ods']
+    if format not in formats:
+        logger.log('FATAL', f'不支持{format}格式导出')
+        return
     database = Database(db)
     if valid is None:
         rows = database.get_data(table)
@@ -46,14 +51,15 @@ def export(table, db=None, valid=None, path=None, format='xlsx', show=False):
     if not path:
         path = 'export.' + format
     logger.log('INFOR', f'正在将数据库中{table}表导出')
+    data = rows.export(format)
     try:
         with open(path, 'w') as file:
-            file.write(rows.export(format))
+            file.write(data)
             logger.log('INFOR', '成功完成导出')
             logger.log('INFOR', path)
     except TypeError:
         with open(path, 'wb') as file:
-            file.write(rows.export(format))
+            file.write(data)
             logger.log('INFOR', '成功完成导出')
             logger.log('INFOR', path)
     except Exception as e:
