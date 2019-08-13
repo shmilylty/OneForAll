@@ -53,7 +53,16 @@
 
 **🐍安装要求**
 
-1. Python 3.6-3.7
+1. OneForAll是基于CPython开发的，所以你需要Python环境才能运行，如果你的系统还没有Pythin环境你可以参考[Python 3 安装指南](https://pythonguidecn.readthedocs.io/zh/latest/starting/installation.html#python-3)，理论上Python 3.6，3.7和3.8都可以正常运行OneForAll，**但是**许多测试都是在Python 3.7上进行的，所以**推荐**你使用**Python 3.7**版本运行OneForAll。运行以下命令检查Python和pip3版本：
+```bash
+python -V
+pip3 -V
+```
+如果你看到以下类似输出便说明Python环境没有问题：
+```bash
+Python 3.7.4
+pip 19.2.2 from C:\Users\shmilylty\AppData\Roaming\Python\Python37\site-packages\pip (python 3.7)
+```
 
 **✔安装步骤**
 
@@ -72,36 +81,35 @@
    ```
 
 2. 安装依赖
+   首先运行以下命令
+   你可以通过pip3安装OneForAll的依赖（如果你熟悉[pipenv](https://docs.pipenv.org/en/latest/)，那么推荐你使用[pipenv安装依赖]((./docs/Installation_dependency.md))），以下为**Windows系统**下使用**pip3**安装依赖的示例：（注意：如果你的Python3安装在系统Program Files目录下，如：`C:\Program Files\Python37`，那么请以管理员身份运行命令提示符cmd执行以下命令！）
 
-   * 使用pipenv
-
-     ```bash
-     pip3 install pipenv
-     cd OneForAll/
-     pipenv install --python 3.7
-     cd oneforall
-     pipenv run python3 oneforall.py --help
-     ```
-
-   * 使用pip3
-   
-     ```bash
-     cd OneForAll/
-     pip3 install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
-     cd oneforall/
-     python3 oneforall.py --help
-     ```
+   ```bash
+   cd OneForAll/
+   python -m pip install -U pip setuptools wheel -i https://mirrors.aliyun.com/pypi/simple/
+   pip3 install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
+   cd oneforall/
+   python oneforall.py --help
+   ```
 
 
-如果在安装依赖过程中发现编译某个依赖库失败时可以参考[编译失败解决方法](./docs/building_fail_solution.md)，如果还没有解决欢迎加群反馈。
+其他系统平台的请参考[依赖安装](./docs/Installation_dependency.md)，如果在安装依赖过程中发现编译某个依赖库失败时可以参考[编译失败解决方法](./docs/building_fail_solution.md)，如果还没有解决欢迎加群反馈。
 
 **✨使用演示**
+如果你是通过pip3安装的依赖则使用以下命令运行示例：
 
 ```bash
+cd oneforall/
 python3 oneforall.py --target example.com run
 ```
 
 ![Example](./docs/usage_example.svg)
+
+如果你通过pipenv安装的依赖则使用以下命令运行示例：
+```bash
+cd oneforall/
+pipenv run python oneforall.py --target example.com run
+```
 
 **🤔使用帮助**
 
@@ -114,7 +122,7 @@ oneforall.py是主程序入口，oneforall.py里有调用aiobrute.py和dbexport.
 1. oneforall.py使用帮助
 
    ```bash
-   pipenv run python oneforall.py --help
+   python oneforall.py --help
    ```
    ```bash
    NAME
@@ -166,7 +174,7 @@ oneforall.py是主程序入口，oneforall.py里有调用aiobrute.py和dbexport.
    经过测试在16核心的CPU，使用16进程64协程，100M带宽的环境下，设置任务分割为50000，跑两百万字典大概10分钟左右跑完，大概3333个子域每秒。
 
    ```bash
-   pipenv run python aiobrute.py --help
+   python aiobrute.py --help
    ```
 
    ```bash
@@ -218,7 +226,7 @@ oneforall.py是主程序入口，oneforall.py里有调用aiobrute.py和dbexport.
 3. dbexport.py使用帮助
 
    ```bash
-   pipenv run python dbexport.py --help
+   python dbexport.py --help
    ```
 
    ```bash
