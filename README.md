@@ -93,7 +93,7 @@ pip 19.2.2 from C:\Users\shmilylty\AppData\Roaming\Python\Python37\site-packages
    ```
 
 
-其他系统平台的请参考[依赖安装](./docs/Installation_dependency.md)，如果在安装依赖过程中发现编译某个依赖库失败时可以参考[编译失败解决方法](./docs/building_fail_solution.md)，如果还没有解决欢迎加群反馈。
+其他系统平台的请参考[依赖安装](./docs/installation_dependency.md)，如果在安装依赖过程中发现编译某个依赖库失败时可以参考[编译失败解决方法](./docs/building_fail_solution.md)，如果还没有解决欢迎加群反馈。
 
 **✨使用演示**
 如果你是通过pip3安装的依赖则使用以下命令运行示例：
