@@ -111,7 +111,9 @@ async def bulk_get_request(datas, port):
     logger.log('INFOR', f'正在异步进行子域的GET请求')
 
     limit_open_conn = config.limit_open_conn
-    if not limit_open_conn:
+    if limit_open_conn is None:  # 默认情况
+        limit_open_conn = utils.get_semaphore()
+    elif not isinstance(limit_open_conn, int):  # 如果传入不是数字的情况
         limit_open_conn = utils.get_semaphore()
     # 使用异步域名解析器 自定义域名服务器
     resolver = AsyncResolver(nameservers=config.resolver_nameservers)
