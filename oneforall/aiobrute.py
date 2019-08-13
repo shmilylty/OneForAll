@@ -132,9 +132,9 @@ class AIOBrute(Module):
     OneForAll多进程多协程异步子域爆破模块
 
     Example：
-        python3 aiobrute.py --target example.com run
+        python3 aiobrute.py --target domain.com run
         python3 aiobrute.py --target ./domains.txt run
-        python3 aiobrute.py --target example.com --processes 4 --coroutine 64
+        python3 aiobrute.py --target example.com --process 4 --coroutine 64 run
         python3 aiobrute.py --target example.com --wordlist subdomains.txt run
         python3 aiobrute.py --target example.com --recursive True --depth 2 run
         python3 aiobrute.py --target m.{fuzz}.a.bz --fuzz True --rule [a-z] run
@@ -149,7 +149,7 @@ class AIOBrute(Module):
         参数path为None会根据format参数和域名名称在项目结果目录生成相应文件
 
     :param str target:       单个域名或者每行一个域名的文件路径
-    :param int processes:    爆破的进程数(默认CPU核心数)
+    :param int process:    爆破的进程数(默认CPU核心数)
     :param int coroutine:    每个爆破进程下的协程数(默认64)
     :param str wordlist:     指定爆破所使用的字典路径(默认使用config.py配置)
     :param int segment:      爆破任务分割(默认500)
@@ -165,7 +165,7 @@ class AIOBrute(Module):
     :param bool show:        终端显示导出数据(默认False)
     """
 
-    def __init__(self, target, processes=None, coroutine=64, wordlist=None,
+    def __init__(self, target, process=None, coroutine=64, wordlist=None,
                  segment=500, recursive=False, depth=2, namelist=None,
                  fuzz=False, rule=None, export=True, valid=None, format='xlsx',
                  path=None, show=False):
@@ -175,7 +175,7 @@ class AIOBrute(Module):
         self.module = 'Brute'
         self.source = 'AIOBrute'
         self.target = target
-        self.processes = processes or config.brute_processes_num
+        self.process = process or config.brute_process_num
         self.coroutine = coroutine or config.brute_coroutine_num
         self.wordlist = wordlist or config.brute_wordlist_path
         self.segment = segment or config.brute_task_segment
@@ -242,7 +242,7 @@ class AIOBrute(Module):
         logger.log('INFOR', f'正在爆破{domain}的域名')
         for task in tqdm.tqdm(tasks, desc='Progress',
                               smoothing=1.0, ncols=True):
-            async with aiomp.Pool(processes=self.processes,
+            async with aiomp.Pool(processes=self.process,
                                   initializer=init_worker,
                                   childconcurrency=self.coroutine) as pool:
                 try:
@@ -269,7 +269,7 @@ class AIOBrute(Module):
             if not rx_queue:
                 rx_queue = queue.Queue()
             logger.log('INFOR', f'开始执行{self.source}模块爆破域名{self.domain}')
-            logger.log('INFOR', f'使用{self.processes}进程乘{self.coroutine}协程')
+            logger.log('INFOR', f'使用{self.process}进程乘{self.coroutine}协程')
             # fuzz模式不使用递归爆破
             if self.recursive_brute and not self.fuzz:
                 logger.log('INFOR', f'开始递归爆破{self.domain}的第1层子域')

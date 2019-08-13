@@ -45,12 +45,14 @@ class OneForAll(object):
     Project: https://git.io/fjHT1
 
     Example:
-        python oneforall.py --target example.com run
-        python oneforall.py --target ./domains.txt run
-        python oneforall.py --target example.com --valid None run
-        python oneforall.py --target example.com --brute True --port medium run
-        python oneforall.py --target example.com --format csv --path result.csv
-        python oneforall.py --target example.com --verify False --show True run
+        python3 oneforall.py --target example.com run
+        python3 oneforall.py --target ./domains.txt run
+        python3 oneforall.py --target example.com --valid None run
+        python3 oneforall.py --target example.com --brute True run
+        python3 oneforall.py --target example.com --port medium run
+        python3 oneforall.py --target example.com --format csv run
+        python3 oneforall.py --target example.com --verify False run
+        python3 oneforall.py --target example.com --show True run
 
     Note:
         参数valid可选值1，0，None分别表示导出有效，无效，全部子域

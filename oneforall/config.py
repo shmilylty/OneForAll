@@ -28,7 +28,7 @@ enable_brute_module = False  # 使用爆破模块(默认禁用)
 enable_verify_subdomain = True  # 验证子域有效性(默认True)
 enable_wildcard_check = True  # 开启泛解析检测 会去掉泛解析的子域
 # 爆破时使用的进程数(根据系统中CPU数量情况设置 不宜大于CPU数量 默认为系统中的CPU数量)
-brute_processes_num = os.cpu_count()
+brute_process_num = os.cpu_count()
 brute_coroutine_num = 128  # 爆破时每个进程下的协程数(不宜大于1000)
 # 爆破所使用的字典路径 默认data/subdomains.txt
 brute_wordlist_path = data_storage_path.joinpath('subdomains.txt')
