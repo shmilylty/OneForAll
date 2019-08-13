@@ -119,7 +119,7 @@ OneForAll命令行界面基于[Fire](https://github.com/google/python-fire/)实�
 
 oneforall.py是主程序入口，oneforall.py里有调用aiobrute.py和dbexport.py，为了方便进行子域爆破和数据库导出独立出了aiobrute.py和dbexport.py，这两个文件可以单独运行，并且所接受参数要更丰富一点。
 
-1. oneforall.py使用帮助
+1. **oneforall.py使用帮助**
 
    ```bash
    python oneforall.py --help
@@ -132,40 +132,49 @@ oneforall.py是主程序入口，oneforall.py里有调用aiobrute.py和dbexport.
        oneforall.py --target=TARGET <flags>
    
    DESCRIPTION
-       Version: 0.0.2
-       Project: https://github.com/shmilylty/OneForAll/
+       Version: 0.0.4
+       Project: https://git.io/fjHT1
    
        Example:
-           python oneforall.py --target example.com run
-           python oneforall.py --target example.com --brute True --port medium --valid 1 run
-           python oneforall.py --target ./domains.txt --format csv --path= ./result.csv  --output True run
+           python3 oneforall.py --target example.com run
+           python3 oneforall.py --target ./domains.txt run
+           python3 oneforall.py --target example.com --brute True run
+           python3 oneforall.py --target example.com --verify False run
+           python3 oneforall.py --target example.com --valid None run
+           python3 oneforall.py --target example.com --port medium run
+           python3 oneforall.py --target example.com --format csv run
+           python3 oneforall.py --target example.com --show True run
    
        Note:
-           参数valid可选值有1，0，None，分别表示导出有效，无效，全部子域
+           参数valid可选值1，0，None分别表示导出有效，无效，全部子域
+           参数verify为True会尝试解析和请求子域并根据结果给子域有效性打上标签
            参数port可选值有'small', 'medium', 'large', 'xlarge'，详见config.py配置
-           参数format可选格式有'csv','tsv','json','yaml','html','xls','xlsx','dbf','latex','ods'
+           参数format可选格式有'csv', 'tsv', 'json', 'yaml', 'html', 'xls', 'xlsx',
+                             'dbf', 'latex', 'ods'
            参数path为None会根据format参数和域名名称在项目结果目录生成相应文件
    
    ARGUMENTS
        TARGET
-           单个域名或者每行一个域名的文件路径
+           单个域名或者每行一个域名的文件路径(必需参数)
    
    FLAGS
        --brute=BRUTE
-           是否使用爆破模块（默认禁用）
+           使用爆破模块(默认False)
+       --verify=VERIFY
+           验证子域有效性(默认True)
        --port=PORT
-           HTTP请求验证的端口范围（默认medium）
+           请求验证的端口范围(默认medium)
        --valid=VALID
-           导出子域的有效性（默认1）
+           导出子域的有效性(默认1)
        --path=PATH
            导出路径(默认None)
        --format=FORMAT
-           导出格式（默认xlsx）
-       --output=OUTPUT
-           是否将导出数据输出到终端（默认False）
+           导出格式(默认xlsx)
+       --show=SHOW
+           终端显示导出数据(默认False)
    ```
 
-2. aiobrute.py使用帮助
+2. **aiobrute.py使用帮助**
 
    关于泛解析问题处理程序首先会访问一个随机的子域判断是否泛解析，如果使用了泛解析则是通过以下判断处理：
    - 一是主要是与泛解析的IP集合和TTL值做对比，可以参考[这篇文章](http://sh3ll.me/archives/201704041222.txt)。
@@ -178,93 +187,66 @@ oneforall.py是主程序入口，oneforall.py里有调用aiobrute.py和dbexport.
    ```
 
    ```bash
-    NAME
-        aiobrute.py - OneForAll多进程多协程异步子域爆破模块
-
-    SYNOPSIS
-        aiobrute.py COMMAND | --target=TARGET <flags>
-
-    DESCRIPTION
-        Example：
-            python aiobrute.py --target example.com run
-            python aiobrute.py --target ./domains.txt run
-            python aiobrute.py --target example.com --processes 4 --coroutine 64 --wordlist data/subdomains.txt run
-            python aiobrute.py --target example.com --recursive True --depth 2 --namelist data/next_subdomains.txt run
-            python aiobrute.py --target www.{fuzz}.example.com --fuzz True --rule [a-z][0-9] run
-
-        Note:
-            参数segment的设置受CPU性能，网络带宽，运营商限制等问题影响，默认设置500个子域为一任务组，
-            当你觉得你的环境不受以上因素影响，当前爆破速度较慢，那么强烈建议根据字典大小调整大小：
-            十万字典建议设置为5000，百万字典设置为50000
-
-    ARGUMENTS
-        TARGET
-            单个域名或者每行一个域名的文件路径
-
-    FLAGS
-        --processes=PROCESSES
-            爆破的进程数(默认CPU核心数)
-        --coroutine=COROUTINE
-            每个爆破进程下的协程数(默认16)
-        --wordlist=WORDLIST
-            指定爆破所使用的字典路径(默认使用config.py配置)
-        --segment=SEGMENT
-            爆破任务分割(默认500)
-        --recursive=RECURSIVE
-            是否使用递归爆破(默认False)
-        --depth=DEPTH
-            递归爆破的深度(默认2)
-        --namelist=NAMELIST
-            指定递归爆破所使用的字典路径(默认使用config.py配置)
-        --fuzz=FUZZ
-            是否使用fuzz模式进行爆破(默认False，开启必须指定fuzz正则规则)
-        --rule=RULE
-            fuzz模式使用的正则规则(默认使用config.py配置)
-
-   ```
-
-3. dbexport.py使用帮助
-
-   ```bash
-   python dbexport.py --help
-   ```
-
-   ```bash
    NAME
-       dbexport.py - OneForAll数据库导出模块
+       aiobrute.py - OneForAll多进程多协程异步子域爆破模块
    
    SYNOPSIS
-       dbexport.py TABLE <flags>
+       aiobrute.py --target=TARGET <flags>
    
    DESCRIPTION
-       Example:
-           python dbexport.py --db result.db --table name --format csv --output False
-           python dbexport.py --db result.db --table name --format csv --path= ./result.csv
+       Example：
+           python3 aiobrute.py --target example.com run
+           python3 aiobrute.py --target ./domains.txt run
+           python3 aiobrute.py --target example.com --process 4 --coroutine 64 run
+           python3 aiobrute.py --target example.com --wordlist subdomains.txt run
+           python3 aiobrute.py --target example.com --recursive True --depth 2 run
+           python3 aiobrute.py --target m.{fuzz}.a.bz --fuzz True --rule [a-z] run
    
        Note:
+           参数segment的设置受CPU性能，网络带宽，运营商限制等问题影响，默认设置500个子域为任务组，
+           当你觉得你的环境不受以上因素影响，当前爆破速度较慢，那么强烈建议根据字典大小调整大小：
+           十万字典建议设置为5000，百万字典设置为50000
            参数valid可选值1，0，None，分别表示导出有效，无效，全部子域
-           参数format可选格式：'csv', 'tsv', 'json', 'yaml', 'html', 'xls', 'xlsx', 'dbf', 'latex', 'ods'
+           参数format可选格式：'csv', 'tsv', 'json', 'yaml', 'html', 'xls', 'xlsx',
+                             'dbf', 'latex', 'ods'
            参数path为None会根据format参数和域名名称在项目结果目录生成相应文件
    
-   POSITIONAL ARGUMENTS
-       TABLE
-           要导出的表
+   ARGUMENTS
+       TARGET
+           单个域名或者每行一个域名的文件路径
    
    FLAGS
-       --db=DB
-           要导出的数据库路径(默认为results/result.sqlite3)
+       --process=PROCESS
+           爆破的进程数(默认CPU核心数)
+       --coroutine=COROUTINE
+           每个爆破进程下的协程数(默认64)
+       --wordlist=WORDLIST
+           指定爆破所使用的字典路径(默认使用config.py配置)
+       --segment=SEGMENT
+           爆破任务分割(默认500)
+       --recursive=RECURSIVE
+           是否使用递归爆破(默认False)
+       --depth=DEPTH
+           递归爆破的深度(默认2)
+       --namelist=NAMELIST
+           指定递归爆破所使用的字典路径(默认使用config.py配置)
+       --fuzz=FUZZ
+           是否使用fuzz模式进行爆破(默认False，开启须指定fuzz正则规则)
+       --rule=RULE
+           fuzz模式使用的正则规则(默认使用config.py配置)
+       --export=EXPORT
+           是否导出爆破结果(默认True)
        --valid=VALID
            导出子域的有效性(默认None)
-       --path=PATH
-           导出路径(默认None)
        --format=FORMAT
            导出格式(默认xlsx)
-       --output=OUTPUT
-           是否将导出数据输出到终端(默认False)
-   
-   NOTES
-       You can also use flags syntax for POSITIONAL ARGUMENTS
+       --path=PATH
+           导出路径(默认None)
+       --show=SHOW
+           终端显示导出数据(默认False)
    ```
+
+3. 其他模块使用请参考[使用帮助](./docs/using_help.md)
 
 ## 👏主要框架
 
