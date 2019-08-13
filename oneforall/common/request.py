@@ -65,7 +65,11 @@ async def fetch(session, url, semaphore):
                                allow_redirects=config.get_redirects,
                                timeout=timeout,
                                proxy=config.get_proxy) as resp:
-            text = await resp.text()
+
+            try:
+                text = await resp.text(encoding='gb2312')  # 先尝试用fb2312解码
+            except UnicodeDecodeError:
+                text = await resp.text()
         return resp, text
 
 
