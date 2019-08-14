@@ -39,6 +39,8 @@ def gen_new_datas(datas, ports):
                 for protocol in protocols:
                     if port == 443:
                         url = f'https://{subdomain}:{port}'
+                    elif port == 8443:
+                        url = f'https://{subdomain}:{port}'
                     else:
                         url = f'{protocol}{subdomain}:{port}'
                     data['id'] = None
