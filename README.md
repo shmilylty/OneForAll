@@ -154,8 +154,8 @@ oneforall.py是主程序入口，oneforall.py里有调用aiobrute.py和dbexport.
            参数valid可选值1，0，None分别表示导出有效，无效，全部子域
            参数verify为True会尝试解析和请求子域并根据结果给子域有效性打上标签
            参数port可选值有'small', 'medium', 'large', 'xlarge'，详见config.py配置
-           参数format可选格式有'csv', 'tsv', 'json', 'yaml', 'html', 'xls', 'xlsx',
-                             'dbf', 'latex', 'ods'
+           参数format可选格式有'txt', 'rst', 'csv', 'tsv', 'json', 'yaml', 'html',
+                             'jira', 'xls', 'xlsx', 'dbf', 'latex', 'ods'
            参数path为None会根据format参数和域名名称在项目结果目录生成相应文件
    
    ARGUMENTS
@@ -212,8 +212,8 @@ oneforall.py是主程序入口，oneforall.py里有调用aiobrute.py和dbexport.
            当你觉得你的环境不受以上因素影响，当前爆破速度较慢，那么强烈建议根据字典大小调整大小：
            十万字典建议设置为5000，百万字典设置为50000
            参数valid可选值1，0，None，分别表示导出有效，无效，全部子域
-           参数format可选格式：'csv', 'tsv', 'json', 'yaml', 'html', 'xls', 'xlsx',
-                             'dbf', 'latex', 'ods'
+           参数format可选格式有'txt', 'rst', 'csv', 'tsv', 'json', 'yaml', 'html',
+                             'jira', 'xls', 'xlsx', 'dbf', 'latex', 'ods'
            参数path为None会根据format参数和域名名称在项目结果目录生成相应文件
    
    ARGUMENTS
