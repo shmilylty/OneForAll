@@ -34,9 +34,10 @@ class IPv4InfoAPI(Query):
             self.subdomains = self.subdomains.union(subdomains_find)
             # 不直接使用subdomains是因为可能里面会出现不符合标准的子域名
             subdomains = resp_json.get('Subdomains')
-            # ipv4info子域查询接口每次最多返回300个 用来判断是否还有下一页
-            if len(subdomains) < 300:
-                break
+            if subdomains:
+                # ipv4info子域查询接口每次最多返回300个 用来判断是否还有下一页
+                if len(subdomains) < 300:
+                    break
             page += 1
             if page >= 50:  # ipv4info子域查询接口最多允许查询50页
                 break
