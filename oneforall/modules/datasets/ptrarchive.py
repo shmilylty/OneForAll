@@ -10,7 +10,7 @@ class PTRArchive(Query):
         self.domain = self.register(domain)
         self.module = 'Dataset'
         self.source = "PTRArchiveQuery"
-        self.addr = 'http://ptrarchive.com/tools/search3.htm'
+        self.addr = 'http://ptrarchive.com/tools/search4.htm'
 
     def query(self):
         """
