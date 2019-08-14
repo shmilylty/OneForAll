@@ -67,7 +67,12 @@
 **✔安装步骤**
 
 1. 下载更新
+   本项目已经在[码云](https://gitee.com/shmilylty/OneForAll.git)(Gitee)镜像了一份，国内推荐使用码云进行克隆比较快：
 
+   ```bash
+   git clone https://gitee.com/shmilylty/OneForAll.git
+   ```
+   或者：
    ```bash
    git clone https://github.com/shmilylty/OneForAll.git
    ```
