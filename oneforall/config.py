@@ -33,7 +33,7 @@ brute_coroutine_num = 128  # 爆破时每个进程下的协程数(不宜大于10
 # 爆破所使用的字典路径 默认data/subdomains.txt
 brute_wordlist_path = data_storage_path.joinpath('subdomains.txt')
 brute_task_segment = 500
-# 参数segment的设置受CPU性能，网络带宽，运营商限制等问题影响，默认设置500个子域为一任务组，
+# 参数segment的设置受CPU性能，网络带宽，运营商限制等限制，默认500个子域为一任务组，
 # 当你觉得你的环境不受以上因素影响，当前爆破速度较慢，那么强烈建议根据字典大小调整大小：
 # 十万字典建议设置为5000，百万字典设置为50000
 enable_recursive_brute = False  # 是否使用递归爆破(默认禁用)
@@ -117,7 +117,7 @@ censys_api_secret = ''
 # 免费的API有效期只有1个月，到期之后可以再次生成，每月可以查询250次。
 binaryedge_api = ''
 
-# Binaryedge可以免费注册获取API：http://api.chinaz.com/ApiDetails/Alexa
+# Chinaz可以免费注册获取API：http://api.chinaz.com/ApiDetails/Alexa
 chinaz_api = ''
 
 # Bing可以免费注册获取API：https://azure.microsoft.com/zh-cn/services/
@@ -175,13 +175,16 @@ subdomains_common = {'i', 'w', 'm', 'en', 'us', 'zh', 'w3', 'app', 'bbs',
                      'store', 'mobile'}
 
 # 日志配置
+# 终端日志输出格式
 stdout_fmt = '<cyan>{time:HH:mm:ss,SSS}</cyan> ' \
           '[<level>{level: <5}</level>] ' \
           '<blue>{module}</blue>:<cyan>{line}</cyan> - ' \
           '<level>{message}</level>'
+# 日志文件记录格式
 logfile_fmt = '<light-green>{time:YYYY-MM-DD HH:mm:ss,SSS}</light-green> ' \
           '[<level>{level: <5}</level>] ' \
-          '<cyan>{process.name}</cyan>:<cyan>{thread.name: <10}</cyan> | ' \
+          '<cyan>{process.name}({process.id})</cyan>:' \
+          '<cyan>{thread.name: <10}({thread.id: <5})</cyan> | ' \
           '<blue>{module}</blue>.<blue>{function}</blue>:' \
           '<blue>{line}</blue> - <level>{message}</level>'
 
@@ -199,5 +202,5 @@ if not os.environ.get('PYTHONIOENCODING'):  # 设置编码
     os.environ['PYTHONIOENCODING'] = 'utf-8'
 
 logger.add(sys.stderr, level='INFOR', format=stdout_fmt, enqueue=True)
-logger.add(log_path, level='TRACE', format=logfile_fmt, enqueue=True,
+logger.add(log_path, level='DEBUG', format=logfile_fmt, enqueue=True,
            encoding='utf-8')

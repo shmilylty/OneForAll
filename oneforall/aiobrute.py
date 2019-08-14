@@ -140,8 +140,8 @@ class AIOBrute(Module):
         python3 aiobrute.py --target m.{fuzz}.a.bz --fuzz True --rule [a-z] run
 
     Note:
-        参数segment的设置受CPU性能，网络带宽，运营商限制等问题影响，默认设置500个子域为任务组，
-        当你觉得你的环境不受以上因素影响，当前爆破速度较慢，那么强烈建议根据字典大小调整大小：
+        参数segment的设置受CPU性能，网络带宽，运营商限制等限制，默认500个子域为任务组，
+        当你的环境不受以上因素影响，当前爆破速度较慢，那么强烈建议根据字典大小调整大小：
         十万字典建议设置为5000，百万字典设置为50000
         参数valid可选值1，0，None，分别表示导出有效，无效，全部子域
         参数format可选格式：'csv', 'tsv', 'json', 'yaml', 'html', 'xls', 'xlsx',
@@ -310,7 +310,7 @@ class AIOBrute(Module):
                     self.path = config.result_save_path.joinpath(name)
                 dbexport.export(self.domain,
                                 valid=self.valid,
-                                path=self.path,
+                                dpath=self.path,
                                 format=self.format,
                                 show=self.show)
 

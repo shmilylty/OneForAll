@@ -13,10 +13,10 @@ from config import logger
 
 class Database(object):
     def __init__(self, db_path=None):
-        self.conn = self.get_connection(db_path)
+        self.conn = self.get_conn(db_path)
 
     @staticmethod
-    def get_connection(db_path):
+    def get_conn(db_path):
         """
         获取数据库对象
 
@@ -205,3 +205,6 @@ class Database(object):
             logger.log('ERROR', e)
         else:
             return rows
+
+    def close(self):
+        self.conn.close()

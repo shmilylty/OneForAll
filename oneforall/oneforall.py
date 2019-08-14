@@ -59,8 +59,7 @@ class OneForAll(object):
         参数verify为True会尝试解析和请求子域并根据结果给子域有效性打上标签
         参数port可选值有'small', 'medium', 'large', 'xlarge'，详见config.py配置
         参数format可选格式有'csv', 'tsv', 'json', 'yaml', 'html', 'xls', 'xlsx',
-                         'dbf', 'latex', 'ods'
-        参数path为None会根据format参数和域名名称在项目结果目录生成相应文件
+                          'dbf', 'latex', 'ods'
 
     :param str target:  单个域名或者每行一个域名的文件路径(必需参数)
     :param bool brute:  使用爆破模块(默认False)
@@ -68,11 +67,10 @@ class OneForAll(object):
     :param str port:    请求验证的端口范围(默认medium)
     :param int valid:   导出子域的有效性(默认1)
     :param str format:  导出格式(默认xlsx)
-    :param str path:    导出路径(默认None)
     :param bool show:   终端显示导出数据(默认False)
     """
     def __init__(self, target, brute=None, verify=None, port='medium', valid=1,
-                 path=None, format='xlsx', show=False):
+                 format='xlsx', show=False):
         self.target = target
         self.port = port
         self.domains = set()
@@ -81,7 +79,6 @@ class OneForAll(object):
         self.brute = brute
         self.verify = verify
         self.valid = valid
-        self.path = path
         self.format = format
         self.show = show
 
@@ -91,9 +88,6 @@ class OneForAll(object):
         if self.verify is None:
             self.verify = config.enable_verify_subdomain
         rename_table = self.domain + '_last'
-        if not self.path:
-            name = f'{self.domain}.{self.format}'
-            self.path = config.result_save_path.joinpath(name)
         collect = Collect(self.domain, export=False)
         collect.run()
         if self.brute:
@@ -109,8 +103,8 @@ class OneForAll(object):
         if not self.verify:
             # 数据库导出
             self.valid = None
-            dbexport.export(self.domain, db.conn, self.valid, self.path,
-                            self.format, self.show)
+            dbexport.export(self.domain, valid=self.valid, format=self.format,
+                            show=self.show)
             db.drop_table(rename_table)
             db.rename_table(self.domain, rename_table)
             return
@@ -134,16 +128,16 @@ class OneForAll(object):
         self.datas = loop.run_until_complete(task)
         # 在关闭事件循环前加入一小段延迟让底层连接得到关闭的缓冲时间
         loop.run_until_complete(asyncio.sleep(0.25))
-        loop.close()
 
         db.clear_table(self.domain)
         db.save_db(self.domain, self.datas)
 
         # 数据库导出
-        dbexport.export(self.domain, db.conn, self.valid, self.path,
-                        self.format, self.show)
+        dbexport.export(self.domain, valid=self.valid, format=self.format,
+                        show=self.show)
         db.drop_table(rename_table)
         db.rename_table(self.domain, rename_table)
+        db.close()
 
     def run(self):
         print(banner)
@@ -162,3 +156,4 @@ class OneForAll(object):
 if __name__ == '__main__':
     fire.Fire(OneForAll)
     # OneForAll('example.com').run()
+    # OneForAll('./domains.txt').run()

@@ -8,30 +8,32 @@ OneForAll数据库导出模块
 :license: GNU General Public License v3.0, see LICENSE for more details.
 """
 
+from pathlib import Path
 import fire
+import config
 from common.database import Database
 from config import logger
 
 
-def export(table, db=None, valid=None, path=None, format='xlsx', show=False):
+def export(table, db=None, valid=None, dpath=None, format='xlsx', show=False):
     """
     OneForAll数据库导出模块
 
     Example:
-        python3 dbexport.py --table name --format csv --path= ./result.csv
+        python3 dbexport.py --table name --format csv --dir= ./result.csv
         python3 dbexport.py --db result.db --table name --show False
 
     Note:
         参数port可选值有'small', 'medium', 'large', 'xlarge'，详见config.py配置
         参数format可选格式有'csv', 'tsv', 'json', 'yaml', 'html', 'xls', 'xlsx',
                          'dbf', 'latex', 'ods'
-        参数path为None会根据format参数和域名名称在项目结果目录生成相应文件
+        参数dir为None默认使用OneForAll结果目录
 
     :param str table:   要导出的表
     :param str db:      要导出的数据库路径(默认为results/result.sqlite3)
     :param int valid:   导出子域的有效性(默认None)
     :param str format:  导出格式(默认xlsx)
-    :param str path:    导出路径(默认None)
+    :param str dpath:    导出目录(默认None)
     :param bool show:   终端显示导出数据(默认False)
     """
     formats = ['csv', 'tsv', 'json', 'yaml', 'html',
@@ -39,6 +41,17 @@ def export(table, db=None, valid=None, path=None, format='xlsx', show=False):
     if format not in formats:
         logger.log('FATAL', f'不支持{format}格式导出')
         return
+    if dpath is None:
+        dpath = config.result_save_path
+    if isinstance(dpath, str):
+        dpath = Path(dpath)
+    if not dpath.is_dir():
+        logger.log('FATAL', f'{dpath}不是目录')
+        return
+    if not dpath.exists():
+        logger.log('ALERT', f'不存在{dpath}将会新建此目录')
+        dpath.mkdir(parents=True, exist_ok=True)
+
     database = Database(db)
     if valid is None:
         rows = database.get_data(table)
@@ -48,20 +61,20 @@ def export(table, db=None, valid=None, path=None, format='xlsx', show=False):
         rows = database.get_data(table)  # 意外情况导出全部子域
     if show:
         print(rows.dataset)
-    if not path:
-        path = 'export.' + format
     logger.log('INFOR', f'正在将数据库中{table}表导出')
     data = rows.export(format)
+    database.close()
+    fpath = dpath.joinpath(f'{table}.{format}')
     try:
-        with open(path, 'w') as file:
+        with open(fpath, 'w') as file:
             file.write(data)
             logger.log('INFOR', '成功完成导出')
-            logger.log('INFOR', path)
+            logger.log('INFOR', fpath)
     except TypeError:
-        with open(path, 'wb') as file:
+        with open(fpath, 'wb') as file:
             file.write(data)
             logger.log('INFOR', '成功完成导出')
-            logger.log('INFOR', path)
+            logger.log('INFOR', fpath)
     except Exception as e:
         logger.log('ERROR', e)
 
