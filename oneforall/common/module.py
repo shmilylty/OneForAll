@@ -274,4 +274,5 @@ class Module(object):
         source, results = self.results
         # 将结果存入数据库中
         db.save_db(self.domain, results, source)
+        db.close()
         lock.release()

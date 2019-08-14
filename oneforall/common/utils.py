@@ -109,9 +109,11 @@ def get_domains(target):
     :param set or str target:
     :return: 域名集合
     """
-    domains = set()
+    domains = list()
     logger.log('INFOR', f'正在获取域名')
-    if isinstance(target, set):
+    if isinstance(target, (set, tuple)):
+        domains = list(target)
+    elif isinstance(target, list):
         domains = target
     elif isinstance(target, str):
         path = pathlib.Path(target)
@@ -120,9 +122,9 @@ def get_domains(target):
                 for line in file:
                     domain = Domain(line.strip()).match()
                     if domain:
-                        domains.add(domain)
-        if Domain(target).match():
-            domains = {target}
+                        domains.append(domain)
+        elif Domain(target).match():
+            domains = [target]
     logger.log('INFOR', f'获取到{len(domains)}个域名')
     return domains
 
