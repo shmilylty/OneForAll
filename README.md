@@ -54,15 +54,15 @@
 **🐍安装要求**
 
 1. OneForAll是基于CPython开发的，所以你需要Python环境才能运行，如果你的系统还没有Pythin环境你可以参考[Python 3 安装指南](https://pythonguidecn.readthedocs.io/zh/latest/starting/installation.html#python-3)，理论上Python 3.6，3.7和3.8都可以正常运行OneForAll，**但是**许多测试都是在Python 3.7上进行的，所以**推荐**你使用**Python 3.7**版本运行OneForAll。运行以下命令检查Python和pip3版本：
-```bash
-python -V
-pip3 -V
-```
+   ```bash
+   python -V
+   pip3 -V
+   ```
 如果你看到以下类似输出便说明Python环境没有问题：
-```bash
-Python 3.7.4
-pip 19.2.2 from C:\Users\shmilylty\AppData\Roaming\Python\Python37\site-packages\pip (python 3.7)
-```
+   ```bash
+   Python 3.7.4
+   pip 19.2.2 from C:\Users\shmilylty\AppData\Roaming\Python\Python37\site-packages\pip (python 3.7)
+   ```
 
 **✔安装步骤**
 
@@ -96,20 +96,20 @@ pip 19.2.2 from C:\Users\shmilylty\AppData\Roaming\Python\Python37\site-packages
 其他系统平台的请参考[依赖安装](./docs/installation_dependency.md)，如果在安装依赖过程中发现编译某个依赖库失败时可以参考[编译失败解决方法](./docs/building_fail_solution.md)，如果还没有解决欢迎加群反馈。
 
 **✨使用演示**
-如果你是通过pip3安装的依赖则使用以下命令运行示例：
 
-```bash
-cd oneforall/
-python3 oneforall.py --target example.com run
-```
+1. 如果你是通过pip3安装的依赖则使用以下命令运行示例：   
+    ```bash
+    cd oneforall/
+    python3 oneforall.py --target example.com run
+    ```
 
-![Example](./docs/usage_example.svg)
+    ![Example](./docs/usage_example.svg)
 
-如果你通过pipenv安装的依赖则使用以下命令运行示例：
-```bash
-cd oneforall/
-pipenv run python oneforall.py --target example.com run
-```
+2. 如果你通过pipenv安装的依赖则使用以下命令运行示例：
+   ```bash
+   cd oneforall/
+   pipenv run python oneforall.py --target example.com run
+   ```
 
 **🤔使用帮助**
 
