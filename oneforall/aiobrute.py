@@ -144,8 +144,8 @@ class AIOBrute(Module):
         当你的环境不受以上因素影响，当前爆破速度较慢，那么强烈建议根据字典大小调整大小：
         十万字典建议设置为5000，百万字典设置为50000
         参数valid可选值1，0，None，分别表示导出有效，无效，全部子域
-        参数format可选格式：'csv', 'tsv', 'json', 'yaml', 'html', 'xls', 'xlsx',
-                         'dbf', 'latex', 'ods'
+        参数format可选格式有'txt', 'rst', 'csv', 'tsv', 'json', 'yaml', 'html',
+                          'jira', 'xls', 'xlsx', 'dbf', 'latex', 'ods'
         参数path为None会根据format参数和域名名称在项目结果目录生成相应文件
 
     :param str target:       单个域名或者每行一个域名的文件路径
@@ -160,14 +160,14 @@ class AIOBrute(Module):
     :param str rule:         fuzz模式使用的正则规则(默认使用config.py配置)
     :param bool export:      是否导出爆破结果(默认True)
     :param int valid:        导出子域的有效性(默认None)
-    :param str format:       导出格式(默认xlsx)
+    :param str format:       导出格式(默认xls)
     :param str path:         导出路径(默认None)
     :param bool show:        终端显示导出数据(默认False)
     """
 
     def __init__(self, target, process=None, coroutine=64, wordlist=None,
                  segment=500, recursive=False, depth=2, namelist=None,
-                 fuzz=False, rule=None, export=True, valid=None, format='xlsx',
+                 fuzz=False, rule=None, export=True, valid=None, format='xls',
                  path=None, show=False):
         Module.__init__(self)
         self.domains = set()
