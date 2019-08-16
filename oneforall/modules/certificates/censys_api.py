@@ -29,22 +29,22 @@ class CensysAPI(Query):
         resp = self.post(self.addr, json=data, auth=(self.id, self.secret))
         if not resp:
             return
-        resp_json = resp.json()
-        status = resp_json.get('status')
+        data = resp.json()
+        status = data.get('status')
         if status != 'ok':
             logger.log('ALERT', status)
             return
-        subdomains_find = self.match(self.domain, str(resp_json))
-        self.subdomains = self.subdomains.union(subdomains_find)
-        pages = resp_json.get('metadata').get('pages')
+        subdomains = self.match(self.domain, str(data))
+        self.subdomains = self.subdomains.union(subdomains)
+        pages = data.get('metadata').get('pages')
         for page in range(2, pages + 1):
             time.sleep(self.delay)
             data['page'] = page
             resp = self.post(self.addr, json=data, auth=(self.id, self.secret))
             if not resp:
                 return
-            subdomains_find = self.match(self.domain, str(resp.json()))
-            self.subdomains = self.subdomains.union(subdomains_find)
+            subdomains = self.match(self.domain, str(resp.json()))
+            self.subdomains = self.subdomains.union(subdomains)
 
     def run(self):
         """

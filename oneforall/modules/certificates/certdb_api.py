@@ -29,11 +29,11 @@ class CertDBAPI(Query):
             if not resp:
                 return
             json = resp.json()
-            subdomains_find = utils.match_subdomain(self.domain, str(json))
-            if not subdomains_find:  # 搜索没有发现子域名则停止搜索
+            subdomains = utils.match_subdomain(self.domain, str(json))
+            if not subdomains:  # 搜索没有发现子域名则停止搜索
                 break
             # 合并搜索子域名搜索结果
-            self.subdomains = self.subdomains.union(subdomains_find)
+            self.subdomains = self.subdomains.union(subdomains)
             page_num += 1
             # 默认每次查询最多返回30条 当前条数小于30条说明已经查完
             if json.get('count') < 30:

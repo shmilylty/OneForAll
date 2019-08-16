@@ -25,12 +25,12 @@ class ZoomEyeAPI(Search):
         if not resp:
             logger.log('FETAL', f'登录失败无法获取{self.source}的访问token')
             return
-        resp_json = resp.json()
+        data = resp.json()
         if resp.status_code == 200:
             logger.log('DEBUG', f'{self.source}模块登录成功')
-            return resp_json.get('access_token')
+            return data.get('access_token')
         else:
-            logger.log('ALERT', resp_json.get('message'))
+            logger.log('ALERT', data.get('message'))
             exit(1)
 
     def search(self):
@@ -48,10 +48,10 @@ class ZoomEyeAPI(Search):
             resp = self.get(self.addr, params)
             if not resp:
                 return
-            subdomain_find = self.match(self.domain, resp.text)
-            if not subdomain_find:  # 搜索没有发现子域名则停止搜索
+            subdomains = self.match(self.domain, resp.text)
+            if not subdomains:  # 搜索没有发现子域名则停止搜索
                 break
-            self.subdomains = self.subdomains.union(subdomain_find)
+            self.subdomains = self.subdomains.union(subdomains)
             page_num += 1
             if page_num > 500:
                 break

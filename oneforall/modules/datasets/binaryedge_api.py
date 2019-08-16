@@ -24,8 +24,8 @@ class BinaryEdgeAPI(Query):
         resp = self.get(url)
         if not resp:
             return
-        subdomains_find = self.match(self.domain, str(resp.json()))
-        self.subdomains = self.subdomains.union(subdomains_find)
+        subdomains = self.match(self.domain, str(resp.json()))
+        self.subdomains = self.subdomains.union(subdomains)
 
     def run(self):
         """

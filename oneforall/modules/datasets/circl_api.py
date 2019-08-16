@@ -23,9 +23,9 @@ class CirclAPI(Query):
         resp = self.get(self.addr + self.domain, auth=(self.user, self.pwd))
         if not resp:
             return
-        subdomains_find = self.match(self.domain, str(resp.json()))
+        subdomains = self.match(self.domain, str(resp.json()))
         # 合并搜索子域名搜索结果
-        self.subdomains = self.subdomains.union(subdomains_find)
+        self.subdomains = self.subdomains.union(subdomains)
 
     def run(self):
         """

@@ -40,13 +40,13 @@ class Google(Search):
             resp = self.get(url=self.addr, params=payload)
             if not resp:
                 return
-            subdomain_find = self.match(domain, resp.text)
-            if not subdomain_find:
+            subdomains = self.match(domain, resp.text)
+            if not subdomains:
                 break
             if not full_search:
-                if subdomain_find.issubset(self.subdomains):
+                if subdomains.issubset(self.subdomains):
                     break
-            self.subdomains = self.subdomains.union(subdomain_find)
+            self.subdomains = self.subdomains.union(subdomains)
             page_num += per_page_num
             if 'start=' + str(page_num) not in resp.text:
                 break

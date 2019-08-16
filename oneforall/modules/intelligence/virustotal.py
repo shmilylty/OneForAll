@@ -30,19 +30,19 @@ class VirusTotal(Query):
             resp = self.get(url=self.addr.format(self.domain), params=params)
             if not resp:
                 return
-            resp_json = resp.json()
-            subdomain_find = set()
-            datas = resp_json.get('data')
+            data = resp.json()
+            subdomains = set()
+            datas = data.get('data')
 
             if datas:
                 for data in datas:
                     subdomain = data.get('id')
                     if subdomain:
-                        subdomain_find.add(subdomain)
+                        subdomains.add(subdomain)
             else:
                 break
-            self.subdomains = self.subdomains.union(subdomain_find)
-            meta = resp_json.get('meta')
+            self.subdomains = self.subdomains.union(subdomains)
+            meta = data.get('meta')
             if meta:
                 next_cursor = meta.get('cursor')
             else:

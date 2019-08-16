@@ -32,10 +32,10 @@ class FoFa(Search):
             resp = self.get(self.addr, query)
             if not resp:
                 return
-            subdomain_find = self.match(self.domain, resp.text)
-            if not subdomain_find:  # 搜索没有发现子域名则停止搜索
+            subdomains = self.match(self.domain, resp.text)
+            if not subdomains:  # 搜索没有发现子域名则停止搜索
                 break
-            self.subdomains = self.subdomains.union(subdomain_find)
+            self.subdomains = self.subdomains.union(subdomains)
             self.page_num += 1
 
     def run(self):

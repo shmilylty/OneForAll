@@ -24,11 +24,9 @@ class RiskIQ(Query):
                         auth=(self.user, self.key))
         if not resp:
             return
-        resp_json = resp.json()
-        subnames = resp_json.get('subdomains')
-        if subnames:
-            self.subdomains = set(map(lambda sub: f'{sub}.{self.domain}',
-                                      subnames))
+        data = resp.json()
+        names = data.get('subdomains')
+        self.subdomains = set(map(lambda sub: f'{sub}.{self.domain}', names))
 
     def run(self):
         """

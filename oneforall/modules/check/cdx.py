@@ -10,7 +10,6 @@ class CheckCDX(Module):
     """
     检查crossdomain.xml文件收集子域名
     """
-
     def __init__(self, domain: str):
         Module.__init__(self)
         self.domain = self.register(domain)

@@ -21,9 +21,9 @@ class Chinaz(Query):
         resp = self.get(self.addr)
         if not resp:
             return
-        subdomains_find = self.match(self.domain, resp.text)
+        subdomains = self.match(self.domain, resp.text)
         # 合并搜索子域名搜索结果
-        self.subdomains = self.subdomains.union(subdomains_find)
+        self.subdomains = self.subdomains.union(subdomains)
 
     def run(self):
         """

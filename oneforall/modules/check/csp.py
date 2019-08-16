@@ -25,8 +25,10 @@ class CheckCSP(Module):
         正则匹配响应头中的内容安全策略字段以发现子域名
         """
         if not self.header:
-            urls = [f'http://{self.domain}', f'https://{self.domain}',
-                    f'http://www.{self.domain}', f'https://www.{self.domain}']
+            urls = [f'http://{self.domain}',
+                    f'https://{self.domain}',
+                    f'http://www.{self.domain}',
+                    f'https://www.{self.domain}']
             response = None
             for url in urls:
                 self.header = self.get_header()

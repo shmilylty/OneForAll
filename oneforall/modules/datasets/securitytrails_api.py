@@ -26,10 +26,10 @@ class SecurityTrailsAPI(Query):
         if not resp:
             return
         prefixs = resp.json()['subdomains']
-        subdomains_find = [f'{prefix}.{self.domain}' for prefix in prefixs]
-        if subdomains_find:
+        subdomains = [f'{prefix}.{self.domain}' for prefix in prefixs]
+        if subdomains:
             # 合并搜索子域名搜索结果
-            self.subdomains = self.subdomains.union(subdomains_find)
+            self.subdomains = self.subdomains.union(subdomains)
 
     def run(self):
         """

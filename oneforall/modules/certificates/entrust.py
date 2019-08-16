@@ -23,8 +23,8 @@ class Entrust(Query):
         resp = self.get(self.addr, params)
         if not resp:
             return
-        subdomains_find = utils.match_subdomain(self.domain, str(resp.json()))
-        self.subdomains = self.subdomains.union(subdomains_find)
+        subdomains = utils.match_subdomain(self.domain, str(resp.json()))
+        self.subdomains = self.subdomains.union(subdomains)
 
     def run(self):
         """

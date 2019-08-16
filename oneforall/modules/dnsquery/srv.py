@@ -60,9 +60,9 @@ class BruteSRV(Module):
         for result in results:
             if result:
                 for answer in result:
-                    subdomain = utils.match_subdomain(self.domain, answer.host)
-                    if subdomain:
-                        self.subdomains = self.subdomains.union(subdomain)
+                    subdomains = utils.match_subdomain(self.domain, answer.host)
+                    if subdomains:
+                        self.subdomains = self.subdomains.union(subdomains)
                     else:
                         logger.log('DEBUG', f'{answer.host}不是{self.domain}的子域')
         if not len(self.subdomains):
