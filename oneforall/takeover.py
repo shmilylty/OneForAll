@@ -145,7 +145,7 @@ def auto_take(url):
 # 主函数
 def main(url):
     cname = cname_get(url)
-    if cname_get(url) != None:
+    if cname != None:
         print('[*]CNAME获取成功，正在验证是否存在于敏感列表中...')
         json_dicts = providers_read() # 接收指纹信息
         for json_dict in json_dicts:
