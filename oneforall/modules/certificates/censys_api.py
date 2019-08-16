@@ -22,7 +22,7 @@ class CensysAPI(Query):
         self.header = self.get_header()
         self.proxy = self.get_proxy(self.source)
         data = {
-            'query': 'parsed.names: example.com',
+            'query': f'parsed.names: {self.domain}',
             'page': 1,
             'fields': ['parsed.subject_dn'],
             'flatten': True}
