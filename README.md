@@ -49,7 +49,7 @@
 
 ## 🚀上手指南
 
-由于该项目**处于开发中**，会不断进行更新迭代，下载使用最好**克隆**最新项目。
+📢由于该项目**处于开发中**，会不断进行更新迭代，下载使用最好**克隆**最新项目，请务必花一点时间阅读此文档，有助于你快速熟悉OneForAll！
 
 **🐍安装要求**
 
@@ -66,7 +66,7 @@ pip 19.2.2 from C:\Users\shmilylty\AppData\Roaming\Python\Python37\site-packages
 
 **✔安装步骤**
 
-1. 下载更新
+1. **下载**
    本项目已经在[码云](https://gitee.com/shmilylty/OneForAll.git)(Gitee)镜像了一份，国内推荐使用码云进行克隆比较快：
 
    ```bash
@@ -77,15 +77,7 @@ pip 19.2.2 from C:\Users\shmilylty\AppData\Roaming\Python\Python37\site-packages
    git clone https://github.com/shmilylty/OneForAll.git
    ```
 
-   ❗如果你之前已经克隆了项目运行之前请**备份**自己修改过的文件到项目外的地方（如**config.py**），然后执行以下命令**更新**项目：
-
-   ```bash
-   git fetch --all
-   git reset --hard origin/master
-   git pull
-   ```
-
-2. 安装依赖
+2. **安装**
    首先运行以下命令
    你可以通过pip3安装OneForAll的依赖（如果你熟悉[pipenv](https://docs.pipenv.org/en/latest/)，那么推荐你使用[pipenv安装依赖]((./docs/Installation_dependency.md))），以下为**Windows系统**下使用**pip3**安装依赖的示例：（注意：如果你的Python3安装在系统Program Files目录下，如：`C:\Program Files\Python37`，那么请以管理员身份运行命令提示符cmd执行以下命令！）
 
@@ -96,9 +88,16 @@ pip 19.2.2 from C:\Users\shmilylty\AppData\Roaming\Python\Python37\site-packages
    cd oneforall/
    python oneforall.py --help
    ```
-
-
 其他系统平台的请参考[依赖安装](./docs/installation_dependency.md)，如果在安装依赖过程中发现编译某个依赖库失败时可以参考[编译失败解决方法](./docs/building_fail_solution.md)，如果还没有解决欢迎加群反馈。
+
+3. **更新**
+   ❗注意：如果你之前已经克隆了项目运行之前请**备份**自己修改过的文件到项目外的地方（如**config.py**），然后执行以下命令**更新**项目：
+
+   ```bash
+   git fetch --all
+   git reset --hard origin/master
+   git pull
+   ```
 
 **✨使用演示**
 
@@ -123,6 +122,8 @@ pip 19.2.2 from C:\Users\shmilylty\AppData\Roaming\Python\Python37\site-packages
 OneForAll命令行界面基于[Fire](https://github.com/google/python-fire/)实现，有关Fire更高级使用方法请参阅[使用Fire CLI](https://github.com/google/python-fire/blob/master/docs/using-cli.md)，有任何使用疑惑欢迎加群交流。
 
 oneforall.py是主程序入口，oneforall.py里有调用aiobrute.py和dbexport.py，为了方便进行子域爆破和数据库导出独立出了aiobrute.py和dbexport.py，这两个文件可以单独运行，并且所接受参数要更丰富一点。
+
+❗注意：当你在使用过程中遇到一些问题或者疑惑时，请先到[Issues](https://github.com/shmilylty/OneForAll/issues)里使用搜索找找答案，还可以参阅[常见问题与回答](./docs/Q&A.md)。
 
 1. **oneforall.py使用帮助**
 
