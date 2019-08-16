@@ -167,8 +167,8 @@ dnsdb_api_key = ''
 ipv4info_api_key = ''
 
 # Github Token可以访问https://github.com/settings/tokens生成,user为Github用户名
-github_api_user = 'Echocipher'
-github_api_token = 'a54bd7869fd48570b6be605f18ae4ed06bd2f317'
+github_api_user = ''
+github_api_token = ''
 
 subdomains_common = {'i', 'w', 'm', 'en', 'us', 'zh', 'w3', 'app', 'bbs',
                      'web', 'www', 'job', 'docs', 'news', 'blog', 'data',
