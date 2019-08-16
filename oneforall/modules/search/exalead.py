@@ -32,13 +32,13 @@ class Exalead(Search):
             resp = self.get(url=self.addr, params=params)
             if not resp:
                 return
-            subdomain_find = self.match(domain, resp.text)
-            if not subdomain_find:
+            subdomains = self.match(domain, resp.text)
+            if not subdomains:
                 break
             if not full_search:
-                if subdomain_find.issubset(self.subdomains):
+                if subdomains.issubset(self.subdomains):
                     break
-            self.subdomains = self.subdomains.union(subdomain_find)
+            self.subdomains = self.subdomains.union(subdomains)
             self.page_num += self.per_page_num
             if self.page_num > 1999:
                 break

@@ -28,10 +28,10 @@ class DNSdumpster(Query):
         resp = self.post(self.addr, data)
         if not resp:
             return
-        subdomains_find = utils.match_subdomain(self.domain, resp.text)
-        if subdomains_find:
+        subdomains = utils.match_subdomain(self.domain, resp.text)
+        if subdomains:
             # 合并搜索子域名搜索结果
-            self.subdomains = self.subdomains.union(subdomains_find)
+            self.subdomains = self.subdomains.union(subdomains)
 
     def run(self):
         """

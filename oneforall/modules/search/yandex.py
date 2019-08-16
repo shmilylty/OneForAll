@@ -36,15 +36,15 @@ class Yandex(Search):
             resp = self.get(self.addr, params)
             if not resp:
                 return
-            subdomains_find = self.match(domain, resp.text)
-            if not subdomains_find:  # 搜索没有发现子域名则停止搜索
+            subdomains = self.match(domain, resp.text)
+            if not subdomains:  # 搜索没有发现子域名则停止搜索
                 break
             if not full_search:
                 # 搜索中发现搜索出的结果有完全重复的结果就停止搜索
-                if subdomains_find.issubset(self.subdomains):
+                if subdomains.issubset(self.subdomains):
                     break
             # 合并搜索子域名搜索结果
-            self.subdomains = self.subdomains.union(subdomains_find)
+            self.subdomains = self.subdomains.union(subdomains)
             if '>next</a>' not in resp.text:  # 搜索页面没有出现下一页时停止搜索
                 break
             self.page_num += 1

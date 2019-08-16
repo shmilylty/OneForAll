@@ -31,8 +31,8 @@ class CheckCert(Module):
         except Exception as e:
             logger.log('ERROR', e)
             return
-        subdomains_find = utils.match_subdomain(self.domain, str(cert_dict))
-        self.subdomains = self.subdomains.union(subdomains_find)
+        subdomains = utils.match_subdomain(self.domain, str(cert_dict))
+        self.subdomains = self.subdomains.union(subdomains)
 
     def run(self):
         """

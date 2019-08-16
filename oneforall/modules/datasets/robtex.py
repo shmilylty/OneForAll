@@ -32,10 +32,10 @@ class Robtex(Query):
                 resp = self.get(url)
                 if not resp:
                     return
-                subdomains_find = self.match(self.domain, resp.text)
-                if subdomains_find:
+                subdomains = self.match(self.domain, resp.text)
+                if subdomains:
                     # 合并搜索子域名搜索结果
-                    self.subdomains = self.subdomains.union(subdomains_find)
+                    self.subdomains = self.subdomains.union(subdomains)
 
     def run(self):
         """

@@ -50,17 +50,17 @@ class Baidu(Search):
                 return
             if len(domain) > 12:  # 解决百度搜索结果中域名过长会显示不全的问题
                 # 获取百度跳转URL响应头的Location字段获取直链
-                subdomains_find = self.redirect_match(domain, resp.text)
+                subdomains = self.redirect_match(domain, resp.text)
             else:
-                subdomains_find = self.match(domain, resp.text)
-            if not subdomains_find:  # 搜索没有发现子域名则停止搜索
+                subdomains = self.match(domain, resp.text)
+            if not subdomains:  # 搜索没有发现子域名则停止搜索
                 break
             if not full_search:
                 # 搜索中发现搜索出的结果有完全重复的结果就停止搜索
-                if subdomains_find.issubset(self.subdomains):
+                if subdomains.issubset(self.subdomains):
                     break
             # 合并搜索子域名搜索结果
-            self.subdomains = self.subdomains.union(subdomains_find)
+            self.subdomains = self.subdomains.union(subdomains)
             self.page_num += self.per_page_num
             # 搜索页面没有出现下一页时停止搜索
             if '&pn={next_pn}&'.format(next_pn=self.page_num) not in resp.text:

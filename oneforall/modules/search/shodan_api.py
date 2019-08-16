@@ -25,11 +25,11 @@ class ShodanAPI(Search):
             resp = self.get(self.addr, params)
             if not resp:
                 return
-            subdomain_find = self.match(self.domain, resp.text)
-            if not subdomain_find:  # 搜索没有发现子域名则停止搜索
+            subdomains = self.match(self.domain, resp.text)
+            if not subdomains:  # 搜索没有发现子域名则停止搜索
                 break
-            if subdomain_find:
-                self.subdomains = self.subdomains.union(subdomain_find)
+            if subdomains:
+                self.subdomains = self.subdomains.union(subdomains)
             page += 1
 
     def run(self):

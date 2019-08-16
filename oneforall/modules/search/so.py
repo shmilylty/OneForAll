@@ -31,14 +31,14 @@ class So(Search):
             resp = self.get(url=self.addr, params=payload)
             if not resp:
                 return
-            subdomain_find = self.match(domain, resp.text)
-            if not subdomain_find:
+            subdomains = self.match(domain, resp.text)
+            if not subdomains:
                 break
             if not full_search:
                 # 搜索中发现搜索出的结果有完全重复的结果就停止搜索
-                if subdomain_find.issubset(self.subdomains):
+                if subdomains.issubset(self.subdomains):
                     break
-            self.subdomains = self.subdomains.union(subdomain_find)
+            self.subdomains = self.subdomains.union(subdomains)
             page_num += 1
             # 搜索页面没有出现下一页时停止搜索
             if '<a id="snext"' not in resp.text:
