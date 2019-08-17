@@ -19,7 +19,7 @@ class ThreatCrowd(Query):
         scraper.proxies = self.get_proxy(self.source)
         url = self.addr + self.domain
         try:
-            resp = scraper.get(url)
+            resp = scraper.get(url, timeout=self.timeout)
         except Exception as e:
             logger.log('ERROR', e.args)
             return

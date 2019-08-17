@@ -25,7 +25,7 @@ class DNSdb(Query):
         scraper.interpreter = 'js2py'
         scraper.proxies = self.get_proxy(self.source)
         try:
-            tokens = scraper.get_tokens(self.url)
+            tokens = scraper.get_tokens(self.url, timeout=self.timeout)
         except Exception as e:
             logger.log('ERROR', e.args)
             return None
