@@ -22,7 +22,7 @@ class CertDBAPI(Query):
             time.sleep(self.delay)
             self.header = self.get_header()
             self.proxy = self.get_proxy(self.source)
-            params = {'domain': self.domain,
+            params = {'subdomain': self.domain,
                       'api_token': self.token,
                       'page': page_num}
             resp = self.get(self.addr, params)

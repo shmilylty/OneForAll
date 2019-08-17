@@ -18,7 +18,8 @@ class CertSpotter(Query):
         time.sleep(self.delay)
         self.header = self.get_header()
         self.proxy = self.get_proxy(self.source)
-        params = {'domain': self.domain, 'include_subdomains': 'true',
+        params = {'subdomain': self.domain,
+                  'include_subdomains': 'true',
                   'expand': 'dns_names'}
         resp = self.get(self.addr, params)
         if not resp:

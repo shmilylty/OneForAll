@@ -19,8 +19,9 @@ class Google(Query):
         time.sleep(self.delay)
         self.header = self.get_header()
         self.proxy = self.get_proxy(self.source)
-        params = {'include_expired': 'true', 'include_subdomains': 'true',
-                  'domain': self.domain}
+        params = {'include_expired': 'true',
+                  'include_subdomains': 'true',
+                  'subdomain': self.domain}
         resp = self.get(self.addr, params)
         if not resp:
             return
