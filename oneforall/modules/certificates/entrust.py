@@ -18,7 +18,8 @@ class Entrust(Query):
         time.sleep(self.delay)
         self.header = self.get_header()
         self.proxy = self.get_proxy(self.source)
-        params = {'fields': 'subjectDN', 'subdomain': self.domain,
+        params = {'fields': 'subjectDN',
+                  'domain': self.domain,
                   'includeExpired': 'true'}
         resp = self.get(self.addr, params)
         if not resp:

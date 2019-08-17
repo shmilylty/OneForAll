@@ -21,7 +21,7 @@ class Google(Query):
         self.proxy = self.get_proxy(self.source)
         params = {'include_expired': 'true',
                   'include_subdomains': 'true',
-                  'subdomain': self.domain}
+                  'domain': self.domain}
         resp = self.get(self.addr, params)
         if not resp:
             return
