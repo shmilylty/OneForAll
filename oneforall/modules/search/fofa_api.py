@@ -22,13 +22,16 @@ class FoFa(Search):
         发送搜索请求并做子域匹配
         """
         self.page_num = 1
-        query_data = base64.b64encode(f'domain={self.domain}'.encode('utf-8'))
+        subdomain_encode = f'subdomain={self.domain}'.encode('utf-8')
+        query_data = base64.b64encode(subdomain_encode)
         while True:
             time.sleep(self.delay)
             self.header = self.get_header()
             self.proxy = self.get_proxy(self.source)
-            query = {'email': self.email, 'key': self.key,
-                     'qbase64': query_data, 'page': self.page_num}
+            query = {'email': self.email,
+                     'key': self.key,
+                     'qbase64': query_data,
+                     'page': self.page_num}
             resp = self.get(self.addr, query)
             if not resp:
                 return
