@@ -10,7 +10,7 @@ class ThreatCrowd(Query):
         self.domain = self.register(domain)
         self.source = 'ThreatCrowdQuery'
         self.addr = 'https://www.threatcrowd.org/searchApi' \
-                    '/v2/domain/report?domain='
+                    '/v2/subdomain/report?subdomain='
 
     def query(self):
         # 绕过cloudFlare验证
