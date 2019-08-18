@@ -100,13 +100,16 @@ def request_callback(future, index, datas):
             datas[index]['banner'] = banner
             soup = BeautifulSoup(text, 'lxml')
             title = soup.title
+            desc = soup.find('meta', attrs={'name': 'description'})
             head = soup.head
             if title:
-                datas[index]['title'] = title.text
+                datas[index]['title'] = title.text.strip()
+            elif desc:
+                datas[index]['title'] = desc['content'].strip()
             elif head:
-                datas[index]['title'] = head.text
+                datas[index]['title'] = head.text.strip()
             elif len(text) <= 200:
-                datas[index]['title'] = text
+                datas[index]['title'] = text.strip()
 
 
 async def bulk_get_request(datas, port):
