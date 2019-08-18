@@ -24,8 +24,9 @@ class DNSdb(Query):
         scraper = cloudscraper.create_scraper()
         scraper.interpreter = 'js2py'
         scraper.proxies = self.get_proxy(self.source)
+        scraper.timeout = 10
         try:
-            tokens = scraper.get_tokens(self.url, timeout=self.timeout)
+            tokens = scraper.get_tokens(self.url)
         except Exception as e:
             logger.log('ERROR', e.args)
             return None
@@ -43,13 +44,16 @@ class DNSdb(Query):
             return False
         self.cookie = tokens[0]
         self.header = {'User-Agent': tokens[1]}
+        self.timeout = 10
         resp = self.get(self.url)
         if not resp:
             return
         if 'index' in resp.text:
             soup = BeautifulSoup(resp.text, features='lxml')
-            urls = set(map(lambda x: self.addr + self.domain + x.text,
-                           soup.find_all('a')))
+            base = self.addr+self.domain
+            urls = list(map(lambda a: base + '/' + a.get('href'),
+                            soup.find_all('a')))
+            urls = urls[:-1]  # idn域名暂时不考虑
             for url in urls:
                 resp = self.get(url)
                 if not resp:
