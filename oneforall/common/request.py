@@ -1,7 +1,10 @@
 # coding=utf-8
 
 import asyncio
+import functools
+
 import aiohttp
+import tqdm
 from aiohttp import ClientSession
 from aiohttp.resolver import AsyncResolver
 from bs4 import BeautifulSoup
@@ -75,36 +78,35 @@ async def fetch(session, url, semaphore):
         return resp, text
 
 
-def deal_results(datas, results):
-    for index, result in enumerate(results):
-        if isinstance(result, Exception):
-            logger.log('DEBUG', result.args)
-            datas[index]['reason'] = str(result.args)
+def request_callback(future, index, datas):
+    try:
+        result = future.result()
+    except Exception as e:
+        logger.log('DEBUG', e.args)
+        datas[index]['reason'] = str(e.args)
+        datas[index]['valid'] = 0
+    else:
+        resp, text = result
+        datas[index]['reason'] = resp.reason
+        datas[index]['status'] = resp.status
+        if resp.status >= 500:
             datas[index]['valid'] = 0
-            continue
-        if isinstance(result, tuple):
-            resp, text = result
-            datas[index]['reason'] = resp.reason
-            datas[index]['status'] = resp.status
-            if resp.status >= 500:
-                datas[index]['valid'] = 0
-            else:
-                datas[index]['valid'] = 1
-                headers = resp.headers
-                banner = str({'Server': headers.get('Server'),
-                              'Via': headers.get('Via'),
-                              'X-Powered-By': headers.get('X-Powered-By')})
-                datas[index]['banner'] = banner
-                soup = BeautifulSoup(text, 'lxml')
-                title = soup.title
-                head = soup.head
-                if title:
-                    datas[index]['title'] = title.text
-                elif head:
-                    datas[index]['title'] = head.text
-                elif len(text) <= 200:
-                    datas[index]['title'] = text
-    return datas
+        else:
+            datas[index]['valid'] = 1
+            headers = resp.headers
+            banner = str({'Server': headers.get('Server'),
+                          'Via': headers.get('Via'),
+                          'X-Powered-By': headers.get('X-Powered-By')})
+            datas[index]['banner'] = banner
+            soup = BeautifulSoup(text, 'lxml')
+            title = soup.title
+            head = soup.head
+            if title:
+                datas[index]['title'] = title.text
+            elif head:
+                datas[index]['title'] = head.text
+            elif len(text) <= 200:
+                datas[index]['title'] = text
 
 
 async def bulk_get_request(datas, port):
@@ -133,11 +135,22 @@ async def bulk_get_request(datas, port):
         for i, data in enumerate(new_datas):
             url = data.get('url')
             task = asyncio.ensure_future(fetch(session, url, semaphore))
+            task.add_done_callback(functools.partial(request_callback,
+                                                     index=i,
+                                                     datas=new_datas))
             tasks.append(task)
         if tasks:  # 任务列表里有任务不空时才进行解析
             # 等待所有task完成 错误聚合到结果列表里
-            results = await asyncio.gather(*tasks, return_exceptions=True)
-            new_datas = deal_results(new_datas, results)
+            futures = asyncio.as_completed(tasks)
+            for future in tqdm.tqdm(futures,
+                                    total=len(tasks),
+                                    desc='Progress',
+                                    smoothing=1.0,
+                                    ncols=True):
+                try:
+                    await future
+                except:
+                    pass
 
     logger.log('INFOR', f'完成异步进行子域的GET请求')
     return new_datas
