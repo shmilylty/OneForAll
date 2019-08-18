@@ -18,7 +18,7 @@ class Collect(object):
         self.collect_func = []
         self.path = None
         self.export = export
-        self.format = 'xlsx'
+        self.format = 'xls'
 
     def get_mod(self):
         """
@@ -71,11 +71,6 @@ class Collect(object):
         for thread in threads:
             thread.join()
 
-        # db = Database()
-        # db.create_table(self.domain)
-        # db.copy_table(self.domain, self.domain+'_collect')
-        # db.remove_invalid(self.domain)
-        # db.deduplicate_subdomain(self.domain)
         # 数据库导出
         if self.export:
             if not self.path:
