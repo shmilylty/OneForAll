@@ -1,10 +1,10 @@
 # coding=utf-8
 import re
-import pathlib
 import random
 import ipaddress
 import platform
 import config
+from pathlib import Path
 from common.domain import Domain
 from config import logger
 
@@ -116,7 +116,7 @@ def get_domains(target):
     elif isinstance(target, list):
         domains = target
     elif isinstance(target, str):
-        path = pathlib.Path(target)
+        path = Path(target)
         if path.is_file():
             with open(target) as file:
                 for line in file:
@@ -142,3 +142,68 @@ def get_semaphore():
         return 800
     elif system == 'Darwin':
         return 800
+
+
+def check_dpath(dpath):
+    """
+    检查目录路径
+
+    :param dpath: 传入的目录路径
+    :return: 目录路径
+    """
+    if isinstance(dpath, str):
+        dpath = Path(dpath)
+    else:
+        dpath = config.result_save_path
+    if not dpath.is_dir():
+        logger.log('FATAL', f'{dpath}不是目录')
+    if not dpath.exists():
+        logger.log('ALERT', f'不存在{dpath}将会新建此目录')
+        dpath.mkdir(parents=True, exist_ok=True)
+    return dpath
+
+
+def check_format(format):
+    """
+    检查导出格式
+
+    :param format: 传入的导出格式
+    :return: 导出格式
+    """
+    formats = ['txt', 'rst', 'csv', 'tsv', 'json', 'yaml', 'html',
+               'jira', 'xls', 'xlsx', 'dbf', 'latex', 'ods']
+    if format in formats:
+        return format
+    else:
+        logger.log('ALERT', f'不支持{format}格式导出')
+        logger.log('ALERT', '默认使用csv格式导出')
+        return 'xls'
+
+
+def save_data(fpath, data):
+    try:
+        with open(fpath, 'w', encoding="utf-8", newline='') as file:
+            file.write(data)
+            logger.log('INFOR', fpath)
+    except TypeError:
+        with open(fpath, 'wb') as file:
+            file.write(data)
+            logger.log('INFOR', fpath)
+    except Exception as e:
+        logger.log('ERROR', e)
+
+
+def check_response(method, resp):
+    if resp.status_code == 200 and resp.content:
+        return True
+    logger.log('ALERT', f'{method} {resp.url} {resp.status_code} - '
+                        f'{resp.reason} {len(resp.content)}')
+    content_type = resp.headers.get('Content-Type')
+    if content_type and 'json' in content_type and resp.content:
+        try:
+            msg = resp.json()
+        except Exception as e:
+            logger.log('DEBUG', e.args)
+        else:
+            logger.log('ALERT', msg)
+    return False
