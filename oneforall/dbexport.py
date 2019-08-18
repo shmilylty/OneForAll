@@ -8,11 +8,9 @@ OneForAll数据库导出模块
 :license: GNU General Public License v3.0, see LICENSE for more details.
 """
 
-from pathlib import Path
 import fire
-import config
+from common import utils
 from common.database import Database
-from config import logger
 
 
 def export(table, db=None, valid=None, dpath=None, format='xls', show=False):
@@ -27,7 +25,7 @@ def export(table, db=None, valid=None, dpath=None, format='xls', show=False):
         参数port可选值有'small', 'medium', 'large', 'xlarge'，详见config.py配置
         参数format可选格式有'txt', 'rst', 'csv', 'tsv', 'json', 'yaml', 'html',
                           'jira', 'xls', 'xlsx', 'dbf', 'latex', 'ods'
-        参数dir为None默认使用OneForAll结果目录
+        参数dpath为None默认使用OneForAll结果目录
 
     :param str table:   要导出的表
     :param str db:      要导出的数据库路径(默认为results/result.sqlite3)
@@ -36,22 +34,8 @@ def export(table, db=None, valid=None, dpath=None, format='xls', show=False):
     :param str dpath:    导出目录(默认None)
     :param bool show:   终端显示导出数据(默认False)
     """
-    formats = ['txt', 'rst', 'csv', 'tsv', 'json', 'yaml', 'html',
-               'jira', 'xls', 'xlsx', 'dbf', 'latex', 'ods']
-    if format not in formats:
-        logger.log('FATAL', f'不支持{format}格式导出')
-        return
-    if dpath is None:
-        dpath = config.result_save_path
-    if isinstance(dpath, str):
-        dpath = Path(dpath)
-    if not dpath.is_dir():
-        logger.log('FATAL', f'{dpath}不是目录')
-        return
-    if not dpath.exists():
-        logger.log('ALERT', f'不存在{dpath}将会新建此目录')
-        dpath.mkdir(parents=True, exist_ok=True)
-
+    format = utils.check_format(format)
+    dpath = utils.check_dpath(dpath)
     database = Database(db)
     if valid is None:
         rows = database.get_data(table)
@@ -67,20 +51,9 @@ def export(table, db=None, valid=None, dpath=None, format='xls', show=False):
         data = rows.export(format)
     database.close()
     fpath = dpath.joinpath(f'{table}.{format}')
-    try:
-        with open(fpath, 'w', encoding="utf-8", newline='') as file:
-            file.write(data)
-            logger.log('INFOR', '成功完成导出')
-            logger.log('INFOR', fpath)
-    except TypeError:
-        with open(fpath, 'wb') as file:
-            file.write(data)
-            logger.log('INFOR', '成功完成导出')
-            logger.log('INFOR', fpath)
-    except Exception as e:
-        logger.log('ERROR', e)
+    utils.save_data(fpath, data)
 
 
 if __name__ == '__main__':
     fire.Fire(export)
-    # export('example_com_last', format='txt')
+    # save('example_com_last', format='txt')
