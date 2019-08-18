@@ -19,6 +19,7 @@ from collect import Collect
 from aiobrute import AIOBrute
 from common import utils, resolve, request
 from common.database import Database
+from takeover import Takeover
 
 yellow = '\033[01;33m'
 white = '\033[01;37m'
@@ -46,12 +47,13 @@ class OneForAll(object):
 
     Example:
         python3 oneforall.py --target example.com run
-        python3 oneforall.py --target ./domains.txt run
+        python3 oneforall.py --target ./subdomains.txt run
         python3 oneforall.py --target example.com --valid None run
         python3 oneforall.py --target example.com --brute True run
         python3 oneforall.py --target example.com --port medium run
         python3 oneforall.py --target example.com --format csv run
         python3 oneforall.py --target example.com --verify False run
+        python3 oneforall.py --target example.com --takeover False run
         python3 oneforall.py --target example.com --show True run
 
     Note:
@@ -70,7 +72,7 @@ class OneForAll(object):
     :param bool show:   终端显示导出数据(默认False)
     """
     def __init__(self, target, brute=None, verify=None, port='medium', valid=1,
-                 format='xls', show=False):
+                 format='xls', takeover=True, show=False):
         self.target = target
         self.port = port
         self.domains = set()
@@ -78,6 +80,7 @@ class OneForAll(object):
         self.datas = list()
         self.brute = brute
         self.verify = verify
+        self.takeover = takeover
         self.valid = valid
         self.format = format
         self.show = show
@@ -138,6 +141,12 @@ class OneForAll(object):
         db.drop_table(rename_table)
         db.rename_table(self.domain, rename_table)
         db.close()
+        # 子域接管检查
+
+        if self.takeover:
+            subdomains = set(map(lambda x: x.get('subdomain'), self.datas))
+            takeover = Takeover(subdomains)
+            takeover.run()
 
     def run(self):
         print(banner)
