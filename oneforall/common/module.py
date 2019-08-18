@@ -66,12 +66,13 @@ class Module(object):
         logger.log('DEBUG', f'{self.source}模块发现{self.domain}的子域\n'
                    f'{self.subdomains}')
 
-    def get(self, url, params=None, **kwargs):
+    def get(self, url, params=None, check=True, **kwargs):
         """
         自定义get请求
 
         :param str url: 请求地址
         :param dict params: 请求参数
+        :param bool check: 检查响应
         :param kwargs: 其他参数
         :return: requests响应对象
         """
@@ -87,29 +88,19 @@ class Module(object):
         except Exception as e:
             logger.log('ERROR', e)
             return None
-        # 状态码非200或者响应体为空
-        if resp.status_code != 200 or not resp.content:
-            logger.log('ALERT', f'GET {resp.url} {resp.status_code} - '
-                       f'{resp.reason} {len(resp.content)}')
-            content_type = resp.headers.get('Content-Type')
-            if content_type and 'json' in content_type and resp.content:
-                try:
-                    msg = resp.json()
-                except Exception as e:
-                    logger.log('DEBUG', e.args)
-                else:
-                    logger.log('ALERT', msg)
-            return None
-        logger.log('DEBUG', f'GET {resp.url} {resp.status_code} - '
-                   f'{resp.reason} {len(resp.content)}')
-        return resp
+        if not check:
+            return resp
+        if utils.check_response('GET', resp):
+            return resp
+        return None
 
-    def post(self, url, data=None, **kwargs):
+    def post(self, url, data=None, check=True, **kwargs):
         """
         自定义post请求
 
         :param str url: 请求地址
         :param dict data: 请求数据
+        :param bool check: 检查响应
         :param kwargs: 其他参数
         :return: requests响应对象
         """
@@ -125,20 +116,11 @@ class Module(object):
         except Exception as e:
             logger.log('ERROR', e)
             return None
-        # 状态码非200或者响应体为空
-        if resp.status_code != 200 or not resp.content:
-            content_type = resp.headers.get('Content-Type')
-            if content_type and 'json' in content_type and resp.content:
-                try:
-                    msg = resp.json()
-                except Exception as e:
-                    logger.log('DEBUG', e.args)
-                else:
-                    logger.log('ALERT', msg)
-            return None
-        logger.log('DEBUG', f'POST {resp.url} {resp.status_code} - '
-                   f'{resp.reason} {len(resp.content)}')
-        return resp
+        if not check:
+            return resp
+        if utils.check_response('GET', resp):
+            return resp
+        return None
 
     def get_header(self):
         """
