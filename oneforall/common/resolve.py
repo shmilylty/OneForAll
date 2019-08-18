@@ -4,6 +4,8 @@ import functools
 
 import dns.resolver
 import aiodns
+import tqdm
+
 import config
 from common import utils
 from config import logger
@@ -99,6 +101,12 @@ async def bulk_query_a(datas):
                                                      datas=datas))  # 回调
             tasks.append(task)
     if tasks:  # 任务列表里有任务不空时才进行解析
-        await asyncio.wait(tasks)  # 等待所有task完成
+        futures = asyncio.as_completed(tasks)
+        for future in tqdm.tqdm(futures, total=len(tasks)):
+            try:
+                await future
+            except:
+                pass
+        # await asyncio.wait(tasks)  # 等待所有task完成
     logger.log('INFOR', '完成异步查询子域的A记录')
     return datas
