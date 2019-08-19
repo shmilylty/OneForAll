@@ -130,7 +130,47 @@ oneforall.py是主程序入口，oneforall.py里有调用aiobrute.py和dbexport.
    
    ```
 
-3. dbexport.py使用帮助
+
+3. takeover.py使用帮助
+
+   ```bash
+   python takeover.py --help
+   ```
+   
+   ```bash
+   NAME
+    takeover.py - OneForAll多线程子域接管风险检查模块
+   
+   
+    SYNOPSIS
+        takeover.py COMMAND | --target=TARGET <flags>
+   
+    DESCRIPTION
+        Example:
+            python3 takeover.py --target www.example.com  --format csv run
+            python3 takeover.py --target ./subdomains.txt --thread 10 run
+   
+        Note:
+            参数format可选格式有'txt', 'rst', 'csv', 'tsv', 'json', 'yaml', 'html',
+                              'jira', 'xls', 'xlsx', 'dbf', 'latex', 'ods'
+            参数dpath为None默认使用OneForAll结果目录
+   
+    ARGUMENTS
+        TARGET
+            单个子域或者每行一个子域的文件路径(必需参数)
+   
+    FLAGS
+        --thread=THREAD
+            线程数(默认100)
+        --dpath=DPATH
+            导出目录(默认None)
+        --format=FORMAT
+            导出格式(默认xls)
+   
+   ```
+
+
+4. dbexport.py使用帮助
 
    ```bash
    python dbexport.py --help
