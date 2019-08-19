@@ -6,6 +6,13 @@ OneForAll的更新日志格式基于[Keep a Changelog](https://keepachangelog.co
 OneForAll遵守[语义化版本格式](https://semver.org/)。
 
 ## Unreleased
+## [0.0.5](https://github.com/shmilylty/oneforall/releases/tag/v0.0.5) - 2019-08-19
+- 修复一些已知Bugs
+- 优化各子域收集接口并添加新的子域收集接口
+- 添加子域DNS解析和子域HTTP探测进度条
+- 添加子域接管风险检查模块及其使用说明
+- 更新OneForAll依赖
+
 ## [0.0.4](https://github.com/shmilylty/oneforall/releases/tag/v0.0.4) - 2019-08-11
 ### 修复
 - 修复一些已知Bugs
