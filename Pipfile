@@ -23,6 +23,7 @@ lxml = "*"
 pysocks = "*"
 cloudscraper = "*"
 js2py = "*"
+tablib = "*"
 
 [requires]
 python_version = "3.7"
