@@ -115,13 +115,15 @@ class Takeover(Module):
 
     def progress(self):
         while not self.subdomainq.empty():
+            time.sleep(0.3)
             done = self.bar.total - self.subdomainq.qsize()
             self.bar.n = done
             self.bar.update()
+        self.bar.close()
 
     def run(self):
         start = time.time()
-        logger.log('INFOR', f'开始执行{self.source}模块')
+        logger.log('DEBUG', f'开始执行{self.source}模块')
         self.format = utils.check_format(self.format)
         self.dpath = utils.check_dpath(self.dpath)
         self.subdomains = utils.get_domains(self.target)
@@ -132,8 +134,10 @@ class Takeover(Module):
             # 创建待检查的子域队列
             for domain in self.subdomains:
                 self.subdomainq.put(domain)
-            # 设置进度大小
+            # 设置进度
             self.bar.total = self.subdomainq.qsize()
+            self.bar.desc = 'Progress'
+            self.bar.ncols = True
             # 进度线程
             threads = []
             thread = Thread(target=self.progress, daemon=True)
@@ -153,7 +157,7 @@ class Takeover(Module):
         elapsed = round(end - start, 1)
         logger.log('INFOR', f'{self.source}模块耗时{elapsed}秒'
                             f'发现{len(self.results)}个子域存在接管风险')
-        logger.log('INFOR', f'结束执行{self.source}模块')
+        logger.log('DEBUG', f'结束执行{self.source}模块')
 
 
 if __name__ == '__main__':

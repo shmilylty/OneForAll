@@ -102,7 +102,11 @@ async def bulk_query_a(datas):
             tasks.append(task)
     if tasks:  # 任务列表里有任务不空时才进行解析
         futures = asyncio.as_completed(tasks)
-        for future in tqdm.tqdm(futures, total=len(tasks)):
+        for future in tqdm.tqdm(futures,
+                                total=len(tasks),
+                                desc='Progress',
+                                smoothing=1.0,
+                                ncols=True):
             try:
                 await future
             except:

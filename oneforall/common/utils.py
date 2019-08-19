@@ -110,7 +110,7 @@ def get_domains(target):
     :return: 域名集合
     """
     domains = list()
-    logger.log('INFOR', f'正在获取域名')
+    logger.log('DEBUG', f'正在获取域名')
     if isinstance(target, (set, tuple)):
         domains = list(target)
     elif isinstance(target, list):
@@ -184,11 +184,11 @@ def save_data(fpath, data):
     try:
         with open(fpath, 'w', encoding="utf-8", newline='') as file:
             file.write(data)
-            logger.log('INFOR', fpath)
+            logger.log('ALERT', fpath)
     except TypeError:
         with open(fpath, 'wb') as file:
             file.write(data)
-            logger.log('INFOR', fpath)
+            logger.log('ALERT', fpath)
     except Exception as e:
         logger.log('ERROR', e)
 
