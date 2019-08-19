@@ -13,6 +13,7 @@ from threading import Thread
 from queue import Queue
 import fire
 from tablib import Dataset
+from tqdm import tqdm
 import config
 from common import resolve, utils
 from common.module import Module
@@ -60,7 +61,7 @@ class Takeover(Module):
     :param str format:  导出格式(默认xls)
     :param str dpath:   导出目录(默认None)
     """
-    def __init__(self, target, thread=10, dpath=None, format='xls'):
+    def __init__(self, target, thread=100, dpath=None, format='xls'):
         Module.__init__(self)
         self.subdomains = set()
         self.module = 'Check'
@@ -70,7 +71,8 @@ class Takeover(Module):
         self.dpath = dpath
         self.format = format
         self.fingerprints = None
-        self.domainq = Queue()
+        self.subdomainq = Queue()
+        self.bar = tqdm()
         self.cnames = list()
         self.results = Dataset()
 
@@ -96,12 +98,12 @@ class Takeover(Module):
                 break
 
     def check(self):
-        while not self.domainq.empty():  # 保证域名队列遍历结束后能退出线程
-            subdomain = self.domainq.get()  # 从队列中获取域名
+        while not self.subdomainq.empty():  # 保证域名队列遍历结束后能退出线程
+            subdomain = self.subdomainq.get()  # 从队列中获取域名
             cname = get_cname(subdomain)
             maindomain = get_maindomain(cname)
             if cname is None:
-                return
+                continue
             for fingerprint in self.fingerprints:
                 cnames = fingerprint.get('cname')
                 if maindomain not in cnames:
@@ -109,18 +111,33 @@ class Takeover(Module):
                 responses = fingerprint.get('response')
                 self.compare(subdomain, cname, responses)
 
+    def progress(self):
+        while not self.subdomainq.empty():
+            done = self.bar.total - self.subdomainq.qsize()
+            self.bar.n = done
+            self.bar.update()
+
     def run(self):
         start = time.time()
-        logger.log('INFOR', f'正在检查子域接管风险')
+        logger.log('INFOR', f'开始执行{self.source}模块')
         self.format = utils.check_format(self.format)
         self.dpath = utils.check_dpath(self.dpath)
         self.subdomains = utils.get_domains(self.target)
         if self.subdomains:
+            logger.log('INFOR', f'正在检查子域接管风险')
             self.fingerprints = get_fingerprint()
             self.results.headers = ['subdomain', 'cname']
+            # 创建待检查的子域队列
             for domain in self.subdomains:
-                self.domainq.put(domain)
+                self.subdomainq.put(domain)
+            # 设置进度大小
+            self.bar.total = self.subdomainq.qsize()
+            # 进度线程
             threads = []
+            thread = Thread(target=self.progress, daemon=True)
+            thread.start()
+            threads.append(thread)
+            # 检查线程
             for _ in range(self.thread):
                 thread = Thread(target=self.check, daemon=True)
                 thread.start()
@@ -134,10 +151,11 @@ class Takeover(Module):
         elapsed = round(end - start, 1)
         logger.log('INFOR', f'{self.source}模块耗时{elapsed}秒'
                             f'发现{len(self.results)}个子域存在接管风险')
+        logger.log('INFOR', f'结束执行{self.source}模块')
 
 
 if __name__ == '__main__':
-    fire.Fire(Takeover)
-    # takeover = Takeover('./subdomains.txt')
-    # takeover = Takeover('www.baidu.com')
-    # takeover.run()
+    # fire.Fire(Takeover)
+    # takeover = Takeover('www.example.com')
+    takeover = Takeover('./subdomains.txt')
+    takeover.run()
