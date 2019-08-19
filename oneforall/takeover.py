@@ -115,7 +115,6 @@ class Takeover(Module):
 
     def progress(self):
         while not self.subdomainq.empty():
-            time.sleep(0.3)
             done = self.bar.total - self.subdomainq.qsize()
             self.bar.n = done
             self.bar.update()
@@ -123,7 +122,7 @@ class Takeover(Module):
 
     def run(self):
         start = time.time()
-        logger.log('DEBUG', f'开始执行{self.source}模块')
+        logger.log('INFOR', f'开始执行{self.source}模块')
         self.format = utils.check_format(self.format)
         self.dpath = utils.check_dpath(self.dpath)
         self.subdomains = utils.get_domains(self.target)
