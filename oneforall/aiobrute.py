@@ -242,8 +242,10 @@ class AIOBrute(Module):
                 = detect_wildcard(domain)
         tasks = self.gen_tasks(domain)
         logger.log('INFOR', f'正在爆破{domain}的域名')
-        for task in tqdm.tqdm(tasks, desc='Progress',
-                              smoothing=1.0, ncols=True):
+        for task in tqdm.tqdm(tasks,
+                              desc='Progress',
+                              smoothing=1.0,
+                              ncols=True):
             async with aiomp.Pool(processes=self.process,
                                   initializer=init_worker,
                                   childconcurrency=self.coroutine) as pool:
