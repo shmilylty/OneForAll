@@ -53,8 +53,8 @@ proxy_partial_module = ['GoogleQuery', 'AskSearch', 'DuckDuckGoSearch',
                         'ContentSecurityPolicy']  # 代理自定义的模块
 proxy_pool = [{'http': 'http://127.0.0.1:1080',
                'https': 'https://127.0.0.1:1080'}]  # 代理池
-# proxy_pool = [{'http': 'socks5://127.0.0.1:10808',
-#                'https': 'socks5://127.0.0.1:10808'}]  # 代理池
+# proxy_pool = [{'http': 'socks5h://127.0.0.1:10808',
+#                'https': 'socks5h://127.0.0.1:10808'}]  # 代理池
 
 
 # 网络请求设置
