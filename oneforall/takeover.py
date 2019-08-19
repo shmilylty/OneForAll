@@ -11,14 +11,16 @@ import time
 import json
 from threading import Thread
 from queue import Queue
+
 import fire
 from tablib import Dataset
 from tqdm import tqdm
+
 import config
+from config import logger
 from common import resolve, utils
 from common.module import Module
 from common.domain import Domain
-from config import logger
 
 
 def get_fingerprint():
@@ -57,7 +59,7 @@ class Takeover(Module):
         参数dpath为None默认使用OneForAll结果目录
 
     :param str target:  单个子域或者每行一个子域的文件路径(必需参数)
-    :param int thread:  线程数(默认10)
+    :param int thread:  线程数(默认100)
     :param str format:  导出格式(默认xls)
     :param str dpath:   导出目录(默认None)
     """
@@ -155,7 +157,7 @@ class Takeover(Module):
 
 
 if __name__ == '__main__':
-    # fire.Fire(Takeover)
+    fire.Fire(Takeover)
     # takeover = Takeover('www.example.com')
-    takeover = Takeover('./subdomains.txt')
-    takeover.run()
+    # takeover = Takeover('./subdomains.txt')
+    # takeover.run()
