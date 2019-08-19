@@ -5,7 +5,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/1287668a6b4c72af683e/maintainability)](https://codeclimate.com/github/shmilylty/OneForAll/maintainability)
 [![License](https://img.shields.io/github/license/shmilylty/OneForAll)](./LICENSE)
 [![python](https://img.shields.io/badge/python-3.6%20%7C%203.7%20%7C%203.8-blue)](./)
-[![python](https://img.shields.io/badge/release-v0.0.4-brightgreen)](https://github.com/shmilylty/OneForAll/releases)
+[![python](https://img.shields.io/badge/release-v0.0.5-brightgreen)](https://github.com/shmilylty/OneForAll/releases)
 
 👊**OneForAll是一款功能强大的子域收集工具**  📝[English Document](./README.en.md)
 
@@ -138,7 +138,7 @@ oneforall.py是主程序入口，oneforall.py里有调用aiobrute.py和dbexport.
        oneforall.py --target=TARGET <flags>
    
    DESCRIPTION
-       Version: 0.0.4
+       Version: 0.0.5
        Project: https://git.io/fjHT1
    
        Example:
