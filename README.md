@@ -3,15 +3,19 @@
 [![Build Status](https://travis-ci.org/shmilylty/OneForAll.svg?branch=master)](https://travis-ci.org/shmilylty/OneForAll)
 [![codecov](https://codecov.io/gh/shmilylty/OneForAll/branch/master/graph/badge.svg)](https://codecov.io/gh/shmilylty/OneForAll)
 [![Maintainability](https://api.codeclimate.com/v1/badges/1287668a6b4c72af683e/maintainability)](https://codeclimate.com/github/shmilylty/OneForAll/maintainability)
-[![License](https://img.shields.io/github/license/shmilylty/OneForAll)](./LICENSE)
-[![python](https://img.shields.io/badge/python-3.6%20%7C%203.7%20%7C%203.8-blue)](./)
+[![License](https://img.shields.io/github/license/shmilylty/OneForAll)](https://github.com/shmilylty/OneForAll/LICENSE)
+[![python](https://img.shields.io/badge/python-3.6%20%7C%203.7%20%7C%203.8-blue)](https://github.com/shmilylty/OneForAll/)
 [![python](https://img.shields.io/badge/release-v0.0.5-brightgreen)](https://github.com/shmilylty/OneForAll/releases)
 
-👊**OneForAll是一款功能强大的子域收集工具**  📝[English Document](./README.en.md)
+👊**OneForAll是一款功能强大的子域收集工具**  📝[English Document](https://github.com/shmilylty/OneForAll/README.en.md)
 
-![](./images/All_Might.jpg)
+![](https://github.com/shmilylty/OneForAll/images/All_Might.jpg)
 
 ## 🎉项目简介
+
+项目主页：[https://shmilylty.github.io/OneForAll/](https://shmilylty.github.io/OneForAll/)
+
+项目地址：[https://github.com/shmilylty/OneForAll](https://github.com/shmilylty/OneForAll)
 
 在渗透测试中信息收集的重要性不言而喻，子域收集是信息收集中必不可少且非常重要的一环，目前网上也开源了许多子域收集的工具，但是总是存在以下部分问题：
 
@@ -28,7 +32,7 @@
 
 ## 👍功能特性
 
-* **收集能力强大**，详细模块请阅读[收集模块说明](./docs/collection_modules.md)。
+* **收集能力强大**，详细模块请阅读[收集模块说明](https://github.com/shmilylty/OneForAll/docs/collection_modules.md)。
   1. 利用证书透明度收集子域（目前有6个模块：`censys_api`，`certdb_api`，`certspotter`，`crtsh`，`entrust`，`google`）
 
   2. 常规检查收集子域（目前有4个模块：域传送漏洞利用`axfr`，检查跨域策略文件`cdx`，检查HTTPS证书`cert`，检查内容安全策略`csp`，检查robots文件`robots`，检查sitemap文件`sitemap`，后续会添加检查NSEC记录，NSEC3记录等模块）
@@ -46,7 +50,7 @@
 * **支持子域验证**，默认开启子域验证，自动解析子域DNS，自动请求子域获取title和banner，并综合判断子域存活情况。
 * **支持子域接管**，默认开启子域接管风险检查，支持子域自动接管（目前只有Github，有待完善），支持批量检查。
 * **处理功能强大**，发现的子域结果支持自动去除，自动DNS解析，HTTP请求探测，自动筛选出有效子域，拓展子域的Banner信息，最终支持的导出格式有`txt`, `rst`, `csv`, `tsv`, `json`, `yaml`, `html`, `xls`, `xlsx`, `dbf`, `latex`, `ods`。
-* **速度极快**，[收集模块](./oneforall/collect.py)使用多线程调用，[爆破模块](./oneforall/aiobrute.py)使用异步多进程多协程，子域验证中DNS解析和HTTP请求使用异步多协程，多线程检查[子域接管](./oneforall/takeover.py)风险。
+* **速度极快**，[收集模块](https://github.com/shmilylty/OneForAll/oneforall/collect.py)使用多线程调用，[爆破模块](https://github.com/shmilylty/OneForAll/oneforall/aiobrute.py)使用异步多进程多协程，子域验证中DNS解析和HTTP请求使用异步多协程，多线程检查[子域接管](https://github.com/shmilylty/OneForAll/oneforall/takeover.py)风险。
 * **体验良好**，日志和终端输出全使用中文，各大模块都有进度条，异步保存各模块结果。
 
 ## 🚀上手指南
@@ -81,7 +85,7 @@ pip 19.2.2 from C:\Users\shmilylty\AppData\Roaming\Python\Python37\site-packages
 
 2. **安装**
    首先运行以下命令
-   你可以通过pip3安装OneForAll的依赖（如果你熟悉[pipenv](https://docs.pipenv.org/en/latest/)，那么推荐你使用[pipenv安装依赖]((./docs/Installation_dependency.md))），以下为**Windows系统**下使用**pip3**安装依赖的示例：（注意：如果你的Python3安装在系统Program Files目录下，如：`C:\Program Files\Python37`，那么请以管理员身份运行命令提示符cmd执行以下命令！）
+   你可以通过pip3安装OneForAll的依赖（如果你熟悉[pipenv](https://docs.pipenv.org/en/latest/)，那么推荐你使用[pipenv安装依赖]((https://github.com/shmilylty/OneForAll/docs/Installation_dependency.md))），以下为**Windows系统**下使用**pip3**安装依赖的示例：（注意：如果你的Python3安装在系统Program Files目录下，如：`C:\Program Files\Python37`，那么请以管理员身份运行命令提示符cmd执行以下命令！）
 
    ```bash
    cd OneForAll/
@@ -90,7 +94,7 @@ pip 19.2.2 from C:\Users\shmilylty\AppData\Roaming\Python\Python37\site-packages
    cd oneforall/
    python oneforall.py --help
    ```
-其他系统平台的请参考[依赖安装](./docs/installation_dependency.md)，如果在安装依赖过程中发现编译某个依赖库失败时可以参考[Q&A](./docs/Q&A.md)中解决方法，如果还没有解决欢迎加群反馈。
+其他系统平台的请参考[依赖安装](https://github.com/shmilylty/OneForAll/docs/installation_dependency.md)，如果在安装依赖过程中发现编译某个依赖库失败时可以参考[Q&A](https://github.com/shmilylty/OneForAll/docs/Q&A.md)中解决方法，如果还没有解决欢迎加群反馈。
 
 3. **更新**
    ❗注意：如果你之前已经克隆了项目运行之前请**备份**自己修改过的文件到项目外的地方（如**config.py**），然后执行以下命令**更新**项目：
@@ -109,7 +113,7 @@ pip 19.2.2 from C:\Users\shmilylty\AppData\Roaming\Python\Python37\site-packages
     python3 oneforall.py --target example.com run
     ```
 
-    ![Example](./docs/usage_example.svg)
+    ![Example](https://github.com/shmilylty/OneForAll/docs/usage_example.svg)
 
 2. 如果你通过pipenv安装的依赖则使用以下命令运行示例：
    ```bash
@@ -119,13 +123,13 @@ pip 19.2.2 from C:\Users\shmilylty\AppData\Roaming\Python\Python37\site-packages
 
 **🤔使用帮助**
 
-命令行参数只提供了一些常用参数，更多详细的参数配置请见[config.py](./oneforall/config.py)，如果你认为有些参数是命令界面经常使用到的或缺少了什么参数等问题非常欢迎反馈。由于众所周知的原因，如果要使用一些被墙的收集接口请先到[config.py](./oneforall/config.py)配置代理，有些收集模块需要提供API（大多都是可以注册账号免费获取），如果需要使用请到[config.py](./oneforall/config.py)配置API信息，如果不使用请忽略有关报错提示。（详细模块请阅读[收集模块说明](./docs/collection_modules.md)）
+命令行参数只提供了一些常用参数，更多详细的参数配置请见[config.py](https://github.com/shmilylty/OneForAll/oneforall/config.py)，如果你认为有些参数是命令界面经常使用到的或缺少了什么参数等问题非常欢迎反馈。由于众所周知的原因，如果要使用一些被墙的收集接口请先到[config.py](https://github.com/shmilylty/OneForAll/oneforall/config.py)配置代理，有些收集模块需要提供API（大多都是可以注册账号免费获取），如果需要使用请到[config.py](https://github.com/shmilylty/OneForAll/oneforall/config.py)配置API信息，如果不使用请忽略有关报错提示。（详细模块请阅读[收集模块说明](https://github.com/shmilylty/OneForAll/docs/collection_modules.md)）
 
 OneForAll命令行界面基于[Fire](https://github.com/google/python-fire/)实现，有关Fire更高级使用方法请参阅[使用Fire CLI](https://github.com/google/python-fire/blob/master/docs/using-cli.md)，有任何使用疑惑欢迎加群交流。
 
-oneforall.py是主程序入口，oneforall.py里有调用aiobrute.py和dbexport.py，为了方便进行子域爆破和数据库导出独立出了aiobrute.py和dbexport.py，这两个文件可以单独运行，并且所接受参数要更丰富一点。
+[oneforall.py](https://github.com/shmilylty/OneForAll/oneforall/oneforall.py)是主程序入口，oneforall.py可以调用[aiobrute.py](https://github.com/shmilylty/OneForAll/oneforall/aiobrute.py)，[takerover.py](https://github.com/shmilylty/OneForAll/oneforall/takerover.py)及[dbexport.py](https://github.com/shmilylty/OneForAll/oneforall/dbexport.py)等模块，为了方便进行子域爆破独立出了aiobrute.py，为了方便进行子域接管风险检查独立出了takerover.py，为了方便数据库导出独立出了dbexport.py，这些模块都可以单独运行，并且所接受参数要更丰富一点。
 
-❗注意：当你在使用过程中遇到一些问题或者疑惑时，请先到[Issues](https://github.com/shmilylty/OneForAll/issues)里使用搜索找找答案，还可以参阅[常见问题与回答](./docs/Q&A.md)。
+❗注意：当你在使用过程中遇到一些问题或者疑惑时，请先到[Issues](https://github.com/shmilylty/OneForAll/issues)里使用搜索找找答案，还可以参阅[常见问题与回答](https://github.com/shmilylty/OneForAll/docs/Q&A.md)。
 
 1. **oneforall.py使用帮助**
 
@@ -254,7 +258,7 @@ oneforall.py是主程序入口，oneforall.py里有调用aiobrute.py和dbexport.
            终端显示导出数据(默认False)
    ```
 
-3. 其他模块使用请参考[使用帮助](./docs/using_help.md)
+3. 其他模块使用请参考[使用帮助](https://github.com/shmilylty/OneForAll/docs/using_help.md)
 
 ## 👏主要框架
 
@@ -316,7 +320,7 @@ D:.
 - [ ] 子域收集爬虫实现（包括从JS等静态资源文件中收集子域）
 - [ ] 操作强大交互人性的前端界面实现（暂定：Element+Flask）
 
-更多详细信息请阅读[TODO.md](./TODO.md)。
+更多详细信息请阅读[TODO.md](https://github.com/shmilylty/OneForAll/TODO.md)。
 
 ## 🔖版本控制
 
@@ -339,11 +343,11 @@ D:.
 * **Anyone**
   * 工具反馈
 
-*你也可以在[CONTRIBUTORS.md](./CONTRIBUTORS.md)中参看所有参与该项目的开发者。*
+*你也可以在[CONTRIBUTORS.md](https://github.com/shmilylty/OneForAll/CONTRIBUTORS.md)中参看所有参与该项目的开发者。*
 
 ## 📄版权
 
-该项目签署了GPL-3.0授权许可，详情请参阅[LICENSE.md](./LICENSE.md)。
+该项目签署了GPL-3.0授权许可，详情请参阅[LICENSE.md](https://github.com/shmilylty/OneForAll/LICENSE.md)。
 
 ## 😘鸣谢
 
