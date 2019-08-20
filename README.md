@@ -9,7 +9,7 @@
 
 👊**OneForAll是一款功能强大的子域收集工具**  📝[English Document](https://github.com/shmilylty/OneForAll/README.en.md)
 
-![](https://github.com/shmilylty/OneForAll/images/All_Might.jpg)
+![](https://raw.githubusercontent.com/shmilylty/OneForAll/master/images/All_Might.jpg)
 
 ## 🎉项目简介
 
@@ -113,7 +113,7 @@ pip 19.2.2 from C:\Users\shmilylty\AppData\Roaming\Python\Python37\site-packages
     python3 oneforall.py --target example.com run
     ```
 
-    ![Example](https://github.com/shmilylty/OneForAll/docs/usage_example.svg)
+    ![Example](./docs/usage_example.svg)
 
 2. 如果你通过pipenv安装的依赖则使用以下命令运行示例：
    ```bash
