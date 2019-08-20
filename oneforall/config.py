@@ -5,6 +5,8 @@ OneForAll配置
 import os
 import sys
 import pathlib
+
+import requests
 from loguru import logger
 
 # 路径设置
@@ -62,6 +64,7 @@ enable_fake_header = True  # 启用伪造请求头
 request_delay = 1  # 请求时延
 request_timeout = 30  # 请求超时
 request_verify = True  # 请求SSL验证
+requests.packages.urllib3.disable_warnings()  # 禁用安全警告信息
 
 # 搜索模块设置
 enable_recursive_search = False  # 递归搜索子域
