@@ -6,6 +6,12 @@
 * **[Black Star](https://github.com/blackstar24)**
   * 模块贡献
 
-* [**iceMatcha**](https://github.com/iceMatcha)
-  * bug调试
+* **[Echocipher](https://github.com/Echocipher)**
+  * 模块贡献
+
+* **[iceMatcha](https://github.com/iceMatcha)**
+  * 工具测试
+
+* **Anyone**
+  * 工具反馈
 
