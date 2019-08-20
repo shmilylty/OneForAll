@@ -42,10 +42,12 @@
   6. 利用威胁情报平台数据收集子域（目前有5个模块：`riskiq_api`，`threatbook_api`，`threatminer`，`virustotal`，`virustotal_api`该模块还有待添加和完善）
 
   7. 利用搜索引擎发现子域（目前有15个模块：`ask`, `bing_api`, `fofa_api`, `shodan_api`, `yahoo`, `baidu`, `duckduckgo`, `google`, `so`, `yandex`, `bing`, `exalead`, `google_api`, `sogou`, `zoomeye_api`），在搜索模块中除特殊搜索引擎，通用的搜索引擎都支持自动排除搜索，全量搜索，递归搜索。
-
-* **处理功能强大**，发现的子域结果支持自动去除，自动DNS解析，HTTP请求探测，自动移除无效子域，拓展子域的Banner信息，最终支持的导出格式有`csv`, `tsv`, `json`, `yaml`, `html`, `xls`, `xlsx`, `dbf`, `latex`, `ods`。
-
-* **速度极速**，[收集模块](./oneforall/collect.py)使用多线程调用，[爆破模块](./oneforall/aiobrute.py)使用异步多进程多协程，DNS解析和HTTP请求使用异步多协程。
+* **支持子域爆破**，该模块有常规的字典爆破，也有自定义的fuzz模式，支持批量爆破和递归爆破，自动判断泛解析并处理。
+* **支持子域验证**，默认开启子域验证，自动解析子域DNS，自动请求子域获取title和banner，并综合判断子域存活情况。
+* **支持子域接管**，默认开启子域接管风险检查，支持子域自动接管（目前只有Github，有待完善），支持批量检查。
+* **处理功能强大**，发现的子域结果支持自动去除，自动DNS解析，HTTP请求探测，自动筛选出有效子域，拓展子域的Banner信息，最终支持的导出格式有`txt`, `rst`, `csv`, `tsv`, `json`, `yaml`, `html`, `xls`, `xlsx`, `dbf`, `latex`, `ods`。
+* **速度极快**，[收集模块](./oneforall/collect.py)使用多线程调用，[爆破模块](./oneforall/aiobrute.py)使用异步多进程多协程，子域验证中DNS解析和HTTP请求使用异步多协程，多线程检查[子域接管](./oneforall/takeover.py)风险。
+* **体验良好**，日志和终端输出全使用中文，各大模块都有进度条，异步保存各模块结果。
 
 ## 🚀上手指南
 
@@ -88,7 +90,7 @@ pip 19.2.2 from C:\Users\shmilylty\AppData\Roaming\Python\Python37\site-packages
    cd oneforall/
    python oneforall.py --help
    ```
-其他系统平台的请参考[依赖安装](./docs/installation_dependency.md)，如果在安装依赖过程中发现编译某个依赖库失败时可以参考[编译失败解决方法](./docs/building_fail_solution.md)，如果还没有解决欢迎加群反馈。
+其他系统平台的请参考[依赖安装](./docs/installation_dependency.md)，如果在安装依赖过程中发现编译某个依赖库失败时可以参考[Q&A](./docs/Q&A.md)中解决方法，如果还没有解决欢迎加群反馈。
 
 3. **更新**
    ❗注意：如果你之前已经克隆了项目运行之前请**备份**自己修改过的文件到项目外的地方（如**config.py**），然后执行以下命令**更新**项目：
@@ -184,9 +186,9 @@ oneforall.py是主程序入口，oneforall.py里有调用aiobrute.py和dbexport.
 
    关于泛解析问题处理程序首先会访问一个随机的子域判断是否泛解析，如果使用了泛解析则是通过以下判断处理：
    - 一是主要是与泛解析的IP集合和TTL值做对比，可以参考[这篇文章](http://sh3ll.me/archives/201704041222.txt)。
-   - 二是多次解析到同一IP集合次数（默认设置为10，可以在config.py设置大小）
-   - 考虑爆破效率问题目前还没有加上HTTP响应体相似度对比和响应体内容判断
-   经过测试在16核心的CPU，使用16进程64协程，100M带宽的环境下，设置任务分割为50000，跑两百万字典大概10分钟左右跑完，大概3333个子域每秒。
+   - 二是多次解析到同一IP集合次数（默认设置为10，可以在config.py设置大小）。
+   - 三是考虑爆破效率问题目前还没有加上HTTP响应体相似度对比和响应体内容判断，如果有必要后续添加。
+   经过不严谨测试在16核心的CPU，使用16进程64协程，100M带宽的环境下，设置任务分割为50000，跑两百万字典大概10分钟左右跑完，大概3333个子域每秒。
 
    ```bash
    python aiobrute.py --help
@@ -310,10 +312,9 @@ D:.
 
 ## ⌛后续计划
 
-- [ ] 子域收集模块优化
-- [ ] 子域接管功能实现
-- [ ] 子域收集爬虫实现
-- [ ] 操作强大交互人性的前端界面实现
+- [ ] 各模块支持优化和完善
+- [ ] 子域收集爬虫实现（包括从JS等静态资源文件中收集子域）
+- [ ] 操作强大交互人性的前端界面实现（暂定：Element+Flask）
 
 更多详细信息请阅读[TODO.md](./TODO.md)。
 
@@ -321,7 +322,7 @@ D:.
 
 该项目使用[SemVer](https://semver.org/)语言化版本格式进行版本管理，你可以在[Releases](https://github.com/shmilylty/OneForAll/releases)查看可用版本。
 
-## 👨‍💻作者
+## 👨‍💻作者及贡献者
 
 * **[Jing Ling](https://github.com/shmilylty)**
   * 核心开发
@@ -329,8 +330,14 @@ D:.
 * **[Black Star](https://github.com/blackstar24)**
   * 模块贡献
 
-* [**iceMatcha**](https://github.com/iceMatcha)
-  * bug调试
+* **[Echocipher](https://github.com/Echocipher)**
+  * 模块贡献
+
+* **[iceMatcha](https://github.com/iceMatcha)**
+  * 工具测试
+
+* **Anyone**
+  * 工具反馈
 
 *你也可以在[CONTRIBUTORS.md](./CONTRIBUTORS.md)中参看所有参与该项目的开发者。*
 
