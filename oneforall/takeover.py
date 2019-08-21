@@ -74,7 +74,6 @@ class Takeover(Module):
         self.format = format
         self.fingerprints = None
         self.subdomainq = Queue()
-        self.bar = tqdm()
         self.cnames = list()
         self.results = Dataset()
 
@@ -99,26 +98,37 @@ class Takeover(Module):
                 self.results.append([subdomain, cname])
                 break
 
+    def worker(self, subdomain):
+        cname = get_cname(subdomain)
+        if cname is None:
+            return
+        maindomain = get_maindomain(cname)
+        for fingerprint in self.fingerprints:
+            cnames = fingerprint.get('cname')
+            if maindomain not in cnames:
+                continue
+            responses = fingerprint.get('response')
+            self.compare(subdomain, cname, responses)
+
     def check(self):
         while not self.subdomainq.empty():  # 保证域名队列遍历结束后能退出线程
             subdomain = self.subdomainq.get()  # 从队列中获取域名
-            cname = get_cname(subdomain)
-            maindomain = get_maindomain(cname)
-            if cname is None:
-                continue
-            for fingerprint in self.fingerprints:
-                cnames = fingerprint.get('cname')
-                if maindomain not in cnames:
-                    continue
-                responses = fingerprint.get('response')
-                self.compare(subdomain, cname, responses)
+            self.worker(subdomain)
+            self.subdomainq.task_done()
 
     def progress(self):
-        while not self.subdomainq.empty():
-            done = self.bar.total - self.subdomainq.qsize()
-            self.bar.n = done
-            self.bar.update()
-        self.bar.close()
+        # 设置进度
+        bar = tqdm()
+        bar.total = len(self.subdomains)
+        bar.desc = 'Progress'
+        bar.ncols = True
+        while True:
+            done = bar.total - self.subdomainq.qsize()
+            bar.n = done
+            bar.update()
+            if done == bar.total:  # 完成队列中所有子域的检查退出
+                break
+        bar.close()
 
     def run(self):
         start = time.time()
@@ -133,22 +143,15 @@ class Takeover(Module):
             # 创建待检查的子域队列
             for domain in self.subdomains:
                 self.subdomainq.put(domain)
-            # 设置进度
-            self.bar.total = self.subdomainq.qsize()
-            self.bar.desc = 'Progress'
-            self.bar.ncols = True
-            # 进度线程
-            threads = []
-            thread = Thread(target=self.progress, daemon=True)
-            thread.start()
-            threads.append(thread)
             # 检查线程
             for _ in range(self.thread):
-                thread = Thread(target=self.check, daemon=True)
-                thread.start()
-                threads.append(thread)
-            for thread in threads:
-                thread.join()
+                check_thread = Thread(target=self.check, daemon=True)
+                check_thread.start()
+            # 进度线程
+            progress_thread = Thread(target=self.progress, daemon=True)
+            progress_thread.start()
+
+            self.subdomainq.join()
             self.save()
         else:
             logger.log('FATAL', f'获取域名失败')
