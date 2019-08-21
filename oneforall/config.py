@@ -172,6 +172,12 @@ dnsdb_api_key = ''
 # 免费的API有效期只有2天，到期之后可以再次生成，每天可以查询50次。
 ipv4info_api_key = ''
 
+# https://github.com/360netlab/flint
+# passivedns_api_addr默认空使用http://api.passivedns.cn
+# passivedns_api_token可为空
+passivedns_api_addr = ''
+passivedns_api_token = ''
+
 # Github Token可以访问https://github.com/settings/tokens生成,user为Github用户名
 github_api_user = ''
 github_api_token = ''
