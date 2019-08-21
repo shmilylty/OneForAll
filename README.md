@@ -59,7 +59,7 @@
 
 **🐍安装要求**
 
-OneForAll是基于CPython开发的，所以你需要Python环境才能运行，如果你的系统还没有Pythin环境你可以参考[Python 3 安装指南](https://pythonguidecn.readthedocs.io/zh/latest/starting/installation.html#python-3)，理论上Python 3.6，3.7和3.8都可以正常运行OneForAll，**但是**许多测试都是在Python 3.7上进行的，所以**推荐**你使用**Python 3.7**版本运行OneForAll。运行以下命令检查Python和pip3版本：
+OneForAll是基于CPython开发的，所以你需要Python环境才能运行，如果你的系统还没有Python环境你可以参考[Python 3 安装指南](https://pythonguidecn.readthedocs.io/zh/latest/starting/installation.html#python-3)，理论上Python 3.6，3.7和3.8都可以正常运行OneForAll，**但是**许多测试都是在Python 3.7上进行的，所以**推荐**你使用**Python 3.7**版本运行OneForAll。运行以下命令检查Python和pip3版本：
 ```bash
 python -V
 pip3 -V
