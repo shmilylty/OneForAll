@@ -31,9 +31,9 @@ class Domain(object):
         """
         域名导出
 
-        >>>d = Domain('www.example.com')
+        >>> d = Domain('www.example.com')
         <domain.Domain object>
-        >>>d.extract()
+        >>> d.extract()
         ExtractResult(subdomain='www', domain='example', suffix='com')
 
         :return: 导出结果
@@ -50,9 +50,9 @@ class Domain(object):
         """
         获取注册域名
 
-        >>>d = Domain('www.example.com')
+        >>> d = Domain('www.example.com')
         <domain.Domain object>
-        >>>d.registered()
+        >>> d.registered()
         example.com
 
         :return: 注册域名
