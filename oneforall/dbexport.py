@@ -13,7 +13,7 @@ from common import utils
 from common.database import Database
 
 
-def export(table, db=None, valid=None, dpath=None, format='xls', show=False):
+def export(table, db=None, valid=None, dpath=None, format='csv', show=False):
     """
     OneForAll数据库导出模块
 

@@ -17,7 +17,7 @@ class Collect(object):
         self.collect_func = []
         self.path = None
         self.export = export
-        self.format = 'xls'
+        self.format = 'csv'
 
     def get_mod(self):
         """

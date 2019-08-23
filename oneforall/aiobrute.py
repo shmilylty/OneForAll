@@ -160,14 +160,14 @@ class AIOBrute(Module):
     :param str rule:         fuzz模式使用的正则规则(默认使用config.py配置)
     :param bool export:      是否导出爆破结果(默认True)
     :param int valid:        导出子域的有效性(默认None)
-    :param str format:       导出格式(默认xls)
+    :param str format:       导出格式(默认csv)
     :param str path:         导出路径(默认None)
     :param bool show:        终端显示导出数据(默认False)
     """
 
     def __init__(self, target, process=None, coroutine=64, wordlist=None,
                  segment=500, recursive=False, depth=2, namelist=None,
-                 fuzz=False, rule=None, export=True, valid=None, format='xls',
+                 fuzz=False, rule=None, export=True, valid=None, format='csv',
                  path=None, show=False):
         Module.__init__(self)
         self.domains = set()
