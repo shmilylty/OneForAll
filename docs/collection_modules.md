@@ -48,7 +48,7 @@ proxy_partial_module = ['GoogleQuery', 'AskSearch']  # 只代理GoogleQuery和As
       | archivecrawl | 否           | 否          |          |
       | commoncrawl  | 否           | 否          |          |
 
-  4. 利用DNS数据集收集子域（目前有17个模块：`binaryedge_api`, `circl_api`, `hackertarget`, `riddler`, `bufferover`, `dnsdb`, `ipv4info`, `robtex`, `chinaz`, `dnsdb_api`, `netcraft`, `securitytrails_api`, `chinaz_api`, `dnsdumpster`, `ptrarchive`, `sitedossier`,`threatcrowd`）
+  4. 利用DNS数据集收集子域（目前有18个模块：`binaryedge_api`, `circl_api`, `hackertarget`, `riddler`, `bufferover`, `dnsdb`, `ipv4info`, `robtex`, `chinaz`, `dnsdb_api`, `netcraft`, `securitytrails_api`, `chinaz_api`, `dnsdumpster`, `passivedns_api`,  `ptrarchive`, `sitedossier`,`threatcrowd`）
 
       | 模块名称           | 是否需要代理 | 是否需要API | 其他说明                                           |
       | ------------------ | ------------ | ----------- | -------------------------------------------------- |
@@ -63,6 +63,7 @@ proxy_partial_module = ['GoogleQuery', 'AskSearch']  # 只代理GoogleQuery和As
       | hackertarget       | 否           | 否          |                                                    |
       | ipv4info           | 否           | 是          | API使用和申请见[config.py](../oneforall/config.py) |
       | netcraft           | 否           | 否          |                                                    |
+      | passivedns_api     | 否           | 是          | API使用和申请见[config.py](../oneforall/config.py) |
       | ptrarchive         | 否           | 是          | API使用和申请见[config.py](../oneforall/config.py) |
       | riddler            | 否           | 是          | API使用和申请见[config.py](../oneforall/config.py) |
       | robtex             | 否           | 否          |                                                    |
@@ -83,24 +84,25 @@ proxy_partial_module = ['GoogleQuery', 'AskSearch']  # 只代理GoogleQuery和As
       | threatminer    | 否           | 否          |                                                    |
       | virustotal     | 否           | 否          |                                                    |
       | virustotal_api | 否           | 是          | API使用和申请见[config.py](../oneforall/config.py) |
-  7. 利用搜索引擎发现子域（目前有15个模块：`ask`, `bing_api`, `fofa_api`, `shodan_api`, `yahoo`, `baidu`, `duckduckgo`, `google`, `so`, `yandex`, `bing`, `exalead`, `google_api`, `sogou`, `zoomeye_api`）
+  7. 利用搜索引擎发现子域（目前有16个模块：`ask`, `bing_api`, `fofa_api`, `shodan_api`, `yahoo`, `baidu`, `duckduckgo`, `github`, `google`, `so`, `yandex`, `bing`, `exalead`, `google_api`, `sogou`, `zoomeye_api`）
 
      除特殊搜索引擎，通用的搜索引擎都支持自动排除搜索，全量搜索，递归搜索。
 
-     | 模块        | 是否需要代理           | 是否需要API | 其他说明                                           |
-     | ----------- | ---------------------- | ----------- | -------------------------------------------------- |
-     | ask         | 是                     | 否          |                                                    |
-     | baidu       | 否                     | 否          |                                                    |
-     | bing        | 否                     | 否          |                                                    |
-     | bing_api    | 否                     | 是          | API使用和申请见[config.py](../oneforall/config.py) |
-     | duckduckgo  | 是                     | 否          |                                                    |
-     | exalead     | 否，最好使用国外代理。 | 否          |                                                    |
-     | fofa_api    | 否                     | 是          | API使用和申请见[config.py](../oneforall/config.py) |
-     | google      | 是                     | 否          |                                                    |
-     | google_api  | 是                     | 是          | API使用和申请见[config.py](../oneforall/config.py) |
-     | shodan_api  | 否，最好使用国外代理。 | 是          | API使用和申请见[config.py](../oneforall/config.py) |
-     | so          | 否                     | 否          |                                                    |
-     | sogou       | 否                     | 否          |                                                    |
-     | yahoo       | 是                     | 否          |                                                    |
-     | yandex      | 是                     | 否          |                                                    |
-     | zoomeye_api | 否                     | 是          | API使用和申请见[config.py](../oneforall/config.py) |
+     | 模块        | 是否需要代理           | 是否需要API | 其他说明                                                    |
+     | ----------- | ---------------------- | ----------- | ----------------------------------------------------------- |
+     | ask         | 是                     | 否          |                                                             |
+     | baidu       | 否                     | 否          |                                                             |
+     | bing        | 否                     | 否          |                                                             |
+     | bing_api    | 否                     | 是          | API使用和申请见[config.py](../oneforall/config.py)          |
+     | duckduckgo  | 是                     | 否          |                                                             |
+     | exalead     | 否，最好使用国外代理。 | 否          |                                                             |
+     | fofa_api    | 否                     | 是          | API使用和申请见[config.py](../oneforall/config.py)          |
+     | github      | 否                     | 否          | 在[config.py](../oneforall/config.py)设置Github邮件名和密码 |
+     | google      | 是                     | 否          |                                                             |
+     | google_api  | 是                     | 是          | API使用和申请见[config.py](../oneforall/config.py)          |
+     | shodan_api  | 否，最好使用国外代理。 | 是          | API使用和申请见[config.py](../oneforall/config.py)          |
+     | so          | 否                     | 否          |                                                             |
+     | sogou       | 否                     | 否          |                                                             |
+     | yahoo       | 是                     | 否          |                                                             |
+     | yandex      | 是                     | 否          |                                                             |
+     | zoomeye_api | 否                     | 是          | API使用和申请见[config.py](../oneforall/config.py)          |
