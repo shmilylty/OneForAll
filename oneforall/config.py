@@ -181,6 +181,9 @@ passivedns_api_token = ''
 # Github Token可以访问https://github.com/settings/tokens生成,user为Github用户名
 github_api_user = ''
 github_api_token = ''
+# github子域收集模块使用
+github_email = ''
+github_password = ''
 
 subdomains_common = {'i', 'w', 'm', 'en', 'us', 'zh', 'w3', 'app', 'bbs',
                      'web', 'www', 'job', 'docs', 'news', 'blog', 'data',
