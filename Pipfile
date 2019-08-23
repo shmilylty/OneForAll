@@ -24,6 +24,7 @@ pysocks = "*"
 cloudscraper = "*"
 js2py = "*"
 tablib = "*"
+brotlipy = "*"
 
 [requires]
 python_version = "3.7"
