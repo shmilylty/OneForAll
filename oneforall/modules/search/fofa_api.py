@@ -22,7 +22,7 @@ class FoFa(Search):
         发送搜索请求并做子域匹配
         """
         self.page_num = 1
-        subdomain_encode = f'subdomain={self.domain}'.encode('utf-8')
+        subdomain_encode = f'domain={self.domain}'.encode('utf-8')
         query_data = base64.b64encode(subdomain_encode)
         while True:
             time.sleep(self.delay)
@@ -31,14 +31,19 @@ class FoFa(Search):
             query = {'email': self.email,
                      'key': self.key,
                      'qbase64': query_data,
-                     'page': self.page_num}
+                     'page': self.page_num,
+                     'size': 10000}
             resp = self.get(self.addr, query)
             if not resp:
                 return
-            subdomains = self.match(self.domain, resp.text)
+            resp_json = resp.json()
+            subdomains = self.match(self.domain, str(resp_json))
             if not subdomains:  # 搜索没有发现子域名则停止搜索
                 break
             self.subdomains = self.subdomains.union(subdomains)
+            size = resp_json.get('size')
+            if size < 10000:
+                break
             self.page_num += 1
 
     def run(self):
@@ -66,4 +71,4 @@ def do(domain):  # 统一入口名字 方便多线程调用
 
 
 if __name__ == '__main__':
-    do('example.com')
+    do('bitterwinter.org')
