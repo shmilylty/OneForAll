@@ -29,6 +29,7 @@ assignees: shmilylty
 **运行环境**
  - 系统：[例如Windows 10 x64]
  - Python版本：[例如3.7.1]
+- OneForAll版本：[例如0.0.6]
 
 
 **报错文本**
