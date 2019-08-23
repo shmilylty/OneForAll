@@ -68,11 +68,11 @@ class OneForAll(object):
     :param bool verify: 验证子域有效性(默认True)
     :param str port:    请求验证的端口范围(默认medium)
     :param int valid:   导出子域的有效性(默认1)
-    :param str format:  导出格式(默认xls)
+    :param str format:  导出格式(默认csv)
     :param bool show:   终端显示导出数据(默认False)
     """
     def __init__(self, target, brute=None, verify=None, port='medium', valid=1,
-                 format='xls', takeover=True, show=False):
+                 format='csv', takeover=True, show=False):
         self.target = target
         self.port = port
         self.domains = set()

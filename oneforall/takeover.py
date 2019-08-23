@@ -60,10 +60,10 @@ class Takeover(Module):
 
     :param str target:  单个子域或者每行一个子域的文件路径(必需参数)
     :param int thread:  线程数(默认100)
-    :param str format:  导出格式(默认xls)
+    :param str format:  导出格式(默认csv)
     :param str dpath:   导出目录(默认None)
     """
-    def __init__(self, target, thread=100, dpath=None, format='xls'):
+    def __init__(self, target, thread=100, dpath=None, format='csv'):
         Module.__init__(self)
         self.subdomains = set()
         self.module = 'Check'
