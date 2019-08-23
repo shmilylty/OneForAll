@@ -22,7 +22,6 @@ class Github(Query):
             self.proxy = self.get_proxy(self.source)
             params = {'p': page_num, 'q': f'"{self.domain}"', 'type': 'Code'}
             resp = self.get(url=self.addr, params=params)
-            print(resp.url)
             if not resp:
                 return
             subdomains = self.match(self.domain, resp.text)
