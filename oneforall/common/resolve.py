@@ -69,7 +69,7 @@ def resolve_callback(future, index, datas):
     """
     try:
         result = future.result()
-    except Exception as e:
+    except BaseException as e:
         datas[index]['ips'] = str(e.args)
         datas[index]['valid'] = 0
     else:
