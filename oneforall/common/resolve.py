@@ -51,12 +51,20 @@ async def aiodns_query_a(hostname, semaphore=None):
     """
     if semaphore is None:
         resolver = aiodns_resolver()
-        answers = await resolver.query(hostname, 'A')
+        try:
+            answers = await resolver.query(hostname, 'A')
+        except BaseException as e:
+            logger.log('DEBUG', e.args)
+            answers = None
         return hostname, answers
     else:
         async with semaphore:
             resolver = aiodns_resolver()
-            answers = await resolver.query(hostname, 'A')
+            try:
+                answers = await resolver.query(hostname, 'A')
+            except BaseException as e:
+                logger.log('DEBUG', e.args)
+                answers = None
             return hostname, answers
 
 

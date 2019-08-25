@@ -211,6 +211,8 @@ class AIOBrute(Module):
 
     def deal_results(self, results):
         for result in results:
+            if result is None:
+                continue
             if isinstance(result, Exception):
                 # logger.log('DEBUG', f'爆破{subdomain}时出错 {str(answers)}')
                 continue
