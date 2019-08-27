@@ -78,6 +78,41 @@ async def fetch(session, url, semaphore):
         return resp, text
 
 
+def get_title(markup):
+    """
+    获取标题
+
+    :param markup: html标签
+    :return: 标题
+    """
+    soup = BeautifulSoup(markup, 'lxml')
+
+    title = soup.title
+    if title:
+        return title.text.strip()
+
+    h1 = soup.h1
+    if h1:
+        return h1.text.strip()
+
+    h2 = soup.h2
+    if h2:
+        return h2.text.strip()
+
+    desc = soup.find('meta', attrs={'name': 'description'})
+    if desc:
+        return desc['content'].strip()
+
+    word = soup.find('meta', attrs={'name': 'keywords'})
+    if word:
+        return word['content'].strip()
+
+    if len(markup) <= 200:
+        return markup.strip()
+
+    return soup.text.strip()
+
+
 def request_callback(future, index, datas):
     try:
         result = future.result()
@@ -98,20 +133,7 @@ def request_callback(future, index, datas):
                           'Via': headers.get('Via'),
                           'X-Powered-By': headers.get('X-Powered-By')})
             datas[index]['banner'] = banner
-            soup = BeautifulSoup(text, 'lxml')
-            title = soup.title
-            desc = soup.find('meta', attrs={'name': 'description'})
-            word = soup.find('meta', attrs={'name': 'keywords'})
-            if title:
-                datas[index]['title'] = title.text.strip()
-            elif desc:
-                datas[index]['title'] = desc['content'].strip()
-            elif word:
-                datas[index]['title'] = word['content'].strip()
-            elif len(text) <= 200:
-                datas[index]['title'] = text.strip()
-            else:
-                datas[index]['title'] = soup.text.strip()
+            datas[index]['title'] = get_title(text)
 
 
 async def bulk_get_request(datas, port):
