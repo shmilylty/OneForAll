@@ -327,24 +327,21 @@ D:.
 
 该项目使用[SemVer](https://semver.org/)语言化版本格式进行版本管理，你可以在[Releases](https://github.com/shmilylty/OneForAll/releases)查看可用版本。
 
-## 👨‍💻作者及贡献者
+## 👨‍💻贡献者
 
 * **[Jing Ling](https://github.com/shmilylty)**
   * 核心开发
 
-* **[Black Star](https://github.com/blackstar24)**
+* **[Black Star](https://github.com/blackstar24)**，**[Echocipher](https://github.com/Echocipher)**
   * 模块贡献
 
-* **[Echocipher](https://github.com/Echocipher)**
-  * 模块贡献
-
-* **[iceMatcha](https://github.com/iceMatcha)**
+* **[iceMatcha](https://github.com/iceMatcha)**，**[mikuKeeper](https://github.com/mikuKeeper)**
   * 工具测试
 
 * **Anyone**
   * 工具反馈
 
-*你也可以在[CONTRIBUTORS.md](https://github.com/shmilylty/OneForAll/tree/master/CONTRIBUTORS.md)中参看所有参与该项目的开发者。*
+你可以在[CONTRIBUTORS.md](https://github.com/shmilylty/OneForAll/tree/master/CONTRIBUTORS.md)中参看所有参与该项目的开发者。
 
 ## 📄版权
 
