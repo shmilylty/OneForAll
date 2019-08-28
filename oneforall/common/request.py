@@ -74,7 +74,7 @@ async def fetch(session, url, semaphore):
             try:
                 text = await resp.text(encoding='gb2312')  # 先尝试用fb2312解码
             except UnicodeDecodeError:
-                text = await resp.text()
+                text = await resp.text(errors='ignore')
         return resp, text
 
 
