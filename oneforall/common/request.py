@@ -110,7 +110,11 @@ def get_title(markup):
     if len(markup) <= 200:
         return markup.strip()
 
-    return soup.text.strip()
+    text = soup.text
+    if len(text) <= 200:
+        return text.strip()
+
+    return None
 
 
 def request_callback(future, index, datas):
