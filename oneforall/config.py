@@ -158,8 +158,8 @@ virustotal_api_key = ''
 zoomeye_api_username = ''
 zoomeye_api_password = ''
 
-# Certdb可以免费注册获取API: https://spyse.com/
-certdb_api_token = ''
+# Spyse可以免费注册获取API: https://spyse.com/
+spyse_api_token = ''
 
 # https://www.circl.lu/services/passive-dns/
 circl_api_username = ''

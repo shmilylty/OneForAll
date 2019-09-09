@@ -24,11 +24,11 @@ proxy_partial_module = ['GoogleQuery', 'AskSearch']  # 只代理GoogleQuery和As
       | 模块名称    | 是否需要代理 | 是否需要API | 其他说明                                           |
       | ----------- | ------------ | ----------- | -------------------------------------------------- |
       | censys_api  | 否           | 是          | API使用和申请见[config.py](../oneforall/config.py) |
-      | certdb_api  | 否           | 是          | API使用和申请见[config.py](../oneforall/config.py) |
       | certspotter | 否           | 否          |                                                    |
       | crtsh       | 否           | 否          |                                                    |
       | entrust     | 否           | 否          |                                                    |
       | google      | 是           | 否          |                                                    |
+      | spyse_api   | 否           | 是          | API使用和申请见[config.py](../oneforall/config.py) |
 
 
   2. 常规检查收集子域（目前有4个模块：域传送漏洞利用`axfr`，检查跨域策略文件`cdx`，检查HTTPS证书`cert`，检查内容安全策略`csp`，后续会添加检查NSEC记录，NSEC3记录等模块）

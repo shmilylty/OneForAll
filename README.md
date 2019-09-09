@@ -33,7 +33,7 @@
 ## 👍功能特性
 
 * **收集能力强大**，详细模块请阅读[收集模块说明](https://github.com/shmilylty/OneForAll/tree/master/docs/collection_modules.md)。
-  1. 利用证书透明度收集子域（目前有6个模块：`censys_api`，`certdb_api`，`certspotter`，`crtsh`，`entrust`，`google`）
+  1. 利用证书透明度收集子域（目前有6个模块：`censys_api`，`spyse_api`，`certspotter`，`crtsh`，`entrust`，`google`）
 
   2. 常规检查收集子域（目前有4个模块：域传送漏洞利用`axfr`，检查跨域策略文件`cdx`，检查HTTPS证书`cert`，检查内容安全策略`csp`，检查robots文件`robots`，检查sitemap文件`sitemap`，后续会添加检查NSEC记录，NSEC3记录等模块）
 
