@@ -1,5 +1,6 @@
 import config
 from common.query import Query
+from config import logger
 
 
 class IPv4InfoAPI(Query):
@@ -26,14 +27,18 @@ class IPv4InfoAPI(Query):
                 return
             if resp.status_code != 200:
                 break  # 请求不正常通常网络是有问题，不再继续请求下去
-            data = resp.json()
-            subdomains = self.match(self.domain, str(data))
+            try:
+                json = resp.json()
+            except Exception as e:
+                logger.log('DEBUG', e.args)
+                break
+            subdomains = self.match(self.domain, str(json))
             if not subdomains:
                 break
             # 合并搜索子域名搜索结果
             self.subdomains = self.subdomains.union(subdomains)
             # 不直接使用subdomains是因为可能里面会出现不符合标准的子域名
-            subdomains = data.get('Subdomains')
+            subdomains = json.get('Subdomains')
             if subdomains:
                 # ipv4info子域查询接口每次最多返回300个 用来判断是否还有下一页
                 if len(subdomains) < 300:
