@@ -80,7 +80,6 @@ class Github(Search):
                 break
             soup = BeautifulSoup(resp.text, 'lxml')
             subdomains = self.match(self.domain, soup.text)
-            print(subdomains)
             self.subdomains = self.subdomains.union(subdomains)
             if not subdomains:
                 break
