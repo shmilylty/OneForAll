@@ -24,19 +24,19 @@ class CensysAPI(Query):
         data = {
             'query': f'parsed.names: {self.domain}',
             'page': 1,
-            'fields': ['parsed.subject_dn'],
+            'fields': ['parsed.subject_dn', 'parsed.names'],
             'flatten': True}
         resp = self.post(self.addr, json=data, auth=(self.id, self.secret))
         if not resp:
             return
-        data = resp.json()
-        status = data.get('status')
+        json = resp.json()
+        status = json.get('status')
         if status != 'ok':
             logger.log('ALERT', status)
             return
-        subdomains = self.match(self.domain, str(data))
+        subdomains = self.match(self.domain, str(json))
         self.subdomains = self.subdomains.union(subdomains)
-        pages = data.get('metadata').get('pages')
+        pages = json.get('metadata').get('pages')
         for page in range(2, pages + 1):
             time.sleep(self.delay)
             data['page'] = page
