@@ -1,5 +1,5 @@
 aiodns==2.0.0
-aiohttp==3.5.4
+aiohttp==3.6.1
 aiomultiprocess==0.6.1
 asn1crypto==0.24.0
 async-timeout==3.0.1
@@ -10,10 +10,10 @@ Brotli==1.0.7
 brotlipy==0.7.0
 bs4==0.0.1
 cchardet==2.1.4
-certifi==2019.6.16
+certifi==2019.9.11
 cffi==1.12.3
 chardet==3.0.4
-cloudscraper==1.1.40
+cloudscraper==1.1.43
 colorama==0.4.1
 cryptography==2.7
 defusedxml==0.6.0
@@ -34,7 +34,7 @@ pycares==3.0.0
 pycparser==2.19
 pyjsparser==2.7.1
 pyOpenSSL==19.0.0
-PySocks==1.7.0
+PySocks==1.7.1
 pytz==2019.2
 PyYAML==5.1.2
 records==0.5.3
@@ -43,13 +43,13 @@ requests-file==1.4.3
 requests-toolbelt==0.9.1
 six==1.12.0
 soupsieve==1.9.3
-SQLAlchemy==1.3.7
+SQLAlchemy==1.3.8
 tablib==0.13.0
 termcolor==1.1.0
 tldextract==2.2.1
-tqdm==4.34.0
+tqdm==4.36.1
 tzlocal==2.0.0
-urllib3==1.25.3
+urllib3==1.25.6
 win32-setctime==1.0.1
 xlrd==1.2.0
 xlwt==1.3.0
