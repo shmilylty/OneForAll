@@ -70,22 +70,21 @@ class Database(object):
         :param list results: 结果列表
         :param str module_name: 模块名
         """
-        logger.log('DEBUG', f'正在将{module_name}模块发现{table_name}的'
-                            f'子域结果存入数据库')
+        logger.log('DEBUG', f'正在将{module_name}模块发现{table_name}的子域'
+                   '结果存入数据库')
         table_name = table_name.replace('.', '_')
         if results:
-            for result in results:
-                try:
-                    self.conn.bulk_query(
-                        f'insert into "{table_name}" (id, url, subdomain, '
-                        f'port, ips, status, reason, valid, title, banner, '
-                        f'module, source, elapsed, count)'
-                        f'values (:id, :url, :subdomain, :port, :ips, :status,'
-                        f':reason, :valid, :title, :banner, :module, :source,'
-                        f':elapsed, :count)',
-                        result)
-                except Exception as e:
-                    logger.log('ERROR', e)
+            try:
+                self.conn.bulk_query(
+                    f'insert into "{table_name}" ('
+                    f'id, url, subdomain, port, ips, status, reason, valid,'
+                    f'title, banner, module, source, elapsed, count)'
+                    f'values (:id, :url, :subdomain, :port, :ips, :status,'
+                    f':reason, :valid, :title, :banner, :module, :source,'
+                    f':elapsed, :count)',
+                    results)
+            except Exception as e:
+                logger.log('ERROR', e)
 
     def copy_table(self, table_name, bak_table_name):
         """
