@@ -47,7 +47,7 @@ At present, OneForAll is still under development, there must be a lot of problem
 
   7.  Use search engines to discover subdomains (there are currently 16 modules: `ask`, `bing_ api`, `fofa_ api`, `shodan_ api`, `yahoo`, `baidu`, `duckduckgo`, `github`, `google`, `so`, `yandex`, `bing`, `exalead`, `google_ api`, `sogou`, `zoomeye_ api`), except for special search engines in the search module. General search engines support automatic exclusion of search, full search, recursive search. 
 * **Support subdomain blasting**，This module has both conventional dictionary blasting and custom fuzz mode. It supports batch blasting and recursive blasting, and automatically judges pan-parsing and processing.
-* **Support sub-domain verification**，default to enable subdomain verification, automatically resolve sub-domain DNS, automatically request subdomain to obtain title and banner, and comprehensively determine subdomain survival.
+* **Support subdmain verification**，default to enable subdomain verification, automatically resolve subdomain DNS, automatically request subdomain to obtain title and banner, and comprehensively determine subdomain survival.
 * **Support subdomain takeover**，By default, subdomain takeover risk checking is enabled. Automatic subdomain takeover is supported (only Github, remains to be improved at present), and batch inspection is supported.
 * **Powerful processing feature**，The found subdomain results support automatic removal, automatic DNS parsing, HTTP request detection, automatic filtering of valid subdomains, and expansion of Banner information for subdomains. The final supported export formats are `txt`, `rst`, `csv`, `tsv`, `json`, `yaml`, `html`, `xls`, `xlsx`, `dbf`, `latex`, `ods`.
 * **Very fast**，[collection module](https://github.com/shmilylty/OneForAll/tree/master/oneforall//collect.py) uses multithreaded calls, [blasting module](https://github.com/shmilylty/OneForAll/tree/master/oneforall/aiobrute.py) uses asynchronous multiprocess and multiprogramming, and DNS parsing and HTTP requests use asynchronous multiprogramming in subdomain verification. Multithreaded check [subdomain takeover](https://github.com/shmilylty/OneForAll/tree/master/oneforall/takeover.py) risk.
@@ -84,7 +84,7 @@ pip 19.2.2 from C:\Users\shmilylty\AppData\Roaming\Python\Python37\site-packages
    ```
 
 2. **Installation**
-   You can install OneForAll dependencies via pip3 (if you are familiar with [pipenv](https://docs.pipenv.org/en/latest/), then it is recommended that you use [pipenv install dependencies]((https://github.com) /shmilylty/OneForAll/tree/master/docs/Installation_dependency.md))), the following is an example of using **pip3** to install dependencies under **Windows system**: (Note: If your Python3 is installed in the system Program Files In the directory, such as: `C:\Program Files\Python37`, then run the command prompt cmd as an administrator to execute the following command!)
+   You can install OneForAll dependencies via pip3 (if you are familiar with [pipenv](https://docs.pipenv.org/en/latest/), then it is recommended that you use [pipenv install dependencies](https://github.com/shmilylty/OneForAll/tree/master/docs/Installation_dependency.md), the following is an example of using **pip3** to install dependencies under **Windows system**: (Note: If your Python3 is installed in the system Program Files In the directory, such as: `C:\Program Files\Python37`, then run the command prompt cmd as an administrator to execute the following command!)
 ```bash
    cd OneForAll/
    python -m pip install --user  -U pip setuptools wheel -i https://mirrors.aliyun.com/pypi/simple/
@@ -123,11 +123,11 @@ pip 19.2.2 from C:\Users\shmilylty\AppData\Roaming\Python\Python37\site-packages
 
 The command line parameters only provide some common parameters. For more detailed parameter configuration, please see [config.py](https://github.com/shmilylty/OneForAll/tree/master/oneforall/config.py) if you think Some parameters are frequently used in the command interface or missing parameters. Feedback is welcome. For well-known reasons, if you want to use some of the wall's collection interface, please go to [config.py](https://github.com/shmilylty/OneForAll/tree/master/oneforall/config.py) to configure the proxy, some collection Modules need to provide APIs (most of which are freely available for registered accounts). If you need to use them, please go to [config.py](https://github.com/shmilylty/OneForAll/tree/master/oneforall/config.py) to configure the API. Information, if not used, please ignore the error message. (For detailed modules, please read [collection module description](https://github.com/shmilylty/OneForAll/tree/master/docs/collection_modules.md))
 
-The OneForAll command line interface is based on [Fire](https://github.com/google/python-fire/). For more advanced usage of Fire, please refer to [Using the Fire CLI](https://github.com/google/ Python-fire/blob/master/docs/using-cli.md), if you have any doubts during the use, please feel free to give me feedback.
+The OneForAll command line interface is based on [Fire](https://github.com/google/python-fire/). For more advanced usage of Fire, please refer to [using the Fire CLI](https://github.com/google/Python-fire/blob/master/docs/using-cli.md), if you have any doubts during the use, please feel free to give me feedback.
 
-[oneforall.py](https://github.com/shmilylty/OneForAll/tree/master/oneforall/oneforall.py) is the main program entry, and oneforall.py can call [aiobrute.py](https://github. Com/shmilylty/OneForAll/tree/master/oneforall/aiobrute.py), [takerover.py](https://github.com/shmilylty/OneForAll/tree/master/oneforall/takerover.py) and [dbexport.py ](https://github.com/shmilylty/OneForAll/tree/master/oneforall/dbexport.py) and other modules, in order to facilitate the sub-field blasting, aiobrute.py is isolated independently, in order to facilitate the sub-domain takeover risk check independently takeover.py, in order to facilitate the database export independently dbexport.py, these modules can be run separately, and the parameters accepted are more abundant.
+[oneforall.py](https://github.com/shmilylty/OneForAll/tree/master/oneforall/oneforall.py) is the main program entry, and oneforall.py can call [aiobrute.py](https://github.com/shmilylty/OneForAll/tree/master/oneforall/aiobrute.py), [takerover.py](https://github.com/shmilylty/OneForAll/tree/master/oneforall/takerover.py) and [dbexport.py ](https://github.com/shmilylty/OneForAll/tree/master/oneforall/dbexport.py) and other modules, in order to facilitate the sub-field blasting, aiobrute.py is isolated independently, in order to facilitate the subdomain takeover risk check independently takeover.py, in order to facilitate the database export independently dbexport.py, these modules can be run separately, and the parameters accepted are more abundant.
 
-❗ Note: When you encounter some problems or doubts during use, please use [Issues](https://github.com/shmilylty/OneForAll/issues) to search for answers. Also see [Common Questions and Answers](https://github.com/shmilylty/OneForAll/tree/master/docs/Q&A.md).
+❗ Note: When you encounter some problems or doubts during use, please use [Issues](https://github.com/shmilylty/OneForAll/issues) to search for answers. Also see [Q&A](https://github.com/shmilylty/OneForAll/tree/master/docs/Q&A.md).
 
 1. **oneforall.py help**
 
@@ -156,11 +156,17 @@ The OneForAll command line interface is based on [Fire](https://github.com/googl
            python3 oneforall.py --target example.com --show True run
    
        Note:
-           Parameter valid optional value 1, 0, none indicates that the export is valid, invalid, and all subdomains, respectively.
-           Parameter verify for True attempts to resolve and request the subdomain and tag the validity of the subdomain based on the result.
-           Parameter port have optional values 'small', 'medium', 'large', 'xlarge', See config.py configuration for details.
-           Parameter format have optional values 'txt', 'rst', 'csv', 'tsv', 'json', 'yaml', 'html', 'jira', 'xls', 'xlsx', 'dbf', 'latex', 'ods'.
-           If the parameter path is None, the appropriate file is generated in the project result directory based on the format parameter and the domain name.
+           Parameter valid optional value 1, 0, none indicates that the export is 
+           valid, invalid, and all subdomains, respectively.
+           Parameter verify for True attempts to resolve and request the subdomain 
+           and tag the validity of the subdomain based on the result.
+           Parameter port have optional values 'small', 'medium', 'large', 'xlarge', 
+           See config.py configuration for details.
+           Parameter format have optional values 'txt', 'rst', 'csv', 'tsv', 'json', 
+           'yaml', 'html', 'jira', 'xls', 'xlsx', 'dbf', 'latex', 'ods'.
+           If the parameter path is None, the appropriate file is generated in the 
+           project result directory based on the format parameter and the domain 
+           name.
    
    ARGUMENTS
        TARGET
@@ -170,7 +176,7 @@ The OneForAll command line interface is based on [Fire](https://github.com/googl
        --brute=BRUTE
            Use blasting module (default False)
        --verify=VERIFY
-           Verify the validity of the subdomain (default True)
+           Verify the validity of subdomains (default True)
        --port=PORT
            Port range for request authentication (default medium)
        --valid=VALID
@@ -192,7 +198,7 @@ The OneForAll command line interface is based on [Fire](https://github.com/googl
 
    - Third, considering the blasting efficiency, there is no HTTP response volume similarity comparison and response volume content judgment,  this function has not been implemented yet, and will be implemented if necessary.
 
-   After not rigorous testing, in the 16-core CPU, using 16 processes 64 coroutines, 100M network bandwidth environment, set the task to be divided into 50000, run two million dictionaries about 10 minutes to run, about 3333 sub-domains per second.
+   After not rigorous testing, in the 16-core CPU, using 16 processes 64 coroutines, 100M network bandwidth environment, set the task to be divided into 50000, run two million dictionaries about 10 minutes to run, about 3333 subdomains per second.
 
    ```bash
    python aiobrute.py --help
@@ -292,7 +298,7 @@ D:.
 |       collection_modules.md collection module description
 +---images
 \---oneforall
-    |   aiobrute.py   Asynchronous multi-process multi-correlation sub-domain blasting module, can be run separately
+    |   aiobrute.py   Asynchronous multi-process multi-correlation subdomain blasting module, can be run separately
     |   collect.py    Upper layer call of each collection module
     |   config.py     Configuration file
     |   dbexport.py   Database export module, can be run separately
@@ -305,7 +311,7 @@ D:.
     |       next_subdomains.txt     Next level subdomain dictionary
     |       public_suffix_list.dat  Top-level domain name suffix
     |       srv_names.json          Common SRV record prefix name
-    |       subdomains.txt          Common Dictionary of Sub-domain blasting
+    |       subdomains.txt          Common Dictionary of subdomain blasting
     |
     \---modules 
         +---certificates     Using certificate transparency to collect subdomain
