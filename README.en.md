@@ -15,7 +15,7 @@
 
 Project home：[https://shmilylty.github.io/OneForAll/](https://shmilylty.github.io/OneForAll/)
 
-Project  address ：[https://github.com/shmilylty/OneForAll](https://github.com/shmilylty/OneForAll)
+Project address ：[https://github.com/shmilylty/OneForAll](https://github.com/shmilylty/OneForAll)
 
 The importance of information collection in penetration testing is self-evident. Subdomain collection is an essential and very important part of information collection. At present, there are many open source tools for subdomain collection on the Internet, but there are always some of the following problems:
 
@@ -28,11 +28,11 @@ The importance of information collection in penetration testing is self-evident.
 
 In order to solve the above pain points, the term OneForAll comes from one of my favorite Japanese cartoons,《[My Hero Academia](https://manhua.fzdm.com/131/)》.It's a top personality that has grown from generation to generation, and now [TV series](https://www.bilibili.com/bangumi/media/md7452/)has been updated to season 4. As its name suggests, I want OneForAll to be a collection of 100 strong, powerful and fast subdomains that collect the ultimate artifact 🔨.
 
-At present, OneForAll is still under development, there must be a lot of problems and areas for improvement. Welcome to submit [Issues](https://github.com/shmilylty/OneForAll/issues) or [PR](https://github.com/shmilylty/OneForAll/pulls)，If you like, give it to a little star ✨，At present, there is a special QQ group for OneForAll communication and feedback: 👨‍👨‍👦‍👦：:[**824414244**](//shang.qq.com/wpa/qunwpa?idkey=125d3689b60445cdbb11e4ddff38036b7f6f2abbf4f7957df5dddba81aa90771)，You can also email me 📧[admin@hackfun.org] or tweet to me  https://twitter.com/jinglingbiaodi 。
+At present, OneForAll is still under development, there must be a lot of problems and areas for improvement. Welcome to submit [Issues](https://github.com/shmilylty/OneForAll/issues) or [PR](https://github.com/shmilylty/OneForAll/pulls)，If you like, give it to a little star ✨，At present, there is a special QQ group for OneForAll communication and feedback: 👨‍👨‍👦‍👦：:[**824414244**](//shang.qq.com/wpa/qunwpa?idkey=125d3689b60445cdbb11e4ddff38036b7f6f2abbf4f7957df5dddba81aa90771)，You can also 📧[email](mailto://admin@hackfun.org) or [tweet](https://twitter.com/jinglingbiaodi) to me .
 
 ## 👍Features
 
-* **powerful collection capability**，For more information, please see [collection module description](https://github.com/shmilylty/OneForAll/tree/master/docs/collection_modules.md).
+* **Powerful collection capability**，For more information, please see [collection module description](https://github.com/shmilylty/OneForAll/tree/master/docs/collection_modules.md).
   1. Collect subdomains using certificate transparency (there are currently 6 modules: `censys_api`，`spyse_api`，`certspotter`，`crtsh`，`entrust`，`google`）
 
   2. General check collection subdomains (there are currently 4 modules: domain transfer vulnerability exploitation`cdx`, cross-domain policy file `cdx`, HTTPS certificate `cert`, content security policy `csp`, robots file `robots`, and sitemap file `sitemap`. Check NSEC record, NSEC3 record and other modules will be added later).
@@ -59,7 +59,7 @@ At present, OneForAll is still under development, there must be a lot of problem
 
 **🐍Installation requirements**
 
-OneForAll is based on CPython, so you need a Python environment to run. If your system doesn't already have a Python environment, you can refer to the [Python 3 Installation Guide](https://pythonguidecn.readthedocs.io/en/latest/starting/installation.html#python-3), theoretically Python 3.6, 3.7 and 3.8 can run OneForAll, **but ** many tests are done on Python 3.7, so **recommended ** you use **Python 3.7** version runs OneForAll. Run the following command to check the Python and pip3 versions:
+OneForAll is based on CPython, so you need a Python environment to run. If your system doesn't already have a Python environment, you can refer to the [Python 3 Installation Guide](https://pythonguidecn.readthedocs.io/en/latest/starting/installation.html#python-3), theoretically Python 3.6, 3.7 and 3.8 can run OneForAll, **but** many tests are done on Python 3.7, so **recommended** you use **Python 3.7** version runs OneForAll. Run the following command to check the Python and pip3 versions:
 ```bash
 python -V
 pip3 -V
@@ -73,6 +73,7 @@ pip 19.2.2 from C:\Users\shmilylty\AppData\Roaming\Python\Python37\site-packages
 **✔Installation steps**
 
 1. **Download**
+   
    This project has been mirrored in [Gitee](https://gitee.com/shmilylty/OneForAll.git). If you are in China, it is recommended that you use Gitee for cloning, which is faster:
 
    ```bash
@@ -84,6 +85,7 @@ pip 19.2.2 from C:\Users\shmilylty\AppData\Roaming\Python\Python37\site-packages
    ```
 
 2. **Installation**
+   
    You can install OneForAll dependencies via pip3 (if you are familiar with [pipenv](https://docs.pipenv.org/en/latest/), then it is recommended that you use [pipenv install dependencies](https://github.com/shmilylty/OneForAll/tree/master/docs/Installation_dependency.md), the following is an example of using **pip3** to install dependencies under **Windows system**: (Note: If your Python3 is installed in the system Program Files In the directory, such as: `C:\Program Files\Python37`, then run the command prompt cmd as an administrator to execute the following command!)
 ```bash
    cd OneForAll/
@@ -95,6 +97,7 @@ pip 19.2.2 from C:\Users\shmilylty\AppData\Roaming\Python\Python37\site-packages
 ​      For other system platforms, please refer to [dependency installation](https://github.com/shmilylty/OneForAll/tree/master/docs/installation_dependency.md). If you find that compiling a dependent library fails during the installation dependencies, Refer to the solution in the [Q&A](https://github.com/shmilylty/OneForAll/tree/master/docs/Q&A.md) documentation, if not resolved, welcome feedback.
 
 3. **Update**
+
    ❗Note: If you have cloned the project before, please **back** up your own modified files (such as **config.py**) to the location outside the project before updating, then execute the following command **update** project:
 
    ```bash
@@ -103,7 +106,7 @@ pip 19.2.2 from C:\Users\shmilylty\AppData\Roaming\Python\Python37\site-packages
    git pull
    ```
 
-**✨ Demonstration **
+**✨Demonstration**
 
 1. If you are installing dependencies through pip3, run the example using the following command: 
     ```bash
