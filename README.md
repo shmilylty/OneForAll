@@ -51,7 +51,7 @@
 * **支持子域接管**，默认开启子域接管风险检查，支持子域自动接管（目前只有Github，有待完善），支持批量检查。
 * **处理功能强大**，发现的子域结果支持自动去除，自动DNS解析，HTTP请求探测，自动筛选出有效子域，拓展子域的Banner信息，最终支持的导出格式有`txt`, `rst`, `csv`, `tsv`, `json`, `yaml`, `html`, `xls`, `xlsx`, `dbf`, `latex`, `ods`。
 * **速度极快**，[收集模块](https://github.com/shmilylty/OneForAll/tree/master/oneforall//collect.py)使用多线程调用，[爆破模块](https://github.com/shmilylty/OneForAll/tree/master/oneforall/aiobrute.py)使用异步多进程多协程，子域验证中DNS解析和HTTP请求使用异步多协程，多线程检查[子域接管](https://github.com/shmilylty/OneForAll/tree/master/oneforall/takeover.py)风险。
-* **体验良好**，日志和终端输出全使用中文，各大模块都有进度条，异步保存各模块结果。
+* **体验良好**，日志和终端输出全使用中文，各模块都有进度条，异步保存各模块结果。
 
 ## 🚀上手指南
 
@@ -84,17 +84,16 @@ pip 19.2.2 from C:\Users\shmilylty\AppData\Roaming\Python\Python37\site-packages
    ```
 
 2. **安装**
-   首先运行以下命令
    你可以通过pip3安装OneForAll的依赖（如果你熟悉[pipenv](https://docs.pipenv.org/en/latest/)，那么推荐你使用[pipenv安装依赖]((https://github.com/shmilylty/OneForAll/tree/master/docs/Installation_dependency.md))），以下为**Windows系统**下使用**pip3**安装依赖的示例：（注意：如果你的Python3安装在系统Program Files目录下，如：`C:\Program Files\Python37`，那么请以管理员身份运行命令提示符cmd执行以下命令！）
-
-   ```bash
+   
+```bash
    cd OneForAll/
    python -m pip install --user  -U pip setuptools wheel -i https://mirrors.aliyun.com/pypi/simple/
    pip3 install --user -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
    cd oneforall/
    python oneforall.py --help
    ```
-其他系统平台的请参考[依赖安装](https://github.com/shmilylty/OneForAll/tree/master/docs/installation_dependency.md)，如果在安装依赖过程中发现编译某个依赖库失败时可以参考[Q&A](https://github.com/shmilylty/OneForAll/tree/master/docs/Q&A.md)中解决方法，如果还没有解决欢迎加群反馈。
+   其他系统平台的请参考[依赖安装](https://github.com/shmilylty/OneForAll/tree/master/docs/installation_dependency.md)，如果在安装依赖过程中发现编译某个依赖库失败时可以参考[Q&A](https://github.com/shmilylty/OneForAll/tree/master/docs/Q&A.md)中解决方法，如果还没有解决欢迎加群反馈。
 
 3. **更新**
    ❗注意：如果你之前已经克隆了项目运行之前请**备份**自己修改过的文件到项目外的地方（如**config.py**），然后执行以下命令**更新**项目：
@@ -181,7 +180,7 @@ OneForAll命令行界面基于[Fire](https://github.com/google/python-fire/)实�
        --path=PATH
            导出路径(默认None)
        --format=FORMAT
-           导出格式(默认xlsx)
+           导出格式(默认xls)
        --show=SHOW
            终端显示导出数据(默认False)
    ```
@@ -251,7 +250,7 @@ OneForAll命令行界面基于[Fire](https://github.com/google/python-fire/)实�
        --valid=VALID
            导出子域的有效性(默认None)
        --format=FORMAT
-           导出格式(默认xlsx)
+           导出格式(默认xls)
        --path=PATH
            导出路径(默认None)
        --show=SHOW
@@ -316,7 +315,7 @@ D:.
 
 ## ⌛后续计划
 
-- [ ] 各模块支持优化和完善
+- [ ] 各模块持续优化和完善
 - [ ] 子域监控（标记每次新发现的子域）
 - [ ] 子域收集爬虫实现（包括从JS等静态资源文件中收集子域）
 - [ ] 操作强大交互人性的前端界面实现（暂定：前端：Element + 后端：Flask）
