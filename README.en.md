@@ -5,7 +5,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/1287668a6b4c72af683e/maintainability)](https://codeclimate.com/github/shmilylty/OneForAll/maintainability)
 [![License](https://img.shields.io/github/license/shmilylty/OneForAll)](https://github.com/shmilylty/OneForAll/tree/master/LICENSE)
 [![python](https://img.shields.io/badge/python-3.6%20%7C%203.7%20%7C%203.8-blue)](https://github.com/shmilylty/OneForAll/tree/master/)
-[![python](https://img.shields.io/badge/release-v0.0.6-brightgreen)](https://github.com/shmilylty/OneForAll/releases)
+[![python](https://img.shields.io/badge/release-v0.0.7-brightgreen)](https://github.com/shmilylty/OneForAll/releases)
 
 👊**OneForAll is a powerful subdomain collection tool**  📝[中文文档](https://github.com/shmilylty/OneForAll/tree/master/README.md)
 
@@ -39,7 +39,7 @@ At present, OneForAll is still under development, there must be a lot of problem
 
   3.  Collect subdomains using web crawler files (there are currently two modules: `archirawl`, `commoncrawl`, which is still being debugged and needs to be added and improved). 
 
-  4.  Collect subdomains using DNS datasets (there are currently 18 modules:  `binaryedge_api`, `circl_api`, `hackertarget`, `riddler`, `bufferover`, `dnsdb`, `ipv4info`, `robtex`, `chinaz`, `dnsdb_api`, `netcraft`, `securitytrails_api`, `chinaz_api`, `dnsdumpster`, `passivedns_api`,  `ptrarchive`, `sitedossier`,`threatcrowd`）
+  4.  Collect subdomains using DNS datasets (there are currently 19 modules: `CeBaidu`, `binaryedge_api`, `circl_api`, `hackertarget`, `riddler`, `bufferover`, `dnsdb`, `ipv4info`, `robtex`, `chinaz`, `dnsdb_api`, `netcraft`, `securitytrails_api`, `chinaz_api`, `dnsdumpster`, `passivedns_api`,  `ptrarchive`, `sitedossier`,`threatcrowd`）
 
   5.  Collect subdomains using DNS queries (there is currently a module to collect subdomains `srv` by enumerating common SRV records and making queries, which needs to be added and improved). 
 
@@ -89,8 +89,8 @@ pip 19.2.2 from C:\Users\shmilylty\AppData\Roaming\Python\Python37\site-packages
    You can install OneForAll dependencies via pip3 (if you are familiar with [pipenv](https://docs.pipenv.org/en/latest/), then it is recommended that you use [pipenv install dependencies](https://github.com/shmilylty/OneForAll/tree/master/docs/Installation_dependency.md), the following is an example of using **pip3** to install dependencies under **Windows system**: (Note: If your Python3 is installed in the system Program Files In the directory, such as: `C:\Program Files\Python37`, then run the command prompt cmd as an administrator to execute the following command!)
 ```bash
    cd OneForAll/
-   python -m pip install --user  -U pip setuptools wheel -i https://mirrors.aliyun.com/pypi/simple/
-   pip3 install --user -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
+   python -m pip install --user  -U pip setuptools wheel
+   pip3 install --user -r requirements.txt
    cd oneforall/
    python oneforall.py --help
 ```

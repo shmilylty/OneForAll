@@ -48,12 +48,13 @@ proxy_partial_module = ['GoogleQuery', 'AskSearch']  # 只代理GoogleQuery和As
       | archivecrawl | 否           | 否          |          |
       | commoncrawl  | 否           | 否          |          |
 
-  4. 利用DNS数据集收集子域（目前有18个模块：`binaryedge_api`, `circl_api`, `hackertarget`, `riddler`, `bufferover`, `dnsdb`, `ipv4info`, `robtex`, `chinaz`, `dnsdb_api`, `netcraft`, `securitytrails_api`, `chinaz_api`, `dnsdumpster`, `passivedns_api`,  `ptrarchive`, `sitedossier`,`threatcrowd`）
+  4. 利用DNS数据集收集子域（目前有19个模块：`cebaidu`, `binaryedge_api`, `circl_api`, `hackertarget`, `riddler`, `bufferover`, `dnsdb`, `ipv4info`, `robtex`, `chinaz`, `dnsdb_api`, `netcraft`, `securitytrails_api`, `chinaz_api`, `dnsdumpster`, `passivedns_api`,  `ptrarchive`, `sitedossier`,`threatcrowd`）
 
       | 模块名称           | 是否需要代理 | 是否需要API | 其他说明                                           |
       | ------------------ | ------------ | ----------- | -------------------------------------------------- |
       | binaryedge_api     | 否           | 是          | API使用和申请见[config.py](../oneforall/config.py) |
       | bufferover         | 否           | 否          |                                                    |
+      | cebaidu            | 否           | 否          |                                                    |
       | chinaz             | 否           | 否          |                                                    |
       | chinaz_api         | 否           | 是          | API使用和申请见[config.py](../oneforall/config.py) |
       | circl_api          | 否           | 是          | API使用和申请见[config.py](../oneforall/config.py) |
