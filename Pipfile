@@ -1,6 +1,6 @@
 [[source]]
 name = "pypi"
-url = "https://mirrors.aliyun.com/pypi/simple/"
+url = "https://pypi.python.org/simple/"
 verify_ssl = true
 
 [dev-packages]
