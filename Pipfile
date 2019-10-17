@@ -27,4 +27,4 @@ tablib = "*"
 brotlipy = "*"
 
 [requires]
-python_version = "3.7"
+python_version = "3.8"
