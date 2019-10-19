@@ -34,7 +34,7 @@ class CheckAXFR(Module):
         """
         logger.log('DEBUG', f'尝试对{self.domain}的域名服务器{server}进行域传送')
         try:
-            xfr = dns.query.xfr(server, self.domain, timeout=30.0)
+            xfr = dns.query.xfr(where=server, zone=self.domain)
             zone = dns.zone.from_xfr(xfr)
         except Exception as e:
             logger.log('DEBUG', str(e))
@@ -93,4 +93,4 @@ def do(domain):  # 统一入口名字 方便多线程调用
 
 if __name__ == '__main__':
     do('ZoneTransfer.me')
-    do('example.com')
+    # do('example.com')
