@@ -24,7 +24,6 @@ class CeBaidu(Query):
         subdomains = self.match(self.domain, str(resp.json()))
         # 合并搜索子域名搜索结果
         self.subdomains = self.subdomains.union(subdomains)
-        print(self.subdomains)
 
     def run(self):
         """
