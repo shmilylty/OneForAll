@@ -42,10 +42,10 @@ class BruteSRV(Module):
         """
         枚举域名的SRV记录
         """
-        names_path = data_storage_path.joinpath('srv_names.json')
-        with open(names_path) as fp:
-            names_dict = json.load(fp)
-        names = map(lambda prefix: prefix + self.domain, names_dict)
+        path = data_storage_path.joinpath('srv_prefixes.json')
+        with open(path) as file:
+            prefixes = json.load(file)
+        names = map(lambda prefix: prefix + self.domain, prefixes)
 
         tasks = []
         for name in names:
@@ -53,7 +53,6 @@ class BruteSRV(Module):
         loop = asyncio.get_event_loop()
         group = asyncio.gather(*tasks)
         results = loop.run_until_complete(group)
-        loop.close()
         for result in results:
             if result is None:
                 continue
@@ -87,4 +86,4 @@ def do(domain):  # 统一入口名字 方便多线程调用
 
 if __name__ == '__main__':
     do('zonetransfer.me')
-    do('example.com')
+    # do('example.com')
