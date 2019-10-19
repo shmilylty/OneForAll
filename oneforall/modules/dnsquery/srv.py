@@ -4,25 +4,22 @@
 通过枚举域名常见的SRV记录并做查询来发现子域
 """
 
-import asyncio
 import json
-
-import aiodns
+import asyncio
 
 from common import utils
+from common import resolve
 from common.module import Module
-from config import data_storage_path, logger, resolver_nameservers
+from config import data_storage_path, logger
 
 
 class BruteSRV(Module):
-    def __init__(self, domain: str):
+    def __init__(self, domain):
         Module.__init__(self)
         self.domain = self.register(domain)
         self.module = 'dnsquery'
         self.source = "BruteSRV"
-        self.loop = asyncio.new_event_loop()
-        self.nameservers = resolver_nameservers
-        self.resolver = aiodns.DNSResolver(self.nameservers, self.loop)
+        self.resolver = resolve.dns_resolver()
 
     async def query(self, name):
         """
@@ -32,7 +29,7 @@ class BruteSRV(Module):
         """
         logger.log('TRACE', f'尝试查询{name}的SRV记录')
         try:
-            answers = await self.resolver.query(name, 'SRV')
+            answers = self.resolver.query(name, 'SRV')
         except Exception as e:
             logger.log('TRACE', e)
             logger.log('TRACE', f'查询{name}的SRV记录失败')
@@ -48,23 +45,21 @@ class BruteSRV(Module):
         names_path = data_storage_path.joinpath('srv_names.json')
         with open(names_path) as fp:
             names_dict = json.load(fp)
-        query_map = map(lambda name: name + self.domain, names_dict)
+        names = map(lambda prefix: prefix + self.domain, names_dict)
 
         tasks = []
-        for query in query_map:
-            tasks.append(self.query(query))
-        task_group = asyncio.gather(*tasks, loop=self.loop)
-        self.loop.run_until_complete(asyncio.gather(task_group))
-        self.loop.close()
-        results = task_group.result()
+        for name in names:
+            tasks.append(self.query(name))
+        loop = asyncio.get_event_loop()
+        group = asyncio.gather(*tasks)
+        results = loop.run_until_complete(group)
+        loop.close()
         for result in results:
-            if result:
-                for answer in result:
-                    subdomains = utils.match_subdomain(self.domain, answer.host)
-                    if subdomains:
-                        self.subdomains = self.subdomains.union(subdomains)
-                    else:
-                        logger.log('DEBUG', f'{answer.host}不是{self.domain}的子域')
+            for answer in result:
+                if answer is None:
+                    continue
+                subdomains = utils.match_subdomain(self.domain, str(answer))
+                self.subdomains = self.subdomains.union(subdomains)
         if not len(self.subdomains):
             logger.log('DEBUG', f'没有找到{self.domain}的SRV记录')
 
@@ -91,5 +86,5 @@ def do(domain):  # 统一入口名字 方便多线程调用
 
 
 if __name__ == '__main__':
-
+    do('zonetransfer.me')
     do('example.com')
