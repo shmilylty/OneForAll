@@ -55,9 +55,9 @@ class BruteSRV(Module):
         results = loop.run_until_complete(group)
         loop.close()
         for result in results:
+            if result is None:
+                continue
             for answer in result:
-                if answer is None:
-                    continue
                 subdomains = utils.match_subdomain(self.domain, str(answer))
                 self.subdomains = self.subdomains.union(subdomains)
         if not len(self.subdomains):
