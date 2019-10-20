@@ -1,12 +1,11 @@
 [[source]]
 name = "pypi"
-url = "https://pypi.python.org/simple/"
+url = "https://mirrors.aliyun.com/pypi/simple/"
 verify_ssl = true
 
 [dev-packages]
 
 [packages]
-aiodns = "*"
 tqdm = "*"
 aiomultiprocess = "*"
 loguru = "*"
