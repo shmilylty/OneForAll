@@ -22,7 +22,7 @@ def dns_resolver():
     return resolver
 
 
-def dns_query_a(hostname):
+async def dns_query_a(hostname):
     """
     查询A记录
 
@@ -30,7 +30,12 @@ def dns_query_a(hostname):
     :return: 查询结果
     """
     resolver = dns_resolver()
-    return resolver.query(hostname, 'A')
+    try:
+        answer = resolver.query(hostname, 'A')
+    except BaseException as e:
+        logger.log('DEBUG', e.args)
+        answer = None
+    return answer
 
 
 def aiodns_resolver():
@@ -76,18 +81,16 @@ def resolve_callback(future, index, datas):
     :param datas: 结果集
     """
     try:
-        result = future.result()
+        answer = future.result()
     except BaseException as e:
         datas[index]['ips'] = str(e.args)
         datas[index]['valid'] = 0
     else:
-        if isinstance(result, tuple):
-            _, answers = result
-            if answers:
-                ips = {record.host for record in answers}
-                datas[index]['ips'] = str(ips)
-            else:
-                datas[index]['ips'] = 'No answers'
+        if answer:
+            ips = {item.address for item in answer}
+            datas[index]['ips'] = str(ips)
+        else:
+            datas[index]['ips'] = 'No answers'
 
 
 async def bulk_query_a(datas):
@@ -99,11 +102,11 @@ async def bulk_query_a(datas):
     """
     logger.log('INFOR', '正在异步查询子域的A记录')
     tasks = []
-    semaphore = asyncio.Semaphore(config.limit_resolve_conn)
+    # semaphore = asyncio.Semaphore(config.limit_resolve_conn)
     for i, data in enumerate(datas):
         if not data.get('ips'):
             subdomain = data.get('subdomain')
-            task = asyncio.ensure_future(aiodns_query_a(subdomain, semaphore))
+            task = asyncio.ensure_future(dns_query_a(subdomain))
             task.add_done_callback(functools.partial(resolve_callback,
                                                      index=i,
                                                      datas=datas))  # 回调

@@ -137,7 +137,7 @@ def get_semaphore():
     """
     system = platform.system()
     if system == 'Windows':
-        return 300
+        return 800
     elif system == 'Linux':
         return 800
     elif system == 'Darwin':

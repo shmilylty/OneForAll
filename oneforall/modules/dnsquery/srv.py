@@ -50,14 +50,15 @@ class BruteSRV(Module):
         tasks = []
         for name in names:
             tasks.append(self.query(name))
-        loop = asyncio.get_event_loop()
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
         group = asyncio.gather(*tasks)
         results = loop.run_until_complete(group)
-        for result in results:
-            if result is None:
+        for answer in results:
+            if answer is None:
                 continue
-            for answer in result:
-                subdomains = utils.match_subdomain(self.domain, str(answer))
+            for item in answer:
+                subdomains = utils.match_subdomain(self.domain, str(item))
                 self.subdomains = self.subdomains.union(subdomains)
         if not len(self.subdomains):
             logger.log('DEBUG', f'没有找到{self.domain}的SRV记录')

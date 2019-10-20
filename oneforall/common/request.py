@@ -1,5 +1,3 @@
-# coding=utf-8
-
 import asyncio
 import functools
 
@@ -62,28 +60,26 @@ def gen_new_datas(datas, ports):
     return new_datas
 
 
-async def fetch(session, url, semaphore):
+async def fetch(session, url):
     """
     请求
 
     :param session: session对象
     :param url: url地址
-    :param semaphore: 并发信号量
     :return: 响应对象和响应文本
     """
     timeout = aiohttp.ClientTimeout(total=config.get_timeout)
-    async with semaphore:
-        async with session.get(url,
-                               ssl=config.verify_ssl,
-                               allow_redirects=config.get_redirects,
-                               timeout=timeout,
-                               proxy=config.get_proxy) as resp:
+    async with session.get(url,
+                           ssl=config.verify_ssl,
+                           allow_redirects=config.get_redirects,
+                           timeout=timeout,
+                           proxy=config.get_proxy) as resp:
 
-            try:
-                text = await resp.text(encoding='gb2312')  # 先尝试用fb2312解码
-            except UnicodeDecodeError:
-                text = await resp.text(errors='ignore')
-        return resp, text
+        try:
+            text = await resp.text(encoding='gb2312')  # 先尝试用fb2312解码
+        except UnicodeDecodeError:
+            text = await resp.text(errors='ignore')
+    return resp, text
 
 
 def get_title(markup):
@@ -159,7 +155,7 @@ async def bulk_get_request(datas, port):
                                 limit=limit_open_conn,
                                 limit_per_host=config.limit_per_host)
 
-    semaphore = asyncio.Semaphore(limit_open_conn)
+    # semaphore = asyncio.Semaphore(limit_open_conn)
     header = None
     if config.fake_header:
         header = utils.gen_fake_header()
@@ -167,7 +163,7 @@ async def bulk_get_request(datas, port):
         tasks = []
         for i, data in enumerate(new_datas):
             url = data.get('url')
-            task = asyncio.ensure_future(fetch(session, url, semaphore))
+            task = asyncio.ensure_future(fetch(session, url))
             task.add_done_callback(functools.partial(request_callback,
                                                      index=i,
                                                      datas=new_datas))
