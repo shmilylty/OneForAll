@@ -1,4 +1,3 @@
-aiodns==2.0.0
 aiohttp==3.6.2
 aiomultiprocess==0.6.1
 asn1crypto==1.2.0
@@ -13,9 +12,9 @@ cchardet==2.1.4
 certifi==2019.9.11
 cffi==1.13.0
 chardet==3.0.4
-cloudscraper==1.2.2
+cloudscraper==1.2.4
 colorama==0.4.1
-cryptography==2.7
+cryptography==2.8
 defusedxml==0.6.0
 dnspython==1.16.0
 docopt==0.6.2
@@ -26,7 +25,8 @@ idna==2.8
 jdcal==1.4.1
 Js2Py==0.66
 loguru==0.3.2
-lxml==4.4.1
+lxml==4.3.5
+MarkupPy==1.14
 multidict==4.5.2
 odfpy==1.4.0
 openpyxl==2.4.11
@@ -44,7 +44,7 @@ requests-toolbelt==0.9.1
 six==1.12.0
 soupsieve==1.9.4
 SQLAlchemy==1.3.10
-tablib==0.13.0
+tablib==0.14.0
 termcolor==1.1.0
 tldextract==2.2.2
 tqdm==4.36.1
