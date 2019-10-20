@@ -8,11 +8,11 @@ OneForAll多进程多协程异步子域爆破模块
 :license: GNU General Public License v3.0, see LICENSE for more details.
 """
 
-import asyncio
-import queue
-import secrets
-import signal
 import time
+import queue
+import signal
+import asyncio
+import secrets
 
 import aiomultiprocess as aiomp
 import exrex
@@ -42,7 +42,8 @@ def detect_wildcard(domain):
     token = secrets.token_hex(16)
     random_subdomain = f'{token}.{domain}'
     try:
-        answers = resolve.dns_query_a(random_subdomain)
+        resolver = resolve.dns_resolver()
+        answers = resolver.query(random_subdomain, 'A')
     # 如果查询随机域名A记录出错 说明不存在随机子域的A记录 即没有开启泛解析
     except Exception as e:
         logger.log('DEBUG', e)
@@ -210,33 +211,30 @@ class AIOBrute(Module):
         return utils.split_list(domains, self.segment)  # 分割任务组
 
     def deal_results(self, results):
-        for result in results:
-            if result is None:
+        for answer in results:
+            if answer is None:
                 continue
-            if isinstance(result, Exception):
+            if isinstance(answer, Exception):
                 # logger.log('DEBUG', f'爆破{subdomain}时出错 {str(answers)}')
                 continue
-            if isinstance(result, tuple):
-                subdomain, answers = result
-                if not answers:
+            ips = {item.address for item in answer}
+            # 取值 如果是首次出现的IP集合 出现次数先赋值0
+            value = self.ips_times.setdefault(str(ips), 0)
+            self.ips_times[str(ips)] = value + 1
+            ttl = answer.rrset.ttl
+            subdomain = str(answer.rrset.name)
+            if self.enable_wildcard:
+                if wildcard_by_compare(ips,
+                                       ttl,
+                                       self.wildcard_ips,
+                                       self.wildcard_ttl):
                     continue
-                ips = {record.host for record in answers}
-                # 取值 如果是首次出现的IP集合 出现次数先赋值0
-                value = self.ips_times.setdefault(str(ips), 0)
-                self.ips_times[str(ips)] = value + 1
-                ttl = answers[0].ttl
-                if self.enable_wildcard:
-                    if wildcard_by_compare(ips,
-                                           ttl,
-                                           self.wildcard_ips,
-                                           self.wildcard_ttl):
-                        continue
-                if wildcard_by_times(ips, self.ips_times):
-                    continue
-                logger.log('INFOR', f'发现{self.domain}的子域: {subdomain} '
-                                    f'解析IP: {ips} TTL: {ttl}')
-                self.subdomains.add(subdomain)
-                self.records[subdomain] = str(ips)
+            if wildcard_by_times(ips, self.ips_times):
+                continue
+            logger.log('INFOR', f'发现{self.domain}的子域: {subdomain} '
+                                f'解析IP: {ips} TTL: {ttl}')
+            self.subdomains.add(subdomain)
+            self.records[subdomain] = str(ips)
 
     async def main(self, domain, rx_queue):
         if not self.fuzz:  # fuzz模式不探测域名是否使用泛解析
@@ -252,7 +250,7 @@ class AIOBrute(Module):
                                   initializer=init_worker,
                                   childconcurrency=self.coroutine) as pool:
                 try:
-                    results = await pool.map(resolve.aiodns_query_a, task)
+                    results = await pool.map(resolve.dns_query_a, task)
                 except KeyboardInterrupt:
                     logger.log('ALERT', '爆破终止正在退出')
                     pool.terminate()  # 关闭pool，结束工作进程，不在处理未完成的任务。
