@@ -1,13 +1,10 @@
-# coding=utf-8
 import asyncio
 import functools
 
-import dns.resolver
-import aiodns
 import tqdm
+import dns.resolver
 
 import config
-from common import utils
 from config import logger
 
 
@@ -36,41 +33,6 @@ async def dns_query_a(hostname):
         logger.log('DEBUG', e.args)
         answer = None
     return answer
-
-
-def aiodns_resolver():
-    """
-    异步dns解析器
-    """
-    return aiodns.DNSResolver(nameservers=config.resolver_nameservers,
-                              timeout=config.resolver_timeout)
-
-
-async def aiodns_query_a(hostname, semaphore=None):
-    """
-    异步查询A记录
-
-    :param str hostname: 主机名
-    :param semaphore: 并发查询数量
-    :return: 主机名或查询结果或查询异常
-    """
-    if semaphore is None:
-        resolver = aiodns_resolver()
-        try:
-            answers = await resolver.query(hostname, 'A')
-        except BaseException as e:
-            logger.log('DEBUG', e.args)
-            answers = None
-        return hostname, answers
-    else:
-        async with semaphore:
-            resolver = aiodns_resolver()
-            try:
-                answers = await resolver.query(hostname, 'A')
-            except BaseException as e:
-                logger.log('DEBUG', e.args)
-                answers = None
-            return hostname, answers
 
 
 def resolve_callback(future, index, datas):
