@@ -31,7 +31,7 @@ enable_verify_subdomain = True  # 验证子域有效性(默认True)
 enable_wildcard_check = True  # 开启泛解析检测 会去掉泛解析的子域
 # 爆破时使用的进程数(根据系统中CPU数量情况设置 不宜大于CPU数量 默认为系统中的CPU数量)
 brute_process_num = os.cpu_count()
-brute_coroutine_num = 128  # 爆破时每个进程下的协程数(不宜大于1000)
+brute_coroutine_num = 64  # 爆破时每个进程下的协程数(不宜大于500)
 # 爆破所使用的字典路径 默认data/subdomains.txt
 brute_wordlist_path = data_storage_path.joinpath('subnames.txt')
 brute_task_segment = 500
@@ -82,7 +82,7 @@ resolver_nameservers = [
 ]  # 指定查询的DNS域名服务器
 resolver_timeout = 5.0  # 解析超时时间
 resolver_lifetime = 30.0  # 解析存活时间
-limit_resolve_conn = 50  # 限制同一时间解析的数量(默认50)
+limit_resolve_conn = 500  # 限制同一时间解析的数量(默认500)
 
 # http探测设置
 small_ports = {80, 443}
@@ -106,7 +106,7 @@ get_timeout = 120  # http请求探测总超时时间 None或者0则表示不检�
 get_redirects = True  # 允许请求跳转
 fake_header = True  # 使用伪造请求头
 # 限制同一时间打开的连接数(默认None，根据系统不同设置，Windows系统400 其他系统800)
-limit_open_conn = None
+limit_open_conn = 0
 # 限制同一时间在同一个端点((host, port, is_ssl) 3者都一样的情况)打开的连接数
 limit_per_host = 0  # 默认0表示不限制
 
