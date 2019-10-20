@@ -6,11 +6,19 @@ import functools
 import aiohttp
 import tqdm
 from aiohttp import ClientSession
-from aiohttp.resolver import AsyncResolver
 from bs4 import BeautifulSoup
 import config
 from common import utils
 from config import logger
+
+
+def get_limit_conn():
+    limit_open_conn = config.limit_open_conn
+    if limit_open_conn is None:  # 默认情况
+        limit_open_conn = utils.get_semaphore()
+    elif not isinstance(limit_open_conn, int):  # 如果传入不是数字的情况
+        limit_open_conn = utils.get_semaphore()
+    return limit_open_conn
 
 
 def get_ports(port):
@@ -145,17 +153,11 @@ async def bulk_get_request(datas, port):
     new_datas = gen_new_datas(datas, ports)
     logger.log('INFOR', f'正在异步进行子域的GET请求')
 
-    limit_open_conn = config.limit_open_conn
-    if limit_open_conn is None:  # 默认情况
-        limit_open_conn = utils.get_semaphore()
-    elif not isinstance(limit_open_conn, int):  # 如果传入不是数字的情况
-        limit_open_conn = utils.get_semaphore()
+    limit_open_conn = get_limit_conn()
     # 使用异步域名解析器 自定义域名服务器
-    resolver = AsyncResolver(nameservers=config.resolver_nameservers)
     conn = aiohttp.TCPConnector(ssl=config.verify_ssl,
                                 limit=limit_open_conn,
-                                limit_per_host=config.limit_per_host,
-                                resolver=resolver)
+                                limit_per_host=config.limit_per_host)
 
     semaphore = asyncio.Semaphore(limit_open_conn)
     header = None
