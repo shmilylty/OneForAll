@@ -4,7 +4,7 @@
 [![codecov](https://codecov.io/gh/shmilylty/OneForAll/branch/master/graph/badge.svg)](https://codecov.io/gh/shmilylty/OneForAll)
 [![Maintainability](https://api.codeclimate.com/v1/badges/1287668a6b4c72af683e/maintainability)](https://codeclimate.com/github/shmilylty/OneForAll/maintainability)
 [![License](https://img.shields.io/github/license/shmilylty/OneForAll)](https://github.com/shmilylty/OneForAll/tree/master/LICENSE)
-[![python](https://img.shields.io/badge/python-3.6%20%7C%203.7%20%7C%203.8-blue)](https://github.com/shmilylty/OneForAll/tree/master/)
+[![python](https://img.shields.io/badge/python-3.7%20%7C%203.8-blue)](https://github.com/shmilylty/OneForAll/tree/master/)
 [![python](https://img.shields.io/badge/release-v0.0.7-brightgreen)](https://github.com/shmilylty/OneForAll/releases)
 
 👊**OneForAll is a powerful subdomain collection tool**  📝[中文文档](https://github.com/shmilylty/OneForAll/tree/master/README.md)
@@ -59,15 +59,15 @@ At present, OneForAll is still under development, there must be a lot of problem
 
 **🐍Installation requirements**
 
-OneForAll is based on CPython, so you need a Python environment to run. If your system doesn't already have a Python environment, you can refer to the [Python 3 Installation Guide](https://pythonguidecn.readthedocs.io/en/latest/starting/installation.html#python-3), theoretically Python 3.6, 3.7 and 3.8 can run OneForAll, **but** many tests are done on Python 3.7, so **recommended** you use **Python 3.7** version runs OneForAll. Run the following command to check the Python and pip3 versions:
+OneForAll is based on CPython, so you need a Python environment to run. If your system doesn't already have a Python environment, you can refer to the [Python 3 Installation Guide](https://pythonguidecn.readthedocs.io/en/latest/starting/installation.html#python-3), theoretically Python 3.7 and 3.8 can run OneForAll, **but** many tests are done on Python 3.8, so **recommended** you use **Python 3.8** version runs OneForAll. Run the following command to check the Python and pip3 versions:
 ```bash
 python -V
 pip3 -V
 ```
 If you see the following output, there is no problem with the Python environment:
 ```bash
-Python 3.7.4
-pip 19.2.2 from C:\Users\shmilylty\AppData\Roaming\Python\Python37\site-packages\pip (python 3.7)
+Python 3.8.0
+pip 19.2.2 from C:\Users\shmilylty\AppData\Roaming\Python\Python37\site-packages\pip (python 3.8)
 ```
 
 **✔Installation steps**
