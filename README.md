@@ -4,7 +4,7 @@
 [![codecov](https://codecov.io/gh/shmilylty/OneForAll/branch/master/graph/badge.svg)](https://codecov.io/gh/shmilylty/OneForAll)
 [![Maintainability](https://api.codeclimate.com/v1/badges/1287668a6b4c72af683e/maintainability)](https://codeclimate.com/github/shmilylty/OneForAll/maintainability)
 [![License](https://img.shields.io/github/license/shmilylty/OneForAll)](https://github.com/shmilylty/OneForAll/tree/master/LICENSE)
-[![python](https://img.shields.io/badge/python-3.6%20%7C%203.7%20%7C%203.8-blue)](https://github.com/shmilylty/OneForAll/tree/master/)
+[![python](https://img.shields.io/badge/python-3.7%20%7C%203.8-blue)](https://github.com/shmilylty/OneForAll/tree/master/)
 [![python](https://img.shields.io/badge/release-v0.0.7-brightgreen)](https://github.com/shmilylty/OneForAll/releases)
 
 👊**OneForAll是一款功能强大的子域收集工具**  📝[English Document](https://github.com/shmilylty/OneForAll/tree/master/README.en.md)
@@ -59,15 +59,15 @@
 
 **🐍安装要求**
 
-OneForAll是基于CPython开发的，所以你需要Python环境才能运行，如果你的系统还没有Python环境你可以参考[Python 3 安装指南](https://pythonguidecn.readthedocs.io/zh/latest/starting/installation.html#python-3)，理论上Python 3.6，3.7和3.8都可以正常运行OneForAll，**但是**许多测试都是在Python 3.7上进行的，所以**推荐**你使用**Python 3.7**版本运行OneForAll。运行以下命令检查Python和pip3版本：
+OneForAll是基于CPython开发的，所以你需要Python环境才能运行，如果你的系统还没有Python环境你可以参考[Python 3 安装指南](https://pythonguidecn.readthedocs.io/zh/latest/starting/installation.html#python-3)，理论上Python 3.7和3.8都可以正常运行OneForAll，**但是**许多测试都是在Python 3.8上进行的，所以**推荐**你使用**Python 3.8**版本运行OneForAll。运行以下命令检查Python和pip3版本：
 ```bash
 python -V
 pip3 -V
 ```
 如果你看到以下类似输出便说明Python环境没有问题：
 ```bash
-Python 3.7.4
-pip 19.2.2 from C:\Users\shmilylty\AppData\Roaming\Python\Python37\site-packages\pip (python 3.7)
+Python 3.8.0
+pip 19.2.2 from C:\Users\shmilylty\AppData\Roaming\Python\Python38\site-packages\pip (python 3.8)
 ```
 
 **✔安装步骤**
@@ -92,7 +92,7 @@ pip 19.2.2 from C:\Users\shmilylty\AppData\Roaming\Python\Python37\site-packages
    pip3 install --user -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
    cd oneforall/
    python oneforall.py --help
-   ```
+```
    其他系统平台的请参考[依赖安装](https://github.com/shmilylty/OneForAll/tree/master/docs/installation_dependency.md)，如果在安装依赖过程中发现编译某个依赖库失败时可以参考[Q&A](https://github.com/shmilylty/OneForAll/tree/master/docs/Q&A.md)中解决方法，如果还没有解决欢迎加群反馈。
 
 3. **更新**
