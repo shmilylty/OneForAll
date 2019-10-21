@@ -39,7 +39,7 @@ def detect_wildcard(domain):
     :return: 如果没有使用泛解析返回False 反之返回泛解析的IP集合和ttl整型值
     """
     logger.log('INFOR', f'正在探测{domain}是否使用泛解析')
-    token = secrets.token_hex(16)
+    token = secrets.token_hex(4)
     random_subdomain = f'{token}.{domain}'
     try:
         resolver = resolve.dns_resolver()
@@ -50,9 +50,11 @@ def detect_wildcard(domain):
         logger.log('INFOR', f'{domain}没有使用泛解析')
         return False, None, None
     ttl = answers.ttl
+    name = answers.name
     ips = {item.address for item in answers}
     logger.log('ALERT', f'{domain}使用了泛解析')
-    logger.log('ALERT', f'{random_subdomain} 解析到IP: {ips} TTL: {ttl}')
+    logger.log('ALERT', f'{random_subdomain} 解析到域名: {name} '
+                        f'IP: {ips} TTL: {ttl}')
     return True, ips, ttl
 
 
@@ -223,18 +225,27 @@ class AIOBrute(Module):
             self.ips_times[str(ips)] = value + 1
             ttl = answer.rrset.ttl
             subdomain = str(answer.rrset.name)
+            # 目前域名开启了泛解析
             if self.enable_wildcard:
+                # 通过对比查询的子域和响应的子域来判断真实子域
+                # 去掉解析到CDN的情况
+                if not subdomain.endswith(self.domain + '.'):
+                    continue
+                # 通过对比解析到的IP集合和TTL确定子域来判断真实子域
                 if wildcard_by_compare(ips,
                                        ttl,
                                        self.wildcard_ips,
                                        self.wildcard_ttl):
                     continue
-            if wildcard_by_times(ips, self.ips_times):
-                continue
-            logger.log('INFOR', f'发现{self.domain}的子域: {subdomain} '
-                                f'解析IP: {ips} TTL: {ttl}')
-            self.subdomains.add(subdomain)
-            self.records[subdomain] = str(ips)
+                # 通过对比解析到的IP集合的次数来判断真实子域
+                if wildcard_by_times(ips, self.ips_times):
+                    continue
+            # 只添加没有出现过的子域
+            if subdomain not in self.subdomains:
+                logger.log('INFOR', f'发现{self.domain}的子域: {subdomain} '
+                                    f'解析IP: {ips} TTL: {ttl}')
+                self.subdomains.add(subdomain)
+                self.records[subdomain] = str(ips)
 
     async def main(self, domain, rx_queue):
         if not self.fuzz:  # fuzz模式不探测域名是否使用泛解析
