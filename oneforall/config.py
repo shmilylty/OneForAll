@@ -84,21 +84,21 @@ resolver_timeout = 5.0  # 解析超时时间
 resolver_lifetime = 30.0  # 解析存活时间
 limit_resolve_conn = 500  # 限制同一时间解析的数量(默认500)
 
-# http探测设置
-small_ports = {80, 443}
-medium_ports = {80, 443, 8000, 8080, 8443}  # 默认使用
-large_ports = {80, 81, 443, 591, 2082, 2087, 2095, 2096, 3000, 8000, 8001,
-               8008, 8080, 8083, 8443, 8834, 8888}
-xlarge_ports = {80, 81, 300, 443, 591, 593, 832, 981, 1010, 1311, 2082,
-                2087, 2095, 2096, 2480, 3000, 3128, 3333, 4243, 4567, 4711,
-                4712, 4993, 5000, 5104, 5108, 5800, 6543, 7000, 7396, 7474,
-                8000, 8001, 8008, 8014, 8042, 8069, 8080, 8081, 8088, 8090,
-                8091, 8016, 8118, 8123, 8172, 8222, 8243, 8280, 8281, 8333,
-                8443, 8500, 8834, 8880, 8888, 8983, 9000, 9043, 9060, 9080,
-                9090, 9091, 9200, 9443, 9800, 9981, 12443, 16080, 18091, 18092,
-                20720, 28017}
-ports = {'small': small_ports, 'medium': medium_ports,
-         'large': large_ports, 'xlarge': xlarge_ports}
+# 请求端口探测设置
+default_ports = {80}  # 默认使用
+small_ports = {80, 443, 8000, 8080, 8443}
+medium_ports = {80, 81, 443, 591, 2082, 2087, 2095, 2096, 3000, 8000, 8001,
+                8008, 8080, 8083, 8443, 8834, 8888}
+large_ports = {80, 81, 300, 443, 591, 593, 832, 888, 981, 1010, 1311, 2082,
+               2087, 2095, 2096, 2480, 3000, 3128, 3333, 4243, 4567, 4711,
+               4712, 4993, 5000, 5104, 5108, 5800, 6543, 7000, 7396, 7474,
+               8000, 8001, 8008, 8014, 8042, 8069, 8080, 8081, 8088, 8090,
+               8091, 8016, 8118, 8123, 8172, 8222, 8243, 8280, 8281, 8333,
+               8443, 8500, 8834, 8880, 8888, 8983, 9000, 9043, 9060, 9080,
+               9090, 9091, 9200, 9443, 9800, 9981, 12443, 16080, 18091, 18092,
+               20720, 28017}  # 可以在这里面添加端口
+ports = {'default': default_ports, 'small': small_ports,
+         'medium': medium_ports, 'large': large_ports}
 verify_ssl = False
 # aiohttp 支持 HTTP/HTTPS形式的代理
 get_proxy = None  # proxy="http://user:pass@some.proxy.com"
@@ -109,7 +109,6 @@ fake_header = True  # 使用伪造请求头
 limit_open_conn = 0
 # 限制同一时间在同一个端点((host, port, is_ssl) 3者都一样的情况)打开的连接数
 limit_per_host = 0  # 默认0表示不限制
-
 
 # 模块API配置
 # Censys可以免费注册获取API：https://censys.io/api
@@ -193,16 +192,16 @@ subdomains_common = {'i', 'w', 'm', 'en', 'us', 'zh', 'w3', 'app', 'bbs',
 # 日志配置
 # 终端日志输出格式
 stdout_fmt = '<cyan>{time:HH:mm:ss,SSS}</cyan> ' \
-          '[<level>{level: <5}</level>] ' \
-          '<blue>{module}</blue>:<cyan>{line}</cyan> - ' \
-          '<level>{message}</level>'
+             '[<level>{level: <5}</level>] ' \
+             '<blue>{module}</blue>:<cyan>{line}</cyan> - ' \
+             '<level>{message}</level>'
 # 日志文件记录格式
 logfile_fmt = '<light-green>{time:YYYY-MM-DD HH:mm:ss,SSS}</light-green> ' \
-          '[<level>{level: <5}</level>] ' \
-          '<cyan>{process.name}({process.id})</cyan>:' \
-          '<cyan>{thread.name: <10}({thread.id: <5})</cyan> | ' \
-          '<blue>{module}</blue>.<blue>{function}</blue>:' \
-          '<blue>{line}</blue> - <level>{message}</level>'
+              '[<level>{level: <5}</level>] ' \
+              '<cyan>{process.name}({process.id})</cyan>:' \
+              '<cyan>{thread.name: <10}({thread.id: <5})</cyan> | ' \
+              '<blue>{module}</blue>.<blue>{function}</blue>:' \
+              '<blue>{line}</blue> - <level>{message}</level>'
 
 log_path = result_save_path.joinpath('oneforall.log')
 

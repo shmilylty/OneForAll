@@ -163,7 +163,7 @@ The OneForAll command line interface is based on [Fire](https://github.com/googl
            valid, invalid, and all subdomains, respectively.
            Parameter verify for True attempts to resolve and request the subdomain 
            and tag the validity of the subdomain based on the result.
-           Parameter port have optional values 'small', 'medium', 'large', 'xlarge', 
+           Parameter port have optional values 'default' 'small', 'medium', 'large',
            See config.py configuration for details.
            Parameter format have optional values 'txt', 'rst', 'csv', 'tsv', 'json', 
            'yaml', 'html', 'jira', 'xls', 'xlsx', 'dbf', 'latex', 'ods'.
@@ -181,7 +181,7 @@ The OneForAll command line interface is based on [Fire](https://github.com/googl
        --verify=VERIFY
            Verify the validity of subdomains (default True)
        --port=PORT
-           Port range for request authentication (default medium)
+           Port range for request authentication (default 80 port)
        --valid=VALID
            Export validity of subdomains (default 1)
        --path=PATH

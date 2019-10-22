@@ -59,20 +59,20 @@ class OneForAll(object):
     Note:
         参数valid可选值1，0，None分别表示导出有效，无效，全部子域
         参数verify为True会尝试解析和请求子域并根据结果给子域有效性打上标签
-        参数port可选值有'small', 'medium', 'large', 'xlarge'，详见config.py配置
+        参数port可选值有'default', 'small', 'medium', 'large', 详见config.py配置
         参数format可选格式有'txt', 'rst', 'csv', 'tsv', 'json', 'yaml', 'html',
                           'jira', 'xls', 'xlsx', 'dbf', 'latex', 'ods'
 
     :param str target:  单个域名或者每行一个域名的文件路径(必需参数)
     :param bool brute:  使用爆破模块(默认False)
     :param bool verify: 验证子域有效性(默认True)
-    :param str port:    请求验证的端口范围(默认medium)
+    :param str port:    请求验证子域的端口范围(默认只探测80端口)
     :param int valid:   导出子域的有效性(默认1)
     :param str format:  导出格式(默认csv)
     :param bool show:   终端显示导出数据(默认False)
     """
-    def __init__(self, target, brute=None, verify=None, port='medium', valid=1,
-                 format='csv', takeover=True, show=False):
+    def __init__(self, target, brute=None, verify=None, port='default',
+                 valid=1, format='csv', takeover=True, show=False):
         self.target = target
         self.port = port
         self.domains = set()
