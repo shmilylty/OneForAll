@@ -39,7 +39,7 @@ def get_ports(port):
 def gen_new_datas(datas, ports):
     logger.log('INFOR', f'正在生成请求地址')
     new_datas = []
-    protocols = ['http://']
+    protocols = ['http://', 'https://']
     for data in datas:
         valid = data.get('valid')
         if valid is None:  # 子域有效性未知的才进行http请求探测
@@ -132,7 +132,7 @@ def request_callback(future, index, datas):
         resp, text = result
         datas[index]['reason'] = resp.reason
         datas[index]['status'] = resp.status
-        if resp.status >= 500:
+        if resp.status == 400 or resp.status >= 500:
             datas[index]['valid'] = 0
         else:
             datas[index]['valid'] = 1
