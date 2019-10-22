@@ -159,7 +159,7 @@ OneForAll命令行界面基于[Fire](https://github.com/google/python-fire/)实�
        Note:
            参数valid可选值1，0，None分别表示导出有效，无效，全部子域
            参数verify为True会尝试解析和请求子域并根据结果给子域有效性打上标签
-           参数port可选值有'small', 'medium', 'large', 'xlarge'，详见config.py配置
+           参数port可选值有'default', 'small', 'medium', 'large' 详见config.py配置
            参数format可选格式有'txt', 'rst', 'csv', 'tsv', 'json', 'yaml', 'html',
                              'jira', 'xls', 'xlsx', 'dbf', 'latex', 'ods'
            参数path为None会根据format参数和域名名称在项目结果目录生成相应文件
@@ -174,7 +174,7 @@ OneForAll命令行界面基于[Fire](https://github.com/google/python-fire/)实�
        --verify=VERIFY
            验证子域有效性(默认True)
        --port=PORT
-           请求验证的端口范围(默认medium)
+           请求验证的端口范围(默认只探测80端口)
        --valid=VALID
            导出子域的有效性(默认1)
        --path=PATH

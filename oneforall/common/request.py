@@ -20,19 +20,25 @@ def get_limit_conn():
 
 
 def get_ports(port):
-    logger.log('INFOR', f'正在获取请求端口范围')
+    logger.log('DEBUG', f'正在获取请求探测端口范围')
     ports = set()
     if isinstance(port, set):
         ports = port
-    elif isinstance(port, str):
-        if port not in {'small', 'medium', 'large', 'xlarge'}:
-            logger.log('ERROR', f'不存在{port}等端口范围')
-            port = 'medium'
+    elif isinstance(port, list):
+        ports = set(port)
+    elif isinstance(port, tuple):
+        ports = set(port)
+    elif isinstance(port, int):
+        if 0 <= port <= 65535:
+            ports = {port}
+    elif port in {'default', 'small', 'medium', 'large'}:
+        logger.log('INFOR', f'探测{port}等端口范围')
         ports = config.ports.get(port)
-        logger.log('INFOR', f'使用{port}等端口范围')
-    if not ports:  # 意外情况 ports_range为空使用使用中等端口范围
-        logger.log('ALERT', f'使用medium等端口范围')
-        ports = config.ports.get('medium')
+    if not ports:  # 意外情况
+        logger.log('ERROR', f'指定探测端口范围有误')
+        ports = {80}
+    if ports == {80}:
+        logger.log('INFOR', f'探测默认端口范围')
     return ports
 
 
