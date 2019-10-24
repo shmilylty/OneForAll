@@ -48,22 +48,31 @@ def gen_new_datas(datas, ports):
     protocols = ['http://', 'https://']
     for data in datas:
         valid = data.get('valid')
-        if valid == 0:  # 子域有效性未知的才进行http请求探测
-            continue
-        subdomain = data.get('subdomain')
-        for port in ports:
-            for protocol in protocols:
+        if valid is None:  # 子域有效性未知的才进行http请求探测
+            subdomain = data.get('subdomain')
+            for port in ports:
                 if port == 80:
-                    url = f'http://{subdomain}:{port}'
+                    url = f'http://{subdomain}'
+                    data['id'] = None
+                    data['url'] = url
+                    data['port'] = 80
+                    new_datas.append(data)
+                    data = dict(data)  # 需要生成一个新的字典对象
                 elif port == 443:
-                    url = f'https://{subdomain}:{port}'
+                    url = f'https://{subdomain}'
+                    data['id'] = None
+                    data['url'] = url
+                    data['port'] = 443
+                    new_datas.append(data)
+                    data = dict(data)  # 需要生成一个新的字典对象
                 else:
-                    url = f'{protocol}{subdomain}:{port}'
-                data['id'] = None
-                data['url'] = url
-                data['port'] = port
-                new_datas.append(data)
-                data = dict(data)  # 需要生成一个新的字典对象
+                    for protocol in protocols:
+                        url = f'{protocol}{subdomain}:{port}'
+                        data['id'] = None
+                        data['url'] = url
+                        data['port'] = port
+                        new_datas.append(data)
+                        data = dict(data)  # 需要生成一个新的字典对象
     return new_datas
 
 
@@ -171,8 +180,8 @@ async def bulk_get_request(datas, port):
     header = None
     if config.fake_header:
         header = utils.gen_fake_header()
-    tasks = []
     async with ClientSession(connector=conn, headers=header) as session:
+        tasks = []
         for i, data in enumerate(new_datas):
             url = data.get('url')
             task = asyncio.ensure_future(fetch(session, url))
