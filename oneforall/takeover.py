@@ -58,7 +58,7 @@ class Takeover(Module):
                           'jira', 'xls', 'xlsx', 'dbf', 'latex', 'ods'
         参数dpath为None默认使用OneForAll结果目录
 
-    :param str target:  单个子域或者每行一个子域的文件路径(必需参数)
+    :param any target:  单个子域或者每行一个子域的文件路径(必需参数)
     :param int thread:  线程数(默认100)
     :param str format:  导出格式(默认csv)
     :param str dpath:   导出目录(默认None)
