@@ -48,21 +48,22 @@ def gen_new_datas(datas, ports):
     protocols = ['http://', 'https://']
     for data in datas:
         valid = data.get('valid')
-        if valid is None:  # 子域有效性未知的才进行http请求探测
-            subdomain = data.get('subdomain')
-            for port in ports:
-                for protocol in protocols:
-                    if port == 80:
-                        url = f'http://{subdomain}:{port}'
-                    elif port == 443:
-                        url = f'https://{subdomain}:{port}'
-                    else:
-                        url = f'{protocol}{subdomain}:{port}'
-                    data['id'] = None
-                    data['url'] = url
-                    data['port'] = port
-                    new_datas.append(data)
-                    data = dict(data)  # 需要生成一个新的字典对象
+        if valid == 0:  # 子域有效性未知的才进行http请求探测
+            continue
+        subdomain = data.get('subdomain')
+        for port in ports:
+            for protocol in protocols:
+                if port == 80:
+                    url = f'http://{subdomain}:{port}'
+                elif port == 443:
+                    url = f'https://{subdomain}:{port}'
+                else:
+                    url = f'{protocol}{subdomain}:{port}'
+                data['id'] = None
+                data['url'] = url
+                data['port'] = port
+                new_datas.append(data)
+                data = dict(data)  # 需要生成一个新的字典对象
     return new_datas
 
 
@@ -75,17 +76,20 @@ async def fetch(session, url):
     :return: 响应对象和响应文本
     """
     timeout = aiohttp.ClientTimeout(total=config.get_timeout)
-    async with session.get(url,
-                           ssl=config.verify_ssl,
-                           allow_redirects=config.get_redirects,
-                           timeout=timeout,
-                           proxy=config.get_proxy) as resp:
+    try:
+        async with session.get(url,
+                               ssl=config.verify_ssl,
+                               allow_redirects=config.get_redirects,
+                               timeout=timeout,
+                               proxy=config.get_proxy) as resp:
 
-        try:
-            text = await resp.text(encoding='gb2312')  # 先尝试用fb2312解码
-        except UnicodeDecodeError:
-            text = await resp.text(errors='ignore')
-    return resp, text
+            try:
+                text = await resp.text(encoding='gb2312')  # 先尝试用fb2312解码
+            except UnicodeDecodeError:
+                text = await resp.text(errors='ignore')
+        return resp, text
+    except BaseException as exception:
+        return exception
 
 
 def get_title(markup):
@@ -135,19 +139,23 @@ def request_callback(future, index, datas):
         datas[index]['reason'] = str(e.args)
         datas[index]['valid'] = 0
     else:
-        resp, text = result
-        datas[index]['reason'] = resp.reason
-        datas[index]['status'] = resp.status
-        if resp.status == 400 or resp.status >= 500:
-            datas[index]['valid'] = 0
+        if isinstance(result, tuple):
+            resp, text = result
+            datas[index]['reason'] = resp.reason
+            datas[index]['status'] = resp.status
+            if resp.status == 400 or resp.status >= 500:
+                datas[index]['valid'] = 0
+            else:
+                datas[index]['valid'] = 1
+                headers = resp.headers
+                banner = str({'Server': headers.get('Server'),
+                              'Via': headers.get('Via'),
+                              'X-Powered-By': headers.get('X-Powered-By')})
+                datas[index]['banner'] = banner
+                datas[index]['title'] = get_title(text)
         else:
-            datas[index]['valid'] = 1
-            headers = resp.headers
-            banner = str({'Server': headers.get('Server'),
-                          'Via': headers.get('Via'),
-                          'X-Powered-By': headers.get('X-Powered-By')})
-            datas[index]['banner'] = banner
-            datas[index]['title'] = get_title(text)
+            datas[index]['reason'] = 'Something error'
+            datas[index]['valid'] = 0
 
 
 async def bulk_get_request(datas, port):
@@ -156,17 +164,15 @@ async def bulk_get_request(datas, port):
     logger.log('INFOR', f'正在异步进行子域的GET请求')
 
     limit_open_conn = get_limit_conn()
-    # 使用异步域名解析器 自定义域名服务器
-    conn = aiohttp.TCPConnector(ssl=config.verify_ssl,
+    conn = aiohttp.TCPConnector(ttl_dns_cache=300,
+                                ssl=config.verify_ssl,
                                 limit=limit_open_conn,
                                 limit_per_host=config.limit_per_host)
-
-    # semaphore = asyncio.Semaphore(limit_open_conn)
     header = None
     if config.fake_header:
         header = utils.gen_fake_header()
+    tasks = []
     async with ClientSession(connector=conn, headers=header) as session:
-        tasks = []
         for i, data in enumerate(new_datas):
             url = data.get('url')
             task = asyncio.ensure_future(fetch(session, url))
@@ -174,7 +180,8 @@ async def bulk_get_request(datas, port):
                                                      index=i,
                                                      datas=new_datas))
             tasks.append(task)
-        if tasks:  # 任务列表里有任务不空时才进行解析
+        # 任务列表里有任务不空时才进行解析
+        if tasks:
             # 等待所有task完成 错误聚合到结果列表里
             futures = asyncio.as_completed(tasks)
             for future in tqdm.tqdm(futures,
@@ -182,10 +189,7 @@ async def bulk_get_request(datas, port):
                                     desc='Progress',
                                     smoothing=1.0,
                                     ncols=True):
-                try:
-                    await future
-                except:
-                    pass
+                await future
 
     logger.log('INFOR', f'完成异步进行子域的GET请求')
     return new_datas
