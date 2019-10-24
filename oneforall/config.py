@@ -102,11 +102,11 @@ ports = {'default': default_ports, 'small': small_ports,
 verify_ssl = False
 # aiohttp 支持 HTTP/HTTPS形式的代理
 get_proxy = None  # proxy="http://user:pass@some.proxy.com"
-get_timeout = 30  # http请求探测总超时时间 None或者0则表示不检测超时
+get_timeout = 60  # http请求探测总超时时间 None或者0则表示不检测超时
 get_redirects = True  # 允许请求跳转
 fake_header = True  # 使用伪造请求头
 # 限制同一时间打开的连接数(默认None，根据系统不同设置，Windows系统400 其他系统800)
-limit_open_conn = 500
+limit_open_conn = 200
 # 限制同一时间在同一个端点((host, port, is_ssl) 3者都一样的情况)打开的连接数
 limit_per_host = 0  # 默认0表示不限制
 
