@@ -70,6 +70,7 @@ class OneForAll(object):
     :param int valid:   导出子域的有效性(默认1)
     :param str format:  导出格式(默认csv)
     :param bool show:   终端显示导出数据(默认False)
+    :param str vulnhunter:   是否对接vulnhunter平台(默认空)
     """
     def __init__(self, target, brute=None, verify=None, port='default',
                  valid=1, format='csv', takeover=True, show=False):
@@ -86,6 +87,14 @@ class OneForAll(object):
         self.show = show
 
     def main(self):
+        if self.vulnhunter != '':
+            import sys, os
+            dir = os.path.join(os.getcwd())
+            sys.path.append(dir)
+            os.environ['DJANGO_SETTINGS_MODULE'] = 'VulnHunterPlatform.settings'  # 项目的settings
+            import django
+            django.setup()
+            from AssetManage.models import SubDomain
         if self.brute is None:
             self.brute = config.enable_brute_module
         if self.verify is None:
@@ -141,6 +150,26 @@ class OneForAll(object):
         db.drop_table(rename_table)
         db.rename_table(self.domain, rename_table)
         db.close()
+        
+        # 对接web平台
+        if self.vulnhunter:
+            for i in self.datas:
+                if i['valid'] == 1:
+                    try:
+                        subdomain_create = SubDomain.objects.update_or_create(
+                            project=self.vulnhunter,
+                            url=i['url'],
+                            subdomain=i['subdomain'],
+                            port=i['port'],
+                            ips=i['ips'][1:-1],
+                            status=i['status'],
+                            title=i['title'],
+                            banner=i['banner'][1:-1],
+                            domain=self.domain
+                        )
+                    except django.db.utils.IntegrityError:
+                        pass
+                      
         # 子域接管检查
 
         if self.takeover:
