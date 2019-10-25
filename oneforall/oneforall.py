@@ -70,9 +70,10 @@ class OneForAll(object):
     :param int valid:   导出子域的有效性(默认1)
     :param str format:  导出格式(默认csv)
     :param bool show:   终端显示导出数据(默认False)
+    :param str vulnhunter:   是否对接vulnhunter平台(默认空)
     """
     def __init__(self, target, brute=None, verify=None, port='default',
-                 valid=1, format='csv', takeover=True, show=False):
+                 valid=1, format='csv', takeover=True, show=False, vulnhunter=''):
         self.target = target
         self.port = port
         self.domains = set()
@@ -84,6 +85,7 @@ class OneForAll(object):
         self.valid = valid
         self.format = format
         self.show = show
+        self.vulnhunter = vulnhunter
 
     def main(self):
         if self.brute is None:
@@ -141,6 +143,10 @@ class OneForAll(object):
         db.drop_table(rename_table)
         db.rename_table(self.domain, rename_table)
         db.close()
+        # 对接web平台
+        if self.vulnhunter != '':
+            from vulnhunter import save_subdomain
+            save_subdomain(self.datas, self.vulnhunter, self.domain)
         # 子域接管检查
 
         if self.takeover:
