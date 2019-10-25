@@ -18,7 +18,7 @@ from config import logger
 
 def save_subdomain(datas, vulnhunter, domain):
     dir = pathlib.Path.cwd()
-    sys.path.append(dir._str)
+    sys.path.append(dir.as_posix())
     os.environ['DJANGO_SETTINGS_MODULE'] = 'VulnHunterPlatform.settings'  # 装载vulnhunter项目的settings
     django.setup()
     from AssetManage.models import SubDomain
