@@ -1,6 +1,5 @@
 aiohttp==3.6.2
 aiomultiprocess==0.6.1
-asn1crypto==1.2.0
 async-timeout==3.0.1
 attrs==19.3.0
 backports.csv==1.0.7
@@ -10,9 +9,9 @@ brotlipy==0.7.0
 bs4==0.0.1
 cchardet==2.1.4
 certifi==2019.9.11
-cffi==1.13.0
+cffi==1.13.1
 chardet==3.0.4
-cloudscraper==1.2.4
+cloudscraper==1.2.5
 colorama==0.4.1
 cryptography==2.8
 defusedxml==0.6.0
@@ -30,7 +29,6 @@ MarkupPy==1.14
 multidict==4.5.2
 odfpy==1.4.0
 openpyxl==2.4.11
-pycares==3.0.0
 pycparser==2.19
 pyjsparser==2.7.1
 pyOpenSSL==19.0.0
