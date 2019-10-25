@@ -28,10 +28,10 @@ async def dns_query_a(hostname):
     """
     resolver = dns_resolver()
     try:
-        answer = resolver.query(hostname, 'A')
-    except BaseException as e:
-        logger.log('DEBUG', e.args)
-        answer = None
+        answer = await resolver.query(hostname, 'A')
+    except BaseException as exception:
+        logger.log('TRACE', exception.args)
+        answer = exception
     return answer
 
 
@@ -48,11 +48,12 @@ def resolve_callback(future, index, datas):
         datas[index]['ips'] = str(e.args)
         datas[index]['valid'] = 0
     else:
-        if answer:
+        if isinstance(answer, dns.resolver.Answer):
             ips = {item.address for item in answer}
             datas[index]['ips'] = str(ips)
         else:
-            datas[index]['ips'] = 'No answers'
+            datas[index]['ips'] = 'Something error'
+            datas[index]['valid'] = 0
 
 
 async def bulk_query_a(datas):
@@ -80,10 +81,7 @@ async def bulk_query_a(datas):
                                 desc='Progress',
                                 smoothing=1.0,
                                 ncols=True):
-            try:
-                await future
-            except:
-                pass
+            await future
         # await asyncio.wait(tasks)  # 等待所有task完成
     logger.log('INFOR', '完成异步查询子域的A记录')
     return datas
