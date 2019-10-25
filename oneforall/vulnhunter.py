@@ -2,23 +2,26 @@
 # coding=utf-8
 
 """
-OneForAll写入WEB平台数据库模块
+OneForAll写入WEB平台模块
 
 :copyright: Copyright (c) 2019, JrD. All rights reserved.
 :license: GNU General Public License v3.0, see LICENSE for more details.
 """
 
 import os
+import pathlib
+import sys
 import django
 import time
 from config import logger
 
-os.environ['DJANGO_SETTINGS_MODULE'] = 'VulnHunterPlatform.settings'  # vulnhunter项目的settings
-django.setup()
-from AssetManage.models import SubDomain
-
 
 def save_subdomain(datas, vulnhunter, domain):
+    dir = pathlib.Path.cwd()
+    sys.path.append(dir._str)
+    os.environ['DJANGO_SETTINGS_MODULE'] = 'VulnHunterPlatform.settings'  # 装载vulnhunter项目的settings
+    django.setup()
+    from AssetManage.models import SubDomain
     start = time.time()
     num = 0
     for i in datas:
