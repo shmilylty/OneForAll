@@ -122,6 +122,10 @@ def get_title(markup):
     if h2:
         return h2.text.strip()
 
+    h3 = soup.h3
+    if h2:
+        return h3.text.strip()
+
     desc = soup.find('meta', attrs={'name': 'description'})
     if desc:
         return desc['content'].strip()
