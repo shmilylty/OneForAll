@@ -50,8 +50,7 @@ class BruteSRV(Module):
         tasks = []
         for name in names:
             tasks.append(self.query(name))
-        loop = asyncio.new_event_loop()
-        asyncio.set_event_loop(loop)
+        loop = asyncio.get_event_loop()
         group = asyncio.gather(*tasks)
         results = loop.run_until_complete(group)
         for answer in results:
