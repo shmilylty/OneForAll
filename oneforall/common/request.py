@@ -148,7 +148,7 @@ def request_callback(future, index, datas):
     try:
         result = future.result()
     except BaseException as e:
-        logger.log('DEBUG', e.args)
+        logger.log('TRACE', e.args)
         datas[index]['reason'] = str(e.args)
         datas[index]['valid'] = 0
     else:

@@ -28,7 +28,7 @@ async def dns_query_a(hostname):
     """
     resolver = dns_resolver()
     try:
-        answer = await resolver.query(hostname, 'A')
+        answer = resolver.query(hostname, 'A')
     except BaseException as exception:
         logger.log('TRACE', exception.args)
         answer = exception
