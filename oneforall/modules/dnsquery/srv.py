@@ -5,7 +5,8 @@
 """
 
 import json
-import asyncio
+import queue
+import threading
 
 from common import utils
 from common import resolve
@@ -19,48 +20,38 @@ class BruteSRV(Module):
         self.domain = self.register(domain)
         self.module = 'dnsquery'
         self.source = "BruteSRV"
-        self.resolver = resolve.dns_resolver()
+        self.thread_num = 10
+        self.names_que = queue.Queue()
+        self.answers_que = queue.Queue()
 
-    async def query(self, name):
-        """
-        查询域名的SRV记录
-        :param str name: SRV记录
-        :return: 查询结果
-        """
-        logger.log('TRACE', f'尝试查询{name}的SRV记录')
-        try:
-            answers = self.resolver.query(name, 'SRV')
-        except Exception as e:
-            logger.log('TRACE', e)
-            logger.log('TRACE', f'查询{name}的SRV记录失败')
-            return None
-        else:
-            logger.log('TRACE', f'查询{name}的SRV记录成功')
-            return answers
-
-    def brute(self):
-        """
-        枚举域名的SRV记录
-        """
+    def gen_names(self):
         path = data_storage_path.joinpath('srv_prefixes.json')
         with open(path) as file:
             prefixes = json.load(file)
         names = map(lambda prefix: prefix + self.domain, prefixes)
 
-        tasks = []
         for name in names:
-            tasks.append(self.query(name))
-        loop = asyncio.get_event_loop()
-        group = asyncio.gather(*tasks)
-        results = loop.run_until_complete(group)
-        for answer in results:
-            if answer is None:
-                continue
-            for item in answer:
-                subdomains = utils.match_subdomain(self.domain, str(item))
-                self.subdomains = self.subdomains.union(subdomains)
-        if not len(self.subdomains):
-            logger.log('DEBUG', f'没有找到{self.domain}的SRV记录')
+            self.names_que.put(name)
+
+    def brute(self):
+        """
+        枚举域名的SRV记录
+        """
+        self.gen_names()
+
+        for i in range(self.thread_num):
+            thread = BruteThread(self.names_que, self.answers_que)
+            thread.daemon = True
+            thread.start()
+
+        self.names_que.join()
+
+        while not self.answers_que.empty():
+            answer = self.answers_que.get()
+            if answer is not None:
+                for item in answer:
+                    subdomains = utils.match_subdomain(self.domain, str(item))
+                    self.subdomains = self.subdomains.union(subdomains)
 
     def run(self):
         """
@@ -72,6 +63,38 @@ class BruteSRV(Module):
         self.save_json()
         self.gen_result()
         self.save_db()
+
+
+class BruteThread(threading.Thread):
+    def __init__(self, names_que, answers_que):
+        threading.Thread.__init__(self)
+        self.names_que = names_que
+        self.answers_que = answers_que
+        self.resolver = resolve.dns_resolver()
+
+    def query(self, name):
+        """
+        查询域名的SRV记录
+        :param str name: SRV记录
+        :return: 查询结果
+        """
+        logger.log('TRACE', f'尝试查询{name}的SRV记录')
+        try:
+            answer = self.resolver.query(name, 'SRV')
+        except Exception as exception:
+            logger.log('TRACE', exception.args)
+            logger.log('TRACE', f'查询{name}的SRV记录失败')
+            return None
+        else:
+            logger.log('TRACE', f'查询{name}的SRV记录成功')
+            return answer
+
+    def run(self):
+        while True:
+            name = self.names_que.get()
+            answer = self.query(name)
+            self.answers_que.put(answer)
+            self.names_que.task_done()
 
 
 def do(domain):  # 统一入口名字 方便多线程调用
