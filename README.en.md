@@ -89,8 +89,8 @@ pip 19.2.2 from C:\Users\shmilylty\AppData\Roaming\Python\Python37\site-packages
    You can install OneForAll dependencies via pip3 (if you are familiar with [pipenv](https://docs.pipenv.org/en/latest/), then it is recommended that you use [pipenv install dependencies](https://github.com/shmilylty/OneForAll/tree/master/docs/Installation_dependency.md), the following is an example of using **pip3** to install dependencies under **Windows system**: (Note: If your Python3 is installed in the system Program Files In the directory, such as: `C:\Program Files\Python37`, then run the command prompt cmd as an administrator to execute the following command!)
 ```bash
    cd OneForAll/
-   python -m pip install --user  -U pip setuptools wheel
-   pip3 install --user -r requirements.txt
+   python -m pip install -U pip setuptools wheel
+   pip3 install -r requirements.txt
    cd oneforall/
    python oneforall.py --help
 ```

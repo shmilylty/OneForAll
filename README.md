@@ -88,8 +88,8 @@ pip 19.2.2 from C:\Users\shmilylty\AppData\Roaming\Python\Python38\site-packages
    
 ```bash
    cd OneForAll/
-   python -m pip install --user  -U pip setuptools wheel -i https://mirrors.aliyun.com/pypi/simple/
-   pip3 install --user -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
+   python -m pip install -U pip setuptools wheel -i https://mirrors.aliyun.com/pypi/simple/
+   pip3 install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
    cd oneforall/
    python oneforall.py --help
 ```
