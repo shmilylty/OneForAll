@@ -30,19 +30,14 @@ def export(table, db=None, valid=None, dpath=None, format='csv', show=False):
     :param str table:   要导出的表
     :param str db:      要导出的数据库路径(默认为results/result.sqlite3)
     :param int valid:   导出子域的有效性(默认None)
-    :param str format:  导出格式(默认xls)
+    :param str format:  导出格式(默认csv)
     :param str dpath:    导出目录(默认None)
     :param bool show:   终端显示导出数据(默认False)
     """
     format = utils.check_format(format)
     dpath = utils.check_dpath(dpath)
     database = Database(db)
-    if valid is None:
-        rows = database.get_data(table)
-    elif isinstance(valid, int):
-        rows = database.get_subdomain(table, valid)
-    else:
-        rows = database.get_data(table)  # 意外情况导出全部子域
+    rows = database.export_data(table, valid)  # 意外情况导出全部子域
     if show:
         print(rows.dataset)
     if format == 'txt':
@@ -50,7 +45,7 @@ def export(table, db=None, valid=None, dpath=None, format='csv', show=False):
     else:
         data = rows.export(format)
     database.close()
-    fpath = dpath.joinpath(f'{table}.{format}')
+    fpath = dpath.joinpath(f'{table}_subdomain.{format}')
     utils.save_data(fpath, data)
 
 

@@ -53,8 +53,11 @@ class Database(object):
                             f'status int,'
                             f'reason text,'
                             f'valid int,'
+                            f'new int,'
                             f'title text,'
                             f'banner text,'
+                            f'header text,'
+                            f'response text,'
                             f'module text,'
                             f'source text,'
                             f'elapsed float,'
@@ -78,10 +81,11 @@ class Database(object):
                 self.conn.bulk_query(
                     f'insert into "{table_name}" ('
                     f'id, url, subdomain, port, ips, status, reason, valid,'
-                    f'title, banner, module, source, elapsed, count)'
+                    f'new, title, banner, header, response, module, source, '
+                    f'elapsed, count)'
                     f'values (:id, :url, :subdomain, :port, :ips, :status,'
-                    f':reason, :valid, :title, :banner, :module, :source,'
-                    f':elapsed, :count)',
+                    f':reason, :valid, :new, :title, :banner, :header,'
+                    f':response, :module, :source,:elapsed, :count)',
                     results)
             except Exception as e:
                 logger.log('ERROR', e)
@@ -190,18 +194,22 @@ class Database(object):
         else:
             return rows
 
-    def get_subdomain(self, table_name, valid):
+    def export_data(self, table_name, valid):
         """
-        获取表中的子域数据
+        获取表中的部分数据
 
         :param str table_name: 表名
-        :param int valid: 是否有效
+        :param any valid: 有效性
         """
         table_name = table_name.replace('.', '_')
+        query = f'select id, url, subdomain, port, ips, status, reason,' \
+                f'valid, new, title, banner from "{table_name}"'
+        if valid == 0 or valid == 1:
+            where = f' where valid = {valid}'
+            query += where
         logger.log('DEBUG', f'获取{table_name}表中的所有数据')
         try:
-            rows = self.conn.query(
-                f'select * from "{table_name}" where valid = {valid}')
+            rows = self.conn.query(query)
         except Exception as e:
             logger.log('ERROR', e)
         else:

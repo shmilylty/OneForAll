@@ -83,12 +83,13 @@ class Takeover(Module):
             data = str(self.results)
         else:
             data = self.results.export(self.format)
-        fpath = self.dpath.joinpath(f'takeover.{self.format}')
+        ts = int(time.time())
+        fpath = self.dpath.joinpath(f'takeover_{ts}.{self.format}')
         utils.save_data(fpath, data)
 
     def compare(self, subdomain, cname, responses):
         domain_resp = self.get('http://' + subdomain, check=False)
-        cname_resp = self.get('http://'+cname, check=False)
+        cname_resp = self.get('http://' + cname, check=False)
         if domain_resp is None or cname_resp is None:
             return
 
