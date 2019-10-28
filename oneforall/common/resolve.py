@@ -50,7 +50,7 @@ def resolve_callback(future, index, datas):
     else:
         if isinstance(answer, dns.resolver.Answer):
             ips = {item.address for item in answer}
-            datas[index]['ips'] = str(ips)
+            datas[index]['ips'] = str(ips)[1:-1]
         else:
             datas[index]['ips'] = 'Something error'
             datas[index]['valid'] = 0
