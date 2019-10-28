@@ -34,8 +34,8 @@ def get_cname(subdomain):
     resolver = resolve.dns_resolver()
     try:
         answers = resolver.query(subdomain, 'CNAME')
-    except Exception as e:
-        logger.log('DEBUG', e.args)
+    except Exception as exception:
+        logger.log('TRACE', exception.args)
         return None
     for answer in answers:
         return answer.to_text()  # 一个子域只有一个CNAME记录
