@@ -166,6 +166,8 @@ def request_callback(future, index, datas):
                               'X-Powered-By': headers.get('X-Powered-By')})
                 datas[index]['banner'] = banner
                 datas[index]['title'] = get_title(text)
+                datas[index]['header'] = str(dict(headers))
+                datas[index]['response'] = text
         else:
             datas[index]['reason'] = 'Something error'
             datas[index]['valid'] = 0
