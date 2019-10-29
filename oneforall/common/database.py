@@ -37,7 +37,7 @@ class Database(object):
 
     def create_table(self, table_name):
         """
-        初始化数据库
+        创建表结构
 
         :param str table_name: 要创建的表名
         """
@@ -90,6 +90,26 @@ class Database(object):
             except Exception as e:
                 logger.log('ERROR', e)
 
+    def exist_table(self, table_name):
+        """
+        判断是否存在某表
+
+        :param str table_name: 表名
+        """
+        table_name = table_name.replace('.', '_')
+        logger.log('DEBUG', f'正在查询是否存在{table_name}表')
+        try:
+            result = self.conn.query(f'select count() from sqlite_master '
+                                     f'where type = "table" and '
+                                     f'name = "{table_name}"')
+        except Exception as e:
+            logger.log('ERROR', e)
+        else:
+            if len(result) != 0:
+                return True
+            else:
+                return False
+
     def copy_table(self, table_name, bak_table_name):
         """
         复制表创建备份
@@ -135,7 +155,7 @@ class Database(object):
 
     def rename_table(self, table_name, new_table_name):
         """
-        复制表创建备份
+        重命名表名
 
         :param str table_name: 表名
         :param str new_table_name: 新表名

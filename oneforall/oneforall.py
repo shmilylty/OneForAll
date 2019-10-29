@@ -77,7 +77,7 @@ class OneForAll(object):
         self.port = port
         self.domains = set()
         self.domain = str()
-        self.datas = list()
+        self.data = list()
         self.brute = brute
         self.verify = verify
         self.takeover = takeover
@@ -90,7 +90,8 @@ class OneForAll(object):
             self.brute = config.enable_brute_module
         if self.verify is None:
             self.verify = config.enable_verify_subdomain
-        rename_table = self.domain + '_last'
+        old_table = self.domain + '_last'
+        new_table = self.domain + '_now'
         collect = Collect(self.domain, export=False)
         collect.run()
         if self.brute:
@@ -102,49 +103,61 @@ class OneForAll(object):
         db.copy_table(self.domain, self.domain+'_ori')
         db.remove_invalid(self.domain)
         db.deduplicate_subdomain(self.domain)
+
+        old_data = []
+        # 非第一次收集子域的情况时数据库预处理
+        if db.exist_table(new_table):
+            db.drop_table(old_table)  # 如果存在上次收集结果表就先删除
+            db.rename_table(new_table, old_table)  # 新表重命名为旧表
+            old_data = db.get_data(old_table).as_dict()
+
         # 不验证子域的情况
         if not self.verify:
             # 数据库导出
             self.valid = None
-            dbexport.export(self.domain, valid=self.valid, format=self.format,
-                            show=self.show)
-            db.drop_table(rename_table)
-            db.rename_table(self.domain, rename_table)
+            dbexport.export(self.domain, valid=self.valid,
+                            format=self.format, show=self.show)
+            db.drop_table(new_table)
+            db.rename_table(self.domain, new_table)
             return
         # 开始验证子域工作
-        self.datas = db.get_data(self.domain).as_dict()
+        self.data = db.get_data(self.domain).as_dict()
+
+        # 标记新发现子域
+        self.data = utils.mark_subdomain(old_data, self.data)
+
         loop = asyncio.get_event_loop()
         asyncio.set_event_loop(loop)
 
         # 解析域名地址
-        task = resolve.bulk_query_a(self.datas)
-        self.datas = loop.run_until_complete(task)
+        task = resolve.bulk_query_a(self.data)
+        self.data = loop.run_until_complete(task)
 
         # 保存解析结果
         resolve_table = self.domain + '_res'
         db.drop_table(resolve_table)
         db.create_table(resolve_table)
-        db.save_db(resolve_table, self.datas, 'resolve')
+        db.save_db(resolve_table, self.data, 'resolve')
 
         # 请求域名地址
-        task = request.bulk_get_request(self.datas, self.port)
-        self.datas = loop.run_until_complete(task)
+        task = request.bulk_get_request(self.data, self.port)
+        self.data = loop.run_until_complete(task)
         # 在关闭事件循环前加入一小段延迟让底层连接得到关闭的缓冲时间
         loop.run_until_complete(asyncio.sleep(0.25))
 
         db.clear_table(self.domain)
-        db.save_db(self.domain, self.datas)
+        db.save_db(self.domain, self.data)
 
         # 数据库导出
-        dbexport.export(self.domain, valid=self.valid, format=self.format,
-                        show=self.show)
-        db.drop_table(rename_table)
-        db.rename_table(self.domain, rename_table)
+        dbexport.export(self.domain, valid=self.valid,
+                        format=self.format, show=self.show)
+        db.drop_table(new_table)
+        db.rename_table(self.domain, new_table)
         db.close()
         # 子域接管检查
 
         if self.takeover:
-            subdomains = set(map(lambda x: x.get('subdomain'), self.datas))
+            subdomains = set(map(lambda x: x.get('subdomain'), self.data))
             takeover = Takeover(subdomains)
             takeover.run()
 

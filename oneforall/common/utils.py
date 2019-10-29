@@ -207,3 +207,29 @@ def check_response(method, resp):
         else:
             logger.log('ALERT', msg)
     return False
+
+
+def mark_subdomain(old_data, new_data):
+    """
+    标记新增子域并返回新的数据集
+
+    :param old_data: 之前数据集
+    :param new_data: 现在数据集
+    :return: 已标记的新的数据集
+    """
+    # 第一次收集子域的情况
+    if not old_data:
+        for index, item in enumerate(new_data):
+            item['new'] = 1
+            new_data[index] = item
+        return new_data
+    # 非第一次收集子域的情况
+    old_subdomains = {item.get('subdomain') for item in old_data}
+    for index, item in enumerate(new_data):
+        subdomain = item.get('subdomain')
+        if subdomain in old_subdomains:
+            item['new'] = 0
+        else:
+            item['new'] = 1
+        new_data[index] = item
+    return new_data
