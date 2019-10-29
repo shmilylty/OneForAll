@@ -28,7 +28,7 @@
 
 为了解决以上痛点，此项目应用而生，OneForAll一词是来自我喜欢的一部日漫《[我的英雄学院](https://manhua.fzdm.com/131/)》，它是一种通过一代代的传承不断变强的潜力无穷的顶级个性，目前[番剧](https://www.bilibili.com/bangumi/media/md7452/)也更新到了第四季了，欢迎大佬们入坑😄。正如其名，我希望OneForAll是一款集百家之长，功能强大的全面快速子域收集终极神器🔨。
 
-目前OneForAll还在开发中，肯定有不少问题和需要改进的地方，欢迎大佬们提交[Issues](https://github.com/shmilylty/OneForAll/issues)和[PR](https://github.com/shmilylty/OneForAll/pulls)，用着还行给个小星星✨吧，目前有一个专门用于OneForAll交流和反馈QQ群👨‍👨‍👦‍👦：:[**824414244**](//shang.qq.com/wpa/qunwpa?idkey=125d3689b60445cdbb11e4ddff38036b7f6f2abbf4f7957df5dddba81aa90771)，也可以给我发邮件📧[admin@hackfun.org]。
+目前OneForAll还在开发中，肯定有不少问题和需要改进的地方，欢迎大佬们提交[Issues](https://github.com/shmilylty/OneForAll/issues)和[PR](https://github.com/shmilylty/OneForAll/pulls)，用着还行给个小星星✨吧，目前有一个专门用于OneForAll交流和反馈QQ群👨‍👨‍👦‍👦：:[**824414244**](//shang.qq.com/wpa/qunwpa?idkey=125d3689b60445cdbb11e4ddff38036b7f6f2abbf4f7957df5dddba81aa90771)（加群验证：我的英雄学院），也可以给我发邮件📧[admin@hackfun.org]。
 
 ## 👍功能特性
 
@@ -316,7 +316,7 @@ D:.
 ## ⌛后续计划
 
 - [ ] 各模块持续优化和完善
-- [ ] 子域监控（标记每次新发现的子域）
+- [x] 子域监控（标记每次新发现的子域）
 - [ ] 子域收集爬虫实现（包括从JS等静态资源文件中收集子域）
 - [ ] 操作强大交互人性的前端界面实现（暂定：前端：Element + 后端：Flask）
 

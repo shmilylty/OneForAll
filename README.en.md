@@ -334,7 +334,7 @@ Very warmly welcome all ace to improve the project together!
 ## ⌛Follow-up plan
 
 - [ ] Continuous optimization and improvement of each module
-- [ ] Subdomain monitoring (marking each newly discovered subdomain)
+- [x] Subdomain monitoring (marking each newly discovered subdomain)
 - [ ] Subdomain collection crawler implementation (including collection of subdomains from static resource files such as JS)
 - [ ] Implementation of front-end interface for powerful interaction (tentative: front-end: Element + back-end: Flask)
 
