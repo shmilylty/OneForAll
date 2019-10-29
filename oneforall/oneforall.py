@@ -28,7 +28,7 @@ blue = '\033[01;34m'
 red = '\033[1;31m'
 end = '\033[0m'
 
-version = white + '{' + red + 'v0.0.7#dev' + white + '}'
+version = white + '{' + red + 'v0.0.8#dev' + white + '}'
 
 banner = f"""{yellow}
              ___             _ _ 
@@ -42,7 +42,7 @@ class OneForAll(object):
     """
     OneForAll是一款功能强大的子域收集工具
 
-    Version: 0.0.7
+    Version: 0.0.8
     Project: https://git.io/fjHT1
 
     Example:
