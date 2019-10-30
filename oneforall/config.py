@@ -27,7 +27,8 @@ enable_partial_module = []  # 启用部分模块 必须禁用enable_all_module�
 
 # 爆破模块设置
 enable_brute_module = False  # 使用爆破模块(默认禁用)
-enable_verify_subdomain = True  # 验证子域有效性(默认True)
+enable_dns_resolve = True  # DNS解析子域(默认True)
+enable_http_request = True  # HTTP请求子域(默认True)
 enable_wildcard_check = True  # 开启泛解析检测 会去掉泛解析的子域
 # 爆破时使用的进程数(根据系统中CPU数量情况设置 不宜大于CPU数量 默认为系统中的CPU数量)
 brute_process_num = os.cpu_count()
