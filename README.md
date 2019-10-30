@@ -150,7 +150,8 @@ OneForAll命令行界面基于[Fire](https://github.com/google/python-fire/)实�
            python3 oneforall.py --target example.com run
            python3 oneforall.py --target ./domains.txt run
            python3 oneforall.py --target example.com --brute True run
-           python3 oneforall.py --target example.com --verify False run
+           python3 oneforall.py --target example.com --dns False run
+           python3 oneforall.py --target example.com --req False run
            python3 oneforall.py --target example.com --valid None run
            python3 oneforall.py --target example.com --port medium run
            python3 oneforall.py --target example.com --format csv run
@@ -158,7 +159,6 @@ OneForAll命令行界面基于[Fire](https://github.com/google/python-fire/)实�
    
        Note:
            参数valid可选值1，0，None分别表示导出有效，无效，全部子域
-           参数verify为True会尝试解析和请求子域并根据结果给子域有效性打上标签
            参数port可选值有'default', 'small', 'medium', 'large' 详见config.py配置
            参数format可选格式有'txt', 'rst', 'csv', 'tsv', 'json', 'yaml', 'html',
                              'jira', 'xls', 'xlsx', 'dbf', 'latex', 'ods'
@@ -171,8 +171,10 @@ OneForAll命令行界面基于[Fire](https://github.com/google/python-fire/)实�
    FLAGS
        --brute=BRUTE
            使用爆破模块(默认False)
-       --verify=VERIFY
-           验证子域有效性(默认True)
+       --dns=DNS
+           DNS解析子域(默认True)
+       --req=REQ
+           HTTP请求子域(默认True)
        --port=PORT
            请求验证的端口范围(默认只探测80端口)
        --valid=VALID
