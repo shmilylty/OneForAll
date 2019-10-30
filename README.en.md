@@ -152,7 +152,8 @@ The OneForAll command line interface is based on [Fire](https://github.com/googl
            python3 oneforall.py --target example.com run
            python3 oneforall.py --target ./domains.txt run
            python3 oneforall.py --target example.com --brute True run
-           python3 oneforall.py --target example.com --verify False run
+           python3 oneforall.py --target example.com --dns False run
+           python3 oneforall.py --target example.com --req False run
            python3 oneforall.py --target example.com --valid None run
            python3 oneforall.py --target example.com --port medium run
            python3 oneforall.py --target example.com --format csv run
@@ -161,8 +162,6 @@ The OneForAll command line interface is based on [Fire](https://github.com/googl
        Note:
            Parameter valid optional value 1, 0, none indicates that the export is 
            valid, invalid, and all subdomains, respectively.
-           Parameter verify for True attempts to resolve and request the subdomain 
-           and tag the validity of the subdomain based on the result.
            Parameter port have optional values 'default' 'small', 'medium', 'large',
            See config.py configuration for details.
            Parameter format have optional values 'txt', 'rst', 'csv', 'tsv', 'json', 
@@ -178,8 +177,10 @@ The OneForAll command line interface is based on [Fire](https://github.com/googl
    FLAGS
        --brute=BRUTE
            Use blasting module (default False)
-       --verify=VERIFY
-           Verify the validity of subdomains (default True)
+       --dns=DNS
+           DNS resolve subdomain (default True)
+       --req=REQ
+           HTTP request subdomain (default True)
        --port=PORT
            Port range for request authentication (default 80 port)
        --valid=VALID
