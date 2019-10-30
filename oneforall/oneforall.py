@@ -63,14 +63,15 @@ class OneForAll(object):
         参数format可选格式有'txt', 'rst', 'csv', 'tsv', 'json', 'yaml', 'html',
                           'jira', 'xls', 'xlsx', 'dbf', 'latex', 'ods'
 
-    :param str target:  单个域名或者每行一个域名的文件路径(必需参数)
-    :param bool brute:  使用爆破模块(默认False)
-    :param bool dns:    DNS解析子域(默认True)
-    :param bool req:    HTTP请求子域(默认True)
-    :param str port:    请求验证子域的端口范围(默认只探测80端口)
-    :param int valid:   导出子域的有效性(默认1)
-    :param str format:  导出格式(默认csv)
-    :param bool show:   终端显示导出数据(默认False)
+    :param str target:     单个域名或者每行一个域名的文件路径(必需参数)
+    :param bool brute:     使用爆破模块(默认False)
+    :param bool dns:       DNS解析子域(默认True)
+    :param bool req:       HTTP请求子域(默认True)
+    :param str port:       请求验证子域的端口范围(默认只探测80端口)
+    :param int valid:      导出子域的有效性(默认1)
+    :param str format:     导出格式(默认csv)
+    :param bool takeover:  检查子域接管(默认True)
+    :param bool show:      终端显示导出数据(默认False)
     """
     def __init__(self, target, brute=None, dns=None, req=None, port='default',
                  valid=1, format='csv', takeover=True, show=False):
@@ -79,15 +80,21 @@ class OneForAll(object):
         self.domains = set()
         self.domain = str()
         self.data = list()
-        self.brute = brute or config.enable_brute_module
-        self.dns = dns or config.enable_dns_resolve
-        self.req = req or config.enable_http_request
+        self.brute = brute
+        self.dns = dns
+        self.req = req
         self.takeover = takeover
         self.valid = valid
         self.format = format
         self.show = show
 
     def main(self):
+        if self.brute is None:
+            self.brute = config.enable_brute_module
+        if self.dns is None:
+            self.dns = config.enable_dns_resolve
+        if self.req is None:
+            self.req = config.enable_http_request
         old_table = self.domain + '_last'
         new_table = self.domain + '_now'
         collect = Collect(self.domain, export=False)
