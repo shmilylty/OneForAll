@@ -189,6 +189,8 @@ The OneForAll command line interface is based on [Fire](https://github.com/googl
            Export path (default None)
        --format=FORMAT
            Export format (default xls)
+       --takeover=TAKEOVER
+           Check subdomain takeover (default True)
        --show=SHOW
            Terminal display exported data (default False)
    ```
