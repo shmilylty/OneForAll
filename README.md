@@ -331,16 +331,12 @@ D:.
 * **[Jing Ling](https://github.com/shmilylty)**
   * 核心开发
 
-* **[Black Star](https://github.com/blackstar24)**，**[Echocipher](https://github.com/Echocipher)**
-  * 模块贡献
-
-* **[iceMatcha](https://github.com/iceMatcha)**，**[mikuKeeper](https://github.com/mikuKeeper)**
-  * 工具测试
-
-* **Anyone**
-  * 工具反馈
 
 你可以在[CONTRIBUTORS.md](https://github.com/shmilylty/OneForAll/tree/master/CONTRIBUTORS.md)中参看所有参与该项目的开发者。
+
+## ☕赞赏
+如果你觉得这个项目帮助到了你，你可以帮作者买一杯咖啡表示鼓励:)
+![](https://raw.githubusercontent.com/shmilylty/OneForAll/master/images/Donate.png)
 
 ## 📄版权
 
