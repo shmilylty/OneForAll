@@ -183,6 +183,8 @@ OneForAll命令行界面基于[Fire](https://github.com/google/python-fire/)实�
            导出路径(默认None)
        --format=FORMAT
            导出格式(默认xls)
+       --takeover=TAKEOVER
+           检查子域接管(默认True)
        --show=SHOW
            终端显示导出数据(默认False)
    ```
