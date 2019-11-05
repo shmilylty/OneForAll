@@ -24,7 +24,7 @@ class ZoomEyeAPI(Search):
         resp = self.post(url=url, json=data)
         if not resp:
             logger.log('FATAL', f'登录失败无法获取{self.source}的访问token')
-            return
+            exit(1)
         data = resp.json()
         if resp.status_code == 200:
             logger.log('DEBUG', f'{self.source}模块登录成功')
