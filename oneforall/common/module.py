@@ -15,7 +15,6 @@ from . import utils
 from .domain import Domain
 from common.database import Database
 
-
 lock = threading.Lock()
 
 
@@ -62,9 +61,37 @@ class Module(object):
         self.elapsed = round(self.end - self.start, 1)
         logger.log('DEBUG', f'结束执行{self.source}模块收集{self.domain}的子域')
         logger.log('INFOR', f'{self.source}模块耗时{self.elapsed}秒发现子域'
-                   f'{len(self.subdomains)}个')
+                            f'{len(self.subdomains)}个')
         logger.log('DEBUG', f'{self.source}模块发现{self.domain}的子域\n'
-                   f'{self.subdomains}')
+                            f'{self.subdomains}')
+
+    def head(self, url, params=None, check=True, **kwargs):
+        """
+        自定义head请求
+
+        :param str url: 请求地址
+        :param dict params: 请求参数
+        :param bool check: 检查响应
+        :param kwargs: 其他参数
+        :return: requests响应对象
+        """
+        try:
+            resp = requests.head(url,
+                                 params=params,
+                                 cookies=self.cookie,
+                                 headers=self.header,
+                                 proxies=self.proxy,
+                                 timeout=self.timeout,
+                                 verify=self.verify,
+                                 **kwargs)
+        except Exception as e:
+            logger.log('ERROR', e)
+            return None
+        if not check:
+            return resp
+        if utils.check_response('HEAD', resp):
+            return resp
+        return None
 
     def get(self, url, params=None, check=True, **kwargs):
         """
@@ -118,7 +145,7 @@ class Module(object):
             return None
         if not check:
             return resp
-        if utils.check_response('GET', resp):
+        if utils.check_response('POST', resp):
             return resp
         return None
 
