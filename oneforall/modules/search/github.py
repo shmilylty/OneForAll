@@ -38,7 +38,11 @@ class Github(Search):
             'login': self.email,
             'password': self.password
         }
-        resp = self.session.post(self.post_url, data=post_data)
+        try:
+            resp = self.session.post(self.post_url, data=post_data)
+        except Exception as e:
+            logger.log('ERROR', e)
+            return False
         if resp.status_code != 200:
             return False
         match = re.search(r'"user-login" content="(.*?)"', resp.text)
@@ -51,7 +55,11 @@ class Github(Search):
 
         :return: 获取失败返回None，成功返回token
         """
-        resp = self.session.get(self.login_url)
+        try:
+            resp = self.session.get(self.login_url)
+        except Exception as e:
+            logger.log('ERROR', e)
+            return None
         if resp.status_code != 200:
             return None
         match = re.search(
@@ -68,13 +76,17 @@ class Github(Search):
         self.session.proxies = self.get_proxy(self.source)
         self.session.verify = self.verify
         if not self.login_github():
-            logger.log('ERROR', f'{self.session}模块登录失败')
+            logger.log('ERROR', f'{self.source}模块登录失败')
             return
         page_num = 1
         while True:
             time.sleep(self.delay)
             params = {'p': page_num, 'q': f'"{self.domain}"', 'type': 'Code'}
-            resp = self.session.get(self.addr, params=params)
+            try:
+                resp = self.session.get(self.addr, params=params)
+            except Exception as e:
+                logger.log('ERROR', e)
+                break
             if resp.status_code != 200:
                 logger.log('ERROR', f'{self.session}模块搜索出错')
                 break
