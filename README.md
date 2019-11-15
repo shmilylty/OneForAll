@@ -4,7 +4,7 @@
 [![codecov](https://codecov.io/gh/shmilylty/OneForAll/branch/master/graph/badge.svg)](https://codecov.io/gh/shmilylty/OneForAll)
 [![Maintainability](https://api.codeclimate.com/v1/badges/1287668a6b4c72af683e/maintainability)](https://codeclimate.com/github/shmilylty/OneForAll/maintainability)
 [![License](https://img.shields.io/github/license/shmilylty/OneForAll)](https://github.com/shmilylty/OneForAll/tree/master/LICENSE)
-[![python](https://img.shields.io/badge/python-3.7%20%7C%203.8-blue)](https://github.com/shmilylty/OneForAll/tree/master/)
+[![python](https://img.shields.io/badge/python-3.8-blue)](https://github.com/shmilylty/OneForAll/tree/master/)
 [![python](https://img.shields.io/badge/release-v0.0.8-brightgreen)](https://github.com/shmilylty/OneForAll/releases)
 
 👊**OneForAll是一款功能强大的子域收集工具**  📝[English Document](https://github.com/shmilylty/OneForAll/tree/master/README.en.md)
@@ -59,7 +59,7 @@
 
 **🐍安装要求**
 
-OneForAll是基于CPython开发的，所以你需要Python环境才能运行，如果你的系统还没有Python环境你可以参考[Python 3 安装指南](https://pythonguidecn.readthedocs.io/zh/latest/starting/installation.html#python-3)，理论上Python 3.7和3.8都可以正常运行OneForAll，**但是**许多测试都是在Python 3.8上进行的，所以**推荐**你使用**Python 3.8**版本运行OneForAll。运行以下命令检查Python和pip3版本：
+OneForAll基于[Python 3.8.0]( https://www.python.org/downloads/release/python-380/ )开发和测试，安装Python环境可以参考[Python 3 安装指南](https://pythonguidecn.readthedocs.io/zh/latest/starting/installation.html#python-3)。运行以下命令检查Python和pip3版本：
 ```bash
 python -V
 pip3 -V
