@@ -19,7 +19,6 @@ class IP138(Query):
         self.proxy = self.get_proxy(self.source)
         data = {'domain': self.domain}
         self.addr = self.addr.format(domain=self.domain)
-        print(self.addr)
         resp = self.get(self.addr, data=data)
         if not resp:
             return
