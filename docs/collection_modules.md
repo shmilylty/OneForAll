@@ -48,7 +48,7 @@ proxy_partial_module = ['GoogleQuery', 'AskSearch']  # 只代理GoogleQuery和As
       | archivecrawl | 否           | 否          |          |
       | commoncrawl  | 否           | 否          |          |
 
-  4. 利用DNS数据集收集子域（目前有19个模块：`cebaidu`, `binaryedge_api`, `circl_api`, `hackertarget`, `riddler`, `bufferover`, `dnsdb`, `ipv4info`, `robtex`, `chinaz`, `dnsdb_api`, `netcraft`, `securitytrails_api`, `chinaz_api`, `dnsdumpster`, `passivedns_api`,  `ptrarchive`, `sitedossier`,`threatcrowd`）
+  4. 利用DNS数据集收集子域（目前有22个模块：`cebaidu`, `binaryedge_api`, `circl_api`, `hackertarget`, `riddler`, `bufferover`, `dnsdb`, `ipv4info`, `robtex`, `chinaz`, `dnsdb_api`, `netcraft`, `securitytrails_api`, `chinaz_api`, `dnsdumpster`, `passivedns_api`,  `ptrarchive`, `sitedossier`,`threatcrowd`）
 
       | 模块名称           | 是否需要代理 | 是否需要API | 其他说明                                           |
       | ------------------ | ------------ | ----------- | -------------------------------------------------- |
@@ -62,6 +62,7 @@ proxy_partial_module = ['GoogleQuery', 'AskSearch']  # 只代理GoogleQuery和As
       | dnsdb_api          | 否           | 是          | API使用和申请见[config.py](../oneforall/config.py) |
       | dnsdumpster        | 否           | 否          |                                                    |
       | hackertarget       | 否           | 否          |                                                    |
+      | ip138              | 否           | 否          |                                                    |
       | ipv4info           | 否           | 是          | API使用和申请见[config.py](../oneforall/config.py) |
       | netcraft           | 否           | 否          |                                                    |
       | passivedns_api     | 否           | 是          | API使用和申请见[config.py](../oneforall/config.py) |
@@ -71,6 +72,7 @@ proxy_partial_module = ['GoogleQuery', 'AskSearch']  # 只代理GoogleQuery和As
       | securitytrails_api | 否           | 是          | API使用和申请见[config.py](../oneforall/config.py) |
       | sitedossier        | 否           | 否          |                                                    |
       | threatcrowd        | 否           | 否          |                                                    |
+      | ximcx              | 否           | 否          |                                                    |
   5. 利用DNS查询收集子域（目前有1个模块：通过枚举常见的SRV记录并做查询来收集子域`srv`，该模块还有待添加和完善）
 
       | 模块名称 | 是否需要代理 | 是否需要API | 其他说明                      |
