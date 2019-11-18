@@ -39,7 +39,7 @@
 
   3. 利用网上爬虫档案收集子域（目前有2个模块：`archivecrawl`，`commoncrawl`，此模块还在调试，该模块还有待添加和完善）
 
-  4. 利用DNS数据集收集子域（目前有19个模块：`CeBaidu`, `binaryedge_api`, `circl_api`, `hackertarget`, `riddler`, `bufferover`, `dnsdb`, `ipv4info`, `robtex`, `chinaz`, `dnsdb_api`, `netcraft`, `securitytrails_api`, `chinaz_api`, `dnsdumpster`, `passivedns_api`,  `ptrarchive`, `sitedossier`,`threatcrowd`）
+  4. 利用DNS数据集收集子域（目前有21个模块：`ip138`, `ximcx`, `CeBaidu`, `binaryedge_api`, `circl_api`, `hackertarget`, `riddler`, `bufferover`, `dnsdb`, `ipv4info`, `robtex`, `chinaz`, `dnsdb_api`, `netcraft`, `securitytrails_api`, `chinaz_api`, `dnsdumpster`, `passivedns_api`,  `ptrarchive`, `sitedossier`,`threatcrowd`）
 
   5. 利用DNS查询收集子域（目前有1个模块：通过枚举常见的SRV记录并做查询来收集子域`srv`，该模块还有待添加和完善）
 
