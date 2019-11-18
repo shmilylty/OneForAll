@@ -2,7 +2,7 @@ import asyncio
 import functools
 
 import tqdm
-import dns.resolver
+from dns.resolver import Resolver
 
 import config
 from config import logger
@@ -12,7 +12,7 @@ def dns_resolver():
     """
     dns解析器
     """
-    resolver = dns.resolver.Resolver()
+    resolver = Resolver()
     resolver.nameservers = config.resolver_nameservers
     resolver.timeout = config.resolver_timeout
     resolver.lifetime = config.resolver_lifetime
@@ -35,9 +35,26 @@ async def dns_query_a(hostname):
     return answer
 
 
+async def aiodns_query_a(hostname):
+    """
+    异步查询A记录
+
+    :param str hostname: 主机名
+    :return: 查询结果
+    """
+    try:
+        loop = asyncio.get_event_loop()
+        answer = await loop.getaddrinfo(hostname, 'http')
+    except BaseException as exception:
+        logger.log('TRACE', exception.args)
+        answer = exception
+    return answer
+
+
 def resolve_callback(future, index, datas):
     """
     解析结果回调处理
+
     :param future: future对象
     :param index: 下标
     :param datas: 结果集
@@ -48,8 +65,8 @@ def resolve_callback(future, index, datas):
         datas[index]['ips'] = str(e.args)
         datas[index]['valid'] = 0
     else:
-        if isinstance(answer, dns.resolver.Answer):
-            ips = {item.address for item in answer}
+        if isinstance(answer, list):
+            ips = {item[4][0] for item in answer}
             datas[index]['ips'] = str(ips)[1:-1]
         else:
             datas[index]['ips'] = 'Something error'
@@ -69,7 +86,7 @@ async def bulk_query_a(datas):
     for i, data in enumerate(datas):
         if not data.get('ips'):
             subdomain = data.get('subdomain')
-            task = asyncio.ensure_future(dns_query_a(subdomain))
+            task = asyncio.ensure_future(aiodns_query_a(subdomain))
             task.add_done_callback(functools.partial(resolve_callback,
                                                      index=i,
                                                      datas=datas))  # 回调
@@ -85,3 +102,8 @@ async def bulk_query_a(datas):
         # await asyncio.wait(tasks)  # 等待所有task完成
     logger.log('INFOR', '完成异步查询子域的A记录')
     return datas
+
+
+def run_bulk_query(datas):
+    new_datas = asyncio.run(bulk_query_a(datas))
+    return new_datas

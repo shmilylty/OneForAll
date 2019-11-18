@@ -129,7 +129,7 @@ class Takeover(Module):
             bar.update()
             if done == bar.total:  # 完成队列中所有子域的检查退出
                 break
-        bar.close()
+        # bar.close()
 
     def run(self):
         start = time.time()

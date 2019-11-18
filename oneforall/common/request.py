@@ -37,8 +37,7 @@ def get_ports(port):
     if not ports:  # 意外情况
         logger.log('ERROR', f'指定探测端口范围有误')
         ports = {80}
-    if ports == {80}:
-        logger.log('INFOR', f'探测默认端口范围')
+    logger.log('INFOR', f'探测端口范围：{ports}')
     return ports
 
 
@@ -207,4 +206,9 @@ async def bulk_get_request(datas, port):
                 await future
 
     logger.log('INFOR', f'完成异步进行子域的GET请求')
+    return new_datas
+
+
+def run_bulk_query(datas, port):
+    new_datas = asyncio.run(bulk_get_request(datas, port))
     return new_datas
