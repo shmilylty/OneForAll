@@ -90,6 +90,8 @@ class Github(Search):
             if resp.status_code != 200:
                 logger.log('ERROR', f'{self.session}模块搜索出错')
                 break
+            if 'couldn’t find any code' in resp.text:
+                break
             soup = BeautifulSoup(resp.text, 'lxml')
             subdomains = self.match(self.domain, soup.text)
             self.subdomains = self.subdomains.union(subdomains)
