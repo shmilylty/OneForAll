@@ -1,64 +1,84 @@
 # 安装依赖
 
-你可以通过pip3和pipenv两种方法安装OneForAll的依赖（如果你熟悉[pipenv](https://docs.pipenv.org/en/latest/)，那么推荐使用你使用pipenv）：
+你可以通过pip3和pipenv两种方法安装OneForAll的依赖（熟悉哪种就用哪种）：
 
-* **Windows系统**（注意：如果你的Python3安装在系统Program Files目录下，如：`C:\Program Files\Python38`，那么请以管理员身份运行命令提示符cmd执行以下命令！）
+## Windows系统
 
-    1. 使用pipenv
+注意：如果你的Python3安装在系统Program Files目录下，如：`C:\Program Files\Python38`，那么请以管理员身份运行命令提示符cmd执行以下命令！
 
-    ```bash
-    cd OneForAll/
-    python -m pip install -U pip setuptools wheel -i https://mirrors.aliyun.com/pypi/simple/
-    pip3 install pipenv -i https://mirrors.aliyun.com/pypi/simple/
-    pipenv install --python 3.8
-    cd oneforall
-    pipenv run python oneforall.py --help
-    ```
+1. 使用pipenv安装依赖
+```bash
+cd OneForAll/
+python -m pip install -U pip setuptools wheel -i https://mirrors.aliyun.com/pypi/simple/
+pip3 install pipenv -i https://mirrors.aliyun.com/pypi/simple/
+pipenv install --python 3.8
+cd oneforall
+pipenv run python oneforall.py --help
+```
 
-    2. 使用pip3
+2. 使用pip3安装依赖
+```bash
+cd OneForAll/
+python -m pip install -U pip setuptools wheel -i https://mirrors.aliyun.com/pypi/simple/
+pip3 install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
+cd oneforall/
+python oneforall.py --help
+```
+## Linux系统
 
-    ```bash
-    cd OneForAll/
-    python -m pip install -U pip setuptools wheel -i https://mirrors.aliyun.com/pypi/simple/
-    pip3 install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
-    cd oneforall/
-    python oneforall.py --help
-    ```
-* **Linux系统**
+* **Ubuntu/Debian系统(包括kali)**
+安装git
+```bash
+sudo apt update
+sudo apt install git
+```
 
-    1. 使用pipenv
-    ```bash
-    cd OneForAll/
-    sudo python3 -m pip install -U pip setuptools wheel -i https://mirrors.aliyun.com/pypi/simple/
-    sudo pip3 install pipenv -i https://mirrors.aliyun.com/pypi/simple/
-    sudo pipenv install --python 3.8
-    cd oneforall
-    pipenv run python3 oneforall.py --help
-    ```
-    2. 使用pip3
-    ```bash
-    cd OneForAll/
-    sudo python3 -m pip install -U pip setuptools wheel -i https://mirrors.aliyun.com/pypi/simple/
-    sudo pip3 install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
-    cd oneforall/
-    python3 oneforall.py --help
-    ```
-* **Darwin系统**
+克隆OneForAll项目
+```bash
+git clone https://gitee.com/shmilylty/OneForAll.git
+```
 
-    1. 使用pipenv
-    ```bash
-    cd OneForAll/
-    python3 -m pip install -U pip setuptools wheel -i https://mirrors.aliyun.com/pypi/simple/
-    pip3 install pipenv -i https://mirrors.aliyun.com/pypi/simple/
-    pipenv install --python 3.8
-    cd oneforall
-    pipenv run python3 oneforall.py --help
-    ```
-    2. 使用pip3
-    ```bash
-    cd OneForAll/
-    python3 -m pip install -U pip setuptools wheel -i https://mirrors.aliyun.com/pypi/simple/
-    pip3 install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
-    cd oneforall/
-    python3 oneforall.py --help
-    ```
+安装python及开发依赖
+```bash
+sudo apt install python3.8 python3.8-dev
+```
+接下来你可以使用以下一种方式安装OneForAll的Python库依赖:
+1. 使用pipenv安装依赖
+```bash
+cd OneForAll/
+sudo python3.8 -m pip install -U pip setuptools wheel -i https://mirrors.aliyun.com/pypi/simple/
+sudo apt install pipenv
+sudo pipenv install --python 3.8
+cd oneforall
+pipenv run python3 oneforall.py --help
+```
+
+2. 使用pip3安装依赖
+```bash
+cd OneForAll/
+sudo apt install python3-pip
+sudo python3.8 -m pip install -U pip setuptools wheel -i https://mirrors.aliyun.com/pypi/simple/
+sudo pip3 install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
+cd oneforall/
+python3.8 oneforall.py --help
+```
+## Darwin系统
+
+1. 使用pipenv安装依赖
+```bash
+cd OneForAll/
+python3 -m pip install -U pip setuptools wheel -i https://mirrors.aliyun.com/pypi/simple/
+pip3 install pipenv -i https://mirrors.aliyun.com/pypi/simple/
+pipenv install --python 3.8
+cd oneforall
+pipenv run python3 oneforall.py --help
+```
+
+2. 使用pip3安装依赖
+```bash
+cd OneForAll/
+python3 -m pip install -U pip setuptools wheel -i https://mirrors.aliyun.com/pypi/simple/
+pip3 install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
+cd oneforall/
+python3 oneforall.py --help
+```
