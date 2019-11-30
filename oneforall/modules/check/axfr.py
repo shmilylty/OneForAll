@@ -34,10 +34,11 @@ class CheckAXFR(Module):
         """
         logger.log('DEBUG', f'尝试对{self.domain}的域名服务器{server}进行域传送')
         try:
-            xfr = dns.query.xfr(where=server, zone=self.domain)
+            xfr = dns.query.xfr(where=server, zone=self.domain,
+                                timeout=5.0, lifetime=10.0)
             zone = dns.zone.from_xfr(xfr)
         except Exception as e:
-            logger.log('DEBUG', str(e))
+            logger.log('DEBUG', e.args)
             logger.log('DEBUG', f'对{self.domain}的域名服务器{server}进行域传送失败')
             return
         names = zone.nodes.keys()
