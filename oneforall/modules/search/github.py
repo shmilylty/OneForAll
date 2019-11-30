@@ -101,7 +101,7 @@ class Github(Search):
                 # 搜索中发现搜索出的结果有完全重复的结果就停止搜索
                 if subdomains.issubset(self.subdomains):
                     break
-            if 'class="next_page disabled"' in resp.text:
+            if 'class="next_page"' not in resp.text:
                 break
             if page_num > 100:
                 break
@@ -132,4 +132,4 @@ def do(domain):  # 统一入口名字 方便多线程调用
 
 
 if __name__ == '__main__':
-    do('mi.com')
+    do('example.com')
