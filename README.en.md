@@ -43,7 +43,7 @@ At present, OneForAll is still under development, there must be a lot of problem
 
   5.  Collect subdomains using DNS queries (there is currently a module to collect subdomains `srv` by enumerating common SRV records and making queries, which needs to be added and improved). 
 
-  6.  Collect subdomains using threat intelligence platform data (there are currently five modules: `riskiq_ api`, `threatbook_ api`, `threatkeeper `, `virustotal`, `virustotal_ api`, which need to be added and improved). 
+  6.  Collect subdomains using threat intelligence platform data (there are currently 6 modules: `alienvault`, `riskiq_ api`, `threatbook_ api`, `threatkeeper `, `virustotal`, `virustotal_ api`, which need to be added and improved).
 
   7.  Use search engines to discover subdomains (there are currently 16 modules: `ask`, `bing_ api`, `fofa_ api`, `shodan_ api`, `yahoo`, `baidu`, `duckduckgo`, `github`, `google`, `so`, `yandex`, `bing`, `exalead`, `google_ api`, `sogou`, `zoomeye_ api`), except for special search engines in the search module. General search engines support automatic exclusion of search, full search, recursive search. 
 * **Support subdomain blasting**，This module has both conventional dictionary blasting and custom fuzz mode. It supports batch blasting and recursive blasting, and automatically judges pan-parsing and processing.
