@@ -78,10 +78,11 @@ proxy_partial_module = ['GoogleQuery', 'AskSearch']  # 只代理GoogleQuery和As
       | 模块名称 | 是否需要代理 | 是否需要API | 其他说明                      |
       | -------- | ------------ | ----------- | ----------------------------- |
       | srv      | 否           | 否          | 枚举域名常见的SRV记录发现子域 |
-  6. 利用威胁平台数据收集子域（目前有5个模块：`riskiq_api`，`threatbook_api`，`threatminer`，`virustotal`，`virustotal_api`该模块还有待添加和完善）
+  6. 利用威胁平台数据收集子域（目前有6个模块：`riskiq_api`，`threatbook_api`，`threatminer`，`virustotal`，`virustotal_api`该模块还有待添加和完善）
 
       | 模块名称       | 是否需要代理 | 是否需要API | 其他说明                                           |
       | -------------- | ------------ | ----------- | -------------------------------------------------- |
+      | alienvault     | 否           | 否          |                                                    |
       | riskiq_api     | 否           | 是          | API使用和申请见[config.py](../oneforall/config.py) |
       | threatbook_api | 否           | 是          | API使用和申请见[config.py](../oneforall/config.py) |
       | threatminer    | 否           | 否          |                                                    |
