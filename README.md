@@ -110,14 +110,14 @@ pip 19.2.2 from C:\Users\shmilylty\AppData\Roaming\Python\Python38\site-packages
 
 ```shell
 docker pull tardis07/oneforall
-docker run oneforall
+docker run -it oneforall
 ```
 
 方法二：从 `Dockerfile` 中构建（同git版）
 
 ```shell
 docker build -t oneforall .
-docker run oneforall
+docker run -it oneforall
 ```
 
 **✨使用演示**
