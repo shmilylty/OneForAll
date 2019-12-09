@@ -9,7 +9,7 @@ class So(Search):
         self.domain = domain
         self.module = 'Search'
         self.source = 'SoSearch'
-        self.addr = 'http://www.so.com/s'
+        self.addr = 'https://www.so.com/s'
         self.limit_num = 640  # 限制搜索条数
         self.per_page_num = 10  # 默认每页显示10页
 
