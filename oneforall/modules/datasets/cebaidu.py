@@ -8,7 +8,7 @@ class CeBaidu(Query):
         self.domain = self.register(domain)
         self.module = 'Dataset'
         self.source = 'CeBaiduQuery'
-        self.addr = 'http://ce.baidu.com/index/getRelatedSites'
+        self.addr = 'https://ce.baidu.com/index/getRelatedSites'
 
     def query(self):
         """
