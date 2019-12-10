@@ -27,7 +27,7 @@ class BufferOver(Query):
         except Exception as e:
             logger.log('ERROR', e.args)
             return
-        if not resp:
+        if resp.status_code != 200:
             return
         subdomains = self.match(self.domain, str(resp.json()))
         # 合并搜索子域名搜索结果

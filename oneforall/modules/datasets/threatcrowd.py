@@ -23,7 +23,7 @@ class ThreatCrowd(Query):
         except Exception as e:
             logger.log('ERROR', e.args)
             return
-        if not resp:
+        if resp.status_code != 200:
             return
         subdomains = self.match(self.domain, str(resp.json()))
         # 合并搜索子域名搜索结果
@@ -52,4 +52,4 @@ def do(domain):  # 统一入口名字 方便多线程调用
 
 
 if __name__ == '__main__':
-    do('example.com')
+    do('mi.com')
