@@ -190,7 +190,7 @@ def save_data(fpath, data):
             file.write(data)
             logger.log('ALERT', fpath)
     except Exception as e:
-        logger.log('ERROR', e)
+        logger.log('ERROR', e.args)
 
 
 def check_response(method, resp):

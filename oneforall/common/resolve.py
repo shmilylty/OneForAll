@@ -29,9 +29,9 @@ async def dns_query_a(hostname):
     resolver = dns_resolver()
     try:
         answer = resolver.query(hostname, 'A')
-    except BaseException as exception:
-        logger.log('TRACE', exception.args)
-        answer = exception
+    except Exception as e:
+        logger.log('TRACE', e.args)
+        answer = e
     return answer
 
 
@@ -45,9 +45,9 @@ async def aiodns_query_a(hostname):
     try:
         loop = asyncio.get_event_loop()
         answer = await loop.getaddrinfo(hostname, 'http')
-    except BaseException as exception:
-        logger.log('TRACE', exception.args)
-        answer = exception
+    except Exception as e:
+        logger.log('TRACE', e.args)
+        answer = e
     return answer
 
 
@@ -61,7 +61,7 @@ def resolve_callback(future, index, datas):
     """
     try:
         answer = future.result()
-    except BaseException as e:
+    except Exception as e:
         datas[index]['ips'] = str(e.args)
         datas[index]['valid'] = 0
     else:

@@ -63,7 +63,7 @@ class Database(object):
                             f'elapsed float,'
                             f'count int)')
         except Exception as e:
-            logger.log('ERROR', e)
+            logger.log('ERROR', e.args)
 
     def save_db(self, table_name, results, module_name=None):
         """
@@ -88,7 +88,7 @@ class Database(object):
                     f':response, :module, :source,:elapsed, :count)',
                     results)
             except Exception as e:
-                logger.log('ERROR', e)
+                logger.log('ERROR', e.args)
 
     def exist_table(self, table_name):
         """
@@ -103,7 +103,7 @@ class Database(object):
                                      f'where type = "table" and '
                                      f'name = "{table_name}"')
         except Exception as e:
-            logger.log('ERROR', e)
+            logger.log('ERROR', e.args)
         else:
             if len(result) != 0:
                 return True
@@ -125,7 +125,7 @@ class Database(object):
             self.conn.query(f'create table "{bak_table_name}" '
                             f'as select * from "{table_name}"')
         except Exception as e:
-            logger.log('ERROR', e)
+            logger.log('ERROR', e.args)
 
     def clear_table(self, table_name):
         """
@@ -138,7 +138,7 @@ class Database(object):
         try:
             self.conn.query(f'delete from "{table_name}"')
         except Exception as e:
-            logger.log('ERROR', e)
+            logger.log('ERROR', e.args)
 
     def drop_table(self, table_name):
         """
@@ -151,7 +151,7 @@ class Database(object):
         try:
             self.conn.query(f'drop table if exists "{table_name}"')
         except Exception as e:
-            logger.log('ERROR', e)
+            logger.log('ERROR', e.args)
 
     def rename_table(self, table_name, new_table_name):
         """
@@ -167,7 +167,7 @@ class Database(object):
             self.conn.query(f'alter table "{table_name}" '
                             f'rename to "{new_table_name}"')
         except Exception as e:
-            logger.log('ERROR', e)
+            logger.log('ERROR', e.args)
 
     def deduplicate_subdomain(self, table_name):
         """
@@ -182,7 +182,7 @@ class Database(object):
                 f'delete from "{table_name}" where id not in (select min(id) '
                 f'from "{table_name}" group by subdomain)')
         except Exception as e:
-            logger.log('ERROR', e)
+            logger.log('ERROR', e.args)
 
     def remove_invalid(self, table_name):
         """
@@ -197,7 +197,7 @@ class Database(object):
                 f'delete from "{table_name}" where '
                 f'subdomain is null or valid == 0')
         except Exception as e:
-            logger.log('ERROR', e)
+            logger.log('ERROR', e.args)
 
     def get_data(self, table_name):
         """
@@ -210,7 +210,7 @@ class Database(object):
         try:
             rows = self.conn.query(f'select * from "{table_name}"')
         except Exception as e:
-            logger.log('ERROR', e)
+            logger.log('ERROR', e.args)
         else:
             return rows
 
@@ -231,7 +231,7 @@ class Database(object):
         try:
             rows = self.conn.query(query)
         except Exception as e:
-            logger.log('ERROR', e)
+            logger.log('ERROR', e.args)
         else:
             return rows
 
