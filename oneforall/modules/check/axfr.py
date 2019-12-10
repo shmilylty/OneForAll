@@ -61,7 +61,7 @@ class CheckAXFR(Module):
         try:
             answers = resolver.query(self.domain, "NS")
         except Exception as e:
-            logger.log('ERROR', e)
+            logger.log('ERROR', e.args)
             return
         nsservers = [str(answer) for answer in answers]
         if not len(nsservers):

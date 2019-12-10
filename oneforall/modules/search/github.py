@@ -41,7 +41,7 @@ class Github(Search):
         try:
             resp = self.session.post(self.post_url, data=post_data)
         except Exception as e:
-            logger.log('ERROR', e)
+            logger.log('ERROR', e.args)
             return False
         if resp.status_code != 200:
             return False
@@ -58,7 +58,7 @@ class Github(Search):
         try:
             resp = self.session.get(self.login_url)
         except Exception as e:
-            logger.log('ERROR', e)
+            logger.log('ERROR', e.args)
             return None
         if resp.status_code != 200:
             return None
@@ -85,7 +85,7 @@ class Github(Search):
             try:
                 resp = self.session.get(self.addr, params=params)
             except Exception as e:
-                logger.log('ERROR', e)
+                logger.log('ERROR', e.args)
                 break
             if resp.status_code != 200:
                 logger.log('ERROR', f'{self.session}模块搜索出错')

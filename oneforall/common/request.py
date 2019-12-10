@@ -96,8 +96,8 @@ async def fetch(session, url):
             except UnicodeDecodeError:
                 text = await resp.text(errors='ignore')
         return resp, text
-    except BaseException as exception:
-        return exception
+    except Exception as e:
+        return e
 
 
 def get_title(markup):
@@ -146,7 +146,7 @@ def get_title(markup):
 def request_callback(future, index, datas):
     try:
         result = future.result()
-    except BaseException as e:
+    except Exception as e:
         logger.log('TRACE', e.args)
         datas[index]['reason'] = str(e.args)
         datas[index]['valid'] = 0

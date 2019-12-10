@@ -85,7 +85,7 @@ class Module(object):
                                  verify=self.verify,
                                  **kwargs)
         except Exception as e:
-            logger.log('ERROR', e)
+            logger.log('ERROR', e.args)
             return None
         if not check:
             return resp
@@ -113,7 +113,7 @@ class Module(object):
                                 verify=self.verify,
                                 **kwargs)
         except Exception as e:
-            logger.log('ERROR', e)
+            logger.log('ERROR', e.args)
             return None
         if not check:
             return resp
@@ -141,7 +141,7 @@ class Module(object):
                                  verify=self.verify,
                                  **kwargs)
         except Exception as e:
-            logger.log('ERROR', e)
+            logger.log('ERROR', e.args)
             return None
         if not check:
             return resp

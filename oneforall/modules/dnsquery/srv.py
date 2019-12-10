@@ -81,8 +81,8 @@ class BruteThread(threading.Thread):
         logger.log('TRACE', f'尝试查询{name}的SRV记录')
         try:
             answer = self.resolver.query(name, 'SRV')
-        except Exception as exception:
-            logger.log('TRACE', exception.args)
+        except Exception as e:
+            logger.log('TRACE', e.args)
             logger.log('TRACE', f'查询{name}的SRV记录失败')
             return None
         else:
