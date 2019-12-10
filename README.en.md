@@ -70,7 +70,7 @@ Python 3.8.0
 pip 19.2.2 from C:\Users\shmilylty\AppData\Roaming\Python\Python37\site-packages\pip (python 3.8)
 ```
 
-**✔Installation steps**
+**✔Installation steps (Git version)**
 
 1. **Download**
    
@@ -105,6 +105,22 @@ pip 19.2.2 from C:\Users\shmilylty\AppData\Roaming\Python\Python37\site-packages
    git reset --hard origin/master
    git pull
    ```
+
+**✔Installation steps (Docker version)**
+
+Method 1: directly pull the deployed image (not updated in time)
+
+```shell
+docker pull tardis07/oneforall
+docker run -it oneforall
+```
+
+Method 2: build from `Dockerfile` (same as git version)
+
+```shell
+docker build -t oneforall .
+docker run -it oneforall
+```
 
 **✨Demonstration**
 

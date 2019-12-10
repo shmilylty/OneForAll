@@ -70,7 +70,7 @@ Python 3.8.0
 pip 19.2.2 from C:\Users\shmilylty\AppData\Roaming\Python\Python38\site-packages\pip (python 3.8)
 ```
 
-**✔安装步骤**
+**✔安装步骤（git 版）**
 
 1. **下载**
    本项目已经在[码云](https://gitee.com/shmilylty/OneForAll.git)(Gitee)镜像了一份，国内推荐使用码云进行克隆比较快：
@@ -103,6 +103,22 @@ pip 19.2.2 from C:\Users\shmilylty\AppData\Roaming\Python\Python38\site-packages
    git reset --hard origin/master
    git pull
    ```
+
+**✔安装步骤（docker 版）**
+
+方法一：直接拉取部署好的镜像（更新不及时）
+
+```shell
+docker pull tardis07/oneforall
+docker run -it oneforall
+```
+
+方法二：从 `Dockerfile` 中构建（同git版）
+
+```shell
+docker build -t oneforall .
+docker run -it oneforall
+```
 
 **✨使用演示**
 
