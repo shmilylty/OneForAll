@@ -68,7 +68,7 @@ class Github(Search):
             return None
         return match.group(1)
 
-    def search(self, full_search=True):
+    def search(self, full_search=False):
         """
         向接口查询子域并做子域匹配
         """
