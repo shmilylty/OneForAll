@@ -84,8 +84,7 @@ pip 19.2.2 from C:\Users\shmilylty\AppData\Roaming\Python\Python38\site-packages
    ```
 
 2. **安装**
-   你可以通过pip3安装OneForAll的依赖（如果你熟悉[pipenv](https://docs.pipenv.org/en/latest/)，那么推荐你使用[pipenv安装依赖]((https://github.com/shmilylty/OneForAll/tree/master/docs/Installation_dependency.md))），以下为**Windows系统**下使用**pip3**安装依赖的示例：（注意：如果你的Python3安装在系统Program Files目录下，如：`C:\Program Files\Python37`，那么请以管理员身份运行命令提示符cmd执行以下命令！）
-   
+   你可以通过pip3安装OneForAll的依赖（如果你熟悉[pipenv](https://docs.pipenv.org/en/latest/)，那么推荐你使用[pipenv安装依赖]((https://github.com/shmilylty/OneForAll/tree/master/docs/Installation_dependency.md))），以下为**Windows系统**下使用**pip3**安装依赖的示例：（注意：如果你的Python3安装在系统Program Files目录下，如：`C:\Program Files\Python38`，那么请以管理员身份运行命令提示符cmd执行以下命令！）
 ```bash
    cd OneForAll/
    python -m pip install -U pip setuptools wheel -i https://mirrors.aliyun.com/pypi/simple/
