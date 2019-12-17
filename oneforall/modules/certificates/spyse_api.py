@@ -1,4 +1,3 @@
-import time
 import config
 from common import utils
 from common.query import Query
@@ -19,7 +18,6 @@ class SpyseAPI(Query):
         """
         page_num = 1
         while True:
-            time.sleep(self.delay)
             self.header = self.get_header()
             self.proxy = self.get_proxy(self.source)
             params = {'domain': self.domain,
