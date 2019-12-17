@@ -15,18 +15,19 @@ class Baidu(Search):
 
     def redirect_match(self, domain, html):
         """
+        获取跳转地址并传递地址进行跳转head请求
 
-        :param domain:
-        :param html:
-        :return:
+        :param domain: 域名
+        :param html: 响应体
+        :return: 子域
         """
         bs = BeautifulSoup(html, features='lxml')
         subdomains_all = set()
         # 获取搜索结果中所有的跳转URL地址
         for find_res in bs.find_all('a', {'class': 'c-showurl'}):
             url = find_res.get('href')
-            subdomain = self.match_location(domain, url)
-            subdomains_all = subdomains_all.union(subdomain)
+            subdomains = self.match_location(domain, url)
+            subdomains_all = subdomains_all.union(subdomains)
         return subdomains_all
 
     def search(self, domain, filtered_subdomain='', full_search=False):
@@ -43,7 +44,8 @@ class Baidu(Search):
             self.header = self.get_header()
             self.proxy = self.get_proxy(self.source)
             query = 'site:' + domain + filtered_subdomain
-            params = {'wd': query, 'pn': self.page_num,
+            params = {'wd': query,
+                      'pn': self.page_num,
                       'rn': self.per_page_num}
             resp = self.get(self.addr, params)
             if not resp:
@@ -73,9 +75,7 @@ class Baidu(Search):
         类执行入口
         """
         self.begin()
-
         self.search(self.domain, full_search=True)
-
         # 排除同一子域搜索结果过多的子域以发现新的子域
         for statement in self.filter(self.domain, self.subdomains):
             self.search(self.domain, filtered_subdomain=statement)
@@ -106,4 +106,4 @@ def do(domain):  # 统一入口名字 方便多线程调用
 
 
 if __name__ == '__main__':
-    do('example.com')
+    do('huayunshuzi.com')
