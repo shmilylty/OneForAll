@@ -1,18 +1,14 @@
 """
 检查内容安全策略收集子域名收集子域名
 """
-import requests
-
 from common.module import Module
 from common import utils
-from config import logger
 
 
 class CheckRobots(Module):
     """
     检查robots.txt收集子域名
     """
-
     def __init__(self, domain):
         Module.__init__(self)
         self.domain = self.register(domain)
@@ -27,16 +23,15 @@ class CheckRobots(Module):
                 f'https://{self.domain}/robots.txt',
                 f'http://www.{self.domain}/robots.txt',
                 f'https://www.{self.domain}/robots.txt']
-        response = None
         for url in urls:
             self.header = self.get_header()
             self.proxy = self.get_proxy(self.source)
-            response = self.get(url, allow_redirects=False)
-            if response:
-                break
-        if not response:
-            return
-        self.subdomains = utils.match_subdomain(self.domain, response.text)
+            response = self.get(url, check=False, allow_redirects=False)
+            if not response:
+                return
+            if response and len(response.content):
+                self.subdomains = utils.match_subdomain(self.domain,
+                                                        response.text)
 
     def run(self):
         """

@@ -1,4 +1,3 @@
-import time
 
 from common.query import Query
 
@@ -19,7 +18,6 @@ class SiteDossier(Query):
         向接口查询子域并做子域匹配
         """
         while True:
-            time.sleep(self.delay)
             self.header = self.get_header()
             self.proxy = self.get_proxy(self.source)
             url = f'{self.addr}{self.domain}/{self.page_num}'

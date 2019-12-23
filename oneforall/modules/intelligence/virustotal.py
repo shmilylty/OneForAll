@@ -1,5 +1,3 @@
-import time
-
 from common.query import Query
 
 '''
@@ -21,7 +19,6 @@ class VirusTotal(Query):
         """
         next_cursor = ''
         while True:
-            time.sleep(self.delay)
             self.header = self.get_header()
             self.header.update({'Referer': 'https://www.virustotal.com/',
                                 'TE': 'Trailers'})

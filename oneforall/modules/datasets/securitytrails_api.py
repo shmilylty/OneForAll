@@ -1,4 +1,3 @@
-import time
 import config
 from common.query import Query
 
@@ -17,7 +16,6 @@ class SecurityTrailsAPI(Query):
         """
         向接口查询子域并做子域匹配
         """
-        time.sleep(self.delay)
         self.header = self.get_header()
         self.proxy = self.get_proxy(self.source)
         params = {'apikey': self.api}
