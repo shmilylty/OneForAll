@@ -47,7 +47,7 @@ class Search(Module):
         :return: 匹配的子域
         :rtype set
         """
-        resp = self.head(url, allow_redirects=False)
+        resp = self.head(url, check=False, allow_redirects=False)
         if not resp:
             return set()
         location = resp.headers.get('location')

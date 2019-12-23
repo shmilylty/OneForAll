@@ -206,7 +206,7 @@ The OneForAll command line interface is based on [Fire](https://github.com/googl
        --format=FORMAT
            Export format (default xls)
        --takeover=TAKEOVER
-           Check subdomain takeover (default True)
+           Check subdomain takeover (default False)
        --show=SHOW
            Terminal display exported data (default False)
    ```

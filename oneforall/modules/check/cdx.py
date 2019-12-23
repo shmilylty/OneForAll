@@ -24,16 +24,15 @@ class CheckCDX(Module):
                 f'https://{self.domain}/crossdomain.xml',
                 f'http://www.{self.domain}/crossdomain.xml',
                 f'https://www.{self.domain}/crossdomain.xml']
-        response = None
         for url in urls:
             self.header = self.get_header()
             self.proxy = self.get_proxy(self.source)
-            response = self.get(url)
-            if response:
-                break
-        if not response:
-            return
-        self.subdomains = utils.match_subdomain(self.domain, response.text)
+            response = self.get(url, check=False)
+            if not response:
+                return
+            if response and len(response.content):
+                self.subdomains = utils.match_subdomain(self.domain,
+                                                        response.text)
 
     def run(self):
         """

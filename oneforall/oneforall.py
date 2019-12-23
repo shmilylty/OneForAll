@@ -70,11 +70,11 @@ class OneForAll(object):
     :param str port:       请求验证子域的端口范围(默认只探测80端口)
     :param int valid:      导出子域的有效性(默认1)
     :param str format:     导出格式(默认csv)
-    :param bool takeover:  检查子域接管(默认True)
+    :param bool takeover:  检查子域接管(默认False)
     :param bool show:      终端显示导出数据(默认False)
     """
     def __init__(self, target, brute=None, dns=None, req=None, port='default',
-                 valid=1, format='csv', takeover=True, show=False):
+                 valid=1, format='csv', takeover=False, show=False):
         self.target = target
         self.port = port
         self.domains = set()
