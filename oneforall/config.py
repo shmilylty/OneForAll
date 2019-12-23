@@ -17,7 +17,7 @@ data_storage_path = oneforall_relpath.joinpath('data')  # 数据存放目录
 result_save_path = oneforall_relpath.joinpath('results')  # 结果保存目录
 
 # 模块设置
-save_module_result = True  # 保存模块中各脚本结果(默认True)
+save_module_result = False  # 保存各模块发现结果为json文件(默认False)
 enable_all_module = True  # 启用所有模块(默认True)
 enable_partial_module = []  # 启用部分模块 必须禁用enable_all_module才能生效
 # 只使用ask和baidu搜索引擎收集子域
