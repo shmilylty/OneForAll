@@ -40,7 +40,7 @@ git clone https://gitee.com/shmilylty/OneForAll.git
 
 安装python及开发依赖
 ```bash
-sudo apt install python3.8 python3.8-dev
+sudo apt install python3.8 python3.8-dev python3-testresources
 ```
 接下来你可以使用以下一种方式安装OneForAll的Python库依赖:
 1. 使用pipenv安装依赖
