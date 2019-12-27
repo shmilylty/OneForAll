@@ -111,36 +111,33 @@ def get_title(markup):
 
     title = soup.title
     if title:
-        return title.text.strip()
+        return title.text
 
     h1 = soup.h1
     if h1:
-        return h1.text.strip()
+        return h1.text
 
     h2 = soup.h2
     if h2:
-        return h2.text.strip()
+        return h2.text
 
     h3 = soup.h3
     if h2:
-        return h3.text.strip()
+        return h3.text
 
     desc = soup.find('meta', attrs={'name': 'description'})
     if desc:
-        return desc['content'].strip()
+        return desc['content']
 
     word = soup.find('meta', attrs={'name': 'keywords'})
     if word:
-        return word['content'].strip()
-
-    if len(markup) <= 200:
-        return markup.strip()
+        return word['content']
 
     text = soup.text
     if len(text) <= 200:
-        return text.strip()
+        return text
 
-    return None
+    return ''
 
 
 def request_callback(future, index, datas):
@@ -164,9 +161,10 @@ def request_callback(future, index, datas):
                               'Via': headers.get('Via'),
                               'X-Powered-By': headers.get('X-Powered-By')})
                 datas[index]['banner'] = banner[1:-1]
-                datas[index]['title'] = get_title(text)
+                title = get_title(text).strip()
+                datas[index]['title'] = utils.remove_string(title)
                 datas[index]['header'] = str(dict(headers))[1:-1]
-                datas[index]['response'] = text
+                datas[index]['response'] = utils.remove_string(text)
         else:
             datas[index]['reason'] = 'Something error'
             datas[index]['valid'] = 0
