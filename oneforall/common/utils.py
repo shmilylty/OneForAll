@@ -1,10 +1,12 @@
 # coding=utf-8
 import re
+import time
 import random
 import ipaddress
 import platform
 import config
 from pathlib import Path
+from records import Record, RecordCollection
 from common.domain import Domain
 from config import logger
 
@@ -144,7 +146,7 @@ def get_semaphore():
         return 800
 
 
-def check_dpath(dpath):
+def check_dpath(dpath=None):
     """
     检查目录路径
 
@@ -163,21 +165,26 @@ def check_dpath(dpath):
     return dpath
 
 
-def check_format(format):
+def check_format(format, line):
     """
     检查导出格式
 
     :param format: 传入的导出格式
+    :param line: 行数
     :return: 导出格式
     """
     formats = ['txt', 'rst', 'csv', 'tsv', 'json', 'yaml', 'html',
                'jira', 'xls', 'xlsx', 'dbf', 'latex', 'ods']
+    if format == 'xls' and line > 65000:
+        logger.log('ALERT', 'xls文件限制为最多65000行')
+        logger.log('ALERT', '使用xlsx格式导出')
+        return 'xlsx'
     if format in formats:
         return format
     else:
         logger.log('ALERT', f'不支持{format}格式导出')
         logger.log('ALERT', '默认使用csv格式导出')
-        return 'xls'
+        return 'csv'
 
 
 def save_data(fpath, data):
@@ -233,3 +240,46 @@ def mark_subdomain(old_data, new_data):
             item['new'] = 1
         new_data[index] = item
     return new_data
+
+
+def remove_string(string):
+    # Excel文件中单元格值不能直接存储以下非法字符
+    return re.sub(r'[\000-\010]|[\013-\014]|[\016-\037]', r'', string)
+
+
+def check_value(values):
+    for i, value in enumerate(values):
+        # Excel文件中单元格值长度不能超过32767
+        if value is None:
+            continue
+        if isinstance(value, str) and len(value) > 32767:
+            values[i] = value[:32767]
+    return values
+
+
+def export_all(format, datas):
+    line = len(datas)
+    format = check_format(format, line)
+    dpath = check_dpath()
+    timestamp = get_timestamp()
+    fpath = dpath.joinpath(f'all_subdomain_{timestamp}.{format}')
+    row_list = list()
+    for row in datas:
+        row.pop('header')
+        row.pop('response')
+        row.pop('module')
+        row.pop('source')
+        row.pop('elapsed')
+        row.pop('count')
+        keys = row.keys()
+        values = row.values()
+        if format in {'xls', 'xlsx'}:
+            values = check_value(values)
+        row_list.append(Record(keys, values))
+    rows = RecordCollection(iter(row_list))
+    content = rows.export(format)
+    save_data(fpath, content)
+
+
+def get_timestamp():
+    return int(time.time())

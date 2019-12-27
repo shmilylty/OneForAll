@@ -83,8 +83,8 @@ class Takeover(Module):
             data = str(self.results)
         else:
             data = self.results.export(self.format)
-        ts = int(time.time())
-        fpath = self.dpath.joinpath(f'takeover_{ts}.{self.format}')
+        timestamp = utils.get_timestamp()
+        fpath = self.dpath.joinpath(f'takeover_{timestamp}.{self.format}')
         utils.save_data(fpath, data)
 
     def compare(self, subdomain, cname, responses):

@@ -34,10 +34,12 @@ def export(table, db=None, valid=None, dpath=None, format='csv', show=False):
     :param str dpath:    导出目录(默认None)
     :param bool show:   终端显示导出数据(默认False)
     """
-    format = utils.check_format(format)
+
     dpath = utils.check_dpath(dpath)
     database = Database(db)
     rows = database.export_data(table, valid)  # 意外情况导出全部子域
+    line = len(rows)
+    format = utils.check_format(format, line)
     if show:
         print(rows.dataset)
     if format == 'txt':

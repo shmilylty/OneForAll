@@ -80,6 +80,7 @@ class OneForAll(object):
         self.domains = set()
         self.domain = str()
         self.data = list()
+        self.datas = list()
         self.brute = brute
         self.dns = dns
         self.req = req
@@ -159,6 +160,7 @@ class OneForAll(object):
         # 请求子域
         task = request.bulk_get_request(self.data, self.port)
         self.data = loop.run_until_complete(task)
+        self.datas.extend(self.data)
         # 在关闭事件循环前加入一小段延迟让底层连接得到关闭的缓冲时间
         loop.run_until_complete(asyncio.sleep(0.25))
 
@@ -190,6 +192,8 @@ class OneForAll(object):
         if self.domains:
             for self.domain in self.domains:
                 self.main()
+            if len(self.domains) >= 2:
+                utils.export_all(self.format, self.datas)
         else:
             logger.log('FATAL', f'获取域名失败')
         logger.log('INFOR', f'结束运行OneForAll')
