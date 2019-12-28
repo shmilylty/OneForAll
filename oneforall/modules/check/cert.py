@@ -23,9 +23,10 @@ class CheckCert(Module):
         """
         获取域名证书并匹配证书中的子域名
         """
-        ctx = ssl.create_default_context()
-        sock = ctx.wrap_socket(socket.socket(), server_hostname=self.domain)
         try:
+            ctx = ssl.create_default_context()
+            sock = ctx.wrap_socket(socket.socket(),
+                                   server_hostname=self.domain)
             sock.connect((self.domain, self.port))
             cert_dict = sock.getpeercert()
         except Exception as e:
