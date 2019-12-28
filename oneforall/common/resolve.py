@@ -95,9 +95,7 @@ async def bulk_query_a(datas):
         futures = asyncio.as_completed(tasks)
         for future in tqdm.tqdm(futures,
                                 total=len(tasks),
-                                desc='Progress',
-                                smoothing=1.0,
-                                ncols=True):
+                                desc='Progress'):
             await future
         # await asyncio.wait(tasks)  # 等待所有task完成
     logger.log('INFOR', '完成异步查询子域的A记录')

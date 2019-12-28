@@ -253,10 +253,8 @@ class AIOBrute(Module):
                 = detect_wildcard(domain)
         tasks = self.gen_tasks(domain)
         logger.log('INFOR', f'正在爆破{domain}的域名')
-        for task in tqdm.tqdm(tasks,
-                              desc='Progress',
-                              smoothing=1.0,
-                              ncols=True):
+        for task in tqdm.tqdm(tasks, total=len(tasks),
+                              desc='Progress'):
             async with aiomp.Pool(processes=self.process,
                                   initializer=init_worker,
                                   childconcurrency=self.coroutine) as pool:
@@ -343,6 +341,6 @@ def do(domain, result):  # 统一入口名字 方便多线程调用
 
 
 if __name__ == '__main__':
-    fire.Fire(AIOBrute)
-    # result_queue = queue.Queue()
-    # do('example.com', result_queue)
+    # fire.Fire(AIOBrute)
+    result_queue = queue.Queue()
+    do('jd.com', result_queue)
