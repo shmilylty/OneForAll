@@ -341,6 +341,6 @@ def do(domain, result):  # 统一入口名字 方便多线程调用
 
 
 if __name__ == '__main__':
-    # fire.Fire(AIOBrute)
-    result_queue = queue.Queue()
-    do('jd.com', result_queue)
+    fire.Fire(AIOBrute)
+    # result_queue = queue.Queue()
+    # do('example.com', result_queue)
