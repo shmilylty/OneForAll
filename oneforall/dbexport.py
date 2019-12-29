@@ -38,8 +38,7 @@ def export(table, db=None, valid=None, dpath=None, format='csv', show=False):
     dpath = utils.check_dpath(dpath)
     database = Database(db)
     rows = database.export_data(table, valid)  # 意外情况导出全部子域
-    line = len(rows)
-    format = utils.check_format(format, line)
+    format = utils.check_format(format, len(rows))
     if show:
         print(rows.dataset)
     if format == 'txt':

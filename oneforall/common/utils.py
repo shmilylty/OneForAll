@@ -165,17 +165,17 @@ def check_dpath(dpath=None):
     return dpath
 
 
-def check_format(format, line):
+def check_format(format, count):
     """
     检查导出格式
 
     :param format: 传入的导出格式
-    :param line: 行数
+    :param count: 数量
     :return: 导出格式
     """
     formats = ['txt', 'rst', 'csv', 'tsv', 'json', 'yaml', 'html',
                'jira', 'xls', 'xlsx', 'dbf', 'latex', 'ods']
-    if format == 'xls' and line > 65000:
+    if format == 'xls' and count > 65000:
         logger.log('ALERT', 'xls文件限制为最多65000行')
         logger.log('ALERT', '使用xlsx格式导出')
         return 'xlsx'
@@ -258,8 +258,7 @@ def check_value(values):
 
 
 def export_all(format, datas):
-    line = len(datas)
-    format = check_format(format, line)
+    format = check_format(format, len(datas))
     dpath = check_dpath()
     timestamp = get_timestamp()
     fpath = dpath.joinpath(f'all_subdomain_{timestamp}.{format}')
