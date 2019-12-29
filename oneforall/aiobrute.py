@@ -168,8 +168,8 @@ class AIOBrute(Module):
     :param bool show:        终端显示导出数据(默认False)
     """
 
-    def __init__(self, target, process=None, coroutine=64, wordlist=None,
-                 segment=500, recursive=False, depth=2, namelist=None,
+    def __init__(self, target, process=None, coroutine=None, wordlist=None,
+                 segment=None, recursive=False, depth=None, namelist=None,
                  fuzz=False, rule=None, export=True, valid=None, format='csv',
                  path=None, show=False):
         Module.__init__(self)
