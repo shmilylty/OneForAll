@@ -133,9 +133,9 @@ class Takeover(Module):
     def run(self):
         start = time.time()
         logger.log('INFOR', f'开始执行{self.source}模块')
-        self.format = utils.check_format(self.format)
-        self.dpath = utils.check_dpath(self.dpath)
         self.subdomains = utils.get_domains(self.target)
+        self.format = utils.check_format(self.format, len(self.subdomains))
+        self.dpath = utils.check_dpath(self.dpath)
         if self.subdomains:
             logger.log('INFOR', f'正在检查子域接管风险')
             self.fingerprints = get_fingerprint()
