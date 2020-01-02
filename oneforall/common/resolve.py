@@ -1,5 +1,6 @@
 import asyncio
 import functools
+import socket
 
 import tqdm
 from dns.resolver import Resolver
@@ -32,7 +33,7 @@ async def dns_query_a(hostname):
     except Exception as e:
         logger.log('TRACE', e.args)
         answer = e
-    return answer
+    return hostname, answer
 
 
 async def aiodns_query_a(hostname):
@@ -44,11 +45,15 @@ async def aiodns_query_a(hostname):
     """
     try:
         loop = asyncio.get_event_loop()
-        answer = await loop.getaddrinfo(hostname, 'http')
-    except Exception as e:
+        socket.setdefaulttimeout(20)
+        # answer = await loop.getaddrinfo(hostname, 80)
+        answer = await loop.run_in_executor(None,
+                                            socket.gethostbyname_ex,
+                                            hostname)
+    except BaseException as e:
         logger.log('TRACE', e.args)
         answer = e
-    return answer
+    return hostname, answer
 
 
 def resolve_callback(future, index, datas):
@@ -59,18 +64,13 @@ def resolve_callback(future, index, datas):
     :param index: 下标
     :param datas: 结果集
     """
-    try:
-        answer = future.result()
-    except Exception as e:
-        datas[index]['ips'] = str(e.args)
+    hostname, answer = future.result()
+    if isinstance(answer, Exception):
+        datas[index]['reason'] = str(answer.args)
         datas[index]['valid'] = 0
-    else:
-        if isinstance(answer, list):
-            ips = {item[4][0] for item in answer}
-            datas[index]['ips'] = str(ips)[1:-1]
-        else:
-            datas[index]['ips'] = 'Something error'
-            datas[index]['valid'] = 0
+    if isinstance(answer, tuple):
+        ips = answer[2]
+        datas[index]['ips'] = str(ips)[1:-1]
 
 
 async def bulk_query_a(datas):
@@ -87,15 +87,17 @@ async def bulk_query_a(datas):
         if not data.get('ips'):
             subdomain = data.get('subdomain')
             task = asyncio.ensure_future(aiodns_query_a(subdomain))
-            task.add_done_callback(functools.partial(resolve_callback,
-                                                     index=i,
-                                                     datas=datas))  # 回调
+            wrapped_callback = functools.partial(resolve_callback,
+                                                 index=i,
+                                                 datas=datas)
+            task.add_done_callback(wrapped_callback)  # 回调
             tasks.append(task)
     if tasks:  # 任务列表里有任务不空时才进行解析
         futures = asyncio.as_completed(tasks)
         for future in tqdm.tqdm(futures,
                                 total=len(tasks),
-                                desc='Progress'):
+                                desc='Progress',
+                                ncols=60):
             await future
         # await asyncio.wait(tasks)  # 等待所有task完成
     logger.log('INFOR', '完成异步查询子域的A记录')
