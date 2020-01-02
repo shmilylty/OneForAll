@@ -13,7 +13,8 @@ import queue
 import signal
 import asyncio
 import secrets
-
+import functools
+from multiprocessing import Manager
 import aiomultiprocess as aiomp
 import exrex
 import fire
@@ -60,7 +61,7 @@ def detect_wildcard(domain):
 
 def wildcard_by_compare(ips, ttl, wildcard_ips, wildcard_ttl):
     """
-    通过与泛解析返回的IP集合和判TTL值进行对比判断发现的子域是否是泛解析子域
+    通过与泛解析返回的IP集合和返回的TTL值进行对比判断发现的子域是否是泛解析子域
 
     :param set ips: 子域A记录查询出的IP集合
     :param int ttl: 子域A记录查询出的TTL整型值
@@ -128,6 +129,25 @@ def gen_brute_domains(domain, path):
             domains.add(brute_domain)
     logger.log('INFOR', f'爆破字典大小：{len(domains)}')
     return domains
+
+
+def progress(pr_queue, total):
+    bar = tqdm.tqdm()
+    bar.total = total
+    bar.desc = 'Progress'
+    bar.ncols = 60
+    while True:
+        done = pr_queue.qsize()
+        bar.n = done
+        bar.update()
+        if done == total:
+            return
+
+
+async def aiodns_query_a(pr_queue, hostname):
+    results = await resolve.aiodns_query_a(hostname)
+    pr_queue.put(1)
+    return results
 
 
 class AIOBrute(Module):
@@ -210,42 +230,38 @@ class AIOBrute(Module):
             logger.log('INFOR', f'使用{self.wordlist}字典')
             domains = gen_brute_domains(domain, self.wordlist)
         domains = list(domains)
-        return utils.split_list(domains, self.segment)  # 分割任务组
+        return domains
+        # return utils.split_list(domains, self.segment)  # 分割任务组
 
     def deal_results(self, results):
-        for answer in results:
+        for result in results:
+            hostname, answer = result
             if answer is None:
                 continue
             if isinstance(answer, Exception):
                 # logger.log('DEBUG', f'爆破{subdomain}时出错 {str(answers)}')
                 continue
-            ips = {item.address for item in answer}
+            name, alias, ips = answer
             # 取值 如果是首次出现的IP集合 出现次数先赋值0
             value = self.ips_times.setdefault(str(ips), 0)
             self.ips_times[str(ips)] = value + 1
-            ttl = answer.rrset.ttl
-            subdomain = str(answer.rrset.name)
             # 目前域名开启了泛解析
             if self.enable_wildcard:
                 # 通过对比查询的子域和响应的子域来判断真实子域
                 # 去掉解析到CDN的情况
-                if not subdomain.endswith(self.domain + '.'):
+                if 'cdn' in name:
                     continue
-                # 通过对比解析到的IP集合和TTL确定子域来判断真实子域
-                if wildcard_by_compare(ips,
-                                       ttl,
-                                       self.wildcard_ips,
-                                       self.wildcard_ttl):
+                if not name.endswith(self.domain + '.'):
                     continue
                 # 通过对比解析到的IP集合的次数来判断真实子域
                 if wildcard_by_times(ips, self.ips_times):
                     continue
             # 只添加没有出现过的子域
-            if subdomain not in self.subdomains:
-                logger.log('INFOR', f'发现{self.domain}的子域: {subdomain} '
-                                    f'解析IP: {ips} TTL: {ttl}')
-                self.subdomains.add(subdomain)
-                self.records[subdomain] = str(ips)
+            if hostname not in self.subdomains:
+                logger.log('INFOR', f'发现{self.domain}的子域: {hostname} '
+                                    f'解析到: {name} IP: {ips}')
+                self.subdomains.add(hostname)
+                self.records[hostname] = str(ips)
 
     async def main(self, domain, rx_queue):
         if not self.fuzz:  # fuzz模式不探测域名是否使用泛解析
@@ -253,24 +269,29 @@ class AIOBrute(Module):
                 = detect_wildcard(domain)
         tasks = self.gen_tasks(domain)
         logger.log('INFOR', f'正在爆破{domain}的域名')
-        for task in tqdm.tqdm(tasks, total=len(tasks),
-                              desc='Progress'):
-            async with aiomp.Pool(processes=self.process,
-                                  initializer=init_worker,
-                                  childconcurrency=self.coroutine) as pool:
-                try:
-                    results = await pool.map(resolve.dns_query_a, task)
-                except KeyboardInterrupt:
-                    logger.log('ALERT', '爆破终止正在退出')
-                    pool.terminate()  # 关闭pool，结束工作进程，不在处理未完成的任务。
-                    self.save_json()
-                    self.gen_result()
-                    rx_queue.put(self.results)
-                    return
-                self.deal_results(results)
+        # for task in tqdm.tqdm(tasks, total=len(tasks),
+        #                       desc='Progress'):
+        m = Manager()
+        pr_queue = m.Queue()
+        loop = asyncio.get_event_loop()
+        loop.run_in_executor(None, progress, pr_queue, len(tasks))
+        wrapped_query = functools.partial(aiodns_query_a, pr_queue)
+        async with aiomp.Pool(processes=self.process,
+                              initializer=init_worker,
+                              childconcurrency=self.coroutine) as pool:
+            try:
+                results = await pool.map(wrapped_query, tasks)
+            except KeyboardInterrupt:
+                logger.log('ALERT', '爆破终止正在退出')
+                pool.terminate()  # 关闭pool，结束工作进程，不在处理未完成的任务。
                 self.save_json()
                 self.gen_result()
                 rx_queue.put(self.results)
+                return
+            self.deal_results(results)
+            self.save_json()
+            self.gen_result()
+            rx_queue.put(self.results)
 
     def run(self, rx_queue=None):
         self.domains = utils.get_domains(self.target)
