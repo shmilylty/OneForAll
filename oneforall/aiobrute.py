@@ -261,7 +261,7 @@ class AIOBrute(Module):
                 logger.log('INFOR', f'发现{self.domain}的子域: {hostname} '
                                     f'解析到: {name} IP: {ips}')
                 self.subdomains.add(hostname)
-                self.records[hostname] = str(ips)
+                self.records[hostname] = str(ips)[1:-1]
 
     async def main(self, domain, rx_queue):
         if not self.fuzz:  # fuzz模式不探测域名是否使用泛解析

@@ -122,6 +122,7 @@ class Takeover(Module):
         bar = tqdm()
         bar.total = len(self.subdomains)
         bar.desc = 'Progress'
+        bar.ncols = 60
         while True:
             done = bar.total - self.subdomainq.qsize()
             bar.n = done
