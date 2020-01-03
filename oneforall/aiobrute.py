@@ -123,7 +123,7 @@ def gen_fuzz_domains(domain, rule):
 
 def gen_brute_domains(domain, path):
     domains = set()
-    with open(path) as file:
+    with open(path,encoding='utf-8', errors='ignore') as file:
         for line in file:
             brute_domain = line.strip() + '.' + domain
             domains.add(brute_domain)
