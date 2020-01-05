@@ -170,20 +170,28 @@ def request_callback(future, index, datas):
             datas[index]['valid'] = 0
 
 
+def get_connector():
+    limit_open_conn = get_limit_conn()
+    return aiohttp.TCPConnector(ttl_dns_cache=300,
+                                ssl=config.verify_ssl,
+                                limit=limit_open_conn,
+                                limit_per_host=config.limit_per_host)
+
+
+def get_header():
+    header = None
+    if config.fake_header:
+        header = utils.gen_fake_header()
+    return header
+
+
 async def bulk_get_request(datas, port):
     ports = get_ports(port)
     new_datas = gen_new_datas(datas, ports)
     logger.log('INFOR', f'正在异步进行子域的GET请求')
-
-    limit_open_conn = get_limit_conn()
-    conn = aiohttp.TCPConnector(ttl_dns_cache=300,
-                                ssl=config.verify_ssl,
-                                limit=limit_open_conn,
-                                limit_per_host=config.limit_per_host)
-    header = None
-    if config.fake_header:
-        header = utils.gen_fake_header()
-    async with ClientSession(connector=conn, headers=header) as session:
+    connector = get_connector()
+    header = get_header()
+    async with ClientSession(connector=connector, headers=header) as session:
         tasks = []
         for i, data in enumerate(new_datas):
             url = data.get('url')
