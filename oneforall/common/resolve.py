@@ -71,6 +71,9 @@ def resolve_callback(future, index, datas):
     if isinstance(answer, tuple):
         ips = answer[2]
         datas[index]['ips'] = str(ips)[1:-1]
+    else:
+        datas[index]['reason'] = str(answer)
+        datas[index]['valid'] = 0
 
 
 async def bulk_query_a(datas):
