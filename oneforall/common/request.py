@@ -141,33 +141,31 @@ def get_title(markup):
 
 
 def request_callback(future, index, datas):
-    try:
-        result = future.result()
-    except Exception as e:
-        logger.log('TRACE', e.args)
-        datas[index]['reason'] = str(e.args)
+    result = future.result()
+    if isinstance(result, Exception):
+        logger.log('TRACE', result.args)
+        datas[index]['reason'] = str(result.args)
         datas[index]['valid'] = 0
-    else:
-        if isinstance(result, tuple):
-            resp, text = result
-            datas[index]['reason'] = resp.reason
-            datas[index]['status'] = resp.status
-            if resp.status == 400 or resp.status >= 500:
-                datas[index]['valid'] = 0
-            else:
-                datas[index]['valid'] = 1
-                headers = resp.headers
-                banner = str({'Server': headers.get('Server'),
-                              'Via': headers.get('Via'),
-                              'X-Powered-By': headers.get('X-Powered-By')})
-                datas[index]['banner'] = banner[1:-1]
-                title = get_title(text).strip()
-                datas[index]['title'] = utils.remove_string(title)
-                datas[index]['header'] = str(dict(headers))[1:-1]
-                datas[index]['response'] = utils.remove_string(text)
-        else:
-            datas[index]['reason'] = 'Something error'
+    if isinstance(result, tuple):
+        resp, text = result
+        datas[index]['reason'] = resp.reason
+        datas[index]['status'] = resp.status
+        if resp.status == 400 or resp.status >= 500:
             datas[index]['valid'] = 0
+        else:
+            datas[index]['valid'] = 1
+            headers = resp.headers
+            banner = str({'Server': headers.get('Server'),
+                          'Via': headers.get('Via'),
+                          'X-Powered-By': headers.get('X-Powered-By')})
+            datas[index]['banner'] = banner[1:-1]
+            title = get_title(text).strip()
+            datas[index]['title'] = utils.remove_string(title)
+            datas[index]['header'] = str(dict(headers))[1:-1]
+            datas[index]['response'] = utils.remove_string(text)
+    else:
+        datas[index]['reason'] = str(result)
+        datas[index]['valid'] = 0
 
 
 def get_connector():
