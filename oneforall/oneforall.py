@@ -165,8 +165,8 @@ class OneForAll(object):
         self.datas.extend(self.data)
         # 在关闭事件循环前加入一小段延迟让底层连接得到关闭的缓冲时间
         loop.run_until_complete(asyncio.sleep(0.25))
-
-        logger.log('INFOR', f'经验证{self.domain}有效子域{len(self.data)}个')
+        valid_count = len(list(filter(lambda item: item.get('valid') == 1, self.data)))
+        logger.log('INFOR', f'经验证{self.domain}有效子域{valid_count}个')
 
         # 保存请求结果
         db.clear_table(self.domain)
