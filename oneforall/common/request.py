@@ -142,11 +142,12 @@ def get_title(markup):
 
 def request_callback(future, index, datas):
     result = future.result()
-    if isinstance(result, Exception):
+    if isinstance(result, BaseException):
         logger.log('TRACE', result.args)
-        datas[index]['reason'] = str(result.args)
+        name = utils.get_classname(result)
+        datas[index]['reason'] = name + ' ' + str(result)
         datas[index]['valid'] = 0
-    if isinstance(result, tuple):
+    elif isinstance(result, tuple):
         resp, text = result
         datas[index]['reason'] = resp.reason
         datas[index]['status'] = resp.status
@@ -163,9 +164,6 @@ def request_callback(future, index, datas):
             datas[index]['title'] = utils.remove_string(title)
             datas[index]['header'] = str(dict(headers))[1:-1]
             datas[index]['response'] = utils.remove_string(text)
-    else:
-        datas[index]['reason'] = str(result)
-        datas[index]['valid'] = 0
 
 
 def get_connector():
