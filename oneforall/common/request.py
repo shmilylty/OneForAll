@@ -137,7 +137,7 @@ def get_title(markup):
     if len(text) <= 200:
         return text
 
-    return ''
+    return 'None'
 
 
 def request_callback(future, index, datas):
