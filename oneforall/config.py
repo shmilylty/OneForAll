@@ -35,10 +35,6 @@ brute_process_num = os.cpu_count()
 brute_coroutine_num = 1024  # 爆破时每个进程下的协程数
 # 爆破所使用的字典路径 默认data/subdomains.txt
 brute_wordlist_path = data_storage_path.joinpath('subnames.txt')
-brute_task_segment = 500
-# 参数segment的设置受CPU性能，网络带宽，运营商限制等限制，默认500个子域为一任务组，
-# 当你觉得你的环境不受以上因素影响，当前爆破速度较慢，那么强烈建议根据字典大小调整大小：
-# 十万字典建议设置为5000，百万字典设置为50000
 enable_recursive_brute = False  # 是否使用递归爆破(默认禁用)
 brute_recursive_depth = 2  # 递归爆破深度(默认2层)
 # 爆破下一层子域所使用的字典路径 默认data/next_subdomains.txt
