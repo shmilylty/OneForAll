@@ -55,11 +55,11 @@ At present, OneForAll is still under development, there must be a lot of problem
 
 ## 🚀Start Guide
 
-📢Currently, the project is **under development**, so it will continue to update iterations. It is best to **clone** the project when downloading and using OneForAll. Please take a moment to read this document to help you quickly get familiar with OneForAll!
+📢 Please take a moment to read this document to help you quickly get familiar with OneForAll!
 
 **🐍Installation requirements**
 
-OneForAll is developed and tested based on [Python 3.8.0](https://www.python.org/downloads/release/python-380/). For more information on installing the Python environment, please see [Python 3 installation Guide](https://pythonguidecn.readthedocs.io/zh/latest/starting/installation.html#python-3) . Run the following command to check the Python and pip3 versions:
+OneForAll is developed and tested based on [Python 3.8.0](https://www.python.org/downloads/release/python-380/). Please use a stable release higher than Python 3.8.0, other versions may have some problems. For more information on installing the Python environment, please see [Python 3 installation Guide](https://pythonguidecn.readthedocs.io/zh/latest/starting/installation.html#python-3) . Run the following command to check the Python and pip3 versions:
 ```bash
 python -V
 pip3 -V
@@ -85,6 +85,8 @@ pip 19.2.2 from C:\Users\shmilylty\AppData\Roaming\Python\Python37\site-packages
    ```
 
 2. **Installation**
+
+   Since the project is under development and will continue to be updated iteratively, `git clone` is used to clone the latest code repository during download, which is also convenient for subsequent updates. Downloading from Releases is not recommended because the update of the version in Releases is slow and inconvenient.
    
    You can install OneForAll dependencies via pip3 (if you are familiar with [pipenv](https://docs.pipenv.org/en/latest/), then it is recommended that you use [pipenv install dependencies](https://github.com/shmilylty/OneForAll/tree/master/docs/Installation_dependency.md), the following is an example of using **pip3** to install dependencies under **Windows system**: (Note: If your Python3 is installed in the system Program Files In the directory, such as: `C:\Program Files\Python38`, then run the command prompt cmd as an administrator to execute the following command!)
 ```bash
@@ -161,7 +163,7 @@ The OneForAll command line interface is based on [Fire](https://github.com/googl
        oneforall.py --target=TARGET <flags>
    
    DESCRIPTION
-       Version: 0.0.6
+       Version: 0.0.8
        Project: https://git.io/fjHT1
    
        Example:
@@ -200,7 +202,7 @@ The OneForAll command line interface is based on [Fire](https://github.com/googl
        --port=PORT
            Port range for request authentication (default 80 port)
        --valid=VALID
-           Export validity of subdomains (default 1)
+           Export validity of subdomains (default None)
        --path=PATH
            Export path (default None)
        --format=FORMAT
@@ -243,13 +245,6 @@ The OneForAll command line interface is based on [Fire](https://github.com/googl
            python3 aiobrute.py --target m.{fuzz}.a.bz --fuzz True --rule [a-z] run
    
        Note:
-           The setting of the parameter segment is affected by CPU performance, 
-           network bandwidth, and operator restrictions. By default, 500 subdomains 
-           are set as task groups. When you feel that your environment is not 
-           affected by the above factors, the current blasting speed is slow, so it 
-           is strongly recommended to use the dictionary. Size resizing: 100,000 
-           dictionary suggestions set to 5000, million dictionary set to 50000.
-           
            Parameter valid optional value 1, 0, none indicates that the export is 
            valid, invalid, and all subdomains, respectively.
            
@@ -267,11 +262,9 @@ The OneForAll command line interface is based on [Fire](https://github.com/googl
        --process=PROCESS
            Number of processes blasted (default CPU core count)
        --coroutine=COROUTINE
-           Number of coroutines per blasting process (default 64)
+           Number of coroutines per blasting process (default 1024)
        --wordlist=WORDLIST
            Specify the dictionary path used for blasting (config.py is used by default)
-       --segment=SEGMENT
-           Blasting task segmentation (default 500)
        --recursive=RECURSIVE
            Whether to use recursive blasting (default False)
        --depth=DEPTH
