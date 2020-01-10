@@ -123,7 +123,7 @@ def gen_fuzz_domains(domain, rule):
 
 def gen_brute_domains(domain, path):
     domains = set()
-    with open(path,encoding='utf-8', errors='ignore') as file:
+    with open(path, encoding='utf-8', errors='ignore') as file:
         for line in file:
             brute_domain = line.strip() + '.' + domain
             domains.add(brute_domain)
@@ -175,7 +175,6 @@ class AIOBrute(Module):
     :param int process:      爆破的进程数(默认CPU核心数)
     :param int coroutine:    每个爆破进程下的协程数(默认64)
     :param str wordlist:     指定爆破所使用的字典路径(默认使用config.py配置)
-    :param int segment:      爆破任务分割(默认500)
     :param bool recursive:   是否使用递归爆破(默认False)
     :param int depth:        递归爆破的深度(默认2)
     :param str namelist:     指定递归爆破所使用的字典路径(默认使用config.py配置)
@@ -189,9 +188,9 @@ class AIOBrute(Module):
     """
 
     def __init__(self, target, process=None, coroutine=None, wordlist=None,
-                 segment=None, recursive=False, depth=None, namelist=None,
-                 fuzz=False, rule=None, export=True, valid=None, format='csv',
-                 path=None, show=False):
+                 recursive=False, depth=None, namelist=None, fuzz=False,
+                 rule=None, export=True, valid=None, format='csv', path=None,
+                 show=False):
         Module.__init__(self)
         self.domains = set()
         self.domain = str()
@@ -201,7 +200,6 @@ class AIOBrute(Module):
         self.process = process or config.brute_process_num
         self.coroutine = coroutine or config.brute_coroutine_num
         self.wordlist = wordlist or config.brute_wordlist_path
-        self.segment = segment or config.brute_task_segment
         self.recursive_brute = recursive or config.enable_recursive_brute
         self.recursive_depth = depth or config.brute_recursive_depth
         self.recursive_namelist = namelist or config.recursive_namelist_path
@@ -231,7 +229,6 @@ class AIOBrute(Module):
             domains = gen_brute_domains(domain, self.wordlist)
         domains = list(domains)
         return domains
-        # return utils.split_list(domains, self.segment)  # 分割任务组
 
     def deal_results(self, results):
         for result in results:
