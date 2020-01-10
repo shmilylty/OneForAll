@@ -6,6 +6,7 @@ import tqdm
 from dns.resolver import Resolver
 
 import config
+from common import utils
 from config import logger
 
 
@@ -65,15 +66,14 @@ def resolve_callback(future, index, datas):
     :param datas: 结果集
     """
     hostname, answer = future.result()
-    if isinstance(answer, Exception):
-        datas[index]['reason'] = str(answer.args)
+    if isinstance(answer, BaseException):
+        logger.log('TRACE', answer.args)
+        name = utils.get_classname(answer)
+        datas[index]['reason'] = name + ' ' + str(answer)
         datas[index]['valid'] = 0
-    if isinstance(answer, tuple):
+    elif isinstance(answer, tuple):
         ips = answer[2]
         datas[index]['ips'] = str(ips)[1:-1]
-    else:
-        datas[index]['reason'] = str(answer)
-        datas[index]['valid'] = 0
 
 
 async def bulk_query_a(datas):

@@ -6,7 +6,7 @@ import os
 import sys
 import pathlib
 
-import requests
+import urllib3
 from loguru import logger
 
 # 路径设置
@@ -60,8 +60,8 @@ proxy_pool = [{'http': 'http://127.0.0.1:1080',
 enable_fake_header = True  # 启用伪造请求头
 request_delay = 1  # 请求时延
 request_timeout = 30  # 请求超时
-request_verify = True  # 请求SSL验证
-requests.packages.urllib3.disable_warnings()  # 禁用安全警告信息
+request_verify = False  # 请求SSL验证
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)  # 禁用安全警告信息
 
 # 搜索模块设置
 enable_recursive_search = False  # 递归搜索子域
@@ -99,13 +99,15 @@ ports = {'default': default_ports, 'small': small_ports,
 verify_ssl = False
 # aiohttp 支持 HTTP/HTTPS形式的代理
 get_proxy = None  # proxy="http://user:pass@some.proxy.com"
-get_timeout = 60  # http请求探测总超时时间 None或者0则表示不检测超时
+get_timeout = 200  # http请求探测总超时时间 None或者0则表示不检测超时
 get_redirects = True  # 允许请求跳转
 fake_header = True  # 使用伪造请求头
-# 限制同一时间打开的连接数(默认None，根据系统不同设置，Windows系统400 其他系统800)
-limit_open_conn = 200
+
+# 限制同一时间打开的连接总数
+limit_open_conn = 500  # 默认500
+
 # 限制同一时间在同一个端点((host, port, is_ssl) 3者都一样的情况)打开的连接数
-limit_per_host = 0  # 默认0表示不限制
+limit_per_host = 50  # 默认0表示不限制
 
 # 模块API配置
 # Censys可以免费注册获取API：https://censys.io/api
