@@ -26,7 +26,7 @@ class BruteSRV(Module):
 
     def gen_names(self):
         path = data_storage_path.joinpath('srv_prefixes.json')
-        with open(path) as file:
+        with open(path, encoding='utf-8', errors='ignore') as file:
             prefixes = json.load(file)
         names = map(lambda prefix: prefix + self.domain, prefixes)
 

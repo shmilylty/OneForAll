@@ -120,7 +120,7 @@ def get_domains(target):
     elif isinstance(target, str):
         path = Path(target)
         if path.is_file():
-            with open(target) as file:
+            with open(target, encoding='utf-8', errors='ignore') as file:
                 for line in file:
                     domain = Domain(line.strip()).match()
                     if domain:
@@ -189,7 +189,7 @@ def check_format(format, count):
 
 def save_data(fpath, data):
     try:
-        with open(fpath, 'w', encoding="utf-8", newline='') as file:
+        with open(fpath, 'w', encoding="utf-8", errors='ignore', newline='') as file:
             file.write(data)
             logger.log('ALERT', fpath)
     except TypeError:
