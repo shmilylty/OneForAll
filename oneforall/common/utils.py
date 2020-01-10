@@ -282,3 +282,7 @@ def export_all(format, datas):
 
 def get_timestamp():
     return int(time.time())
+
+
+def get_classname(clsobj):
+    return clsobj.__class__.__name__
