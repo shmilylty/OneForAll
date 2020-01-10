@@ -55,11 +55,11 @@
 
 ## 🚀上手指南
 
-📢由于该项目**处于开发中**，会不断进行更新迭代，下载使用最好**克隆**最新项目，请务必花一点时间阅读此文档，有助于你快速熟悉OneForAll！
+📢 请务必花一点时间阅读此文档，有助于你快速熟悉OneForAll！
 
 **🐍安装要求**
 
-OneForAll基于[Python 3.8.0]( https://www.python.org/downloads/release/python-380/ )开发和测试，安装Python环境可以参考[Python 3 安装指南](https://pythonguidecn.readthedocs.io/zh/latest/starting/installation.html#python-3)。运行以下命令检查Python和pip3版本：
+OneForAll基于[Python 3.8.0]( https://www.python.org/downloads/release/python-380/ )开发和测试，请使用高于Python 3.8.0的稳定发行版本，其他版本可能会出现一些问题，安装Python环境可以参考[Python 3 安装指南](https://pythonguidecn.readthedocs.io/zh/latest/starting/installation.html#python-3)。运行以下命令检查Python和pip3版本：
 ```bash
 python -V
 pip3 -V
@@ -73,6 +73,8 @@ pip 19.2.2 from C:\Users\shmilylty\AppData\Roaming\Python\Python38\site-packages
 **✔安装步骤（git 版）**
 
 1. **下载**
+
+   由于该项目**处于开发中**，会不断进行更新迭代，下载时使用`git clone`**克隆**最新代码仓库，也方便后续的更新，不推荐从Releases下载，因为Releases里版本更新缓慢，也不方便更新，
    本项目已经在[码云](https://gitee.com/shmilylty/OneForAll.git)(Gitee)镜像了一份，国内推荐使用码云进行克隆比较快：
 
    ```bash
@@ -84,6 +86,7 @@ pip 19.2.2 from C:\Users\shmilylty\AppData\Roaming\Python\Python38\site-packages
    ```
 
 2. **安装**
+
    你可以通过pip3安装OneForAll的依赖（如果你熟悉[pipenv](https://docs.pipenv.org/en/latest/)，那么推荐你使用[pipenv安装依赖]((https://github.com/shmilylty/OneForAll/tree/master/docs/Installation_dependency.md))），以下为**Windows系统**下使用**pip3**安装依赖的示例：（注意：如果你的Python3安装在系统Program Files目录下，如：`C:\Program Files\Python38`，那么请以管理员身份运行命令提示符cmd执行以下命令！）
 ```bash
    cd OneForAll/
@@ -95,6 +98,7 @@ pip 19.2.2 from C:\Users\shmilylty\AppData\Roaming\Python\Python38\site-packages
    其他系统平台的请参考[依赖安装](https://github.com/shmilylty/OneForAll/tree/master/docs/installation_dependency.md)，如果在安装依赖过程中发现编译某个依赖库失败时可以参考[Q&A](https://github.com/shmilylty/OneForAll/tree/master/docs/Q&A.md)中解决方法，如果还没有解决欢迎加群反馈。
 
 3. **更新**
+
    ❗注意：如果你之前已经克隆了项目运行之前请**备份**自己修改过的文件到项目外的地方（如**config.py**），然后执行以下命令**更新**项目：
 
    ```bash
@@ -158,7 +162,7 @@ OneForAll命令行界面基于[Fire](https://github.com/google/python-fire/)实�
        oneforall.py --target=TARGET <flags>
    
    DESCRIPTION
-       Version: 0.0.6
+       Version: 0.0.8
        Project: https://git.io/fjHT1
    
        Example:
@@ -193,7 +197,7 @@ OneForAll命令行界面基于[Fire](https://github.com/google/python-fire/)实�
        --port=PORT
            请求验证的端口范围(默认只探测80端口)
        --valid=VALID
-           导出子域的有效性(默认1)
+           导出子域的有效性(默认None)
        --path=PATH
            导出路径(默认None)
        --format=FORMAT
@@ -233,9 +237,6 @@ OneForAll命令行界面基于[Fire](https://github.com/google/python-fire/)实�
            python3 aiobrute.py --target m.{fuzz}.a.bz --fuzz True --rule [a-z] run
    
        Note:
-           参数segment的设置受CPU性能，网络带宽，运营商限制等问题影响，默认设置500个子域为任务组，
-           当你觉得你的环境不受以上因素影响，当前爆破速度较慢，那么强烈建议根据字典大小调整大小：
-           十万字典建议设置为5000，百万字典设置为50000
            参数valid可选值1，0，None，分别表示导出有效，无效，全部子域
            参数format可选格式有'txt', 'rst', 'csv', 'tsv', 'json', 'yaml', 'html',
                              'jira', 'xls', 'xlsx', 'dbf', 'latex', 'ods'
@@ -249,11 +250,9 @@ OneForAll命令行界面基于[Fire](https://github.com/google/python-fire/)实�
        --process=PROCESS
            爆破的进程数(默认CPU核心数)
        --coroutine=COROUTINE
-           每个爆破进程下的协程数(默认64)
+           每个爆破进程下的协程数(默认1024)
        --wordlist=WORDLIST
            指定爆破所使用的字典路径(默认使用config.py配置)
-       --segment=SEGMENT
-           爆破任务分割(默认500)
        --recursive=RECURSIVE
            是否使用递归爆破(默认False)
        --depth=DEPTH
