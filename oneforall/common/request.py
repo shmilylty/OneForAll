@@ -92,9 +92,9 @@ async def fetch(session, url):
                                proxy=config.get_proxy) as resp:
 
             try:
-                text = await resp.text(encoding='gb2312')  # 先尝试用fb2312解码
+                text = await resp.text(encoding='gb18030')  # 先尝试用gb18030解码
             except UnicodeDecodeError:
-                text = await resp.text(errors='ignore')
+                text = await resp.text(encoding='utf-8', errors='ignore')
         return resp, text
     except Exception as e:
         return e
