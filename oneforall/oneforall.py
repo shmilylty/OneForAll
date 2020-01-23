@@ -150,6 +150,10 @@ class OneForAll(object):
 
         # 不请求子域直接导出结果
         if not self.req:
+            # 转存解析结果
+            db.clear_table(self.domain)
+            db.save_db(self.domain, self.data, 'resolve')
+        
             # 数据库导出
             self.valid = None
             dbexport.export(self.domain, valid=self.valid,
