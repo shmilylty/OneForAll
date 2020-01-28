@@ -35,7 +35,7 @@ At present, OneForAll is still under development, there must be a lot of problem
 * **Powerful collection capability**，For more information, please see [collection module description](https://github.com/shmilylty/OneForAll/tree/master/docs/collection_modules.md).
   1. Collect subdomains using certificate transparency (there are currently 6 modules: `censys_api`，`spyse_api`，`certspotter`，`crtsh`，`entrust`，`google`）
 
-  2. General check collection subdomains (there are currently 4 modules: domain transfer vulnerability exploitation`cdx`, cross-domain policy file `cdx`, HTTPS certificate `cert`, content security policy `csp`, robots file `robots`, and sitemap file `sitemap`. Check NSEC record, NSEC3 record and other modules will be added later).
+  2. General check collection subdomains (there are currently 4 modules: domain transfer vulnerability exploitation`axfr`, cross-domain policy file `cdx`, HTTPS certificate `cert`, content security policy `csp`, robots file `robots`, and sitemap file `sitemap`. Check NSEC record, NSEC3 record and other modules will be added later).
 
   3.  Collect subdomains using web crawler files (there are currently two modules: `archirawl`, `commoncrawl`, which is still being debugged and needs to be added and improved). 
 
