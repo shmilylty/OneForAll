@@ -61,7 +61,7 @@ class OneForAll(object):
 
     Note:
         参数valid可选值1，0，None分别表示导出有效，无效，全部子域
-        参数port可选值有'default', 'small', 'medium', 'large', 详见config.py配置
+        参数port可选值有'default', 'small', 'large', 详见config.py配置
         参数format可选格式有'txt', 'rst', 'csv', 'tsv', 'json', 'yaml', 'html',
                           'jira', 'xls', 'xlsx', 'dbf', 'latex', 'ods'
 

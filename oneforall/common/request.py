@@ -31,8 +31,8 @@ def get_ports(port):
     elif isinstance(port, int):
         if 0 <= port <= 65535:
             ports = {port}
-    elif port in {'default', 'small', 'medium', 'large'}:
-        logger.log('INFOR', f'探测{port}等端口范围')
+    elif port in {'default', 'small', 'large'}:
+        logger.log('DEBUG', f'探测{port}等端口范围')
         ports = config.ports.get(port)
     if not ports:  # 意外情况
         logger.log('ERROR', f'指定探测端口范围有误')
