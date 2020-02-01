@@ -75,7 +75,7 @@ class Collect(object):
             if not self.path:
                 name = f'{self.domain}.{self.format}'
                 self.path = config.result_save_path.joinpath(name)
-            dbexport.export(self.domain, dpath=self.path, format=self.format)
+            dbexport.export(self.domain, path=self.path, format=self.format)
         end = time.time()
         self.elapsed = round(end - start, 1)
 

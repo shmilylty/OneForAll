@@ -98,8 +98,8 @@ class OneForAll(object):
             self.dns = config.enable_dns_resolve
         if self.req is None:
             self.req = config.enable_http_request
-        old_table = self.domain + '_last'
-        new_table = self.domain + '_now'
+        old_table = self.domain + '_last_result'
+        new_table = self.domain + '_now_result'
         collect = Collect(self.domain, export=False)
         collect.run()
         if self.brute:
@@ -108,7 +108,8 @@ class OneForAll(object):
             brute.run()
 
         db = Database()
-        db.copy_table(self.domain, self.domain+'_ori')
+        original_table = self.domain + '_original_result'
+        db.copy_table(self.domain, original_table)
         db.remove_invalid(self.domain)
         db.deduplicate_subdomain(self.domain)
 
@@ -122,7 +123,6 @@ class OneForAll(object):
         # 不解析子域直接导出结果
         if not self.dns:
             # 数据库导出
-            self.valid = None
             dbexport.export(self.domain, valid=self.valid,
                             format=self.format, show=self.show)
             db.drop_table(new_table)
@@ -135,6 +135,7 @@ class OneForAll(object):
         # 标记新发现子域
         self.data = utils.mark_subdomain(old_data, self.data)
 
+        # 获取事件循环
         loop = asyncio.get_event_loop()
         asyncio.set_event_loop(loop)
 
@@ -143,7 +144,7 @@ class OneForAll(object):
         self.data = loop.run_until_complete(task)
 
         # 保存解析结果
-        resolve_table = self.domain + '_res'
+        resolve_table = self.domain + '_resolve_result'
         db.drop_table(resolve_table)
         db.create_table(resolve_table)
         db.save_db(resolve_table, self.data, 'resolve')
@@ -151,8 +152,7 @@ class OneForAll(object):
         # 不请求子域直接导出结果
         if not self.req:
             # 数据库导出
-            self.valid = None
-            dbexport.export(self.domain, valid=self.valid,
+            dbexport.export(resolve_table, valid=self.valid,
                             format=self.format, show=self.show)
             db.drop_table(new_table)
             db.rename_table(self.domain, new_table)

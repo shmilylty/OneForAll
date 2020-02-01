@@ -56,21 +56,21 @@ class Takeover(Module):
     Note:
         参数format可选格式有'txt', 'rst', 'csv', 'tsv', 'json', 'yaml', 'html',
                           'jira', 'xls', 'xlsx', 'dbf', 'latex', 'ods'
-        参数dpath为None默认使用OneForAll结果目录
+        参数path为None默认使用OneForAll结果目录
 
     :param any target:  单个子域或者每行一个子域的文件路径(必需参数)
     :param int thread:  线程数(默认100)
     :param str format:  导出格式(默认csv)
-    :param str dpath:   导出目录(默认None)
+    :param str path:   导出目录(默认None)
     """
-    def __init__(self, target, thread=100, dpath=None, format='csv'):
+    def __init__(self, target, thread=100, path=None, format='csv'):
         Module.__init__(self)
         self.subdomains = set()
         self.module = 'Check'
         self.source = 'Takeover'
         self.target = target
         self.thread = thread
-        self.dpath = dpath
+        self.path = path
         self.format = format
         self.fingerprints = None
         self.subdomainq = Queue()
@@ -78,14 +78,14 @@ class Takeover(Module):
         self.results = Dataset()
 
     def save(self):
-        logger.log('INFOR', '正在保存检查结果')
+        logger.log('DEBUG', '正在保存检查结果')
         if self.format == 'txt':
             data = str(self.results)
         else:
             data = self.results.export(self.format)
         timestamp = utils.get_timestamp()
-        fpath = self.dpath.joinpath(f'takeover_{timestamp}.{self.format}')
-        utils.save_data(fpath, data)
+        path = self.path.joinpath(f'takeover_{timestamp}.{self.format}')
+        utils.save_data(path, data)
 
     def compare(self, subdomain, cname, responses):
         domain_resp = self.get('http://' + subdomain, check=False)
@@ -136,7 +136,7 @@ class Takeover(Module):
         logger.log('INFOR', f'开始执行{self.source}模块')
         self.subdomains = utils.get_domains(self.target)
         self.format = utils.check_format(self.format, len(self.subdomains))
-        self.dpath = utils.check_dpath(self.dpath)
+        self.path = utils.check_dpath(self.path)
         if self.subdomains:
             logger.log('INFOR', f'正在检查子域接管风险')
             self.fingerprints = get_fingerprint()
