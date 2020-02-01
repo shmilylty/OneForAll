@@ -148,21 +148,28 @@ def get_semaphore():
 
 def check_dpath(dpath=None):
     """
-    检查目录路径
+    检查结果输出目录路径
 
     :param dpath: 传入的目录路径
     :return: 目录路径
     """
-    if isinstance(dpath, str):
-        dpath = Path(dpath)
+    if dpath is None:
+        return config.result_save_path
+    try:
+        path = Path(dpath)
+    except Exception as e:
+        logger.log('ERROR', e.args)
+        path = config.result_save_path
     else:
-        dpath = config.result_save_path
-    if not dpath.is_dir():
-        logger.log('FATAL', f'{dpath}不是目录')
-    if not dpath.exists():
-        logger.log('ALERT', f'不存在{dpath}将会新建此目录')
-        dpath.mkdir(parents=True, exist_ok=True)
-    return dpath
+        if not path.is_dir():
+            logger.log('ERROR', f'{path}不是目录')
+            path = config.result_save_path
+        if not path.exists():
+            logger.log('ALERT', f'不存在{path}将会新建此目录')
+            path.mkdir(parents=True, exist_ok=True)
+    if path.resolve() == config.result_save_path:
+        logger.log('ALERT', f'使用默认结果输出目录{path}')
+    return path
 
 
 def check_format(format, count):
@@ -187,17 +194,27 @@ def check_format(format, count):
         return 'csv'
 
 
-def save_data(fpath, data):
+def save_data(path, data):
+    """
+    保存结果数据到文件
+
+    :param path: 保存路径
+    :param data: 待存数据
+    :return: 保存成功与否
+    """
     try:
-        with open(fpath, 'w', encoding="utf-8", errors='ignore', newline='') as file:
+        with open(path, 'w', encoding="utf-8", errors='ignore', newline='') as file:
             file.write(data)
-            logger.log('ALERT', fpath)
+            logger.log('ALERT', f'结果输出{path}')
+            return True
     except TypeError:
-        with open(fpath, 'wb') as file:
+        with open(path, 'wb') as file:
             file.write(data)
-            logger.log('ALERT', fpath)
+            logger.log('ALERT', f'结果输出{path}')
+            return True
     except Exception as e:
         logger.log('ERROR', e.args)
+        return False
 
 
 def check_response(method, resp):

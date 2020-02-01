@@ -13,7 +13,7 @@ from common import utils
 from common.database import Database
 
 
-def export(table, db=None, valid=None, dpath=None, format='csv', show=False):
+def export(table, db=None, valid=None, path=None, format='csv', show=False):
     """
     OneForAll数据库导出模块
 
@@ -31,13 +31,13 @@ def export(table, db=None, valid=None, dpath=None, format='csv', show=False):
     :param str db:      要导出的数据库路径(默认为results/result.sqlite3)
     :param int valid:   导出子域的有效性(默认None)
     :param str format:  导出格式(默认csv)
-    :param str dpath:    导出目录(默认None)
+    :param str path:   导出目录(默认None)
     :param bool show:   终端显示导出数据(默认False)
     """
 
-    dpath = utils.check_dpath(dpath)
+    dir_path = utils.check_dpath(path)
     database = Database(db)
-    rows = database.export_data(table, valid)  # 意外情况导出全部子域
+    rows = database.export_data(table, valid)
     format = utils.check_format(format, len(rows))
     if show:
         print(rows.dataset)
@@ -46,8 +46,8 @@ def export(table, db=None, valid=None, dpath=None, format='csv', show=False):
     else:
         data = rows.export(format)
     database.close()
-    fpath = dpath.joinpath(f'{table}_subdomain.{format}')
-    utils.save_data(fpath, data)
+    file_path = dir_path.joinpath(f'{table}.{format}')
+    utils.save_data(file_path, data)
 
 
 if __name__ == '__main__':
