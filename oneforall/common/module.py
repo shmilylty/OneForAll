@@ -219,6 +219,8 @@ class Module(object):
     def save_json(self):
         """
         将各模块结果保存为json文件
+
+        :return： 保存与否
         """
         if not config.save_module_result:
             return False
