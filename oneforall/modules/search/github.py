@@ -88,7 +88,7 @@ class Github(Search):
                 logger.log('ERROR', e.args)
                 break
             if resp.status_code != 200:
-                logger.log('ERROR', f'{self.session}模块搜索出错')
+                logger.log('ERROR', f'{self.source}模块搜索出错')
                 break
             if 'couldn’t find any code' in resp.text:
                 break
