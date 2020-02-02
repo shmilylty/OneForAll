@@ -220,21 +220,23 @@ class Module(object):
         """
         将各模块结果保存为json文件
         """
+        if not config.save_module_result:
+            return False
         logger.log('DEBUG', f'将{self.source}模块发现的子域结果保存为json文件')
-        if config.save_module_result:
-            dpath = config.result_save_path.joinpath(self.domain, self.module)
-            dpath.mkdir(parents=True, exist_ok=True)
-            name = self.source + '.json'
-            path = dpath.joinpath(name)
-            with open(path, mode='w', encoding='utf-8', errors='ignore') as file:
-                result = {'domain': self.domain,
-                          'name': self.module,
-                          'source': self.source,
-                          'elapsed': self.elapsed,
-                          'count': len(self.subdomains),
-                          'subdomains': list(self.subdomains),
-                          'records': self.records}
-                json.dump(result, file, ensure_ascii=False, indent=4)
+        path = config.result_save_path.joinpath(self.domain, self.module)
+        path.mkdir(parents=True, exist_ok=True)
+        name = self.source + '.json'
+        path = path.joinpath(name)
+        with open(path, mode='w', encoding='utf-8', errors='ignore') as file:
+            result = {'domain': self.domain,
+                      'name': self.module,
+                      'source': self.source,
+                      'elapsed': self.elapsed,
+                      'count': len(self.subdomains),
+                      'subdomains': list(self.subdomains),
+                      'records': self.records}
+            json.dump(result, file, ensure_ascii=False, indent=4)
+        return True
 
     def gen_result(self):
         results = list()
