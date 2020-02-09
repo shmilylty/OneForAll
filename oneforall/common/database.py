@@ -50,8 +50,11 @@ class Database(object):
         :param str table_name: 要创建的表名
         """
         table_name = table_name.replace('.', '_')
+        if self.exist_table(table_name):
+            logger.log('DEBUG', f'已经存在{table_name}表')
+            return
         logger.log('DEBUG', f'正在创建{table_name}表')
-        self.query(f'create table if not exists "{table_name}" ('
+        self.query(f'create table "{table_name}" ('
                    f'id integer primary key,'
                    f'url text,'
                    f'subdomain text,'
@@ -100,16 +103,17 @@ class Database(object):
         判断是否存在某表
 
         :param str table_name: 表名
+        :return: 是否存在某表
         """
         table_name = table_name.replace('.', '_')
         logger.log('DEBUG', f'正在查询是否存在{table_name}表')
         results = self.query(f'select count() from sqlite_master '
                              f'where type = "table" and '
                              f'name = "{table_name}"')
-        if len(results) != 0:
-            return True
-        else:
+        if results.scalar() == 0:
             return False
+        else:
+            return True
 
     def copy_table(self, table_name, bak_table_name):
         """
