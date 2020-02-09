@@ -39,11 +39,12 @@ class Module(object):
     def check(self, *apis):
         """
         简单检查是否配置了api信息
+        
         :param apis: api信息元组
         :return: 检查结果
         """
         if not all(apis):
-            logger.log('ALERT', f'{self.source}模块API配置有误跳过执行')
+            logger.log('ALERT', f'{self.source}模块没有配置API跳过执行')
             return False
         return True
 
