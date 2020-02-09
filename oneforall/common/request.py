@@ -22,12 +22,8 @@ def get_limit_conn():
 def get_ports(port):
     logger.log('DEBUG', f'正在获取请求探测端口范围')
     ports = set()
-    if isinstance(port, set):
+    if isinstance(port, (set, list, tuple)):
         ports = port
-    elif isinstance(port, list):
-        ports = set(port)
-    elif isinstance(port, tuple):
-        ports = set(port)
     elif isinstance(port, int):
         if 0 <= port <= 65535:
             ports = {port}
@@ -38,7 +34,7 @@ def get_ports(port):
         logger.log('ERROR', f'指定探测端口范围有误')
         ports = {80}
     logger.log('INFOR', f'探测端口范围：{ports}')
-    return ports
+    return set(ports)
 
 
 def gen_new_datas(datas, ports):
