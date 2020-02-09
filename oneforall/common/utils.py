@@ -1,5 +1,6 @@
 # coding=utf-8
 import re
+import sys
 import time
 import random
 import ipaddress
@@ -218,6 +219,13 @@ def save_data(path, data):
 
 
 def check_response(method, resp):
+    """
+    检查响应 输出非正常响应返回json的信息
+
+    :param method: 请求方法
+    :param resp: 响应体
+    :return: 是否正常响应
+    """
     if resp.status_code == 200 and resp.content:
         return True
     logger.log('ALERT', f'{method} {resp.url} {resp.status_code} - '
@@ -266,15 +274,21 @@ def remove_string(string):
 
 def check_value(values):
     for i, value in enumerate(values):
-        # Excel文件中单元格值长度不能超过32767
         if value is None:
             continue
         if isinstance(value, str) and len(value) > 32767:
+            # Excel文件中单元格值长度不能超过32767
             values[i] = value[:32767]
     return values
 
 
 def export_all(format, datas):
+    """
+    将所有结果数据导出到一个文件
+
+    :param format: 导出文件的格式
+    :param datas: 待导出的结果数据
+    """
     format = check_format(format, len(datas))
     dpath = check_dpath()
     timestamp = get_timestamp()
@@ -303,3 +317,7 @@ def get_timestamp():
 
 def get_classname(clsobj):
     return clsobj.__class__.__name__
+
+
+def python_version():
+    return sys.version

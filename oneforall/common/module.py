@@ -33,13 +33,13 @@ class Module(object):
         self.records = dict()  # 存放子域解析记录
         self.results = list()  # 存放模块结果
         self.start = time.time()  # 模块开始执行时间
-        self.end = None
+        self.end = None  # 模块结束执行时间
         self.elapsed = None  # 模块执行耗时
 
     def check(self, *apis):
         """
         简单检查是否配置了api信息
-        
+
         :param apis: api信息元组
         :return: 检查结果
         """
@@ -221,7 +221,7 @@ class Module(object):
         """
         将各模块结果保存为json文件
 
-        :return： 保存与否
+        :return： 是否保存成功
         """
         if not config.save_module_result:
             return False
@@ -242,8 +242,10 @@ class Module(object):
         return True
 
     def gen_result(self):
-        results = list()
-        if not len(self.subdomains):  # 一个子域都没有发现的情况
+        """
+        生成结果
+        """
+        if not len(self.subdomains):  # 该模块一个子域都没有发现的情况
             result = {'id': None,
                       'url': None,
                       'subdomain': None,
@@ -261,8 +263,7 @@ class Module(object):
                       'source': self.source,
                       'elapsed': self.elapsed,
                       'count': 0}
-            results.append(result)
-            self.results = (self.source, results)
+            self.results.append(result)
         else:
             for subdomain in self.subdomains:
                 url = 'http://' + subdomain
@@ -284,15 +285,17 @@ class Module(object):
                           'source': self.source,
                           'elapsed': self.elapsed,
                           'count': len(self.subdomains)}
-                results.append(result)
-            self.results = (self.source, results)
+                self.results.append(result)
 
     def save_db(self):
+        """
+        将模块结果存入数据库中
+
+        :return:
+        """
         lock.acquire()
         db = Database()
         db.create_table(self.domain)
-        source, results = self.results
-        # 将结果存入数据库中
-        db.save_db(self.domain, results, source)
+        db.save_db(self.domain, self.results, self.source)
         db.close()
         lock.release()
