@@ -9,6 +9,9 @@ import pathlib
 import urllib3
 from loguru import logger
 
+# 版本信息
+oneforall_version = 'v0.0.8#dev'  # OneForAll处于开发中，会进行版本快速迭代，请每次在使用前进行更新！
+
 # 路径设置
 oneforall_relpath = pathlib.Path(__file__).parent  # oneforall代码相对路径
 oneforall_abspath = oneforall_relpath.resolve()  # oneforall代码绝对路径

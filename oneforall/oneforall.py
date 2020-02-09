@@ -28,9 +28,10 @@ blue = '\033[01;34m'
 red = '\033[1;31m'
 end = '\033[0m'
 
-version = white + '{' + red + 'v0.0.8#dev' + white + '}'
+version = white + '{' + red + config.oneforall_version + white + '}'
 
-banner = f"""{yellow}
+banner = f"""
+OneForAll是一款功能强大的子域收集工具{yellow}
              ___             _ _ 
  ___ ___ ___|  _|___ ___ ___| | | {version}{green}
 | . |   | -_|  _| . |  _| .'| | | {blue}
@@ -42,12 +43,12 @@ banner = f"""{yellow}
 
 class OneForAll(object):
     """
+    OneForAll帮助信息
+
     OneForAll是一款功能强大的子域收集工具
 
-    Version: 0.0.8
-    Project: https://git.io/fjHT1
-
     Example:
+        python3 oneforall.py version
         python3 oneforall.py --target example.com run
         python3 oneforall.py --target ./subdomains.txt run
         python3 oneforall.py --target example.com --valid None run
@@ -189,6 +190,8 @@ class OneForAll(object):
         print(banner)
         dt = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         print(f'[*] Starting OneForAll @ {dt}\n')
+        logger.log('DEBUG', 'Python ' + utils.python_version())
+        logger.log('DEBUG', 'OneForAll ' + config.oneforall_version)
         logger.log('INFOR', f'开始运行OneForAll')
         self.domains = utils.get_domains(self.target)
         if self.domains:
@@ -199,6 +202,11 @@ class OneForAll(object):
         else:
             logger.log('FATAL', f'获取域名失败')
         logger.log('INFOR', f'结束运行OneForAll')
+
+    @staticmethod
+    def version():
+        print(banner)
+        exit(0)
 
 
 if __name__ == '__main__':
