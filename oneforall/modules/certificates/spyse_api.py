@@ -1,4 +1,4 @@
-import config
+import api
 from common import utils
 from common.query import Query
 
@@ -10,7 +10,7 @@ class SpyseAPI(Query):
         self.module = 'Certificate'
         self.source = 'CertDBAPIQuery'
         self.addr = 'https://api.spyse.com/v1/subdomains'
-        self.token = config.spyse_api_token
+        self.token = api.spyse_api_token
 
     def query(self):
         """

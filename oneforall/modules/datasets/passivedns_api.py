@@ -1,4 +1,4 @@
-import config
+import api
 from common.query import Query
 
 
@@ -8,8 +8,8 @@ class PassiveDnsAPI(Query):
         self.domain = self.register(domain)
         self.module = 'Dataset'
         self.source = 'PassiveDnsQuery'
-        self.addr = config.passivedns_api_addr or 'http://api.passivedns.cn'
-        self.token = config.passivedns_api_token
+        self.addr = api.passivedns_api_addr or 'http://api.passivedns.cn'
+        self.token = api.passivedns_api_token
 
     def query(self):
         """
