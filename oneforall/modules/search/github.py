@@ -62,11 +62,10 @@ class Github(Search):
             return None
         if resp.status_code != 200:
             return None
-        match = re.search(
-            r'name="authenticity_token" value="(.*?)"', resp.text)
+        match = re.findall(r'name="authenticity_token" value="(.*?)"', resp.text)
         if not match:
             return None
-        return match.group(1)
+        return match[1]
 
     def search(self, full_search=False):
         """
