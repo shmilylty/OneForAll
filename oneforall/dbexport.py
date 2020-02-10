@@ -25,20 +25,20 @@ def export(table, db=None, valid=None, path=None, format='csv', show=False):
         参数port可选值有'small', 'medium', 'large', 'xlarge'，详见config.py配置
         参数format可选格式有'txt', 'rst', 'csv', 'tsv', 'json', 'yaml', 'html',
                           'jira', 'xls', 'xlsx', 'dbf', 'latex', 'ods'
-        参数dpath为None默认使用OneForAll结果目录
+        参数path默认None使用OneForAll结果目录生成路径
 
     :param str table:   要导出的表
     :param str db:      要导出的数据库路径(默认为results/result.sqlite3)
     :param int valid:   导出子域的有效性(默认None)
     :param str format:  导出格式(默认csv)
-    :param str path:   导出目录(默认None)
+    :param str path:    导出路径(默认None)
     :param bool show:   终端显示导出数据(默认False)
     """
 
-    dir_path = utils.check_dpath(path)
     database = Database(db)
     rows = database.export_data(table, valid)
     format = utils.check_format(format, len(rows))
+    path = utils.check_path(path, table, format)
     if show:
         print(rows.dataset)
     if format == 'txt':
@@ -46,8 +46,7 @@ def export(table, db=None, valid=None, path=None, format='csv', show=False):
     else:
         data = rows.export(format)
     database.close()
-    file_path = dir_path.joinpath(f'{table}.{format}')
-    utils.save_data(file_path, data)
+    utils.save_data(path, data)
 
 
 if __name__ == '__main__':

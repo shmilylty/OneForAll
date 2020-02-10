@@ -10,7 +10,8 @@ import urllib3
 from loguru import logger
 
 # 版本信息
-oneforall_version = 'v0.0.8#dev'  # OneForAll处于开发中，会进行版本快速迭代，请每次在使用前进行更新！
+# OneForAll处于开发中，会进行版本快速迭代，请每次在使用前进行更新！
+oneforall_version = 'v0.0.8#dev'
 
 # 路径设置
 oneforall_relpath = pathlib.Path(__file__).parent  # oneforall代码相对路径
@@ -64,7 +65,8 @@ enable_fake_header = True  # 启用伪造请求头
 request_delay = 1  # 请求时延
 request_timeout = 30  # 请求超时
 request_verify = False  # 请求SSL验证
-urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)  # 禁用安全警告信息
+# 禁用安全警告信息
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 # 搜索模块设置
 enable_recursive_search = False  # 递归搜索子域
@@ -112,10 +114,10 @@ get_redirects = True  # 允许请求跳转
 fake_header = True  # 使用伪造请求头
 
 # 限制同一时间打开的连接总数
-limit_open_conn = 500  # 默认500
+limit_open_conn = 30  # 默认30
 
 # 限制同一时间在同一个端点((host, port, is_ssl) 3者都一样的情况)打开的连接数
-limit_per_host = 50  # 0表示不限制
+limit_per_host = 0  # 0表示不限制
 
 subdomains_common = {'i', 'w', 'm', 'en', 'us', 'zh', 'w3', 'app', 'bbs',
                      'web', 'www', 'job', 'docs', 'news', 'blog', 'data',
