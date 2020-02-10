@@ -170,16 +170,16 @@ class Module(object):
         :return: 代理字典
         """
         if not config.enable_proxy:
-            logger.log('DEBUG', f'所有模块不使用代理')
+            logger.log('TRACE', f'所有模块不使用代理')
             return self.proxy
         if config.proxy_all_module:
-            logger.log('DEBUG', f'{module}模块使用代理')
+            logger.log('TRACE', f'{module}模块使用代理')
             return utils.get_random_proxy()
         if module in config.proxy_partial_module:
-            logger.log('DEBUG', f'{module}模块使用代理')
+            logger.log('TRACE', f'{module}模块使用代理')
             return utils.get_random_proxy()
         else:
-            logger.log('DEBUG', f'{module}模块不使用代理')
+            logger.log('TRACE', f'{module}模块不使用代理')
             return self.proxy
 
     @staticmethod
@@ -193,7 +193,7 @@ class Module(object):
         :return: 匹配出的子域集合或列表
         :rtype: set or list
         """
-        logger.log('DEBUG', f'正则匹配响应体中的子域')
+        logger.log('TRACE', f'正则匹配响应体中的子域')
         regexp = r'(?:\>|\"|\'|\=|\,)(?:http\:\/\/|https\:\/\/)?' \
                  r'(?:[a-z0-9](?:[a-z0-9\-]{0,61}[a-z0-9])?\.){0,}' \
                  + domain.replace('.', r'\.')
@@ -225,7 +225,7 @@ class Module(object):
         """
         if not config.save_module_result:
             return False
-        logger.log('DEBUG', f'将{self.source}模块发现的子域结果保存为json文件')
+        logger.log('TRACE', f'将{self.source}模块发现的子域结果保存为json文件')
         path = config.result_save_path.joinpath(self.domain, self.module)
         path.mkdir(parents=True, exist_ok=True)
         name = self.source + '.json'
@@ -291,7 +291,6 @@ class Module(object):
         """
         将模块结果存入数据库中
 
-        :return:
         """
         lock.acquire()
         db = Database()
