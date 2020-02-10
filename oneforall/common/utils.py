@@ -147,29 +147,32 @@ def get_semaphore():
         return 800
 
 
-def check_dpath(dpath=None):
+def check_path(path, table, format):
     """
     检查结果输出目录路径
 
-    :param dpath: 传入的目录路径
+    :param path: 保存路径
+    :param table: 导出表名
+    :param format: 保存格式
     :return: 目录路径
     """
-    if dpath is None:
-        return config.result_save_path
+    default_path = config.result_save_path.joinpath(f'{table}.{format}')
     try:
-        path = Path(dpath)
+        path = Path(path)
     except Exception as e:
         logger.log('ERROR', e.args)
-        path = config.result_save_path
+        path = default_path
     else:
-        if not path.is_dir():
-            logger.log('ERROR', f'{path}不是目录')
-            path = config.result_save_path
-        if not path.exists():
-            logger.log('ALERT', f'不存在{path}将会新建此目录')
-            path.mkdir(parents=True, exist_ok=True)
-    if path.resolve() == config.result_save_path:
-        logger.log('ALERT', f'使用默认结果输出目录{path}')
+        if path.exists():
+            logger.log('ALERT', f'存在{path}路径将会覆盖')
+        parent_path = path.parent
+        if not parent_path.exists():
+            logger.log('ALERT', f'不存在{parent_path}目录将会新建')
+            parent_path.mkdir(parents=True, exist_ok=True)
+    if not path:
+        path = default_path
+    if path.resolve() == default_path:
+        logger.log('DEBUG', f'使用路径{path}')
     return path
 
 

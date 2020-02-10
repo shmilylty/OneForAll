@@ -169,7 +169,7 @@ class AIOBrute(Module):
         参数valid可选值1，0，None，分别表示导出有效，无效，全部子域
         参数format可选格式有'txt', 'rst', 'csv', 'tsv', 'json', 'yaml', 'html',
                           'jira', 'xls', 'xlsx', 'dbf', 'latex', 'ods'
-        参数path为None会根据format参数和域名名称在项目结果目录生成相应文件
+        参数path默认None使用OneForAll结果目录生成路径
 
     :param str target:       单个域名或者每行一个域名的文件路径
     :param int process:      爆破的进程数(默认CPU核心数)
@@ -323,9 +323,9 @@ class AIOBrute(Module):
                                                               rx_queue))
             # 队列不空就一直取数据存数据库
             while not rx_queue.empty():
-                source, results = rx_queue.get()
+                results = rx_queue.get()
                 # 将结果存入数据库中
-                db.save_db(self.domain, results, source)
+                db.save_db(self.domain, results, self.source)
 
             end = time.time()
             self.elapsed = round(end - start, 1)
@@ -335,14 +335,14 @@ class AIOBrute(Module):
                                 f'发现{self.domain}的域名{length}个')
             logger.log('DEBUG', f'{self.source}模块发现{self.domain}的域名:\n'
                                 f'{self.subdomains}')
+            if not self.path:
+                name = f'{self.domain}_brute.{self.format}'
+                self.path = config.result_save_path.joinpath(name)
             # 数据库导出
             if self.export:
-                if not self.path:
-                    name = f'{self.domain}_brute.{self.format}'
-                    self.path = config.result_save_path.joinpath(name)
                 dbexport.export(self.domain,
                                 valid=self.valid,
-                                dpath=self.path,
+                                path=self.path,
                                 format=self.format,
                                 show=self.show)
 
