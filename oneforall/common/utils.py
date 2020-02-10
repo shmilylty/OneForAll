@@ -157,6 +157,8 @@ def check_path(path, table, format):
     :return: 目录路径
     """
     default_path = config.result_save_path.joinpath(f'{table}.{format}')
+    if path is None:
+        path = default_path
     try:
         path = Path(path)
     except Exception as e:
@@ -169,6 +171,7 @@ def check_path(path, table, format):
         if not parent_path.exists():
             logger.log('ALERT', f'不存在{parent_path}目录将会新建')
             parent_path.mkdir(parents=True, exist_ok=True)
+    # 意外情况
     if not path:
         path = default_path
     if path.resolve() == default_path:
