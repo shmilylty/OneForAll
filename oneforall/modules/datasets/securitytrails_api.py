@@ -1,4 +1,4 @@
-import config
+import api
 from common.query import Query
 
 
@@ -7,9 +7,9 @@ class SecurityTrailsAPI(Query):
         Query.__init__(self)
         self.domain = self.register(domain)
         self.module = 'Dataset'
-        self.source = 'SecurityTrailsQuery'
+        self.source = 'SecurityTrailsAPIQuery'
         self.addr = 'https://api.securitytrails.com/v1/domain/'
-        self.api = config.securitytrails_api
+        self.api = api.securitytrails_api
         self.delay = 2  # SecurityTrails查询时延至少2秒
 
     def query(self):

@@ -1,4 +1,4 @@
-import config
+import api
 from common.search import Search
 
 
@@ -9,7 +9,7 @@ class ShodanAPI(Search):
         self.module = 'Search'
         self.source = 'ShodanAPISearch'
         self.addr = 'https://api.shodan.io/shodan/host/search'
-        self.key = config.shodan_api_key
+        self.key = api.shodan_api_key
 
     def search(self):
         """

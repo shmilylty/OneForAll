@@ -1,4 +1,4 @@
-import config
+import api
 from common.query import Query
 
 
@@ -9,7 +9,7 @@ class ChinazAPI(Query):
         self.module = 'Dataset'
         self.source = 'ChinazAPIQuery'
         self.addr = 'https://apidata.chinaz.com/CallAPI/Alexa'
-        self.api = config.chinaz_api
+        self.api = api.chinaz_api
 
     def query(self):
         """

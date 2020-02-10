@@ -1,5 +1,5 @@
 import time
-import config
+import api
 from common.search import Search
 from config import logger
 
@@ -12,8 +12,8 @@ class ZoomEyeAPI(Search):
         self.source = 'ZoomEyeAPISearch'
         self.addr = 'https://api.zoomeye.org/web/search'
         self.delay = 2
-        self.user = config.zoomeye_api_username
-        self.pwd = config.zoomeye_api_password
+        self.user = api.zoomeye_api_username
+        self.pwd = api.zoomeye_api_password
 
     def login(self):
         """

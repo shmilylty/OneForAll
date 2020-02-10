@@ -1,4 +1,4 @@
-import config
+import api
 from common.query import Query
 
 
@@ -9,8 +9,8 @@ class RiskIQ(Query):
         self.module = 'Intelligence'
         self.source = 'RiskIQAPIQuery'
         self.addr = 'https://api.passivetotal.org/v2/enrichment/subdomains'
-        self.user = config.riskiq_api_username
-        self.key = config.riskiq_api_key
+        self.user = api.riskiq_api_username
+        self.key = api.riskiq_api_key
 
     def query(self):
         """

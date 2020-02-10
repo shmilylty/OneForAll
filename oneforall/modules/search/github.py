@@ -1,7 +1,7 @@
 import re
 import time
 import requests
-import config
+import api
 from bs4 import BeautifulSoup
 from common.search import Search
 from config import logger
@@ -18,8 +18,8 @@ class Github(Search):
         self.session = requests.Session()
         self.login_url = 'https://github.com/login'
         self.post_url = 'https://github.com/session'
-        self.email = config.github_email
-        self.password = config.github_password
+        self.email = api.github_email
+        self.password = api.github_password
 
     def login_github(self):
         """
