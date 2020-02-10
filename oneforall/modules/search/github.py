@@ -45,8 +45,8 @@ class Github(Search):
             return False
         if resp.status_code != 200:
             return False
-        match = re.search(r'"user-login" content="(.*?)"', resp.text)
-        if match:
+        result = re.search(r'"user-login" content="(.*?)"', resp.text)
+        if result:
             return True
 
     def get_token(self):
@@ -56,16 +56,18 @@ class Github(Search):
         :return: 获取失败返回None，成功返回token
         """
         try:
+
             resp = self.session.get(self.login_url)
         except Exception as e:
             logger.log('ERROR', e.args)
             return None
         if resp.status_code != 200:
             return None
-        match = re.findall(r'name="authenticity_token" value="(.*?)"', resp.text)
-        if not match:
+        pattern = r'name="authenticity_token" value="(.*?)"'
+        result = re.findall(pattern, resp.text)
+        if not result:
             return None
-        return match[1]
+        return result[1]
 
     def search(self, full_search=False):
         """
