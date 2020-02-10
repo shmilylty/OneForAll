@@ -87,9 +87,12 @@ resolver_lifetime = 30.0  # 解析存活时间
 limit_resolve_conn = 500  # 限制同一时间解析的数量(默认500)
 
 # 请求端口探测设置
+# 你可以在端口列表添加自定义端口
 default_ports = [80]  # 默认使用
 small_ports = [80, 443, 8000, 8080, 8443]
-# 可以在这里面添加端口
+# 注意：建议大厂的域名尽量不使用大端口范围，因为大厂的子域太多，加上使用大端口范围会导致生成的
+# 请求上十万，百万，千万级，可能会导致内存不足程序奔溃，另外这样级别的请求量等待时间也是漫长的。
+# OneForAll不是一个端口扫描工具，如果要扫端口建议使用nmap,zmap之类的工具。
 large_ports = [80, 81, 280, 300, 443, 591, 593, 832, 888, 901, 981, 1010, 1080,
                1100, 1241, 1311, 1352, 1434, 1521, 1527, 1582, 1583, 1944, 2082,
                2082, 2086, 2087, 2095, 2096, 2222, 2301, 2480, 3000, 3128, 3333,
@@ -106,18 +109,20 @@ large_ports = [80, 81, 280, 300, 443, 591, 593, 832, 888, 901, 981, 1010, 1080,
                10880, 11371, 12043, 12046, 12443, 15672, 16225, 16080, 18091,
                18092, 20000, 20720, 24465, 28017, 28080, 30821, 43110, 61600]
 ports = {'default': default_ports, 'small': small_ports, 'large': large_ports}
+
+# aiohttp有关配置
 verify_ssl = False
 # aiohttp 支持 HTTP/HTTPS形式的代理
-get_proxy = None  # proxy="http://user:pass@some.proxy.com"
-get_timeout = 5 * 60  # http请求探测总超时时间 None或者0则表示不检测超时 默认5分钟
-get_redirects = True  # 允许请求跳转
+aiohttp_proxy = None  # proxy="http://user:pass@some.proxy.com"
+allow_redirects = True  # 允许请求跳转
 fake_header = True  # 使用伪造请求头
-
+# 为了保证请求质量 请谨慎更改以下设置
+sockread_timeout = 5  # 每个请求socket读取超时时间，默认5秒
+sockconn_timeout = 5  # 每个请求socket连接超时时间，默认5秒
 # 限制同一时间打开的连接总数
-limit_open_conn = 30  # 默认30
-
+limit_open_conn = 100  # 默认100
 # 限制同一时间在同一个端点((host, port, is_ssl) 3者都一样的情况)打开的连接数
-limit_per_host = 0  # 0表示不限制
+limit_per_host = 10  # 0表示不限制,默认10
 
 subdomains_common = {'i', 'w', 'm', 'en', 'us', 'zh', 'w3', 'app', 'bbs',
                      'web', 'www', 'job', 'docs', 'news', 'blog', 'data',

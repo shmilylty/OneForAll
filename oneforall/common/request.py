@@ -46,28 +46,20 @@ def gen_new_datas(datas, ports):
         if valid is None:  # 子域有效性未知的才进行http请求探测
             subdomain = data.get('subdomain')
             for port in ports:
-                if port == 80:
-                    url = f'http://{subdomain}'
+                if str(port).endswith('443'):
+                    url = f'https://{subdomain}:{port}'
                     data['id'] = None
                     data['url'] = url
-                    data['port'] = 80
-                    new_datas.append(data)
-                    data = dict(data)  # 需要生成一个新的字典对象
-                elif port == 443:
-                    url = f'https://{subdomain}'
-                    data['id'] = None
-                    data['url'] = url
-                    data['port'] = 443
+                    data['port'] = port
                     new_datas.append(data)
                     data = dict(data)  # 需要生成一个新的字典对象
                 else:
-                    for protocol in protocols:
-                        url = f'{protocol}{subdomain}:{port}'
-                        data['id'] = None
-                        data['url'] = url
-                        data['port'] = port
-                        new_datas.append(data)
-                        data = dict(data)  # 需要生成一个新的字典对象
+                    url = f'http://{subdomain}:{port}'
+                    data['id'] = None
+                    data['url'] = url
+                    data['port'] = port
+                    new_datas.append(data)
+                    data = dict(data)  # 需要生成一个新的字典对象
     return new_datas
 
 
@@ -79,16 +71,20 @@ async def fetch(session, url):
     :param url: url地址
     :return: 响应对象和响应文本
     """
-    timeout = aiohttp.ClientTimeout(total=config.get_timeout)
+    timeout = aiohttp.ClientTimeout(total=None,
+                                    connect=None,
+                                    sock_read=config.sockread_timeout,
+                                    sock_connect=config.sockconn_timeout)
     try:
         async with session.get(url,
                                ssl=config.verify_ssl,
-                               allow_redirects=config.get_redirects,
+                               allow_redirects=config.allow_redirects,
                                timeout=timeout,
-                               proxy=config.get_proxy) as resp:
+                               proxy=config.aiohttp_proxy) as resp:
 
             try:
-                text = await resp.text(encoding='utf-8', errors='replace')  # 先尝试用utf-8解码
+                # 先尝试用utf-8解码
+                text = await resp.text(encoding='utf-8', errors='replace')
             except UnicodeError:
                 text = await resp.text(encoding='gb18030', errors='replace')
         return resp, text
