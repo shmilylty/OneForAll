@@ -101,6 +101,7 @@ proxy_partial_module = ['GoogleQuery', 'AskSearch']  # 只代理GoogleQuery和As
      | duckduckgo  | 是                     | 否          |                                                             |
      | exalead     | 否，最好使用国外代理。 | 否          |                                                             |
      | fofa_api    | 否                     | 是          | API使用和申请见[config.py](../oneforall/config.py)          |
+     | gitee       | 否                     | 否          |                                                          |
      | github      | 否                     | 否          | 在[config.py](../oneforall/config.py)设置Github邮件名和密码 |
      | google      | 是                     | 否          |                                                             |
      | google_api  | 是                     | 是          | API使用和申请见[config.py](../oneforall/config.py)          |
