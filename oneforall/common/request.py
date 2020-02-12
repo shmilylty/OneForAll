@@ -40,7 +40,6 @@ def get_ports(port):
 def gen_new_datas(datas, ports):
     logger.log('INFOR', f'正在生成请求地址')
     new_datas = []
-    protocols = ['http://', 'https://']
     for data in datas:
         valid = data.get('valid')
         if valid is None:  # 子域有效性未知的才进行http请求探测
@@ -68,25 +67,34 @@ async def fetch(session, url):
     请求
 
     :param session: session对象
-    :param url: url地址
+    :param str url: url地址
     :return: 响应对象和响应文本
     """
+    method = config.request_method.upper()
     timeout = aiohttp.ClientTimeout(total=None,
                                     connect=None,
                                     sock_read=config.sockread_timeout,
                                     sock_connect=config.sockconn_timeout)
     try:
-        async with session.get(url,
-                               ssl=config.verify_ssl,
-                               allow_redirects=config.allow_redirects,
-                               timeout=timeout,
-                               proxy=config.aiohttp_proxy) as resp:
+        if method == 'HEAD':
+            async with session.head(url,
+                                    ssl=config.verify_ssl,
+                                    allow_redirects=config.allow_redirects,
+                                    timeout=timeout,
+                                    proxy=config.aiohttp_proxy) as resp:
+                text = await resp.text()
+        else:
+            async with session.get(url,
+                                   ssl=config.verify_ssl,
+                                   allow_redirects=config.allow_redirects,
+                                   timeout=timeout,
+                                   proxy=config.aiohttp_proxy) as resp:
 
-            try:
-                # 先尝试用utf-8解码
-                text = await resp.text(encoding='utf-8', errors='replace')
-            except UnicodeError:
-                text = await resp.text(encoding='gb18030', errors='replace')
+                try:
+                    # 先尝试用utf-8解码
+                    text = await resp.text(encoding='utf-8', errors='replace')
+                except UnicodeError:
+                    text = await resp.text(encoding='gb18030', errors='replace')
         return resp, text
     except Exception as e:
         return e
@@ -152,10 +160,11 @@ def request_callback(future, index, datas):
                           'Via': headers.get('Via'),
                           'X-Powered-By': headers.get('X-Powered-By')})
             datas[index]['banner'] = banner[1:-1]
-            title = get_title(text).strip()
-            datas[index]['title'] = utils.remove_string(title)
             datas[index]['header'] = str(dict(headers))[1:-1]
-            datas[index]['response'] = utils.remove_string(text)
+            if isinstance(text, str):
+                title = get_title(text).strip()
+                datas[index]['title'] = utils.remove_string(title)
+                datas[index]['response'] = utils.remove_string(text)
 
 
 def get_connector():
@@ -173,10 +182,12 @@ def get_header():
     return header
 
 
-async def bulk_get_request(datas, port):
+async def bulk_request(datas, port):
     ports = get_ports(port)
     new_datas = gen_new_datas(datas, ports)
-    logger.log('INFOR', f'正在异步进行子域的GET请求')
+    method = config.request_method
+    logger.log('INFOR', f'使用{method}请求方法')
+    logger.log('INFOR', f'正在进行异步子域请求')
     connector = get_connector()
     header = get_header()
     async with ClientSession(connector=connector, headers=header) as session:
@@ -203,5 +214,5 @@ async def bulk_get_request(datas, port):
 
 
 def run_bulk_query(datas, port):
-    new_datas = asyncio.run(bulk_get_request(datas, port))
+    new_datas = asyncio.run(bulk_request(datas, port))
     return new_datas

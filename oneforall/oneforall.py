@@ -161,7 +161,7 @@ class OneForAll(object):
             return
 
         # 请求子域
-        task = request.bulk_get_request(self.data, self.port)
+        task = request.bulk_request(self.data, self.port)
         self.data = loop.run_until_complete(task)
         self.datas.extend(self.data)
         # 在关闭事件循环前加入一小段延迟让底层连接得到关闭的缓冲时间
