@@ -117,6 +117,8 @@ aiohttp_proxy = None  # proxy="http://user:pass@some.proxy.com"
 allow_redirects = True  # 允许请求跳转
 fake_header = True  # 使用伪造请求头
 # 为了保证请求质量 请谨慎更改以下设置
+# request_method只能是HEAD或GET,HEAD请求方法更快，但是不能获取响应体并提取从中提取
+request_method = 'GET'  # 使用请求方法，默认GET
 sockread_timeout = 5  # 每个请求socket读取超时时间，默认5秒
 sockconn_timeout = 5  # 每个请求socket连接超时时间，默认5秒
 # 限制同一时间打开的连接总数
