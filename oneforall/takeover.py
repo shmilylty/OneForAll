@@ -56,12 +56,12 @@ class Takeover(Module):
     Note:
         参数format可选格式有'txt', 'rst', 'csv', 'tsv', 'json', 'yaml', 'html',
                           'jira', 'xls', 'xlsx', 'dbf', 'latex', 'ods'
-        参数path为None默认使用OneForAll结果目录
+        参数path默认None使用OneForAll结果目录生成路径
 
     :param any target:  单个子域或者每行一个子域的文件路径(必需参数)
     :param int thread:  线程数(默认100)
     :param str format:  导出格式(默认csv)
-    :param str path:   导出目录(默认None)
+    :param str path:    导出路径(默认None)
     """
     def __init__(self, target, thread=100, path=None, format='csv'):
         Module.__init__(self)
@@ -83,9 +83,7 @@ class Takeover(Module):
             data = str(self.results)
         else:
             data = self.results.export(self.format)
-        timestamp = utils.get_timestamp()
-        path = self.path.joinpath(f'takeover_{timestamp}.{self.format}')
-        utils.save_data(path, data)
+        utils.save_data(self.path, data)
 
     def compare(self, subdomain, cname, responses):
         domain_resp = self.get('http://' + subdomain, check=False)
@@ -136,7 +134,9 @@ class Takeover(Module):
         logger.log('INFOR', f'开始执行{self.source}模块')
         self.subdomains = utils.get_domains(self.target)
         self.format = utils.check_format(self.format, len(self.subdomains))
-        self.path = utils.check_dpath(self.path)
+        timestamp = utils.get_timestamp()
+        name = f'all_subdomain_{timestamp}'
+        self.path = utils.check_path(self.path, name, self.format)
         if self.subdomains:
             logger.log('INFOR', f'正在检查子域接管风险')
             self.fingerprints = get_fingerprint()

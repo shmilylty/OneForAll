@@ -147,16 +147,16 @@ def get_semaphore():
         return 800
 
 
-def check_path(path, table, format):
+def check_path(path, name, format):
     """
     检查结果输出目录路径
 
     :param path: 保存路径
-    :param table: 导出表名
+    :param name: 导出名字
     :param format: 保存格式
     :return: 目录路径
     """
-    default_path = config.result_save_path.joinpath(f'{table}.{format}')
+    default_path = config.result_save_path.joinpath(f'{name}.{format}')
     if path is None:
         path = default_path
     try:
@@ -296,9 +296,9 @@ def export_all(format, datas):
     :param datas: 待导出的结果数据
     """
     format = check_format(format, len(datas))
-    dpath = check_dpath()
     timestamp = get_timestamp()
-    fpath = dpath.joinpath(f'all_subdomain_{timestamp}.{format}')
+    name = f'all_subdomain_{timestamp}'
+    path = check_path(None, name, format)
     row_list = list()
     for row in datas:
         row.pop('header')
@@ -314,7 +314,7 @@ def export_all(format, datas):
         row_list.append(Record(keys, values))
     rows = RecordCollection(iter(row_list))
     content = rows.export(format)
-    save_data(fpath, content)
+    save_data(path, content)
 
 
 def get_timestamp():
