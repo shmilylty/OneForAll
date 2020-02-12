@@ -42,7 +42,7 @@ threatbook_api_key = ''
 virustotal_api_key = ''
 
 # https://www.zoomeye.org/doc?channel=api
-zoomeye_api_username = ''
+zoomeye_api_usermail = ''
 zoomeye_api_password = ''
 
 # Spyse可以免费注册获取API: https://spyse.com/

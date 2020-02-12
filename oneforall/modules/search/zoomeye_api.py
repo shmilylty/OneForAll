@@ -12,7 +12,7 @@ class ZoomEyeAPI(Search):
         self.source = 'ZoomEyeAPISearch'
         self.addr = 'https://api.zoomeye.org/web/search'
         self.delay = 2
-        self.user = api.zoomeye_api_username
+        self.user = api.zoomeye_api_usermail
         self.pwd = api.zoomeye_api_password
 
     def login(self):
@@ -83,4 +83,4 @@ def do(domain):  # 统一入口名字 方便多线程调用
 
 
 if __name__ == '__main__':
-    do('example.com')
+    do('mi.com')
