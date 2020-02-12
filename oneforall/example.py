@@ -8,4 +8,6 @@
 import oneforall
 
 test = oneforall.OneForAll(target='example.com')
+test.brute = True
+test.takeover = True
 test.run()
