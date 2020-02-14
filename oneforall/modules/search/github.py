@@ -67,7 +67,7 @@ class Github(Search):
         result = re.findall(pattern, resp.text)
         if not result:
             return None
-        return result[1]
+        return result[0]
 
     def search(self, full_search=False):
         """
