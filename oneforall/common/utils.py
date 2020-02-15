@@ -166,7 +166,7 @@ def check_path(path, name, format):
         path = default_path
     else:
         if path.exists():
-            logger.log('ALERT', f'存在{path}路径将会覆盖')
+            logger.log('ALERT', f'存在{path}文件将会覆盖')
         parent_path = path.parent
         if not parent_path.exists():
             logger.log('ALERT', f'不存在{parent_path}目录将会新建')

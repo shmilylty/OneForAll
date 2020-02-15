@@ -27,7 +27,7 @@ enable_partial_module = []  # 启用部分模块 必须禁用enable_all_module�
 # 只使用ask和baidu搜索引擎收集子域
 # enable_partial_module = [('modules.search', 'ask')
 #                          ('modules.search', 'baidu')]
-
+module_thread_timeout = 360.0  # 每个收集模块线程超时时间(默认6分钟)
 
 # 爆破模块设置
 enable_brute_module = False  # 使用爆破模块(默认禁用)
@@ -141,7 +141,7 @@ stdout_fmt = '<cyan>{time:HH:mm:ss,SSS}</cyan> ' \
 logfile_fmt = '<light-green>{time:YYYY-MM-DD HH:mm:ss,SSS}</light-green> ' \
               '[<level>{level: <5}</level>] ' \
               '<cyan>{process.name}({process.id})</cyan>:' \
-              '<cyan>{thread.name: <10}({thread.id: <5})</cyan> | ' \
+              '<cyan>{thread.name: <18}({thread.id: <5})</cyan> | ' \
               '<blue>{module}</blue>.<blue>{function}</blue>:' \
               '<blue>{line}</blue> - <level>{message}</level>'
 
