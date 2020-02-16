@@ -30,10 +30,11 @@ enable_partial_module = []  # 启用部分模块 必须禁用enable_all_module�
 module_thread_timeout = 360.0  # 每个收集模块线程超时时间(默认6分钟)
 
 # 爆破模块设置
-enable_brute_module = False  # 使用爆破模块(默认禁用)
+enable_brute_module = False  # 使用爆破模块(默认False)
 enable_dns_resolve = True  # DNS解析子域(默认True)
 enable_http_request = True  # HTTP请求子域(默认True)
-enable_wildcard_check = True  # 开启泛解析检测 会去掉泛解析的子域
+enable_wildcard_check = True  # 开启泛解析检测(默认True)
+enable_wildcard_deal = True  # 开启泛解析处理(默认True)
 # 爆破时使用的进程数(根据系统中CPU数量情况设置 不宜大于CPU数量 默认为系统中的CPU数量)
 brute_process_num = os.cpu_count()
 brute_coroutine_num = 1024  # 爆破时每个进程下的协程数

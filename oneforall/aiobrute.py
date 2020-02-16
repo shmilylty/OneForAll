@@ -213,6 +213,8 @@ class AIOBrute(Module):
         self.nameservers = config.resolver_nameservers
         self.ips_times = dict()  # IP集合出现次数
         self.enable_wildcard = False  # 当前域名是否使用泛解析
+        self.wildcard_check = config.enable_wildcard_check
+        self.wildcard_deal = config.enable_wildcard_deal
         self.wildcard_ips = set()  # 泛解析IP集合
         self.wildcard_ttl = int()  # 泛解析TTL整型值
 
@@ -239,16 +241,18 @@ class AIOBrute(Module):
                 # logger.log('DEBUG', f'爆破{subdomain}时出错 {str(answers)}')
                 continue
             name, alias, ips = answer
+            if name.endswith('.'):
+                name = name[0:-1]
             # 取值 如果是首次出现的IP集合 出现次数先赋值0
             value = self.ips_times.setdefault(str(ips), 0)
             self.ips_times[str(ips)] = value + 1
             # 目前域名开启了泛解析
-            if self.enable_wildcard:
+            if self.enable_wildcard and self.wildcard_deal:
                 # 通过对比查询的子域和响应的子域来判断真实子域
                 # 去掉解析到CDN的情况
-                if 'cdn' in name:
+                if 'cdn' or 'waf' in name:
                     continue
-                if not name.endswith(self.domain + '.'):
+                if not name.endswith(self.domain):
                     continue
                 # 通过对比解析到的IP集合的次数来判断真实子域
                 if wildcard_by_times(ips, self.ips_times):
@@ -262,8 +266,9 @@ class AIOBrute(Module):
 
     async def main(self, domain, rx_queue):
         if not self.fuzz:  # fuzz模式不探测域名是否使用泛解析
-            self.enable_wildcard, self.wildcard_ips, self.wildcard_ttl \
-                = detect_wildcard(domain)
+            if self.wildcard_check:
+                self.enable_wildcard, self.wildcard_ips, self.wildcard_ttl \
+                    = detect_wildcard(domain)
         tasks = self.gen_tasks(domain)
         logger.log('INFOR', f'正在爆破{domain}的域名')
         # for task in tqdm.tqdm(tasks, total=len(tasks),
