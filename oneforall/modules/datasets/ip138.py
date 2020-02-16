@@ -15,9 +15,8 @@ class IP138(Query):
         """
         self.header = self.get_header()
         self.proxy = self.get_proxy(self.source)
-        data = {'domain': self.domain}
         self.addr = self.addr.format(domain=self.domain)
-        resp = self.get(self.addr, data=data)
+        resp = self.get(self.addr)
         if not resp:
             return
         subdomains = self.match(self.domain, resp.text)
