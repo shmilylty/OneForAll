@@ -107,7 +107,7 @@ def query_progress(pr_queue, total):
     bar = tqdm.tqdm()
     bar.total = total
     bar.desc = 'Resolve Progress'
-    bar.ncols = 60
+    bar.ncols = 80
     bar.smoothing = 0
     while True:
         done = pr_queue.qsize()
