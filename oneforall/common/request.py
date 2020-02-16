@@ -92,9 +92,16 @@ async def fetch(session, url):
 
                 try:
                     # 先尝试用utf-8解码
-                    text = await resp.text(encoding='utf-8', errors='replace')
+                    text = await resp.text(encoding='utf-8', errors='strict')
                 except UnicodeError:
-                    text = await resp.text(encoding='gb18030', errors='replace')
+                    try:
+                        # 再尝试用gb18030解码
+                        text = await resp.text(encoding='gb18030',
+                                               errors='strict')
+                    except UnicodeError:
+                        # 最后尝试自动解码
+                        text = await resp.text(encoding=None,
+                                               errors='ignore')
         return resp, text
     except Exception as e:
         return e
