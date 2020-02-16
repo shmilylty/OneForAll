@@ -28,10 +28,6 @@ from common.database import Database
 from config import logger
 
 
-def init_worker():
-    signal.signal(signal.SIGINT, signal.SIG_IGN)
-
-
 def detect_wildcard(domain):
     """
     探测域名是否使用泛解析
@@ -129,25 +125,6 @@ def gen_brute_domains(domain, path):
             domains.add(brute_domain)
     logger.log('INFOR', f'爆破字典大小：{len(domains)}')
     return domains
-
-
-def progress(pr_queue, total):
-    bar = tqdm.tqdm()
-    bar.total = total
-    bar.desc = 'Progress'
-    bar.ncols = 60
-    while True:
-        done = pr_queue.qsize()
-        bar.n = done
-        bar.update()
-        if done == total:
-            return
-
-
-async def aiodns_query_a(pr_queue, hostname):
-    results = await resolve.aiodns_query_a(hostname)
-    pr_queue.put(1)
-    return results
 
 
 class AIOBrute(Module):
@@ -250,7 +227,7 @@ class AIOBrute(Module):
             if self.enable_wildcard and self.wildcard_deal:
                 # 通过对比查询的子域和响应的子域来判断真实子域
                 # 去掉解析到CDN的情况
-                if 'cdn' or 'waf' in name:
+                if 'cdn' in name or 'waf' in name:
                     continue
                 if not name.endswith(self.domain):
                     continue
@@ -273,27 +250,11 @@ class AIOBrute(Module):
         logger.log('INFOR', f'正在爆破{domain}的域名')
         # for task in tqdm.tqdm(tasks, total=len(tasks),
         #                       desc='Progress'):
-        m = Manager()
-        pr_queue = m.Queue()
-        loop = asyncio.get_event_loop()
-        loop.run_in_executor(None, progress, pr_queue, len(tasks))
-        wrapped_query = functools.partial(aiodns_query_a, pr_queue)
-        async with aiomp.Pool(processes=self.process,
-                              initializer=init_worker,
-                              childconcurrency=self.coroutine) as pool:
-            try:
-                results = await pool.map(wrapped_query, tasks)
-            except KeyboardInterrupt:
-                logger.log('ALERT', '爆破终止正在退出')
-                pool.terminate()  # 关闭pool，结束工作进程，不在处理未完成的任务。
-                self.save_json()
-                self.gen_result()
-                rx_queue.put(self.results)
-                return
-            self.deal_results(results)
-            self.save_json()
-            self.gen_result()
-            rx_queue.put(self.results)
+        results = await resolve.aio_resolve(tasks, self.process, self.coroutine)
+        self.deal_results(results)
+        self.save_json()
+        self.gen_result()
+        rx_queue.put(self.results)
 
     def run(self, rx_queue=None):
         self.domains = utils.get_domains(self.target)

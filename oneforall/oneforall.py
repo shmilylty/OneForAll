@@ -141,7 +141,7 @@ class OneForAll(object):
         asyncio.set_event_loop(loop)
 
         # 解析子域
-        task = resolve.bulk_query_a(self.data)
+        task = resolve.bulk_resolve(self.data)
         self.data = loop.run_until_complete(task)
 
         # 保存解析结果
@@ -166,8 +166,8 @@ class OneForAll(object):
         self.datas.extend(self.data)
         # 在关闭事件循环前加入一小段延迟让底层连接得到关闭的缓冲时间
         loop.run_until_complete(asyncio.sleep(0.25))
-        valid_count = len(list(filter(lambda item: item.get('valid') == 1, self.data)))
-        logger.log('INFOR', f'经验证{self.domain}有效子域{valid_count}个')
+        count = utils.count_valid(self.data)
+        logger.log('INFOR', f'经验证{self.domain}有效子域{count}个')
 
         # 保存请求结果
         db.clear_table(self.domain)

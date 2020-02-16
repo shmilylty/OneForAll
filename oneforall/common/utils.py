@@ -327,3 +327,7 @@ def get_classname(clsobj):
 
 def python_version():
     return sys.version
+
+
+def count_valid(data):
+    return len(list(filter(lambda item: item.get('valid') == 1, data)))
