@@ -26,8 +26,9 @@ matrix:
         - choco install python
         - python -m pip install --upgrade pip
         - chcp.com 65001
-        - export PYTHONIOENCODING=UTF-8
-      env: PATH=/c/Python38:/c/Python38/Scripts:$PATH
+      env: 
+        - PATH=/c/Python38:/c/Python38/Scripts:$PATH
+        - PYTHONIOENCODING=UTF-8
 
 install:
   - pip3 install -U pip
