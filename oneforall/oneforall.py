@@ -187,7 +187,7 @@ class OneForAll(object):
             takeover.run()
 
     def run(self):
-        print(banner.encode('utf-8'))
+        print(banner)
         dt = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         print(f'[*] Starting OneForAll @ {dt}\n')
         logger.log('DEBUG', 'Python ' + utils.python_version())
@@ -205,7 +205,7 @@ class OneForAll(object):
 
     @staticmethod
     def version():
-        print(banner.encode('utf-8'))
+        print(banner)
         exit(0)
 
 
