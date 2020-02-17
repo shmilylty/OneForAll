@@ -1,5 +1,5 @@
 ---
-name: 提交Bug
+name: 请使用这个模块提交Bug
 about: "请务必按照模板提交Bug\U0001F64F"
 title: 请填写BUG标题
 labels: bug
