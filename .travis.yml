@@ -25,7 +25,7 @@ matrix:
       before_install:
         - choco install python
         - python -m pip install --upgrade pip
-        - chcp 65001
+        - chcp.com 65001
       env: PATH=/c/Python38:/c/Python38/Scripts:$PATH
 
 install:
