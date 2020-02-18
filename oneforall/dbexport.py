@@ -30,8 +30,8 @@ def export(table, db=None, valid=None, path=None, format='csv', show=False):
     :param str table:   要导出的表
     :param str db:      要导出的数据库路径(默认为results/result.sqlite3)
     :param int valid:   导出子域的有效性(默认None)
-    :param str format:  导出格式(默认csv)
-    :param str path:    导出路径(默认None)
+    :param str format:  导出文件格式(默认csv)
+    :param str path:    导出文件路径(默认None)
     :param bool show:   终端显示导出数据(默认False)
     """
 

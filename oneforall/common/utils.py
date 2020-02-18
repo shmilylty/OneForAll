@@ -288,17 +288,18 @@ def check_value(values):
     return values
 
 
-def export_all(format, datas):
+def export_all(format, path, datas):
     """
     将所有结果数据导出到一个文件
 
-    :param format: 导出文件的格式
-    :param datas: 待导出的结果数据
+    :param str format: 导出文件格式
+    :param str path: 导出文件路径
+    :param list datas: 待导出的结果数据
     """
     format = check_format(format, len(datas))
     timestamp = get_timestamp()
-    name = f'all_subdomain_{timestamp}'
-    path = check_path(None, name, format)
+    name = f'all_subdomain_result_{timestamp}'
+    path = check_path(path, name, format)
     row_list = list()
     for row in datas:
         row.pop('header')

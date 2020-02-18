@@ -302,7 +302,7 @@ class AIOBrute(Module):
             logger.log('DEBUG', f'{self.source}模块发现{self.domain}的域名:\n'
                                 f'{self.subdomains}')
             if not self.path:
-                name = f'{self.domain}_brute.{self.format}'
+                name = f'{self.domain}_brute_result.{self.format}'
                 self.path = config.result_save_path.joinpath(name)
             # 数据库导出
             if self.export:
