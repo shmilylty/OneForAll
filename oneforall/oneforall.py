@@ -65,6 +65,7 @@ class OneForAll(object):
         参数port可选值有'default', 'small', 'large', 详见config.py配置
         参数format可选格式有'txt', 'rst', 'csv', 'tsv', 'json', 'yaml', 'html',
                           'jira', 'xls', 'xlsx', 'dbf', 'latex', 'ods'
+        参数path默认None使用OneForAll结果目录生成路径
 
     :param str target:     单个域名或者每行一个域名的文件路径(必需参数)
     :param bool brute:     使用爆破模块(默认False)
@@ -72,12 +73,14 @@ class OneForAll(object):
     :param bool req:       HTTP请求子域(默认True)
     :param str port:       请求验证子域的端口范围(默认只探测80端口)
     :param int valid:      导出子域的有效性(默认None)
-    :param str format:     导出格式(默认csv)
+    :param str format:     导出文件格式(默认csv)
+    :param str path:       导出文件路径(默认None)
     :param bool takeover:  检查子域接管(默认False)
     :param bool show:      终端显示导出数据(默认False)
     """
-    def __init__(self, target, brute=None, dns=None, req=None, port='default',
-                 valid=None, format='csv', takeover=False, show=False):
+    def __init__(self, target, brute=None, dns=None, req=None,
+                 port='default', valid=None, format='csv', path=None,
+                 takeover=False, show=False):
         self.target = target
         self.port = port
         self.domains = set()
@@ -90,6 +93,7 @@ class OneForAll(object):
         self.takeover = takeover
         self.valid = valid
         self.format = format
+        self.path = path
         self.show = show
 
     def main(self):
@@ -197,8 +201,7 @@ class OneForAll(object):
         if self.domains:
             for self.domain in self.domains:
                 self.main()
-            if len(self.domains) >= 2:
-                utils.export_all(self.format, self.datas)
+            utils.export_all(self.format, self.path, self.datas)
         else:
             logger.log('FATAL', f'获取域名失败')
         logger.log('INFOR', f'结束运行OneForAll')
