@@ -154,9 +154,10 @@ def check_path(path, name, format):
     :param path: 保存路径
     :param name: 导出名字
     :param format: 保存格式
-    :return: 目录路径
+    :return: 保存路径
     """
-    default_path = config.result_save_path.joinpath(f'{name}.{format}')
+    filename = f'{name}.{format}'
+    default_path = config.result_save_path.joinpath(filename)
     if path is None:
         path = default_path
     try:
@@ -165,17 +166,18 @@ def check_path(path, name, format):
         logger.log('ERROR', e.args)
         path = default_path
     else:
+        if not path.exists():
+            logger.log('ALERT', f'不存在{path}目录将会新建')
+            path.mkdir(parents=True, exist_ok=True)
+            path = path.joinpath(filename)
+        if path.is_dir():
+            path = path.joinpath(filename)
         if path.exists():
             logger.log('ALERT', f'存在{path}文件将会覆盖')
-        parent_path = path.parent
-        if not parent_path.exists():
-            logger.log('ALERT', f'不存在{parent_path}目录将会新建')
-            parent_path.mkdir(parents=True, exist_ok=True)
     # 意外情况
     if not path:
         path = default_path
-    if path.resolve() == default_path:
-        logger.log('DEBUG', f'使用路径{path}')
+    logger.log('DEBUG', f'结果保存路径{path}')
     return path
 
 
@@ -210,7 +212,8 @@ def save_data(path, data):
     :return: 保存成功与否
     """
     try:
-        with open(path, 'w', encoding="utf-8", errors='ignore', newline='') as file:
+        with open(path, 'w', encoding="utf-8",
+                  errors='ignore', newline='') as file:
             file.write(data)
             logger.log('ALERT', f'结果输出{path}')
             return True
