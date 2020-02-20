@@ -142,7 +142,7 @@ docker run -it oneforall
 
 **🤔Help**
 
-The command line parameters only provide some common parameters. For more detailed parameter configuration, please see [config.py](https://github.com/shmilylty/OneForAll/tree/master/oneforall/config.py) if you think Some parameters are frequently used in the command interface or missing parameters. Feedback is welcome. For well-known reasons, if you want to use some of the wall's collection interface, please go to [config.py](https://github.com/shmilylty/OneForAll/tree/master/oneforall/config.py) to configure the proxy, some collection Modules need to provide APIs (most of which are freely available for registered accounts). If you need to use them, please go to [config.py](https://github.com/shmilylty/OneForAll/tree/master/oneforall/config.py) to configure the API. Information, if not used, please ignore the error message. (For detailed modules, please read [collection module description](https://github.com/shmilylty/OneForAll/tree/master/docs/collection_modules.md))
+The command line parameters only provide some common parameters. For more detailed parameter configuration, please see [api.py](https://github.com/shmilylty/OneForAll/tree/master/oneforall/api.py) if you think Some parameters are frequently used in the command interface or missing parameters. Feedback is welcome. For well-known reasons, if you want to use some of the wall's collection interface, please go to [api.py](https://github.com/shmilylty/OneForAll/tree/master/oneforall/api.py) to configure the proxy, some collection Modules need to provide APIs (most of which are freely available for registered accounts). If you need to use them, please go to [api.py](https://github.com/shmilylty/OneForAll/tree/master/oneforall/api.py) to configure the API. Information, if not used, please ignore the error message. (For detailed modules, please read [collection module description](https://github.com/shmilylty/OneForAll/tree/master/docs/collection_modules.md))
 
 The OneForAll command line interface is based on [Fire](https://github.com/google/python-fire/). For more advanced usage of Fire, please refer to [using the Fire CLI](https://github.com/google/Python-fire/blob/master/docs/using-cli.md), if you have any doubts during the use, please feel free to give me feedback.
 
@@ -180,7 +180,7 @@ The OneForAll command line interface is based on [Fire](https://github.com/googl
        Note:
            Parameter valid optional value 1, 0, none indicates that the export is 
            valid, invalid, and all subdomains, respectively.
-           Parameter port have optional values 'default' 'small', 'medium', 'large',
+           Parameter port have optional values 'default' 'small', 'large',
            See config.py configuration for details.
            Parameter format have optional values 'txt', 'rst', 'csv', 'tsv', 'json', 
            'yaml', 'html', 'jira', 'xls', 'xlsx', 'dbf', 'latex', 'ods'.
@@ -314,6 +314,7 @@ D:.
 +---images
 \---oneforall
     |   aiobrute.py   Asynchronous multi-process multi-correlation subdomain blasting module, can be run separately
+    |   api.py        API configuration of some collection modules
     |   collect.py    Upper layer call of each collection module
     |   config.py     Configuration file
     |   dbexport.py   Database export module, can be run separately
