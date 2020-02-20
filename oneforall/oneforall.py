@@ -28,12 +28,13 @@ blue = '\033[01;34m'
 red = '\033[1;31m'
 end = '\033[0m'
 
-version = white + '{' + red + config.oneforall_version + white + '}'
+version = 'v0.0.8#dev'
+message = white + '{' + red + version + white + '}'
 
 banner = f"""
 OneForAll是一款功能强大的子域收集工具{yellow}
              ___             _ _ 
- ___ ___ ___|  _|___ ___ ___| | | {version}{green}
+ ___ ___ ___|  _|___ ___ ___| | | {message}{green}
 | . |   | -_|  _| . |  _| .'| | | {blue}
 |___|_|_|___|_| |___|_| |__,|_|_| {white}git.io/fjHT1
 
@@ -195,7 +196,7 @@ class OneForAll(object):
         dt = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         print(f'[*] Starting OneForAll @ {dt}\n')
         logger.log('DEBUG', 'Python ' + utils.python_version())
-        logger.log('DEBUG', 'OneForAll ' + config.oneforall_version)
+        logger.log('DEBUG', 'OneForAll ' + version)
         logger.log('INFOR', f'开始运行OneForAll')
         self.domains = utils.get_domains(self.target)
         if self.domains:
