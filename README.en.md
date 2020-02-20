@@ -157,24 +157,25 @@ The OneForAll command line interface is based on [Fire](https://github.com/googl
    ```
    ```bash
    NAME
-       oneforall.py - OneForAll is a powerful subdomain collection tool
+       oneforall.py - OneForAll help Information
    
    SYNOPSIS
        oneforall.py --target=TARGET <flags>
    
    DESCRIPTION
-       Version: 0.0.8
-       Project: https://git.io/fjHT1
+       OneForAll is a powerful subdomain collection tool
    
        Example:
+           python3 oneforall.py version
            python3 oneforall.py --target example.com run
            python3 oneforall.py --target ./domains.txt run
+           python3 oneforall.py --target example.com --valid None run
            python3 oneforall.py --target example.com --brute True run
+           python3 oneforall.py --target example.com --port small run
+           python3 oneforall.py --target example.com --format csv run
            python3 oneforall.py --target example.com --dns False run
            python3 oneforall.py --target example.com --req False run
-           python3 oneforall.py --target example.com --valid None run
-           python3 oneforall.py --target example.com --port medium run
-           python3 oneforall.py --target example.com --format csv run
+           python3 oneforall.py --target example.com --takeover False run
            python3 oneforall.py --target example.com --show True run
    
        Note:
@@ -187,6 +188,7 @@ The OneForAll command line interface is based on [Fire](https://github.com/googl
            If the parameter path is None, the appropriate file is generated in the 
            project result directory based on the format parameter and the domain 
            name.
+           Parameter path default None uses the OneForAll result directory generation path
    
    ARGUMENTS
        TARGET
@@ -203,10 +205,10 @@ The OneForAll command line interface is based on [Fire](https://github.com/googl
            Port range for request authentication (default 80 port)
        --valid=VALID
            Export validity of subdomains (default None)
-       --path=PATH
-           Export path (default None)
        --format=FORMAT
            Export format (default xls)
+       --path=PATH
+           Export path (default None)
        --takeover=TAKEOVER
            Check subdomain takeover (default False)
        --show=SHOW
@@ -222,7 +224,7 @@ The OneForAll command line interface is based on [Fire](https://github.com/googl
 
    - Third, considering the blasting efficiency, there is no HTTP response volume similarity comparison and response volume content judgment,  this function has not been implemented yet, and will be implemented if necessary.
 
-   After not rigorous testing, in the 16-core CPU, using 16 processes 64 coroutines, 100M network bandwidth environment, set the task to be divided into 50000, run two million dictionaries about 10 minutes to run, about 3333 subdomains per second.
+   After not rigorous testing, in the 16-core CPU, using 16 processes 64 coroutines, 100M network bandwidth environment, run two million dictionaries about 10 minutes to run, about 3333 subdomains per second.
 
    ```bash
    python aiobrute.py --help
