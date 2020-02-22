@@ -385,9 +385,13 @@ Thanks to the various subdomain collection projects of online open source!
 
 Thanks ace of [A-Team](https://github.com/QAX-A-Team) for their enthusiastic and unselfish answers!
 
-## 📜Disclaimer ##
+## 📜Disclaimer
 
 This tool is limited to legally authorized enterprise security construction. In the process of using this tool, you should ensure that all your actions comply with local laws and regulations and have obtained sufficient authorization.
 If you have any illegal behavior in the process of using this tool, you are responsible for all consequences, and all authors and all contributors of this tool do not assume any legal and joint responsibility.
 Unless you have fully read, fully understood and accepted all the terms of this Agreement, please do not install and use this tool.
 Your use or any other express or implied representation of you to this Agreement is deemed to have been read and agreed to be bound by this Agreement.
+
+## 💖Stargazers over time
+
+[![Stargazers over time](https://starchart.cc/shmilylty/OneForAll.svg)](https://starchart.cc/shmilylty/OneForAll)
