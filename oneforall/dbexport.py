@@ -9,11 +9,12 @@ OneForAll数据库导出模块
 """
 
 import fire
+
 from common import utils
 from common.database import Database
 
 
-def export(table, db=None, valid=None, path=None, format='csv', show=False):
+def export(table, db=None, valid=False, path=None, format='csv', show=False):
     """
     OneForAll数据库导出模块
 
@@ -22,14 +23,13 @@ def export(table, db=None, valid=None, path=None, format='csv', show=False):
         python3 dbexport.py --db result.db --table name --show False
 
     Note:
-        参数port可选值有'small', 'medium', 'large', 'xlarge'，详见config.py配置
         参数format可选格式有'txt', 'rst', 'csv', 'tsv', 'json', 'yaml', 'html',
                           'jira', 'xls', 'xlsx', 'dbf', 'latex', 'ods'
-        参数path默认None使用OneForAll结果目录生成路径
+        参数path默认None使用OneForAll结果目录自动生成路径
 
     :param str table:   要导出的表
     :param str db:      要导出的数据库路径(默认为results/result.sqlite3)
-    :param int valid:   导出子域的有效性(默认None)
+    :param bool valid:  只导出有效的子域结果(默认False)
     :param str format:  导出文件格式(默认csv)
     :param str path:    导出文件路径(默认None)
     :param bool show:   终端显示导出数据(默认False)
@@ -47,6 +47,8 @@ def export(table, db=None, valid=None, path=None, format='csv', show=False):
         data = rows.export(format)
     database.close()
     utils.save_data(path, data)
+    data_dict = rows.as_dict()
+    return data_dict
 
 
 if __name__ == '__main__':

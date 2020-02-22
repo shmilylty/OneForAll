@@ -1,6 +1,7 @@
 import time
 import threading
 import importlib
+
 import config
 import dbexport
 from config import logger
@@ -31,7 +32,7 @@ class Collect(object):
                        'dnsquery', 'intelligence', 'search']
             # modules = ['intelligence']  # crawl模块还有点问题
             for module in modules:
-                module_path = config.oneforall_module_path.joinpath(module)
+                module_path = config.module_dir.joinpath(module)
                 for path in module_path.rglob('*.py'):
                     # 需要导入的类
                     import_module = ('modules.' + module, path.stem)
@@ -59,8 +60,8 @@ class Collect(object):
 
         threads = []
         # 创建多个子域收集线程
-        for collect in self.collect_funcs:
-            func_obj, func_name = collect
+        for collect_func in self.collect_funcs:
+            func_obj, func_name = collect_func
             thread = threading.Thread(target=func_obj,
                                       name=func_name,
                                       args=(self.domain,),
@@ -83,12 +84,12 @@ class Collect(object):
         if self.export:
             if not self.path:
                 name = f'{self.domain}.{self.format}'
-                self.path = config.result_save_path.joinpath(name)
+                self.path = config.result_save_dir.joinpath(name)
             dbexport.export(self.domain, path=self.path, format=self.format)
         end = time.time()
         self.elapsed = round(end - start, 1)
 
 
 if __name__ == '__main__':
-    a = Collect('example.com')
-    a.run()
+    collect = Collect('example.com')
+    collect.run()

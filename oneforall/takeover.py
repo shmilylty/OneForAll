@@ -24,7 +24,7 @@ from common.domain import Domain
 
 
 def get_fingerprint():
-    path = config.data_storage_path.joinpath('fingerprints.json')
+    path = config.data_storage_dir.joinpath('fingerprints.json')
     with open(path, encoding='utf-8', errors='ignore') as file:
         fingerprints = json.load(file)
     return fingerprints

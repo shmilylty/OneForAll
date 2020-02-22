@@ -11,7 +11,7 @@ import threading
 from common import utils
 from common import resolve
 from common.module import Module
-from config import data_storage_path, logger
+from config import data_storage_dir, logger
 
 
 class BruteSRV(Module):
@@ -25,7 +25,7 @@ class BruteSRV(Module):
         self.answers_que = queue.Queue()
 
     def gen_names(self):
-        path = data_storage_path.joinpath('srv_prefixes.json')
+        path = data_storage_dir.joinpath('srv_prefixes.json')
         with open(path, encoding='utf-8', errors='ignore') as file:
             prefixes = json.load(file)
         names = map(lambda prefix: prefix + self.domain, prefixes)

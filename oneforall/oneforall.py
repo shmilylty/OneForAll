@@ -8,9 +8,8 @@ OneForAll是一款功能强大的子域收集工具
 :license: GNU General Public License v3.0, see LICENSE for more details.
 """
 
-import asyncio
-
 import fire
+
 import config
 import dbexport
 from datetime import datetime
@@ -62,50 +61,112 @@ class OneForAll(object):
         python3 oneforall.py --target example.com --show True run
 
     Note:
-        参数valid可选值1，0，None分别表示导出有效，无效，全部子域
+        # 参数valid可选值True，False分别表示导出有效，全部子域结果
         参数port可选值有'default', 'small', 'large', 详见config.py配置
         参数format可选格式有'txt', 'rst', 'csv', 'tsv', 'json', 'yaml', 'html',
                           'jira', 'xls', 'xlsx', 'dbf', 'latex', 'ods'
-        参数path默认None使用OneForAll结果目录生成路径
+        参数path默认None使用OneForAll结果目录自动生成路径
 
     :param str target:     单个域名或者每行一个域名的文件路径(必需参数)
     :param bool brute:     使用爆破模块(默认False)
     :param bool dns:       DNS解析子域(默认True)
     :param bool req:       HTTP请求子域(默认True)
-    :param str port:       请求验证子域的端口范围(默认只探测80端口)
-    :param int valid:      导出子域的有效性(默认None)
-    :param str format:     导出文件格式(默认csv)
-    :param str path:       导出文件路径(默认None)
+    :param str port:       请求验证子域的端口范围(默认探测80端口)
+    :param bool valid:     只导出有效的子域结果(默认False)
+    :param str format:     结果保存格式(默认csv)
+    :param str path:       结果保存路径(默认None)
     :param bool takeover:  检查子域接管(默认False)
-    :param bool show:      终端显示导出数据(默认False)
     """
-    def __init__(self, target, brute=None, dns=None, req=None,
-                 port='default', valid=None, format='csv', path=None,
-                 takeover=False, show=False):
+    def __init__(self, target, brute=None, dns=None, req=None, port=None,
+                 valid=None, format=None, path=None, takeover=None):
         self.target = target
-        self.port = port
-        self.domains = set()
-        self.domain = str()
-        self.data = list()
-        self.datas = list()
         self.brute = brute
         self.dns = dns
         self.req = req
-        self.takeover = takeover
+        self.port = port
         self.valid = valid
         self.format = format
         self.path = path
-        self.show = show
+        self.takeover = takeover
+        self.domain = str()
+        self.domains = set()
+        self.data = list()
+        self.datas = list()
+        self.old_table = self.domain + '_last_result'
+        self.new_table = self.domain + '_now_result'
+        self.origin_table = self.domain + '_origin_result'
+        self.resolve_table = self.domain + '_resolve_result'
+
+    def config(self):
+        """
+        配置参数
+        """
+        if self.brute is None:
+            self.brute = bool(config.enable_brute_module)
+        if self.dns is None:
+            self.dns = bool(config.enable_dns_resolve)
+        if self.req is None:
+            self.req = bool(config.enable_http_request)
+        if self.takeover is None:
+            self.takeover = bool(config.enable_takeover_check)
+        if self.port is None:
+            self.port = config.http_request_port
+        if self.valid is None:
+            self.valid = bool(config.result_export_valid)
+        if self.format is None:
+            self.format = config.result_save_format
+        if self.path is None:
+            self.path = config.result_save_path
+
+    def export(self, table):
+        """
+        从数据库中导出数据并做一些后续数据库善后处理
+
+        :param table: 要导出的表名
+        :return: 导出的数据
+        :rtype: list
+        """
+        db = Database()
+        data = dbexport.export(table, valid=self.valid, format=self.format)
+        db.drop_table(self.new_table)
+        db.rename_table(self.domain, self.new_table)
+        db.close()
+        return data
+
+    def deal_db(self):
+        """
+        收集任务完成时对数据库进行处理
+        """
+        db = Database()
+        db.deal_table(self.domain, self.origin_table)
+        db.close()
+
+    def mark(self):
+        """
+        标记新发现子域
+
+        :return: 标记后的的子域数据
+        :rtype: list
+        """
+        db = Database()
+        old_data = list()
+        now_data = db.get_data(self.domain).as_dict()
+        # 非第一次收集子域的情况时数据库预处理
+        if db.exist_table(self.new_table):
+            db.drop_table(self.old_table)  # 如果存在上次收集结果表就先删除
+            db.rename_table(self.new_table, self.old_table)  # 新表重命名为旧表
+            old_data = db.get_data(self.old_table).as_dict()
+            db.close()
+        marked_data = utils.mark_subdomain(old_data, now_data)
+        return marked_data
 
     def main(self):
-        if self.brute is None:
-            self.brute = config.enable_brute_module
-        if self.dns is None:
-            self.dns = config.enable_dns_resolve
-        if self.req is None:
-            self.req = config.enable_http_request
-        old_table = self.domain + '_last_result'
-        new_table = self.domain + '_now_result'
+        """
+        OneForAll实际运行主流程
+
+        :return: 子域结果
+        :rtype: list
+        """
         collect = Collect(self.domain, export=False)
         collect.run()
         if self.brute:
@@ -113,91 +174,56 @@ class OneForAll(object):
             brute = AIOBrute(self.domain, export=False)
             brute.run()
 
-        db = Database()
-        original_table = self.domain + '_original_result'
-        db.copy_table(self.domain, original_table)
-        db.remove_invalid(self.domain)
-        db.deduplicate_subdomain(self.domain)
-
-        old_data = []
-        # 非第一次收集子域的情况时数据库预处理
-        if db.exist_table(new_table):
-            db.drop_table(old_table)  # 如果存在上次收集结果表就先删除
-            db.rename_table(new_table, old_table)  # 新表重命名为旧表
-            old_data = db.get_data(old_table).as_dict()
+        # 有关数据库处理
+        self.deal_db()
+        # 标记新发现子域
+        self.data = self.mark()
 
         # 不解析子域直接导出结果
         if not self.dns:
-            # 数据库导出
-            dbexport.export(self.domain, valid=self.valid,
-                            format=self.format, show=self.show)
-            db.drop_table(new_table)
-            db.rename_table(self.domain, new_table)
-            db.close()
-            return
-
-        self.data = db.get_data(self.domain).as_dict()
-
-        # 标记新发现子域
-        self.data = utils.mark_subdomain(old_data, self.data)
-
-        # 获取事件循环
-        loop = asyncio.get_event_loop()
-        asyncio.set_event_loop(loop)
+            return self.export(self.domain)
 
         # 解析子域
-        task = resolve.bulk_resolve(self.data)
-        self.data = loop.run_until_complete(task)
-
+        self.data = resolve.run_resolve(self.data)
         # 保存解析结果
-        resolve_table = self.domain + '_resolve_result'
-        db.drop_table(resolve_table)
-        db.create_table(resolve_table)
-        db.save_db(resolve_table, self.data, 'resolve')
+        resolve.save_data(self.resolve_table, self.data)
 
         # 不请求子域直接导出结果
         if not self.req:
-            # 数据库导出
-            dbexport.export(resolve_table, valid=self.valid,
-                            format=self.format, show=self.show)
-            db.drop_table(new_table)
-            db.rename_table(self.domain, new_table)
-            db.close()
-            return
+            return self.export(self.resolve_table)
 
         # 请求子域
-        task = request.bulk_request(self.data, self.port)
-        self.data = loop.run_until_complete(task)
-        self.datas.extend(self.data)
-        # 在关闭事件循环前加入一小段延迟让底层连接得到关闭的缓冲时间
-        loop.run_until_complete(asyncio.sleep(0.25))
-        count = utils.count_valid(self.data)
-        logger.log('INFOR', f'经验证{self.domain}有效子域{count}个')
-
+        self.data = request.run_request(self.domain, self.data, self.port)
         # 保存请求结果
-        db.clear_table(self.domain)
-        db.save_db(self.domain, self.data, 'request')
+        request.save_data(self.domain, self.data)
+
+        # 将最终结果列表添加到总的数据列表中
+        self.datas.extend(self.data)
 
         # 数据库导出
-        dbexport.export(self.domain, valid=self.valid,
-                        format=self.format, show=self.show)
-        db.drop_table(new_table)
-        db.rename_table(self.domain, new_table)
-        db.close()
+        self.export(self.domain)
 
         # 子域接管检查
         if self.takeover:
-            subdomains = set(map(lambda x: x.get('subdomain'), self.data))
+            subdomains = utils.get_subdomains(self.data)
             takeover = Takeover(subdomains)
             takeover.run()
+        return self.data
 
     def run(self):
+        """
+        OneForAll运行入口
+
+        :return: 总的子域结果
+        :rtype: list
+        """
         print(banner)
         dt = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         print(f'[*] Starting OneForAll @ {dt}\n')
         logger.log('DEBUG', 'Python ' + utils.python_version())
         logger.log('DEBUG', 'OneForAll ' + version)
         logger.log('INFOR', f'开始运行OneForAll')
+        self.config()
         self.domains = utils.get_domains(self.target)
         if self.domains:
             for self.domain in self.domains:
@@ -206,6 +232,7 @@ class OneForAll(object):
         else:
             logger.log('FATAL', f'获取域名失败')
         logger.log('INFOR', f'结束运行OneForAll')
+        return self.datas
 
     @staticmethod
     def version():

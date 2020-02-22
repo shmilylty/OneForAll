@@ -10,6 +10,7 @@ from dns.resolver import Resolver
 
 import config
 from config import logger
+from common.database import Database
 
 
 def dns_resolver():
@@ -99,11 +100,27 @@ def update_data(data_list, results_dict):
     return data_list
 
 
-def init_worker():
-    signal.signal(signal.SIGINT, signal.SIG_IGN)
+def save_data(name, data):
+    """
+    保存解析结果到数据库
+
+    :param str name: 保存表名
+    :param list data: 待保存的数据
+    """
+    db = Database()
+    db.drop_table(name)
+    db.create_table(name)
+    db.save_db(name, data, 'resolve')
+    db.close()
 
 
-def query_progress(pr_queue, total):
+def resolve_progress(pr_queue, total):
+    """
+    解析进度
+
+    :param pr_queue: 进度队列
+    :param int total: 待解析的子域个数
+    """
     bar = tqdm.tqdm()
     bar.total = total
     bar.desc = 'Resolve Progress'
@@ -143,10 +160,9 @@ async def aio_resolve(subdomain_list, process_num, coroutine_num):
     m = Manager()
     pr_queue = m.Queue()
     loop = asyncio.get_event_loop()
-    loop.run_in_executor(None, query_progress, pr_queue, len(subdomain_list))
+    loop.run_in_executor(None, resolve_progress, pr_queue, len(subdomain_list))
     wrapped_query = functools.partial(aio_query, pr_queue)
     async with aiomp.Pool(processes=process_num,
-                          initializer=init_worker,
                           childconcurrency=coroutine_num) as pool:
         results = await pool.map(wrapped_query, subdomain_list)
         return results
@@ -156,8 +172,8 @@ async def bulk_resolve(data_list):
     """
     批量解析A记录并返回解析结果
 
-    :param list data_list: 待查的数据列表
-    :return: 查询过得到的结果列表
+    :param list data_list: 待解析的数据列表
+    :return: 解析得到的结果列表
     """
     logger.log('INFOR', '正在异步查询子域的A记录')
     # semaphore = asyncio.Semaphore(config.limit_resolve_conn)
@@ -169,3 +185,19 @@ async def bulk_resolve(data_list):
     data_list = update_data(data_list, results_dict)
     logger.log('INFOR', '完成异步查询子域的A记录')
     return data_list
+
+
+def run_resolve(data):
+    """
+    调用子域解析入口函数
+
+    :param list data: 待解析的子域数据列表
+    :return: 解析得到的结果列表
+    :rtype: list
+    """
+    loop = asyncio.get_event_loop()
+    asyncio.set_event_loop(loop)
+    resolve_coroutine = bulk_resolve(data)
+    # 在关闭事件循环前加入一小段延迟让底层连接得到关闭的缓冲时间
+    loop.run_until_complete(asyncio.sleep(0.25))
+    return loop.run_until_complete(resolve_coroutine)
