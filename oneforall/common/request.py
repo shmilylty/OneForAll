@@ -5,9 +5,11 @@ import aiohttp
 import tqdm
 from aiohttp import ClientSession
 from bs4 import BeautifulSoup
+
 import config
 from common import utils
 from config import logger
+from common.database import Database
 
 
 def get_limit_conn():
@@ -220,6 +222,36 @@ async def bulk_request(datas, port):
     return new_datas
 
 
-def run_bulk_query(datas, port):
-    new_datas = asyncio.run(bulk_request(datas, port))
-    return new_datas
+def run_request(domain, data, port):
+    """
+    调用子域请求入口函数
+
+    :param str domain: 待请求的主域
+    :param list data: 待请求的子域数据
+    :param str port: 待请求的端口范围
+    :return: 请求后得到的结果列表
+    :rtype: list
+    """
+    loop = asyncio.get_event_loop()
+    asyncio.set_event_loop(loop)
+    request_coroutine = bulk_request(data, port)
+    data = loop.run_until_complete(request_coroutine)
+    # 在关闭事件循环前加入一小段延迟让底层连接得到关闭的缓冲时间
+    loop.run_until_complete(asyncio.sleep(0.25))
+    count = utils.count_valid(data)
+    logger.log('INFOR', f'经验证{domain}有效子域{count}个')
+    return data
+
+
+def save_data(name, data):
+    """
+    保存请求结果到数据库
+
+    :param str name: 保存表名
+    :param list data: 待保存的数据
+    """
+    db = Database()
+    db.drop_table(name)
+    db.create_table(name)
+    db.save_db(name, data, 'request')
+    db.close()

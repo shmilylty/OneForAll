@@ -10,36 +10,49 @@ import urllib3
 from loguru import logger
 
 # 路径设置
-oneforall_relpath = pathlib.Path(__file__).parent  # oneforall代码相对路径
-oneforall_abspath = oneforall_relpath.resolve()  # oneforall代码绝对路径
-oneforall_module_path = oneforall_relpath.joinpath('modules')  # oneforall模块目录
-data_storage_path = oneforall_relpath.joinpath('data')  # 数据存放目录
-result_save_path = oneforall_relpath.joinpath('results')  # 结果保存目录
+relative_directory = pathlib.Path(__file__).parent  # OneForAll代码相对路径
+module_dir = relative_directory.joinpath('modules')  # OneForAll模块目录
+data_storage_dir = relative_directory.joinpath('data')  # 数据存放目录
+result_save_dir = relative_directory.joinpath('results')  # 结果保存目录
 
-# 模块设置
+
+# OneForAll入口参数设置
+enable_dns_resolve = True  # 使用DNS解析子域(默认True)
+enable_http_request = True  # 使用HTTP请求子域(默认True)
+enable_takeover_check = False  # 开启子域接管风险检查(默认False)
+# 参数port可选值有'default', 'small', 'large'
+http_request_port = 'default'  # HTTP请求子域(默认'default'，探测80端口)
+# 参数valid可选值True，False分别表示导出有效，全部子域结果
+result_export_valid = False  # 只导出有效的子域结果(默认False)
+# 参数format可选格式有'txt', 'rst', 'csv', 'tsv', 'json', 'yaml', 'html',
+# 'jira', 'xls', 'xlsx', 'dbf', 'latex', 'ods'
+result_save_format = 'csv'  # 子域结果保存文件格式(默认csv)
+# 参数path默认None使用OneForAll结果目录自动生成路径
+result_save_path = None  # 子域结果保存文件路径(默认None)
+
+
+# 收集模块设置
 save_module_result = False  # 保存各模块发现结果为json文件(默认False)
 enable_all_module = True  # 启用所有模块(默认True)
 enable_partial_module = []  # 启用部分模块 必须禁用enable_all_module才能生效
-# 只使用ask和baidu搜索引擎收集子域
+# 只使用ask和baidu搜索引擎收集子域的示例
 # enable_partial_module = [('modules.search', 'ask')
 #                          ('modules.search', 'baidu')]
 module_thread_timeout = 360.0  # 每个收集模块线程超时时间(默认6分钟)
 
 # 爆破模块设置
 enable_brute_module = False  # 使用爆破模块(默认False)
-enable_dns_resolve = True  # DNS解析子域(默认True)
-enable_http_request = True  # HTTP请求子域(默认True)
 enable_wildcard_check = True  # 开启泛解析检测(默认True)
 enable_wildcard_deal = True  # 开启泛解析处理(默认True)
 # 爆破时使用的进程数(根据系统中CPU数量情况设置 不宜大于CPU数量 默认为系统中的CPU数量)
 brute_process_num = os.cpu_count()
 brute_coroutine_num = 1024  # 爆破时每个进程下的协程数
 # 爆破所使用的字典路径 默认data/subdomains.txt
-brute_wordlist_path = data_storage_path.joinpath('subnames.txt')
+brute_wordlist_path = data_storage_dir.joinpath('subnames.txt')
 enable_recursive_brute = False  # 是否使用递归爆破(默认禁用)
 brute_recursive_depth = 2  # 递归爆破深度(默认2层)
 # 爆破下一层子域所使用的字典路径 默认data/next_subdomains.txt
-recursive_namelist_path = data_storage_path.joinpath('next_subnames.txt')
+recursive_namelist_path = data_storage_dir.joinpath('next_subnames.txt')
 enable_fuzz = False  # 是否使用fuzz模式枚举域名
 fuzz_rule = ''  # fuzz域名的正则 示例：[a-z][0-9] 第一位是字母 第二位是数字
 ips_appear_maximum = 10  # 同一IP集合出现次数超过10认为是泛解析
@@ -142,7 +155,7 @@ logfile_fmt = '<light-green>{time:YYYY-MM-DD HH:mm:ss,SSS}</light-green> ' \
               '<blue>{module}</blue>.<blue>{function}</blue>:' \
               '<blue>{line}</blue> - <level>{message}</level>'
 
-log_path = result_save_path.joinpath('oneforall.log')
+log_path = result_save_dir.joinpath('oneforall.log')
 
 logger.remove()
 logger.level(name='TRACE', no=5, color='<cyan><bold>', icon='✏️')

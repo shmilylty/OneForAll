@@ -38,7 +38,7 @@ class Domain(object):
 
         :return: 导出结果
         """
-        extract_cache_file = config.data_storage_path.joinpath('public_suffix_list.dat')
+        extract_cache_file = config.data_storage_dir.joinpath('public_suffix_list.dat')
         tldext = tldextract.TLDExtract(extract_cache_file)
         result = self.match()
         if result:

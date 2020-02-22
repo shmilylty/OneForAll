@@ -10,15 +10,11 @@ OneForAll多进程多协程异步子域爆破模块
 
 import time
 import queue
-import signal
 import asyncio
 import secrets
-import functools
-from multiprocessing import Manager
-import aiomultiprocess as aiomp
+
 import exrex
 import fire
-import tqdm
 
 import config
 import dbexport
@@ -89,6 +85,13 @@ def wildcard_by_times(ips, ips_times):
 
 
 def gen_fuzz_domains(domain, rule):
+    """
+    生成fuzz模式下即将用于爆破的子域集合
+
+    :param str domain: 待爆破的主域
+    :param str rule: 用于爆破的正则规则
+    :return: 用于爆破的子域集合
+    """
     domains = set()
     if '{fuzz}' not in domain:
         logger.log('FATAL', f'没有指定fuzz位置')
@@ -118,6 +121,13 @@ def gen_fuzz_domains(domain, rule):
 
 
 def gen_brute_domains(domain, path):
+    """
+    生成基于字典爆破的子域数据
+
+    :param str domain: 待爆破的主域
+    :param str path: 字典路径
+    :return: 用于爆破的子域集合
+    """
     domains = set()
     with open(path, encoding='utf-8', errors='ignore') as file:
         for line in file:
@@ -146,7 +156,7 @@ class AIOBrute(Module):
         参数valid可选值1，0，None，分别表示导出有效，无效，全部子域
         参数format可选格式有'txt', 'rst', 'csv', 'tsv', 'json', 'yaml', 'html',
                           'jira', 'xls', 'xlsx', 'dbf', 'latex', 'ods'
-        参数path默认None使用OneForAll结果目录生成路径
+        参数path默认None使用OneForAll结果目录自动生成路径
 
     :param str target:       单个域名或者每行一个域名的文件路径
     :param int process:      爆破的进程数(默认CPU核心数)
@@ -158,7 +168,7 @@ class AIOBrute(Module):
     :param bool fuzz:        是否使用fuzz模式进行爆破(默认False，开启须指定fuzz正则规则)
     :param str rule:         fuzz模式使用的正则规则(默认使用config.py配置)
     :param bool export:      是否导出爆破结果(默认True)
-    :param int valid:        导出子域的有效性(默认None)
+    :param bool valid:       只导出有效的子域结果(默认False)
     :param str format:       导出格式(默认csv)
     :param str path:         导出路径(默认None)
     :param bool show:        终端显示导出数据(默认False)
@@ -248,8 +258,6 @@ class AIOBrute(Module):
                     = detect_wildcard(domain)
         tasks = self.gen_tasks(domain)
         logger.log('INFOR', f'正在爆破{domain}的域名')
-        # for task in tqdm.tqdm(tasks, total=len(tasks),
-        #                       desc='Progress'):
         results = await resolve.aio_resolve(tasks, self.process, self.coroutine)
         self.deal_results(results)
         self.save_json()
@@ -303,7 +311,7 @@ class AIOBrute(Module):
                                 f'{self.subdomains}')
             if not self.path:
                 name = f'{self.domain}_brute_result.{self.format}'
-                self.path = config.result_save_path.joinpath(name)
+                self.path = config.result_save_dir.joinpath(name)
             # 数据库导出
             if self.export:
                 dbexport.export(self.domain,
@@ -313,18 +321,9 @@ class AIOBrute(Module):
                                 show=self.show)
 
 
-def do(domain, result):  # 统一入口名字 方便多线程调用
-    """
-    类统一调用入口
-
-    :param str domain: 域名
-    :param result: 结果集队列
-    """
-    brute = AIOBrute(domain)
-    brute.run(result)
-
-
 if __name__ == '__main__':
     fire.Fire(AIOBrute)
-    # result_queue = queue.Queue()
-    # do('example.com', result_queue)
+    # domain = 'example.com'
+    # result = queue.Queue()
+    # brute = AIOBrute(domain)
+    # brute.run(result)

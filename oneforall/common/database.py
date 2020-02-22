@@ -6,6 +6,7 @@ SQLite数据库初始化和操作
 """
 
 import records
+
 import config
 from records import Connection
 from config import logger
@@ -28,7 +29,7 @@ class Database(object):
             return db_path
         protocol = 'sqlite:///'
         if not db_path:  # 数据库路径为空连接默认数据库
-            db_path = f'{protocol}{config.result_save_path}/result.sqlite3'
+            db_path = f'{protocol}{config.result_save_dir}/result.sqlite3'
         else:
             db_path = protocol + db_path
         db = records.Database(db_path)  # 不存在数据库时会新建一个数据库
@@ -185,6 +186,17 @@ class Database(object):
         self.query(f'delete from "{table_name}" where '
                    f'subdomain is null or valid == 0')
 
+    def deal_table(self, deal_table_name, backup_table_name):
+        """
+        收集任务完成时对表进行处理
+
+        :param str deal_table_name: 待处理的表名
+        :param str backup_table_name: 备份的表名
+        """
+        self.copy_table(deal_table_name, backup_table_name)
+        self.remove_invalid(deal_table_name)
+        self.deduplicate_subdomain(deal_table_name)
+
     def get_data(self, table_name):
         """
         获取表中的所有数据
@@ -205,11 +217,14 @@ class Database(object):
         table_name = table_name.replace('.', '_')
         query = f'select id, url, subdomain, port, ips, status, reason,' \
                 f'valid, new, title, banner from "{table_name}"'
-        if valid == 0 or valid == 1:
-            where = f' where valid = {valid}'
+        if valid:
+            where = f' where valid = 1'
             query += where
         logger.log('TRACE', f'获取{table_name}表中的所有数据')
         return self.query(query)
 
     def close(self):
+        """
+        关闭数据库连接
+        """
         self.conn.close()

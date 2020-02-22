@@ -5,6 +5,7 @@ import time
 import random
 import ipaddress
 import platform
+
 import config
 from pathlib import Path
 from records import Record, RecordCollection
@@ -157,7 +158,7 @@ def check_path(path, name, format):
     :return: 保存路径
     """
     filename = f'{name}.{format}'
-    default_path = config.result_save_path.joinpath(filename)
+    default_path = config.result_save_dir.joinpath(filename)
     if path is None:
         path = default_path
     try:
@@ -250,30 +251,32 @@ def check_response(method, resp):
     return False
 
 
-def mark_subdomain(old_data, new_data):
+def mark_subdomain(old_data, now_data):
     """
     标记新增子域并返回新的数据集
 
-    :param old_data: 之前数据集
-    :param new_data: 现在数据集
-    :return: 已标记的新的数据集
+    :param list old_data: 之前子域数据
+    :param list now_data: 现在子域数据
+    :return: 标记后的的子域数据
+    :rtype: list
     """
     # 第一次收集子域的情况
+    mark_data = now_data.copy()
     if not old_data:
-        for index, item in enumerate(new_data):
+        for index, item in enumerate(mark_data):
             item['new'] = 1
-            new_data[index] = item
-        return new_data
+            mark_data[index] = item
+        return mark_data
     # 非第一次收集子域的情况
     old_subdomains = {item.get('subdomain') for item in old_data}
-    for index, item in enumerate(new_data):
+    for index, item in enumerate(mark_data):
         subdomain = item.get('subdomain')
         if subdomain in old_subdomains:
             item['new'] = 0
         else:
             item['new'] = 1
-        new_data[index] = item
-    return new_data
+        mark_data[index] = item
+    return mark_data
 
 
 def remove_string(string):
@@ -335,3 +338,7 @@ def python_version():
 
 def count_valid(data):
     return len(list(filter(lambda item: item.get('valid') == 1, data)))
+
+
+def get_subdomains(data):
+    return set(map(lambda item: item.get('subdomain'), data))

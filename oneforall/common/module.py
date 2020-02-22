@@ -226,7 +226,7 @@ class Module(object):
         if not config.save_module_result:
             return False
         logger.log('TRACE', f'将{self.source}模块发现的子域结果保存为json文件')
-        path = config.result_save_path.joinpath(self.domain, self.module)
+        path = config.result_save_dir.joinpath(self.domain, self.module)
         path.mkdir(parents=True, exist_ok=True)
         name = self.source + '.json'
         path = path.joinpath(name)
