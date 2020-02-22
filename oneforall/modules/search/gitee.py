@@ -26,6 +26,8 @@ class Gitee(Search):
             except Exception as e:
                 logger.log('ERROR', e.args)
                 break
+            if not resp:
+                break
             if resp.status_code != 200:
                 logger.log('ERROR', f'{self.source}模块搜索出错')
                 break
