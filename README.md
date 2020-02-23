@@ -95,7 +95,7 @@ pip 19.2.2 from C:\Users\shmilylty\AppData\Roaming\Python\Python38\site-packages
    cd oneforall/
    python oneforall.py --help
 ```
-   其他系统平台的请参考[依赖安装](https://github.com/shmilylty/OneForAll/tree/master/docs/installation_dependency.md)，如果在安装依赖过程中发现编译某个依赖库失败时可以参考[Q&A](https://github.com/shmilylty/OneForAll/tree/master/docs/Q&A.md)中解决方法，如果还没有解决欢迎加群反馈。
+   其他系统平台的请参考[依赖安装](https://github.com/shmilylty/OneForAll/tree/master/docs/installation_dependency.md)，如果在安装依赖过程中发现编译某个依赖库失败时可以参考[troubleshooting.md](https://github.com/shmilylty/OneForAll/tree/master/docs/troubleshooting.md)中解决方法，如果还没有解决欢迎加群反馈。
 
 3. **更新**
 
@@ -271,22 +271,22 @@ D:.
 - [ ] 子域收集爬虫实现（包括从JS等静态资源文件中收集子域）
 - [ ] 操作强大交互人性的前端界面实现（暂定：前端：Element + 后端：Flask）
 
-更多详细信息请阅读[TODO.md](https://github.com/shmilylty/OneForAll/tree/master/TODO.md)。
+更多详细信息请阅读[todo.md](https://github.com/shmilylty/OneForAll/tree/master/docs/todo.md)。
 
 ## 🔖版本控制
 
-该项目使用[SemVer](https://semver.org/)语言化版本格式进行版本管理，你可以在[Releases](https://github.com/shmilylty/OneForAll/releases)查看可用版本。
+该项目使用[SemVer](https://semver.org/)语言化版本格式进行版本管理，你可以在[Releases](https://github.com/shmilylty/OneForAll/releases)查看可用版本，你可以查阅[changes.md](https://github.com/shmilylty/OneForAll/tree/master/docs/changes.md)了解历史变更情况。
 
 ## 👨‍💻贡献者
 
 * **[Jing Ling](https://github.com/shmilylty)**
   * 核心开发
 
-
-你可以在[CONTRIBUTORS.md](https://github.com/shmilylty/OneForAll/tree/master/CONTRIBUTORS.md)中参看所有参与该项目的开发者。
+你可以在[contributors.md](https://github.com/shmilylty/OneForAll/tree/master/docs/contributors.md)中查看所有参与该项目的开发者。
 
 ## ☕赞赏
-如果你觉得这个项目帮助到了你，你可以帮作者买一杯咖啡表示鼓励:)
+
+如果你觉得这个项目帮助到了你，你可以打赏一杯咖啡以资鼓励:)
 ![](https://raw.githubusercontent.com/shmilylty/OneForAll/master/images/Donate.png)
 
 ## 📄版权

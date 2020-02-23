@@ -96,7 +96,7 @@ pip 19.2.2 from C:\Users\shmilylty\AppData\Roaming\Python\Python37\site-packages
    cd oneforall/
    python oneforall.py --help
 ```
-​      For other system platforms, please refer to [dependency installation](https://github.com/shmilylty/OneForAll/tree/master/docs/installation_dependency.md). If you find that compiling a dependent library fails during the installation dependencies, Refer to the solution in the [Q&A](https://github.com/shmilylty/OneForAll/tree/master/docs/Q&A.md) documentation, if not resolved, welcome feedback.
+​      For other system platforms, please refer to [dependency installation](https://github.com/shmilylty/OneForAll/tree/master/docs/installation_dependency.md). If you find that compiling a dependent library fails during the installation dependencies, Refer to the solution in the [troubleshooting.md](https://github.com/shmilylty/OneForAll/tree/master/docs/troubleshooting.md) documentation, if not resolved, welcome feedback.
 
 3. **Update**
 
@@ -277,18 +277,18 @@ Very warmly welcome all ace to improve the project together!
 - [ ] Subdomain collection crawler implementation (including collection of subdomains from static resource files such as JS)
 - [ ] Implementation of front-end interface for powerful interaction (tentative: front-end: Element + back-end: Flask)
 
-For more details, see [TODO.md](https://github.com/shmilylty/OneForAll/tree/master/TODO.md).
+For more details, see [todo.md](https://github.com/shmilylty/OneForAll/tree/master/docs/todo.md).
 
 ## 🔖Version control
 
-The project uses [SemVer](https://semver.org/) language version format for version management), and you can view the available version in [Releases](https://github.com/shmilylty/OneForAll/releases).
+The project uses [SemVer](https://semver.org/) language version format for version management), and you can view the available version in [Releases](https://github.com/shmilylty/OneForAll/releases), You can check [changes.md](https://github.com/shmilylty/OneForAll/tree/master/docs/changes.md)) for historical changes.
 
 ## 👨‍💻Contributors
 
 * **[Jing Ling](https://github.com/shmilylty)**
   * Core development
 
-You can see all the developers involved in the project in [CONTRIBUTORS.md](https://github.com/shmilylty/OneForAll/tree/master/CONTRIBUTORS.md).
+You can see all the developers involved in the project in [contributors.md](https://github.com/shmilylty/OneForAll/tree/master/docs/contributors.md).
 
 ## 📄License
 
