@@ -159,26 +159,20 @@ def check_path(path, name, format):
     """
     filename = f'{name}.{format}'
     default_path = config.result_save_dir.joinpath(filename)
-    if path is None:
-        path = default_path
-    try:
-        path = Path(path)
-    except Exception as e:
-        logger.log('ERROR', e.args)
-        path = default_path
+    if isinstance(path, str):
+        path = repr(path).replace('\\', '/')  # 将路径中的反斜杠替换为正斜杠
+        path = path.replace('\'', '')  # 去除多余的转义
     else:
-        if not path.exists():
-            logger.log('ALERT', f'不存在{path}目录将会新建')
-            path.mkdir(parents=True, exist_ok=True)
-            path = path.joinpath(filename)
-        if path.is_dir():
-            path = path.joinpath(filename)
-        if path.exists():
-            logger.log('ALERT', f'存在{path}文件将会覆盖')
-    # 意外情况
-    if not path:
         path = default_path
-    logger.log('DEBUG', f'结果保存路径{path}')
+    path = Path(path)
+    if not path.suffix:  # 输入是目录的情况
+        path = path.joinpath(filename)
+    parent_dir = path.parent
+    if not parent_dir.exists():
+        logger.log('ALERT', f'不存在{parent_dir}目录将会新建')
+        parent_dir.mkdir(parents=True, exist_ok=True)
+    if path.exists():
+        logger.log('ALERT', f'存在{path}文件将会覆盖')
     return path
 
 
@@ -216,12 +210,10 @@ def save_data(path, data):
         with open(path, 'w', encoding="utf-8",
                   errors='ignore', newline='') as file:
             file.write(data)
-            logger.log('ALERT', f'结果输出{path}')
             return True
     except TypeError:
         with open(path, 'wb') as file:
             file.write(data)
-            logger.log('ALERT', f'结果输出{path}')
             return True
     except Exception as e:
         logger.log('ERROR', e.args)
@@ -306,6 +298,7 @@ def export_all(format, path, datas):
     timestamp = get_timestamp()
     name = f'all_subdomain_result_{timestamp}'
     path = check_path(path, name, format)
+    logger.log('INFOR', f'所有主域的子域结果 {path}')
     row_list = list()
     for row in datas:
         row.pop('header')

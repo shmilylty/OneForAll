@@ -12,6 +12,7 @@ import fire
 
 from common import utils
 from common.database import Database
+from config import logger
 
 
 def export(table, db=None, valid=False, path=None, format='csv', show=False):
@@ -47,6 +48,7 @@ def export(table, db=None, valid=False, path=None, format='csv', show=False):
         data = rows.export(format)
     database.close()
     utils.save_data(path, data)
+    logger.log('INFOR', f'{table}主域的子域结果 {path}')
     data_dict = rows.as_dict()
     return data_dict
 
