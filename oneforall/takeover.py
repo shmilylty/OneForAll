@@ -135,7 +135,7 @@ class Takeover(Module):
         self.subdomains = utils.get_domains(self.target)
         self.format = utils.check_format(self.format, len(self.subdomains))
         timestamp = utils.get_timestamp()
-        name = f'all_subdomain_{timestamp}'
+        name = f'takeover_check_result_{timestamp}'
         self.path = utils.check_path(self.path, name, self.format)
         if self.subdomains:
             logger.log('INFOR', f'正在检查子域接管风险')
@@ -160,7 +160,8 @@ class Takeover(Module):
         elapsed = round(end - start, 1)
         logger.log('INFOR', f'{self.source}模块耗时{elapsed}秒'
                             f'发现{len(self.results)}个子域存在接管风险')
-        logger.log('DEBUG', f'结束执行{self.source}模块')
+        logger.log('INFOR', f'子域接管风险检查结果 {self.path}')
+        logger.log('INFOR', f'结束执行{self.source}模块')
 
 
 if __name__ == '__main__':
