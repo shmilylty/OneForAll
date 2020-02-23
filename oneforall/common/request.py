@@ -214,8 +214,8 @@ async def bulk_request(datas, port):
             futures = asyncio.as_completed(tasks)
             for future in tqdm.tqdm(futures,
                                     total=len(tasks),
-                                    desc='Progress',
-                                    ncols=60):
+                                    desc='Request Progress',
+                                    ncols=80):
                 await future
 
     logger.log('INFOR', f'完成异步进行子域的GET请求')
