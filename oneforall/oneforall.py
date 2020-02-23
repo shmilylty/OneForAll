@@ -88,14 +88,14 @@ class OneForAll(object):
         self.format = format
         self.path = path
         self.takeover = takeover
-        self.domain = str()
-        self.domains = set()
-        self.data = list()
-        self.datas = list()
-        self.old_table = self.domain + '_last_result'
-        self.new_table = self.domain + '_now_result'
-        self.origin_table = self.domain + '_origin_result'
-        self.resolve_table = self.domain + '_resolve_result'
+        self.domain = str()  # 当前正在进行收集的主域
+        self.domains = set()  # 所有即将进行收集的主机
+        self.data = list()  # 存放当前主域的子域结果
+        self.datas = list()  # 存放所有主域的子域结果
+        self.old_table = self.domain + '_old_result'  # 存放上一次结果的表名
+        self.new_table = self.domain + '_now_result'  # 存放现在结果的表名
+        self.origin_table = self.domain + '_origin_result'  # 存放最初收集结果的表名
+        self.resolve_table = self.domain + '_resolve_result'  # 存放解析后的结果表名
 
     def config(self):
         """
