@@ -232,7 +232,6 @@ class OneForAll(object):
         else:
             logger.log('FATAL', f'获取域名失败')
         logger.log('INFOR', f'结束运行OneForAll')
-        return self.datas
 
     @staticmethod
     def version():
