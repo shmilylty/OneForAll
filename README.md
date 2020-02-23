@@ -287,6 +287,7 @@ D:.
 ## ☕赞赏
 
 如果你觉得这个项目帮助到了你，你可以打赏一杯咖啡以资鼓励:)
+
 ![](https://raw.githubusercontent.com/shmilylty/OneForAll/master/images/Donate.png)
 
 ## 📄版权
