@@ -141,15 +141,15 @@ docker run -it oneforall
 
 **🤔使用帮助**
 
-命令行参数只提供了一些常用参数，更多详细的参数配置请见[api.py](https://github.com/shmilylty/OneForAll/tree/master/oneforall/api.py)，如果你认为有些参数是命令界面经常使用到的或缺少了什么参数等问题非常欢迎反馈。由于众所周知的原因，如果要使用一些被墙的收集接口请先到[api.py](https://github.com/shmilylty/OneForAll/tree/master/oneforall/api.py)配置代理，有些收集模块需要提供API（大多都是可以注册账号免费获取），如果需要使用请到[api.py](https://github.com/shmilylty/OneForAll/tree/master/oneforall/api.py)配置API信息，如果不使用请忽略有关报错提示。（详细模块请阅读[收集模块说明](https://github.com/shmilylty/OneForAll/tree/master/docs/collection_modules.md)）
+命令行参数只提供了一些常用参数，更多详细的参数配置请见[config.py](https://github.com/shmilylty/OneForAll/tree/master/oneforall/config.py)，如果你认为有些参数是命令界面经常使用到的或缺少了什么参数等问题非常欢迎反馈。由于众所周知的原因，如果要使用一些被墙的收集接口请先到[config.py](https://github.com/shmilylty/OneForAll/tree/master/oneforall/config.py)配置代理，有些收集模块需要提供API（大多都是可以注册账号免费获取），如果需要使用请到[api.py](https://github.com/shmilylty/OneForAll/tree/master/oneforall/api.py)配置API信息，如果不使用请忽略有关报错提示。（详细模块请阅读[收集模块说明](https://github.com/shmilylty/OneForAll/tree/master/docs/collection_modules.md)）
 
-OneForAll命令行界面基于[Fire](https://github.com/google/python-fire/)实现，有关Fire更高级使用方法请参阅[使用Fire CLI](https://github.com/google/python-fire/blob/master/docs/using-cli.md)，有任何使用疑惑欢迎加群交流。
+OneForAll命令行界面基于[Fire](https://github.com/google/python-fire/)实现，有关Fire更高级使用方法请参阅[使用Fire CLI](https://github.com/google/python-fire/blob/master/docs/using-cli.md)。
 
-[oneforall.py](https://github.com/shmilylty/OneForAll/tree/master/oneforall/oneforall.py)是主程序入口，oneforall.py可以调用[aiobrute.py](https://github.com/shmilylty/OneForAll/tree/master/oneforall/aiobrute.py)，[takerover.py](https://github.com/shmilylty/OneForAll/tree/master/oneforall/takerover.py)及[dbexport.py](https://github.com/shmilylty/OneForAll/tree/master/oneforall/dbexport.py)等模块，为了方便进行子域爆破独立出了aiobrute.py，为了方便进行子域接管风险检查独立出了takerover.py，为了方便数据库导出独立出了dbexport.py，这些模块都可以单独运行，并且所接受参数要更丰富一点。
+[oneforall.py](https://github.com/shmilylty/OneForAll/tree/master/oneforall/oneforall.py)是主程序入口，oneforall.py可以调用[aiobrute.py](https://github.com/shmilylty/OneForAll/tree/master/oneforall/aiobrute.py)，[takerover.py](https://github.com/shmilylty/OneForAll/tree/master/oneforall/takerover.py)及[dbexport.py](https://github.com/shmilylty/OneForAll/tree/master/oneforall/dbexport.py)等模块，为了方便进行子域爆破独立出了aiobrute.py，为了方便进行子域接管风险检查独立出了takerover.py，为了方便数据库导出独立出了dbexport.py，这些模块都可以单独运行，并且所接受参数要更丰富一点，如果要单独使用这些模块请参考[使用帮助](https://github.com/shmilylty/OneForAll/tree/master/docs/usage_help.md)
 
 ❗注意：当你在使用过程中遇到一些问题或者疑惑时，请先到[Issues](https://github.com/shmilylty/OneForAll/issues)里使用搜索找找答案，还可以参阅[常见问题与回答](https://github.com/shmilylty/OneForAll/tree/master/docs/Q&A.md)。
 
-1. **oneforall.py使用帮助**
+**oneforall.py使用帮助**
 
    ```bash
    python oneforall.py --help
@@ -209,89 +209,6 @@ OneForAll命令行界面基于[Fire](https://github.com/google/python-fire/)实�
             终端显示导出数据(默认False)
    ```
 
-2. **aiobrute.py使用帮助**
-
-   关于泛解析问题处理程序首先会访问一个随机的子域判断是否泛解析，如果使用了泛解析则是通过以下判断处理：
-   - 一是主要是与泛解析的IP集合和TTL值做对比，可以参考[这篇文章](http://sh3ll.me/archives/201704041222.txt)。
-   - 二是多次解析到同一IP集合次数（默认设置为10，可以在config.py设置大小）。
-   - 三是考虑爆破效率问题目前还没有加上HTTP响应体相似度对比和响应体内容判断，如果有必要后续添加。
-   经过不严谨测试在16核心的CPU，使用16进程64协程，100M带宽的环境下，跑两百万字典大概10分钟左右跑完，大概3333个子域每秒。
-
-   ```bash
-   python aiobrute.py --help
-   ```
-
-   ```bash
-   NAME
-       aiobrute.py - OneForAll多进程多协程异步子域爆破模块
-   
-   SYNOPSIS
-       aiobrute.py --target=TARGET <flags>
-   
-   DESCRIPTION
-       Example：
-           python3 aiobrute.py --target example.com run
-           python3 aiobrute.py --target ./domains.txt run
-           python3 aiobrute.py --target example.com --process 4 --coroutine 64 run
-           python3 aiobrute.py --target example.com --wordlist subdomains.txt run
-           python3 aiobrute.py --target example.com --recursive True --depth 2 run
-           python3 aiobrute.py --target m.{fuzz}.a.bz --fuzz True --rule [a-z] run
-   
-       Note:
-           参数valid可选值1，0，None，分别表示导出有效，无效，全部子域
-           参数format可选格式有'txt', 'rst', 'csv', 'tsv', 'json', 'yaml', 'html',
-                             'jira', 'xls', 'xlsx', 'dbf', 'latex', 'ods'
-           参数path为None会根据format参数和域名名称在项目结果目录生成相应文件
-   
-   ARGUMENTS
-       TARGET
-           单个域名或者每行一个域名的文件路径
-   
-   FLAGS
-       --process=PROCESS
-           爆破的进程数(默认CPU核心数)
-       --coroutine=COROUTINE
-           每个爆破进程下的协程数(默认1024)
-       --wordlist=WORDLIST
-           指定爆破所使用的字典路径(默认使用config.py配置)
-       --recursive=RECURSIVE
-           是否使用递归爆破(默认False)
-       --depth=DEPTH
-           递归爆破的深度(默认2)
-       --namelist=NAMELIST
-           指定递归爆破所使用的字典路径(默认使用config.py配置)
-       --fuzz=FUZZ
-           是否使用fuzz模式进行爆破(默认False，开启须指定fuzz正则规则)
-       --rule=RULE
-           fuzz模式使用的正则规则(默认使用config.py配置)
-       --export=EXPORT
-           是否导出爆破结果(默认True)
-       --valid=VALID
-           导出子域的有效性(默认None)
-       --format=FORMAT
-           导出格式(默认xls)
-       --path=PATH
-           导出路径(默认None)
-       --show=SHOW
-           终端显示导出数据(默认False)
-   ```
-
-3. 其他模块使用请参考[使用帮助](https://github.com/shmilylty/OneForAll/tree/master/docs/using_help.md)
-
-## 👏主要框架
-
-* [aiodns](https://github.com/saghul/aiodns) - 简单DNS异步解析库。
-* [aiohttp](https://github.com/aio-libs/aiohttp) - 异步http客户端/服务器框架
-* [aiomultiprocess](https://github.com/jreese/aiomultiprocess) - 将Python代码提升到更高的性能水平(multiprocessing和asyncio结合，实现异步多进程多协程)
-* [beautifulsoup4](https://pypi.org/project/beautifulsoup4/) - 可以轻松从HTML或XML文件中提取数据的Python库
-* [fire](https://github.com/google/python-fire) - Python Fire是一个纯粹根据任何Python对象自动生成命令行界面（CLI）的库
-* [loguru](https://github.com/Delgan/loguru) - 旨在带来愉快的日志记录Python库
-* [records](https://github.com/kennethreitz/records) - Records是一个非常简单但功能强大的库，用于对大多数关系数据库进行最原始SQL查询。
-* [requests](https://github.com/psf/requests) - Requests 唯一的一个非转基因的 Python HTTP 库，人类可以安全享用。
-* [tqdm](https://github.com/tqdm/tqdm) - 适用于Python和CLI的快速，可扩展的进度条库
-
-感谢这些伟大优秀的Python库！
-
 ## 🌲目录结构
 
 ```bash
@@ -328,6 +245,20 @@ D:.
         \---search           利用搜索引擎发现子域模块
 
 ```
+
+## 👏用到框架
+
+* [aiodns](https://github.com/saghul/aiodns) - 简单DNS异步解析库。
+* [aiohttp](https://github.com/aio-libs/aiohttp) - 异步http客户端/服务器框架
+* [aiomultiprocess](https://github.com/jreese/aiomultiprocess) - 将Python代码提升到更高的性能水平(multiprocessing和asyncio结合，实现异步多进程多协程)
+* [beautifulsoup4](https://pypi.org/project/beautifulsoup4/) - 可以轻松从HTML或XML文件中提取数据的Python库
+* [fire](https://github.com/google/python-fire) - Python Fire是一个纯粹根据任何Python对象自动生成命令行界面（CLI）的库
+* [loguru](https://github.com/Delgan/loguru) - 旨在带来愉快的日志记录Python库
+* [records](https://github.com/kennethreitz/records) - Records是一个非常简单但功能强大的库，用于对大多数关系数据库进行最原始SQL查询。
+* [requests](https://github.com/psf/requests) - Requests 唯一的一个非转基因的 Python HTTP 库，人类可以安全享用。
+* [tqdm](https://github.com/tqdm/tqdm) - 适用于Python和CLI的快速，可扩展的进度条库
+
+感谢这些伟大优秀的Python库！
 
 ## 🙏贡献
 
