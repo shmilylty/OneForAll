@@ -148,7 +148,7 @@ The OneForAll command line interface is based on [Fire](https://github.com/googl
 
 [oneforall.py](https://github.com/shmilylty/OneForAll/tree/master/oneforall/oneforall.py) is the main program entry, and oneforall.py can call [aiobrute.py](https://github.com/shmilylty/OneForAll/tree/master/oneforall/aiobrute.py), [takerover.py](https://github.com/shmilylty/OneForAll/tree/master/oneforall/takerover.py) and [dbexport.py ](https://github.com/shmilylty/OneForAll/tree/master/oneforall/dbexport.py) and other modules, in order to facilitate the sub-field blasting, aiobrute.py is isolated independently, in order to facilitate the subdomain takeover risk check independently takeover.py, in order to facilitate the database export independently dbexport.py, these modules can be run separately, and the parameters accepted are more abundant, if you want to use these modules separately, please refer to the [usage help](https://github.com/shmilylty/OneForAll/tree/master/docs/usage_help.en.md).
 
-❗ Note: When you encounter some problems or doubts during use, please use [Issues](https://github.com/shmilylty/OneForAll/issues) to search for answers. Also see [Q&A](https://github.com/shmilylty/OneForAll/tree/master/docs/Q&A.md).
+❗ Note: When you encounter some problems or doubts during use, please use [Issues](https://github.com/shmilylty/OneForAll/issues) to search for answers. Also see [Q&troubleshooting.md](https://github.com/shmilylty/OneForAll/tree/master/docs/Q&troubleshooting.md).
 
 **oneforall.py help**
 
