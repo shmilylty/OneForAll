@@ -53,6 +53,8 @@ At present, OneForAll is still under development, there must be a lot of problem
 * **Very fast**，[collection module](https://github.com/shmilylty/OneForAll/tree/master/oneforall//collect.py) uses multithreaded calls, [blasting module](https://github.com/shmilylty/OneForAll/tree/master/oneforall/aiobrute.py) uses asynchronous multiprocess and multiprogramming, and DNS parsing and HTTP requests use asynchronous multiprogramming in subdomain verification. Multithreaded check [subdomain takeover](https://github.com/shmilylty/OneForAll/tree/master/oneforall/takeover.py) risk.
 * **Good experience**，Each module has a progress bar, and the results of each module are saved asynchronously.
 
+If you have any other great ideas, please let me know!😎
+
 ## 🚀Start Guide
 
 📢 Please take a moment to read this document to help you quickly get familiar with OneForAll!

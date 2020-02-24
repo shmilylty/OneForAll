@@ -53,6 +53,8 @@
 * **速度极快**，[收集模块](https://github.com/shmilylty/OneForAll/tree/master/oneforall//collect.py)使用多线程调用，[爆破模块](https://github.com/shmilylty/OneForAll/tree/master/oneforall/aiobrute.py)使用异步多进程多协程，子域验证中DNS解析和HTTP请求使用异步多协程，多线程检查[子域接管](https://github.com/shmilylty/OneForAll/tree/master/oneforall/takeover.py)风险。
 * **体验良好**，日志和终端输出全使用中文，各模块都有进度条，异步保存各模块结果。
 
+如果你有其他很棒的想法请务必告诉我！😎
+
 ## 🚀上手指南
 
 📢 请务必花一点时间阅读此文档，有助于你快速熟悉OneForAll！
