@@ -24,12 +24,13 @@ class NetCraft(Query):
         self.header = self.get_header()  # Netcraft会检查User-Agent
         resp = self.get(self.init)
         if not resp:
-            return None
+            return False
         self.cookie = resp.cookies
         cookie_value = self.cookie['netcraft_js_verification_challenge']
         cookie_encode = parse.unquote(cookie_value).encode('utf-8')
         verify_taken = hashlib.sha1(cookie_encode).hexdigest()
         self.cookie['netcraft_js_verification_response'] = verify_taken
+        return True
 
     def query(self):
         """
