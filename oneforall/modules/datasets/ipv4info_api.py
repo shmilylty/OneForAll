@@ -51,6 +51,8 @@ class IPv4InfoAPI(Query):
         """
         类执行入口
         """
+        if not self.check(self.api):
+            return
         self.begin()
         self.query()
         self.finish()
