@@ -12,3 +12,4 @@ if __name__ == '__main__':
     test.brute = True
     test.takeover = True
     test.run()
+    result = test.datas
