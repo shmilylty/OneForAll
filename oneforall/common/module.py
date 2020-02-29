@@ -269,12 +269,15 @@ class Module(object):
             self.results.append(result)
         else:
             for subdomain in self.subdomains:
+                valid = None
+                if self.type != 'A':  # 不是利用的DNS记录的A记录查询子域默认都有效
+                    valid = 1
                 url = 'http://' + subdomain
                 level = subdomain.count('.') - self.domain.count('.')
                 ips = self.records.get(subdomain)
                 result = {'id': None,
                           'type': self.type,
-                          'valid': None,
+                          'valid': valid,
                           'new': None,
                           'url': url,
                           'subdomain': subdomain,
