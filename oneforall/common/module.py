@@ -28,13 +28,14 @@ class Module(object):
         self.delay = config.request_delay  # 请求睡眠时延
         self.timeout = config.request_timeout  # 请求超时时间
         self.verify = config.request_verify  # 请求SSL验证
-        self.domain = ''  # 要进行子域名收集的域名
+        self.domain = str()  # 当前进行子域名收集的主域
+        self.type = 'A'  # 对主域进行子域收集时利用的DNS记录查询类型(默认利用A记录)
         self.subdomains = set()  # 存放发现的子域
         self.records = dict()  # 存放子域解析记录
         self.results = list()  # 存放模块结果
         self.start = time.time()  # 模块开始执行时间
         self.end = None  # 模块结束执行时间
-        self.elapsed = None  # 模块执行耗时
+        self.elapse = None  # 模块执行耗时
 
     def check(self, *apis):
         """
@@ -59,9 +60,9 @@ class Module(object):
         输出模块结束信息
         """
         self.end = time.time()
-        self.elapsed = round(self.end - self.start, 1)
+        self.elapse = round(self.end - self.start, 1)
         logger.log('DEBUG', f'结束执行{self.source}模块收集{self.domain}的子域')
-        logger.log('INFOR', f'{self.source}模块耗时{self.elapsed}秒发现子域'
+        logger.log('INFOR', f'{self.source}模块耗时{self.elapse}秒发现子域'
                             f'{len(self.subdomains)}个')
         logger.log('DEBUG', f'{self.source}模块发现{self.domain}的子域\n'
                             f'{self.subdomains}')
@@ -234,7 +235,7 @@ class Module(object):
             result = {'domain': self.domain,
                       'name': self.module,
                       'source': self.source,
-                      'elapsed': self.elapsed,
+                      'elapse': self.elapse,
                       'count': len(self.subdomains),
                       'subdomains': list(self.subdomains),
                       'records': self.records}
@@ -247,43 +248,48 @@ class Module(object):
         """
         if not len(self.subdomains):  # 该模块一个子域都没有发现的情况
             result = {'id': None,
+                      'type': self.type,
+                      'valid': None,
+                      'new': None,
                       'url': None,
                       'subdomain': None,
                       'port': None,
+                      'level': None,
                       'ips': None,
                       'status': None,
                       'reason': None,
-                      'valid': None,
-                      'new': None,
                       'title': None,
                       'banner': None,
                       'header': None,
                       'response': None,
                       'module': self.module,
                       'source': self.source,
-                      'elapsed': self.elapsed,
+                      'elapse': self.elapse,
                       'count': 0}
             self.results.append(result)
         else:
             for subdomain in self.subdomains:
                 url = 'http://' + subdomain
+                level = subdomain.count('.') - self.domain.count('.')
                 ips = self.records.get(subdomain)
                 result = {'id': None,
+                          'type': self.type,
+                          'valid': None,
+                          'new': None,
                           'url': url,
                           'subdomain': subdomain,
                           'port': None,
+                          'level': level,
                           'ips': ips,
                           'status': None,
                           'reason': None,
-                          'valid': None,
-                          'new': None,
                           'title': None,
                           'banner': None,
                           'module': self.module,
                           'header': None,
                           'response': None,
                           'source': self.source,
-                          'elapsed': self.elapsed,
+                          'elapse': self.elapse,
                           'count': len(self.subdomains)}
                 self.results.append(result)
 

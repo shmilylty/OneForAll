@@ -56,22 +56,24 @@ class Database(object):
             return
         logger.log('TRACE', f'正在创建{table_name}表')
         self.query(f'create table "{table_name}" ('
+                   f'type text,'
+                   f'valid int,'
+                   f'new int,'
                    f'id integer primary key,'
                    f'url text,'
                    f'subdomain text,'
                    f'port int,'
+                   f'level int,'
                    f'ips text,'
                    f'status int,'
                    f'reason text,'
-                   f'valid int,'
-                   f'new int,'
                    f'title text,'
                    f'banner text,'
                    f'header text,'
                    f'response text,'
                    f'module text,'
                    f'source text,'
-                   f'elapsed float,'
+                   f'elapse float,'
                    f'count int)')
 
     def save_db(self, table_name, results, module_name=None):
@@ -89,12 +91,12 @@ class Database(object):
             try:
                 self.conn.bulk_query(
                     f'insert into "{table_name}" ('
-                    f'id, url, subdomain, port, ips, status, reason, valid,'
-                    f'new, title, banner, header, response, module, source, '
-                    f'elapsed, count)'
-                    f'values (:id, :url, :subdomain, :port, :ips, :status,'
-                    f':reason, :valid, :new, :title, :banner, :header,'
-                    f':response, :module, :source,:elapsed, :count)',
+                    f'id, type, valid, new, url, subdomain, port, level, ips,'
+                    f'status, reason, title, banner, header, response, module,'
+                    f'source, elapse, count)'
+                    f'values (:id, :type, :valid, :new, :url, :subdomain,'
+                    f':port, :level, :ips, :status, :reason, :title, :banner,'
+                    f':header, :response, :module, :source,:elapse, :count)',
                     results)
             except Exception as e:
                 logger.log('ERROR', e.args)
@@ -215,8 +217,8 @@ class Database(object):
         :param any valid: 有效性
         """
         table_name = table_name.replace('.', '_')
-        query = f'select id, url, subdomain, port, ips, status, reason,' \
-                f'valid, new, title, banner from "{table_name}"'
+        query = f'select id, type, valid, new, url, subdomain, port, level, ips,' \
+                f' status, reason, title, banner from "{table_name}"'
         if valid:
             where = f' where valid = 1'
             query += where
