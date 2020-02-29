@@ -255,7 +255,7 @@ class Module(object):
                       'subdomain': None,
                       'port': None,
                       'level': None,
-                      'ips': None,
+                      'content': None,
                       'status': None,
                       'reason': None,
                       'title': None,
@@ -274,7 +274,7 @@ class Module(object):
                     valid = 1
                 url = 'http://' + subdomain
                 level = subdomain.count('.') - self.domain.count('.')
-                ips = self.records.get(subdomain)
+                content = self.records.get(subdomain)
                 result = {'id': None,
                           'type': self.type,
                           'valid': valid,
@@ -283,7 +283,7 @@ class Module(object):
                           'subdomain': subdomain,
                           'port': None,
                           'level': level,
-                          'ips': ips,
+                          'content': content,
                           'status': None,
                           'reason': None,
                           'title': None,

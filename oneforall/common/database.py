@@ -64,7 +64,7 @@ class Database(object):
                    f'subdomain text,'
                    f'port int,'
                    f'level int,'
-                   f'ips text,'
+                   f'content text,'
                    f'status int,'
                    f'reason text,'
                    f'title text,'
@@ -91,11 +91,11 @@ class Database(object):
             try:
                 self.conn.bulk_query(
                     f'insert into "{table_name}" ('
-                    f'id, type, valid, new, url, subdomain, port, level, ips,'
+                    f'id, type, valid, new, url, subdomain, port, level, content,'
                     f'status, reason, title, banner, header, response, module,'
                     f'source, elapse, count)'
                     f'values (:id, :type, :valid, :new, :url, :subdomain,'
-                    f':port, :level, :ips, :status, :reason, :title, :banner,'
+                    f':port, :level, :content, :status, :reason, :title, :banner,'
                     f':header, :response, :module, :source,:elapse, :count)',
                     results)
             except Exception as e:
@@ -217,7 +217,7 @@ class Database(object):
         :param any valid: 有效性
         """
         table_name = table_name.replace('.', '_')
-        query = f'select id, type, valid, new, url, subdomain, port, level, ips,' \
+        query = f'select id, type, valid, new, url, subdomain, port, level, content,' \
                 f' status, reason, title, banner from "{table_name}"'
         if valid:
             where = f' where valid = 1'
