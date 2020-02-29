@@ -55,7 +55,7 @@ def convert_results(result_list):
         hostname, answer = result
         value_dict = {'ips': None, 'reason': None, 'valid': None}
         if isinstance(answer, tuple):
-            value_dict['ips'] = str(answer[2])[1:-1]
+            value_dict['ips'] = ','.join(answer[2])
             result_dict[hostname] = value_dict
         elif isinstance(answer, Exception):
             value_dict['reason'] = str(answer.args)
