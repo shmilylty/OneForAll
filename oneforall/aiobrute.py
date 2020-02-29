@@ -302,10 +302,10 @@ class AIOBrute(Module):
                 db.save_db(self.domain, results, self.source)
 
             end = time.time()
-            self.elapsed = round(end - start, 1)
+            self.elapse = round(end - start, 1)
             logger.log('INFOR', f'结束执行{self.source}模块爆破域名{self.domain}')
             length = len(self.subdomains)
-            logger.log('INFOR', f'{self.source}模块耗时{self.elapsed}秒'
+            logger.log('INFOR', f'{self.source}模块耗时{self.elapse}秒'
                                 f'发现{self.domain}的域名{length}个')
             logger.log('DEBUG', f'{self.source}模块发现{self.domain}的域名:\n'
                                 f'{self.subdomains}')

@@ -157,8 +157,8 @@ class Takeover(Module):
         else:
             logger.log('FATAL', f'获取域名失败')
         end = time.time()
-        elapsed = round(end - start, 1)
-        logger.log('INFOR', f'{self.source}模块耗时{elapsed}秒'
+        elapse = round(end - start, 1)
+        logger.log('INFOR', f'{self.source}模块耗时{elapse}秒'
                             f'发现{len(self.results)}个子域存在接管风险')
         logger.log('INFOR', f'子域接管风险检查结果 {self.path}')
         logger.log('INFOR', f'结束执行{self.source}模块')

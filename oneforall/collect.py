@@ -13,7 +13,7 @@ class Collect(object):
     """
     def __init__(self, domain, export=True):
         self.domain = domain
-        self.elapsed = 0.0
+        self.elapse = 0.0
         self.modules = []
         self.collect_funcs = []
         self.path = None
@@ -87,7 +87,7 @@ class Collect(object):
                 self.path = config.result_save_dir.joinpath(name)
             dbexport.export(self.domain, path=self.path, format=self.format)
         end = time.time()
-        self.elapsed = round(end - start, 1)
+        self.elapse = round(end - start, 1)
 
 
 if __name__ == '__main__':
