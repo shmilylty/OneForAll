@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 """
 通过枚举域名常见的SRV记录并做查询来发现子域
 """
@@ -20,6 +18,7 @@ class BruteSRV(Module):
         self.domain = self.register(domain)
         self.module = 'dnsquery'
         self.source = "BruteSRV"
+        self.type = 'SRV'  # 利用的DNS记录的SRV记录查询子域
         self.thread_num = 10
         self.names_que = queue.Queue()
         self.answers_que = queue.Queue()
