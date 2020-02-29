@@ -53,9 +53,9 @@ def convert_results(result_list):
     result_dict = {}
     for result in result_list:
         hostname, answer = result
-        value_dict = {'ips': None, 'reason': None, 'valid': None}
+        value_dict = {'content': None, 'reason': None, 'valid': None}
         if isinstance(answer, tuple):
-            value_dict['ips'] = ','.join(answer[2])
+            value_dict['content'] = ','.join(answer[2])
             result_dict[hostname] = value_dict
         elif isinstance(answer, Exception):
             value_dict['reason'] = str(answer.args)
@@ -69,14 +69,14 @@ def convert_results(result_list):
 
 def filter_subdomain(data_list):
     """
-    过滤出无IPS值的子域到新的子域列表
+    过滤出无解析内容的子域到新的子域列表
 
     :param list data_list: 待过滤的数据列表
     :return: 符合条件的子域列表
     """
     subdomains = []
     for data in data_list:
-        if not data.get('ips'):
+        if not data.get('content'):
             subdomain = data.get('subdomain')
             subdomains.append(subdomain)
     return subdomains
@@ -91,7 +91,7 @@ def update_data(data_list, results_dict):
     :return: 更新后的数据列表
     """
     for index, data in enumerate(data_list):
-        if not data.get('ips'):
+        if not data.get('content'):
             subdomain = data.get('subdomain')
             value_dict = results_dict.get(subdomain)
             data.update(value_dict)
