@@ -1,4 +1,3 @@
-# coding=utf-8
 import re
 import sys
 import time
@@ -305,7 +304,7 @@ def export_all(format, path, datas):
         row.pop('response')
         row.pop('module')
         row.pop('source')
-        row.pop('elapsed')
+        row.pop('elapse')
         row.pop('count')
         keys = row.keys()
         values = row.values()
