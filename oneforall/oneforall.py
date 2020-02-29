@@ -92,10 +92,10 @@ class OneForAll(object):
         self.domains = set()  # 所有即将进行收集的主机
         self.data = list()  # 存放当前主域的子域结果
         self.datas = list()  # 存放所有主域的子域结果
-        self.old_table = self.domain + '_old_result'  # 存放上一次结果的表名
-        self.new_table = self.domain + '_now_result'  # 存放现在结果的表名
-        self.origin_table = self.domain + '_origin_result'  # 存放最初收集结果的表名
-        self.resolve_table = self.domain + '_resolve_result'  # 存放解析后的结果表名
+        self.old_table = str()  # 存放上一次结果的表名
+        self.new_table = str()  # 存放现在结果的表名
+        self.origin_table = str()  # 存放最初收集结果的表名
+        self.resolve_table = str()  # 存放解析后的结果表名
 
     def config(self):
         """
@@ -167,6 +167,11 @@ class OneForAll(object):
         :return: 子域结果
         :rtype: list
         """
+        self.old_table = self.domain + '_old_result'
+        self.new_table = self.domain + '_now_result'
+        self.origin_table = self.domain + '_origin_result'
+        self.resolve_table = self.domain + '_resolve_result'
+
         collect = Collect(self.domain, export=False)
         collect.run()
         if self.brute:
