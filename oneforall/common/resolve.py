@@ -1,4 +1,3 @@
-import signal
 import socket
 import asyncio
 import functools

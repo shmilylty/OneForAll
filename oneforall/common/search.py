@@ -1,5 +1,3 @@
-# coding=utf-8
-import requests
 import config
 from .module import Module
 from . import utils
