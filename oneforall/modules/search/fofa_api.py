@@ -3,7 +3,6 @@ import time
 
 import api
 from common.search import Search
-from config import logger
 
 
 class FoFa(Search):
