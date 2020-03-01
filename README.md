@@ -9,7 +9,7 @@
 
 👊**OneForAll是一款功能强大的子域收集工具**  📝[English Document](https://github.com/shmilylty/OneForAll/tree/master/README.en.md)
 
-![](https://raw.githubusercontent.com/shmilylty/OneForAll/master/images/All_Might.jpg)
+![Example](./docs/usage_example.svg)
 
 ## 🎉项目简介
 
@@ -26,7 +26,7 @@
 
 * **效率问题**，没有利用多进程，多线程以及异步协程技术，速度较慢。
 
-为了解决以上痛点，此项目应用而生，OneForAll一词是来自我喜欢的一部日漫《[我的英雄学院](https://manhua.fzdm.com/131/)》，它是一种通过一代代的传承不断变强的潜力无穷的顶级个性，目前[番剧](https://www.bilibili.com/bangumi/media/md7452/)也更新到了第四季了，欢迎大佬们入坑😄。正如其名，我希望OneForAll是一款集百家之长，功能强大的全面快速子域收集终极神器🔨。
+为了解决以上痛点，此项目应用而生，正如其名，我希望OneForAll是一款集百家之长，功能强大的全面快速子域收集终极神器🔨。
 
 目前OneForAll还在开发中，肯定有不少问题和需要改进的地方，欢迎大佬们提交[Issues](https://github.com/shmilylty/OneForAll/issues)和[PR](https://github.com/shmilylty/OneForAll/pulls)，用着还行给个小星星✨吧，目前有一个专门用于OneForAll交流和反馈QQ群👨‍👨‍👦‍👦：:[**824414244**](//shang.qq.com/wpa/qunwpa?idkey=125d3689b60445cdbb11e4ddff38036b7f6f2abbf4f7957df5dddba81aa90771)（加群验证：我的英雄学院），也可以给我发邮件📧[admin@hackfun.org]。
 
@@ -140,6 +140,28 @@ docker run -it oneforall
    cd oneforall/
    pipenv run python oneforall.py --target example.com run
    ```
+
+**🧐结果说明**
+
+我们以`python3 oneforall.py --target example.com run`命令为例，OneForAll在默认参数正常执行完毕会在results目录生成相应结果：
+
+![Result](./images/Result.png)
+
+`example.com.csv`是每个主域下的子域收集结果。
+
+`all_subdomain_result_1583034493.csv`是每次运行OneForAll收集到子域的汇总结果，包含`example.com.csv`，方便在批量收集场景中获取全部结果。
+
+`result.sqlite3`是存放每次运行OneForAll收集到子域的SQLite3结果数据库，其数据库结构如下图：
+
+![Database](./images/Database.png)
+
+其中类似`example_com_origin_result`表存放每个模块最初子域收集结果。
+
+其中类似`example_com_resolve_result`表存放对子域进行解析后的结果。
+
+其中类似`example_com_last_result`表存放上一次子域收集结果（需要收集两次以上才会生成）。
+
+其中类似`example_com_now_result`表存放现在子域收集结果，一般情况关注这张表就可以了。
 
 **🤔使用帮助**
 

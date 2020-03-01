@@ -9,7 +9,7 @@
 
 👊**OneForAll is a powerful subdomain collection tool**  📝[中文文档](https://github.com/shmilylty/OneForAll/tree/master/README.md)
 
-![](https://raw.githubusercontent.com/shmilylty/OneForAll/master/images/All_Might.jpg)
+![Example](./docs/usage_example.svg)
 
 ## 🎉Project profile
 
@@ -26,7 +26,7 @@ The importance of information collection in penetration testing is self-evident.
 
 * **Efficiency issues**，do not take advantage of multi-process, multi-threading and asynchronous cooperation technology, the speed is slow.
 
-In order to solve the above pain points, the term OneForAll comes from one of my favorite Japanese cartoons,《[My Hero Academia](https://manhua.fzdm.com/131/)》.It's a top personality that has grown from generation to generation, and now [TV series](https://www.bilibili.com/bangumi/media/md7452/)has been updated to season 4. As its name suggests, I want OneForAll to be a collection of 100 strong, powerful and fast subdomains that collect the ultimate artifact 🔨.
+In order to solve the above pain points, As its name suggests, I want OneForAll to be a collection of 100 strong, powerful and fast subdomains that collect the ultimate artifact 🔨.
 
 At present, OneForAll is still under development, there must be a lot of problems and areas for improvement. Welcome to submit [Issues](https://github.com/shmilylty/OneForAll/issues) or [PR](https://github.com/shmilylty/OneForAll/pulls)，If you like, give it to a little star ✨，At present, there is a special QQ group for OneForAll communication and feedback: 👨‍👨‍👦‍👦：:[**824414244**](//shang.qq.com/wpa/qunwpa?idkey=125d3689b60445cdbb11e4ddff38036b7f6f2abbf4f7957df5dddba81aa90771)，You can also 📧[email](mailto://admin@hackfun.org) or [tweet](https://twitter.com/jinglingbiaodi) to me .
 
@@ -141,6 +141,28 @@ docker run -it oneforall
    cd oneforall/
    pipenv run python oneforall.py --target example.com run
    ```
+
+**🧐Description**. 
+
+Let's take the command `python3 oneforall.py-- target example.com run` as an example. After the default parameters are executed normally, OneForAll will generate the corresponding results in the results directory: 
+
+![Result](./images/Result.png)
+
+`example.com.csv` is the result of subdomain collection under each primary domain. 
+
+`all_subdomain_result_1583034493.csv` is the summary result of the sub-domain collected by OneForAll each time, including `example.com.csv`. It is convenient to obtain all the results in batch collection scenarios. 
+
+`result.sqlite3` is the SQLite3 result database that stores the sub-domain collected by OneForAll each time you run SQLite3. The database structure is shown below: 
+
+![Database](./images/Database.png)
+
+A table like `example_com_origin_result` stores the initial subdomain collection results of each module. 
+
+A table like `example_com_resolve_result` stores the results of resolving subdomains.
+
+A table like `example_com_last_result` stores the results of the last sub-domain collection (it needs to be collected more than twice before it is generated). 
+
+A table like `example_com_now_result` stores the collection results of the current subdomain. In general, you just need to pay attention to this table.
 
 **🤔Help**
 
