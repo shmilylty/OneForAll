@@ -172,10 +172,7 @@ def request_callback(future, index, datas):
         else:
             datas[index]['valid'] = 1
             headers = resp.headers
-            banner = str({'Server': headers.get('Server'),
-                          'Via': headers.get('Via'),
-                          'X-Powered-By': headers.get('X-Powered-By')})
-            datas[index]['banner'] = banner[1:-1]
+            datas[index]['banner'] = utils.get_sample_banner(headers)
             datas[index]['header'] = str(dict(headers))[1:-1]
             if isinstance(text, str):
                 title = get_title(text).strip()
