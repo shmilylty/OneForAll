@@ -374,3 +374,11 @@ def get_filtered_data(data):
         if valid == 0 or valid == 1:
             filtered_data.append(item)
     return filtered_data
+
+
+def get_sample_banner(headers):
+    server = headers.get('Server') or ''
+    via = headers.get('Via') or ''
+    power = headers.get('X-Powered-By') or ''
+    banner = server + via + power
+    return banner
