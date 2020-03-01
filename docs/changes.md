@@ -8,6 +8,17 @@ OneForAll遵守[语义化版本格式](https://semver.org/)。
 # Unreleased
 
 # Released
+## [0.1.0](https://github.com/shmilylty/oneforall/releases/tag/v0.1.0) - 2020-03-02
+- 重构OneForAll入口
+- 添加1个新的子域收集模块
+- 添加了查询类型type和子域层数level两个结果字段
+- 调整项目结构
+- 优化个别收集模块
+- 优化子域爆破字典
+- 优化响应体解码处理
+- 更新说明文档
+- 修复已知bug
+
 ## [0.0.9](https://github.com/shmilylty/oneforall/releases/tag/v0.0.9) - 2020-02-20
 - 重构子域解析模块
 - 添加4个新的子域收集模块
