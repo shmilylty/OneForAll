@@ -56,10 +56,10 @@ class Database(object):
             return
         logger.log('TRACE', f'正在创建{table_name}表')
         self.query(f'create table "{table_name}" ('
+                   f'id integer primary key,'
                    f'type text,'
                    f'valid int,'
                    f'new int,'
-                   f'id integer primary key,'
                    f'url text,'
                    f'subdomain text,'
                    f'port int,'
