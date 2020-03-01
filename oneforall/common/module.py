@@ -242,6 +242,13 @@ class Module(object):
             json.dump(result, file, ensure_ascii=False, indent=4)
         return True
 
+    def gen_record(self, subdomains, record):
+        """
+        生成记录字典
+        """
+        for subdomain in subdomains:
+            self.records[subdomain] = record
+
     def gen_result(self):
         """
         生成结果

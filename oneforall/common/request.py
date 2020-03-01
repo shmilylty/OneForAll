@@ -39,29 +39,36 @@ def get_ports(port):
     return set(ports)
 
 
-def gen_new_datas(datas, ports):
+def gen_req_data(data, ports):
     logger.log('INFOR', f'正在生成请求地址')
-    new_datas = []
-    for data in datas:
+    new_data = []
+    for data in data:
         valid = data.get('valid')
-        if valid is None:  # 子域有效性未知的才进行http请求探测
-            subdomain = data.get('subdomain')
-            for port in ports:
-                if str(port).endswith('443'):
-                    url = f'https://{subdomain}:{port}'
-                    data['id'] = None
-                    data['url'] = url
-                    data['port'] = port
-                    new_datas.append(data)
-                    data = dict(data)  # 需要生成一个新的字典对象
-                else:
-                    url = f'http://{subdomain}:{port}'
-                    data['id'] = None
-                    data['url'] = url
-                    data['port'] = port
-                    new_datas.append(data)
-                    data = dict(data)  # 需要生成一个新的字典对象
-    return new_datas
+        # 无效(0)和有效子域(1)不进行http请求探测
+        # 有效性待确认(None)的子域才进行http请求探测
+        if valid == 0 or valid == 1:
+            continue
+        subdomain = data.get('subdomain')
+        for port in ports:
+            if str(port).endswith('443'):
+                url = f'https://{subdomain}:{port}'
+                if port == 443:
+                    url = f'https://{subdomain}'
+                data['id'] = None
+                data['url'] = url
+                data['port'] = port
+                new_data.append(data)
+                data = dict(data)  # 需要生成一个新的字典对象
+            else:
+                url = f'http://{subdomain}:{port}'
+                if port == 80:
+                    url = f'http://{subdomain}'
+                data['id'] = None
+                data['url'] = url
+                data['port'] = port
+                new_data.append(data)
+                data = dict(data)  # 需要生成一个新的字典对象
+    return new_data
 
 
 async def fetch(session, url):
@@ -191,9 +198,10 @@ def get_header():
     return header
 
 
-async def bulk_request(datas, port):
+async def bulk_request(data, port):
     ports = get_ports(port)
-    new_datas = gen_new_datas(datas, ports)
+    no_req_data = utils.get_filtered_data(data)
+    to_req_data = gen_req_data(data, ports)
     method = config.request_method
     logger.log('INFOR', f'使用{method}请求方法')
     logger.log('INFOR', f'正在进行异步子域请求')
@@ -201,12 +209,12 @@ async def bulk_request(datas, port):
     header = get_header()
     async with ClientSession(connector=connector, headers=header) as session:
         tasks = []
-        for i, data in enumerate(new_datas):
+        for i, data in enumerate(to_req_data):
             url = data.get('url')
             task = asyncio.ensure_future(fetch(session, url))
             task.add_done_callback(functools.partial(request_callback,
                                                      index=i,
-                                                     datas=new_datas))
+                                                     datas=to_req_data))
             tasks.append(task)
         # 任务列表里有任务不空时才进行解析
         if tasks:
@@ -219,7 +227,7 @@ async def bulk_request(datas, port):
                 await future
 
     logger.log('INFOR', f'完成异步进行子域的GET请求')
-    return new_datas
+    return to_req_data + no_req_data
 
 
 def run_request(domain, data, port):
@@ -234,6 +242,7 @@ def run_request(domain, data, port):
     """
     loop = asyncio.get_event_loop()
     asyncio.set_event_loop(loop)
+    data = utils.set_id_none(data)
     request_coroutine = bulk_request(data, port)
     data = loop.run_until_complete(request_coroutine)
     # 在关闭事件循环前加入一小段延迟让底层连接得到关闭的缓冲时间
