@@ -8,8 +8,10 @@ import platform
 import config
 from pathlib import Path
 from records import Record, RecordCollection
+
 from common.domain import Domain
 from config import logger
+from common import resolve
 
 user_agents = [
     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '
@@ -316,6 +318,27 @@ def export_all(format, path, datas):
     save_data(path, content)
 
 
+def dns_query(qname, qtype):
+    """
+    查询域名DNS记录
+
+    :param str qname: 待查域名
+    :param str qtype: 查询类型
+    :return: 查询结果
+    """
+    logger.log('TRACE', f'尝试查询{qname}的{qtype}记录')
+    resolver = resolve.dns_resolver()
+    try:
+        answer = resolver.query(qname, qtype)
+    except Exception as e:
+        logger.log('TRACE', e.args)
+        logger.log('TRACE', f'查询{qname}的{qtype}记录失败')
+        return None
+    else:
+        logger.log('TRACE', f'查询{qname}的{qtype}记录成功')
+        return answer
+
+
 def get_timestamp():
     return int(time.time())
 
@@ -334,3 +357,20 @@ def count_valid(data):
 
 def get_subdomains(data):
     return set(map(lambda item: item.get('subdomain'), data))
+
+
+def set_id_none(data):
+    new_data = []
+    for item in data:
+        item['id'] = None
+        new_data.append(item)
+    return new_data
+
+
+def get_filtered_data(data):
+    filtered_data = []
+    for item in data:
+        valid = item.get('valid')
+        if valid == 0 or valid == 1:
+            filtered_data.append(item)
+    return filtered_data

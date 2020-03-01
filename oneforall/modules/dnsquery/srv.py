@@ -7,7 +7,6 @@ import queue
 import threading
 
 from common import utils
-from common import resolve
 from common.module import Module
 from config import data_storage_dir, logger
 
@@ -47,10 +46,13 @@ class BruteSRV(Module):
 
         while not self.answers_que.empty():
             answer = self.answers_que.get()
-            if answer is not None:
-                for item in answer:
-                    subdomains = utils.match_subdomain(self.domain, str(item))
-                    self.subdomains = self.subdomains.union(subdomains)
+            if answer is None:
+                continue
+            for item in answer:
+                record = str(item)
+                subdomains = utils.match_subdomain(self.domain, record)
+                self.subdomains = self.subdomains.union(subdomains)
+                self.gen_record(subdomains, record)
 
     def run(self):
         """
@@ -69,29 +71,11 @@ class BruteThread(threading.Thread):
         threading.Thread.__init__(self)
         self.names_que = names_que
         self.answers_que = answers_que
-        self.resolver = resolve.dns_resolver()
-
-    def query(self, name):
-        """
-        查询域名的SRV记录
-        :param str name: SRV记录
-        :return: 查询结果
-        """
-        logger.log('TRACE', f'尝试查询{name}的SRV记录')
-        try:
-            answer = self.resolver.query(name, 'SRV')
-        except Exception as e:
-            logger.log('TRACE', e.args)
-            logger.log('TRACE', f'查询{name}的SRV记录失败')
-            return None
-        else:
-            logger.log('TRACE', f'查询{name}的SRV记录成功')
-            return answer
 
     def run(self):
         while True:
             name = self.names_que.get()
-            answer = self.query(name)
+            answer = utils.dns_query(name, 'SRV')
             self.answers_que.put(answer)
             self.names_que.task_done()
 
