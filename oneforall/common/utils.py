@@ -377,8 +377,15 @@ def get_filtered_data(data):
 
 
 def get_sample_banner(headers):
-    server = headers.get('Server') or ''
-    via = headers.get('Via') or ''
-    power = headers.get('X-Powered-By') or ''
-    banner = server + via + power
+    temp_list = []
+    server = headers.get('Server')
+    if server:
+        temp_list.append(server)
+    via = headers.get('Via')
+    if via:
+        temp_list.append(via)
+    power = headers.get('X-Powered-By')
+    if power:
+        temp_list.append(power)
+    banner = ','.join(temp_list)
     return banner
