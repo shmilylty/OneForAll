@@ -49,7 +49,7 @@ At present, OneForAll is still under development, there must be a lot of problem
 * **Support subdomain blasting**，This module has both conventional dictionary blasting and custom fuzz mode. It supports batch blasting and recursive blasting, and automatically judges pan-parsing and processing.
 * **Support subdmain verification**，default to enable subdomain verification, automatically resolve subdomain DNS, automatically request subdomain to obtain title and banner, and comprehensively determine subdomain survival.
 * **Support subdomain takeover**，By default, subdomain takeover risk checking is enabled. Automatic subdomain takeover is supported (only Github, remains to be improved at present), and batch inspection is supported.
-* **Powerful processing feature**，The found subdomain results support automatic removal, automatic DNS parsing, HTTP request detection, automatic filtering of valid subdomains, and expansion of Banner information for subdomains. The final supported export formats are `txt`, `rst`, `csv`, `tsv`, `json`, `yaml`, `html`, `xls`, `xlsx`, `dbf`, `latex`, `ods`.
+* **Powerful processing feature**，The found subdomain results support automatic removal, automatic DNS parsing, HTTP request detection, automatic filtering of valid subdomains, and expansion of Banner information for subdomains. The final supported export formats are `rst`, `csv`, `tsv`, `json`, `yaml`, `html`, `xls`, `xlsx`, `dbf`, `latex`, `ods`.
 * **Very fast**，[collection module](https://github.com/shmilylty/OneForAll/tree/master/oneforall//collect.py) uses multithreaded calls, [blasting module](https://github.com/shmilylty/OneForAll/tree/master/oneforall/aiobrute.py) uses asynchronous multiprocess and multiprogramming, and DNS parsing and HTTP requests use asynchronous multiprogramming in subdomain verification. Multithreaded check [subdomain takeover](https://github.com/shmilylty/OneForAll/tree/master/oneforall/takeover.py) risk.
 * **Good experience**，Each module has a progress bar, and the results of each module are saved asynchronously.
 
@@ -207,7 +207,7 @@ The OneForAll command line interface is based on [Fire](https://github.com/googl
            valid, invalid, and all subdomains, respectively.
            Parameter port have optional values 'default' 'small', 'large',
            See config.py configuration for details.
-           Parameter format have optional values 'txt', 'rst', 'csv', 'tsv', 'json', 
+           Parameter format have optional values 'rst', 'csv', 'tsv', 'json', 
            'yaml', 'html', 'jira', 'xls', 'xlsx', 'dbf', 'latex', 'ods'.
            If the parameter path is None, the appropriate file is generated in the 
            project result directory based on the format parameter and the domain 
