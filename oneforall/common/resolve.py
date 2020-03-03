@@ -9,7 +9,10 @@ from dns.resolver import Resolver
 
 import config
 from config import logger
+from common import utils
 from common.database import Database
+
+socket.setdefaulttimeout(20)
 
 
 def dns_resolver():
@@ -23,17 +26,17 @@ def dns_resolver():
     return resolver
 
 
-async def aiodns_query_a(hostname):
+async def aio_resolve_a(hostname, loop=None):
     """
-    异步查询A记录
+    异步解析A记录
 
     :param str hostname: 主机名
+    :param loop: 事件循环
     :return: 查询结果
     """
-    try:
+    if loop is None:
         loop = asyncio.get_event_loop()
-        socket.setdefaulttimeout(20)
-        # answer = await loop.getaddrinfo(hostname, 80)
+    try:
         answer = await loop.run_in_executor(None,
                                             socket.gethostbyname_ex,
                                             hostname)
@@ -53,9 +56,12 @@ def convert_results(result_list):
     result_dict = {}
     for result in result_list:
         hostname, answer = result
-        value_dict = {'content': None, 'reason': None, 'valid': None}
+        value_dict = {'content': None, 'reason': None,
+                      'public': None, 'valid': None}
         if isinstance(answer, tuple):
-            value_dict['content'] = ','.join(answer[2])
+            ip_list = answer[2]
+            value_dict['content'] = ','.join(ip_list)
+            value_dict['public'] = utils.check_ip_public(ip_list)
             result_dict[hostname] = value_dict
         elif isinstance(answer, Exception):
             value_dict['reason'] = str(answer.args)
@@ -113,9 +119,9 @@ def save_data(name, data):
     db.close()
 
 
-def resolve_progress(pr_queue, total):
+def resolve_progress_func(pr_queue, total):
     """
-    解析进度
+    解析进度函数
 
     :param pr_queue: 进度队列
     :param int total: 待解析的子域个数
@@ -134,17 +140,18 @@ def resolve_progress(pr_queue, total):
     bar.close()
 
 
-async def aio_query(pr_queue, hostname):
+async def do_resolve(pr_queue, hostname):
     """
-    异步查询主机名的A记录
+    异步解析主机名的A记录
 
     :param pr_queue: 进度队列
     :param str hostname: 主机名
     :return: 查询结果
     """
-    results = await aiodns_query_a(hostname)
+    loop = asyncio.get_event_loop()
+    result = await aio_resolve_a(hostname, loop)
     pr_queue.put(1)
-    return results
+    return result
 
 
 async def aio_resolve(subdomain_list, process_num, coroutine_num):
@@ -159,31 +166,28 @@ async def aio_resolve(subdomain_list, process_num, coroutine_num):
     m = Manager()
     pr_queue = m.Queue()
     loop = asyncio.get_event_loop()
-    loop.run_in_executor(None, resolve_progress, pr_queue, len(subdomain_list))
-    wrapped_query = functools.partial(aio_query, pr_queue)
+    loop.run_in_executor(None, resolve_progress_func,
+                         pr_queue, len(subdomain_list))
+    wrapped_resolve_func = functools.partial(do_resolve, pr_queue)
     async with aiomp.Pool(processes=process_num,
                           childconcurrency=coroutine_num) as pool:
-        results = await pool.map(wrapped_query, subdomain_list)
-        return results
+        result_list = await pool.map(wrapped_resolve_func, subdomain_list)
+        return result_list
 
 
-async def bulk_resolve(data_list):
+async def run_aio_resolve(subdomain_list):
     """
-    批量解析A记录并返回解析结果
+    异步解析子域A记录
 
-    :param list data_list: 待解析的数据列表
+    :param list subdomain_list: 待解析的子域列表
     :return: 解析得到的结果列表
     """
-    logger.log('INFOR', '正在异步查询子域的A记录')
-    # semaphore = asyncio.Semaphore(config.limit_resolve_conn)
-    query_subdomains = filter_subdomain(data_list)
     process_num = config.brute_process_num
     coroutine_num = config.brute_coroutine_num
-    results = await aio_resolve(query_subdomains, process_num, coroutine_num)
-    results_dict = convert_results(results)
-    data_list = update_data(data_list, results_dict)
+    logger.log('INFOR', '正在异步查询子域的A记录')
+    result_list = await aio_resolve(subdomain_list, process_num, coroutine_num)
     logger.log('INFOR', '完成异步查询子域的A记录')
-    return data_list
+    return result_list
 
 
 def run_resolve(data):
@@ -196,7 +200,9 @@ def run_resolve(data):
     """
     loop = asyncio.get_event_loop()
     asyncio.set_event_loop(loop)
-    resolve_coroutine = bulk_resolve(data)
-    # 在关闭事件循环前加入一小段延迟让底层连接得到关闭的缓冲时间
-    loop.run_until_complete(asyncio.sleep(0.25))
-    return loop.run_until_complete(resolve_coroutine)
+    need_resolve_subdomains = filter_subdomain(data)
+    resolve_coroutine = run_aio_resolve(need_resolve_subdomains)
+    results_list = loop.run_until_complete(resolve_coroutine)
+    results_dict = convert_results(results_list)
+    resolved_data = update_data(data, results_dict)
+    return resolved_data
