@@ -2,8 +2,8 @@ import re
 import sys
 import time
 import random
-import ipaddress
 import platform
+from ipaddress import IPv4Address, ip_address
 
 import config
 from pathlib import Path
@@ -53,7 +53,7 @@ def gen_random_ip():
     生成随机的点分十进制的IP字符串
     """
     while True:
-        ip = ipaddress.IPv4Address(random.randint(0, 2 ** 32 - 1))
+        ip = IPv4Address(random.randint(0, 2 ** 32 - 1))
         if ip.is_global:
             return ip.exploded
 
@@ -389,3 +389,11 @@ def get_sample_banner(headers):
         temp_list.append(power)
     banner = ','.join(temp_list)
     return banner
+
+
+def check_ip_public(ip_list):
+    for ip_str in ip_list:
+        ip = ip_address(ip_str)
+        if not ip.is_global:
+            return 0
+    return 1
