@@ -49,7 +49,7 @@
 * **支持子域爆破**，该模块有常规的字典爆破，也有自定义的fuzz模式，支持批量爆破和递归爆破，自动判断泛解析并处理。
 * **支持子域验证**，默认开启子域验证，自动解析子域DNS，自动请求子域获取title和banner，并综合判断子域存活情况。
 * **支持子域接管**，默认开启子域接管风险检查，支持子域自动接管（目前只有Github，有待完善），支持批量检查。
-* **处理功能强大**，发现的子域结果支持自动去除，自动DNS解析，HTTP请求探测，自动筛选出有效子域，拓展子域的Banner信息，最终支持的导出格式有`txt`, `rst`, `csv`, `tsv`, `json`, `yaml`, `html`, `xls`, `xlsx`, `dbf`, `latex`, `ods`。
+* **处理功能强大**，发现的子域结果支持自动去除，自动DNS解析，HTTP请求探测，自动筛选出有效子域，拓展子域的Banner信息，最终支持的导出格式有`rst`, `csv`, `tsv`, `json`, `yaml`, `html`, `xls`, `xlsx`, `dbf`, `latex`, `ods`。
 * **速度极快**，[收集模块](https://github.com/shmilylty/OneForAll/tree/master/oneforall//collect.py)使用多线程调用，[爆破模块](https://github.com/shmilylty/OneForAll/tree/master/oneforall/aiobrute.py)使用异步多进程多协程，子域验证中DNS解析和HTTP请求使用异步多协程，多线程检查[子域接管](https://github.com/shmilylty/OneForAll/tree/master/oneforall/takeover.py)风险。
 * **体验良好**，日志和终端输出全使用中文，各模块都有进度条，异步保存各模块结果。
 
@@ -204,7 +204,7 @@ OneForAll命令行界面基于[Fire](https://github.com/google/python-fire/)实�
         Note:
             参数valid可选值1，0，None分别表示导出有效，无效，全部子域
             参数port可选值有'default', 'small', 'large', 详见config.py配置
-            参数format可选格式有'txt', 'rst', 'csv', 'tsv', 'json', 'yaml', 'html',
+            参数format可选格式有'rst', 'csv', 'tsv', 'json', 'yaml', 'html',
                               'jira', 'xls', 'xlsx', 'dbf', 'latex', 'ods'
             参数path默认None使用OneForAll结果目录生成路径
 

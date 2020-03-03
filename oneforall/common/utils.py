@@ -185,7 +185,7 @@ def check_format(format, count):
     :param count: 数量
     :return: 导出格式
     """
-    formats = ['txt', 'rst', 'csv', 'tsv', 'json', 'yaml', 'html',
+    formats = ['rst', 'csv', 'tsv', 'json', 'yaml', 'html',
                'jira', 'xls', 'xlsx', 'dbf', 'latex', 'ods']
     if format == 'xls' and count > 65000:
         logger.log('ALERT', 'xls文件限制为最多65000行')

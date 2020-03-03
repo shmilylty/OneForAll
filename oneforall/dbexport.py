@@ -42,10 +42,7 @@ def export(table, db=None, valid=False, path=None, format='csv', show=False):
     path = utils.check_path(path, table, format)
     if show:
         print(rows.dataset)
-    if format == 'txt':
-        data = str(rows.dataset)
-    else:
-        data = rows.export(format)
+    data = rows.export(format)
     database.close()
     utils.save_data(path, data)
     logger.log('INFOR', f'{table}主域的子域结果 {path}')
