@@ -73,7 +73,7 @@ proxy_pool = [{'http': 'http://127.0.0.1:1080',
 # 网络请求设置
 enable_fake_header = True  # 启用伪造请求头
 request_delay = 1  # 请求时延
-request_timeout = 30  # 请求超时
+request_timeout = 60  # 请求超时
 request_verify = False  # 请求SSL验证
 # 禁用安全警告信息
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
