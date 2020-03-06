@@ -176,6 +176,8 @@ The OneForAll command line interface is based on [Fire](https://github.com/googl
 
 **oneforall.py help**
 
+   The following help information may not be up to date. You can use `python oneforall.py --help` to get the latest help information.
+
    ```bash
    python oneforall.py --help
    ```

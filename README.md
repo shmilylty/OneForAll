@@ -174,6 +174,8 @@ OneForAll命令行界面基于[Fire](https://github.com/google/python-fire/)实�
 ❗注意：当你在使用过程中遇到一些问题或者疑惑时，请先到[Issues](https://github.com/shmilylty/OneForAll/issues)里使用搜索找找答案，还可以参阅[常见问题与回答](https://github.com/shmilylty/OneForAll/tree/master/docs/Q&A.md)。
 
 **oneforall.py使用帮助**
+    
+   以下帮助信息可能不是最新的，你可以使用`python oneforall.py --help`获取最新的帮助信息。
 
    ```bash
    python oneforall.py --help
