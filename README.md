@@ -273,13 +273,13 @@ D:.
 ```
 
 关于子域字典来说的说明：
- 1. 开源子域收集工具中的部分高频子域名字字典。
- 2. 网上有关服务商公布的最流行子域列表。
- 3. 网上有关安全研究人员关于对全网常见子域的研究结果。
-   * [the_most_popular_subdomains_on_the_internet](https://bitquark.co.uk/blog/2016/02/29/the_most_popular_subdomains_on_the_internet)
-   * [The most popular subdomains on the internet (2017 edition)](https://medium.com/@cmeister2/the-most-popular-subdomains-on-the-internet-2017-edition-a6b9c8a20fd8)
- 4. 从以上获取的字典做优化以排序及脏数据去除处理。
- 5. 非常欢迎你贡献更好的字典。
+1. 开源子域收集工具中的部分高频子域名字字典。
+2. 网上有关服务商公布的最流行子域列表。
+3. 网上有关安全研究人员关于对全网常见子域的研究结果。
+ * [the_most_popular_subdomains_on_the_internet](https://bitquark.co.uk/blog/2016/02/29/the_most_popular_subdomains_on_the_internet)
+ * [The most popular subdomains on the internet (2017 edition)](https://medium.com/@cmeister2/the-most-popular-subdomains-on-the-internet-2017-edition-a6b9c8a20fd8)
+4. 从以上获取的字典做优化排序以及脏数据去除处理。
+5. 非常欢迎你贡献更好的字典。
  
 ## 👏用到框架
 

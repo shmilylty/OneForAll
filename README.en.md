@@ -279,13 +279,14 @@ D:.
 ```
 
 A note about subdomain dictionaries:
-  1. Some high frequency subdomain name dictionary in open source subdomain collection tool.
-  2. List of the most popular subdomains published by relevant service providers online.
-  3. Online research results by security researchers on common subdomains throughout the network.
-    * [the_most_popular_subdomains_on_the_internet](https://bitquark.co.uk/blog/2016/02/29/the_most_popular_subdomains_on_the_internet)
-    * [The most popular subdomains on the internet (2017 edition)](https://medium.com/@cmeister2/the-most-popular-subdomains-on-the-internet-2017-edition-a6b9c8a20fd8)
-  4. Optimize sorting and dirty data removal from the dictionary obtained above.
-  5. You are very welcome to contribute a better dictionary.
+
+1. Some high frequency subdomain name dictionary in open source subdomain collection tool.
+2. List of the most popular subdomains published by relevant service providers online.
+3. Online research results by security researchers on common subdomains throughout the network.
+ * [the_most_popular_subdomains_on_the_internet](https://bitquark.co.uk/blog/2016/02/29/the_most_popular_subdomains_on_the_internet)
+ * [The most popular subdomains on the internet (2017 edition)](https://medium.com/@cmeister2/the-most-popular-subdomains-on-the-internet-2017-edition-a6b9c8a20fd8)
+4. Optimize sorting and dirty data removal from the dictionary obtained above.
+5. You are very welcome to contribute a better dictionary.
 
 ## 👏Framework used
 
