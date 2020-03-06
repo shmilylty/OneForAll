@@ -93,7 +93,7 @@ def gen_fuzz_domains(domain, rule):
     :return: 用于爆破的子域集合
     """
     domains = set()
-    if '{fuzz}' not in domain:
+    if '[fuzz]' not in domain:
         logger.log('FATAL', f'没有指定fuzz位置')
         return domains
     if not rule:
@@ -105,15 +105,15 @@ def gen_fuzz_domains(domain, rule):
         return domains
     logger.log('INFOR', f'fuzz字典大小：{fuzz_count}')
     for i in range(3):
-        random_domain = domain.replace('{fuzz}', exrex.getone(rule))
+        random_domain = domain.replace('[fuzz]', exrex.getone(rule))
         logger.log('ALERT', f'请注意检查随机生成的{random_domain}是否正确')
-    logger.log('ALERT', f'你有10秒检查时间退出使用`CTRL+C`')
+    logger.log('ALERT', f'你有6秒检查时间退出使用`CTRL+C`')
     try:
-        time.sleep(5)
+        time.sleep(6)
     except KeyboardInterrupt:
         logger.log('INFOR', '爆破终止')
         exit(0)
-    parts = domain.split('{fuzz}')
+    parts = domain.split('[fuzz]')
     for fuzz in exrex.generate(rule):
         fuzz_domain = parts[0] + fuzz + parts[1]
         domains.add(fuzz_domain)
@@ -147,7 +147,7 @@ class AIOBrute(Module):
         python3 aiobrute.py --target example.com --process 4 --coroutine 64 run
         python3 aiobrute.py --target example.com --wordlist subnames.txt run
         python3 aiobrute.py --target example.com --recursive True --depth 2 run
-        python3 aiobrute.py --target m.{fuzz}.a.bz --fuzz True --rule [a-z] run
+        python3 aiobrute.py --target m.[fuzz].bz --fuzz True --rule '[a-z]' run
 
     Note:
         参数segment的设置受CPU性能，网络带宽，运营商限制等限制，默认500个子域为任务组，
