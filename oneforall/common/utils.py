@@ -116,7 +116,9 @@ def get_domains(target):
     """
     domains = list()
     logger.log('DEBUG', f'正在获取域名')
-    if isinstance(target, (set, tuple)):
+    if '[fuzz]' in target:
+        domains = [target]
+    elif isinstance(target, (set, tuple)):
         domains = list(target)
     elif isinstance(target, list):
         domains = target
