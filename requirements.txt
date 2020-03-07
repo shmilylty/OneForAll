@@ -7,7 +7,7 @@ Brotli==1.0.7
 bs4==0.0.1
 certifi==2019.11.28
 chardet==3.0.4
-cloudscraper==1.2.24
+cloudscraper==1.2.26
 colorama==0.4.3
 dnspython==1.16.0
 docopt==0.6.2
