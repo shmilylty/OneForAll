@@ -1,6 +1,7 @@
 import socket
 import asyncio
 import functools
+import sys
 from multiprocessing import Manager
 
 import tqdm
@@ -169,6 +170,18 @@ async def aio_resolve(subdomain_list, process_num, coroutine_num):
     loop.run_in_executor(None, resolve_progress_func,
                          done_obj, len(subdomain_list))
     wrapped_resolve_func = functools.partial(do_resolve, done_obj)
+    result_list = list()
+    # macOS上队列大小不能超过2**15 - 1 = 32767
+    # https://stackoverflow.com/questions/5900985/multiprocessing-queue-maxsize-limit-is-32767
+    if sys.platform == 'darwin':
+        split_subdomain_list = utils.split_list(subdomain_list, 32767)
+        for current_subdomain_list in split_subdomain_list:
+            async with aiomp.Pool(processes=process_num,
+                                  childconcurrency=coroutine_num) as pool:
+                result = await pool.map(wrapped_resolve_func,
+                                        current_subdomain_list)
+                result_list.extend(result)
+        return result_list
     async with aiomp.Pool(processes=process_num,
                           childconcurrency=coroutine_num) as pool:
         result_list = await pool.map(wrapped_resolve_func, subdomain_list)
