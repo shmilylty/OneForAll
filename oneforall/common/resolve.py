@@ -119,38 +119,38 @@ def save_data(name, data):
     db.close()
 
 
-def resolve_progress_func(pr_queue, total):
+def resolve_progress_func(done_obj, total_num):
     """
     解析进度函数
 
-    :param pr_queue: 进度队列
-    :param int total: 待解析的子域个数
+    :param done_obj: 进程间共享的Value对象
+    :param int total_num: 待解析的子域个数
     """
     bar = tqdm.tqdm()
-    bar.total = total
+    bar.total = total_num
     bar.desc = 'Resolve Progress'
     bar.ncols = 80
     bar.smoothing = 0
     while True:
-        done = pr_queue.qsize()
-        bar.n = done
+        done_num = done_obj.value
+        bar.n = done_num
         bar.update()
-        if done == total:
+        if done_num == total_num:
             break
     bar.close()
 
 
-async def do_resolve(pr_queue, hostname):
+async def do_resolve(done_obj, hostname):
     """
     异步解析主机名的A记录
 
-    :param pr_queue: 进度队列
+    :param done_obj: 进程间共享的Value对象
     :param str hostname: 主机名
     :return: 查询结果
     """
     loop = asyncio.get_event_loop()
     result = await aio_resolve_a(hostname, loop)
-    pr_queue.put(1)
+    done_obj.value += 1
     return result
 
 
@@ -164,11 +164,11 @@ async def aio_resolve(subdomain_list, process_num, coroutine_num):
     :return: 解析结果
     """
     m = Manager()
-    pr_queue = m.Queue()
+    done_obj = m.Value('done', 0)  # 创建一个进程间可以共享的值
     loop = asyncio.get_event_loop()
     loop.run_in_executor(None, resolve_progress_func,
-                         pr_queue, len(subdomain_list))
-    wrapped_resolve_func = functools.partial(do_resolve, pr_queue)
+                         done_obj, len(subdomain_list))
+    wrapped_resolve_func = functools.partial(do_resolve, done_obj)
     async with aiomp.Pool(processes=process_num,
                           childconcurrency=coroutine_num) as pool:
         result_list = await pool.map(wrapped_resolve_func, subdomain_list)
