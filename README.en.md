@@ -41,7 +41,7 @@ At present, OneForAll is still under development, there must be a lot of problem
 
   4.  Collect subdomains using DNS datasets (there are currently 22 modules: `ip138`, `ximcx`, `CeBaidu`, `binaryedge_api`, `circl_api`, `hackertarget`, `riddler`, `bufferover`, `dnsdb`, `ipv4info`, `robtex`, `chinaz`, `dnsdb_api`, `netcraft`, `securitytrails_api`, `chinaz_api`, `dnsdumpster`, `passivedns_api`,  `ptrarchive`, `sitedossier`,`threatcrowd`）
 
-  5.  Collect subdomains using DNS queries (there is currently a module to collect subdomains `srv` by enumerating common SRV records and making queries, which needs to be added and improved). 
+  5.  Collect subdomains using DNS queries (there is currently a module to collect subdomains `srv` by enumerating common SRV records and making queries, And collect subdomains by querying MX, NS, SOA, TXT records in the DNS records of the domain name). 
 
   6.  Collect subdomains using threat intelligence platform data (there are currently 6 modules: `alienvault`, `riskiq_ api`, `threatbook_ api`, `threatkeeper `, `virustotal`, `virustotal_ api`, which need to be added and improved).
 
