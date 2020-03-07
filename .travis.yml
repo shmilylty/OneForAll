@@ -19,10 +19,6 @@ matrix:
       os: osx
       osx_image: xcode10.2  # Python 3.7 running on macOS 10.14.3
       language: shell       # 'language: python' is an error on Travis CI macOS
-    - name: "Python 3.8 on macOS"
-      os: osx
-      osx_image: xcode11.3  # Python 3.8 running on macOS 10.14
-      language: shell       # 'language: python' is an error on Travis CI macOS
     - name: "Python 3.8 on Windows"
       os: windows           # Windows 10.0.17134 N/A Build 17134
       language: shell
