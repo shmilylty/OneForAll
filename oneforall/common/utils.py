@@ -1,9 +1,12 @@
+import os
 import re
 import sys
 import time
 import random
 import platform
 from ipaddress import IPv4Address, ip_address
+
+import psutil
 
 import config
 from pathlib import Path
@@ -399,3 +402,35 @@ def check_ip_public(ip_list):
         if not ip.is_global:
             return 0
     return 1
+
+
+def get_process_num():
+    process_num = config.brute_process_num
+    if isinstance(process_num, int):
+        return max(1, process_num)
+    else:
+        return os.cpu_count()
+
+
+def get_coroutine_num():
+    coroutine_num = config.brute_coroutine_num
+    if isinstance(coroutine_num, int):
+        return max(64, coroutine_num)
+    elif coroutine_num is None:
+        mem = psutil.virtual_memory()
+        total_mem = mem.total
+        g_size = 1024 * 1024 * 1024
+        if total_mem <= 1 * g_size:
+            return 64
+        elif total_mem <= 2 * g_size:
+            return 128
+        elif total_mem <= 4 * g_size:
+            return 256
+        elif total_mem <= 8 * g_size:
+            return 512
+        elif total_mem <= 16 * g_size:
+            return 1024
+        else:
+            return 2048
+    else:
+        return 64

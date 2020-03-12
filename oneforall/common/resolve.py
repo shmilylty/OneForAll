@@ -195,8 +195,8 @@ async def run_aio_resolve(subdomain_list):
     :param list subdomain_list: 待解析的子域列表
     :return: 解析得到的结果列表
     """
-    process_num = config.brute_process_num
-    coroutine_num = config.brute_coroutine_num
+    process_num = utils.get_process_num()
+    coroutine_num = utils.get_coroutine_num()
     logger.log('INFOR', '正在异步查询子域的A记录')
     result_list = await aio_resolve(subdomain_list, process_num, coroutine_num)
     logger.log('INFOR', '完成异步查询子域的A记录')

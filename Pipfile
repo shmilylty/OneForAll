@@ -23,6 +23,7 @@ cloudscraper = "*"
 js2py = "*"
 tablib = "*"
 brotli = "*"
+psutil = "*"
 
 [requires]
 python_version = "3.8"

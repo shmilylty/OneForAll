@@ -184,8 +184,8 @@ class AIOBrute(Module):
         self.module = 'Brute'
         self.source = 'AIOBrute'
         self.target = target
-        self.process = process or config.brute_process_num
-        self.coroutine = coroutine or config.brute_coroutine_num
+        self.process = process or utils.get_process_num()
+        self.coroutine = coroutine or utils.get_coroutine_num()
         self.wordlist = wordlist or config.brute_wordlist_path
         self.recursive_brute = recursive or config.enable_recursive_brute
         self.recursive_depth = depth or config.brute_recursive_depth

@@ -44,9 +44,10 @@ module_thread_timeout = 360.0  # 每个收集模块线程超时时间(默认6分
 enable_brute_module = False  # 使用爆破模块(默认False)
 enable_wildcard_check = True  # 开启泛解析检测(默认True)
 enable_wildcard_deal = True  # 开启泛解析处理(默认True)
-# 爆破时使用的进程数(根据系统中CPU数量情况设置 不宜大于CPU数量 默认为系统中的CPU数量)
-brute_process_num = os.cpu_count()
-brute_coroutine_num = 1024  # 爆破时每个进程下的协程数
+# 爆破时使用的进程数(根据计算机中CPU数量情况设置 不宜大于CPU数量)
+brute_process_num = None  # 默认None为系统中的CPU数量
+# 爆破时每个进程下的协程数(根据计算机中内存大小情况设置 默认为系统中的CPU数量)
+brute_coroutine_num = None  # 默认None根据内存大小设置
 # 爆破所使用的字典路径 默认data/subdomains.txt
 brute_wordlist_path = data_storage_dir.joinpath('subnames.txt')
 enable_recursive_brute = False  # 是否使用递归爆破(默认禁用)
