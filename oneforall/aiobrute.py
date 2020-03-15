@@ -266,8 +266,9 @@ class AIOBrute(Module):
 
     def run(self, rx_queue=None):
         self.domains = utils.get_domains(self.target)
-        while self.domains:
-            self.domain = self.domains.pop()
+        loop = asyncio.get_event_loop()
+        asyncio.set_event_loop(loop)
+        for self.domain in self.domains:
             start = time.time()
             db = Database()
             db.create_table(self.domain)
@@ -278,8 +279,6 @@ class AIOBrute(Module):
             # fuzz模式不使用递归爆破
             if self.recursive_brute and not self.fuzz:
                 logger.log('INFOR', f'开始递归爆破{self.domain}的第1层子域')
-            loop = asyncio.get_event_loop()
-            asyncio.set_event_loop(loop)
             loop.run_until_complete(self.main(self.domain, rx_queue))
 
             # 递归爆破下一层的子域
