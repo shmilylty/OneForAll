@@ -277,7 +277,7 @@ def mark_subdomain(old_data, now_data):
     return mark_data
 
 
-def remove_string(string):
+def remove_invalid_string(string):
     # Excel文件中单元格值不能直接存储以下非法字符
     return re.sub(r'[\000-\010]|[\013-\014]|[\016-\037]', r'', string)
 
@@ -348,8 +348,8 @@ def get_timestamp():
     return int(time.time())
 
 
-def get_classname(clsobj):
-    return clsobj.__class__.__name__
+def get_classname(classobj):
+    return classobj.__class__.__name__
 
 
 def python_version():
