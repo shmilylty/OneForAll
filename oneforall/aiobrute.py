@@ -265,6 +265,8 @@ class AIOBrute(Module):
         rx_queue.put(self.results)
 
     def run(self, rx_queue=None):
+        if rx_queue is None:
+            rx_queue = queue.Queue()
         self.domains = utils.get_domains(self.target)
         loop = asyncio.get_event_loop()
         asyncio.set_event_loop(loop)
@@ -272,8 +274,6 @@ class AIOBrute(Module):
             start = time.time()
             db = Database()
             db.create_table(self.domain)
-            if not rx_queue:
-                rx_queue = queue.Queue()
             logger.log('INFOR', f'开始执行{self.source}模块爆破域名{self.domain}')
             logger.log('INFOR', f'使用{self.process}进程乘{self.coroutine}协程')
             # fuzz模式不使用递归爆破
