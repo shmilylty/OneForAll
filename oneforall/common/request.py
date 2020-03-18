@@ -176,8 +176,8 @@ def request_callback(future, index, datas):
             datas[index]['header'] = str(dict(headers))[1:-1]
             if isinstance(text, str):
                 title = get_title(text).strip()
-                datas[index]['title'] = utils.remove_string(title)
-                datas[index]['response'] = utils.remove_string(text)
+                datas[index]['title'] = utils.remove_invalid_string(title)
+                datas[index]['response'] = utils.remove_invalid_string(text)
 
 
 def get_connector():
