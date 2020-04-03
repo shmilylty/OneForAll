@@ -214,6 +214,8 @@ def run_resolve(data):
     loop = asyncio.get_event_loop()
     asyncio.set_event_loop(loop)
     need_resolve_subdomains = filter_subdomain(data)
+    if not need_resolve_subdomains:
+        return data
     resolve_coroutine = run_aio_resolve(need_resolve_subdomains)
     results_list = loop.run_until_complete(resolve_coroutine)
     results_dict = convert_results(results_list)

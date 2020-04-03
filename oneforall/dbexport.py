@@ -15,7 +15,7 @@ from common.database import Database
 from config import logger
 
 
-def export(table, db=None, valid=False, path=None, format='csv', show=False):
+def export(table, db=None, valid=False, limit=None, path=None, format='csv', show=False):
     """
     OneForAll数据库导出模块
 
@@ -31,13 +31,14 @@ def export(table, db=None, valid=False, path=None, format='csv', show=False):
     :param str table:   要导出的表
     :param str db:      要导出的数据库路径(默认为results/result.sqlite3)
     :param bool valid:  只导出有效的子域结果(默认False)
+    :param str limit:   导出限制条件(默认None)
     :param str format:  导出文件格式(默认csv)
     :param str path:    导出文件路径(默认None)
     :param bool show:   终端显示导出数据(默认False)
     """
 
     database = Database(db)
-    rows = database.export_data(table, valid)
+    rows = database.export_data(table, valid, limit)
     format = utils.check_format(format, len(rows))
     path = utils.check_path(path, table, format)
     if show:

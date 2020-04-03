@@ -58,24 +58,32 @@ class Database(object):
         self.query(f'create table "{table_name}" ('
                    f'id integer primary key,'
                    f'type text,'
-                   f'valid int,'
+                   f'alive int,'
+                   f'request int,'
+                   f'resolve int,'
                    f'new int,'
                    f'url text,'
                    f'subdomain text,'
+                   f'port int,'
                    f'level int,'
+                   f'cname text,'
                    f'content text,'
                    f'public int,'
-                   f'port int,'
                    f'status int,'
                    f'reason text,'
                    f'title text,'
                    f'banner text,'
                    f'header text,'
                    f'response text,'
+                   f'times text,'
+                   f'ttl text,'
+                   f'resolver text,'
                    f'module text,'
                    f'source text,'
                    f'elapse float,'
-                   f'count int)')
+                   f'find int,'
+                   f'brute int,'
+                   f'valid int)')
 
     def save_db(self, table_name, results, module_name=None):
         """
@@ -92,15 +100,17 @@ class Database(object):
             try:
                 self.conn.bulk_query(
                     f'insert into "{table_name}" ('
-                    f'id, type, valid, new, url, subdomain, port, level, content,'
-                    f'public, status, reason, title, banner, header, response,'
-                    f'module, source, elapse, count)'
-                    f'values (:id, :type, :valid, :new, :url, :subdomain,'
-                    f':port, :level, :content, :public, :status, :reason,'
-                    f':title, :banner, :header, :response, :module, :source,'
-                    f':elapse, :count)', results)
+                    f'id, type, alive, resolve, request, new, url, subdomain,'
+                    f'port, level, cname, content, public, status, reason,'
+                    f'title, banner, header, response, times, ttl, resolver,'
+                    f'module, source, elapse, find, brute, valid) '
+                    f'values (:id, :type, :alive, :resolve, :request, :new,'
+                    f':url, :subdomain, :port, :level, :cname, :content,'
+                    f':public, :status, :reason, :title, :banner, :header,'
+                    f':response, :times, :ttl, :resolver, :module, :source,'
+                    f':elapse, :find, :brute, :valid)', results)
             except Exception as e:
-                logger.log('ERROR', e.args)
+                logger.log('ERROR', e)
 
     def exist_table(self, table_name):
         """
@@ -187,7 +197,7 @@ class Database(object):
         table_name = table_name.replace('.', '_')
         logger.log('TRACE', f'正在去除{table_name}表中的无效子域')
         self.query(f'delete from "{table_name}" where '
-                   f'subdomain is null or valid == 0')
+                   f'subdomain is null or resolve == 0')
 
     def deal_table(self, deal_table_name, backup_table_name):
         """
@@ -210,19 +220,25 @@ class Database(object):
         logger.log('TRACE', f'获取{table_name}表中的所有数据')
         return self.query(f'select * from "{table_name}"')
 
-    def export_data(self, table_name, valid):
+    def export_data(self, table_name, valid, limit):
         """
         获取表中的部分数据
 
         :param str table_name: 表名
         :param any valid: 有效性
+        :param str limit: 限制字段
         """
         table_name = table_name.replace('.', '_')
-        query = f'select id, type, valid, new, url, subdomain, level, ' \
-                f'content, public, port, status, reason, title, banner ' \
-                f'from "{table_name}"'
-        if valid:
-            where = f' where valid = 1'
+        query = f'select id, type, new, alive, request, resolve, url, ' \
+                f'subdomain, level, cname, content, public, port, status, ' \
+                f'reason, title, banner, times, ttl, resolver, module, ' \
+                f'source, elapse, find, brute, valid from "{table_name}"'
+        if valid and limit:
+            if limit in ['resolve', 'request']:
+                where = f' where {limit} = 1'
+                query += where
+        else:
+            where = f' where alive = 1'
             query += where
         logger.log('TRACE', f'获取{table_name}表中的所有数据')
         return self.query(query)

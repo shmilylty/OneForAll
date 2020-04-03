@@ -135,7 +135,11 @@ def get_domains(target):
                         domains.append(domain)
         elif Domain(target).match():
             domains = [target]
-    logger.log('INFOR', f'获取到{len(domains)}个域名')
+    count = len(domains)
+    if count == 0:
+        logger.log('FATAL', f'获取到{count}个域名')
+        exit(1)
+    logger.log('INFOR', f'获取到{count}个域名')
     return domains
 
 
@@ -152,6 +156,12 @@ def get_semaphore():
         return 800
     elif system == 'Darwin':
         return 800
+
+
+def check_dir(dir_path):
+    if not dir_path.exists():
+        logger.log('INFOR', f'不存在{dir_path}目录将会新建')
+        dir_path.mkdir(parents=True, exist_ok=True)
 
 
 def check_path(path, name, format):
@@ -206,7 +216,7 @@ def check_format(format, count):
 
 def save_data(path, data):
     """
-    保存结果数据到文件
+    保存数据到文件
 
     :param path: 保存路径
     :param data: 待存数据
@@ -283,12 +293,14 @@ def remove_invalid_string(string):
 
 
 def check_value(values):
-    for i, value in enumerate(values):
+    if not isinstance(values, dict):
+        return values
+    for key, value in values.items():
         if value is None:
             continue
         if isinstance(value, str) and len(value) > 32767:
             # Excel文件中单元格值长度不能超过32767
-            values[i] = value[:32767]
+            values[key] = value[:32767]
     return values
 
 
@@ -301,18 +313,12 @@ def export_all(format, path, datas):
     :param list datas: 待导出的结果数据
     """
     format = check_format(format, len(datas))
-    timestamp = get_timestamp()
+    timestamp = get_timestring()
     name = f'all_subdomain_result_{timestamp}'
     path = check_path(path, name, format)
     logger.log('INFOR', f'所有主域的子域结果 {path}')
     row_list = list()
     for row in datas:
-        row.pop('header')
-        row.pop('response')
-        row.pop('module')
-        row.pop('source')
-        row.pop('elapse')
-        row.pop('count')
         keys = row.keys()
         values = row.values()
         if format in {'xls', 'xlsx'}:
@@ -348,6 +354,10 @@ def get_timestamp():
     return int(time.time())
 
 
+def get_timestring():
+    return time.strftime('%Y%m%d_%H%M%S', time.localtime(time.time()))
+
+
 def get_classname(classobj):
     return classobj.__class__.__name__
 
@@ -356,8 +366,8 @@ def python_version():
     return sys.version
 
 
-def count_valid(data):
-    return len(list(filter(lambda item: item.get('valid') == 1, data)))
+def count_alive(data):
+    return len(list(filter(lambda item: item.get('alive') == 1, data)))
 
 
 def get_subdomains(data):
@@ -404,16 +414,23 @@ def check_ip_public(ip_list):
     return 1
 
 
+def ip_is_public(ip_str):
+    ip = ip_address(ip_str)
+    if not ip.is_global:
+        return 0
+    return 1
+
+
 def get_process_num():
     process_num = config.brute_process_num
     if isinstance(process_num, int):
-        return max(1, process_num)
+        return min(os.cpu_count(), process_num)
     else:
-        return os.cpu_count()
+        return 1
 
 
 def get_coroutine_num():
-    coroutine_num = config.brute_coroutine_num
+    coroutine_num = config.resolve_coroutine_num
     if isinstance(coroutine_num, int):
         return max(64, coroutine_num)
     elif coroutine_num is None:
@@ -434,3 +451,15 @@ def get_coroutine_num():
             return 2048
     else:
         return 64
+
+
+def uniq_dict_list(dict_list):
+    return list(filter(lambda name: dict_list.count(name) == 1, dict_list))
+
+
+def delete_file(*paths):
+    for path in paths:
+        try:
+            path.unlink()
+        except Exception as e:
+            logger.log('ERROR', e.args)

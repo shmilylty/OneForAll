@@ -43,10 +43,9 @@ def gen_req_data(data, ports):
     logger.log('INFOR', f'正在生成请求地址')
     new_data = []
     for data in data:
-        valid = data.get('valid')
-        # 无效(0)和有效子域(1)不进行http请求探测
-        # 有效性待确认(None)的子域才进行http请求探测
-        if valid == 0 or valid == 1:
+        resolve = data.get('resolve')
+        # 解析失败(0)的子域不进行http请求探测
+        if resolve == 0:
             continue
         subdomain = data.get('subdomain')
         for port in ports:
@@ -162,15 +161,18 @@ def request_callback(future, index, datas):
         logger.log('TRACE', result.args)
         name = utils.get_classname(result)
         datas[index]['reason'] = name + ' ' + str(result)
-        datas[index]['valid'] = 0
+        datas[index]['request'] = 0
+        datas[index]['alive'] = 0
     elif isinstance(result, tuple):
         resp, text = result
         datas[index]['reason'] = resp.reason
         datas[index]['status'] = resp.status
         if resp.status == 400 or resp.status >= 500:
-            datas[index]['valid'] = 0
+            datas[index]['request'] = 0
+            datas[index]['alive'] = 0
         else:
-            datas[index]['valid'] = 1
+            datas[index]['request'] = 1
+            datas[index]['alive'] = 1
             headers = resp.headers
             datas[index]['banner'] = utils.get_sample_banner(headers)
             datas[index]['header'] = str(dict(headers))[1:-1]
@@ -244,8 +246,8 @@ def run_request(domain, data, port):
     data = loop.run_until_complete(request_coroutine)
     # 在关闭事件循环前加入一小段延迟让底层连接得到关闭的缓冲时间
     loop.run_until_complete(asyncio.sleep(0.25))
-    count = utils.count_valid(data)
-    logger.log('INFOR', f'经验证{domain}有效子域{count}个')
+    count = utils.count_alive(data)
+    logger.log('INFOR', f'经验证{domain}存活子域{count}个')
     return data
 
 

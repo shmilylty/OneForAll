@@ -236,7 +236,7 @@ class Module(object):
                       'name': self.module,
                       'source': self.source,
                       'elapse': self.elapse,
-                      'count': len(self.subdomains),
+                      'find': len(self.subdomains),
                       'subdomains': list(self.subdomains),
                       'records': self.records}
             json.dump(result, file, ensure_ascii=False, indent=4)
@@ -246,21 +246,27 @@ class Module(object):
         """
         生成记录字典
         """
+        item = dict()
+        item['content'] = record
         for subdomain in subdomains:
-            self.records[subdomain] = record
+            self.records[subdomain] = item
 
-    def gen_result(self):
+    def gen_result(self, find=0, brute=None, valid=0):
         """
         生成结果
         """
+        logger.log('DEBUG', f'正在生成最终结果')
         if not len(self.subdomains):  # 该模块一个子域都没有发现的情况
             result = {'id': None,
                       'type': self.type,
-                      'valid': None,
+                      'alive': None,
+                      'request': None,
+                      'resolve': None,
                       'new': None,
                       'url': None,
                       'subdomain': None,
                       'level': None,
+                      'cname': None,
                       'content': None,
                       'public': None,
                       'port': None,
@@ -270,39 +276,72 @@ class Module(object):
                       'banner': None,
                       'header': None,
                       'response': None,
+                      'times': None,
+                      'ttl': None,
+                      'resolver': None,
                       'module': self.module,
                       'source': self.source,
                       'elapse': self.elapse,
-                      'count': 0}
+                      'find': find,
+                      'brute': brute,
+                      'valid': valid}
             self.results.append(result)
         else:
             for subdomain in self.subdomains:
-                valid = None
-                if self.type != 'A':  # 不是利用的DNS记录的A记录查询子域默认都有效
-                    valid = 1
                 url = 'http://' + subdomain
                 level = subdomain.count('.') - self.domain.count('.')
-                content = self.records.get(subdomain)
+                record = self.records.get(subdomain)
+                if record is None:
+                    record = dict()
+                resolve = record.get('resolve')
+                request = record.get('request')
+                alive = record.get('alive')
+                if self.type != 'A':  # 不是利用的DNS记录的A记录查询子域默认都有效
+                    resolve = 1
+                    request = 1
+                    alive = 1
+                reason = record.get('reason')
+                resolver = record.get('resolver')
+                cname = record.get('cname')
+                content = record.get('content')
+                times = record.get('times')
+                ttl = record.get('ttl')
+                public = record.get('public')
+                if isinstance(cname, list):
+                    cname = ','.join(cname)
+                    content = ','.join(content)
+                    times = ','.join([str(num) for num in times])
+                    ttl = ','.join([str(num) for num in ttl])
+                    public = ','.join([str(num) for num in public])
                 result = {'id': None,
                           'type': self.type,
-                          'valid': valid,
+                          'alive': alive,
+                          'request': request,
+                          'resolve': resolve,
                           'new': None,
                           'url': url,
                           'subdomain': subdomain,
                           'level': level,
+                          'cname': cname,
                           'content': content,
-                          'public': None,
-                          'port': None,
+                          'public': public,
+                          'port': 80,
                           'status': None,
-                          'reason': None,
+                          'reason': reason,
                           'title': None,
                           'banner': None,
-                          'module': self.module,
                           'header': None,
                           'response': None,
+                          'times': times,
+                          'ttl': ttl,
+                          'resolver': resolver,
+                          'module': self.module,
                           'source': self.source,
                           'elapse': self.elapse,
-                          'count': len(self.subdomains)}
+                          'find': find,
+                          'brute': brute,
+                          'valid': valid,
+                          }
                 self.results.append(result)
 
     def save_db(self):
@@ -310,6 +349,7 @@ class Module(object):
         将模块结果存入数据库中
 
         """
+        logger.log('DEBUG', f'正在将结果存入到数据库')
         lock.acquire()
         db = Database()
         db.create_table(self.domain)
