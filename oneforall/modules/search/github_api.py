@@ -61,14 +61,22 @@ class GithubAPI(Search):
             if resp.status_code != 200:
                 logger.log('ERROR', f'{self.source}模块搜索出错')
                 break
-
-            subdomains = self.match(self.domain, str(resp.text))
+            subdomains = self.match(self.domain, resp.text)
             if not subdomains:
                 break
             self.subdomains = self.subdomains.union(subdomains)
             page += 1
-            if page * 100 > json.loads(resp.text)['total_count']:
-                print(page)
+            try:
+                resp_json = resp.json()
+            except Exception as e:
+                logger.log('ERROR', e.args)
+                break
+            total_count = resp_json.get('total_count')
+            if isinstance(total_count, int):
+                break
+            if page * 100 > total_count:
+                break
+            if page * 100 > 1000:
                 break
 
     def run(self):
@@ -96,4 +104,4 @@ def do(domain):  # 统一入口名字 方便多线程调用
 
 
 if __name__ == '__main__':
-    do('freebuf.com')
+    do('exmaple.com')
