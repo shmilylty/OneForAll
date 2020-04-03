@@ -18,7 +18,7 @@ class Lookup(Module):
         if answer is None:
             return None
         for item in answer:
-            record = str(item)
+            record = item.to_text()
             subdomains = utils.match_subdomain(self.domain, record)
             self.subdomains = self.subdomains.union(subdomains)
             self.gen_record(subdomains, record)

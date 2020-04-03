@@ -15,7 +15,7 @@ import dbexport
 from datetime import datetime
 from config import logger
 from collect import Collect
-from aiobrute import AIOBrute
+from brute import Brute
 from common import utils, resolve, request
 from common.database import Database
 from takeover import Takeover
@@ -176,7 +176,7 @@ class OneForAll(object):
         collect.run()
         if self.brute:
             # 由于爆破会有大量dns解析请求 并发爆破可能会导致其他任务中的网络请求异常
-            brute = AIOBrute(self.domain, export=False)
+            brute = Brute(self.domain, word=True, export=False)
             brute.run()
 
         # 有关数据库处理

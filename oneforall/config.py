@@ -12,6 +12,7 @@ from loguru import logger
 # 路径设置
 relative_directory = pathlib.Path(__file__).parent  # OneForAll代码相对路径
 module_dir = relative_directory.joinpath('modules')  # OneForAll模块目录
+third_party_dir = relative_directory.joinpath('thirdparty')  # 三方工具目录
 data_storage_dir = relative_directory.joinpath('data')  # 数据存放目录
 result_save_dir = relative_directory.joinpath('results')  # 结果保存目录
 
@@ -44,19 +45,35 @@ module_thread_timeout = 360.0  # 每个收集模块线程超时时间(默认6分
 enable_brute_module = False  # 使用爆破模块(默认False)
 enable_wildcard_check = True  # 开启泛解析检测(默认True)
 enable_wildcard_deal = True  # 开启泛解析处理(默认True)
-# 爆破时使用的进程数(根据计算机中CPU数量情况设置 不宜大于CPU数量)
-brute_process_num = None  # 默认None为系统中的CPU数量
-# 爆破时每个进程下的协程数(根据计算机中内存大小情况设置 默认为系统中的CPU数量)
-brute_coroutine_num = None  # 默认None根据内存大小设置
+brute_massdns_path = None  # 默认None自动选择 如需填写请填写绝对路径
+brute_status_format = 'ansi'  # 爆破时状态输出格式（默认asni，可选json）
+# 爆破时使用的进程数(根据计算机中CPU数量情况设置 不宜大于逻辑CPU个数)
+brute_process_num = 1  # 默认1
+brute_concurrent_num = 10000  # 并发查询数量(默认10000)
+brute_socket_num = 1  # 爆破时每个进程下的socket数量
+brute_resolve_num = 50  # 解析失败时尝试换名称服务器重查次数
 # 爆破所使用的字典路径 默认data/subdomains.txt
 brute_wordlist_path = data_storage_dir.joinpath('subnames.txt')
-enable_recursive_brute = False  # 是否使用递归爆破(默认禁用)
+brute_nameservers_path = data_storage_dir.joinpath('cn_nameservers.txt')
+# 域名的权威DNS名称服务器的保存路径 当域名开启了泛解析时会使用该名称服务器来进行A记录查询
+authoritative_dns_path = data_storage_dir.joinpath('authoritative_dns.txt')
+enable_recursive_brute = False  # 是否使用递归爆破(默认False)
 brute_recursive_depth = 2  # 递归爆破深度(默认2层)
 # 爆破下一层子域所使用的字典路径 默认data/next_subdomains.txt
-recursive_namelist_path = data_storage_dir.joinpath('next_subnames.txt')
+recursive_nextlist_path = data_storage_dir.joinpath('next_subnames.txt')
+enable_check_dict = False  # 是否开启字典配置检查提示(默认False)
+delete_generated_dict = True  # 是否删除爆破时临时生成的字典(默认True)
+# 是否删除爆破时massdns输出的解析结果 (默认True)
+#  massdns输出的结果中包含更详细解析结果
+#  注意: 当爆破的字典较大或使用递归爆破或目标域名存在泛解析时生成的文件可能会很大
+delete_massdns_result = True
+only_save_valid = True  # 是否在处理爆破结果时只存入解析成功的子域
+check_time = 10  # 检查字典配置停留时间(默认10秒)
 enable_fuzz = False  # 是否使用fuzz模式枚举域名
-fuzz_rule = ''  # fuzz域名的正则 示例：[a-z][0-9] 第一位是字母 第二位是数字
-ips_appear_maximum = 10  # 同一IP集合出现次数超过10认为是泛解析
+fuzz_place = None  # 指定爆破的位置 指定的位置用`@`表示 示例：www.@.example.com
+fuzz_rule = None  # fuzz域名的正则 示例：'[a-z][0-9]' 表示第一位是字母 第二位是数字
+brute_ip_blacklist = {'0.0.0.0', '0.0.0.1'}  # IP黑名单 子域解析到IP黑名单则标记为非法子域
+ip_appear_maximum = 100  # 多个子域解析到同一IP次数超过100次则标记为非法(泛解析)子域
 
 # 代理设置
 enable_proxy = False  # 是否使用代理(全局开关)
@@ -84,6 +101,7 @@ enable_recursive_search = False  # 递归搜索子域
 search_recursive_times = 2  # 递归搜索层数
 
 # DNS解析设置
+resolve_coroutine_num = 64
 resolver_nameservers = [
     '119.29.29.29', '182.254.116.116',  # DNSPod
     '180.76.76.76',  # Baidu DNS
