@@ -50,7 +50,7 @@
 * **支持子域验证**，默认开启子域验证，自动解析子域DNS，自动请求子域获取title和banner，并综合判断子域存活情况。
 * **支持子域接管**，默认开启子域接管风险检查，支持子域自动接管（目前只有Github，有待完善），支持批量检查。
 * **处理功能强大**，发现的子域结果支持自动去除，自动DNS解析，HTTP请求探测，自动筛选出有效子域，拓展子域的Banner信息，最终支持的导出格式有`rst`, `csv`, `tsv`, `json`, `yaml`, `html`, `xls`, `xlsx`, `dbf`, `latex`, `ods`。
-* **速度极快**，[收集模块](https://github.com/shmilylty/OneForAll/tree/master/oneforall//collect.py)使用多线程调用，[爆破模块](https://github.com/shmilylty/OneForAll/tree/master/oneforall/aiobrute.py)使用异步多进程多协程，子域验证中DNS解析和HTTP请求使用异步多协程，多线程检查[子域接管](https://github.com/shmilylty/OneForAll/tree/master/oneforall/takeover.py)风险。
+* **速度极快**，[收集模块](https://github.com/shmilylty/OneForAll/tree/master/oneforall//collect.py)使用多线程调用，[爆破模块](https://github.com/shmilylty/OneForAll/tree/master/oneforall/brute.py)使用[massdns](https://github.com/blechschmidt/massdns)，默认配置下速度最少能达到1000pps，子域验证中DNS解析和HTTP请求使用异步多协程，多线程检查[子域接管](https://github.com/shmilylty/OneForAll/tree/master/oneforall/takeover.py)风险。
 * **体验良好**，日志和终端输出全使用中文，各模块都有进度条，异步保存各模块结果。
 
 如果你有其他很棒的想法请务必告诉我！😎
@@ -169,7 +169,7 @@ docker run -it oneforall
 
 OneForAll命令行界面基于[Fire](https://github.com/google/python-fire/)实现，有关Fire更高级使用方法请参阅[使用Fire CLI](https://github.com/google/python-fire/blob/master/docs/using-cli.md)。
 
-[oneforall.py](https://github.com/shmilylty/OneForAll/tree/master/oneforall/oneforall.py)是主程序入口，oneforall.py可以调用[aiobrute.py](https://github.com/shmilylty/OneForAll/tree/master/oneforall/aiobrute.py)，[takerover.py](https://github.com/shmilylty/OneForAll/tree/master/oneforall/takerover.py)及[dbexport.py](https://github.com/shmilylty/OneForAll/tree/master/oneforall/dbexport.py)等模块，为了方便进行子域爆破独立出了aiobrute.py，为了方便进行子域接管风险检查独立出了takerover.py，为了方便数据库导出独立出了dbexport.py，这些模块都可以单独运行，并且所接受参数要更丰富一点，如果要单独使用这些模块请参考[使用帮助](https://github.com/shmilylty/OneForAll/tree/master/docs/usage_help.md)
+[oneforall.py](https://github.com/shmilylty/OneForAll/tree/master/oneforall/oneforall.py)是主程序入口，oneforall.py可以调用[brute.py](https://github.com/shmilylty/OneForAll/tree/master/oneforall/brute.py)，[takerover.py](https://github.com/shmilylty/OneForAll/tree/master/oneforall/takerover.py)及[dbexport.py](https://github.com/shmilylty/OneForAll/tree/master/oneforall/dbexport.py)等模块，为了方便进行子域爆破独立出了brute.py，为了方便进行子域接管风险检查独立出了takerover.py，为了方便数据库导出独立出了dbexport.py，这些模块都可以单独运行，并且所接受参数要更丰富一点，如果要单独使用这些模块请参考[使用帮助](https://github.com/shmilylty/OneForAll/tree/master/docs/usage_help.md)
 
 ❗注意：当你在使用过程中遇到一些问题或者疑惑时，请先到[Issues](https://github.com/shmilylty/OneForAll/issues)里使用搜索找找答案，还可以参阅[常见问题与回答](https://github.com/shmilylty/OneForAll/tree/master/docs/Q&A.md)。
 
@@ -245,7 +245,7 @@ D:.
 |       collection_modules.md 收集模块说明
 +---images
 \---oneforall
-    |   aiobrute.py   异步多进程多协程子域爆破模块，可以单独运行
+    |   brute.py      子域爆破模块，可以单独运行
     |   api.py        一些收集模块的API配置
     |   collect.py    各个收集模块上层调用
     |   config.py     配置文件
