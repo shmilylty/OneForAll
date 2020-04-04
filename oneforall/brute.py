@@ -228,7 +228,12 @@ def do_brute(massdns_path, dict_path, ns_path, output_path, log_path,
           f'--flush --output J --outfile {output_path} ' \
           f'--error-log {log_path} {dict_path}'
     logger.log('INFOR', f'执行命令 {cmd}')
-    subprocess.run(args=cmd, shell=False)
+    # subprocess.run(args=cmd, shell=False)
+        if platform.system().lower() == "linux" or platform.system().lower() == "darwin" :
+        subprocess.run(args=cmd, shell=True)
+    else:
+        subprocess.run(args=cmd, shell=False)
+
 
 
 def read_result(result_path):
