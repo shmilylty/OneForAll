@@ -191,6 +191,7 @@ def get_massdns_path(massdns_dir):
         else:
             massdns_dir = massdns_dir.joinpath('windows', 'x84')
     path = massdns_dir.joinpath(name)
+    path.chmod(0o744)
     if not path.exists():
         logger.log('FATAL', '暂无该系统平台及架构的massdns')
         logger.log('INFOR', '请尝试自行编译massdns并在配置里指定路径')
@@ -220,7 +221,6 @@ def do_brute(massdns_path, dict_path, ns_path, output_path, log_path,
     status_format = config.brute_status_format
     socket_num = config.brute_socket_num
     resolve_num = config.brute_resolve_num
-    #
     cmd = f'{massdns_path} {quiet} --status-format {status_format} ' \
           f'--processes {process_num} --socket-count {socket_num} ' \
           f'--hashmap-size {concurrent_num} --resolvers {ns_path} ' \
@@ -228,7 +228,7 @@ def do_brute(massdns_path, dict_path, ns_path, output_path, log_path,
           f'--flush --output J --outfile {output_path} ' \
           f'--error-log {log_path} {dict_path}'
     logger.log('INFOR', f'执行命令 {cmd}')
-    subprocess.run(args=cmd, shell=False)
+    subprocess.run(args=cmd, shell=True)
 
 
 def read_result(result_path):
