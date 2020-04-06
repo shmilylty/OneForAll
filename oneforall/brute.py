@@ -9,6 +9,7 @@ OneForAll子域爆破模块
 """
 import json
 import time
+import stat
 import queue
 import asyncio
 import random
@@ -191,7 +192,7 @@ def get_massdns_path(massdns_dir):
         else:
             massdns_dir = massdns_dir.joinpath('windows', 'x84')
     path = massdns_dir.joinpath(name)
-    path.chmod(0o744)
+    path.chmod(stat.S_IXUSR)
     if not path.exists():
         logger.log('FATAL', '暂无该系统平台及架构的massdns')
         logger.log('INFOR', '请尝试自行编译massdns并在配置里指定路径')
