@@ -483,12 +483,12 @@ class Brute(Module):
         return dict_set
 
     def check_brute_params(self):
+        if not (self.word or self.fuzz):
+            logger.log('FATAL', f'请至少指定一种爆破模式')
+            exit(1)
         if len(self.domains) > 1:
             self.bulk = True
         if self.fuzz:
-            if not (self.word or self.fuzz):
-                logger.log('FATAL', f'请至少指定一种爆破模式')
-                exit(1)
             if self.place is None or self.rule is None:
                 logger.log('FATAL', f'没有指定fuzz位置或规则')
                 exit(1)
