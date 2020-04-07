@@ -237,7 +237,7 @@ class Database(object):
             if limit in ['resolve', 'request']:
                 where = f' where {limit} = 1'
                 query += where
-        else:
+        elif valid:
             where = f' where alive = 1'
             query += where
         logger.log('TRACE', f'获取{table_name}表中的所有数据')
