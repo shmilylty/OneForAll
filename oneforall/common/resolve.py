@@ -57,19 +57,20 @@ def convert_results(result_list):
     result_dict = {}
     for result in result_list:
         hostname, answer = result
-        value_dict = {'content': None, 'reason': None,
+        value_dict = {'content': None, 'reason': None, 'resolve': None,
                       'public': None, 'valid': None}
         if isinstance(answer, tuple):
             ip_list = answer[2]
             value_dict['content'] = ','.join(ip_list)
             value_dict['public'] = utils.check_ip_public(ip_list)
+            value_dict['resolve'] = 1
             result_dict[hostname] = value_dict
         elif isinstance(answer, Exception):
             value_dict['reason'] = str(answer.args)
-            value_dict['valid'] = 0
+            value_dict['resolve'] = 0
             result_dict[hostname] = value_dict
         else:
-            value_dict['valid'] = 0
+            value_dict['resolve'] = 0
             result_dict[hostname] = value_dict
     return result_dict
 
