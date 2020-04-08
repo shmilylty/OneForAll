@@ -124,15 +124,19 @@ def get_domains(target):
     elif isinstance(target, list):
         domains = target
     elif isinstance(target, str):
-        path = Path(target)
-        if path.is_file():
-            with open(target, encoding='utf-8', errors='ignore') as file:
-                for line in file:
-                    domain = Domain(line.strip()).match()
-                    if domain:
-                        domains.append(domain)
-        elif Domain(target).match():
-            domains = [target]
+        target = target.lower().strip()
+        domain = Domain(target).match()
+        if domain:
+            domains.append(domain)
+        else:
+            path = Path(target)
+            if path.is_file() and path.exists():
+                with open(target, encoding='utf-8', errors='ignore') as file:
+                    for line in file:
+                        line = line.lower().strip()
+                        domain = Domain(line).match()
+                        if domain:
+                            domains.append(domain)
     count = len(domains)
     if count == 0:
         logger.log('FATAL', f'获取到{count}个域名')
