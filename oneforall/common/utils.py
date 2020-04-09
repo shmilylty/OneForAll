@@ -40,7 +40,7 @@ def match_subdomain(domain, text, distinct=True):
     :rtype: set or list
     """
     regexp = r'(?:[a-z0-9](?:[a-z0-9\-]{0,61}[a-z0-9])?\.){0,}' \
-             + domain.replace('.', r'\.')
+             + domain.replace('.', r'\.') + '$'
     result = re.findall(regexp, text, re.I)
     if not result:
         return set()
@@ -321,6 +321,8 @@ def export_all(format, path, datas):
     logger.log('INFOR', f'所有主域的子域结果 {path}')
     row_list = list()
     for row in datas:
+        row.pop('header')
+        row.pop('response')
         keys = row.keys()
         values = row.values()
         if format in {'xls', 'xlsx'}:
