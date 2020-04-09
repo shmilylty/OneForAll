@@ -73,6 +73,8 @@ class GithubAPI(Search):
                 logger.log('ERROR', e.args)
                 break
             total_count = resp_json.get('total_count')
+            if not isinstance(total_count, int):
+                break
             if page * 100 > total_count:
                 break
             if page * 100 > 1000:
