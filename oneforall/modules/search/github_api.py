@@ -1,6 +1,7 @@
 import requests
 import api
 import json
+from common.utils import match_subdomain
 from common.search import Search
 from config import logger
 
@@ -61,7 +62,7 @@ class GithubAPI(Search):
             if resp.status_code != 200:
                 logger.log('ERROR', f'{self.source}模块搜索出错')
                 break
-            subdomains = self.match(self.domain, resp.text)
+            subdomains = match_subdomain(self.domain, resp.text)
             if not subdomains:
                 break
             self.subdomains = self.subdomains.union(subdomains)
@@ -72,7 +73,7 @@ class GithubAPI(Search):
                 logger.log('ERROR', e.args)
                 break
             total_count = resp_json.get('total_count')
-            if isinstance(total_count, int):
+            if not isinstance(total_count, int):
                 break
             if page * 100 > total_count:
                 break
