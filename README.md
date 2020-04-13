@@ -50,7 +50,7 @@
 * **支持子域验证**，默认开启子域验证，自动解析子域DNS，自动请求子域获取title和banner，并综合判断子域存活情况。
 * **支持子域接管**，默认开启子域接管风险检查，支持子域自动接管（目前只有Github，有待完善），支持批量检查。
 * **处理功能强大**，发现的子域结果支持自动去除，自动DNS解析，HTTP请求探测，自动筛选出有效子域，拓展子域的Banner信息，最终支持的导出格式有`rst`, `csv`, `tsv`, `json`, `yaml`, `html`, `xls`, `xlsx`, `dbf`, `latex`, `ods`。
-* **速度极快**，[收集模块](https://github.com/shmilylty/OneForAll/tree/master/oneforall//collect.py)使用多线程调用，[爆破模块](https://github.com/shmilylty/OneForAll/tree/master/oneforall/brute.py)使用[massdns](https://github.com/blechschmidt/massdns)，默认配置下速度最少能达到1000pps，子域验证中DNS解析和HTTP请求使用异步多协程，多线程检查[子域接管](https://github.com/shmilylty/OneForAll/tree/master/oneforall/takeover.py)风险。
+* **速度极快**，[收集模块](https://github.com/shmilylty/OneForAll/tree/master/oneforall//collect.py)使用多线程调用，[爆破模块](https://github.com/shmilylty/OneForAll/tree/master/oneforall/brute.py)使用[massdns](https://github.com/blechschmidt/massdns)，默认配置下速度最少能达到10000pps，子域验证中DNS解析和HTTP请求使用异步多协程，多线程检查[子域接管](https://github.com/shmilylty/OneForAll/tree/master/oneforall/takeover.py)风险。
 * **体验良好**，日志和终端输出全使用中文，各模块都有进度条，异步保存各模块结果。
 
 如果你有其他很棒的想法请务必告诉我！😎
@@ -61,7 +61,7 @@
 
 **🐍安装要求**
 
-OneForAll基于[Python 3.8.0]( https://www.python.org/downloads/release/python-380/ )开发和测试，请使用高于Python 3.8.0的稳定发行版本，其他版本可能会出现一些问题，安装Python环境可以参考[Python 3 安装指南](https://pythonguidecn.readthedocs.io/zh/latest/starting/installation.html#python-3)。运行以下命令检查Python和pip3版本：
+OneForAll基于[Python 3.8.0]( https://www.python.org/downloads/release/python-380/ )开发和测试，请使用高于Python 3.8.0的稳定发行版本，其他版本可能会出现一些问题（Windows平台必须使用3.8.0以上版本），安装Python环境可以参考[Python 3 安装指南](https://pythonguidecn.readthedocs.io/zh/latest/starting/installation.html#python-3)。运行以下命令检查Python和pip3版本：
 ```bash
 python -V
 pip3 -V
@@ -275,6 +275,7 @@ D:.
 关于子域字典来说的说明：
 1. 开源子域收集工具中的部分高频子域名字字典。
 2. 网上有关服务商公布的最流行子域列表。
+ * [DNSPod](https://github.com/DNSPod/oh-my-free-data)
 3. 网上有关安全研究人员关于对全网常见子域的研究结果。
  * [the_most_popular_subdomains_on_the_internet](https://bitquark.co.uk/blog/2016/02/29/the_most_popular_subdomains_on_the_internet)
  * [The most popular subdomains on the internet (2017 edition)](https://medium.com/@cmeister2/the-most-popular-subdomains-on-the-internet-2017-edition-a6b9c8a20fd8)
@@ -289,6 +290,7 @@ D:.
 * [beautifulsoup4](https://pypi.org/project/beautifulsoup4/) - 可以轻松从HTML或XML文件中提取数据的Python库
 * [fire](https://github.com/google/python-fire) - Python Fire是一个纯粹根据任何Python对象自动生成命令行界面（CLI）的库
 * [loguru](https://github.com/Delgan/loguru) - 旨在带来愉快的日志记录Python库
+* [massdns](https://github.com/blechschmidt/massdns) - 高性能的DNS解析器
 * [records](https://github.com/kennethreitz/records) - Records是一个非常简单但功能强大的库，用于对大多数关系数据库进行最原始SQL查询。
 * [requests](https://github.com/psf/requests) - Requests 唯一的一个非转基因的 Python HTTP 库，人类可以安全享用。
 * [tqdm](https://github.com/tqdm/tqdm) - 适用于Python和CLI的快速，可扩展的进度条库

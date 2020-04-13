@@ -50,7 +50,7 @@ At present, OneForAll is still under development, there must be a lot of problem
 * **Support subdmain verification**，default to enable subdomain verification, automatically resolve subdomain DNS, automatically request subdomain to obtain title and banner, and comprehensively determine subdomain survival.
 * **Support subdomain takeover**，By default, subdomain takeover risk checking is enabled. Automatic subdomain takeover is supported (only Github, remains to be improved at present), and batch inspection is supported.
 * **Powerful processing feature**，The found subdomain results support automatic removal, automatic DNS parsing, HTTP request detection, automatic filtering of valid subdomains, and expansion of Banner information for subdomains. The final supported export formats are `rst`, `csv`, `tsv`, `json`, `yaml`, `html`, `xls`, `xlsx`, `dbf`, `latex`, `ods`.
-* **Very fast**，[collection module](https://github.com/shmilylty/OneForAll/tree/master/oneforall//collect.py) uses multithreaded calls, [blasting module](https://github.com/shmilylty/OneForAll/tree/master/oneforall/brute.py) uses [massdns](https://github.com/blechschmidt/massdns), the speed can at least reach 1000pps under the default configuration, and DNS parsing and HTTP requests use asynchronous multiprogramming in subdomain verification. Multithreaded check [subdomain takeover](https://github.com/shmilylty/OneForAll/tree/master/oneforall/takeover.py) risk.
+* **Very fast**，[collection module](https://github.com/shmilylty/OneForAll/tree/master/oneforall//collect.py) uses multithreaded calls, [blasting module](https://github.com/shmilylty/OneForAll/tree/master/oneforall/brute.py) uses [massdns](https://github.com/blechschmidt/massdns), the speed can at least reach 10000pps under the default configuration, and DNS parsing and HTTP requests use asynchronous multiprogramming in subdomain verification. Multithreaded check [subdomain takeover](https://github.com/shmilylty/OneForAll/tree/master/oneforall/takeover.py) risk.
 * **Good experience**，Each module has a progress bar, and the results of each module are saved asynchronously.
 
 If you have any other great ideas, please let me know!😎
@@ -61,7 +61,7 @@ If you have any other great ideas, please let me know!😎
 
 **🐍Installation requirements**
 
-OneForAll is developed and tested based on [Python 3.8.0](https://www.python.org/downloads/release/python-380/). Please use a stable release higher than Python 3.8.0, other versions may have some problems. For more information on installing the Python environment, please see [Python 3 installation Guide](https://pythonguidecn.readthedocs.io/zh/latest/starting/installation.html#python-3) . Run the following command to check the Python and pip3 versions:
+OneForAll is developed and tested based on [Python 3.8.0](https://www.python.org/downloads/release/python-380/). Please use a stable release higher than Python 3.8.0, other versions may have some problems (Windows platform must use Python 3.8.0 or later). For more information on installing the Python environment, please see [Python 3 installation Guide](https://pythonguidecn.readthedocs.io/zh/latest/starting/installation.html#python-3) . Run the following command to check the Python and pip3 versions:
 ```bash
 python -V
 pip3 -V
@@ -282,6 +282,7 @@ A note about subdomain dictionaries:
 
 1. Some high frequency subdomain name dictionary in open source subdomain collection tool.
 2. List of the most popular subdomains published by relevant service providers online.
+ * [DNSPod](https://github.com/DNSPod/oh-my-free-data)
 3. Online research results by security researchers on common subdomains throughout the network.
  * [the_most_popular_subdomains_on_the_internet](https://bitquark.co.uk/blog/2016/02/29/the_most_popular_subdomains_on_the_internet)
  * [The most popular subdomains on the internet (2017 edition)](https://medium.com/@cmeister2/the-most-popular-subdomains-on-the-internet-2017-edition-a6b9c8a20fd8)
@@ -296,6 +297,7 @@ A note about subdomain dictionaries:
 * [beautifulsoup4](https://pypi.org/project/beautifulsoup4/) -  Beautiful Soup is a library that makes it easy to scrape information from web pages. 
 * [fire](https://github.com/google/python-fire) -  Python Fire is a library for automatically generating command line interfaces (CLIs) from absolutely any Python object. 
 * [loguru](https://github.com/Delgan/loguru) -  Loguru is a library which aims to bring enjoyable logging in Python. 
+* [massdns](https://github.com/blechschmidt/massdns) - A high-performance DNS stub resolver
 * [records](https://github.com/kennethreitz/records) -  Records is a very simple, but powerful, library for making raw SQL queries to most relational databases.
 * [requests](https://github.com/psf/requests) -  A simple, yet elegant HTTP library. 
 * [tqdm](https://github.com/tqdm/tqdm) -  A Fast, Extensible Progress Bar for Python and CLI 
