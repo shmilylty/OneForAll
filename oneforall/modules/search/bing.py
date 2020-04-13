@@ -46,7 +46,7 @@ class Bing(Search):
             # 合并搜索子域名搜索结果
             self.subdomains = self.subdomains.union(subdomains)
             # 搜索页面没有出现下一页时停止搜索
-            if '<div class="sw_next>' not in resp.text:
+            if '<div class="sw_next">' not in resp.text:
                 break
             self.page_num += self.per_page_num
             if self.page_num >= self.limit_num:  # 搜索条数限制
