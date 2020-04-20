@@ -51,7 +51,7 @@ class OneForAll(object):
         python3 oneforall.py version
         python3 oneforall.py --target example.com run
         python3 oneforall.py --target ./domains.txt run
-        python3 oneforall.py --target example.com --valid None run
+        python3 oneforall.py --target example.com --alive None run
         python3 oneforall.py --target example.com --brute True run
         python3 oneforall.py --target example.com --port medium run
         python3 oneforall.py --target example.com --format csv run
@@ -61,7 +61,7 @@ class OneForAll(object):
         python3 oneforall.py --target example.com --show True run
 
     Note:
-        # 参数valid可选值True，False分别表示导出有效，全部子域结果
+        参数alive可选值True，False分别表示导出存活，全部子域结果
         参数port可选值有'default', 'small', 'large', 详见config.py配置
         参数format可选格式有'rst', 'csv', 'tsv', 'json', 'yaml', 'html',
                           'jira', 'xls', 'xlsx', 'dbf', 'latex', 'ods'
@@ -72,19 +72,19 @@ class OneForAll(object):
     :param bool dns:       DNS解析子域(默认True)
     :param bool req:       HTTP请求子域(默认True)
     :param str port:       请求验证子域的端口范围(默认探测80端口)
-    :param bool valid:     只导出有效的子域结果(默认False)
+    :param bool alive:     只导出存活的子域结果(默认False)
     :param str format:     结果保存格式(默认csv)
     :param str path:       结果保存路径(默认None)
     :param bool takeover:  检查子域接管(默认False)
     """
     def __init__(self, target, brute=None, dns=None, req=None, port=None,
-                 valid=None, format=None, path=None, takeover=None):
+                 alive=None, format=None, path=None, takeover=None):
         self.target = target
         self.brute = brute
         self.dns = dns
         self.req = req
         self.port = port
-        self.valid = valid
+        self.alive = alive
         self.format = format
         self.path = path
         self.takeover = takeover
@@ -111,8 +111,8 @@ class OneForAll(object):
             self.takeover = bool(config.enable_takeover_check)
         if self.port is None:
             self.port = config.http_request_port
-        if self.valid is None:
-            self.valid = bool(config.result_export_valid)
+        if self.alive is None:
+            self.alive = bool(config.result_export_alive)
         if self.format is None:
             self.format = config.result_save_format
         if self.path is None:
@@ -127,7 +127,7 @@ class OneForAll(object):
         :rtype: list
         """
         db = Database()
-        data = dbexport.export(table, valid=self.valid, format=self.format)
+        data = dbexport.export(table, alive=self.alive, format=self.format)
         db.drop_table(self.new_table)
         db.rename_table(self.domain, self.new_table)
         db.close()

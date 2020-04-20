@@ -15,7 +15,7 @@ from common.database import Database
 from config import logger
 
 
-def export(table, db=None, valid=False, limit=None, path=None, format='csv', show=False):
+def export(table, db=None, alive=False, limit=None, path=None, format='csv', show=False):
     """
     OneForAll数据库导出模块
 
@@ -24,13 +24,14 @@ def export(table, db=None, valid=False, limit=None, path=None, format='csv', sho
         python3 dbexport.py --db result.db --table name --show False
 
     Note:
+        参数alive可选值True，False分别表示导出存活，全部子域结果
         参数format可选格式有'txt', 'rst', 'csv', 'tsv', 'json', 'yaml', 'html',
                           'jira', 'xls', 'xlsx', 'dbf', 'latex', 'ods'
         参数path默认None使用OneForAll结果目录自动生成路径
 
     :param str table:   要导出的表
     :param str db:      要导出的数据库路径(默认为results/result.sqlite3)
-    :param bool valid:  只导出有效的子域结果(默认False)
+    :param bool alive:  只导出存活的子域结果(默认False)
     :param str limit:   导出限制条件(默认None)
     :param str format:  导出文件格式(默认csv)
     :param str path:    导出文件路径(默认None)
@@ -38,7 +39,7 @@ def export(table, db=None, valid=False, limit=None, path=None, format='csv', sho
     """
 
     database = Database(db)
-    rows = database.export_data(table, valid, limit)
+    rows = database.export_data(table, alive, limit)
     format = utils.check_format(format, len(rows))
     path = utils.check_path(path, table, format)
     if show:

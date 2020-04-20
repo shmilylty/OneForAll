@@ -23,8 +23,8 @@ enable_http_request = True  # 使用HTTP请求子域(默认True)
 enable_takeover_check = False  # 开启子域接管风险检查(默认False)
 # 参数port可选值有'default', 'small', 'large'
 http_request_port = 'default'  # HTTP请求子域(默认'default'，探测80端口)
-# 参数valid可选值True，False分别表示导出有效，全部子域结果
-result_export_valid = False  # 只导出有效的子域结果(默认False)
+# 参数alive可选值True，False分别表示导出存活，全部子域结果
+result_export_alive = False  # 只导出存活的子域结果(默认False)
 # 参数format可选格式有'rst', 'csv', 'tsv', 'json', 'yaml', 'html',
 # 'jira', 'xls', 'xlsx', 'dbf', 'latex', 'ods'
 result_save_format = 'csv'  # 子域结果保存文件格式(默认csv)
