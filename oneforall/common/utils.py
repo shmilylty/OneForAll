@@ -40,7 +40,7 @@ def match_subdomain(domain, text, distinct=True):
     :rtype: set or list
     """
     regexp = r'(?:[a-z0-9](?:[a-z0-9\-]{0,61}[a-z0-9])?\.){0,}' \
-             + domain.replace('.', r'\.') + '$'
+             + domain.replace('.', r'\.')
     result = re.findall(regexp, text, re.I)
     if not result:
         return set()
