@@ -220,12 +220,12 @@ class Database(object):
         logger.log('TRACE', f'获取{table_name}表中的所有数据')
         return self.query(f'select * from "{table_name}"')
 
-    def export_data(self, table_name, valid, limit):
+    def export_data(self, table_name, alive, limit):
         """
         获取表中的部分数据
 
         :param str table_name: 表名
-        :param any valid: 有效性
+        :param any alive: 存活
         :param str limit: 限制字段
         """
         table_name = table_name.replace('.', '_')
@@ -233,14 +233,14 @@ class Database(object):
                 f'subdomain, level, cname, content, public, port, status, ' \
                 f'reason, title, banner, times, ttl, resolver, module, ' \
                 f'source, elapse, find, brute, valid from "{table_name}"'
-        if valid and limit:
+        if alive and limit:
             if limit in ['resolve', 'request']:
                 where = f' where {limit} = 1'
                 query += where
-        elif valid:
+        elif alive:
             where = f' where alive = 1'
             query += where
-        logger.log('TRACE', f'获取{table_name}表中的所有数据')
+        logger.log('TRACE', f'获取{table_name}表中的数据')
         return self.query(query)
 
     def close(self):
