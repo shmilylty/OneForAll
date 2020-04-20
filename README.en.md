@@ -28,7 +28,7 @@ The importance of information collection in penetration testing is self-evident.
 
 In order to solve the above pain points, As its name suggests, I want OneForAll to be a collection of 100 strong, powerful and fast subdomains that collect the ultimate artifact 🔨.
 
-At present, OneForAll is still under development, there must be a lot of problems and areas for improvement. Welcome to submit [Issues](https://github.com/shmilylty/OneForAll/issues) or [PR](https://github.com/shmilylty/OneForAll/pulls)，If you like, give it to a little star ✨，At present, there is a special QQ group for OneForAll communication and feedback: 👨‍👨‍👦‍👦：:[**824414244**](//shang.qq.com/wpa/qunwpa?idkey=125d3689b60445cdbb11e4ddff38036b7f6f2abbf4f7957df5dddba81aa90771)，You can also 📧[email](mailto://admin@hackfun.org) or [tweet](https://twitter.com/jinglingbiaodi) to me .
+At present, OneForAll is still under development, there must be a lot of problems and areas for improvement. Welcome to submit [Issues](https://github.com/shmilylty/OneForAll/issues) or [PR](https://github.com/shmilylty/OneForAll/pulls)，If you like, give it to a little star ✨，At present, there is a special QQ group for OneForAll communication and feedback: 👨‍👨‍👦‍👦：:[**824414244**](//shang.qq.com/wpa/qunwpa?idkey=125d3689b60445cdbb11e4ddff38036b7f6f2abbf4f7957df5dddba81aa90771)，You can also [tweet](https://twitter.com/jinglingbiaodi) to me .
 
 ## 👍Features
 
