@@ -222,6 +222,7 @@ class OneForAll(object):
         :return: 总的子域结果
         :rtype: list
         """
+        utils.check_env()
         print(banner)
         dt = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         print(f'[*] Starting OneForAll @ {dt}\n')
