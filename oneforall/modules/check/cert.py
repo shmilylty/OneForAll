@@ -30,7 +30,7 @@ class CheckCert(Module):
             sock.connect((self.domain, self.port))
             cert_dict = sock.getpeercert()
         except Exception as e:
-            logger.log('ERROR', e.args)
+            logger.log('DEBUG', e.args)
             return
         subdomains = utils.match_subdomain(self.domain, str(cert_dict))
         self.subdomains = self.subdomains.union(subdomains)
