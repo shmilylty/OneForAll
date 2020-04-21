@@ -321,8 +321,10 @@ def export_all(format, path, datas):
     logger.log('INFOR', f'所有主域的子域结果 {path}')
     row_list = list()
     for row in datas:
-        row.pop('header', d=None)
-        row.pop('response', d=None)
+        if 'header' in row:
+            row.pop('header')
+        if 'response' in row:
+            row.pop('response')
         keys = row.keys()
         values = row.values()
         if format in {'xls', 'xlsx'}:
