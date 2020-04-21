@@ -467,3 +467,15 @@ def delete_file(*paths):
             path.unlink()
         except Exception as e:
             logger.log('ERROR', e.args)
+
+
+def check_env():
+    system = platform.system()
+    implementation = platform.python_implementation()
+    if implementation != 'CPython':
+        logger.log('ALERT', f'当前Python是基于{implementation}实现但OneForAll只在CPython下测试通过')
+    if system == 'Windows' and implementation == 'CPython':
+        version = platform.python_version()
+        if version < '3.8':
+            logger.log('FATAL', 'OneForAll在Windows系统运行时需要Python 3.8以上版本')
+            exit(1)
