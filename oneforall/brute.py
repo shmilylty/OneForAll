@@ -28,25 +28,18 @@ from common.module import Module
 from config import logger
 
 
-@retry(stop=stop_after_attempt(3))
-def detect_wildcard(domain):
-    """
-    探测域名是否使用泛解析
-
-    :param str domain: 域名
-    :return: 如果没有使用泛解析返回False 反之返回泛解析的IP集合和ttl整型值
-    """
-    logger.log('INFOR', f'正在探测{domain}是否使用泛解析')
-    token = secrets.token_hex(4)
-    random_subdomain = f'{token}.{domain}'
+@retry(reraise=True, stop=stop_after_attempt(3))
+def do_query_a(domain):
     resolver = resolve.dns_resolver()
     try:
-        answer = resolver.query(random_subdomain, 'A')
-    # 如果查询随机域名A记录出错 说明不存在随机子域的A记录 即没有开启泛解析
+        answer = resolver.query(domain, 'A')
+    # 如果查询随机域名A记录时抛出Timeout异常则重新探测
     except Timeout as e:
-        logger.log('ALERT', f'探测超时将重新探测')
+        logger.log('ALERT', f'探测超时重新探测中')
         logger.log('DEBUG', e.args)
         raise TryAgain
+    # 如果查询随机域名A记录时抛出NXDOMAIN,YXDOMAIN,NoAnswer,NoNameservers异常
+    # 则说明不存在随机子域的A记录 即没有开启泛解析
     except Exception as e:
         logger.log('DEBUG', e.args)
         logger.log('INFOR', f'{domain}没有使用泛解析')
@@ -56,10 +49,29 @@ def detect_wildcard(domain):
         name = answer.name
         ips = {item.address for item in answer}
         logger.log('ALERT', f'{domain}使用了泛解析')
-        logger.log('ALERT', f'{random_subdomain} 解析到域名: {name} '
+        logger.log('ALERT', f'{domain} 解析到域名: {name} '
                             f'IP: {ips} TTL: {ttl}')
         return True
-    return False
+
+
+def detect_wildcard(domain):
+    """
+    探测域名是否使用泛解析
+
+    :param str domain: 域名
+    :return: 是否使用泛解析
+    """
+    logger.log('INFOR', f'正在探测{domain}是否使用泛解析')
+    token = secrets.token_hex(4)
+    random_subdomain = f'{token}.{domain}'
+    try:
+        wildcard = do_query_a(random_subdomain)
+    except Exception as e:
+        logger.log('DEBUG', e.args)
+        logger.log('FATAL', f'探测{domain}是否使用泛解析失败')
+        exit(1)
+    else:
+        return wildcard
 
 
 def gen_fuzz_subdomains(expression, rule):
