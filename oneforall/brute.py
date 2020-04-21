@@ -10,8 +10,6 @@ OneForAll子域爆破模块
 import json
 import time
 import stat
-import queue
-import asyncio
 import random
 import secrets
 import platform
@@ -19,15 +17,18 @@ import subprocess
 
 import exrex
 import fire
+from tenacity import TryAgain, retry, stop_after_attempt
+from dns.exception import Timeout
+from dns.resolver import Answer
 
 import config
 import dbexport
 from common import resolve, utils
 from common.module import Module
-from common.database import Database
 from config import logger
 
 
+@retry(stop=stop_after_attempt(3))
 def detect_wildcard(domain):
     """
     探测域名是否使用泛解析
@@ -42,17 +43,23 @@ def detect_wildcard(domain):
     try:
         answer = resolver.query(random_subdomain, 'A')
     # 如果查询随机域名A记录出错 说明不存在随机子域的A记录 即没有开启泛解析
+    except Timeout as e:
+        logger.log('ALERT', f'探测超时将重新探测')
+        logger.log('DEBUG', e.args)
+        raise TryAgain
     except Exception as e:
         logger.log('DEBUG', e.args)
         logger.log('INFOR', f'{domain}没有使用泛解析')
         return False
-    ttl = answer.ttl
-    name = answer.name
-    ips = {item.address for item in answer}
-    logger.log('ALERT', f'{domain}使用了泛解析')
-    logger.log('ALERT', f'{random_subdomain} 解析到域名: {name} '
-                        f'IP: {ips} TTL: {ttl}')
-    return True
+    if isinstance(answer, Answer):
+        ttl = answer.ttl
+        name = answer.name
+        ips = {item.address for item in answer}
+        logger.log('ALERT', f'{domain}使用了泛解析')
+        logger.log('ALERT', f'{random_subdomain} 解析到域名: {name} '
+                            f'IP: {ips} TTL: {ttl}')
+        return True
+    return False
 
 
 def gen_fuzz_subdomains(expression, rule):

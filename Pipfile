@@ -24,6 +24,7 @@ js2py = "*"
 tablib = "*"
 brotli = "*"
 psutil = "*"
+tenacity = "*"
 
 [requires]
 python_version = "3.8"
