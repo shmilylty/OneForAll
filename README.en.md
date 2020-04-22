@@ -278,7 +278,7 @@ D:.
 
 ```
 
-A note about subdomain dictionaries:
+Description of the source of the subdomain dictionary::
 
 1. Some high frequency subdomain name dictionary in open source subdomain collection tool.
 2. List of the most popular subdomains published by relevant service providers online.
