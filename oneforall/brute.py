@@ -17,7 +17,7 @@ import subprocess
 
 import exrex
 import fire
-from tenacity import TryAgain, retry, stop_after_attempt
+import tenacity
 from dns.exception import Timeout
 from dns.resolver import Answer
 
@@ -28,16 +28,16 @@ from common.module import Module
 from config import logger
 
 
-@retry(reraise=True, stop=stop_after_attempt(3))
+@tenacity.retry(reraise=True, stop=tenacity.stop_after_attempt(3))
 def do_query_a(domain):
     resolver = resolve.dns_resolver()
     try:
-        answer = resolver.query(domain, 'A')
+        answer = resolver.query(domain, 'A', raise_on_no_answer=False)
     # 如果查询随机域名A记录时抛出Timeout异常则重新探测
     except Timeout as e:
         logger.log('ALERT', f'探测超时重新探测中')
         logger.log('DEBUG', e.args)
-        raise TryAgain
+        raise tenacity.TryAgain
     # 如果查询随机域名A记录时抛出NXDOMAIN,YXDOMAIN,NoAnswer,NoNameservers异常
     # 则说明不存在随机子域的A记录 即没有开启泛解析
     except Exception as e:
@@ -163,25 +163,50 @@ def query_domain_ns(domain):
     return ns
 
 
-def get_wildcard_record(domain, authoritative_ns):
+def get_wildcard_record(domain, resolver):
+    logger.log('INFOR', f'查询{domain}在权威DNS名称服务器的泛解析记录')
+    try:
+        answer = resolver.query(domain, 'A')
+    except Exception as e:
+        logger.log('ERROR', e.args)
+        logger.log('ERROR', f'查询{domain}在权威DNS名称服务器泛解析记录出错')
+        return None, None
+    else:
+        name = answer.name
+        ip = {item.address for item in answer}
+        ttl = answer.ttl
+        logger.log('INFOR', f'{domain} 在权威DNS上解析到域名: {name} '
+                            f'IP: {ip} TTL: {ttl}')
+        return ip, ttl
+
+
+def collect_wildcard_record(domain, authoritative_ns):
+    logger.log('INFOR', f'正在收集{domain}的泛解析记录')
     if not authoritative_ns:
         return list(), int()
     resolver = resolve.dns_resolver()
     resolver.nameservers = authoritative_ns
-    token = secrets.token_hex(4)
-    random_subdomain = f'{token}.{domain}'
-    logger.log('INFOR', f'查询{random_subdomain}在权威DNS名称服务器的泛解析记录')
-    try:
-        answer = resolver.query(random_subdomain, 'A')
-    except Exception as e:
-        logger.log('ERROR', e.args)
-        logger.log('ERROR', f'查询{random_subdomain}在权威DNS名称服务器泛解析记录出错')
-        return None, None
-    name = answer.name
-    ips = {item.address for item in answer}
-    ttl = answer.ttl
-    logger.log('INFOR', f'{random_subdomain} 在权威DNS上解析到域名: {name} '
-                        f'IP: {ips} TTL: {ttl}')
+    ips = set()
+    ips_stat = dict()
+    while True:
+        token = secrets.token_hex(4)
+        random_subdomain = f'{token}.{domain}'
+        ip, ttl = get_wildcard_record(random_subdomain, resolver)
+        if ip is None:
+            break
+        ips = ips.union(ip)
+        # 统计每个泛解析IP出现次数
+        for addr in ip:
+            ips_stat.setdefault(addr, 0)
+            ips_stat[addr] += 1
+        # 筛选出出现次数2次以上的IP地址
+        addrs = list()
+        for addr, times in ips_stat.items():
+            if times >= 2:
+                addrs.append(addr)
+        # 大部分的IP地址出现次数大于2次停止收集泛解析IP记录
+        if len(addrs) / len(ips) >= 0.8:
+            break
     return ips, ttl
 
 
@@ -545,7 +570,7 @@ class Brute(Module):
         if self.enable_wildcard:
             ns_list = query_domain_ns(self.domain)
             ns_ip_list = query_domain_ns_a(ns_list)
-            wildcard_ips, wildcard_ttl = get_wildcard_record(domain, ns_ip_list)
+            wildcard_ips, wildcard_ttl = collect_wildcard_record(domain, ns_ip_list)
         ns_path = get_nameservers_path(self.enable_wildcard, ns_ip_list)
 
         dict_set = self.gen_brute_dict(domain)
