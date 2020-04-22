@@ -28,24 +28,24 @@ The importance of information collection in penetration testing is self-evident.
 
 In order to solve the above pain points, As its name suggests, I want OneForAll to be a collection of 100 strong, powerful and fast subdomains that collect the ultimate artifact 🔨.
 
-At present, OneForAll is still under development, there must be a lot of problems and areas for improvement. Welcome to submit [Issues](https://github.com/shmilylty/OneForAll/issues) or [PR](https://github.com/shmilylty/OneForAll/pulls)，If you like, give it to a little star ✨，At present, there is a special QQ group for OneForAll communication and feedback: 👨‍👨‍👦‍👦：:[**824414244**](//shang.qq.com/wpa/qunwpa?idkey=125d3689b60445cdbb11e4ddff38036b7f6f2abbf4f7957df5dddba81aa90771)，You can also [tweet](https://twitter.com/jinglingbiaodi) to me .
+At present, OneForAll is still under development, there must be a lot of problems and areas for improvement. Welcome to submit [Issues](https://github.com/shmilylty/OneForAll/issues) or [PR](https://github.com/shmilylty/OneForAll/pulls)，If you like, give it to a little star ✨，At present, there is a special QQ group for OneForAll communication and feedback: 👨‍👨‍👦‍👦：:[**824414244**](//shang.qq.com/wpa/qunwpa?idkey=125d3689b60445cdbb11e4ddff38036b7f6f2abbf4f7957df5dddba81aa90771)，You can also [tweet](https://twitter.com/shmilylty) to me .
 
 ## 👍Features
 
 * **Powerful collection capability**，For more information, please see [collection module description](https://github.com/shmilylty/OneForAll/tree/master/docs/collection_modules.md).
-  1. Collect subdomains using certificate transparency (there are currently 6 modules: `censys_api`，`spyse_api`，`certspotter`，`crtsh`，`entrust`，`google`）
+  1. Collect subdomains using certificate transparency (there are currently 6 modules: `censys_api`，`certspotter`，`crtsh`，`entrust`，`google`，`spyse_api`）
 
   2. General check collection subdomains (there are currently 4 modules: domain transfer vulnerability exploitation`axfr`, cross-domain policy file `cdx`, HTTPS certificate `cert`, content security policy `csp`, robots file `robots`, and sitemap file `sitemap`. Check NSEC record, NSEC3 record and other modules will be added later).
 
-  3.  Collect subdomains using web crawler files (there are currently two modules: `archirawl`, `commoncrawl`, which is still being debugged and needs to be added and improved). 
+  3.  Collect subdomains using web crawler files (there are currently 2 modules: `archirawl`, `commoncrawl`, which is still being debugged and needs to be added and improved). 
 
-  4.  Collect subdomains using DNS datasets (there are currently 22 modules: `ip138`, `ximcx`, `CeBaidu`, `binaryedge_api`, `circl_api`, `hackertarget`, `riddler`, `bufferover`, `dnsdb`, `ipv4info`, `robtex`, `chinaz`, `dnsdb_api`, `netcraft`, `securitytrails_api`, `chinaz_api`, `dnsdumpster`, `passivedns_api`,  `ptrarchive`, `sitedossier`,`threatcrowd`）
+  4.  Collect subdomains using DNS datasets (there are currently 23 modules: `binaryedge_api`, `bufferover`, `cebaidu`, `chinaz`, `chinaz_api`, `circl_api`, `dnsdb_api`, `dnsdumpster`, `hackertarget`, `ip138`, `ipv4info_api`, `netcraft`, `passivedns_api`, `ptrarchive`, `qianxun`, `rapiddns`, `riddler`, `robtex`, `securitytrails_api`, `sitedossier`, `threatcrowd`, `wzpc`, `ximcx`）
 
-  5.  Collect subdomains using DNS queries (there is currently a module to collect subdomains `srv` by enumerating common SRV records and making queries, And collect subdomains by querying MX, NS, SOA, TXT records in the DNS records of the domain name). 
+  5.  Collect subdomains using DNS queries (There are currently 5 modules: collecting subdomains `srv` by enumerating common SRV records and making queries, and collecting subdomains by querying MX,NS,SOA,TXT records in DNS records of domain names). 
 
   6.  Collect subdomains using threat intelligence platform data (there are currently 6 modules: `alienvault`, `riskiq_ api`, `threatbook_ api`, `threatkeeper `, `virustotal`, `virustotal_ api`, which need to be added and improved).
 
-  7.  Use search engines to discover subdomains (there are currently 17 modules: `ask`, `bing_ api`, `fofa_ api`, `shodan_ api`, `yahoo`, `baidu`, `duckduckgo`, `gitee`, `github`, `google`, `so`, `yandex`, `bing`, `exalead`, `google_ api`, `sogou`, `zoomeye_ api`), except for special search engines in the search module. General search engines support automatic exclusion of search, full search, recursive search. 
+  7.  Use search engines to discover subdomains (there are currently 18 modules: `ask`, `baidu`, `bing`, `bing_api`, `duckduckgo`, `exalead`, `fofa_api`, `gitee`, `github`, `github_api`, `google`, `google_api`, `shodan_api`, `so`, `sogou`, `yahoo`, `yandex`, `zoomeye_api`), except for special search engines in the search module. General search engines support automatic exclusion of search, full search, recursive search. 
 * **Support subdomain blasting**，This module has both conventional dictionary blasting and custom fuzz mode. It supports batch blasting and recursive blasting, and automatically judges pan-parsing and processing.
 * **Support subdmain verification**，default to enable subdomain verification, automatically resolve subdomain DNS, automatically request subdomain to obtain title and banner, and comprehensively determine subdomain survival.
 * **Support subdomain takeover**，By default, subdomain takeover risk checking is enabled. Automatic subdomain takeover is supported (only Github, remains to be improved at present), and batch inspection is supported.
