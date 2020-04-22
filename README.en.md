@@ -286,8 +286,13 @@ A note about subdomain dictionaries:
 3. Online research results by security researchers on common subdomains throughout the network.
  * [the_most_popular_subdomains_on_the_internet](https://bitquark.co.uk/blog/2016/02/29/the_most_popular_subdomains_on_the_internet)
  * [The most popular subdomains on the internet (2017 edition)](https://medium.com/@cmeister2/the-most-popular-subdomains-on-the-internet-2017-edition-a6b9c8a20fd8)
-4. Optimize sorting and dirty data removal from the dictionary obtained above.
-5. You are very welcome to contribute a better dictionary.
+4. Common business naming rules:
+ * single letter, single letter + single number, double letter, double letter + single number, double letter + double number, three letters, four letters. 
+ * single-digit, double-digit, triple-digit. 
+5. The names of tools and software that are common in companies or in DevOps. 
+6. Common Chinese words Pinyin and common English words.
+7. Optimize sorting and dirty data removal from the dictionary obtained above.
+8. You are very welcome to contribute a better dictionary.
 
 ## 👏Framework used
 
