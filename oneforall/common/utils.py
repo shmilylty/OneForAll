@@ -481,3 +481,7 @@ def check_env():
         if version < '3.8':
             logger.log('FATAL', 'OneForAll在Windows系统运行时需要Python 3.8以上版本')
             exit(1)
+
+
+def get_maindomain(domain):
+    return Domain(domain).registered()
