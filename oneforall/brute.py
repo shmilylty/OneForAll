@@ -31,23 +31,30 @@ from config import logger
 @tenacity.retry(reraise=True, stop=tenacity.stop_after_attempt(3))
 def do_query_a(domain, resolver):
     try:
-        answer = resolver.query(domain, 'A', raise_on_no_answer=False)
+        answer = resolver.query(domain, 'A')
     # 如果查询随机域名A记录时抛出Timeout异常则重新探测
     except Timeout as e:
         logger.log('ALERT', f'探测超时重新探测中')
         logger.log('DEBUG', e.args)
         raise tenacity.TryAgain
-    # 如果查询随机域名A记录时抛出NXDOMAIN,NoNameservers异常
+    except (YXDOMAIN, NoAnswer) as e:
+        logger.log('ALERT', f'结果无效重新探测中')
+        logger.log('DEBUG', e.args)
+        raise tenacity.TryAgain
+    # 如果查询随机域名A记录时抛出NXDOMAIN异常
     # 则说明不存在随机子域的A记录 即没有开启泛解析
-    except (NXDOMAIN, NoNameservers) as e:
+    except NXDOMAIN as e:
         logger.log('DEBUG', e.args)
         logger.log('INFOR', f'{domain}没有使用泛解析')
         return False
     except Exception as e:
-        logger.log('ALERT', f'探测出错重新探测中')
-        logger.log('DEBUG', e.args)
-        raise tenacity.TryAgain
-    if isinstance(answer, Answer):
+        logger.log('ALERT', f'探测出错')
+        logger.log('FATAL', e.args)
+        exit(1)
+    else:
+        if answer.rrset is None:
+            logger.log('ALERT', f'结果无记录重新探测中')
+            raise tenacity.TryAgain
         ttl = answer.ttl
         name = answer.name
         ips = {item.address for item in answer}
@@ -62,6 +69,7 @@ def detect_wildcard(domain, authoritative_ns):
     探测域名是否使用泛解析
 
     :param str domain: 域名
+    :param list authoritative_ns: 权威DNS
     :return: 是否使用泛解析
     """
     logger.log('INFOR', f'正在探测{domain}是否使用泛解析')
@@ -70,6 +78,7 @@ def detect_wildcard(domain, authoritative_ns):
     resolver = resolve.dns_resolver()
     resolver.nameservers = authoritative_ns
     resolver.rotate = True
+    resolver.cache = None
     try:
         wildcard = do_query_a(random_subdomain, resolver)
     except Exception as e:
@@ -170,25 +179,32 @@ def query_domain_ns(domain):
     return ns
 
 
+@tenacity.retry(reraise=True, stop=tenacity.stop_after_attempt(2))
 def get_wildcard_record(domain, resolver):
     logger.log('INFOR', f'查询{domain}在权威DNS名称服务器的泛解析记录')
     try:
         answer = resolver.query(domain, 'A')
-    # 如果查询随机域名A记录时抛出Timeout异常则重新查询
+    # 如果查询随机域名A记录时抛出Timeout异常则重新探测
     except Timeout as e:
-        logger.log('ALERT', f'查询超时重新查询中')
+        logger.log('ALERT', f'查询超时重新探测中')
         logger.log('DEBUG', e.args)
         raise tenacity.TryAgain
-    # 如果查询随机域名A记录时抛出NXDOMAIN, YXDOMAIN, NoAnswer, NoNameservers异常
-    except (NXDOMAIN, YXDOMAIN, NoAnswer, NoNameservers) as e:
+    except (YXDOMAIN, NoAnswer) as e:
+        logger.log('ALERT', f'结果无效重新探测中')
         logger.log('DEBUG', e.args)
-        logger.log('INFOR', f'{domain}没有使用泛解析')
+        raise tenacity.TryAgain
+    except (NXDOMAIN, NoNameservers) as e:
+        logger.log('DEBUG', e.args)
+        logger.log('INFOR', f'{domain}在权威DNS名称服务器上没有A记录')
         return None, None
     except Exception as e:
         logger.log('ERROR', e.args)
         logger.log('ERROR', f'查询{domain}在权威DNS名称服务器泛解析记录出错')
-        return e, None
+        exit(1)
     else:
+        if answer.rrset is None:
+            logger.log('DEBUG', f'查询结果无记录')
+            return None, None
         name = answer.name
         ip = {item.address for item in answer}
         ttl = answer.ttl
@@ -204,6 +220,7 @@ def collect_wildcard_record(domain, authoritative_ns):
     resolver = resolve.dns_resolver()
     resolver.nameservers = authoritative_ns
     resolver.rotate = True
+    resolver.cache = None
     ips = set()
     ips_stat = dict()
     while True:
@@ -212,8 +229,6 @@ def collect_wildcard_record(domain, authoritative_ns):
         ip, ttl = get_wildcard_record(random_subdomain, resolver)
         if ip is None:
             continue
-        if isinstance(ip, Exception):
-            break
         ips = ips.union(ip)
         # 统计每个泛解析IP出现次数
         for addr in ip:
