@@ -19,7 +19,7 @@ import exrex
 import fire
 import tenacity
 from dns.exception import Timeout
-from dns.resolver import Answer
+from dns.resolver import Answer, NXDOMAIN, YXDOMAIN, NoAnswer, NoNameservers
 
 import config
 import dbexport
@@ -29,8 +29,7 @@ from config import logger
 
 
 @tenacity.retry(reraise=True, stop=tenacity.stop_after_attempt(3))
-def do_query_a(domain):
-    resolver = resolve.dns_resolver()
+def do_query_a(domain, resolver):
     try:
         answer = resolver.query(domain, 'A', raise_on_no_answer=False)
     # 如果查询随机域名A记录时抛出Timeout异常则重新探测
@@ -38,12 +37,16 @@ def do_query_a(domain):
         logger.log('ALERT', f'探测超时重新探测中')
         logger.log('DEBUG', e.args)
         raise tenacity.TryAgain
-    # 如果查询随机域名A记录时抛出NXDOMAIN,YXDOMAIN,NoAnswer,NoNameservers异常
+    # 如果查询随机域名A记录时抛出NXDOMAIN,NoNameservers异常
     # 则说明不存在随机子域的A记录 即没有开启泛解析
-    except Exception as e:
+    except (NXDOMAIN, NoNameservers) as e:
         logger.log('DEBUG', e.args)
         logger.log('INFOR', f'{domain}没有使用泛解析')
         return False
+    except Exception as e:
+        logger.log('ALERT', f'探测出错重新探测中')
+        logger.log('DEBUG', e.args)
+        raise tenacity.TryAgain
     if isinstance(answer, Answer):
         ttl = answer.ttl
         name = answer.name
@@ -54,7 +57,7 @@ def do_query_a(domain):
         return True
 
 
-def detect_wildcard(domain):
+def detect_wildcard(domain, authoritative_ns):
     """
     探测域名是否使用泛解析
 
@@ -64,8 +67,11 @@ def detect_wildcard(domain):
     logger.log('INFOR', f'正在探测{domain}是否使用泛解析')
     token = secrets.token_hex(4)
     random_subdomain = f'{token}.{domain}'
+    resolver = resolve.dns_resolver()
+    resolver.nameservers = authoritative_ns
+    resolver.rotate = True
     try:
-        wildcard = do_query_a(random_subdomain)
+        wildcard = do_query_a(random_subdomain, resolver)
     except Exception as e:
         logger.log('DEBUG', e.args)
         logger.log('FATAL', f'探测{domain}是否使用泛解析失败')
@@ -151,6 +157,7 @@ def query_domain_ns_a(ns_list):
 
 
 def query_domain_ns(domain):
+    domain = utils.get_maindomain(domain)
     resolver = resolve.dns_resolver()
     try:
         answer = resolver.query(domain, 'NS')
@@ -167,10 +174,20 @@ def get_wildcard_record(domain, resolver):
     logger.log('INFOR', f'查询{domain}在权威DNS名称服务器的泛解析记录')
     try:
         answer = resolver.query(domain, 'A')
+    # 如果查询随机域名A记录时抛出Timeout异常则重新查询
+    except Timeout as e:
+        logger.log('ALERT', f'查询超时重新查询中')
+        logger.log('DEBUG', e.args)
+        raise tenacity.TryAgain
+    # 如果查询随机域名A记录时抛出NXDOMAIN, YXDOMAIN, NoAnswer, NoNameservers异常
+    except (NXDOMAIN, YXDOMAIN, NoAnswer, NoNameservers) as e:
+        logger.log('DEBUG', e.args)
+        logger.log('INFOR', f'{domain}没有使用泛解析')
+        return None, None
     except Exception as e:
         logger.log('ERROR', e.args)
         logger.log('ERROR', f'查询{domain}在权威DNS名称服务器泛解析记录出错')
-        return None, None
+        return e, None
     else:
         name = answer.name
         ip = {item.address for item in answer}
@@ -186,6 +203,7 @@ def collect_wildcard_record(domain, authoritative_ns):
         return list(), int()
     resolver = resolve.dns_resolver()
     resolver.nameservers = authoritative_ns
+    resolver.rotate = True
     ips = set()
     ips_stat = dict()
     while True:
@@ -193,6 +211,8 @@ def collect_wildcard_record(domain, authoritative_ns):
         random_subdomain = f'{token}.{domain}'
         ip, ttl = get_wildcard_record(random_subdomain, resolver)
         if ip is None:
+            continue
+        if isinstance(ip, Exception):
             break
         ips = ips.union(ip)
         # 统计每个泛解析IP出现次数
@@ -207,6 +227,7 @@ def collect_wildcard_record(domain, authoritative_ns):
         # 大部分的IP地址出现次数大于2次停止收集泛解析IP记录
         if len(addrs) / len(ips) >= 0.8:
             break
+    logger.log('DEBUG', f'收集到{domain}的泛解析记录\n{ips}\n{ttl}')
     return ips, ttl
 
 
@@ -562,15 +583,16 @@ class Brute(Module):
         utils.check_dir(temp_dir)
         massdns_path = get_massdns_path(massdns_dir)
         timestring = utils.get_timestring()
-        self.enable_wildcard = detect_wildcard(domain)
+        ns_list = query_domain_ns(self.domain)
+        ns_ip_list = query_domain_ns_a(ns_list)
+        self.enable_wildcard = detect_wildcard(domain, ns_ip_list)
 
         wildcard_ips = list()  # 泛解析IP列表
         wildcard_ttl = int()  # 泛解析TTL整型值
         ns_ip_list = list()  # DNS权威名称服务器对应A记录列表
         if self.enable_wildcard:
-            ns_list = query_domain_ns(self.domain)
-            ns_ip_list = query_domain_ns_a(ns_list)
-            wildcard_ips, wildcard_ttl = collect_wildcard_record(domain, ns_ip_list)
+            wildcard_ips, wildcard_ttl = collect_wildcard_record(domain,
+                                                                 ns_ip_list)
         ns_path = get_nameservers_path(self.enable_wildcard, ns_ip_list)
 
         dict_set = self.gen_brute_dict(domain)

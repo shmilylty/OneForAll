@@ -103,13 +103,11 @@ search_recursive_times = 2  # 递归搜索层数
 # DNS解析设置
 resolve_coroutine_num = 64
 resolver_nameservers = [
-    '119.29.29.29',  # DNSPod
-    '180.76.76.76',  # Baidu DNS
     '223.5.5.5',  # AliDNS
+    '119.29.29.29',  # DNSPod
     '114.114.114.114',  # 114DNS
     '8.8.8.8',   # Google DNS
     '1.1.1.1'  # CloudFlare DNS
-    '208.67.222.222'  # OpenDNS
 ]  # 指定查询的DNS域名服务器
 resolver_timeout = 5.0  # 解析超时时间
 resolver_lifetime = 60.0  # 解析存活时间
