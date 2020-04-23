@@ -66,9 +66,6 @@ passivedns_api_addr = ''
 passivedns_api_token = ''
 
 # Github Token可以访问https://github.com/settings/tokens生成,user为Github用户名
-# 用于子域接管
+# 用于子域接管和子域收集
 github_api_user = ''
 github_api_token = ''
-# Github子域收集模块使用
-github_email = ''
-github_password = ''
