@@ -184,13 +184,13 @@ def get_wildcard_record(domain, resolver):
     logger.log('INFOR', f'查询{domain}在权威DNS名称服务器的泛解析记录')
     try:
         answer = resolver.query(domain, 'A')
-    # 如果查询随机域名A记录时抛出Timeout异常则重新探测
+    # 如果查询随机域名A记录时抛出Timeout异常则重新查询
     except Timeout as e:
-        logger.log('ALERT', f'查询超时重新探测中')
+        logger.log('ALERT', f'查询超时重新查询中')
         logger.log('DEBUG', e.args)
         raise tenacity.TryAgain
     except (YXDOMAIN, NoAnswer) as e:
-        logger.log('ALERT', f'结果无效重新探测中')
+        logger.log('ALERT', f'结果无效重新查询中')
         logger.log('DEBUG', e.args)
         raise tenacity.TryAgain
     except (NXDOMAIN, NoNameservers) as e:
