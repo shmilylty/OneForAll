@@ -598,13 +598,13 @@ class Brute(Module):
         utils.check_dir(temp_dir)
         massdns_path = get_massdns_path(massdns_dir)
         timestring = utils.get_timestring()
-        ns_list = query_domain_ns(self.domain)
-        ns_ip_list = query_domain_ns_a(ns_list)
-        self.enable_wildcard = detect_wildcard(domain, ns_ip_list)
 
         wildcard_ips = list()  # 泛解析IP列表
         wildcard_ttl = int()  # 泛解析TTL整型值
-        ns_ip_list = list()  # DNS权威名称服务器对应A记录列表
+        ns_list = query_domain_ns(self.domain)
+        ns_ip_list = query_domain_ns_a(ns_list)  # DNS权威名称服务器对应A记录列表
+        self.enable_wildcard = detect_wildcard(domain, ns_ip_list)
+
         if self.enable_wildcard:
             wildcard_ips, wildcard_ttl = collect_wildcard_record(domain,
                                                                  ns_ip_list)
