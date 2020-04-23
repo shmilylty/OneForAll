@@ -232,8 +232,8 @@ def collect_wildcard_record(domain, authoritative_ns):
         ips = ips.union(ip)
         # 统计每个泛解析IP出现次数
         for addr in ip:
-            ips_stat.setdefault(addr, 0)
-            ips_stat[addr] += 1
+            count = ips_stat.setdefault(addr, 0)
+            ips_stat[addr] = count + 1
         # 筛选出出现次数2次以上的IP地址
         addrs = list()
         for addr, times in ips_stat.items():
@@ -327,57 +327,57 @@ def read_result(result_path):
     return result
 
 
-def deal_result(result_list):
+def deal_result(result_path):
     logger.log('INFOR', f'正在处理解析结果')
     records = dict()  # 用来记录域名解析数据
     times = dict()  # 用来统计IP出现次数
-    for items in result_list:
-        record = dict()
-        qname = items.get('name')[:-1]  # 去出最右边的`.`点号
-        record['resolver'] = items.get('resolver')
-        status = items.get('status')
-        record['reason'] = status
-        records[qname] = record
-        if status != 'NOERROR':
-            record['reason'] = status
-            record['resolve'] = 0
-            record['alive'] = 0
-            records[qname] = record
-            continue
-        data = items.get('data')
-        if 'answers' not in data:
-            record['reason'] = 'NOANSWER'
-            record['resolve'] = 0
-            record['alive'] = 0
-            records[qname] = record
-            continue
-        answers = data.get('answers')
-        flag = False
-        cname = list()
-        ips = list()
-        public = list()
-        ttl = list()
-        for answer in answers:
-            if answer.get('type') == 'A':
-                flag = True
-                ttl.append(answer.get('ttl'))
-                cname.append(answer.get('name')[:-1])  # 去出最右边的`.`点号
-                ip = answer.get('data')
-                ips.append(ip)
-                public.append(utils.ip_is_public(ip))
-                record['ttl'] = ttl
-                record['cname'] = cname
-                record['content'] = ips
-                record['public'] = public
-                records[qname] = record
-                # 取值 如果是首次出现的IP集合 出现次数先赋值0
-                value = times.setdefault(ip, 0)
-                times[ip] = value + 1
-        if not flag:
-            record['reason'] = 'NOA'
-            record['resolve'] = 0
-            record['alive'] = 0
-            records[qname] = record
+    with open(result_path) as fd:
+        for line in fd:
+            line = line.strip()
+            try:
+                items = json.loads(line)
+            except Exception as e:
+                logger.log('ERROR', e.args)
+                logger.log('ERROR', f'解析行{line}出错跳过解析该行')
+                continue
+            qname = items.get('name')[:-1]  # 去出最右边的`.`点号
+            status = items.get('status')
+            if status != 'NOERROR':
+                logger.log('TRACE', f'处理{line}时发现{qname}查询结果状态{status}')
+                continue
+            data = items.get('data')
+            if 'answers' not in data:
+                logger.log('TRACE', f'处理{line}时发现{qname}返回的结果无应答')
+                continue
+            answers = data.get('answers')
+            flag = False
+            record = dict()
+            cname = list()
+            ips = list()
+            public = list()
+            ttl = list()
+            resolver = items.get('resolver')
+            for answer in answers:
+                logger.log('TRACE', f'处理{line}时发现{qname}返回的应答{answer}无问题')
+                if answer.get('type') == 'A':
+                    flag = True
+                    ttl.append(answer.get('ttl'))
+                    cname.append(answer.get('name')[:-1])  # 去出最右边的`.`点号
+                    ip = answer.get('data')
+                    ips.append(ip)
+                    public.append(utils.ip_is_public(ip))
+                    record['reason'] = status
+                    record['ttl'] = ttl
+                    record['cname'] = cname
+                    record['content'] = ips
+                    record['public'] = public
+                    record['resolver'] = resolver
+                    records[qname] = record
+                    # 取值 如果是首次出现的IP集合 出现次数先赋值0
+                    value = times.setdefault(ip, 0)
+                    times[ip] = value + 1
+            if not flag:
+                logger.log('TRACE', f'处理{line}时发现{qname}返回的应答中没有A记录')
     return records, times
 
 
@@ -629,9 +629,8 @@ class Brute(Module):
                  concurrent_num=self.concurrent_num)
         logger.log('INFOR', f'结束执行massdns')
 
-        result_data = read_result(output_path)
+        resolved_records, ip_times = deal_result(output_path)
         delete_file(dict_path, output_path)
-        resolved_records, ip_times = deal_result(result_data)
         added_records = add_times(resolved_records, ip_times)
         checked_records, valid_subdomains = check_validity(added_records,
                                                            ip_times,
