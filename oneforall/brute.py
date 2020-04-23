@@ -43,12 +43,12 @@ def do_query_a(domain, resolver):
         raise tenacity.TryAgain
     # 如果查询随机域名A记录时抛出NXDOMAIN异常
     # 则说明不存在随机子域的A记录 即没有开启泛解析
-    except NXDOMAIN as e:
+    except (NXDOMAIN, NoNameservers) as e:
         logger.log('DEBUG', e.args)
         logger.log('INFOR', f'{domain}没有使用泛解析')
         return False
     except Exception as e:
-        logger.log('ALERT', f'探测出错')
+        logger.log('ALERT', f'探测{domain}是否使用泛解析出错')
         logger.log('FATAL', e.args)
         exit(1)
     else:
