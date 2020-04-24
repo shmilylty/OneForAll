@@ -340,8 +340,8 @@ def gen_records(items, records, subdomains, ip_times, wc_ips, wc_ttl):
     public = list()
     times = list()
     ttls = list()
+    is_valid_flags = list()
     have_a_record = False
-    is_valid_flag = True
     for answer in answers:
         if answer.get('type') != 'A':
             logger.log('TRACE', f'查询{qname}返回的应答没有A记录\n{answer}')
@@ -358,13 +358,11 @@ def gen_records(items, records, subdomains, ip_times, wc_ips, wc_ttl):
         times.append(num)
         isvalid, reason = is_valid_subdomain(ip, ttl, num, wc_ips, wc_ttl)
         logger.log('TRACE', f'{ip}是否有效:{isvalid} 原因:{reason}')
-        if isvalid == 0:
-            is_valid_flag = False  # 只要有一条A记录判断通不过就认为改子域为无效子域
-            break
+        is_valid_flags.append(isvalid)
     if not have_a_record:
         logger.log('TRACE', f'查询{qname}返回的所有应答都中没有A记录{answers}')
-    # 为了优化内存 判断通不过的子域暂时不添加到记录里
-    if is_valid_flag:
+    # 为了优化内存 只添加有A记录且通过判断的子域到记录中
+    if have_a_record and all(is_valid_flags):
         record['resolve'] = 1
         record['reason'] = reason
         record['ttl'] = ttls
@@ -406,11 +404,11 @@ def stat_ip_times(result_path):
     return times
 
 
-def deal_result(result_path, ip_times, wildcard_ips, wildcard_ttl):
+def deal_output(output_path, ip_times, wildcard_ips, wildcard_ttl):
     logger.log('INFOR', f'正在处理解析结果')
     records = dict()  # 用来记录所有域名解析数据
     subdomains = list()  # 用来保存所有通过有效性检查的子域
-    with open(result_path) as fd:
+    with open(output_path) as fd:
         for line in fd:
             line = line.strip()
             try:
@@ -651,7 +649,7 @@ class Brute(Module):
         logger.log('INFOR', f'结束执行massdns')
 
         ip_times = stat_ip_times(output_path)
-        self.records, self.subdomains = deal_result(output_path, ip_times,
+        self.records, self.subdomains = deal_output(output_path, ip_times,
                                                     wildcard_ips, wildcard_ttl)
         delete_file(dict_path, output_path)
         end = time.time()
