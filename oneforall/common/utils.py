@@ -405,8 +405,8 @@ def set_id_none(data):
 def get_filtered_data(data):
     filtered_data = []
     for item in data:
-        valid = item.get('valid')
-        if valid == 0 or valid == 1:
+        valid = item.get('resolve')
+        if valid == 0:
             filtered_data.append(item)
     return filtered_data
 
