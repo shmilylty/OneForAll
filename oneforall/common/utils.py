@@ -4,13 +4,16 @@ import sys
 import time
 import random
 import platform
+import subprocess
 from ipaddress import IPv4Address, ip_address
+from stat import S_IXUSR
 
 import psutil
 
 import config
 from pathlib import Path
 from records import Record, RecordCollection
+from dns.resolver import Resolver
 
 from common.domain import Domain
 from config import logger
@@ -335,6 +338,17 @@ def export_all(format, path, datas):
     save_data(path, content)
 
 
+def dns_resolver():
+    """
+    dns解析器
+    """
+    resolver = Resolver()
+    resolver.nameservers = config.resolver_nameservers
+    resolver.timeout = config.resolver_timeout
+    resolver.lifetime = config.resolver_lifetime
+    return resolver
+
+
 def dns_query(qname, qtype):
     """
     查询域名DNS记录
@@ -344,7 +358,7 @@ def dns_query(qname, qtype):
     :return: 查询结果
     """
     logger.log('TRACE', f'尝试查询{qname}的{qtype}记录')
-    resolver = resolve.dns_resolver()
+    resolver = dns_resolver()
     try:
         answer = resolver.query(qname, qtype)
     except Exception as e:
@@ -485,3 +499,46 @@ def check_env():
 
 def get_maindomain(domain):
     return Domain(domain).registered()
+
+
+def call_massdns(massdns_path, dict_path, ns_path, output_path, log_path,
+                 query_type='A', process_num=1, concurrent_num=10000,
+                 quiet_mode=False):
+    logger.log('INFOR', f'开始执行massdns')
+    quiet = ''
+    if quiet_mode:
+        quiet = '--quiet'
+    status_format = config.brute_status_format
+    socket_num = config.brute_socket_num
+    resolve_num = config.brute_resolve_num
+    cmd = f'{massdns_path} {quiet} --status-format {status_format} ' \
+          f'--processes {process_num} --socket-count {socket_num} ' \
+          f'--hashmap-size {concurrent_num} --resolvers {ns_path} ' \
+          f'--resolve-count {resolve_num} --type {query_type} ' \
+          f'--flush --output J --outfile {output_path} ' \
+          f'--error-log {log_path} {dict_path}'
+    logger.log('INFOR', f'执行命令 {cmd}')
+    subprocess.run(args=cmd, shell=True)
+    logger.log('INFOR', f'结束执行massdns')
+
+
+def get_massdns_path(massdns_dir):
+    path = config.brute_massdns_path
+    if path:
+        return path
+    system = platform.system().lower()
+    machine = platform.machine().lower()
+    name = f'massdns_{system}_{machine}'
+    if system == 'windows':
+        name = name + '.exe'
+        if machine == 'amd64':
+            massdns_dir = massdns_dir.joinpath('windows', 'x64')
+        else:
+            massdns_dir = massdns_dir.joinpath('windows', 'x84')
+    path = massdns_dir.joinpath(name)
+    path.chmod(S_IXUSR)
+    if not path.exists():
+        logger.log('FATAL', '暂无该系统平台及架构的massdns')
+        logger.log('INFOR', '请尝试自行编译massdns并在配置里指定路径')
+        exit(0)
+    return path

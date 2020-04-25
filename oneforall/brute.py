@@ -10,11 +10,8 @@ OneForAll子域爆破模块
 import gc
 import json
 import time
-import stat
 import random
 import secrets
-import platform
-import subprocess
 
 import exrex
 import fire
@@ -24,7 +21,7 @@ from dns.resolver import NXDOMAIN, YXDOMAIN, NoAnswer, NoNameservers
 
 import config
 import dbexport
-from common import resolve, utils
+from common import utils
 from common.module import Module
 from config import logger
 
@@ -76,7 +73,7 @@ def detect_wildcard(domain, authoritative_ns):
     logger.log('INFOR', f'正在探测{domain}是否使用泛解析')
     token = secrets.token_hex(4)
     random_subdomain = f'{token}.{domain}'
-    resolver = resolve.dns_resolver()
+    resolver = utils.dns_resolver()
     resolver.nameservers = authoritative_ns
     resolver.rotate = True
     resolver.cache = None
@@ -114,15 +111,6 @@ def gen_fuzz_subdomains(expression, rule):
     return subdomains
 
 
-def gen_domains(iterable, place):
-    subdomains = set()
-    for _ in range(place.count('*')):
-        for item in iterable:
-            subdomain = place.replace('*', item)
-            subdomains.add(subdomain)
-    return subdomains
-
-
 def gen_word_subdomains(expression, path):
     """
     生成基于word模式的爆破子域
@@ -151,7 +139,7 @@ def query_domain_ns_a(ns_list):
     if not isinstance(ns_list, list):
         return list()
     ns_ip_list = []
-    resolver = resolve.dns_resolver()
+    resolver = utils.dns_resolver()
     for ns in ns_list:
         try:
             answer = resolver.query(ns, 'A')
@@ -168,7 +156,7 @@ def query_domain_ns_a(ns_list):
 
 def query_domain_ns(domain):
     domain = utils.get_maindomain(domain)
-    resolver = resolve.dns_resolver()
+    resolver = utils.dns_resolver()
     try:
         answer = resolver.query(domain, 'NS')
     except Exception as e:
@@ -218,7 +206,7 @@ def collect_wildcard_record(domain, authoritative_ns):
     logger.log('INFOR', f'正在收集{domain}的泛解析记录')
     if not authoritative_ns:
         return list(), int()
-    resolver = resolve.dns_resolver()
+    resolver = utils.dns_resolver()
     resolver.nameservers = authoritative_ns
     resolver.rotate = True
     resolver.cache = None
@@ -259,28 +247,6 @@ def get_nameservers_path(enable_wildcard, ns_ip_list):
     return path
 
 
-def get_massdns_path(massdns_dir):
-    path = config.brute_massdns_path
-    if path:
-        return path
-    system = platform.system().lower()
-    machine = platform.machine().lower()
-    name = f'massdns_{system}_{machine}'
-    if system == 'windows':
-        name = name + '.exe'
-        if machine == 'amd64':
-            massdns_dir = massdns_dir.joinpath('windows', 'x64')
-        else:
-            massdns_dir = massdns_dir.joinpath('windows', 'x84')
-    path = massdns_dir.joinpath(name)
-    path.chmod(stat.S_IXUSR)
-    if not path.exists():
-        logger.log('FATAL', '暂无该系统平台及架构的massdns')
-        logger.log('INFOR', '请尝试自行编译massdns并在配置里指定路径')
-        exit(0)
-    return path
-
-
 def check_dict():
     if not config.enable_check_dict:
         return
@@ -292,40 +258,6 @@ def check_dict():
     except KeyboardInterrupt:
         logger.log('INFOR', '爆破配置有误退出爆破')
         exit(0)
-
-
-def do_brute(massdns_path, dict_path, ns_path, output_path, log_path,
-             query_type='A', process_num=1, concurrent_num=10000,
-             quiet_mode=False):
-    quiet = ''
-    if quiet_mode:
-        quiet = '--quiet'
-    status_format = config.brute_status_format
-    socket_num = config.brute_socket_num
-    resolve_num = config.brute_resolve_num
-    cmd = f'{massdns_path} {quiet} --status-format {status_format} ' \
-          f'--processes {process_num} --socket-count {socket_num} ' \
-          f'--hashmap-size {concurrent_num} --resolvers {ns_path} ' \
-          f'--resolve-count {resolve_num} --type {query_type} ' \
-          f'--flush --output J --outfile {output_path} ' \
-          f'--error-log {log_path} {dict_path}'
-    logger.log('INFOR', f'执行命令 {cmd}')
-    subprocess.run(args=cmd, shell=True)
-
-
-def read_result(result_path):
-    result = list()
-    with open(result_path) as fd:
-        for line in fd:
-            line = line.strip()
-            try:
-                record = json.loads(line)
-            except Exception as e:
-                logger.log('ERROR', e.args)
-                logger.log('ERROR', f'解析行{line}出错跳过解析该行')
-                continue
-            result.append(record)
-    return result
 
 
 def gen_records(items, records, subdomains, ip_times, wc_ips, wc_ttl):
@@ -474,8 +406,9 @@ def is_valid_subdomain(ip, ttl, times, wc_ips, wc_ttl):
     return 1, 'OK'
 
 
-def save_brute_dict(path, data):
-    if not utils.save_data(path, data):
+def save_brute_dict(dict_path, dict_set):
+    dict_data = '\n'.join(dict_set)
+    if not utils.save_data(dict_path, dict_data):
         logger.log('FATAL', '保存生成的字典出错')
         exit(1)
 
@@ -611,7 +544,7 @@ class Brute(Module):
         result_dir = config.result_save_dir
         temp_dir = result_dir.joinpath('temp')
         utils.check_dir(temp_dir)
-        massdns_path = get_massdns_path(massdns_dir)
+        massdns_path = utils.get_massdns_path(massdns_dir)
         timestring = utils.get_timestring()
 
         wildcard_ips = list()  # 泛解析IP列表
@@ -627,14 +560,11 @@ class Brute(Module):
 
         dict_set = self.gen_brute_dict(domain)
         dict_len = len(dict_set)
-        dict_data = '\n'.join(dict_set)
-        del dict_set
-        gc.collect()
 
         dict_name = f'generated_subdomains_{domain}_{timestring}.txt'
         dict_path = temp_dir.joinpath(dict_name)
-        save_brute_dict(dict_path, dict_data)
-        del dict_data
+        save_brute_dict(dict_path, dict_set)
+        del dict_set
         gc.collect()
 
         output_name = f'resolved_result_{domain}_{timestring}.json'
@@ -642,11 +572,9 @@ class Brute(Module):
         log_path = result_dir.joinpath('massdns.log')
         check_dict()
 
-        logger.log('INFOR', f'开始执行massdns')
-        do_brute(massdns_path, dict_path, ns_path, output_path, log_path,
-                 process_num=self.process_num,
-                 concurrent_num=self.concurrent_num)
-        logger.log('INFOR', f'结束执行massdns')
+        utils.call_massdns(massdns_path, dict_path, ns_path, output_path,
+                           log_path, process_num=self.process_num,
+                           concurrent_num=self.concurrent_num)
 
         ip_times = stat_ip_times(output_path)
         self.records, self.subdomains = deal_output(output_path, ip_times,
@@ -703,7 +631,3 @@ class Brute(Module):
 
 if __name__ == '__main__':
     fire.Fire(Brute)
-    # domain = 'example.com'
-    # result = queue.Queue()
-    # brute = AIOBrute(domain)
-    # brute.run(result)

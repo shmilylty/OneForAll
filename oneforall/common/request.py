@@ -22,7 +22,7 @@ def get_limit_conn():
 
 
 def get_ports(port):
-    logger.log('DEBUG', f'正在获取请求探测端口范围')
+    logger.log('DEBUG', f'正在获取请求端口范围')
     ports = set()
     if isinstance(port, (set, list, tuple)):
         ports = port
@@ -30,12 +30,12 @@ def get_ports(port):
         if 0 <= port <= 65535:
             ports = {port}
     elif port in {'default', 'small', 'large'}:
-        logger.log('DEBUG', f'探测{port}等端口范围')
+        logger.log('DEBUG', f'请求{port}等端口范围')
         ports = config.ports.get(port)
     if not ports:  # 意外情况
-        logger.log('ERROR', f'指定探测端口范围有误')
+        logger.log('ERROR', f'指定请求端口范围有误')
         ports = {80}
-    logger.log('INFOR', f'探测端口范围：{ports}')
+    logger.log('INFOR', f'请求端口范围：{ports}')
     return set(ports)
 
 
@@ -202,7 +202,7 @@ async def bulk_request(data, port):
     no_req_data = utils.get_filtered_data(data)
     to_req_data = gen_req_data(data, ports)
     method = config.request_method
-    logger.log('INFOR', f'使用{method}请求方法')
+    logger.log('INFOR', f'请求使用{method}方法')
     logger.log('INFOR', f'正在进行异步子域请求')
     connector = get_connector()
     header = get_header()
@@ -224,8 +224,6 @@ async def bulk_request(data, port):
                                     desc='Request Progress',
                                     ncols=80):
                 await future
-
-    logger.log('INFOR', f'完成异步进行子域的GET请求')
     return to_req_data + no_req_data
 
 
@@ -239,6 +237,7 @@ def run_request(domain, data, port):
     :return: 请求后得到的结果列表
     :rtype: list
     """
+    logger.log('INFOR', f'开始执行子域请求模块')
     loop = asyncio.get_event_loop()
     asyncio.set_event_loop(loop)
     data = utils.set_id_none(data)
