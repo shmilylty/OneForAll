@@ -189,7 +189,7 @@ class OneForAll(object):
             return self.export(self.domain)
 
         # 解析子域
-        self.data = resolve.run_resolve(self.data)
+        self.data = resolve.run_resolve(self.domain, self.data)
         # 保存解析结果
         resolve.save_data(self.resolve_table, self.data)
 

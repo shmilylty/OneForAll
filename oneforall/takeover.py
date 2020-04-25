@@ -18,7 +18,7 @@ from tqdm import tqdm
 
 import config
 from config import logger
-from common import resolve, utils
+from common import utils
 from common.module import Module
 from common.domain import Domain
 
@@ -31,7 +31,7 @@ def get_fingerprint():
 
 
 def get_cname(subdomain):
-    resolver = resolve.dns_resolver()
+    resolver = utils.dns_resolver()
     try:
         answers = resolver.query(subdomain, 'CNAME')
     except Exception as e:
