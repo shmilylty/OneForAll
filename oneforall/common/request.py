@@ -122,7 +122,7 @@ def get_title(markup):
     :param markup: html标签
     :return: 标题
     """
-    soup = BeautifulSoup(markup, 'lxml')
+    soup = BeautifulSoup(markup, 'html.parser')
 
     title = soup.title
     if title:
