@@ -8,8 +8,8 @@
 import oneforall
 
 if __name__ == '__main__':
-    test = oneforall.OneForAll(target='freebuf.com')
-    test.brute = False
+    test = oneforall.OneForAll(target='github.com')
+    test.brute = True
     test.takeover = True
     test.run()
     result = test.datas
