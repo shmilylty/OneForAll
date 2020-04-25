@@ -33,7 +33,7 @@ class Gitee(Search):
                 break
             if 'class="empty-box"' in resp.text:
                 break
-            soup = BeautifulSoup(resp.text, 'lxml')
+            soup = BeautifulSoup(resp.text, 'html.parser')
             subdomains = self.match(self.domain, soup.text)
             self.subdomains = self.subdomains.union(subdomains)
             if not subdomains:

@@ -21,7 +21,7 @@ class Baidu(Search):
         :param html: 响应体
         :return: 子域
         """
-        bs = BeautifulSoup(html, features='lxml')
+        bs = BeautifulSoup(html, 'html.parser')
         subdomains_all = set()
         # 获取搜索结果中所有的跳转URL地址
         for find_res in bs.find_all('a', {'class': 'c-showurl'}):
