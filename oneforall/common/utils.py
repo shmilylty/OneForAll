@@ -515,8 +515,8 @@ def call_massdns(massdns_path, dict_path, ns_path, output_path, log_path,
           f'--processes {process_num} --socket-count {socket_num} ' \
           f'--hashmap-size {concurrent_num} --resolvers {ns_path} ' \
           f'--resolve-count {resolve_num} --type {query_type} ' \
-          f'--flush --output J --outfile {output_path} ' \
-          f'--error-log {log_path} {dict_path}'
+          f'--flush --output J --outfile {output_path} --drop-group ' \
+          f'--drop-user --error-log {log_path} {dict_path}'
     logger.log('INFOR', f'执行命令 {cmd}')
     subprocess.run(args=cmd, shell=True)
     logger.log('INFOR', f'结束执行massdns')
