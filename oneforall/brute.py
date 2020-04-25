@@ -35,13 +35,9 @@ def do_query_a(domain, resolver):
         logger.log('ALERT', f'探测超时重新探测中')
         logger.log('DEBUG', e.args)
         raise tenacity.TryAgain
-    except (YXDOMAIN, NoAnswer) as e:
-        logger.log('ALERT', f'结果无效重新探测中')
-        logger.log('DEBUG', e.args)
-        raise tenacity.TryAgain
     # 如果查询随机域名A记录时抛出NXDOMAIN异常
     # 则说明不存在随机子域的A记录 即没有开启泛解析
-    except (NXDOMAIN, NoNameservers) as e:
+    except (NXDOMAIN, YXDOMAIN, NoAnswer, NoNameservers) as e:
         logger.log('DEBUG', e.args)
         logger.log('INFOR', f'{domain}没有使用泛解析')
         return False
@@ -178,11 +174,7 @@ def get_wildcard_record(domain, resolver):
         logger.log('ALERT', f'查询超时重新查询中')
         logger.log('DEBUG', e.args)
         raise tenacity.TryAgain
-    except (YXDOMAIN, NoAnswer) as e:
-        logger.log('ALERT', f'结果无效重新查询中')
-        logger.log('DEBUG', e.args)
-        raise tenacity.TryAgain
-    except (NXDOMAIN, NoNameservers) as e:
+    except (NXDOMAIN, YXDOMAIN, NoAnswer, NoNameservers) as e:
         logger.log('DEBUG', e.args)
         logger.log('INFOR', f'{domain}在权威DNS名称服务器上没有A记录')
         return None, None
