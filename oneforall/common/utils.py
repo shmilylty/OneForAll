@@ -9,15 +9,15 @@ from ipaddress import IPv4Address, ip_address
 from stat import S_IXUSR
 
 import psutil
-
-import config
+import tenacity
+import requests
 from pathlib import Path
 from records import Record, RecordCollection
 from dns.resolver import Resolver
 
+import config
 from common.domain import Domain
 from config import logger
-from common import resolve
 
 user_agents = [
     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '
@@ -485,16 +485,50 @@ def delete_file(*paths):
             logger.log('ERROR', e.args)
 
 
-def check_env():
+@tenacity.retry(stop=tenacity.stop_after_attempt(2))
+def check_net():
+    logger.log('INFOR', '正在检查网络环境')
+    url = 'https://www.example.com/'
+    logger.log('INFOR', f'访问地址 {url}')
+    try:
+        rsp = requests.get(url)
+    except Exception as e:
+        logger.log('ERROR', e.args)
+        logger.log('ALERT', '访问外网出错 重新检查中')
+        raise tenacity.TryAgain
+    if rsp.status_code != 200:
+        logger.log('ALERT', f'{rsp.request.method} {rsp.request.url} '
+                            f'{rsp.status_code} {rsp.reason}')
+        logger.log('ALERT', '不能正常访问外网 重新检查中')
+        raise tenacity.TryAgain
+    logger.log('INFOR', '能正常访问外网')
+
+
+def check_pre():
+    logger.log('INFOR', '正在检查依赖环境')
     system = platform.system()
     implementation = platform.python_implementation()
+    version = platform.python_version()
     if implementation != 'CPython':
-        logger.log('ALERT', f'当前Python是基于{implementation}实现但OneForAll只在CPython下测试通过')
+        logger.log('ALERT', f'当前Python是基于{implementation}实现 '
+                            f'但OneForAll只在CPython下测试通过')
+    if version < '3.6':
+        logger.log('FATAL', 'OneForAll需要Python 3.6以上版本')
+        exit(1)
     if system == 'Windows' and implementation == 'CPython':
-        version = platform.python_version()
         if version < '3.8':
             logger.log('FATAL', 'OneForAll在Windows系统运行时需要Python 3.8以上版本')
             exit(1)
+
+
+def check_env():
+    try:
+        check_net()
+    except Exception as e:
+        logger.log('DEBUG', e.args)
+        logger.log('FATAL', '不能正常访问外网')
+        exit(1)
+    check_pre()
 
 
 def get_maindomain(domain):

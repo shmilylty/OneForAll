@@ -177,6 +177,7 @@ class OneForAll(object):
         if self.brute:
             # 由于爆破会有大量dns解析请求 并发爆破可能会导致其他任务中的网络请求异常
             brute = Brute(self.domain, word=True, export=False)
+            brute.check_env = False
             brute.run()
 
         # 有关数据库处理
