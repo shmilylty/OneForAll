@@ -10,7 +10,7 @@ class BingAPI(Search):
         self.module = 'Search'
         self.source = 'BingAPISearch'
         self.addr = 'https://api.cognitive.microsoft.com/' \
-                    'bingcustomsearch/v7.0/search'
+                    'bing/v7.0/search'
         self.id = api.bing_api_id
         self.key = api.bing_api_key
         self.limit_num = 1000  # 必应同一个搜索关键词限制搜索条数
@@ -31,8 +31,8 @@ class BingAPI(Search):
             self.header = {'Ocp-Apim-Subscription-Key': self.key}
             self.proxy = self.get_proxy(self.source)
             query = 'site:' + domain + filtered_subdomain
-            params = {'q': query, 'customconfig': self.id, 'safesearch': 'Off',
-                      'count': self.per_page_num, 'offset': self.page_num}
+            params = {'q': query, 'safesearch': 'Off', 'count': self.per_page_num,
+                      'offset': self.page_num}
             resp = self.get(self.addr, params)
             if not resp:
                 return
