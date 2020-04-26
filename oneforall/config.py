@@ -39,7 +39,7 @@ enable_partial_module = []  # 启用部分模块 必须禁用enable_all_module�
 # 只使用ask和baidu搜索引擎收集子域的示例
 # enable_partial_module = [('modules.search', 'ask')
 #                          ('modules.search', 'baidu')]
-module_thread_timeout = 360.0  # 每个收集模块线程超时时间(默认6分钟)
+module_thread_timeout = 180.0  # 每个收集模块线程超时时间(默认3分钟)
 
 # 爆破模块设置
 enable_brute_module = False  # 使用爆破模块(默认False)
