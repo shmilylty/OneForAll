@@ -122,8 +122,9 @@ docker run -it oneforall
 
 ```shell
 docker build -t oneforall .
-docker run -it oneforall
+docker run -it --rm -v ~/results:/OneForAll/oneforall/results oneforall
 ```
+结果会输出在本地目录`~/results`
 
 **✨使用演示**
 
