@@ -133,6 +133,7 @@ def gen_word_subdomains(expression, path):
 
 
 def query_domain_ns_a(ns_list):
+    logger.log('INFOR', f'正在查询权威DNS名称服务器{ns_list}的A记录')
     if not isinstance(ns_list, list):
         return list()
     ns_ip_list = []
@@ -152,6 +153,7 @@ def query_domain_ns_a(ns_list):
 
 
 def query_domain_ns(domain):
+    logger.log('INFOR', f'正在查询{domain}的NS记录')
     domain = utils.get_maindomain(domain)
     resolver = utils.dns_resolver()
     try:
@@ -482,6 +484,7 @@ class Brute(Module):
         self.enable_wildcard = False  # 当前域名是否使用泛解析
         self.wildcard_check = config.enable_wildcard_check
         self.wildcard_deal = config.enable_wildcard_deal
+        self.check_env = True
 
     def gen_brute_dict(self, domain):
         logger.log('INFOR', f'正在为{domain}生成爆破字典')
@@ -590,6 +593,8 @@ class Brute(Module):
 
     def run(self):
         logger.log('INFOR', f'开始执行{self.source}模块')
+        if self.check_env:
+            utils.check_env()
         self.domains = utils.get_domains(self.target)
         all_subdomains = list()
         for self.domain in self.domains:
