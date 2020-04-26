@@ -510,8 +510,8 @@ def check_pre():
     implementation = platform.python_implementation()
     version = platform.python_version()
     if implementation != 'CPython':
-        logger.log('ALERT', f'当前Python是基于{implementation}实现 '
-                            f'但OneForAll只在CPython下测试通过')
+        logger.log('FATAL', f'OneForAll只在CPython下测试通过')
+        exit(1)
     if version < '3.6':
         logger.log('FATAL', 'OneForAll需要Python 3.6以上版本')
         exit(1)
@@ -522,6 +522,7 @@ def check_pre():
 
 
 def check_env():
+    logger.log('INFOR', '正在检查运行环境')
     try:
         check_net()
     except Exception as e:
