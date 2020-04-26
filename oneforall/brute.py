@@ -16,6 +16,7 @@ import secrets
 import exrex
 import fire
 import tenacity
+from tenacity import RetryError
 from dns.exception import Timeout
 from dns.resolver import NXDOMAIN, YXDOMAIN, NoAnswer, NoNameservers
 
@@ -75,10 +76,10 @@ def detect_wildcard(domain, authoritative_ns):
     resolver.cache = None
     try:
         wildcard = do_query_a(random_subdomain, resolver)
-    except Exception as e:
+    except Timeout as e:
         logger.log('DEBUG', e.args)
-        logger.log('FATAL', f'探测{domain}是否使用泛解析失败')
-        exit(1)
+        logger.log('ALERT', f'多次探测超时暂且认为{domain}没有使用泛解析')
+        return False
     else:
         return wildcard
 
@@ -207,7 +208,12 @@ def collect_wildcard_record(domain, authoritative_ns):
     while True:
         token = secrets.token_hex(4)
         random_subdomain = f'{token}.{domain}'
-        ip, ttl = get_wildcard_record(random_subdomain, resolver)
+        try:
+            ip, ttl = get_wildcard_record(random_subdomain, resolver)
+        except Timeout as e:
+            logger.log('DEBUG', e.args)
+            logger.log('ALERT', f'多次查询超时将尝试查询新的随机子域')
+            continue
         if ip is None:
             continue
         ips = ips.union(ip)
