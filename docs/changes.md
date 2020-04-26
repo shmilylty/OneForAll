@@ -8,6 +8,15 @@ OneForAll遵守[语义化版本格式](https://semver.org/)。
 # Unreleased
 
 # Released
+## [0.2.0](https://github.com/shmilylty/oneforall/releases/tag/v0.2.0) - 2020-04-27
+- 重构子域爆破和解析模块 改用massdns 一般情况下可以达到10000pps 速度非常快
+- 优化泛解析处理
+- 优化部分子域收集模块
+- 新增了爆破字典
+- 新增了github_api和rapiddns收集模块
+- 修复了一些bug
+- 更新了文档
+
 ## [0.1.0](https://github.com/shmilylty/oneforall/releases/tag/v0.1.0) - 2020-03-02
 - 重构OneForAll入口
 - 添加1个新的子域收集模块
