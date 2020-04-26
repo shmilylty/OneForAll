@@ -488,7 +488,7 @@ def delete_file(*paths):
 @tenacity.retry(stop=tenacity.stop_after_attempt(2))
 def check_net():
     logger.log('INFOR', '正在检查网络环境')
-    url = 'https://www.example.com/'
+    url = 'http://www.example.com/'
     logger.log('INFOR', f'访问地址 {url}')
     try:
         rsp = requests.get(url)
