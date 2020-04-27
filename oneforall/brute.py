@@ -26,7 +26,7 @@ from common.module import Module
 from config import logger
 
 
-@tenacity.retry(reraise=True, stop=tenacity.stop_after_attempt(3))
+@tenacity.retry(stop=tenacity.stop_after_attempt(3))
 def do_query_a(domain, resolver):
     try:
         answer = resolver.query(domain, 'A')
@@ -75,9 +75,9 @@ def detect_wildcard(domain, authoritative_ns):
     resolver.cache = None
     try:
         wildcard = do_query_a(random_subdomain, resolver)
-    except Timeout as e:
+    except Exception as e:
         logger.log('DEBUG', e.args)
-        logger.log('ALERT', f'多次探测超时暂且认为{domain}没有使用泛解析')
+        logger.log('ALERT', f'多次探测出错暂且认为{domain}没有使用泛解析')
         return False
     else:
         return wildcard
@@ -166,7 +166,7 @@ def query_domain_ns(domain):
     return ns
 
 
-@tenacity.retry(reraise=True, stop=tenacity.stop_after_attempt(2))
+@tenacity.retry(stop=tenacity.stop_after_attempt(2))
 def get_wildcard_record(domain, resolver):
     logger.log('INFOR', f'查询{domain}在权威DNS名称服务器的泛解析记录')
     try:
@@ -205,15 +205,16 @@ def collect_wildcard_record(domain, authoritative_ns):
     resolver.rotate = True
     resolver.cache = None
     ips = set()
+    ttl = int()
     ips_stat = dict()
     while True:
         token = secrets.token_hex(4)
         random_subdomain = f'{token}.{domain}'
         try:
             ip, ttl = get_wildcard_record(random_subdomain, resolver)
-        except Timeout as e:
+        except Exception as e:
             logger.log('DEBUG', e.args)
-            logger.log('ALERT', f'多次查询超时将尝试查询新的随机子域')
+            logger.log('ALERT', f'多次查询出错将尝试查询新的随机子域')
             continue
         if ip is None:
             continue
