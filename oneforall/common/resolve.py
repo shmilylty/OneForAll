@@ -121,7 +121,10 @@ def deal_output(output_path):
                 record['resolve'] = 0
                 record['reason'] = 'NOARECORD'
                 records[qname] = record
-        return records
+    if not records:
+        logger.log('FATAL', f'无有效解析结果')
+        exit(1)
+    return records
 
 
 def run_resolve(domain, data):
