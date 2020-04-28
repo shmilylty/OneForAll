@@ -361,9 +361,6 @@ def deal_output(output_path, ip_times, wildcard_ips, wildcard_ttl):
             records, subdomains = gen_records(items, records, subdomains,
                                               ip_times, wildcard_ips,
                                               wildcard_ttl)
-    if not records:
-        logger.log('FATAL', f'无有效解析结果')
-        exit(1)
     return records, subdomains
 
 

@@ -32,6 +32,9 @@ def update_data(data, records):
     :return: 更新后的数据列表
     """
     logger.log('DEBUG', f'正在更新解析结果')
+    if not records:
+        logger.log('ERROR', f'无有效解析结果')
+        return data
     for index, items in enumerate(data):
         if not items.get('content'):
             subdomain = items.get('subdomain')
@@ -121,9 +124,6 @@ def deal_output(output_path):
                 record['resolve'] = 0
                 record['reason'] = 'NOARECORD'
                 records[qname] = record
-    if not records:
-        logger.log('FATAL', f'无有效解析结果')
-        exit(1)
     return records
 
 
