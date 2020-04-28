@@ -257,6 +257,7 @@ class Module(object):
         """
         logger.log('DEBUG', f'正在生成最终结果')
         if not len(self.subdomains):  # 该模块一个子域都没有发现的情况
+            logger.log('DEBUG', f'{self.source}模块收集结果为空')
             result = {'id': None,
                       'type': self.type,
                       'alive': None,
