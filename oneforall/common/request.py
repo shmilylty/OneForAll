@@ -227,6 +227,15 @@ async def bulk_request(data, port):
     return to_req_data + no_req_data
 
 
+def set_loop_policy():
+    try:
+        import uvloop
+    except ImportError:
+        pass
+    else:
+        asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
+
+
 def run_request(domain, data, port):
     """
     调用子域请求入口函数
@@ -238,6 +247,7 @@ def run_request(domain, data, port):
     :rtype: list
     """
     logger.log('INFOR', f'开始执行子域请求模块')
+    set_loop_policy()
     loop = asyncio.get_event_loop()
     asyncio.set_event_loop(loop)
     data = utils.set_id_none(data)

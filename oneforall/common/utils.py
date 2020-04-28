@@ -519,6 +519,11 @@ def check_pre():
         if version < '3.8':
             logger.log('FATAL', 'OneForAll在Windows系统运行时需要Python 3.8以上版本')
             exit(1)
+    if system in {"Linux", "Darwin"}:
+        try:
+            import uvloop
+        except ImportError:
+            logger.log('ALERT', f'请手动安装uvloop的Python库加速子域请求')
 
 
 def check_env():
