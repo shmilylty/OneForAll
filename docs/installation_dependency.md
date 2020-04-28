@@ -58,6 +58,7 @@ pipenv run python3 oneforall.py --help
 cd OneForAll/
 sudo apt install python3-pip
 sudo python3.8 -m pip install -U pip setuptools wheel -i https://mirrors.aliyun.com/pypi/simple/
+sudo pip3 install uvloop -i https://mirrors.aliyun.com/pypi/simple/
 sudo pip3 install --ignore-installed -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
 cd oneforall/
 python3.8 oneforall.py --help
@@ -79,6 +80,7 @@ pipenv run python3 oneforall.py --help
 cd OneForAll/
 python3 -m pip install -U pip setuptools wheel -i https://mirrors.aliyun.com/pypi/simple/
 pip3 install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
+pip3 install uvloop -i https://mirrors.aliyun.com/pypi/simple/
 cd oneforall/
 python3 oneforall.py --help
 ```
