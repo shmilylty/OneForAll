@@ -223,8 +223,8 @@ class OneForAll(object):
         :return: 总的子域结果
         :rtype: list
         """
-        utils.check_env()
         print(banner)
+        utils.check_env()
         dt = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         print(f'[*] Starting OneForAll @ {dt}\n')
         logger.log('DEBUG', 'Python ' + utils.python_version())

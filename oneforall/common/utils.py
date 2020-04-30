@@ -485,11 +485,15 @@ def delete_file(*paths):
             logger.log('ERROR', e.args)
 
 
-@tenacity.retry(stop=tenacity.stop_after_attempt(2))
+@tenacity.retry(stop=tenacity.stop_after_attempt(3))
 def check_net():
     logger.log('INFOR', '正在检查网络环境')
-    url = 'http://www.example.com/'
-    logger.log('INFOR', f'访问地址 {url}')
+    urls = ['http://www.example.com', 'http://www.baidu.com',
+            'http://www.bing.com', 'http://www.taobao.com',
+            'http://www.linkedin.com', 'http://www.msn.com',
+            'http://www.apple.com', 'http://microsoft.com']
+    url = random.choice(urls)
+    logger.log('INFOR', f'正在尝试访问 {url}')
     try:
         rsp = requests.get(url)
     except Exception as e:
