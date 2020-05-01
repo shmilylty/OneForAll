@@ -26,7 +26,7 @@ class So(Search):
             time.sleep(self.delay)
             self.header = self.get_header()
             self.proxy = self.get_proxy(self.source)
-            word = 'site:' + domain + filtered_subdomain
+            word = 'site:.' + domain + filtered_subdomain
             payload = {'q': word, 'pn': page_num}
             resp = self.get(url=self.addr, params=payload)
             if not resp:

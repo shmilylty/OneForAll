@@ -22,7 +22,7 @@ class Sogou(Search):
         while True:
             self.header = self.get_header()
             self.proxy = self.get_proxy(self.source)
-            word = 'site:' + domain + filtered_subdomain
+            word = 'site:.' + domain + filtered_subdomain
             payload = {'query': word, 'page': self.page_num,
                        "num": self.per_page_num}
             resp = self.get(self.addr, payload)

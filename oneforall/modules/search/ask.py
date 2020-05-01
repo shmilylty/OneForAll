@@ -25,7 +25,7 @@ class Ask(Search):
             time.sleep(self.delay)
             self.header = self.get_header()
             self.proxy = self.get_proxy(self.source)
-            query = 'site:' + domain + filtered_subdomain
+            query = 'site:.' + domain + filtered_subdomain
             params = {'q': query, 'page': self.page_num}
             resp = self.get(self.addr, params)
             if not resp:

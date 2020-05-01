@@ -34,7 +34,7 @@ class Google(Search):
             self.delay = random.randint(1, 5)
             time.sleep(self.delay)
             self.proxy = self.get_proxy(self.source)
-            word = 'site:' + domain + filtered_subdomain
+            word = 'site:.' + domain + filtered_subdomain
             payload = {'q': word, 'start': page_num, 'num': per_page_num,
                        'filter': '0', 'btnG': 'Search', 'gbv': '1', 'hl': 'en'}
             resp = self.get(url=self.addr, params=payload)

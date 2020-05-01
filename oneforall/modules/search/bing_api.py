@@ -30,7 +30,7 @@ class BingAPI(Search):
             self.header = self.get_header()
             self.header = {'Ocp-Apim-Subscription-Key': self.key}
             self.proxy = self.get_proxy(self.source)
-            query = 'site:' + domain + filtered_subdomain
+            query = 'site:.' + domain + filtered_subdomain
             params = {'q': query, 'safesearch': 'Off',
                       'count': self.per_page_num,
                       'offset': self.page_num}

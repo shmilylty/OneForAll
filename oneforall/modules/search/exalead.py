@@ -26,7 +26,7 @@ class Exalead(Search):
             time.sleep(self.delay)
             self.header = self.get_header()
             self.proxy = self.get_proxy(self.source)
-            query = 'site:' + domain + filtered_subdomain
+            query = 'site:.' + domain + filtered_subdomain
             params = {'q': query, 'elements_per_page': '30',
                       "start_index": self.page_num}
             resp = self.get(url=self.addr, params=params)

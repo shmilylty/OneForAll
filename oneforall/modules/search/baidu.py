@@ -43,7 +43,7 @@ class Baidu(Search):
             time.sleep(self.delay)
             self.header = self.get_header()
             self.proxy = self.get_proxy(self.source)
-            query = 'site:' + domain + filtered_subdomain
+            query = 'site:.' + domain + filtered_subdomain
             params = {'wd': query,
                       'pn': self.page_num,
                       'rn': self.per_page_num}
