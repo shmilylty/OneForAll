@@ -10,9 +10,9 @@ class Yahoo(Search):
         self.source = 'YahooSearch'
         self.init = 'https://search.yahoo.com/'
         self.addr = 'https://search.yahoo.com/search'
-        self.limit_num = 1000  # 限制搜索条数
-        self.delay = 5
-        self.per_page_num = 40
+        self.limit_num = 1000  # Yahoo限制搜索条数
+        self.delay = 2
+        self.per_page_num = 30  # Yahoo每次搜索最大条数
 
     def search(self, domain, filtered_subdomain='', full_search=False):
         """
@@ -22,7 +22,6 @@ class Yahoo(Search):
         :param str filtered_subdomain: 过滤的子域
         :param bool full_search: 全量搜索
         """
-        self.page_num = 0
         resp = self.get(self.init)
         if not resp:
             return
@@ -32,11 +31,12 @@ class Yahoo(Search):
             self.header = self.get_header()
             self.proxy = self.get_proxy(self.source)
             query = 'site:.' + domain + filtered_subdomain
-            params = {'q': query, 'b': self.page_num, 'n': self.per_page_num}
+            params = {'p': query, 'b': self.page_num, 'pz': self.per_page_num}
             resp = self.get(self.addr, params)
             if not resp:
                 return
-            subdomains = self.match(domain, resp.text)
+            text = resp.text.replace('<b>', '').replace('</b>', '')
+            subdomains = self.match(domain, text)
             if not subdomains:  # 搜索没有发现子域名则停止搜索
                 break
             if not full_search:
