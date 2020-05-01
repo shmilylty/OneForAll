@@ -30,7 +30,7 @@ class Bing(Search):
         while True:
             time.sleep(self.delay)
             self.proxy = self.get_proxy(self.source)
-            query = 'site:' + domain + filtered_subdomain
+            query = 'site:.' + domain + filtered_subdomain
             params = {'q': query, 'first': self.page_num,
                       'count': self.per_page_num}
             resp = self.get(self.addr, params)

@@ -25,7 +25,7 @@ class GoogleAPI(Search):
         """
         self.page_num = 1
         while True:
-            word = 'site:' + domain + filtered_subdomain
+            word = 'site:.' + domain + filtered_subdomain
             time.sleep(self.delay)
             self.header = self.get_header()
             self.proxy = self.get_proxy(self.source)
