@@ -308,59 +308,63 @@ def gen_records(items, records, subdomains, ip_times, wc_ips, wc_ttl):
     return records, subdomains
 
 
-def stat_ip_times(result_path):
+def stat_ip_times(result_paths):
     logger.log('INFOR', f'正在统计IP次数')
     times = dict()
-    with open(result_path) as fd:
-        for line in fd:
-            line = line.strip()
-            try:
-                items = json.loads(line)
-            except Exception as e:
-                logger.log('ERROR', e.args)
-                logger.log('ERROR', f'解析行{line}出错跳过解析该行')
-                continue
-            status = items.get('status')
-            if status != 'NOERROR':
-                continue
-            data = items.get('data')
-            if 'answers' not in data:
-                continue
-            answers = data.get('answers')
-            for answer in answers:
-                if answer.get('type') == 'A':
-                    ip = answer.get('data')
-                    # 取值 如果是首次出现的IP集合 出现次数先赋值0
-                    value = times.setdefault(ip, 0)
-                    times[ip] = value + 1
+    for result_path in result_paths:
+        logger.log('DEBUG', f'正在读取{result_path}')
+        with open(result_path) as fd:
+            for line in fd:
+                line = line.strip()
+                try:
+                    items = json.loads(line)
+                except Exception as e:
+                    logger.log('ERROR', e.args)
+                    logger.log('ERROR', f'解析{result_path}行{line}出错跳过解析该行')
+                    continue
+                status = items.get('status')
+                if status != 'NOERROR':
+                    continue
+                data = items.get('data')
+                if 'answers' not in data:
+                    continue
+                answers = data.get('answers')
+                for answer in answers:
+                    if answer.get('type') == 'A':
+                        ip = answer.get('data')
+                        # 取值 如果是首次出现的IP集合 出现次数先赋值0
+                        value = times.setdefault(ip, 0)
+                        times[ip] = value + 1
     return times
 
 
-def deal_output(output_path, ip_times, wildcard_ips, wildcard_ttl):
+def deal_output(output_paths, ip_times, wildcard_ips, wildcard_ttl):
     logger.log('INFOR', f'正在处理解析结果')
     records = dict()  # 用来记录所有域名解析数据
     subdomains = list()  # 用来保存所有通过有效性检查的子域
-    with open(output_path) as fd:
-        for line in fd:
-            line = line.strip()
-            try:
-                items = json.loads(line)
-            except Exception as e:
-                logger.log('ERROR', e.args)
-                logger.log('ERROR', f'解析行{line}出错跳过解析该行')
-                continue
-            qname = items.get('name')[:-1]  # 去出最右边的`.`点号
-            status = items.get('status')
-            if status != 'NOERROR':
-                logger.log('TRACE', f'处理{line}时发现{qname}查询结果状态{status}')
-                continue
-            data = items.get('data')
-            if 'answers' not in data:
-                logger.log('TRACE', f'处理{line}时发现{qname}返回的结果无应答')
-                continue
-            records, subdomains = gen_records(items, records, subdomains,
-                                              ip_times, wildcard_ips,
-                                              wildcard_ttl)
+    for output_path in output_paths:
+        logger.log('DEBUG', f'正在处理{output_path}')
+        with open(output_path) as fd:
+            for line in fd:
+                line = line.strip()
+                try:
+                    items = json.loads(line)
+                except Exception as e:
+                    logger.log('ERROR', e.args)
+                    logger.log('ERROR', f'解析行{line}出错跳过解析该行')
+                    continue
+                qname = items.get('name')[:-1]  # 去出最右边的`.`点号
+                status = items.get('status')
+                if status != 'NOERROR':
+                    logger.log('TRACE', f'处理{line}时发现{qname}查询结果状态{status}')
+                    continue
+                data = items.get('data')
+                if 'answers' not in data:
+                    logger.log('TRACE', f'处理{line}时发现{qname}返回的结果无应答')
+                    continue
+                records, subdomains = gen_records(items, records, subdomains,
+                                                  ip_times, wildcard_ips,
+                                                  wildcard_ttl)
     return records, subdomains
 
 
@@ -413,11 +417,12 @@ def save_brute_dict(dict_path, dict_set):
         exit(1)
 
 
-def delete_file(dict_path, output_path):
+def delete_file(dict_path, output_paths):
     if config.delete_generated_dict:
         dict_path.unlink()
     if config.delete_massdns_result:
-        output_path.unlink()
+        for output_path in output_paths:
+            output_path.unlink()
 
 
 class Brute(Module):
@@ -577,10 +582,18 @@ class Brute(Module):
                            log_path, process_num=self.process_num,
                            concurrent_num=self.concurrent_num)
 
-        ip_times = stat_ip_times(output_path)
-        self.records, self.subdomains = deal_output(output_path, ip_times,
+        output_paths = []
+        if self.process_num == 1:
+            output_paths.append(output_path)
+        else:
+            for i in range(self.process_num):
+                output_name = f'resolved_result_{domain}_{timestring}.json{i}'
+                output_path = temp_dir.joinpath(output_name)
+                output_paths.append(output_path)
+        ip_times = stat_ip_times(output_paths)
+        self.records, self.subdomains = deal_output(output_paths, ip_times,
                                                     wildcard_ips, wildcard_ttl)
-        delete_file(dict_path, output_path)
+        delete_file(dict_path, output_paths)
         end = time.time()
         self.elapse = round(end - start, 1)
         logger.log('INFOR', f'{self.source}模块耗时{self.elapse}秒'
