@@ -224,9 +224,9 @@ class OneForAll(object):
         :rtype: list
         """
         print(banner)
-        utils.check_env()
         dt = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         print(f'[*] Starting OneForAll @ {dt}\n')
+        utils.check_env()
         logger.log('DEBUG', 'Python ' + utils.python_version())
         logger.log('DEBUG', 'OneForAll ' + version)
         logger.log('INFOR', f'开始运行OneForAll')
