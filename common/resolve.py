@@ -39,7 +39,8 @@ def update_data(data, records):
         if not items.get('content'):
             subdomain = items.get('subdomain')
             record = records.get(subdomain)
-            items.update(record)
+            if record:
+                items.update(record)
             data[index] = items
     return data
 
