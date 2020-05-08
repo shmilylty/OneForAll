@@ -32,4 +32,4 @@ jobs:
     - name: Test with example
       run: |
         pip install coverage
-        coverage run test/example.py
+        coverage run test.py
