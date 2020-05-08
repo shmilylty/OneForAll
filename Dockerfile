@@ -10,7 +10,7 @@ RUN git clone https://github.com/blechschmidt/massdns
 WORKDIR /massdns
 RUN make 
 ADD . /OneForAll/
-RUN mv /massdns/bin/massdns /OneForAll/oneforall/thirdparty/massdns/massdns_linux_x86_64
-WORKDIR /OneForAll/oneforall
+RUN mv /massdns/bin/massdns /OneForAll/thirdparty/massdns/massdns_linux_x86_64
+WORKDIR /OneForAll/
 
 ENTRYPOINT ["/bin/ash"]

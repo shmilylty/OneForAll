@@ -32,4 +32,4 @@ jobs:
     - name: Test with example
       run: |
         pip install coverage
-        coverage run oneforall/example.py
+        coverage run test/example.py

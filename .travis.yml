@@ -47,7 +47,7 @@ install:
   - pip3 install -r requirements.txt
 
 script:
- - coverage run oneforall/example.py
+ - coverage run test/example.py
 
 after_success:
  - codecov

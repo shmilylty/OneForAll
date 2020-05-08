@@ -50,7 +50,7 @@ At present, OneForAll is still under development, there must be a lot of problem
 * **Support subdmain verification**，default to enable subdomain verification, automatically resolve subdomain DNS, automatically request subdomain to obtain title and banner, and comprehensively determine subdomain survival.
 * **Support subdomain takeover**，By default, subdomain takeover risk checking is enabled. Automatic subdomain takeover is supported (only Github, remains to be improved at present), and batch inspection is supported.
 * **Powerful processing feature**，The found subdomain results support automatic removal, automatic DNS parsing, HTTP request detection, automatic filtering of valid subdomains, and expansion of Banner information for subdomains. The final supported export formats are `rst`, `csv`, `tsv`, `json`, `yaml`, `html`, `xls`, `xlsx`, `dbf`, `latex`, `ods`.
-* **Very fast**，[collection module](https://github.com/shmilylty/OneForAll/tree/master/oneforall//collect.py) uses multithreaded calls, [blasting module](https://github.com/shmilylty/OneForAll/tree/master/oneforall/brute.py) uses [massdns](https://github.com/blechschmidt/massdns), the speed can at least reach 10000pps under the default configuration, and DNS parsing and HTTP requests use asynchronous multiprogramming in subdomain verification. Multithreaded check [subdomain takeover](https://github.com/shmilylty/OneForAll/tree/master/oneforall/takeover.py) risk.
+* **Very fast**，[collection module](https://github.com/shmilylty/OneForAll/tree/master/collect.py) uses multithreaded calls, [blasting module](https://github.com/shmilylty/OneForAll/tree/master/brute.py) uses [massdns](https://github.com/blechschmidt/massdns), the speed can at least reach 10000pps under the default configuration, and DNS parsing and HTTP requests use asynchronous multiprogramming in subdomain verification. Multithreaded check [subdomain takeover](https://github.com/shmilylty/OneForAll/tree/master/takeover.py) risk.
 * **Good experience**，Each module has a progress bar, and the results of each module are saved asynchronously.
 
 If you have any other great ideas, please let me know!😎
@@ -95,7 +95,6 @@ pip 19.2.2 from C:\Users\shmilylty\AppData\Roaming\Python\Python37\site-packages
    cd OneForAll/
    python -m pip install -U pip setuptools wheel
    pip3 install -r requirements.txt
-   cd oneforall/
    python oneforall.py --help
 ```
 ​      For other system platforms, please refer to [dependency installation](https://github.com/shmilylty/OneForAll/tree/master/docs/installation_dependency.md). If you find that compiling a dependent library fails during the installation dependencies, Refer to the solution in the [troubleshooting.md](https://github.com/shmilylty/OneForAll/tree/master/docs/troubleshooting.md) documentation, if not resolved, welcome feedback.
@@ -130,7 +129,6 @@ docker run -it oneforall
 
 1. If you are installing dependencies through pip3, run the example using the following command: 
     ```bash
-    cd oneforall/
     python3 oneforall.py --target example.com run
     ```
 
@@ -138,7 +136,6 @@ docker run -it oneforall
 
 2. If you install dependencies through pipenv, run the example using the following command: 
    ```bash
-   cd oneforall/
    pipenv run python oneforall.py --target example.com run
    ```
 
@@ -166,11 +163,11 @@ A table like `example_com_now_result` stores the collection results of the curre
 
 **🤔Help**
 
-The command line parameters only provide some common parameters. For more detailed parameter configuration, please see [config.py](https://github.com/shmilylty/OneForAll/tree/master/oneforall/config.py) if you think Some parameters are frequently used in the command interface or missing parameters. Feedback is welcome. For well-known reasons, if you want to use some of the wall's collection interface, please go to [config.py](https://github.com/shmilylty/OneForAll/tree/master/oneforall/config.py) to configure the proxy, some collection Modules need to provide APIs (most of which are freely available for registered accounts). If you need to use them, please go to [api.py](https://github.com/shmilylty/OneForAll/tree/master/oneforall/api.py) to configure the API. Information, if not used, please ignore the error message. (For detailed modules, please read [collection module description](https://github.com/shmilylty/OneForAll/tree/master/docs/collection_modules.md))
+The command line parameters only provide some common parameters. For more detailed parameter configuration, please see [config.py](https://github.com/shmilylty/OneForAll/tree/master/config.py) if you think Some parameters are frequently used in the command interface or missing parameters. Feedback is welcome. For well-known reasons, if you want to use some of the wall's collection interface, please go to [config.py](https://github.com/shmilylty/OneForAll/tree/master/config.py) to configure the proxy, some collection Modules need to provide APIs (most of which are freely available for registered accounts). If you need to use them, please go to [api.py](https://github.com/shmilylty/OneForAll/tree/master/api.py) to configure the API. Information, if not used, please ignore the error message. (For detailed modules, please read [collection module description](https://github.com/shmilylty/OneForAll/tree/master/docs/collection_modules.md))
 
 The OneForAll command line interface is based on [Fire](https://github.com/google/python-fire/). For more advanced usage of Fire, please refer to [using the Fire CLI](https://github.com/google/Python-fire/blob/master/docs/using-cli.md), if you have any doubts during the use, please feel free to give me feedback.
 
-[oneforall.py](https://github.com/shmilylty/OneForAll/tree/master/oneforall/oneforall.py) is the main program entry, and oneforall.py can call [brute.py](https://github.com/shmilylty/OneForAll/tree/master/oneforall/brute.py), [takerover.py](https://github.com/shmilylty/OneForAll/tree/master/oneforall/takerover.py) and [dbexport.py ](https://github.com/shmilylty/OneForAll/tree/master/oneforall/dbexport.py) and other modules, in order to facilitate the sub-field blasting, brute.py is isolated independently, in order to facilitate the subdomain takeover risk check independently takeover.py, in order to facilitate the database export independently dbexport.py, these modules can be run separately, and the parameters accepted are more abundant, if you want to use these modules separately, please refer to the [usage help](https://github.com/shmilylty/OneForAll/tree/master/docs/usage_help.en.md).
+[oneforall.py](https://github.com/shmilylty/OneForAll/tree/master/oneforall.py) is the main program entry, and oneforall.py can call [brute.py](https://github.com/shmilylty/OneForAll/tree/master/brute.py), [takerover.py](https://github.com/shmilylty/OneForAll/tree/master/takerover.py) and [dbexport.py ](https://github.com/shmilylty/OneForAll/tree/master/dbexport.py) and other modules, in order to facilitate the sub-field blasting, brute.py is isolated independently, in order to facilitate the subdomain takeover risk check independently takeover.py, in order to facilitate the database export independently dbexport.py, these modules can be run separately, and the parameters accepted are more abundant, if you want to use these modules separately, please refer to the [usage help](https://github.com/shmilylty/OneForAll/tree/master/docs/usage_help.en.md).
 
 ❗ Note: When you encounter some problems or doubts during use, please use [Issues](https://github.com/shmilylty/OneForAll/issues) to search for answers. Also see [Q&troubleshooting.md](https://github.com/shmilylty/OneForAll/tree/master/docs/Q&troubleshooting.md).
 
@@ -242,41 +239,7 @@ The OneForAll command line interface is based on [Fire](https://github.com/googl
    ```
 
 ## 🌲Directory structure
-
-```bash
-D:.
-|
-+---.github
-+---docs
-|       collection_modules.md collection module description
-+---images
-\---oneforall
-    |   brute.py   Asynchronous multi-process multi-correlation subdomain blasting module, can be run separately
-    |   api.py        API configuration of some collection modules
-    |   collect.py    Upper layer call of each collection module
-    |   config.py     Configuration file
-    |   dbexport.py   Database export module, can be run separately
-    |   domains.txt   List of domain names to be blasted
-    |   oneforall.py  OneForAll main entrance, can be run separately
-    |   __init__.py
-    |
-    +---common Common call module
-    +---data   Store some of the required data
-    |       next_subdomains.txt     Next level subdomain dictionary
-    |       public_suffix_list.dat  Top-level domain name suffix
-    |       srv_names.json          Common SRV record prefix name
-    |       subdomains.txt          Common Dictionary of subdomain blasting
-    |
-    \---modules 
-        +---certificates     Using certificate transparency to collect subdomain
-        +---check            Using conventional methods to collect subdomain
-        +---crawl            Using web crawler files to collect subdomain
-        +---datasets         Using DNS datasets to collect subdomain
-        +---dnsquery         Using DNS query to collect subdomain
-        +---intelligence     Using threat intelligence platform to collect subdomain
-        \---search           Using search engine to collect subdomain
-
-```
+For the description of the project's directory structure, please refer to [directory_structure](https://github.com/shmilylty/OneForAll/tree/master/docs/directory_structure.md).
 
 Description of the source of the subdomain dictionary::
 

@@ -82,7 +82,6 @@ The OneForAll command line interface is based on [Fire](https://github.com/googl
 
    - Third, considering the blasting efficiency, there is no HTTP response volume similarity comparison and response volume content judgment,  this function has not been implemented yet, and will be implemented if necessary.
 
-   After not rigorous testing, in the 16-core CPU, using 16 processes 64 coroutines, 100M network bandwidth environment, run two million dictionaries about 10 minutes to run, about 3333 subdomains per second.
 
    ```bash
    python aiobrute.py --help
