@@ -5,10 +5,10 @@
 示例
 """
 
-import oneforall
+from oneforall import OneForAll
 
 if __name__ == '__main__':
-    test = oneforall.OneForAll(target='hackfun.org')
+    test = OneForAll(target='hackfun.org')
     test.brute = True
     test.req = True
     test.takeover = True
