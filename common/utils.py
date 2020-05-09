@@ -330,6 +330,7 @@ def export_all_results(path, name, format, datas):
 
 def export_all_subdomains(alive, path, name, datas):
     path = check_path(path, name, 'txt')
+    logger.log('INFOR', f'所有主域的纯子域结果 {path}')
     subdomains = set()
     for row in datas:
         subdomain = row.get('subdomain')
@@ -345,8 +346,9 @@ def export_all_subdomains(alive, path, name, datas):
 
 def export_all(alive, format, path, datas):
     """
-    将所有结果数据导出到一个文件
+    将所有结果数据导出
 
+    :param bool alive: 只导出存活子域结果
     :param str format: 导出文件格式
     :param str path: 导出文件路径
     :param list datas: 待导出的结果数据
@@ -356,7 +358,6 @@ def export_all(alive, format, path, datas):
     name = f'all_subdomain_result_{timestamp}'
     export_all_results(path, name, format, datas)
     export_all_subdomains(alive, path, name, datas)
-
 
 
 def dns_resolver():
