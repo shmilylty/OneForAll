@@ -2,22 +2,23 @@
 # coding=utf-8
 
 """
-OneForAll是一款功能强大的子域收集工具
+OneForAll is a powerful subdomain collection tool
 
 :copyright: Copyright (c) 2019, Jing Ling. All rights reserved.
 :license: GNU General Public License v3.0, see LICENSE for more details.
 """
 
+from datetime import datetime
+
 import fire
 
 import dbexport
-from datetime import datetime
-from config.log import logger
-from config import setting
-from collect import Collect
 from brute import Brute
+from collect import Collect
 from common import utils, resolve, request
 from common.database import Database
+from config import setting
+from config.log import logger
 from takeover import Takeover
 
 yellow = '\033[01;33m'
@@ -31,27 +32,27 @@ version = 'v0.2.0#dev'
 message = white + '{' + red + version + white + '}'
 
 banner = f"""
-OneForAll是一款功能强大的子域收集工具{yellow}
+OneForAll is a powerful subdomain collection tool{yellow}
              ___             _ _ 
  ___ ___ ___|  _|___ ___ ___| | | {message}{green}
 | . |   | -_|  _| . |  _| .'| | | {blue}
 |___|_|_|___|_| |___|_| |__,|_|_| {white}git.io/fjHT1
 
-{red}OneForAll处于开发中，会进行版本快速迭代，请每次在使用前进行更新！{end}
+{red}OneForAll is under development and make a lot of iteration, update every time before use please!！{end}
 """
 
 
 class OneForAll(object):
     """
-    OneForAll帮助信息
+    OneForAll help summary page
 
-    OneForAll是一款功能强大的子域收集工具
+    OneForAll is a powerful subdomain collection tool
 
     Example:
         python3 oneforall.py version
         python3 oneforall.py --target example.com run
         python3 oneforall.py --target ./domains.txt run
-        python3 oneforall.py --target example.com --alive None run
+        python3 oneforall.py --target example.com --alive False run
         python3 oneforall.py --target example.com --brute True run
         python3 oneforall.py --target example.com --port medium run
         python3 oneforall.py --target example.com --format csv run
@@ -61,22 +62,22 @@ class OneForAll(object):
         python3 oneforall.py --target example.com --show True run
 
     Note:
-        参数alive可选值True，False分别表示导出存活，全部子域结果
-        参数port可选值有'default', 'small', 'large', 详见setting.py配置
-        参数format可选格式有'rst', 'csv', 'tsv', 'json', 'yaml', 'html',
-                          'jira', 'xls', 'xlsx', 'dbf', 'latex', 'ods'
-        参数path默认None使用OneForAll结果目录自动生成路径
+        --alive  True/False           Only export alive subdomains or not (default False)
+        --port   default/small/large  See details in ./config/setting.py(default port 80)
+        --format rst/csv/tsv/json/yaml/html/jira/xls/xlsx/dbf/latex/ods (result format)
+        --path   Result directory (default directory is ./results)
 
-    :param str target:     单个域名或者每行一个域名的文件路径(必需参数)
-    :param bool brute:     使用爆破模块(默认False)
-    :param bool dns:       DNS解析子域(默认True)
-    :param bool req:       HTTP请求子域(默认True)
-    :param str port:       请求验证子域的端口范围(默认探测80端口)
-    :param bool alive:     只导出存活的子域结果(默认False)
-    :param str format:     结果保存格式(默认csv)
-    :param str path:       结果保存路径(默认None)
-    :param bool takeover:  检查子域接管(默认False)
+    :param str target:     One domain or File path of one domain per line (required)
+    :param bool brute:     Use brute module (default False)
+    :param bool dns:       Use DNS resolution (default True)
+    :param bool req:       HTTP request subdomains (default True)
+    :param str port:       The port range request to the subdomains (default port 80)
+    :param bool alive:     Only export alive subdomains (default False)
+    :param str format:     Result format (default csv)
+    :param str path:       Result directory (default None)
+    :param bool takeover:  Scan subdomain takeover (default False)
     """
+
     def __init__(self, target, brute=None, dns=None, req=None, port=None,
                  alive=None, format=None, path=None, takeover=None):
         self.target = target
@@ -88,18 +89,18 @@ class OneForAll(object):
         self.format = format
         self.path = path
         self.takeover = takeover
-        self.domain = str()  # 当前正在进行收集的主域
-        self.domains = set()  # 所有即将进行收集的主机
-        self.data = list()  # 存放当前主域的子域结果
-        self.datas = list()  # 存放所有主域的子域结果
-        self.old_table = str()  # 存放上一次结果的表名
-        self.new_table = str()  # 存放现在结果的表名
-        self.origin_table = str()  # 存放最初收集结果的表名
-        self.resolve_table = str()  # 存放解析后的结果表名
+        self.domain = str()  # The domain currently being collected
+        self.domains = set()  # All domains that are to be collected
+        self.data = list()  # The subdomain results of the current domain
+        self.datas = list()  # All subdomain results of the domain
+        self.old_table = str()  # The table name of the last result
+        self.new_table = str()  # The table name of the current result
+        self.origin_table = str()  # The table name of the origin result
+        self.resolve_table = str()  # The table name of the resolute result
 
     def config(self):
         """
-        配置参数
+        Configuration parameter
         """
         if self.brute is None:
             self.brute = bool(setting.enable_brute_module)
@@ -120,10 +121,10 @@ class OneForAll(object):
 
     def export(self, table):
         """
-        从数据库中导出数据并做一些后续数据库善后处理
+        Export data from the database and do some follow-up processing
 
-        :param table: 要导出的表名
-        :return: 导出的数据
+        :param table: table name
+        :return: export data
         :rtype: list
         """
         db = Database()
@@ -135,7 +136,7 @@ class OneForAll(object):
 
     def deal_db(self):
         """
-        收集任务完成时对数据库进行处理
+        Process the data when the collection task is completed
         """
         db = Database()
         db.deal_table(self.domain, self.origin_table)
@@ -143,18 +144,18 @@ class OneForAll(object):
 
     def mark(self):
         """
-        标记新发现子域
+        Mark the new discovered subdomain
 
-        :return: 标记后的的子域数据
+        :return: marked data
         :rtype: list
         """
         db = Database()
         old_data = list()
         now_data = db.get_data(self.domain).as_dict()
-        # 非第一次收集子域的情况时数据库预处理
+        # Database pre-processing when it is not the first time to collect this subdomain
         if db.exist_table(self.new_table):
-            db.drop_table(self.old_table)  # 如果存在上次收集结果表就先删除
-            db.rename_table(self.new_table, self.old_table)  # 新表重命名为旧表
+            db.drop_table(self.old_table)  # If there is the last collection result table, delete it first
+            db.rename_table(self.new_table, self.old_table)  # Rename the new table to the old table
             old_data = db.get_data(self.old_table).as_dict()
             db.close()
         marked_data = utils.mark_subdomain(old_data, now_data)
@@ -162,9 +163,9 @@ class OneForAll(object):
 
     def main(self):
         """
-        OneForAll实际运行主流程
+        OneForAll main process
 
-        :return: 子域结果
+        :return: subdomain results
         :rtype: list
         """
         self.old_table = self.domain + '_old_result'
@@ -175,41 +176,41 @@ class OneForAll(object):
         collect = Collect(self.domain, export=False)
         collect.run()
         if self.brute:
-            # 由于爆破会有大量dns解析请求 并发爆破可能会导致其他任务中的网络请求异常
+            # Due to there will be a large number of dns resolution requests, may cause other network tasks to be error
             brute = Brute(self.domain, word=True, export=False)
             brute.check_env = False
             brute.run()
 
-        # 有关数据库处理
+        # Database processing
         self.deal_db()
-        # 标记新发现子域
+        # Mark the new discovered subdomain
         self.data = self.mark()
 
-        # 不解析子域直接导出结果
+        # Export results without resolve
         if not self.dns:
             return self.export(self.domain)
 
-        # 解析子域
+        # Resolve subdomains
         self.data = resolve.run_resolve(self.domain, self.data)
-        # 保存解析结果
+        # Save resolve results
         resolve.save_data(self.resolve_table, self.data)
 
-        # 不请求子域直接导出结果
+        # Export results without HTTP request
         if not self.req:
             return self.export(self.resolve_table)
 
-        # 请求子域
+        # HTTP request
         self.data = request.run_request(self.domain, self.data, self.port)
-        # 保存请求结果
+        # Save HTTP request result
         request.save_data(self.domain, self.data)
 
-        # 将最终结果列表添加到总的数据列表中
+        # Add the final result list to the total data list
         self.datas.extend(self.data)
 
-        # 数据库导出
+        # Export
         self.export(self.domain)
 
-        # 子域接管检查
+        # Scan subdomain takeover
         if self.takeover:
             subdomains = utils.get_subdomains(self.data)
             takeover = Takeover(subdomains)
@@ -218,18 +219,18 @@ class OneForAll(object):
 
     def run(self):
         """
-        OneForAll运行入口
+        OneForAll running entrance
 
-        :return: 总的子域结果
+        :return: All subdomain results
         :rtype: list
         """
         print(banner)
         dt = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         print(f'[*] Starting OneForAll @ {dt}\n')
         utils.check_env()
-        logger.log('DEBUG', 'Python ' + utils.python_version())
-        logger.log('DEBUG', 'OneForAll ' + version)
-        logger.log('INFOR', f'开始运行OneForAll')
+        logger.log('DEBUG/Python ' + utils.python_version())
+        logger.log('DEBUG/OneForAll ' + version)
+        logger.log('INFOR', f'Start Running OneForAll')
         self.config()
         self.domains = utils.get_domains(self.target)
         if self.domains:
@@ -237,8 +238,8 @@ class OneForAll(object):
                 self.main()
             utils.export_all(self.format, self.path, self.datas)
         else:
-            logger.log('FATAL', f'获取域名失败')
-        logger.log('INFOR', f'结束运行OneForAll')
+            logger.log('FATAL', f'Failed to obtain domain')
+        logger.log('INFOR', f'Finished OneForAll')
 
     @staticmethod
     def version():
