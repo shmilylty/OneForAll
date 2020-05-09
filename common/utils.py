@@ -309,17 +309,7 @@ def check_value(values):
     return values
 
 
-def export_all(format, path, datas):
-    """
-    将所有结果数据导出到一个文件
-
-    :param str format: 导出文件格式
-    :param str path: 导出文件路径
-    :param list datas: 待导出的结果数据
-    """
-    format = check_format(format, len(datas))
-    timestamp = get_timestring()
-    name = f'all_subdomain_result_{timestamp}'
+def export_all_results(path, name, format, datas):
     path = check_path(path, name, format)
     logger.log('INFOR', f'所有主域的子域结果 {path}')
     row_list = list()
@@ -336,6 +326,37 @@ def export_all(format, path, datas):
     rows = RecordCollection(iter(row_list))
     content = rows.export(format)
     save_data(path, content)
+
+
+def export_all_subdomains(alive, path, name, datas):
+    path = check_path(path, name, 'txt')
+    subdomains = set()
+    for row in datas:
+        subdomain = row.get('subdomain')
+        if alive:
+            if not row.get('alive'):
+                continue
+            subdomains.add(subdomain)
+        else:
+            subdomains.add(subdomain)
+    data = '\n'.join(subdomains)
+    save_data(path, data)
+
+
+def export_all(alive, format, path, datas):
+    """
+    将所有结果数据导出到一个文件
+
+    :param str format: 导出文件格式
+    :param str path: 导出文件路径
+    :param list datas: 待导出的结果数据
+    """
+    format = check_format(format, len(datas))
+    timestamp = get_timestring()
+    name = f'all_subdomain_result_{timestamp}'
+    export_all_results(path, name, format, datas)
+    export_all_subdomains(alive, path, name, datas)
+
 
 
 def dns_resolver():
