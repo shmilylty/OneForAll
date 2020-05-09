@@ -236,7 +236,7 @@ class OneForAll(object):
         if self.domains:
             for self.domain in self.domains:
                 self.main()
-            utils.export_all(self.format, self.path, self.datas)
+            utils.export_all(self.alive, self.format, self.path, self.datas)
         else:
             logger.log('FATAL', f'Failed to obtain domain')
         logger.log('INFOR', f'Finished OneForAll')
