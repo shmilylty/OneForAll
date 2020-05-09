@@ -38,7 +38,7 @@ OneForAll is a powerful subdomain collection tool{yellow}
 | . |   | -_|  _| . |  _| .'| | | {blue}
 |___|_|_|___|_| |___|_| |__,|_|_| {white}git.io/fjHT1
 
-{red}OneForAll is under development and make a lot of iteration, update every time before use please!{end}
+{red}OneForAll is under development, please update before each use!{end}
 """
 
 
@@ -154,8 +154,10 @@ class OneForAll(object):
         now_data = db.get_data(self.domain).as_dict()
         # Database pre-processing when it is not the first time to collect this subdomain
         if db.exist_table(self.new_table):
-            db.drop_table(self.old_table)  # If there is the last collection result table, delete it first
-            db.rename_table(self.new_table, self.old_table)  # Rename the new table to the old table
+            # If there is the last collection result table, delete it first
+            db.drop_table(self.old_table)
+            # Rename the new table to the old table
+            db.rename_table(self.new_table, self.old_table)
             old_data = db.get_data(self.old_table).as_dict()
             db.close()
         marked_data = utils.mark_subdomain(old_data, now_data)
@@ -176,7 +178,8 @@ class OneForAll(object):
         collect = Collect(self.domain, export=False)
         collect.run()
         if self.brute:
-            # Due to there will be a large number of dns resolution requests, may cause other network tasks to be error
+            # Due to there will be a large number of dns resolution requests,
+            # may cause other network tasks to be error
             brute = Brute(self.domain, word=True, export=False)
             brute.check_env = False
             brute.quite = True
