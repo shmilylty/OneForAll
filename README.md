@@ -21,9 +21,7 @@
 
 * **不够强大**，子域收集的接口不够多，不能做到对批量子域自动收集，没有自动子域解析，验证，FUZZ以及信息拓展等功能。
 * **不够友好**，固然命令行模块比较方便，但是当可选的参数很多，要实现的操作复杂，用命令行模式就有点不够友好，如果有交互良好，高可操作的前端那么使用体验就会好很多。
-
 * **缺少维护**，很多工具几年没有更新过一次，issues和PR是啥，不存在的。
-
 * **效率问题**，没有利用多进程，多线程以及异步协程技术，速度较慢。
 
 为了解决以上痛点，此项目应用而生，正如其名，我希望OneForAll是一款集百家之长，功能强大的全面快速子域收集终极神器🔨。
@@ -34,17 +32,11 @@
 
 * **收集能力强大**，详细模块请阅读[收集模块说明](https://github.com/shmilylty/OneForAll/tree/master/docs/collection_modules.md)。
   1. 利用证书透明度收集子域（目前有6个模块：`censys_api`，`certspotter`，`crtsh`，`entrust`，`google`，`spyse_api`）
-
   2. 常规检查收集子域（目前有4个模块：域传送漏洞利用`axfr`，检查跨域策略文件`cdx`，检查HTTPS证书`cert`，检查内容安全策略`csp`，检查robots文件`robots`，检查sitemap文件`sitemap`，后续会添加检查NSEC记录，NSEC3记录等模块）
-
   3. 利用网上爬虫档案收集子域（目前有2个模块：`archivecrawl`，`commoncrawl`，此模块还在调试，该模块还有待添加和完善）
-
   4. 利用DNS数据集收集子域（目前有23个模块：`binaryedge_api`, `bufferover`, `cebaidu`, `chinaz`, `chinaz_api`, `circl_api`, `dnsdb_api`, `dnsdumpster`, `hackertarget`, `ip138`, `ipv4info_api`, `netcraft`, `passivedns_api`, `ptrarchive`, `qianxun`, `rapiddns`, `riddler`, `robtex`, `securitytrails_api`, `sitedossier`, `threatcrowd`, `wzpc`, `ximcx`）
-
   5. 利用DNS查询收集子域（目前有5个模块：通过枚举常见的SRV记录并做查询来收集子域`srv`，以及通过查询域名的DNS记录中的MX,NS,SOA,TXT记录来收集子域）
-
   6. 利用威胁情报平台数据收集子域（目前有6个模块：`alienvault`, `riskiq_api`，`threatbook_api`，`threatminer`，`virustotal`，`virustotal_api`该模块还有待添加和完善）
-
   7. 利用搜索引擎发现子域（目前有18个模块：`ask`, `baidu`, `bing`, `bing_api`, `duckduckgo`, `exalead`, `fofa_api`, `gitee`, `github`, `github_api`, `google`, `google_api`, `shodan_api`, `so`, `sogou`, `yahoo`, `yandex`, `zoomeye_api`），在搜索模块中除特殊搜索引擎，通用的搜索引擎都支持自动排除搜索，全量搜索，递归搜索。
 * **支持子域爆破**，该模块有常规的字典爆破，也有自定义的fuzz模式，支持批量爆破和递归爆破，自动判断泛解析并处理。
 * **支持子域验证**，默认开启子域验证，自动解析子域DNS，自动请求子域获取title和banner，并综合判断子域存活情况。
@@ -76,37 +68,39 @@ pip 19.2.2 from C:\Users\shmilylty\AppData\Roaming\Python\Python38\site-packages
 
 1. **下载**
 
-   由于该项目**处于开发中**，会不断进行更新迭代，下载时使用`git clone`**克隆**最新代码仓库，也方便后续的更新，不推荐从Releases下载，因为Releases里版本更新缓慢，也不方便更新，
-   本项目已经在[码云](https://gitee.com/shmilylty/OneForAll.git)(Gitee)镜像了一份，国内推荐使用码云进行克隆比较快：
+由于该项目**处于开发中**，会不断进行更新迭代，下载时使用`git clone`**克隆**最新代码仓库，也方便后续的更新，不推荐从Releases下载，因为Releases里版本更新缓慢，也不方便更新，
+本项目已经在[码云](https://gitee.com/shmilylty/OneForAll.git)(Gitee)镜像了一份，国内推荐使用码云进行克隆比较快：
 
-   ```bash
-   git clone https://gitee.com/shmilylty/OneForAll.git
-   ```
-   或者：
-   ```bash
-   git clone https://github.com/shmilylty/OneForAll.git
-   ```
+```bash
+git clone https://gitee.com/shmilylty/OneForAll.git
+```
+或者：
+```bash
+git clone https://github.com/shmilylty/OneForAll.git
+```
 
 2. **安装**
 
-   你可以通过pip3安装OneForAll的依赖（如果你熟悉[pipenv](https://docs.pipenv.org/en/latest/)，那么推荐你使用[pipenv安装依赖]((https://github.com/shmilylty/OneForAll/tree/master/docs/Installation_dependency.md))），以下为**Windows系统**下使用**pip3**安装依赖的示例：（注意：如果你的Python3安装在系统Program Files目录下，如：`C:\Program Files\Python38`，那么请以管理员身份运行命令提示符cmd执行以下命令！）
+你可以通过pip3安装OneForAll的依赖，以下为**Windows系统**下使用**pip3**安装依赖的示例：注意：如果你的Python3安装在系统Program Files目录下，如：`C:\Program Files\Python38`，那么请以管理员身份运行命令提示符cmd执行以下命令！
+
 ```bash
-   cd OneForAll/
-   python -m pip install -U pip setuptools wheel -i https://mirrors.aliyun.com/pypi/simple/
-   pip3 install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
-   python oneforall.py --help
+cd OneForAll/
+python -m pip install -U pip setuptools wheel -i https://mirrors.aliyun.com/pypi/simple/
+pip3 install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
+python oneforall.py --help
 ```
-   其他系统平台的请参考[依赖安装](https://github.com/shmilylty/OneForAll/tree/master/docs/installation_dependency.md)，如果在安装依赖过程中发现编译某个依赖库失败时可以参考[troubleshooting.md](https://github.com/shmilylty/OneForAll/tree/master/docs/troubleshooting.md)中解决方法，如果还没有解决欢迎加群反馈。
+
+其他系统平台的请参考[依赖安装](https://github.com/shmilylty/OneForAll/tree/master/docs/installation_dependency.md)，如果在安装依赖过程中发现编译某个依赖库失败时可以参考[troubleshooting.md](https://github.com/shmilylty/OneForAll/tree/master/docs/troubleshooting.md)中解决方法，如果还没有解决欢迎加群反馈。
 
 3. **更新**
 
-   ❗注意：如果你之前已经克隆了项目运行之前请**备份**自己修改过的文件到项目外的地方（如**config.py**），然后执行以下命令**更新**项目：
+❗注意：如果你之前已经克隆了项目运行之前请**备份**自己修改过的文件到项目外的地方（如**config.py**），然后执行以下命令**更新**项目：
 
-   ```bash
-   git fetch --all
-   git reset --hard origin/master
-   git pull
-   ```
+```bash
+git fetch --all
+git reset --hard origin/master
+git pull
+```
 
 **✔安装步骤（docker 版）**
 
@@ -119,16 +113,16 @@ docker run -it --rm -v ~/results:/OneForAll/results oneforall
 **✨使用演示**
 
 1. 如果你是通过pip3安装的依赖则使用以下命令运行示例：   
-    ```bash
-    python3 oneforall.py --target example.com run
-    ```
+```bash
+python3 oneforall.py --target example.com run
+```
 
-    ![Example](./docs/usage_example.svg)
+![Example](./docs/usage_example.svg)
 
 2. 如果你通过pipenv安装的依赖则使用以下命令运行示例：
-   ```bash
-   pipenv run python oneforall.py --target example.com run
-   ```
+```bash
+pipenv run python oneforall.py --target example.com run
+```
 
 **🧐结果说明**
 
@@ -163,66 +157,66 @@ OneForAll命令行界面基于[Fire](https://github.com/google/python-fire/)实�
 ❗注意：当你在使用过程中遇到一些问题或者疑惑时，请先到[Issues](https://github.com/shmilylty/OneForAll/issues)里使用搜索找找答案，还可以参阅[常见问题与回答](https://github.com/shmilylty/OneForAll/tree/master/docs/Q&A.md)。
 
 **oneforall.py使用帮助**
-    
-   以下帮助信息可能不是最新的，你可以使用`python oneforall.py --help`获取最新的帮助信息。
 
-   ```bash
-   python oneforall.py --help
-   ```
-   ```bash
-    NAME
-        oneforall.py - OneForAll帮助信息
+以下帮助信息可能不是最新的，你可以使用`python oneforall.py --help`获取最新的帮助信息。
 
-    SYNOPSIS
-        oneforall.py COMMAND | --target=TARGET <flags>
-    
-    DESCRIPTION
-        OneForAll是一款功能强大的子域收集工具
+```bash
+python oneforall.py --help
+```
+```bash
+NAME
+    oneforall.py - OneForAll帮助信息
 
-        Example:
-            python3 oneforall.py version
-            python3 oneforall.py --target example.com run
-            python3 oneforall.py --target ./domains.txt run
-            python3 oneforall.py --target example.com --valid None run
-            python3 oneforall.py --target example.com --brute True run
-            python3 oneforall.py --target example.com --port small run
-            python3 oneforall.py --target example.com --format csv run
-            python3 oneforall.py --target example.com --dns False run
-            python3 oneforall.py --target example.com --req False run
-            python3 oneforall.py --target example.com --takeover False run
-            python3 oneforall.py --target example.com --show True run
-    
-        Note:
-            参数valid可选值1，0，None分别表示导出有效，无效，全部子域
-            参数port可选值有'default', 'small', 'large', 详见config.py配置
-            参数format可选格式有'rst', 'csv', 'tsv', 'json', 'yaml', 'html',
-                              'jira', 'xls', 'xlsx', 'dbf', 'latex', 'ods'
-            参数path默认None使用OneForAll结果目录生成路径
+SYNOPSIS
+    oneforall.py COMMAND | --target=TARGET <flags>
 
-    ARGUMENTS
-        TARGET
-            单个域名或者每行一个域名的文件路径(必需参数)
-    
-    FLAGS
-        --brute=BRUTE
-            使用爆破模块(默认False)
-        --dns=DNS
-            DNS解析子域(默认True)
-        --req=REQ
-            HTTP请求子域(默认True)
-        --port=PORT
-            请求验证子域的端口范围(默认只探测80端口)
-        --valid=VALID
-            导出子域的有效性(默认None)
-        --format=FORMAT
-            导出文件格式(默认csv)
-        --path=PATH
-            导出文件路径(默认None)
-        --takeover=TAKEOVER
-            检查子域接管(默认False)
-        --show=SHOW
-            终端显示导出数据(默认False)
-   ```
+DESCRIPTION
+    OneForAll是一款功能强大的子域收集工具
+
+    Example:
+        python3 oneforall.py version
+        python3 oneforall.py --target example.com run
+        python3 oneforall.py --target ./domains.txt run
+        python3 oneforall.py --target example.com --valid None run
+        python3 oneforall.py --target example.com --brute True run
+        python3 oneforall.py --target example.com --port small run
+        python3 oneforall.py --target example.com --format csv run
+        python3 oneforall.py --target example.com --dns False run
+        python3 oneforall.py --target example.com --req False run
+        python3 oneforall.py --target example.com --takeover False run
+        python3 oneforall.py --target example.com --show True run
+
+    Note:
+        参数valid可选值1，0，None分别表示导出有效，无效，全部子域
+        参数port可选值有'default', 'small', 'large', 详见config.py配置
+        参数format可选格式有'rst', 'csv', 'tsv', 'json', 'yaml', 'html',
+                          'jira', 'xls', 'xlsx', 'dbf', 'latex', 'ods'
+        参数path默认None使用OneForAll结果目录生成路径
+
+ARGUMENTS
+    TARGET
+        单个域名或者每行一个域名的文件路径(必需参数)
+
+FLAGS
+    --brute=BRUTE
+        使用爆破模块(默认False)
+    --dns=DNS
+        DNS解析子域(默认True)
+    --req=REQ
+        HTTP请求子域(默认True)
+    --port=PORT
+        请求验证子域的端口范围(默认只探测80端口)
+    --valid=VALID
+        导出子域的有效性(默认None)
+    --format=FORMAT
+        导出文件格式(默认csv)
+    --path=PATH
+        导出文件路径(默认None)
+    --takeover=TAKEOVER
+        检查子域接管(默认False)
+    --show=SHOW
+        终端显示导出数据(默认False)
+```
 
 ## 🌲目录结构
 项目的目录结构说明请参阅[directory_structure](https://github.com/shmilylty/OneForAll/tree/master/docs/directory_structure.md)。
