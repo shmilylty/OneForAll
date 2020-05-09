@@ -35,18 +35,18 @@ class Gitee(Search):
                 break
             soup = BeautifulSoup(resp.text, 'html.parser')
             subdomains = self.match(self.domain, soup.text)
-            self.subdomains = self.subdomains.union(subdomains)
             if not subdomains:
                 break
             if not full_search:
                 # 搜索中发现搜索出的结果有完全重复的结果就停止搜索
                 if subdomains.issubset(self.subdomains):
                     break
+            self.subdomains = self.subdomains.union(subdomains)
             if '<li class="disabled"><a href="###">' in resp.text:
                 break
-            if page_num > 100:
-                break
             page_num += 1
+            if page_num >= 100:
+                break
 
     def run(self):
         """
@@ -71,4 +71,4 @@ def do(domain):  # 统一入口名字 方便多线程调用
 
 
 if __name__ == '__main__':
-    do('example.com')
+    do('qq.com')
