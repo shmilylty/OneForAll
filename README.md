@@ -110,17 +110,8 @@ pip 19.2.2 from C:\Users\shmilylty\AppData\Roaming\Python\Python38\site-packages
 
 **✔安装步骤（docker 版）**
 
-方法一：直接拉取部署好的镜像（更新不及时）
-
 ```shell
-docker pull tardis07/oneforall
-docker run -it oneforall
-```
-
-方法二：从 `Dockerfile` 中构建（同git版）
-
-```shell
-docker build -t oneforall .
+docker pull shmilylty/oneforall
 docker run -it --rm -v ~/results:/OneForAll/results oneforall
 ```
 结果会输出在本地目录`~/results`

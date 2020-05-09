@@ -111,19 +111,11 @@ pip 19.2.2 from C:\Users\shmilylty\AppData\Roaming\Python\Python37\site-packages
 
 **✔Installation steps (Docker version)**
 
-Method 1: directly pull the deployed image (not updated in time)
-
 ```shell
-docker pull tardis07/oneforall
-docker run -it oneforall
+docker pull shmilylty/oneforall
+docker run -it --rm -v ~/results:/OneForAll/results oneforall
 ```
-
-Method 2: build from `Dockerfile` (same as git version)
-
-```shell
-docker build -t oneforall .
-docker run -it oneforall
-```
+output will be saved in`~/results`
 
 **✨Demonstration**
 
