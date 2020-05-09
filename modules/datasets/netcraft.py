@@ -43,7 +43,9 @@ class NetCraft(Query):
             time.sleep(self.delay)
             self.header = self.get_header()
             self.proxy = self.get_proxy(self.source)
-            params = {'host': '*.' + self.domain, 'from': self.page_num}
+            params = {'restriction': 'site ends with',
+                      'host': '.' + self.domain,
+                      'from': self.page_num}
             resp = self.get(self.addr + last, params)
             if not resp:
                 return
@@ -52,10 +54,12 @@ class NetCraft(Query):
                 break
             # 合并搜索子域名搜索结果
             self.subdomains = self.subdomains.union(subdomains)
-            if 'Next page' not in resp.text:  # 搜索页面没有出现下一页时停止搜索
+            if 'Next Page' not in resp.text:  # 搜索页面没有出现下一页时停止搜索
                 break
             last = re.search(r'&last=.*' + self.domain, resp.text).group(0)
             self.page_num += self.per_page_num
+            if self.page_num > 500:
+                break
 
     def run(self):
         """
