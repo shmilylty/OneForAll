@@ -20,6 +20,7 @@ Project address ：[https://github.com/shmilylty/OneForAll](https://github.com/s
 The importance of information collection in penetration testing is self-evident. Subdomain collection is an essential and very important part of information collection. At present, there are many open source tools for subdomain collection on the Internet, but there are always some of the following problems:
 
 * **Not powerful enough**，there are not enough interfaces to collect subdomains automatically, and there are no functions such as automatic subdomain resolve, verification, FUZZ and information expansion.
+
 * **Not friendly enough**，although the command line module is more convenient, but when there are a lot of optional parameters and the operation to be implemented is complex, using command line mode is a bit unfriendly. If there is a good interaction, With a highly operable front end, the experience will be much better.
 
 * **Lack of maintenance**，Many tools have not been updated once in years, what issues and PR are, do not exist.
@@ -33,19 +34,13 @@ At present, OneForAll is still under development, there must be a lot of problem
 ## 👍Features
 
 * **Powerful collection capability**，For more information, please see [collection module description](https://github.com/shmilylty/OneForAll/tree/master/docs/collection_modules.md).
-  1. Collect subdomains using certificate transparency (there are currently 6 modules: `censys_api`，`certspotter`，`crtsh`，`entrust`，`google`，`spyse_api`）
-
-  2. General check collection subdomains (there are currently 4 modules: domain transfer vulnerability exploitation`axfr`, cross-domain policy file `cdx`, HTTPS certificate `cert`, content security policy `csp`, robots file `robots`, and sitemap file `sitemap`. Check NSEC record, NSEC3 record and other modules will be added later).
-
-  3.  Collect subdomains using web crawler files (there are currently 2 modules: `archirawl`, `commoncrawl`, which is still being debugged and needs to be added and improved). 
-
-  4.  Collect subdomains using DNS datasets (there are currently 23 modules: `binaryedge_api`, `bufferover`, `cebaidu`, `chinaz`, `chinaz_api`, `circl_api`, `dnsdb_api`, `dnsdumpster`, `hackertarget`, `ip138`, `ipv4info_api`, `netcraft`, `passivedns_api`, `ptrarchive`, `qianxun`, `rapiddns`, `riddler`, `robtex`, `securitytrails_api`, `sitedossier`, `threatcrowd`, `wzpc`, `ximcx`）
-
-  5.  Collect subdomains using DNS queries (There are currently 5 modules: collecting subdomains `srv` by enumerating common SRV records and making queries, and collecting subdomains by querying MX,NS,SOA,TXT records in DNS records of domain names). 
-
-  6.  Collect subdomains using threat intelligence platform data (there are currently 6 modules: `alienvault`, `riskiq_ api`, `threatbook_ api`, `threatkeeper `, `virustotal`, `virustotal_ api`, which need to be added and improved).
-
-  7.  Use search engines to discover subdomains (there are currently 18 modules: `ask`, `baidu`, `bing`, `bing_api`, `duckduckgo`, `exalead`, `fofa_api`, `gitee`, `github`, `github_api`, `google`, `google_api`, `shodan_api`, `so`, `sogou`, `yahoo`, `yandex`, `zoomeye_api`), except for special search engines in the search module. General search engines support automatic exclusion of search, full search, recursive search. 
+1. Collect subdomains using certificate transparency (there are currently 6 modules: `censys_api`，`certspotter`，`crtsh`，`entrust`，`google`，`spyse_api`）
+2. General check collection subdomains (there are currently 4 modules: domain transfer vulnerability exploitation`axfr`, cross-domain policy file `cdx`, HTTPS certificate `cert`, content security policy `csp`, robots file `robots`, and sitemap file `sitemap`. Check NSEC record, NSEC3 record and other modules will be added later).
+3. Collect subdomains using web crawler files (there are currently 2 modules: `archirawl`, `commoncrawl`, which is still being debugged and needs to be added and improved). 
+4. Collect subdomains using DNS datasets (there are currently 23 modules: `binaryedge_api`, `bufferover`, `cebaidu`, `chinaz`, `chinaz_api`, `circl_api`, `dnsdb_api`, `dnsdumpster`, `hackertarget`, `ip138`, `ipv4info_api`, `netcraft`, `passivedns_api`, `ptrarchive`, `qianxun`, `rapiddns`, `riddler`, `robtex`, `securitytrails_api`, `sitedossier`, `threatcrowd`, `wzpc`, `ximcx`）
+5. Collect subdomains using DNS queries (There are currently 5 modules: collecting subdomains `srv` by enumerating common SRV records and making queries, and collecting subdomains by querying MX,NS,SOA,TXT records in DNS records of domain names). 
+6. Collect subdomains using threat intelligence platform data (there are currently 6 modules: `alienvault`, `riskiq_ api`, `threatbook_ api`, `threatkeeper `, `virustotal`, `virustotal_ api`, which need to be added and improved).
+7.  Use search engines to discover subdomains (there are currently 18 modules: `ask`, `baidu`, `bing`, `bing_api`, `duckduckgo`, `exalead`, `fofa_api`, `gitee`, `github`, `github_api`, `google`, `google_api`, `shodan_api`, `so`, `sogou`, `yahoo`, `yandex`, `zoomeye_api`), except for special search engines in the search module. General search engines support automatic exclusion of search, full search, recursive search. 
 * **Support subdomain blasting**，This module has both conventional dictionary blasting and custom fuzz mode. It supports batch blasting and recursive blasting, and automatically judges pan-parsing and processing.
 * **Support subdmain verification**，default to enable subdomain verification, automatically resolve subdomain DNS, automatically request subdomain to obtain title and banner, and comprehensively determine subdomain survival.
 * **Support subdomain takeover**，By default, subdomain takeover risk checking is enabled. Automatic subdomain takeover is supported (only Github, remains to be improved at present), and batch inspection is supported.
@@ -75,39 +70,41 @@ pip 19.2.2 from C:\Users\shmilylty\AppData\Roaming\Python\Python37\site-packages
 **✔Installation steps (Git version)**
 
 1. **Download**
-   
-   This project has been mirrored in [Gitee](https://gitee.com/shmilylty/OneForAll.git). If you are in China, it is recommended that you use Gitee for cloning, which is faster:
 
-   ```bash
-   git clone https://gitee.com/shmilylty/OneForAll.git
-   ```
-   or：
-   ```bash
-   git clone https://github.com/shmilylty/OneForAll.git
-   ```
+This project has been mirrored in [Gitee](https://gitee.com/shmilylty/OneForAll.git). If you are in China, it is recommended that you use Gitee for cloning, which is faster:
+
+```bash
+git clone https://gitee.com/shmilylty/OneForAll.git
+```
+or：
+```bash
+git clone https://github.com/shmilylty/OneForAll.git
+```
 
 2. **Installation**
 
-   Since the project is under development and will continue to be updated iteratively, `git clone` is used to clone the latest code repository during download, which is also convenient for subsequent updates. Downloading from Releases is not recommended because the update of the version in Releases is slow and inconvenient.
-   
-   You can install OneForAll dependencies via pip3 (if you are familiar with [pipenv](https://docs.pipenv.org/en/latest/), then it is recommended that you use [pipenv install dependencies](https://github.com/shmilylty/OneForAll/tree/master/docs/Installation_dependency.md), the following is an example of using **pip3** to install dependencies under **Windows system**: (Note: If your Python3 is installed in the system Program Files In the directory, such as: `C:\Program Files\Python38`, then run the command prompt cmd as an administrator to execute the following command!)
+Since the project is under development and will continue to be updated iteratively, `git clone` is used to clone the latest code repository during download, which is also convenient for subsequent updates. Downloading from Releases is not recommended because the update of the version in Releases is slow and inconvenient.
+
+You can install OneForAll dependencies via pip3, the following is an example of using **pip3** to install dependencies under **Windows system**: (Note: If your Python3 is installed in the system Program Files In the directory, such as: `C:\Program Files\Python38`, then run the command prompt cmd as an administrator to execute the following command!)
+
 ```bash
-   cd OneForAll/
-   python -m pip install -U pip setuptools wheel
-   pip3 install -r requirements.txt
-   python oneforall.py --help
+cd OneForAll/
+python -m pip install -U pip setuptools wheel
+pip3 install -r requirements.txt
+python oneforall.py --help
 ```
-​      For other system platforms, please refer to [dependency installation](https://github.com/shmilylty/OneForAll/tree/master/docs/installation_dependency.md). If you find that compiling a dependent library fails during the installation dependencies, Refer to the solution in the [troubleshooting.md](https://github.com/shmilylty/OneForAll/tree/master/docs/troubleshooting.md) documentation, if not resolved, welcome feedback.
+
+For other system platforms, please refer to [dependency installation](https://github.com/shmilylty/OneForAll/tree/master/docs/installation_dependency.md). If you find that compiling a dependent library fails during the installation dependencies, Refer to the solution in the [troubleshooting.md](https://github.com/shmilylty/OneForAll/tree/master/docs/troubleshooting.md) documentation, if not resolved, welcome feedback.
 
 3. **Update**
 
-   ❗Note: If you have cloned the project before, please **back** up your own modified files (such as **config.py**) to the location outside the project before updating, then execute the following command **update** project:
+❗Note: If you have cloned the project before, please **back** up your own modified files (such as **config.py**) to the location outside the project before updating, then execute the following command **update** project:
 
-   ```bash
-   git fetch --all
-   git reset --hard origin/master
-   git pull
-   ```
+```bash
+git fetch --all
+git reset --hard origin/master
+git pull
+```
 
 **✔Installation steps (Docker version)**
 
@@ -120,16 +117,16 @@ output will be saved in`~/results`
 **✨Demonstration**
 
 1. If you are installing dependencies through pip3, run the example using the following command: 
-    ```bash
-    python3 oneforall.py --target example.com run
-    ```
+```bash
+python3 oneforall.py --target example.com run
+```
 
-    ![Example](./docs/usage_example.svg)
+![Example](./docs/usage_example.svg)
 
 2. If you install dependencies through pipenv, run the example using the following command: 
-   ```bash
-   pipenv run python oneforall.py --target example.com run
-   ```
+```bash
+pipenv run python oneforall.py --target example.com run
+```
 
 **🧐Description**. 
 
@@ -165,72 +162,73 @@ The OneForAll command line interface is based on [Fire](https://github.com/googl
 
 **oneforall.py help**
 
-   The following help information may not be up to date. You can use `python oneforall.py --help` to get the latest help information.
+The following help information may not be up to date. You can use `python oneforall.py --help` to get the latest help information.
 
-   ```bash
-   python oneforall.py --help
-   ```
-   ```bash
-   NAME
-       oneforall.py - OneForAll help Information
-   
-   SYNOPSIS
-       oneforall.py --target=TARGET <flags>
-   
-   DESCRIPTION
-       OneForAll is a powerful subdomain collection tool
-   
-       Example:
-           python3 oneforall.py version
-           python3 oneforall.py --target example.com run
-           python3 oneforall.py --target ./domains.txt run
-           python3 oneforall.py --target example.com --valid None run
-           python3 oneforall.py --target example.com --brute True run
-           python3 oneforall.py --target example.com --port small run
-           python3 oneforall.py --target example.com --format csv run
-           python3 oneforall.py --target example.com --dns False run
-           python3 oneforall.py --target example.com --req False run
-           python3 oneforall.py --target example.com --takeover False run
-           python3 oneforall.py --target example.com --show True run
-   
-       Note:
-           Parameter valid optional value 1, 0, none indicates that the export is 
-           valid, invalid, and all subdomains, respectively.
-           Parameter port have optional values 'default' 'small', 'large',
-           See config.py configuration for details.
-           Parameter format have optional values 'rst', 'csv', 'tsv', 'json', 
-           'yaml', 'html', 'jira', 'xls', 'xlsx', 'dbf', 'latex', 'ods'.
-           If the parameter path is None, the appropriate file is generated in the 
-           project result directory based on the format parameter and the domain 
-           name.
-           Parameter path default None uses the OneForAll result directory generation path
-   
-   ARGUMENTS
-       TARGET
-           Single domain name or file path for one domain name per line (required)
-   
-   FLAGS
-       --brute=BRUTE
-           Use blasting module (default False)
-       --dns=DNS
-           DNS resolve subdomain (default True)
-       --req=REQ
-           HTTP request subdomain (default True)
-       --port=PORT
-           Port range for request authentication (default 80 port)
-       --valid=VALID
-           Export validity of subdomains (default None)
-       --format=FORMAT
-           Export format (default xls)
-       --path=PATH
-           Export path (default None)
-       --takeover=TAKEOVER
-           Check subdomain takeover (default False)
-       --show=SHOW
-           Terminal display exported data (default False)
-   ```
+```bash
+python oneforall.py --help
+```
+```bash
+NAME
+   oneforall.py - OneForAll help Information
+
+SYNOPSIS
+   oneforall.py --target=TARGET <flags>
+
+DESCRIPTION
+   OneForAll is a powerful subdomain collection tool
+
+   Example:
+       python3 oneforall.py version
+       python3 oneforall.py --target example.com run
+       python3 oneforall.py --target ./domains.txt run
+       python3 oneforall.py --target example.com --valid None run
+       python3 oneforall.py --target example.com --brute True run
+       python3 oneforall.py --target example.com --port small run
+       python3 oneforall.py --target example.com --format csv run
+       python3 oneforall.py --target example.com --dns False run
+       python3 oneforall.py --target example.com --req False run
+       python3 oneforall.py --target example.com --takeover False run
+       python3 oneforall.py --target example.com --show True run
+
+   Note:
+       Parameter valid optional value 1, 0, none indicates that the export is 
+       valid, invalid, and all subdomains, respectively.
+       Parameter port have optional values 'default' 'small', 'large',
+       See config.py configuration for details.
+       Parameter format have optional values 'rst', 'csv', 'tsv', 'json', 
+       'yaml', 'html', 'jira', 'xls', 'xlsx', 'dbf', 'latex', 'ods'.
+       If the parameter path is None, the appropriate file is generated in the 
+       project result directory based on the format parameter and the domain 
+       name.
+       Parameter path default None uses the OneForAll result directory generation path
+
+ARGUMENTS
+   TARGET
+       Single domain name or file path for one domain name per line (required)
+
+FLAGS
+   --brute=BRUTE
+       Use blasting module (default False)
+   --dns=DNS
+       DNS resolve subdomain (default True)
+   --req=REQ
+       HTTP request subdomain (default True)
+   --port=PORT
+       Port range for request authentication (default 80 port)
+   --valid=VALID
+       Export validity of subdomains (default None)
+   --format=FORMAT
+       Export format (default xls)
+   --path=PATH
+       Export path (default None)
+   --takeover=TAKEOVER
+       Check subdomain takeover (default False)
+   --show=SHOW
+       Terminal display exported data (default False)
+```
 
 ## 🌲Directory structure
+
 For the description of the project's directory structure, please refer to [directory_structure](https://github.com/shmilylty/OneForAll/tree/master/docs/directory_structure.md).
 
 Description of the source of the subdomain dictionary::
