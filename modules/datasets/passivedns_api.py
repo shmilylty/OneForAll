@@ -30,8 +30,9 @@ class PassiveDnsAPI(Query):
         """
         类执行入口
         """
-        if not self.check(self.addr):
-            return
+        if 'api.passivedns.cn' in self.addr:
+            if not self.check(self.token):
+                return
         self.begin()
         self.query()
         self.finish()
