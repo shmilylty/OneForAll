@@ -490,6 +490,7 @@ class Brute(Module):
         self.wildcard_check = setting.enable_wildcard_check
         self.wildcard_deal = setting.enable_wildcard_deal
         self.check_env = True
+        self.quite = False
 
     def gen_brute_dict(self, domain):
         logger.log('INFOR', f'正在为{domain}生成爆破字典')
@@ -579,9 +580,9 @@ class Brute(Module):
         check_dict()
 
         utils.call_massdns(massdns_path, dict_path, ns_path, output_path,
-                           log_path, process_num=self.process_num,
+                           log_path, quiet_mode=self.quite,
+                           process_num=self.process_num,
                            concurrent_num=self.concurrent_num)
-
         output_paths = []
         if self.process_num == 1:
             output_paths.append(output_path)
