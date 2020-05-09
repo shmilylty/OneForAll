@@ -179,6 +179,7 @@ class OneForAll(object):
             # Due to there will be a large number of dns resolution requests, may cause other network tasks to be error
             brute = Brute(self.domain, word=True, export=False)
             brute.check_env = False
+            brute.quite = True
             brute.run()
 
         # Database processing
