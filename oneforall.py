@@ -38,7 +38,7 @@ OneForAll is a powerful subdomain collection tool{yellow}
 | . |   | -_|  _| . |  _| .'| | | {blue}
 |___|_|_|___|_| |___|_| |__,|_|_| {white}git.io/fjHT1
 
-{red}OneForAll is under development and make a lot of iteration, update every time before use please!！{end}
+{red}OneForAll is under development and make a lot of iteration, update every time before use please!{end}
 """
 
 
