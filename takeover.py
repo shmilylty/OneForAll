@@ -2,7 +2,7 @@
 # coding=utf-8
 
 """
-OneForAll子域接管模块
+OneForAll subdomain takeover module
 
 :copyright: Copyright (c) 2019, Jing Ling. All rights reserved.
 :license: GNU General Public License v3.0, see LICENSE for more details.
@@ -47,22 +47,22 @@ def get_maindomain(subdomain):
 
 class Takeover(Module):
     """
-    OneForAll多线程子域接管风险检查模块
+    OneForAll subdomain takeover module
 
     Example:
         python3 takeover.py --target www.example.com  --format csv run
         python3 takeover.py --target ./subdomains.txt --thread 10 run
 
     Note:
-        参数format可选格式有'txt', 'rst', 'csv', 'tsv', 'json', 'yaml', 'html',
-                          'jira', 'xls', 'xlsx', 'dbf', 'latex', 'ods'
-        参数path默认None使用OneForAll结果目录生成路径
+        --format rst/csv/tsv/json/yaml/html/jira/xls/xlsx/dbf/latex/ods (result format)
+        --path   Result directory (default directory is ./results)
 
-    :param any target:  单个子域或者每行一个子域的文件路径(必需参数)
-    :param int thread:  线程数(默认100)
-    :param str format:  导出格式(默认csv)
-    :param str path:    导出路径(默认None)
+    :param any target:  One domain or File path of one domain per line (required)
+    :param int thread:  threads number (default 100)
+    :param str format:  Result format (default csv)
+    :param str path:    Result directory (default None)
     """
+
     def __init__(self, target, thread=100, path=None, format='csv'):
         Module.__init__(self)
         self.subdomains = set()
@@ -78,7 +78,7 @@ class Takeover(Module):
         self.results = Dataset()
 
     def save(self):
-        logger.log('DEBUG', '正在保存检查结果')
+        logger.log('DEBUG', 'Saving Results...')
         if self.format == 'txt':
             data = str(self.results)
         else:
@@ -93,7 +93,7 @@ class Takeover(Module):
 
         for resp in responses:
             if resp in domain_resp.text and resp in cname_resp.text:
-                logger.log('ALERT', f'{subdomain}存在子域接管风险')
+                logger.log('ALERT', f'{subdomain}Subdomain takeover threat found')
                 self.results.append([subdomain, cname])
                 break
 
@@ -131,14 +131,14 @@ class Takeover(Module):
 
     def run(self):
         start = time.time()
-        logger.log('INFOR', f'开始执行{self.source}模块')
+        logger.log('INFOR', f'Start runing {self.source} module')
         self.subdomains = utils.get_domains(self.target)
         self.format = utils.check_format(self.format, len(self.subdomains))
         timestamp = utils.get_timestamp()
         name = f'takeover_check_result_{timestamp}'
         self.path = utils.check_path(self.path, name, self.format)
         if self.subdomains:
-            logger.log('INFOR', f'正在检查子域接管风险')
+            logger.log('INFOR', f'Checking subdomain takeover...')
             self.fingerprints = get_fingerprint()
             self.results.headers = ['subdomain', 'cname']
             # 创建待检查的子域队列
@@ -155,13 +155,13 @@ class Takeover(Module):
             self.subdomainq.join()
             self.save()
         else:
-            logger.log('FATAL', f'获取域名失败')
+            logger.log('FATAL', f'Failed to obtain domain')
         end = time.time()
         elapse = round(end - start, 1)
-        logger.log('INFOR', f'{self.source}模块耗时{elapse}秒'
-                            f'发现{len(self.results)}个子域存在接管风险')
-        logger.log('INFOR', f'子域接管风险检查结果 {self.path}')
-        logger.log('INFOR', f'结束执行{self.source}模块')
+        logger.log('INFOR', f'{self.source} module  spends {elapse} seconds'
+        f'There are {len(self.results)} subdomains exit takeover')
+        logger.log('INFOR', f'Subdomain takeover results: {self.path}')
+        logger.log('INFOR', f'Finished {self.source} module')
 
 
 if __name__ == '__main__':
