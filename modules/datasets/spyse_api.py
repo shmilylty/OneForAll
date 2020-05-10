@@ -7,23 +7,23 @@ class SpyseAPI(Query):
     def __init__(self, domain):
         Query.__init__(self)
         self.domain = domain
-        self.module = 'Certificate'
-        self.source = 'CertDBAPIQuery'
-        self.addr = 'https://api.spyse.com/v1/subdomains'
+        self.module = 'Dataset'
+        self.source = 'SpyseAPIQuery'
         self.token = api.spyse_api_token
 
     def query(self):
         """
         向接口查询子域并做子域匹配
         """
-        page_num = 1
+        limit = 100
+        offset = 0
         while True:
             self.header = self.get_header()
+            self.header.update({'Authorization': 'Bearer ' + self.token})
             self.proxy = self.get_proxy(self.source)
-            params = {'domain': self.domain,
-                      'api_token': self.token,
-                      'page': page_num}
-            resp = self.get(self.addr, params)
+            addr = 'https://api.spyse.com/v2/data/domain/subdomain'
+            params = {'domain': self.domain, 'offset': offset, 'limit': limit}
+            resp = self.get(addr, params)
             if not resp:
                 return
             json = resp.json()
@@ -32,9 +32,8 @@ class SpyseAPI(Query):
                 break
             # 合并搜索子域名搜索结果
             self.subdomains = self.subdomains.union(subdomains)
-            page_num += 1
-            # 默认每次查询最多返回30条 当前条数小于30条说明已经查完
-            if json.get('count') < 30:
+            offset += limit
+            if len(json.get('data').get('items')) < limit:
                 break
 
     def run(self):
