@@ -2,7 +2,7 @@
 # coding=utf-8
 
 """
-OneForAll数据库导出模块
+OneForAll export from database module
 
 :copyright: Copyright (c) 2019, Jing Ling. All rights reserved.
 :license: GNU General Public License v3.0, see LICENSE for more details.
@@ -17,25 +17,24 @@ from config.log import logger
 
 def export(table, db=None, alive=False, limit=None, path=None, format='csv', show=False):
     """
-    OneForAll数据库导出模块
+    OneForAll export from database module
 
     Example:
         python3 dbexport.py --table name --format csv --dir= ./result.csv
         python3 dbexport.py --db result.db --table name --show False
 
     Note:
-        参数alive可选值True，False分别表示导出存活，全部子域结果
-        参数format可选格式有'txt', 'rst', 'csv', 'tsv', 'json', 'yaml', 'html',
-                          'jira', 'xls', 'xlsx', 'dbf', 'latex', 'ods'
-        参数path默认None使用OneForAll结果目录自动生成路径
+        --alive  True/False           Only export alive subdomains or not (default False)
+        --format rst/csv/tsv/json/yaml/html/jira/xls/xlsx/dbf/latex/ods (result format)
+        --path   Result directory (default directory is ./results)
 
-    :param str table:   要导出的表
-    :param str db:      要导出的数据库路径(默认为results/result.sqlite3)
-    :param bool alive:  只导出存活的子域结果(默认False)
-    :param str limit:   导出限制条件(默认None)
-    :param str format:  导出文件格式(默认csv)
-    :param str path:    导出文件路径(默认None)
-    :param bool show:   终端显示导出数据(默认False)
+    :param str  table:   Table to be exported
+    :param str  db:      Database path to be exported (default ./results/result.sqlite3)
+    :param bool alive:   Only export the results of alive subdomains (default False)
+    :param str  limit:   Export limit (default None)
+    :param str  format:  Result format (default csv)
+    :param str  path:    Result directory (default None)
+    :param bool show:    Displays the exported data in terminal (default False)
     """
 
     database = Database(db)
@@ -47,7 +46,7 @@ def export(table, db=None, alive=False, limit=None, path=None, format='csv', sho
     data = rows.export(format)
     database.close()
     utils.save_data(path, data)
-    logger.log('INFOR', f'{table}主域的子域结果 {path}')
+    logger.log('INFOR', f'{table}\'s subdomains result: {path}')
     data_dict = rows.as_dict()
     return data_dict
 
