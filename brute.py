@@ -599,9 +599,9 @@ class Brute(Module):
         end = time.time()
         self.elapse = round(end - start, 1)
         logger.log('INFOR', f'{self.source} module spends {self.elapse} seconds, '
-        f'found {len(self.subdomains)} subdomains of {domain}')
+                            f'found {len(self.subdomains)} subdomains of {domain}')
         logger.log('DEBUG', f'{self.source} module found subdomains of {domain}:\n'
-        f'{self.subdomains}')
+                            f'{self.subdomains}')
         self.gen_result(brute=dict_len, valid=len(self.subdomains))
         self.save_db()
         return self.subdomains
