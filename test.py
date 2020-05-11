@@ -2,7 +2,7 @@
 # coding=utf-8
 
 """
-示例
+Example
 """
 
 from oneforall import OneForAll
