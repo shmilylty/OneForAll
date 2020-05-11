@@ -46,7 +46,7 @@ def export(table, db=None, alive=False, limit=None, path=None, format='csv', sho
     data = rows.export(format)
     database.close()
     utils.save_data(path, data)
-    logger.log('ALERT', f'Subdomain result for {table}: {path}')
+    logger.log('ALERT', f'The subdomain result for {table}: {path}')
     data_dict = rows.as_dict()
     return data_dict
 
