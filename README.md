@@ -7,13 +7,11 @@
 [![python](https://img.shields.io/badge/python-3.8-blue)](https://github.com/shmilylty/OneForAll/tree/master/)
 [![python](https://img.shields.io/badge/release-v0.2.0-brightgreen)](https://github.com/shmilylty/OneForAll/releases)
 
-👊**OneForAll是一款功能强大的子域收集工具**  📝[English Document](https://github.com/shmilylty/OneForAll/tree/master/README.en.md)
+👊**OneForAll是一款功能强大的子域收集工具**  📝[English Document](https://github.com/shmilylty/OneForAll/tree/master/docs/en-us/README.md)
 
 ![Example](./docs/usage_example.svg)
 
 ## 🎉项目简介
-
-项目主页：[https://shmilylty.github.io/OneForAll/](https://shmilylty.github.io/OneForAll/)
 
 项目地址：[https://github.com/shmilylty/OneForAll](https://github.com/shmilylty/OneForAll)
 
@@ -43,7 +41,7 @@
 * **支持子域接管**，默认开启子域接管风险检查，支持子域自动接管（目前只有Github，有待完善），支持批量检查。
 * **处理功能强大**，发现的子域结果支持自动去除，自动DNS解析，HTTP请求探测，自动筛选出有效子域，拓展子域的Banner信息，最终支持的导出格式有`rst`, `csv`, `tsv`, `json`, `yaml`, `html`, `xls`, `xlsx`, `dbf`, `latex`, `ods`。
 * **速度极快**，[收集模块](https://github.com/shmilylty/OneForAll/tree/master/collect.py)使用多线程调用，[爆破模块](https://github.com/shmilylty/OneForAll/tree/master/brute.py)使用[massdns](https://github.com/blechschmidt/massdns)，默认配置下速度最少能达到10000pps，子域验证中DNS解析和HTTP请求使用异步多协程，多线程检查[子域接管](https://github.com/shmilylty/OneForAll/tree/master/takeover.py)风险。
-* **体验良好**，日志和终端输出全使用中文，各模块都有进度条，异步保存各模块结果。
+* **体验良好**，各模块都有进度条，异步保存各模块结果。
 
 如果你有其他很棒的想法请务必告诉我！😎
 
@@ -187,7 +185,7 @@ DESCRIPTION
         python3 oneforall.py --target example.com --show True run
 
     Note:
-        参数valid可选值1，0，None分别表示导出有效，无效，全部子域
+        参数alive可选值True，False分别表示导出存活，全部子域结果
         参数port可选值有'default', 'small', 'large', 详见config.py配置
         参数format可选格式有'rst', 'csv', 'tsv', 'json', 'yaml', 'html',
                           'jira', 'xls', 'xlsx', 'dbf', 'latex', 'ods'
@@ -207,15 +205,13 @@ FLAGS
     --port=PORT
         请求验证子域的端口范围(默认只探测80端口)
     --valid=VALID
-        导出子域的有效性(默认None)
+        只导出存活的子域结果(默认False)
     --format=FORMAT
-        导出文件格式(默认csv)
+        结果保存格式(默认csv)
     --path=PATH
-        导出文件路径(默认None)
+        结果保存路径(默认None)
     --takeover=TAKEOVER
         检查子域接管(默认False)
-    --show=SHOW
-        终端显示导出数据(默认False)
 ```
 
 ## 🌲目录结构
