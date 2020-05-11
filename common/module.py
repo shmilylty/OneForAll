@@ -11,8 +11,8 @@ import time
 import requests
 from config.log import logger
 from config import setting
-from . import utils
-from .domain import Domain
+from common import utils
+from common.domain import Domain
 from common.database import Database
 
 lock = threading.Lock()
@@ -45,7 +45,7 @@ class Module(object):
         :return bool: check result
         """
         if not all(apis):
-            logger.log('ALERT', f'{self.source} module is not configured, skip')
+            logger.log('DEBUG', f'{self.source} module is not configured')
             return False
         return True
 
@@ -62,10 +62,10 @@ class Module(object):
         self.end = time.time()
         self.elapse = round(self.end - self.start, 1)
         logger.log('DEBUG', f'Finished {self.source} module to collect {self.domain}\'s subdomains')
-        logger.log('INFOR', f'The {self.source} module took {self.elapse} seconds, '
+        logger.log('INFOR', f'The {self.source} module took {self.elapse} seconds '
                             f'found {len(self.subdomains)} subdomains')
         logger.log('DEBUG', f'{self.source} module found subdomains of {self.domain}\n'
-        f'{self.subdomains}')
+                            f'{self.subdomains}')
 
     def head(self, url, params=None, check=True, **kwargs):
         """
@@ -252,7 +252,7 @@ class Module(object):
         """
         Generate results
         """
-        logger.log('DEBUG', f'Generating final results...')
+        logger.log('DEBUG', f'Generating final results')
         if not len(self.subdomains):  # 该模块一个子域都没有发现的情况
             logger.log('DEBUG', f'{self.source} module result is empty')
             result = {'id': None,

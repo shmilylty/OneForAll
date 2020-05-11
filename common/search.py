@@ -3,7 +3,6 @@ import re
 from config import setting
 from config.log import logger
 from common.module import Module
-from common import utils
 
 
 class Search(Module):

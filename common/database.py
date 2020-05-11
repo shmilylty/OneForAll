@@ -24,7 +24,7 @@ class Database(object):
         :param   db_path: Database path
         :return: db_conn: SQLite database connection
         """
-        logger.log('TRACE', f'Establishing database connection...')
+        logger.log('TRACE', f'Establishing database connection')
         if isinstance(db_path, Connection):
             return db_path
         protocol = 'sqlite:///'
@@ -94,7 +94,7 @@ class Database(object):
         :param str module_name: mo
         """
         logger.log('TRACE',
-                   f'Saving the subdomain results of {table_name} found by module {module_name} into database...')
+                   f'Saving the subdomain results of {table_name} found by module {module_name} into database')
         table_name = table_name.replace('.', '_')
         if results:
             try:

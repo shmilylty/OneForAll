@@ -14,7 +14,7 @@ def filter_subdomain(data):
     :param list data: 待过滤的数据列表
     :return: 符合条件的子域列表
     """
-    logger.log('DEBUG', f'Filtering subdomains to be resolved...')
+    logger.log('DEBUG', f'Filtering subdomains to be resolved')
     subdomains = []
     for data in data:
         if not data.get('content'):
@@ -31,7 +31,7 @@ def update_data(data, records):
     :param dict records: 解析结果字典
     :return: 更新后的数据列表
     """
-    logger.log('DEBUG', f'Updating resolved results...')
+    logger.log('DEBUG', f'Updating resolved results')
     if not records:
         logger.log('ERROR', f'No valid resolved result')
         return data
@@ -52,7 +52,7 @@ def save_data(name, data):
     :param str name: 保存表名
     :param list data: 待保存的数据
     """
-    logger.log('INFOR', f'Saving resolved results...')
+    logger.log('INFOR', f'Saving resolved results')
     db = Database()
     db.drop_table(name)
     db.create_table(name)
@@ -61,7 +61,7 @@ def save_data(name, data):
 
 
 def save_subdomains(save_path, subdomain_list):
-    logger.log('DEBUG', f'Saving resolved subdomain...')
+    logger.log('DEBUG', f'Saving resolved subdomain')
     subdomain_data = '\n'.join(subdomain_list)
     if not utils.save_data(save_path, subdomain_data):
         logger.log('FATAL', 'Save resolved subdomain error')
@@ -69,7 +69,7 @@ def save_subdomains(save_path, subdomain_list):
 
 
 def deal_output(output_path):
-    logger.log('INFOR', f'Processing resolved results...')
+    logger.log('INFOR', f'Processing resolved results')
     records = dict()  # 用来记录所有域名解析数据
     with open(output_path) as fd:
         for line in fd:
@@ -161,6 +161,7 @@ def run_resolve(domain, data):
 
     ns_path = setting.brute_nameservers_path
 
+    logger.log('INFOR', f'Running massdns to brute subdomains')
     utils.call_massdns(massdns_path, save_path, ns_path,
                        output_path, log_path, quiet_mode=True)
 

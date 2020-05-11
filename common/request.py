@@ -22,7 +22,7 @@ def get_limit_conn():
 
 
 def get_ports(port):
-    logger.log('DEBUG', f'Getting port range...')
+    logger.log('DEBUG', f'Getting port range')
     ports = set()
     if isinstance(port, (set, list, tuple)):
         ports = port
@@ -40,7 +40,7 @@ def get_ports(port):
 
 
 def gen_req_data(data, ports):
-    logger.log('INFOR', f'Generating request urls...')
+    logger.log('INFOR', f'Generating request urls')
     new_data = []
     for data in data:
         resolve = data.get('resolve')
@@ -203,7 +203,7 @@ async def bulk_request(data, port):
     to_req_data = gen_req_data(data, ports)
     method = setting.request_method
     logger.log('INFOR', f'Use {method} method to request')
-    logger.log('INFOR', f'Async subdomains request in progress...')
+    logger.log('INFOR', f'Async subdomains request in progress')
     connector = get_connector()
     header = get_header()
     async with ClientSession(connector=connector, headers=header) as session:
@@ -255,7 +255,7 @@ def run_request(domain, data, port):
     # 在关闭事件循环前加入一小段延迟让底层连接得到关闭的缓冲时间
     loop.run_until_complete(asyncio.sleep(0.25))
     count = utils.count_alive(data)
-    logger.log('INFOR', f'After verify, found {domain} have {count} alive subdomains')
+    logger.log('INFOR', f'Request module found {domain} have {count} alive subdomains')
     return data
 
 
