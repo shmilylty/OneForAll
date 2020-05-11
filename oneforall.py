@@ -234,7 +234,7 @@ class OneForAll(object):
         utils.check_env()
         logger.log('DEBUG', 'Python ' + utils.python_version())
         logger.log('DEBUG', 'OneForAll ' + version)
-        logger.log('INFOR', f'Start Running OneForAll')
+        logger.log('INFOR', f'Start running OneForAll')
         self.config()
         self.domains = utils.get_domains(self.target)
         if self.domains:

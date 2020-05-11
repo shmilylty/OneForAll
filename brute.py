@@ -132,7 +132,7 @@ def gen_word_subdomains(expression, path):
 
 
 def query_domain_ns_a(ns_list):
-    logger.log('INFOR', f'Querying authoritative name server {ns_list} A record')
+    logger.log('INFOR', f'Querying A record from authoritative name server: {ns_list} ')
     if not isinstance(ns_list, list):
         return list()
     ns_ip_list = []
@@ -147,7 +147,7 @@ def query_domain_ns_a(ns_list):
         if answer:
             for item in answer:
                 ns_ip_list.append(item.address)
-    logger.log('INFOR', f'Authoritative name server A record: {ns_ip_list}')
+    logger.log('INFOR', f'Authoritative name server A record result: {ns_ip_list}')
     return ns_ip_list
 
 
@@ -162,7 +162,7 @@ def query_domain_ns(domain):
         logger.log('ERROR', f'Querying NS records of {domain} error')
         return list()
     ns = [item.to_text() for item in answer]
-    logger.log('INFOR', f'{domain}\'s authoritative name server: {ns}')
+    logger.log('INFOR', f'{domain}\'s authoritative name server is {ns}')
     return ns
 
 
@@ -186,7 +186,7 @@ def get_wildcard_record(domain, resolver):
         exit(1)
     else:
         if answer.rrset is None:
-            logger.log('DEBUG', f'No record of query results')
+            logger.log('DEBUG', f'No record of query result')
             return None, None
         name = answer.name
         ip = {item.address for item in answer}
@@ -282,7 +282,7 @@ def gen_records(items, records, subdomains, ip_times, wc_ips, wc_ttl):
         have_a_record = True
         ttl = answer.get('ttl')
         ttls.append(ttl)
-        cname.append(answer.get('name')[:-1])  # 去出最右边的`.`点号
+        cname.append(answer.get('name')[:-1])  # 去除最右边的`.`点号
         ip = answer.get('data')
         ips.append(ip)
         public.append(utils.ip_is_public(ip))
@@ -339,7 +339,7 @@ def stat_ip_times(result_paths):
 
 
 def deal_output(output_paths, ip_times, wildcard_ips, wildcard_ttl):
-    logger.log('INFOR', f'Processing results...')
+    logger.log('INFOR', f'Processing result...')
     records = dict()  # 用来记录所有域名解析数据
     subdomains = list()  # 用来保存所有通过有效性检查的子域
     for output_path in output_paths:
@@ -598,10 +598,10 @@ class Brute(Module):
         delete_file(dict_path, output_paths)
         end = time.time()
         self.elapse = round(end - start, 1)
-        logger.log('INFOR', f'{self.source} module spends {self.elapse} seconds'
-        f'Found {len(self.subdomains)} subdomains of {domain}')
+        logger.log('INFOR', f'{self.source} module takes {self.elapse} seconds, '
+                            f'found {len(self.subdomains)} subdomains of {domain}')
         logger.log('DEBUG', f'{self.source} module found subdomains of {domain}:\n'
-        f'{self.subdomains}')
+                            f'{self.subdomains}')
         self.gen_result(brute=dict_len, valid=len(self.subdomains))
         self.save_db()
         return self.subdomains

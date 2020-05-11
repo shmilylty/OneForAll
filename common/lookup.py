@@ -4,15 +4,16 @@ from common import utils
 
 class Lookup(Module):
     """
-    DNS查询基类
+    DNS query base class
     """
+
     def __init__(self):
         Module.__init__(self)
 
     def query(self):
         """
-        查询域名的TXT记录
-        :return: 查询结果
+        Query the TXT record of domain
+        :return: query result
         """
         answer = utils.dns_query(self.domain, self.type)
         if answer is None:

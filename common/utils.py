@@ -34,13 +34,12 @@ user_agents = [
 
 def match_subdomain(domain, text, distinct=True):
     """
-    匹配text中domain的子域名
+    Use regexp to match subdomains in text
 
-    :param str domain: 域名
-    :param str text: 响应文本
-    :param bool distinct: 结果去重
-    :return: 匹配结果
-    :rtype: set or list
+    :param  str domain: domain
+    :param  str text: response text
+    :param  bool distinct: deduplicate results
+    :return set/list: match result
     """
     regexp = r'(?:[a-z0-9](?:[a-z0-9\-]{0,61}[a-z0-9])?\.){0,}' \
              + domain.replace('.', r'\.')
@@ -56,7 +55,7 @@ def match_subdomain(domain, text, distinct=True):
 
 def gen_random_ip():
     """
-    生成随机的点分十进制的IP字符串
+    Generate random decimal IP string
     """
     while True:
         ip = IPv4Address(random.randint(0, 2 ** 32 - 1))
@@ -66,7 +65,7 @@ def gen_random_ip():
 
 def gen_fake_header():
     """
-    生成伪造请求头
+    Generate fake request headers
     """
     ua = random.choice(user_agents)
     ip = gen_random_ip()
@@ -89,7 +88,7 @@ def gen_fake_header():
 
 def get_random_proxy():
     """
-    获取随机代理
+    Get random proxy
     """
     try:
         return random.choice(setting.proxy_pool)
@@ -99,11 +98,11 @@ def get_random_proxy():
 
 def split_list(ls, size):
     """
-    将ls列表按size大小划分并返回新的划分结果列表
+    Split list
 
-    :param list ls: 要划分的列表
-    :param int size: 划分大小
-    :return 划分结果
+    :param list ls: list
+    :param int size: size
+    :return list: result
 
     >>> split_list([1, 2, 3, 4], 3)
     [[1, 2, 3], [4]]
@@ -115,13 +114,13 @@ def split_list(ls, size):
 
 def get_domains(target):
     """
-    获取域名
+    Get domains
 
-    :param set or str target:
-    :return: 域名集合
+    :param  set or str target:
+    :return list: domain list
     """
     domains = list()
-    logger.log('DEBUG', f'正在获取域名')
+    logger.log('DEBUG', f'Getting domains...')
     if isinstance(target, (set, tuple)):
         domains = list(target)
     elif isinstance(target, list):
@@ -142,9 +141,9 @@ def get_domains(target):
                 domains.append(domain)
     count = len(domains)
     if count == 0:
-        logger.log('FATAL', f'获取到{count}个域名')
+        logger.log('FATAL', f'Get {count} domains')
         exit(1)
-    logger.log('INFOR', f'获取到{count}个域名')
+    logger.log('INFOR', f'Get {count} domains')
     return domains
 
 
@@ -165,7 +164,7 @@ def get_semaphore():
 
 def check_dir(dir_path):
     if not dir_path.exists():
-        logger.log('INFOR', f'不存在{dir_path}目录将会新建')
+        logger.log('INFOR', f'{dir_path} does not exist, directory will be created')
         dir_path.mkdir(parents=True, exist_ok=True)
 
 
@@ -190,10 +189,10 @@ def check_path(path, name, format):
         path = path.joinpath(filename)
     parent_dir = path.parent
     if not parent_dir.exists():
-        logger.log('ALERT', f'不存在{parent_dir}目录将会新建')
+        logger.log('ALERT', f'{parent_dir} does not exist, directory will be created')
         parent_dir.mkdir(parents=True, exist_ok=True)
     if path.exists():
-        logger.log('ALERT', f'存在{path}文件将会覆盖')
+        logger.log('ALERT', f'{path} exists, file will be overwritten')
     return path
 
 
@@ -208,14 +207,14 @@ def check_format(format, count):
     formats = ['rst', 'csv', 'tsv', 'json', 'yaml', 'html',
                'jira', 'xls', 'xlsx', 'dbf', 'latex', 'ods']
     if format == 'xls' and count > 65000:
-        logger.log('ALERT', 'xls文件限制为最多65000行')
-        logger.log('ALERT', '使用xlsx格式导出')
+        logger.log('ALERT', '\'xls\' file is limited to 65000 lines')
+        logger.log('ALERT', 'So use xlsx format replace')
         return 'xlsx'
     if format in formats:
         return format
     else:
-        logger.log('ALERT', f'不支持{format}格式导出')
-        logger.log('ALERT', '默认使用csv格式导出')
+        logger.log('ALERT', f'Does not support {format} format')
+        logger.log('ALERT', 'So use csv format by default')
         return 'csv'
 
 
@@ -252,7 +251,7 @@ def check_response(method, resp):
     if resp.status_code == 200 and resp.content:
         return True
     logger.log('ALERT', f'{method} {resp.url} {resp.status_code} - '
-                        f'{resp.reason} {len(resp.content)}')
+    f'{resp.reason} {len(resp.content)}')
     content_type = resp.headers.get('Content-Type')
     if content_type and 'json' in content_type and resp.content:
         try:
@@ -311,7 +310,7 @@ def check_value(values):
 
 def export_all_results(path, name, format, datas):
     path = check_path(path, name, format)
-    logger.log('ALERT', f'所有主域的子域结果 {path}')
+    logger.log('ALERT', f'Subdomain result for all domains: {path}')
     row_list = list()
     for row in datas:
         if 'header' in row:
@@ -330,7 +329,7 @@ def export_all_results(path, name, format, datas):
 
 def export_all_subdomains(alive, path, name, datas):
     path = check_path(path, name, 'txt')
-    logger.log('ALERT', f'所有主域的纯子域结果 {path}')
+    logger.log('ALERT', f'Txt subdomain result for all main domains {path}')
     subdomains = set()
     for row in datas:
         subdomain = row.get('subdomain')
@@ -379,16 +378,16 @@ def dns_query(qname, qtype):
     :param str qtype: 查询类型
     :return: 查询结果
     """
-    logger.log('TRACE', f'尝试查询{qname}的{qtype}记录')
+    logger.log('TRACE', f'Try to query {qtype} record of {qname}')
     resolver = dns_resolver()
     try:
         answer = resolver.query(qname, qtype)
     except Exception as e:
         logger.log('TRACE', e.args)
-        logger.log('TRACE', f'查询{qname}的{qtype}记录失败')
+        logger.log('TRACE', f'Query {qtype} record of {qname} failed')
         return None
     else:
-        logger.log('TRACE', f'查询{qname}的{qtype}记录成功')
+        logger.log('TRACE', f'Query {qtype} record of {qname} succeeded')
         return answer
 
 
@@ -509,56 +508,56 @@ def delete_file(*paths):
 
 @tenacity.retry(stop=tenacity.stop_after_attempt(3))
 def check_net():
-    logger.log('INFOR', '正在检查网络环境')
+    logger.log('INFOR', 'Checking Internet environment...')
     urls = ['http://www.example.com', 'http://www.baidu.com',
             'http://www.bing.com', 'http://www.taobao.com',
             'http://www.linkedin.com', 'http://www.msn.com',
             'http://www.apple.com', 'http://microsoft.com']
     url = random.choice(urls)
-    logger.log('INFOR', f'正在尝试访问 {url}')
+    logger.log('INFOR', f'Trying to access {url}')
     try:
         rsp = requests.get(url)
     except Exception as e:
         logger.log('ERROR', e.args)
-        logger.log('ALERT', '访问外网出错 重新检查中')
+        logger.log('ALERT', 'Can not access Internet, retrying...')
         raise tenacity.TryAgain
     if rsp.status_code != 200:
         logger.log('ALERT', f'{rsp.request.method} {rsp.request.url} '
-                            f'{rsp.status_code} {rsp.reason}')
-        logger.log('ALERT', '不能正常访问外网 重新检查中')
+        f'{rsp.status_code} {rsp.reason}')
+        logger.log('ALERT', 'Can not access Internet normally, retrying...')
         raise tenacity.TryAgain
-    logger.log('INFOR', '能正常访问外网')
+    logger.log('INFOR', 'Access to Internet OK')
 
 
 def check_pre():
-    logger.log('INFOR', '正在检查依赖环境')
+    logger.log('INFOR', 'Checking dependent environment...')
     system = platform.system()
     implementation = platform.python_implementation()
     version = platform.python_version()
     if implementation != 'CPython':
-        logger.log('FATAL', f'OneForAll只在CPython下测试通过')
+        logger.log('FATAL', f'OneForAll only passed the test under CPython')
         exit(1)
     if version < '3.6':
-        logger.log('FATAL', 'OneForAll需要Python 3.6以上版本')
+        logger.log('FATAL', 'OneForAll requires Python 3.6 or higher')
         exit(1)
     if system == 'Windows' and implementation == 'CPython':
         if version < '3.8':
-            logger.log('FATAL', 'OneForAll在Windows系统运行时需要Python 3.8以上版本')
+            logger.log('FATAL', 'OneForAll requires Python 3.8 or higher when running on Windows')
             exit(1)
     if system in {"Linux", "Darwin"}:
         try:
             import uvloop
         except ImportError:
-            logger.log('ALERT', f'请手动安装uvloop的Python库加速子域请求')
+            logger.log('ALERT', f'Please install the uvloop library manually to accelerate subdomain requests')
 
 
 def check_env():
-    logger.log('INFOR', '正在检查运行环境')
+    logger.log('INFOR', 'Checking the environment...')
     try:
         check_net()
     except Exception as e:
         logger.log('DEBUG', e.args)
-        logger.log('FATAL', '不能正常访问外网')
+        logger.log('FATAL', 'Can not access Internet')
         exit(1)
     check_pre()
 
@@ -570,7 +569,7 @@ def get_maindomain(domain):
 def call_massdns(massdns_path, dict_path, ns_path, output_path, log_path,
                  query_type='A', process_num=1, concurrent_num=10000,
                  quiet_mode=False):
-    logger.log('INFOR', f'开始执行massdns')
+    logger.log('INFOR', f'Start running massdns')
     quiet = ''
     if quiet_mode:
         quiet = '--quiet'
@@ -583,9 +582,9 @@ def call_massdns(massdns_path, dict_path, ns_path, output_path, log_path,
           f'--resolve-count {resolve_num} --type {query_type} ' \
           f'--flush --output J --outfile {output_path} ' \
           f'--root --error-log {log_path} {dict_path}'
-    logger.log('INFOR', f'执行命令 {cmd}')
+    logger.log('INFOR', f'Run command {cmd}')
     subprocess.run(args=cmd, shell=True)
-    logger.log('INFOR', f'结束执行massdns')
+    logger.log('INFOR', f'Finished massdns')
 
 
 def get_massdns_path(massdns_dir):
@@ -604,7 +603,7 @@ def get_massdns_path(massdns_dir):
     path = massdns_dir.joinpath(name)
     path.chmod(S_IXUSR)
     if not path.exists():
-        logger.log('FATAL', '暂无该系统平台及架构的massdns')
-        logger.log('INFOR', '请尝试自行编译massdns并在配置里指定路径')
+        logger.log('FATAL', 'There is no massdns for this platform or architecture')
+        logger.log('INFOR', 'Please try to compile massdns yourself and specify the path in the configuration')
         exit(0)
     return path
