@@ -22,7 +22,7 @@ def get_limit_conn():
 
 
 def get_ports(port):
-    logger.log('DEBUG', f'正在获取请求端口范围')
+    logger.log('DEBUG', f'Getting port range...')
     ports = set()
     if isinstance(port, (set, list, tuple)):
         ports = port
@@ -30,17 +30,17 @@ def get_ports(port):
         if 0 <= port <= 65535:
             ports = {port}
     elif port in {'default', 'small', 'large'}:
-        logger.log('DEBUG', f'请求{port}等端口范围')
+        logger.log('DEBUG', f'{port} port range')
         ports = setting.ports.get(port)
     if not ports:  # 意外情况
-        logger.log('ERROR', f'指定请求端口范围有误')
+        logger.log('ERROR', f'The specified request port range is incorrect')
         ports = {80}
-    logger.log('INFOR', f'请求端口范围：{ports}')
+    logger.log('INFOR', f'Port range:{ports}')
     return set(ports)
 
 
 def gen_req_data(data, ports):
-    logger.log('INFOR', f'正在生成请求地址')
+    logger.log('INFOR', f'Generating request urls...')
     new_data = []
     for data in data:
         resolve = data.get('resolve')
@@ -202,8 +202,8 @@ async def bulk_request(data, port):
     no_req_data = utils.get_filtered_data(data)
     to_req_data = gen_req_data(data, ports)
     method = setting.request_method
-    logger.log('INFOR', f'请求使用{method}方法')
-    logger.log('INFOR', f'正在进行异步子域请求')
+    logger.log('INFOR', f'Use {method} method to request')
+    logger.log('INFOR', f'Async subdomains request in progress...')
     connector = get_connector()
     header = get_header()
     async with ClientSession(connector=connector, headers=header) as session:
@@ -238,15 +238,14 @@ def set_loop_policy():
 
 def run_request(domain, data, port):
     """
-    调用子域请求入口函数
+    HTTP request entrance
 
-    :param str domain: 待请求的主域
-    :param list data: 待请求的子域数据
-    :param str port: 待请求的端口范围
-    :return: 请求后得到的结果列表
-    :rtype: list
+    :param  str domain: domain to be requested
+    :param  list data: subdomains data to be requested
+    :param  str port: range of ports to be requested
+    :return list: result
     """
-    logger.log('INFOR', f'开始执行子域请求模块')
+    logger.log('INFOR', f'Start subdomain request module')
     set_loop_policy()
     loop = asyncio.get_event_loop()
     asyncio.set_event_loop(loop)
@@ -256,16 +255,16 @@ def run_request(domain, data, port):
     # 在关闭事件循环前加入一小段延迟让底层连接得到关闭的缓冲时间
     loop.run_until_complete(asyncio.sleep(0.25))
     count = utils.count_alive(data)
-    logger.log('INFOR', f'经验证{domain}存活子域{count}个')
+    logger.log('INFOR', f'After verify, found {domain} have {count} alive subdomains')
     return data
 
 
 def save_data(name, data):
     """
-    保存请求结果到数据库
+    Save request results to database
 
-    :param str name: 保存表名
-    :param list data: 待保存的数据
+    :param str  name: table name
+    :param list data: data to be saved
     """
     db = Database()
     db.drop_table(name)

@@ -5,7 +5,7 @@ from . import utils
 
 class Search(Module):
     """
-    搜索基类
+    Search base class
     """
     def __init__(self):
         Module.__init__(self)
