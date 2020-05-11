@@ -311,7 +311,7 @@ def check_value(values):
 
 def export_all_results(path, name, format, datas):
     path = check_path(path, name, format)
-    logger.log('INFOR', f'所有主域的子域结果 {path}')
+    logger.log('ALERT', f'所有主域的子域结果 {path}')
     row_list = list()
     for row in datas:
         if 'header' in row:
@@ -330,7 +330,7 @@ def export_all_results(path, name, format, datas):
 
 def export_all_subdomains(alive, path, name, datas):
     path = check_path(path, name, 'txt')
-    logger.log('INFOR', f'所有主域的纯子域结果 {path}')
+    logger.log('ALERT', f'所有主域的纯子域结果 {path}')
     subdomains = set()
     for row in datas:
         subdomain = row.get('subdomain')
