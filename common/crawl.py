@@ -3,7 +3,8 @@ from .module import Module
 
 class Crawl(Module):
     """
-    爬虫基类
+    Crawl base class
     """
+
     def __init__(self):
         Module.__init__(self)

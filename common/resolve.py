@@ -14,7 +14,7 @@ def filter_subdomain(data):
     :param list data: 待过滤的数据列表
     :return: 符合条件的子域列表
     """
-    logger.log('DEBUG', f'正在过滤出待解析的子域')
+    logger.log('DEBUG', f'Filtering subdomains to be resolved...')
     subdomains = []
     for data in data:
         if not data.get('content'):
@@ -31,9 +31,9 @@ def update_data(data, records):
     :param dict records: 解析结果字典
     :return: 更新后的数据列表
     """
-    logger.log('DEBUG', f'正在更新解析结果')
+    logger.log('DEBUG', f'Updating resolved results...')
     if not records:
-        logger.log('ERROR', f'无有效解析结果')
+        logger.log('ERROR', f'No valid resolved result')
         return data
     for index, items in enumerate(data):
         if not items.get('content'):
@@ -52,7 +52,7 @@ def save_data(name, data):
     :param str name: 保存表名
     :param list data: 待保存的数据
     """
-    logger.log('INFOR', f'正在保存解析结果')
+    logger.log('INFOR', f'Saving resolved results...')
     db = Database()
     db.drop_table(name)
     db.create_table(name)
@@ -61,15 +61,15 @@ def save_data(name, data):
 
 
 def save_subdomains(save_path, subdomain_list):
-    logger.log('DEBUG', f'正在保存待解析的子域')
+    logger.log('DEBUG', f'Saving resolved subdomain...')
     subdomain_data = '\n'.join(subdomain_list)
     if not utils.save_data(save_path, subdomain_data):
-        logger.log('FATAL', '保存待解析的子域出错')
+        logger.log('FATAL', 'Save resolved subdomain error')
         exit(1)
 
 
 def deal_output(output_path):
-    logger.log('INFOR', f'正在处理解析结果')
+    logger.log('INFOR', f'Processing resolved results...')
     records = dict()  # 用来记录所有域名解析数据
     with open(output_path) as fd:
         for line in fd:
@@ -78,11 +78,11 @@ def deal_output(output_path):
                 items = json.loads(line)
             except Exception as e:
                 logger.log('ERROR', e.args)
-                logger.log('ERROR', f'解析行{line}出错跳过解析该行')
+                logger.log('ERROR', f'Error resolve line {line}, skip this line')
                 continue
             record = dict()
             record['resolver'] = items.get('resolver')
-            qname = items.get('name')[:-1]  # 去出最右边的`.`点号
+            qname = items.get('name')[:-1]  # 去除最右边的`.`点号
             status = items.get('status')
             if status != 'NOERROR':
                 record['alive'] = 0
@@ -106,7 +106,7 @@ def deal_output(output_path):
             for answer in answers:
                 if answer.get('type') == 'A':
                     flag = True
-                    cname.append(answer.get('name')[:-1])  # 去出最右边的`.`点号
+                    cname.append(answer.get('name')[:-1])  # 去除最右边的`.`点号
                     ip = answer.get('data')
                     ips.append(ip)
                     ttl = answer.get('ttl')
@@ -137,7 +137,7 @@ def run_resolve(domain, data):
     :return: 解析得到的结果列表
     :rtype: list
     """
-    logger.log('INFOR', f'开始解析{domain}的子域')
+    logger.log('INFOR', f'Start resolve subdomains of {domain}')
     subdomains = filter_subdomain(data)
     if not subdomains:
         return data
@@ -166,5 +166,5 @@ def run_resolve(domain, data):
 
     records = deal_output(output_path)
     data = update_data(data, records)
-    logger.log('INFOR', f'结束解析{domain}的子域')
+    logger.log('INFOR', f'Finished resolve subdomains of {domain}')
     return data

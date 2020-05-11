@@ -78,7 +78,7 @@ class Takeover(Module):
         self.results = Dataset()
 
     def save(self):
-        logger.log('DEBUG', 'Saving Results...')
+        logger.log('DEBUG', 'Saving results...')
         if self.format == 'txt':
             data = str(self.results)
         else:
@@ -158,8 +158,8 @@ class Takeover(Module):
             logger.log('FATAL', f'Failed to obtain domain')
         end = time.time()
         elapse = round(end - start, 1)
-        logger.log('INFOR', f'{self.source} module  spends {elapse} seconds'
-        f'There are {len(self.results)} subdomains exit takeover')
+        logger.log('INFOR', f'{self.source} module spends {elapse} seconds, '
+        f'There are {len(self.results)} subdomains exists takeover')
         logger.log('INFOR', f'Subdomain takeover results: {self.path}')
         logger.log('INFOR', f'Finished {self.source} module')
 
