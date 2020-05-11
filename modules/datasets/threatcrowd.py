@@ -16,7 +16,6 @@ class ThreatCrowd(Query):
     def query(self):
         # 绕过cloudFlare验证
         scraper = cloudscraper.create_scraper()
-        scraper.interpreter = 'js2py'
         scraper.proxies = self.get_proxy(self.source)
         url = self.addr + self.domain
         try:
