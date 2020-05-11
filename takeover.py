@@ -78,7 +78,7 @@ class Takeover(Module):
         self.results = Dataset()
 
     def save(self):
-        logger.log('DEBUG', 'Saving results...')
+        logger.log('DEBUG', 'Saving results')
         if self.format == 'txt':
             data = str(self.results)
         else:
@@ -138,7 +138,7 @@ class Takeover(Module):
         name = f'takeover_check_result_{timestamp}'
         self.path = utils.check_path(self.path, name, self.format)
         if self.subdomains:
-            logger.log('INFOR', f'Checking subdomain takeover...')
+            logger.log('INFOR', f'Checking subdomain takeover')
             self.fingerprints = get_fingerprint()
             self.results.headers = ['subdomain', 'cname']
             # 创建待检查的子域队列

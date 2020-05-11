@@ -32,7 +32,7 @@ def do_query_a(domain, resolver):
         answer = resolver.query(domain, 'A')
     # If resolve random subdomain raise timeout error, try again
     except Timeout as e:
-        logger.log('ALERT', f'DNS resolve timeout, retrying...')
+        logger.log('ALERT', f'DNS resolve timeout, retrying')
         logger.log('DEBUG', e.args)
         raise tenacity.TryAgain
     # If resolve random subdomain raise NXDOMAIN, YXDOMAIN, NoAnswer, NoNameservers error
@@ -47,7 +47,7 @@ def do_query_a(domain, resolver):
         exit(1)
     else:
         if answer.rrset is None:
-            logger.log('ALERT', f'DNS resolve dont have result, retrying...')
+            logger.log('ALERT', f'DNS resolve dont have result, retrying')
             raise tenacity.TryAgain
         ttl = answer.ttl
         name = answer.name
@@ -309,7 +309,7 @@ def gen_records(items, records, subdomains, ip_times, wc_ips, wc_ttl):
 
 
 def stat_ip_times(result_paths):
-    logger.log('INFOR', f'Counting IP...')
+    logger.log('INFOR', f'Counting IP')
     times = dict()
     for result_path in result_paths:
         logger.log('DEBUG', f'Reading {result_path}')
@@ -339,7 +339,7 @@ def stat_ip_times(result_paths):
 
 
 def deal_output(output_paths, ip_times, wildcard_ips, wildcard_ttl):
-    logger.log('INFOR', f'Processing result...')
+    logger.log('INFOR', f'Processing result')
     records = dict()  # 用来记录所有域名解析数据
     subdomains = list()  # 用来保存所有通过有效性检查的子域
     for output_path in output_paths:
@@ -547,7 +547,7 @@ class Brute(Module):
 
     def main(self, domain):
         start = time.time()
-        logger.log('INFOR', f'Blasting {domain} ...')
+        logger.log('INFOR', f'Blasting {domain} ')
         massdns_dir = setting.third_party_dir.joinpath('massdns')
         result_dir = setting.result_save_dir
         temp_dir = result_dir.joinpath('temp')
@@ -579,7 +579,7 @@ class Brute(Module):
         output_path = temp_dir.joinpath(output_name)
         log_path = result_dir.joinpath('massdns.log')
         check_dict()
-
+        logger.log('INFOR', f'Running massdns to resolve subdomains')
         utils.call_massdns(massdns_path, dict_path, ns_path, output_path,
                            log_path, quiet_mode=self.quite,
                            process_num=self.process_num,

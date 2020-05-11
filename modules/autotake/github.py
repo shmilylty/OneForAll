@@ -20,7 +20,7 @@ HEADERS = {
 def github_takeover(url):
     # 读取config配置文件
     repo_name = url
-    print('[*]正在读取配置文件...')
+    print('[*]正在读取配置文件')
     user = api.github_api_user
     token = api.github_api_token
     CHECK_HEADERS = {
@@ -34,7 +34,7 @@ def github_takeover(url):
         if repos_r.json()['message'] == 'Bad credentials':
             print('[*]请检查Token是否正确')
         elif repos_r.json()['message'] == 'Not Found':
-            print('[*]正在生成接管库...')  # 生成接管库
+            print('[*]正在生成接管库')  # 生成接管库
             creat_repo_dict = {
                 "name": repo_name,
                 "description": "This is a subdomain takeover Repository",
@@ -45,7 +45,7 @@ def github_takeover(url):
                                          data=json.dumps(creat_repo_dict))
             creat_repo_status = creat_repo_r.status_code
             if creat_repo_status == 201:
-                print('[*]创建接管库' + repo_name + '成功，正在进行自动接管...')
+                print('[*]创建接管库' + repo_name + '成功，正在进行自动接管')
                 # 接管文件生成
                 # index.html文件
                 html = b'''
@@ -81,7 +81,7 @@ def github_takeover(url):
                                        headers=CHECK_HEADERS)  # 上传CNAME
                 rs = cname_r.status_code
                 if rs == 201:
-                    print('[*]生成接管库成功，正在开启Github pages...')
+                    print('[*]生成接管库成功，正在开启Github pages')
                     page_url = "https://api.github.com/repos/" + user + "/" + url + "/pages"
                     page_dict = {
                         "source": {
@@ -94,9 +94,9 @@ def github_takeover(url):
                     if page_r.status_code == 201:
                         print('[+]自动接管成功，请稍后访问http://' + str(url) + '查看结果')
                     else:
-                        print('[+]开启Github pages失败，请检查网络或稍后重试...')
+                        print('[+]开启Github pages失败，请检查网络或稍后重试')
                 else:
-                    print('[+]生成接管库失败，请检查网络或稍后重试...')
+                    print('[+]生成接管库失败，请检查网络或稍后重试')
     elif url in repos_r.json()['name']:
         print('[*]生成接管库失败，请检查https://github.com/' + user +
-              '?tab=repositories是否存在同名接管库...')
+              '?tab=repositories是否存在同名接管库')

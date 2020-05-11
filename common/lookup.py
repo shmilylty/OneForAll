@@ -1,4 +1,4 @@
-from .module import Module
+from common.module import Module
 from common import utils
 
 
