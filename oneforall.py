@@ -14,9 +14,9 @@ import fire
 
 import dbexport
 from brute import Brute
-from collect import Collect
 from common import utils, resolve, request
 from common.database import Database
+from modules.collect import Collect
 from config import setting
 from config.log import logger
 from takeover import Takeover
