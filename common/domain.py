@@ -5,10 +5,11 @@ from config import setting
 
 class Domain(object):
     """
-    域名处理类
+    Processing domain class
 
-    :param str string: 传入的字符串
+    :param str string: input string
     """
+
     def __init__(self, string):
         self.string = str(string)
         self.regexp = r'\b((?=[a-z0-9-]{1,63}\.)(xn--)?[a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{2,63}\b'
@@ -16,9 +17,9 @@ class Domain(object):
 
     def match(self):
         """
-        域名匹配
+        match domain
 
-        :return: 匹配结果
+        :return : result
         """
         result = re.search(self.regexp, self.string, re.I)
         if result:
@@ -28,14 +29,14 @@ class Domain(object):
 
     def extract(self):
         """
-        域名导出
+        extract domain
 
         >>> d = Domain('www.example.com')
         <domain.Domain object>
         >>> d.extract()
         ExtractResult(subdomain='www', domain='example', suffix='com')
 
-        :return: 导出结果
+        :return: extracted domain results
         """
         data_storage_dir = setting.data_storage_dir
         extract_cache_file = data_storage_dir.joinpath('public_suffix_list.dat')
@@ -48,14 +49,14 @@ class Domain(object):
 
     def registered(self):
         """
-        获取注册域名
+        registered domain
 
         >>> d = Domain('www.example.com')
         <domain.Domain object>
         >>> d.registered()
         example.com
 
-        :return: 注册域名
+        :return: registered domain result
         """
         result = self.extract()
         if result:

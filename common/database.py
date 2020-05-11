@@ -2,7 +2,7 @@
 # coding=utf-8
 
 """
-SQLite数据库初始化和操作
+SQLite database initialization and operation
 """
 
 import records
@@ -19,12 +19,12 @@ class Database(object):
     @staticmethod
     def get_conn(db_path):
         """
-        获取数据库对象
+        Get database connection
 
-        :param db_path: 数据库连接或路径
-        :return: SQLite数据库
+        :param   db_path: Database path
+        :return: db_conn: SQLite database connection
         """
-        logger.log('TRACE', f'正在获取数据库连接')
+        logger.log('TRACE', f'Establishing database connection...')
         if isinstance(db_path, Connection):
             return db_path
         protocol = 'sqlite:///'
@@ -33,7 +33,7 @@ class Database(object):
         else:
             db_path = protocol + db_path
         db = records.Database(db_path)  # 不存在数据库时会新建一个数据库
-        logger.log('TRACE', f'使用数据库: {db_path}')
+        logger.log('TRACE', f'Use the database: {db_path}')
         return db.get_connection()
 
     def query(self, sql):
@@ -46,15 +46,15 @@ class Database(object):
 
     def create_table(self, table_name):
         """
-        创建表结构
+        Create table
 
-        :param str table_name: 要创建的表名
+        :param str table_name: table name
         """
         table_name = table_name.replace('.', '_')
         if self.exist_table(table_name):
-            logger.log('TRACE', f'已经存在{table_name}表')
+            logger.log('TRACE', f'{table_name} table already exists')
             return
-        logger.log('TRACE', f'正在创建{table_name}表')
+        logger.log('TRACE', f'Creating {table_name} table')
         self.query(f'create table "{table_name}" ('
                    f'id integer primary key,'
                    f'type text,'
@@ -87,14 +87,14 @@ class Database(object):
 
     def save_db(self, table_name, results, module_name=None):
         """
-        将各模块结果存入数据库
+        Save the results of each module in the database
 
-        :param str table_name: 表名
-        :param list results: 结果列表
-        :param str module_name: 模块名
+        :param str table_name: table name
+        :param list results: results list
+        :param str module_name: mo
         """
-        logger.log('TRACE', f'正在将{module_name}模块发现{table_name}的子域'
-                            '结果存入数据库')
+        logger.log('TRACE',
+                   f'Saving the subdomain results of {table_name} found by module {module_name} into database...')
         table_name = table_name.replace('.', '_')
         if results:
             try:
@@ -114,13 +114,13 @@ class Database(object):
 
     def exist_table(self, table_name):
         """
-        判断是否存在某表
+        Determine table exists
 
-        :param str table_name: 表名
-        :return: 是否存在某表
+        :param   str table_name: table name
+        :return  bool: Whether table exists
         """
         table_name = table_name.replace('.', '_')
-        logger.log('TRACE', f'正在查询是否存在{table_name}表')
+        logger.log('TRACE', f'Determining whether the {table_name} table exists')
         results = self.query(f'select count() from sqlite_master '
                              f'where type = "table" and '
                              f'name = "{table_name}"')
@@ -131,80 +131,80 @@ class Database(object):
 
     def copy_table(self, table_name, bak_table_name):
         """
-        复制表创建备份
+        Copy table to create backup
 
-        :param str table_name: 表名
-        :param str bak_table_name: 新表名
+        :param str table_name: table name
+        :param str bak_table_name: new table name
         """
         table_name = table_name.replace('.', '_')
         bak_table_name = bak_table_name.replace('.', '_')
-        logger.log('TRACE', f'正在将{table_name}表复制到{bak_table_name}新表')
+        logger.log('TRACE', f'Copying {table_name} table to {bak_table_name} new table')
         self.query(f'drop table if exists "{bak_table_name}"')
         self.query(f'create table "{bak_table_name}" '
                    f'as select * from "{table_name}"')
 
     def clear_table(self, table_name):
         """
-        清空表中数据
+        Clear the table
 
-        :param str table_name: 表名
+        :param str table_name: table name
         """
         table_name = table_name.replace('.', '_')
-        logger.log('TRACE', f'正在清空{table_name}表中的数据')
+        logger.log('TRACE', f'Clearing data in table {table_name}')
         self.query(f'delete from "{table_name}"')
 
     def drop_table(self, table_name):
         """
-        删除表
+        Delete table
 
-        :param str table_name: 表名
+        :param str table_name: table name
         """
         table_name = table_name.replace('.', '_')
-        logger.log('TRACE', f'正在删除{table_name}表')
+        logger.log('TRACE', f'Deleting {table_name} table')
         self.query(f'drop table if exists "{table_name}"')
 
     def rename_table(self, table_name, new_table_name):
         """
-        重命名表名
+        Rename table name
 
-        :param str table_name: 表名
-        :param str new_table_name: 新表名
+        :param str table_name: old table name
+        :param str new_table_name: new table name
         """
         table_name = table_name.replace('.', '_')
         new_table_name = new_table_name.replace('.', '_')
-        logger.log('TRACE', f'正在将{table_name}表重命名为{table_name}表')
+        logger.log('TRACE', f'Renaming {table_name} table to {new_table_name} table')
         self.query(f'alter table "{table_name}" '
                    f'rename to "{new_table_name}"')
 
     def deduplicate_subdomain(self, table_name):
         """
-        去重表中的子域
+        Deduplicates of subdomains in the table
 
-        :param str table_name: 表名
+        :param str table_name: table name
         """
         table_name = table_name.replace('.', '_')
-        logger.log('TRACE', f'正在去重{table_name}表中的子域')
+        logger.log('TRACE', f'Deduplicating subdomains in {table_name} table')
         self.query(f'delete from "{table_name}" where '
                    f'id not in (select min(id) '
                    f'from "{table_name}" group by subdomain)')
 
     def remove_invalid(self, table_name):
         """
-        去除表中的空值或无效子域
+        Remove nulls or invalid subdomains in the table
 
-        :param str table_name: 表名
+        :param str table_name: table name
         """
         table_name = table_name.replace('.', '_')
-        logger.log('TRACE', f'正在去除{table_name}表中的无效子域')
+        logger.log('TRACE', f'Removing invalid subdomains in {table_name} table')
         self.query(f'delete from "{table_name}" where '
                    f'subdomain is null or resolve == 0')
 
     def deal_table(self, deal_table_name, backup_table_name):
         """
-        收集任务完成时对表进行处理
+        Process the table when the collection task is complete
 
-        :param str deal_table_name: 待处理的表名
-        :param str backup_table_name: 备份的表名
+        :param str deal_table_name: Pending table name
+        :param str backup_table_name: Table name for backup
         """
         self.copy_table(deal_table_name, backup_table_name)
         self.remove_invalid(deal_table_name)
@@ -212,21 +212,21 @@ class Database(object):
 
     def get_data(self, table_name):
         """
-        获取表中的所有数据
+        Get all the data in the table
 
-        :param str table_name: 表名
+        :param str table_name: table name
         """
         table_name = table_name.replace('.', '_')
-        logger.log('TRACE', f'获取{table_name}表中的所有数据')
+        logger.log('TRACE', f'Get all the data from {table_name} table')
         return self.query(f'select * from "{table_name}"')
 
     def export_data(self, table_name, alive, limit):
         """
-        获取表中的部分数据
+        Get part of the data in the table
 
-        :param str table_name: 表名
-        :param any alive: 存活
-        :param str limit: 限制字段
+        :param str table_name: table name
+        :param any alive: alive flag
+        :param str limit: limit value
         """
         table_name = table_name.replace('.', '_')
         query = f'select id, type, new, alive, request, resolve, url, ' \
@@ -240,11 +240,11 @@ class Database(object):
         elif alive:
             where = f' where alive = 1'
             query += where
-        logger.log('TRACE', f'获取{table_name}表中的数据')
+        logger.log('TRACE', f'Get the data from {table_name} table')
         return self.query(query)
 
     def close(self):
         """
-        关闭数据库连接
+        Close the database connection
         """
         self.conn.close()
