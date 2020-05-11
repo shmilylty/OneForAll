@@ -548,7 +548,7 @@ def check_pre():
         try:
             import uvloop
         except ImportError:
-            logger.log('ALERT', f'Please install the uvloop manually Python library to accelerate subdomain requests')
+            logger.log('ALERT', f'Please install the uvloop library manually to accelerate subdomain requests')
 
 
 def check_env():
@@ -577,11 +577,11 @@ def call_massdns(massdns_path, dict_path, ns_path, output_path, log_path,
     socket_num = setting.brute_socket_num
     resolve_num = setting.brute_resolve_num
     cmd = f'{massdns_path} {quiet} --status-format {status_format} ' \
-        f'--processes {process_num} --socket-count {socket_num} ' \
-        f'--hashmap-size {concurrent_num} --resolvers {ns_path} ' \
-        f'--resolve-count {resolve_num} --type {query_type} ' \
-        f'--flush --output J --outfile {output_path} ' \
-        f'--root --error-log {log_path} {dict_path}'
+          f'--processes {process_num} --socket-count {socket_num} ' \
+          f'--hashmap-size {concurrent_num} --resolvers {ns_path} ' \
+          f'--resolve-count {resolve_num} --type {query_type} ' \
+          f'--flush --output J --outfile {output_path} ' \
+          f'--root --error-log {log_path} {dict_path}'
     logger.log('INFOR', f'Run command {cmd}')
     subprocess.run(args=cmd, shell=True)
     logger.log('INFOR', f'Finished massdns')
