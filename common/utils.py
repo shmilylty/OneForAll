@@ -289,7 +289,7 @@ def check_value(values):
 
 def export_all_results(path, name, format, datas):
     path = check_path(path, name, format)
-    logger.log('ALERT', f'Subdomain result for all domains: {path}')
+    logger.log('ALERT', f'The subdomain result for all main domains: {path}')
     row_list = list()
     for row in datas:
         if 'header' in row:
@@ -308,7 +308,7 @@ def export_all_results(path, name, format, datas):
 
 def export_all_subdomains(alive, path, name, datas):
     path = check_path(path, name, 'txt')
-    logger.log('ALERT', f'Txt subdomain result for all main domains {path}')
+    logger.log('ALERT', f'The txt subdomain result for all main domains {path}')
     subdomains = set()
     for row in datas:
         subdomain = row.get('subdomain')
