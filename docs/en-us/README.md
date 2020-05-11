@@ -9,11 +9,9 @@
 
 👊**OneForAll is a powerful subdomain collection tool**  📝[中文文档](https://github.com/shmilylty/OneForAll/tree/master/README.md)
 
-![Example](./docs/usage_example.svg)
+![Example](../usage_example.svg)
 
 ## 🎉Project profile
-
-Project home：[https://shmilylty.github.io/OneForAll/](https://shmilylty.github.io/OneForAll/)
 
 Project address ：[https://github.com/shmilylty/OneForAll](https://github.com/shmilylty/OneForAll)
 
@@ -121,7 +119,7 @@ output will be saved in`~/results`
 python3 oneforall.py --target example.com run
 ```
 
-![Example](./docs/usage_example.svg)
+![Example](../usage_example.svg)
 
 2. If you install dependencies through pipenv, run the example using the following command: 
 ```bash
@@ -132,7 +130,7 @@ pipenv run python oneforall.py --target example.com run
 
 Let's take the command `python3 oneforall.py-- target example.com run` as an example. After the default parameters are executed normally, OneForAll will generate the corresponding results in the results directory: 
 
-![Result](./images/Result.png)
+![Result](../../images/Result.png)
 
 `example.com.csv` is the result of subdomain collection under each primary domain. 
 
@@ -140,7 +138,7 @@ Let's take the command `python3 oneforall.py-- target example.com run` as an exa
 
 `result.sqlite3` is the SQLite3 result database that stores the sub-domain collected by OneForAll each time you run SQLite3. The database structure is shown below: 
 
-![Database](./images/Database.png)
+![Database](../../images/Database.png)
 
 A table like `example_com_origin_result` stores the initial subdomain collection results of each module. 
 
@@ -156,7 +154,7 @@ The command line parameters only provide some common parameters. For more detail
 
 The OneForAll command line interface is based on [Fire](https://github.com/google/python-fire/). For more advanced usage of Fire, please refer to [using the Fire CLI](https://github.com/google/Python-fire/blob/master/docs/using-cli.md), if you have any doubts during the use, please feel free to give me feedback.
 
-[oneforall.py](https://github.com/shmilylty/OneForAll/tree/master/oneforall.py) is the main program entry, and oneforall.py can call [brute.py](https://github.com/shmilylty/OneForAll/tree/master/brute.py), [takerover.py](https://github.com/shmilylty/OneForAll/tree/master/takerover.py) and [dbexport.py ](https://github.com/shmilylty/OneForAll/tree/master/dbexport.py) and other modules, in order to facilitate the sub-field blasting, brute.py is isolated independently, in order to facilitate the subdomain takeover risk check independently takeover.py, in order to facilitate the database export independently dbexport.py, these modules can be run separately, and the parameters accepted are more abundant, if you want to use these modules separately, please refer to the [usage help](https://github.com/shmilylty/OneForAll/tree/master/docs/usage_help.en.md).
+[oneforall.py](https://github.com/shmilylty/OneForAll/tree/master/oneforall.py) is the main program entry, and oneforall.py can call [brute.py](https://github.com/shmilylty/OneForAll/tree/master/brute.py), [takerover.py](https://github.com/shmilylty/OneForAll/tree/master/takerover.py) and [dbexport.py ](https://github.com/shmilylty/OneForAll/tree/master/dbexport.py) and other modules, in order to facilitate the sub-field blasting, brute.py is isolated independently, in order to facilitate the subdomain takeover risk check independently takeover.py, in order to facilitate the database export independently dbexport.py, these modules can be run separately, and the parameters accepted are more abundant, if you want to use these modules separately, please refer to the [usage help](https://github.com/shmilylty/OneForAll/tree/master/docs/en-us/usage_help.md).
 
 ❗ Note: When you encounter some problems or doubts during use, please use [Issues](https://github.com/shmilylty/OneForAll/issues) to search for answers. Also see [Q&troubleshooting.md](https://github.com/shmilylty/OneForAll/tree/master/docs/Q&troubleshooting.md).
 
@@ -169,62 +167,54 @@ python oneforall.py --help
 ```
 ```bash
 NAME
-   oneforall.py - OneForAll help Information
+    oneforall.py - OneForAll help summary page
 
 SYNOPSIS
-   oneforall.py --target=TARGET <flags>
+    oneforall.py COMMAND | --target=TARGET <flags>
 
 DESCRIPTION
-   OneForAll is a powerful subdomain collection tool
+    OneForAll is a powerful subdomain collection tool
 
-   Example:
-       python3 oneforall.py version
-       python3 oneforall.py --target example.com run
-       python3 oneforall.py --target ./domains.txt run
-       python3 oneforall.py --target example.com --valid None run
-       python3 oneforall.py --target example.com --brute True run
-       python3 oneforall.py --target example.com --port small run
-       python3 oneforall.py --target example.com --format csv run
-       python3 oneforall.py --target example.com --dns False run
-       python3 oneforall.py --target example.com --req False run
-       python3 oneforall.py --target example.com --takeover False run
-       python3 oneforall.py --target example.com --show True run
+    Example:
+        python3 oneforall.py version
+        python3 oneforall.py --target example.com run
+        python3 oneforall.py --target ./domains.txt run
+        python3 oneforall.py --target example.com --alive False run
+        python3 oneforall.py --target example.com --brute True run
+        python3 oneforall.py --target example.com --port medium run
+        python3 oneforall.py --target example.com --format csv run
+        python3 oneforall.py --target example.com --dns False run
+        python3 oneforall.py --target example.com --req False run
+        python3 oneforall.py --target example.com --takeover False run
+        python3 oneforall.py --target example.com --show True run
 
-   Note:
-       Parameter valid optional value 1, 0, none indicates that the export is 
-       valid, invalid, and all subdomains, respectively.
-       Parameter port have optional values 'default' 'small', 'large',
-       See config.py configuration for details.
-       Parameter format have optional values 'rst', 'csv', 'tsv', 'json', 
-       'yaml', 'html', 'jira', 'xls', 'xlsx', 'dbf', 'latex', 'ods'.
-       If the parameter path is None, the appropriate file is generated in the 
-       project result directory based on the format parameter and the domain 
-       name.
-       Parameter path default None uses the OneForAll result directory generation path
+    Note:
+        --alive  True/False           Only export alive subdomains or not (default False)
+        --port   default/small/large  See details in ./config/setting.py(default port 80)
+        --format rst/csv/tsv/json/yaml/html/jira/xls/xlsx/dbf/latex/ods (result format)
+        --path   Result directory (default directory is ./results)
 
 ARGUMENTS
-   TARGET
-       Single domain name or file path for one domain name per line (required)
+    TARGET
+        One domain or File path of one domain per line (required)
 
 FLAGS
-   --brute=BRUTE
-       Use blasting module (default False)
-   --dns=DNS
-       DNS resolve subdomain (default True)
-   --req=REQ
-       HTTP request subdomain (default True)
-   --port=PORT
-       Port range for request authentication (default 80 port)
-   --valid=VALID
-       Export validity of subdomains (default None)
-   --format=FORMAT
-       Export format (default xls)
-   --path=PATH
-       Export path (default None)
-   --takeover=TAKEOVER
-       Check subdomain takeover (default False)
-   --show=SHOW
-       Terminal display exported data (default False)
+    --brute=BRUTE
+        Use brute module (default False)
+    --dns=DNS
+        Use DNS resolution (default True)
+    --req=REQ
+        HTTP request subdomains (default True)
+    --port=PORT
+        The port range request to the subdomains (default port 80)
+    --alive=ALIVE
+        Only export alive subdomains (default False)
+    --format=FORMAT
+        Result format (default csv)
+    --path=PATH
+        Result directory (default None)
+    --takeover=TAKEOVER
+        Scan subdomain takeover (default False)
 ```
 
 ## 🌲Directory structure
