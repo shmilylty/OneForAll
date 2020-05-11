@@ -1,6 +1,9 @@
+import re
+
 from config import setting
-from .module import Module
-from . import utils
+from config.log import logger
+from common.module import Module
+from common import utils
 
 
 class Search(Module):
@@ -51,4 +54,28 @@ class Search(Module):
         location = resp.headers.get('location')
         if not location:
             return set()
-        return set(utils.match_subdomain(domain, location))
+        return set(self.match_subdomains(domain, location))
+
+    @staticmethod
+    def match_subdomains(domain, html, distinct=True):
+        """
+        Use regexp to match subdomains
+
+        :param  str domain: domain
+        :param  str html: response html text
+        :param  bool distinct: deduplicate results or not (default True)
+        :return set/list: result set or list
+        """
+        logger.log('TRACE', f'Use regexp to match subdomains in the response body')
+        regexp = r'(?:\>|\"|\'|\=|\,)(?:http\:\/\/|https\:\/\/)?' \
+                 r'(?:[a-z0-9](?:[a-z0-9\-]{0,61}[a-z0-9])?\.){0,}' \
+                 + domain.replace('.', r'\.')
+        result = re.findall(regexp, html, re.I)
+        if not result:
+            return set()
+        regexp = r'(?:http://|https://)'
+        deal = map(lambda s: re.sub(regexp, '', s[1:].lower()), result)
+        if distinct:
+            return set(deal)
+        else:
+            return list(deal)

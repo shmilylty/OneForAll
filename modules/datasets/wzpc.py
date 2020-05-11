@@ -31,7 +31,7 @@ class WZPCQuery(Query):
                 break
             if not resp:
                 break
-            subdomains = self.match(self.domain, resp.text)
+            subdomains = self.match_subdomains(self.domain, resp.text)
             self.subdomains = self.subdomains.union(subdomains)
             if not subdomains:
                 break

@@ -32,7 +32,7 @@ class IPv4InfoAPI(Query):
             except Exception as e:
                 logger.log('DEBUG', e.args)
                 break
-            subdomains = self.match(self.domain, str(json))
+            subdomains = self.match_subdomains(self.domain, str(json))
             if not subdomains:
                 break
             # 合并搜索子域名搜索结果

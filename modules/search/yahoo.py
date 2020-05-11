@@ -36,7 +36,7 @@ class Yahoo(Search):
             if not resp:
                 return
             text = resp.text.replace('<b>', '').replace('</b>', '')
-            subdomains = self.match(domain, text)
+            subdomains = self.match_subdomains(domain, text)
             if not subdomains:  # 搜索没有发现子域名则停止搜索
                 break
             if not full_search:

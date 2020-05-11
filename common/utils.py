@@ -32,27 +32,6 @@ user_agents = [
     'Mozilla/5.0 (X11; Linux i586; rv:31.0) Gecko/20100101 Firefox/68.0']
 
 
-def match_subdomain(domain, text, distinct=True):
-    """
-    Use regexp to match subdomains in text
-
-    :param  str domain: domain
-    :param  str text: response text
-    :param  bool distinct: deduplicate results
-    :return set/list: match result
-    """
-    regexp = r'(?:[a-z0-9](?:[a-z0-9\-]{0,61}[a-z0-9])?\.){0,}' \
-             + domain.replace('.', r'\.')
-    result = re.findall(regexp, text, re.I)
-    if not result:
-        return set()
-    deal = map(lambda s: s.lower(), result)
-    if distinct:
-        return set(deal)
-    else:
-        return list(deal)
-
-
 def gen_random_ip():
     """
     Generate random decimal IP string

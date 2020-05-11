@@ -26,8 +26,8 @@ class ArchiveCrawl(Crawl):
         for resp in cdx.iter(url, limit=limit):
             if resp.data.get('status') not in ['301', '302']:
                 url = resp.data.get('url')
-                subdomains = self.match(self.register(domain),
-                                             url + resp.text)
+                subdomains = self.match_subdomains(self.register(domain),
+                                                   url + resp.text)
                 # 合并搜索子域名搜索结果
                 self.subdomains = self.subdomains.union(subdomains)
 

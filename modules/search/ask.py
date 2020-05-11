@@ -30,7 +30,7 @@ class Ask(Search):
             resp = self.get(self.addr, params)
             if not resp:
                 return
-            subdomains = self.match(domain, resp.text)
+            subdomains = self.match_subdomains(domain, resp.text)
             if not subdomains:
                 break
             if not full_search:

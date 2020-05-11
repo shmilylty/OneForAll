@@ -20,7 +20,7 @@ class Ximcx(Query):
         if not resp:
             return
         json = resp.json()
-        subdomains = self.match(self.domain, str(json))
+        subdomains = self.match_subdomains(self.domain, str(json))
         # 合并搜索子域名搜索结果
         self.subdomains = self.subdomains.union(subdomains)
 

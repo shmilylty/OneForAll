@@ -25,7 +25,7 @@ class ThreatCrowd(Query):
             return
         if resp.status_code != 200:
             return
-        subdomains = self.match(self.domain, str(resp.json()))
+        subdomains = self.match_subdomains(self.domain, str(resp.json()))
         # 合并搜索子域名搜索结果
         self.subdomains = self.subdomains.union(subdomains)
 
