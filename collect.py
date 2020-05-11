@@ -79,7 +79,7 @@ class Collect(object):
 
         for thread in threads:
             if thread.is_alive():
-                logger.log('ALERT', f'{thread.name}模块线程发生超时')
+                logger.log('ALERT', f'{thread.name} module thread timed out')
 
         # Export
         if self.export:
