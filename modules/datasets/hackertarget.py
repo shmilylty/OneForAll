@@ -21,7 +21,7 @@ class HackerTarget(Query):
         if not resp:
             return
         if resp.status_code == 200:
-            subdomains = utils.match_subdomain(self.domain, resp.text)
+            subdomains = self.match_subdomains(self.domain, resp.text)
             if subdomains:
                 # 合并搜索子域名搜索结果
                 self.subdomains = self.subdomains.union(subdomains)

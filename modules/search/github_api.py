@@ -1,6 +1,5 @@
 import requests
 from config import api
-from common.utils import match_subdomain
 from common.search import Search
 from config.log import logger
 
@@ -61,7 +60,7 @@ class GithubAPI(Search):
             if resp.status_code != 200:
                 logger.log('ERROR', f'{self.source}模块搜索出错')
                 break
-            subdomains = match_subdomain(self.domain, resp.text)
+            subdomains = self.match_subdomains(self.domain, resp.text)
             if not subdomains:
                 break
             self.subdomains = self.subdomains.union(subdomains)

@@ -27,7 +27,7 @@ class QianXun(Query):
             resp = self.post(url, data)
             if not resp:
                 break
-            subdomains = self.match(self.domain, resp.text)
+            subdomains = self.match_subdomains(self.domain, resp.text)
             self.subdomains = self.subdomains.union(subdomains)
             if '<div id="page" class="pagelist">' not in resp.text:
                 break

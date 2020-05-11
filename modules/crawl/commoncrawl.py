@@ -26,7 +26,7 @@ class CommonCrawl(Crawl):
 
         for resp in tqdm(cdx.iter(url, limit=limit), total=limit):
             if resp.data.get('status') not in ['301', '302']:
-                subdomains = self.match(self.register(domain), resp.text)
+                subdomains = self.match_subdomains(self.register(domain), resp.text)
                 # 合并搜索子域名搜索结果
                 self.subdomains = self.subdomains.union(subdomains)
 

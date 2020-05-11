@@ -23,7 +23,7 @@ class DNSdbAPI(Query):
         resp = self.get(url)
         if not resp:
             return
-        subdomains = utils.match_subdomain(self.domain, resp.text)
+        subdomains = self.match_subdomains(self.domain, resp.text)
         # 合并搜索子域名搜索结果
         self.subdomains = self.subdomains.union(subdomains)
 

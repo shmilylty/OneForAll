@@ -128,7 +128,7 @@ class Module(object):
         Custom post request
 
         :param str  url: request url
-        :param dict params: request parameters
+        :param dict data: request parameters
         :param bool check: check response
         :param kwargs: other params
         :return: requests's response object
@@ -184,24 +184,22 @@ class Module(object):
             return self.proxy
 
     @staticmethod
-    def match(domain, html, distinct=True):
+    def match_subdomains(domain, text, distinct=True):
         """
         Use regexp to match subdomains
 
         :param  str domain: domain
-        :param  str html: response html text
+        :param  str text: text
         :param  bool distinct: deduplicate results or not (default True)
         :return set/list: result set or list
         """
         logger.log('TRACE', f'Use regexp to match subdomains in the response body')
-        regexp = r'(?:\>|\"|\'|\=|\,)(?:http\:\/\/|https\:\/\/)?' \
-                 r'(?:[a-z0-9](?:[a-z0-9\-]{0,61}[a-z0-9])?\.){0,}' \
+        regexp = r'(?:[a-z0-9](?:[a-z0-9\-]{0,61}[a-z0-9])?\.){0,}' \
                  + domain.replace('.', r'\.')
-        result = re.findall(regexp, html, re.I)
+        result = re.findall(regexp, text, re.I)
         if not result:
             return set()
-        regexp = r'(?:http://|https://)'
-        deal = map(lambda s: re.sub(regexp, '', s[1:].lower()), result)
+        deal = map(lambda s: s.lower(), result)
         if distinct:
             return set(deal)
         else:
@@ -340,14 +338,12 @@ class Module(object):
                           'elapse': self.elapse,
                           'find': find,
                           'brute': brute,
-                          'valid': valid,
-                          }
+                          'valid': valid}
                 self.results.append(result)
 
     def save_db(self):
         """
         Save module results into the database
-
         """
         logger.log('DEBUG', f'Saving results to database')
         lock.acquire()

@@ -33,7 +33,7 @@ class CensysAPI(Query):
         if status != 'ok':
             logger.log('ALERT', status)
             return
-        subdomains = self.match(self.domain, str(json))
+        subdomains = self.match_subdomains(self.domain, str(json))
         self.subdomains = self.subdomains.union(subdomains)
         pages = json.get('metadata').get('pages')
         for page in range(2, pages + 1):
@@ -41,7 +41,7 @@ class CensysAPI(Query):
             resp = self.post(self.addr, json=data, auth=(self.id, self.secret))
             if not resp:
                 return
-            subdomains = self.match(self.domain, str(resp.json()))
+            subdomains = self.match_subdomains(self.domain, str(resp.json()))
             self.subdomains = self.subdomains.union(subdomains)
 
     def run(self):

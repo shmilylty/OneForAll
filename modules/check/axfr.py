@@ -44,7 +44,7 @@ class CheckAXFR(Module):
         names = zone.nodes.keys()
         for name in names:
             full_domain = str(name) + '.' + self.domain
-            subdomain = utils.match_subdomain(self.domain, full_domain)
+            subdomain = self.match_subdomains(self.domain, full_domain)
             self.subdomains = self.subdomains.union(subdomain)
             record = zone[name].to_text(name)
             self.results.append(record)

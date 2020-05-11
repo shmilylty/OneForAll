@@ -19,7 +19,7 @@ class Chinaz(Query):
         resp = self.get(self.addr)
         if not resp:
             return
-        subdomains = self.match(self.domain, resp.text)
+        subdomains = self.match_subdomains(self.domain, resp.text)
         # 合并搜索子域名搜索结果
         self.subdomains = self.subdomains.union(subdomains)
 

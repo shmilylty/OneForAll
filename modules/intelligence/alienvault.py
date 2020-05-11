@@ -21,7 +21,7 @@ class AlienVault(Query):
         if not resp:
             return
         json = resp.json()
-        subdomains = self.match(self.domain, str(json))
+        subdomains = self.match_subdomains(self.domain, str(json))
         self.subdomains = self.subdomains.union(subdomains)
 
         url = f'{base}/{self.domain}/url_list'
@@ -29,7 +29,7 @@ class AlienVault(Query):
         if not resp:
             return
         json = resp.json()
-        subdomains = self.match(self.domain, str(json))
+        subdomains = self.match_subdomains(self.domain, str(json))
         self.subdomains = self.subdomains.union(subdomains)
 
     def run(self):

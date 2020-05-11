@@ -52,7 +52,7 @@ class CheckCSP(Module):
         if not csp:
             logger.log('DEBUG', f'{self.domain}域的响应头不存在内容安全策略字段')
             return
-        self.subdomains = utils.match_subdomain(self.domain, csp)
+        self.subdomains = self.match_subdomains(self.domain, csp)
 
     def run(self):
         """

@@ -31,7 +31,7 @@ class CheckCDX(Module):
             if not response:
                 return
             if response and len(response.content):
-                self.subdomains = utils.match_subdomain(self.domain,
+                self.subdomains = self.match_subdomains(self.domain,
                                                         response.text)
 
     def run(self):

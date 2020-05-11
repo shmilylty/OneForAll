@@ -50,7 +50,7 @@ class BruteSRV(Module):
                 continue
             for item in answer:
                 record = str(item)
-                subdomains = utils.match_subdomain(self.domain, record)
+                subdomains = self.match_subdomains(self.domain, record)
                 self.subdomains = self.subdomains.union(subdomains)
                 self.gen_record(subdomains, record)
 

@@ -28,7 +28,7 @@ class Sogou(Search):
             resp = self.get(self.addr, payload)
             if not resp:
                 return
-            subdomains = self.match(domain, resp.text)
+            subdomains = self.match_subdomains(domain, resp.text)
             if not subdomains:
                 break
             if not full_search:
