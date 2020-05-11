@@ -35,7 +35,7 @@ def do_query_a(domain, resolver):
         logger.log('ALERT', f'DNS resolve timeout, retrying...')
         logger.log('DEBUG', e.args)
         raise tenacity.TryAgain
-    # If resolve random subdomain raise NXDOMAIN error
+    # If resolve random subdomain raise NXDOMAIN, YXDOMAIN, NoAnswer, NoNameservers error
     # It means that there is no A record of random subdomain and not use wildcard dns record
     except (NXDOMAIN, YXDOMAIN, NoAnswer, NoNameservers) as e:
         logger.log('DEBUG', e.args)
@@ -427,7 +427,7 @@ def delete_file(dict_path, output_paths):
 
 class Brute(Module):
     """
-    OneForAll子域爆破模块
+    OneForAll subdomain brute module
 
     Example：
         brute.py --target domain.com --word True run
