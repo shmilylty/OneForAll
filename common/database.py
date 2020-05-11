@@ -147,7 +147,7 @@ class Database(object):
         """
         Clear the table
 
-        :param str table_name: 表名
+        :param str table_name: table name
         """
         table_name = table_name.replace('.', '_')
         logger.log('TRACE', f'Clearing data in table {table_name}')
@@ -230,9 +230,9 @@ class Database(object):
         """
         table_name = table_name.replace('.', '_')
         query = f'select id, type, new, alive, request, resolve, url, ' \
-            f'subdomain, level, cname, content, public, port, status, ' \
-            f'reason, title, banner, times, ttl, resolver, module, ' \
-            f'source, elapse, find, brute, valid from "{table_name}"'
+                f'subdomain, level, cname, content, public, port, status, ' \
+                f'reason, title, banner, times, ttl, resolver, module, ' \
+                f'source, elapse, find, brute, valid from "{table_name}"'
         if alive and limit:
             if limit in ['resolve', 'request']:
                 where = f' where {limit} = 1'
