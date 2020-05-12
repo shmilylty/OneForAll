@@ -1,13 +1,13 @@
 from common.lookup import Lookup
 
 
-class QuerySOA(Lookup):
+class QuerySPF(Lookup):
     def __init__(self, domain):
         Lookup.__init__(self)
         self.domain = self.register(domain)
         self.module = 'dnsquery'
-        self.source = "QuerySOA"
-        self.type = 'SOA'  # 利用的DNS记录的SOA记录收集子域
+        self.source = "QuerySPF"
+        self.type = 'SPF'  # 利用的DNS记录的SPF记录收集子域
 
     def run(self):
         """
@@ -27,9 +27,9 @@ def do(domain):  # 统一入口名字 方便多线程调用
 
     :param str domain: 域名
     """
-    query = QuerySOA(domain)
-    query.run()
+    brute = QuerySPF(domain)
+    brute.run()
 
 
 if __name__ == '__main__':
-    do('cuit.edu.cn')
+    do('qq.com')
