@@ -31,7 +31,7 @@ class CensysAPI(Query):
         json = resp.json()
         status = json.get('status')
         if status != 'ok':
-            logger.log('ALERT', status)
+            logger.log('ALERT', f'{self.source} module {status}')
             return
         subdomains = self.match_subdomains(self.domain, str(json))
         self.subdomains = self.subdomains.union(subdomains)

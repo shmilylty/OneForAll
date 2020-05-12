@@ -279,7 +279,7 @@ FLAGS
 
 ## 📄版权
 
-该项目签署了GPL-3.0授权许可，详情请参阅[LICENSE](https://github.com/shmilylty/OneForAll/LICENSE)。
+该项目签署了GPL-3.0授权许可，详情请参阅[LICENSE](https://github.com/shmilylty/OneForAll/blob/master/LICENSE)。
 
 ## 😘鸣谢
 

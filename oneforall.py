@@ -2,7 +2,7 @@
 # coding=utf-8
 
 """
-OneForAll is a powerful subdomain collection tool
+OneForAll is a powerful subdomain integration tool
 
 :copyright: Copyright (c) 2019, Jing Ling. All rights reserved.
 :license: GNU General Public License v3.0, see LICENSE for more details.
@@ -32,7 +32,7 @@ version = 'v0.2.0#dev'
 message = white + '{' + red + version + white + '}'
 
 banner = f"""
-OneForAll is a powerful subdomain collection tool{yellow}
+OneForAll is a powerful subdomain integration tool{yellow}
              ___             _ _ 
  ___ ___ ___|  _|___ ___ ___| | | {message}{green}
 | . |   | -_|  _| . |  _| .'| | | {blue}
@@ -46,7 +46,7 @@ class OneForAll(object):
     """
     OneForAll help summary page
 
-    OneForAll is a powerful subdomain collection tool
+    OneForAll is a powerful subdomain integration tool
 
     Example:
         python3 oneforall.py version
