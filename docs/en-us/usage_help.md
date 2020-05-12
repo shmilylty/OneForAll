@@ -21,7 +21,7 @@ The OneForAll command line interface is based on [Fire](https://github.com/googl
        oneforall.py --target=TARGET <flags>
    
    DESCRIPTION
-       OneForAll is a powerful subdomain collection tool
+       OneForAll is a powerful subdomain integration tool
    
        Example:
            python3 oneforall.py version

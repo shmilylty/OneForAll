@@ -1,5 +1,5 @@
 """
-检查内容安全策略收集子域名收集子域名
+Collect subdomains from ContentSecurityPolicy
 """
 import requests
 
@@ -10,7 +10,7 @@ from config.log import logger
 
 class CheckCSP(Module):
     """
-    检查内容安全策略收集子域名
+    Collect subdomains from ContentSecurityPolicy
     """
     def __init__(self, domain, header):
         Module.__init__(self)
@@ -21,9 +21,9 @@ class CheckCSP(Module):
 
     def grab_header(self):
         """
-        抓取请求头
+        Get header
 
-        :return: 请求头
+        :return: ContentSecurityPolicy header
         """
         csp_header = dict()
         urls = [f'http://{self.domain}',
@@ -47,10 +47,10 @@ class CheckCSP(Module):
             self.csp_header = self.grab_header()
         csp = self.header.get('Content-Security-Policy')
         if not self.csp_header:
-            logger.log('DEBUG', f'获取{self.domain}域的请求头失败')
+            logger.log('DEBUG', f'Failed to get header of {self.domain} domain')
             return
         if not csp:
-            logger.log('DEBUG', f'{self.domain}域的响应头不存在内容安全策略字段')
+            logger.log('DEBUG', f'There is no Content-Security-Policy in the header of {self.domain}')
             return
         self.subdomains = self.match_subdomains(self.domain, csp)
 
