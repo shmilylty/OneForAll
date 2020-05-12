@@ -27,8 +27,8 @@ def do(domain):  # 统一入口名字 方便多线程调用
 
     :param str domain: 域名
     """
-    brute = QueryNS(domain)
-    brute.run()
+    query = QueryNS(domain)
+    query.run()
 
 
 if __name__ == '__main__':
