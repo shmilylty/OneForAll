@@ -8,6 +8,19 @@ OneForAll遵守[语义化版本格式](https://semver.org/)。
 # Unreleased
 
 # Released
+## [0.3.0](https://github.com/shmilylty/oneforall/releases/tag/v0.3.0) - 2020-05-13
+- 重构了项目目录结构
+- 修改了输出显示为英文
+- 优化了泛解析处理
+- 优化了部分收集模块
+- 新增了静默级别的日志输出
+- 新增了超大爆破压缩包字典
+- 新增了利用NSEC记录遍历DNS域模块
+- 新增了sublist3r接口查询模块
+- 现在`docker pull shmilylty/oneforall`是自动构建的
+- 修复了一些反馈的bug
+- 更新了文档
+
 ## [0.2.0](https://github.com/shmilylty/oneforall/releases/tag/v0.2.0) - 2020-04-27
 - 重构子域爆破和解析模块 改用massdns 一般情况下可以达到10000pps 速度非常快
 - 优化泛解析处理
