@@ -28,7 +28,7 @@ blue = '\033[01;34m'
 red = '\033[1;31m'
 end = '\033[0m'
 
-version = 'v0.2.0#dev'
+version = 'v0.3.0#dev'
 message = white + '{' + red + version + white + '}'
 
 banner = f"""
