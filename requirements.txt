@@ -2,7 +2,6 @@ aiohttp==3.6.2
 async-timeout==3.0.1
 attrs==19.3.0
 beautifulsoup4==4.9.0
-Brotli==1.0.7
 bs4==0.0.1
 certifi==2020.4.5.1
 chardet==3.0.4
