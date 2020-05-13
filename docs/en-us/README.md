@@ -1,4 +1,4 @@
-    # OneForAll
+# OneForAll
 
 [![Build Status](https://travis-ci.org/shmilylty/OneForAll.svg?branch=master)](https://travis-ci.org/shmilylty/OneForAll)
 [![codecov](https://codecov.io/gh/shmilylty/OneForAll/branch/master/graph/badge.svg)](https://codecov.io/gh/shmilylty/OneForAll)
@@ -160,7 +160,7 @@ The OneForAll command line interface is based on [Fire](https://github.com/googl
 
 [oneforall.py](https://github.com/shmilylty/OneForAll/tree/master/oneforall.py) is the program main entrence, and oneforall.py can call [brute.py](https://github.com/shmilylty/OneForAll/tree/master/brute.py), [takerover.py](https://github.com/shmilylty/OneForAll/tree/master/takerover.py), [dbexport.py ](https://github.com/shmilylty/OneForAll/tree/master/dbexport.py) and other modules. But you can also use these modules separately, if you want, please refer to the [usage help](https://github.com/shmilylty/OneForAll/tree/master/docs/en-us/usage_help.md).
 
-❗ Note: When you encounter some problems or doubts during use, please search answers on [issues](https://github.com/shmilylty/OneForAll/issues) first. You can also read [Q&troubleshooting.md](https://github.com/shmilylty/OneForAll/tree/master/docs/Q&troubleshooting.md).
+❗ Note: When you encounter some problems or doubts during use, please search answers on [issues](https://github.com/shmilylty/OneForAll/issues) first. You can also read [troubleshooting.md](https://github.com/shmilylty/OneForAll/tree/master/docs/troubleshooting.md).
 
 **OneForAll help summary page**
 
