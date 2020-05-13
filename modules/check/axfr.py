@@ -17,8 +17,9 @@ from config.log import logger
 
 class CheckAXFR(Module):
     """
-    DNS域传送漏洞检查类
+    DNS zone transfer vulnerability base class
     """
+
     def __init__(self, domain: str):
         Module.__init__(self)
         self.domain = self.register(domain)
@@ -28,18 +29,18 @@ class CheckAXFR(Module):
 
     def axfr(self, server):
         """
-        执行域传送
+        Perform domain transfer
 
-        :param server: 域名服务器
+        :param server: domain server
         """
-        logger.log('DEBUG', f'尝试对{self.domain}的域名服务器{server}进行域传送')
+        logger.log('DEBUG', f'Trying to perform domain transfer in {server} of {self.domain}')
         try:
             xfr = dns.query.xfr(where=server, zone=self.domain,
                                 timeout=5.0, lifetime=10.0)
             zone = dns.zone.from_xfr(xfr)
         except Exception as e:
             logger.log('DEBUG', e.args)
-            logger.log('DEBUG', f'对{self.domain}的域名服务器{server}进行域传送失败')
+            logger.log('DEBUG', f'Domain transfer to server {server} of {self.domain} failed')
             return
         names = zone.nodes.keys()
         for name in names:
@@ -49,13 +50,13 @@ class CheckAXFR(Module):
             record = zone[name].to_text(name)
             self.results.append(record)
         if self.results:
-            logger.log('DEBUG', f'发现{self.domain}在{server}上的域传送记录')
+            logger.log('DEBUG', f'Found the domain transfer record of {self.domain} on {server}')
             logger.log('DEBUG', '\n'.join(self.results))
             self.results = []
 
     def check(self):
         """
-        正则匹配响应头中的内容安全策略字段以发现子域名
+        check
         """
         resolver = utils.dns_resolver()
         try:
@@ -65,7 +66,7 @@ class CheckAXFR(Module):
             return
         nsservers = [str(answer) for answer in answers]
         if not len(nsservers):
-            logger.log('ALERT', f'没有找到{self.domain}的NS域名服务器记录')
+            logger.log('ALERT', f'No name server record found for {self.domain}')
             return
         for nsserver in nsservers:
             self.axfr(nsserver)

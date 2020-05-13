@@ -46,7 +46,7 @@ class GithubAPI(Search):
             {'Accept': 'application/vnd.github.v3.text-match+json'})
 
         if not self.auth_github():
-            logger.log('ERROR', f'{self.source}模块登录失败')
+            logger.log('ERROR', f'{self.source} module login failed')
             return
         page = 1
         while True:
@@ -58,7 +58,7 @@ class GithubAPI(Search):
                 logger.log('ERROR', e.args)
                 break
             if resp.status_code != 200:
-                logger.log('ERROR', f'{self.source}模块搜索出错')
+                logger.log('ERROR', f'{self.source} module query failed')
                 break
             subdomains = self.match_subdomains(self.domain, resp.text)
             if not subdomains:

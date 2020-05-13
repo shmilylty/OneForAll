@@ -161,7 +161,7 @@ def run_resolve(domain, data):
 
     ns_path = setting.brute_nameservers_path
 
-    logger.log('INFOR', f'Running massdns to brute subdomains')
+    logger.log('INFOR', f'Running massdns to resolve subdomains')
     utils.call_massdns(massdns_path, save_path, ns_path,
                        output_path, log_path, quiet_mode=True)
 

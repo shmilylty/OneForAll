@@ -52,7 +52,7 @@ git clone https://gitee.com/shmilylty/OneForAll.git
 3. 安装相关依赖
 ```bash
 cd OneForAll/
-sudo yum install python3-devel python3-pip -y
+sudo yum install gcc python3-devel python3-pip -y
 sudo python3 -m pip install -U pip setuptools wheel -i https://mirrors.aliyun.com/pypi/simple/
 sudo pip3 install uvloop -i https://mirrors.aliyun.com/pypi/simple/
 sudo pip3 install --ignore-installed -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
