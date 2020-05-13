@@ -230,7 +230,7 @@ def check_response(method, resp):
     if resp.status_code == 200 and resp.content:
         return True
     logger.log('ALERT', f'{method} {resp.url} {resp.status_code} - '
-    f'{resp.reason} {len(resp.content)}')
+                        f'{resp.reason} {len(resp.content)}')
     content_type = resp.headers.get('Content-Type')
     if content_type and 'json' in content_type and resp.content:
         try:
