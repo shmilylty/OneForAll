@@ -579,7 +579,7 @@ class Brute(Module):
         output_path = temp_dir.joinpath(output_name)
         log_path = result_dir.joinpath('massdns.log')
         check_dict()
-        logger.log('INFOR', f'Running massdns to resolve subdomains')
+        logger.log('INFOR', f'Running massdns to brute subdomains')
         utils.call_massdns(massdns_path, dict_path, ns_path, output_path,
                            log_path, quiet_mode=self.quite,
                            process_num=self.process_num,

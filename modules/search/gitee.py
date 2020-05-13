@@ -29,7 +29,7 @@ class Gitee(Search):
             if not resp:
                 break
             if resp.status_code != 200:
-                logger.log('ERROR', f'{self.source}模块搜索出错')
+                logger.log('ERROR', f'{self.source} module query failed')
                 break
             if 'class="empty-box"' in resp.text:
                 break

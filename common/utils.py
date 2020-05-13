@@ -308,7 +308,7 @@ def export_all_results(path, name, format, datas):
 
 def export_all_subdomains(alive, path, name, datas):
     path = check_path(path, name, 'txt')
-    logger.log('ALERT', f'The txt subdomain result for all main domains {path}')
+    logger.log('ALERT', f'The txt subdomain result for all main domains: {path}')
     subdomains = set()
     for row in datas:
         subdomain = row.get('subdomain')

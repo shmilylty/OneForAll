@@ -23,11 +23,11 @@ class ZoomEyeAPI(Search):
         data = {'username': self.user, 'password': self.pwd}
         resp = self.post(url=url, json=data)
         if not resp:
-            logger.log('FATAL', f'登录失败无法获取{self.source}的访问token')
+            logger.log('FATAL', f'{self.source} module login failed, can not get access token')
             exit(1)
         data = resp.json()
         if resp.status_code == 200:
-            logger.log('DEBUG', f'{self.source}模块登录成功')
+            logger.log('DEBUG', f'{self.source} module login success')
             return data.get('access_token')
         else:
             logger.log('ALERT', data.get('message'))
