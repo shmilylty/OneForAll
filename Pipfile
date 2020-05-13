@@ -19,7 +19,6 @@ bs4 = "*"
 pysocks = "*"
 cloudscraper = "*"
 tablib = "*"
-brotli = "*"
 psutil = "*"
 tenacity = "*"
 
