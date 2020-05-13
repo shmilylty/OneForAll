@@ -128,7 +128,7 @@ class Module(object):
         Custom post request
 
         :param str  url: request url
-        :param dict data: request parameters
+        :param dict data: request data
         :param bool check: check response
         :param kwargs: other params
         :return: requests's response object
@@ -148,6 +148,32 @@ class Module(object):
         if not check:
             return resp
         if utils.check_response('POST', resp):
+            return resp
+        return None
+
+    def delete(self, url, check=True, **kwargs):
+        """
+        Custom delete request
+
+        :param str  url: request url
+        :param bool check: check response
+        :param kwargs: other params
+        :return: requests's response object
+        """
+        try:
+            resp = requests.delete(url,
+                                   cookies=self.cookie,
+                                   headers=self.header,
+                                   proxies=self.proxy,
+                                   timeout=self.timeout,
+                                   verify=self.verify,
+                                   **kwargs)
+        except Exception as e:
+            logger.log('ERROR', e.args)
+            return None
+        if not check:
+            return resp
+        if utils.check_response('DELETE', resp):
             return resp
         return None
 
