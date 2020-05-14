@@ -121,8 +121,10 @@ def gen_word_subdomains(expression, path):
             word = line.strip().lower()
             if len(word) == 0:
                 continue
-            if not word.isascii():
+            if not utils.is_subname(word):
                 continue
+            if word.startswith('.'):
+                word = word[1:]
             if word.endswith('.'):
                 word = word[:-1]
             subdomain = expression.replace('*', word)

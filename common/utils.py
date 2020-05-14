@@ -2,6 +2,7 @@ import os
 import re
 import sys
 import time
+import string
 import random
 import platform
 import subprocess
@@ -586,3 +587,11 @@ def get_massdns_path(massdns_dir):
         logger.log('INFOR', 'Please try to compile massdns yourself and specify the path in the configuration')
         exit(0)
     return path
+
+
+def is_subname(name):
+    chars = string.ascii_lowercase + string.digits + '.-'
+    for char in name:
+        if char not in chars:
+            return False
+    return True
