@@ -69,3 +69,6 @@ passivedns_api_token = ''
 # 用于子域接管和子域收集
 github_api_user = ''
 github_api_token = ''
+
+# obtain Cloudflare API key from https://dash.cloudflare.com/profile/api-tokens
+cloudflare_api_token = ''
