@@ -294,9 +294,12 @@ Thanks to the various subdomain collection projects of online open source!
 
 Thanks ace of [A-Team](https://github.com/QAX-A-Team) for their enthusiastic and unselfish answers!
 
-## 📜Announce
+## 📜Disclaimer 
 
-Please do not use in illegal purposes, don't be a dick.
+This tool can only be used in the safety construction of enterprises with sufficient legal authorization.
+During the use of this tool, you should ensure that all your actions comply with local laws and regulations.
+If you have any illegal behavior in the process of using this tool, you will bear all the consequences yourself, 
+and all developers and all contributors of this tool will not bear any legal and joint liability.
 
 ## 💖Stargazers over time
 
