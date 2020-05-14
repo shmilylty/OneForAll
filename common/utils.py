@@ -542,6 +542,20 @@ def check_env():
     check_pre()
 
 
+def check_version(version):
+    from distutils.version import LooseVersion
+    try:
+        resp = requests.get('https://api.github.com/repos/shmilylty/OneForAll/releases/latest')
+        latest_version = resp.json()['tag_name']
+        if LooseVersion(latest_version) > LooseVersion(version):
+            logger.log('ALERT', f'The current OneForAll version is {version}, and the latest version is {latest_version}.')
+            logger.log('ALERT', f'{resp.json()["body"]}')
+        else:
+            return
+    except Exception as e:
+        logger.log('FATAL', e.args)
+
+
 def get_maindomain(domain):
     return Domain(domain).registered()
 

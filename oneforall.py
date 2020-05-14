@@ -252,6 +252,7 @@ class OneForAll(object):
 
 
 if __name__ == '__main__':
+    utils.check_version(version)
     fire.Fire(OneForAll)
     # OneForAll('example.com').run()
     # OneForAll('./domains.txt').run()
