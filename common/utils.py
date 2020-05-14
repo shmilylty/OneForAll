@@ -66,6 +66,16 @@ def gen_fake_header():
     return headers
 
 
+def get_random_header():
+    """
+    Get random proxy
+    """
+    header = None
+    if setting.fake_header:
+        header = gen_fake_header()
+    return header
+
+
 def get_random_proxy():
     """
     Get random proxy
@@ -74,6 +84,15 @@ def get_random_proxy():
         return random.choice(setting.proxy_pool)
     except IndexError:
         return None
+
+
+def get_proxy():
+    """
+    Get proxy
+    """
+    if setting.enable_proxy:
+        return get_random_proxy()
+    return None
 
 
 def split_list(ls, size):
@@ -503,7 +522,7 @@ def check_net():
         raise tenacity.TryAgain
     if rsp.status_code != 200:
         logger.log('ALERT', f'{rsp.request.method} {rsp.request.url} '
-        f'{rsp.status_code} {rsp.reason}')
+                            f'{rsp.status_code} {rsp.reason}')
         logger.log('ALERT', 'Can not access Internet normally, retrying')
         raise tenacity.TryAgain
     logger.log('INFOR', 'Access to Internet OK')
@@ -542,18 +561,27 @@ def check_env():
     check_pre()
 
 
-def check_version(version):
-    from distutils.version import LooseVersion
+def check_version(local):
+    logger.log('INFOR', 'Checking for the latest version')
+    api = 'https://api.github.com/repos/shmilylty/OneForAll/releases/latest'
+    header = get_random_header()
+    proxy = get_proxy()
+    timeout = setting.request_timeout
+    verify = setting.request_verify
     try:
-        resp = requests.get('https://api.github.com/repos/shmilylty/OneForAll/releases/latest')
-        latest_version = resp.json()['tag_name']
-        if LooseVersion(latest_version) > LooseVersion(version):
-            logger.log('ALERT', f'The current OneForAll version is {version}, and the latest version is {latest_version}.')
-            logger.log('ALERT', f'{resp.json()["body"]}')
-        else:
-            return
+        resp = requests.get(url=api, headers=header, proxies=proxy,
+                            timeout=timeout, verify=verify)
     except Exception as e:
-        logger.log('FATAL', e.args)
+        logger.log('ERROR', 'An error occurred while checking the latest version')
+        logger.log('ERROR', e.args)
+        return
+    latest = resp.json()['tag_name']
+    if latest > local:
+        change = resp.json()["body"]
+        logger.log('ALERT', f'The current version is {local} but the latest version is {latest}')
+        logger.log('ALERT', f'The {latest} version mainly has the following changes\n{change}')
+    else:
+        logger.log('INFOR', f'The current version {local} is already the latest version')
 
 
 def get_maindomain(domain):

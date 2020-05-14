@@ -190,13 +190,6 @@ def get_connector():
                                 limit_per_host=setting.limit_per_host)
 
 
-def get_header():
-    header = None
-    if setting.fake_header:
-        header = utils.gen_fake_header()
-    return header
-
-
 async def bulk_request(data, port):
     ports = get_ports(port)
     no_req_data = utils.get_filtered_data(data)
@@ -205,7 +198,7 @@ async def bulk_request(data, port):
     logger.log('INFOR', f'Use {method} method to request')
     logger.log('INFOR', f'Async subdomains request in progress')
     connector = get_connector()
-    header = get_header()
+    header = utils.get_random_header()
     async with ClientSession(connector=connector, headers=header) as session:
         tasks = []
         for i, data in enumerate(to_req_data):

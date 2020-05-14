@@ -28,8 +28,8 @@ blue = '\033[01;34m'
 red = '\033[1;31m'
 end = '\033[0m'
 
-version = 'v0.3.0#dev'
-message = white + '{' + red + version + white + '}'
+version = 'v0.3.0'
+message = white + '{' + red + version + ' #dev' + white + '}'
 
 banner = f"""
 OneForAll is a powerful subdomain integration tool{yellow}
@@ -50,6 +50,7 @@ class OneForAll(object):
 
     Example:
         python3 oneforall.py version
+        python3 oneforall.py check
         python3 oneforall.py --target example.com run
         python3 oneforall.py --target ./domains.txt run
         python3 oneforall.py --target example.com --alive False run
@@ -232,6 +233,8 @@ class OneForAll(object):
         dt = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         print(f'[*] Starting OneForAll @ {dt}\n')
         utils.check_env()
+        if setting.enable_check_version:
+            utils.check_version(version)
         logger.log('DEBUG', 'Python ' + utils.python_version())
         logger.log('DEBUG', 'OneForAll ' + version)
         logger.log('INFOR', f'Start running OneForAll')
@@ -247,12 +250,22 @@ class OneForAll(object):
 
     @staticmethod
     def version():
+        """
+        Print version information and exit
+        """
         print(banner)
+        exit(0)
+
+    @staticmethod
+    def check():
+        """
+        Check if there is a new version and exit
+        """
+        utils.check_version(version)
         exit(0)
 
 
 if __name__ == '__main__':
-    utils.check_version(version)
     fire.Fire(OneForAll)
     # OneForAll('example.com').run()
     # OneForAll('./domains.txt').run()
