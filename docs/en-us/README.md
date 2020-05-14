@@ -238,6 +238,7 @@ Description of the subdomain dictionary source:
 3. Research results by security researchers:
  * [the_most_popular_subdomains_on_the_internet](https://bitquark.co.uk/blog/2016/02/29/the_most_popular_subdomains_on_the_internet)
  * [The most popular subdomains on the internet (2017 edition)](https://medium.com/@cmeister2/the-most-popular-subdomains-on-the-internet-2017-edition-a6b9c8a20fd8)
+ * [Top 100000 Subdomains in Certificate Transparency](https://github.com/internetwache/CT_subdomains)
 4. Common naming rules:
 * single letter, single letter + single number, double letter, double letter + single number, double letter + double number, three letters, four letters; 
 * single number, double number, three numbers;
