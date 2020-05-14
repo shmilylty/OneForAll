@@ -45,11 +45,6 @@
         "response":["404 Not Found"]
     },
     {
-        "name":"statuspage",
-        "cname":["statuspage.io"],
-        "response":["Better Status Communication", "You are being <a href=\"https://www.statuspage.io\">redirected"]
-    },
-    {
         "name":"amazonaws",
         "cname":["amazonaws.com"],
         "response":["NoSuchBucket", "The specified bucket does not exist"]
@@ -68,11 +63,6 @@
         "name":"acquia",
         "cname":["acquia.com"],
         "response":["If you are an Acquia Cloud customer and expect to see your site at this address","The site you are looking for could not be found."]
-    },
-    {
-        "name":"fastly",
-        "cname":["fastly.net"],
-        "response":["Please check that this domain has been added to a service", "Fastly error: unknown domain"]
     },
     {
         "name":"pantheon",
