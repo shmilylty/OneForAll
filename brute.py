@@ -119,7 +119,9 @@ def gen_word_subdomains(expression, path):
     with open(path, encoding='utf-8', errors='ignore') as fd:
         for line in fd:
             word = line.strip().lower()
-            if not word.isalnum():
+            if len(word) == 0:
+                continue
+            if not word.isascii():
                 continue
             if word.endswith('.'):
                 word = word[:-1]
