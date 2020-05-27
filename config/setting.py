@@ -146,10 +146,10 @@ fake_header = True  # 使用伪造请求头
 # 为了保证请求质量 请谨慎更改以下设置
 # request_method只能是HEAD或GET,HEAD请求方法更快，但是不能获取响应体并提取从中提取
 request_method = 'GET'  # 使用请求方法，默认GET
-sockread_timeout = 10  # 每个请求socket读取超时时间，默认5秒
-sockconn_timeout = 10  # 每个请求socket连接超时时间，默认5秒
+sockread_timeout = 10  # 每个请求socket读取超时时间，默认10秒
+sockconn_timeout = 5  # 每个请求socket连接超时时间，默认5秒
 # 限制同一时间打开的连接总数
-limit_open_conn = 100  # 默认100
+limit_open_conn = 800  # 默认800
 # 限制同一时间在同一个端点((host, port, is_ssl) 3者都一样的情况)打开的连接数
 limit_per_host = 10  # 0表示不限制,默认10
 
