@@ -23,12 +23,12 @@ logfile_fmt = '<light-green>{time:YYYY-MM-DD HH:mm:ss,SSS}</light-green> ' \
               '<blue>{line}</blue> - <level>{message}</level>'
 
 logger.remove()
-logger.level(name='TRACE', no=5, color='<cyan><bold>', icon='✏️')
-logger.level(name='DEBUG', no=10, color='<blue><bold>', icon='🐞 ')
+logger.level(name='TRACE', color='<cyan><bold>', icon='✏️')
+logger.level(name='DEBUG', color='<blue><bold>', icon='🐞 ')
 logger.level(name='INFOR', no=20, color='<green><bold>', icon='ℹ️')
 logger.level(name='QUITE', no=25, color='<green><bold>', icon='🤫 ')
 logger.level(name='ALERT', no=30, color='<yellow><bold>', icon='⚠️')
-logger.level(name='ERROR', no=40, color='<red><bold>', icon='❌️')
+logger.level(name='ERROR', color='<red><bold>', icon='❌️')
 logger.level(name='FATAL', no=50, color='<RED><bold>', icon='☠️')
 
 # 如果你想在命令终端静默运行OneForAll，可以将以下一行中的level设置为QUITE
