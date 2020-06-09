@@ -20,7 +20,8 @@ class Crtsh(Query):
         resp = self.get(self.addr, params)
         if not resp:
             return
-        subdomains = self.match_subdomains(self.domain, str(resp.json()))
+        text = resp.text.replace(r'\n', ' ')
+        subdomains = self.match_subdomains(self.domain, text)
         self.subdomains = self.subdomains.union(subdomains)
 
     def run(self):
