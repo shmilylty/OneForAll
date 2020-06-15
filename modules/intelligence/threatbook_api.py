@@ -8,7 +8,7 @@ class ThreatBookAPI(Query):
         self.domain = self.register(domain)
         self.module = 'Intelligence'
         self.source = 'ThreatBookAPIQuery'
-        self.addr = 'https://x.threatbook.cn/api/v1/domain/query'
+        self.addr = 'https://api.threatbook.cn/v3/domain/sub_domains'
         self.key = api.threatbook_api_key
 
     def query(self):
@@ -18,8 +18,7 @@ class ThreatBookAPI(Query):
         self.header = self.get_header()
         self.proxy = self.get_proxy(self.source)
         params = {'apikey': self.key,
-                  'domain': self.domain,
-                  'field': 'sub_domains'}
+                  'resource': self.domain}
         resp = self.post(self.addr, params)
         if not resp:
             return
