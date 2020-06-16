@@ -54,7 +54,7 @@ def do_query_a(domain, resolver):
         ips = {item.address for item in answer}
         logger.log('ALERT', f'{domain} use wildcard dns record')
         logger.log('ALERT', f'{domain} resolve to: {name} '
-        f'IP: {ips} TTL: {ttl}')
+                            f'IP: {ips} TTL: {ttl}')
         return True
 
 
@@ -196,7 +196,7 @@ def get_wildcard_record(domain, resolver):
         ip = {item.address for item in answer}
         ttl = answer.ttl
         logger.log('INFOR', f'{domain} results on authoritative name server: {name} '
-        f'IP: {ip} TTL: {ttl}')
+                            f'IP: {ip} TTL: {ttl}')
         return ip, ttl
 
 
@@ -629,7 +629,7 @@ class Brute(Module):
                 for layer_num in range(1, self.recursive_depth):
                     # 之前已经做过1层子域爆破 当前实际递归层数是layer+1
                     logger.log('INFOR', f'Start recursively brute'
-                    f'the {layer_num + 1} layer subdomain of {self.domain}')
+                                        f'the {layer_num + 1} layer subdomain of {self.domain}')
                     for subdomain in all_subdomains:
                         self.place = '*.' + subdomain
                         # 进行下一层子域爆破的限制条件
