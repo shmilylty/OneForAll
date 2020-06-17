@@ -13,7 +13,6 @@ third_party_dir = relative_directory.joinpath('thirdparty')  # 三方工具目�
 data_storage_dir = relative_directory.joinpath('data')  # 数据存放目录
 result_save_dir = relative_directory.joinpath('results')  # 结果保存目录
 
-
 # OneForAll入口参数设置
 enable_check_version = True  # 开启最新版本检查
 enable_dns_resolve = True  # 使用DNS解析子域(默认True)
@@ -28,7 +27,6 @@ result_export_alive = False  # 只导出存活的子域结果(默认False)
 result_save_format = 'csv'  # 子域结果保存文件格式(默认csv)
 # 参数path默认None使用OneForAll结果目录自动生成路径
 result_save_path = None  # 子域结果保存文件路径(默认None)
-
 
 # 收集模块设置
 save_module_result = False  # 保存各模块发现结果为json文件(默认False)
@@ -106,7 +104,7 @@ resolver_nameservers = [
     '223.5.5.5',  # AliDNS
     '119.29.29.29',  # DNSPod
     '114.114.114.114',  # 114DNS
-    '8.8.8.8',   # Google DNS
+    '8.8.8.8',  # Google DNS
     '1.1.1.1'  # CloudFlare DNS
 ]  # 指定查询的DNS域名服务器
 resolver_timeout = 5.0  # 解析超时时间
@@ -115,7 +113,7 @@ limit_resolve_conn = 500  # 限制同一时间解析的数量(默认500)
 
 # 请求端口探测设置
 # 你可以在端口列表添加自定义端口
-default_ports = [80]  # 默认使用
+default_ports = [80, 443]  # 默认使用
 small_ports = [80, 443, 8000, 8080, 8443]
 # 注意：建议大厂的域名尽量不使用大端口范围，因为大厂的子域太多，加上使用大端口范围会导致生成的
 # 请求上十万，百万，千万级，可能会导致内存不足程序奔溃，另外这样级别的请求量等待时间也是漫长的。
@@ -157,4 +155,3 @@ subdomains_common = {'i', 'w', 'm', 'en', 'us', 'zh', 'w3', 'app', 'bbs',
                      'web', 'www', 'job', 'docs', 'news', 'blog', 'data',
                      'help', 'live', 'mall', 'blogs', 'files', 'forum',
                      'store', 'mobile'}
-
