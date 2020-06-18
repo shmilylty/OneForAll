@@ -304,7 +304,8 @@ class Module(object):
                       'ttl': None,
                       'cidr': None,
                       'asn': None,
-                      'addr': None,
+                      'ip2region': None,
+                      'ip2location': None,
                       'resolver': None,
                       'module': self.module,
                       'source': self.source,
@@ -336,7 +337,8 @@ class Module(object):
                 public = record.get('public')
                 cidr = record.get('cidr')
                 asn = record.get('asn')
-                addr = record.get('addr')
+                ip2region = record.get('ip2region')
+                ip2location = record.get('ip2location')
                 if isinstance(cname, list):
                     cname = ','.join(cname)
                     content = ','.join(content)
@@ -366,7 +368,8 @@ class Module(object):
                           'ttl': ttl,
                           'cidr': cidr,
                           'asn': asn,
-                          'addr': addr,
+                          'ip2region': ip2region,
+                          'ip2location': ip2location,
                           'resolver': resolver,
                           'module': self.module,
                           'source': self.source,
