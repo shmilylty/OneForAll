@@ -9,7 +9,6 @@ import subprocess
 from ipaddress import IPv4Address, ip_address
 from stat import S_IXUSR
 
-import IP2Location
 import psutil
 import tenacity
 import requests
