@@ -9,6 +9,7 @@ import subprocess
 from ipaddress import IPv4Address, ip_address
 from stat import S_IXUSR
 
+import IP2Location
 import psutil
 import tenacity
 import requests
@@ -638,3 +639,12 @@ def is_subname(name):
         if char not in chars:
             return False
     return True
+
+
+def ip_to_int(ip):
+    try:
+        ipv4 = IPv4Address(ip)
+    except Exception as e:
+        logger.log('ERROR', e.args)
+        return None
+    return int(ipv4)
