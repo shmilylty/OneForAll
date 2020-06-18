@@ -302,6 +302,9 @@ class Module(object):
                       'response': None,
                       'times': None,
                       'ttl': None,
+                      'cidr': None,
+                      'asn': None,
+                      'addr': None,
                       'resolver': None,
                       'module': self.module,
                       'source': self.source,
@@ -331,6 +334,9 @@ class Module(object):
                 times = record.get('times')
                 ttl = record.get('ttl')
                 public = record.get('public')
+                cidr = record.get('cidr')
+                asn = record.get('asn')
+                addr = record.get('addr')
                 if isinstance(cname, list):
                     cname = ','.join(cname)
                     content = ','.join(content)
@@ -358,6 +364,9 @@ class Module(object):
                           'response': None,
                           'times': times,
                           'ttl': ttl,
+                          'cidr': cidr,
+                          'asn': asn,
+                          'addr': addr,
                           'resolver': resolver,
                           'module': self.module,
                           'source': self.source,

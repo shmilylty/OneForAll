@@ -77,6 +77,9 @@ class Database(object):
                    f'response text,'
                    f'times text,'
                    f'ttl text,'
+                   f'cidr text,'
+                   f'asn text,'
+                   f'addr text,'
                    f'resolver text,'
                    f'module text,'
                    f'source text,'
@@ -102,13 +105,13 @@ class Database(object):
                     f'insert into "{table_name}" ('
                     f'id, type, alive, resolve, request, new, url, subdomain,'
                     f'port, level, cname, content, public, status, reason,'
-                    f'title, banner, header, response, times, ttl, resolver,'
-                    f'module, source, elapse, find, brute, valid) '
+                    f'title, banner, header, response, times, ttl, cidr, asn,'
+                    f'addr, resolver, module, source, elapse, find, brute, valid) '
                     f'values (:id, :type, :alive, :resolve, :request, :new,'
                     f':url, :subdomain, :port, :level, :cname, :content,'
                     f':public, :status, :reason, :title, :banner, :header,'
-                    f':response, :times, :ttl, :resolver, :module, :source,'
-                    f':elapse, :find, :brute, :valid)', results)
+                    f':response, :times, :ttl, :cidr, :asn, :addr, :resolver,'
+                    f':module, :source, :elapse, :find, :brute, :valid)', results)
             except Exception as e:
                 logger.log('ERROR', e)
 
@@ -231,8 +234,8 @@ class Database(object):
         table_name = table_name.replace('.', '_')
         query = f'select id, type, new, alive, request, resolve, url, ' \
                 f'subdomain, level, cname, content, public, port, status, ' \
-                f'reason, title, banner, times, ttl, resolver, module, ' \
-                f'source, elapse, find, brute, valid from "{table_name}"'
+                f'reason, title, banner, times, ttl, cidr, asn, addr, resolver, ' \
+                f'module, source, elapse, find, brute, valid from "{table_name}"'
         if alive and limit:
             if limit in ['resolve', 'request']:
                 where = f' where {limit} = 1'

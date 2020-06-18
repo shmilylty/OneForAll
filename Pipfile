@@ -21,6 +21,7 @@ cloudscraper = "*"
 tablib = "*"
 psutil = "*"
 tenacity = "*"
+ip2location = "*"
 
 [requires]
 python_version = "3.8"
