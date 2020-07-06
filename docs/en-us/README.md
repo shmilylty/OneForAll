@@ -11,44 +11,6 @@
 
 ![Example](../usage_example.svg)
 
-## 🎉Why OneForAll？
-
-Project address : [https://github.com/shmilylty/OneForAll](https://github.com/shmilylty/OneForAll)
-
-Problems with other tools
-
-* **Not powerful enough**, few api, cannot automate, cannot valid subdomain, etc.
-
-* **Not friendly enough**, do not have a good user interface.
-
-* **Not quickly enough**, do not use multi-process, multi-threading, coroutine, etc.
-
-* **Lack of maintenance**, lots of issues and bugs, and no one fixed it.
-
-In order to solve the above problems, OneForAll born! As its name, OneForAll is committed to becoming the only one subdomain integration tool you need. We hope that one day OneForAll can be called "probably the best subdomain tool"
-
-At present, OneForAll is under development, there must be a lot of problems and areas for improvement. Welcome to submit [Issues](https://github.com/shmilylty/OneForAll/issues) or [PR](https://github.com/shmilylty/OneForAll/pulls), If you like, star please✨. You can contact me through QQ group [**824414244**](//shang.qq.com/wpa/qunwpa?idkey=125d3689b60445cdbb11e4ddff38036b7f6f2abbf4f7957df5dddba81aa90771) or twitter [tweet](https://twitter.com/shmilylty) to me: 👨‍👨‍👦‍👦.
-
-## 👍Features
-
-* **Powerful collection capability**, For more details, please read [collection module description](https://github.com/shmilylty/OneForAll/tree/master/docs/collection_modules.md).
-1. Use 6 certificate modules: `censys_api`, `certspotter`, `crtsh`, `entrust`, `google`, `spyse_api`.
-2. Use 6 baseline testing modules: scan domain transfer vulnerability `axfr`, cross-domain policy file `cdx`, HTTPS certificate `cert`, content security policy `csp`, robots file `robots`, and sitemap file `sitemap`, NSEC record `nsec`. NSEC3 record and other modules will be added later.
-3. Use 2 web crawler modules: `archirawl`, `commoncrawl`, which is still being debugged and needs to be added and improved). 
-4. Use 24 DNS datasets modules: `binaryedge_api`, `bufferover`, `cebaidu`, `chinaz`, `chinaz_api`, `circl_api`, `cloudflare`, `dnsdb_api`, `dnsdumpster`, `hackertarget`, `ip138`, `ipv4info_api`, `netcraft`, `passivedns_api`, `ptrarchive`, `qianxun`, `rapiddns`, `riddler`, `robtex`, `securitytrails_api`, `sitedossier`, `threatcrowd`, `wzpc`, `ximcx`.
-5. Use 6 DNS queries modules: enumerating SRV records `srv` and collect from `MX`, `NS`, `SOA`, `TXT`, `SPF`. 
-6. Use 6 threat intelligence modules: `alienvault`, `riskiq_ api`, `threatbook_ api`, `threatkeeper `, `virustotal`, `virustotal_ api`, which need to be added and improved.
-7. Use 16 search engines modules: `ask`, `baidu`, `bing`, `bing_api`, `fofa_api`, `gitee`, `github_api`, `google`, `google_api`, `shodan_api`, `so`, `sogou`, `yahoo`, `yandex`, `zoomeye_api`, except for special search engines. General search engines support automatic exclusion of search, full search and recursive search. 
-* **Support subdomain brute force**, can use dictionary mode or custom fuzz mode. Supports bulk brute and recursive brute, and automatically determine wildcard or not and processing.
-* **Support subdmain verification**, default enable, automatically resolve DNS, request subdomain to obtain response, and determine subdomain alive or not.
-* **Support subdomain takeover**, default enable, supports bulk inspection, and automatic takeover subdomain (only Github, remains to be improved at present).
-* **Powerful processing feature**, support automatic deduplicate, DNS resolve, HTTP request, filter valid subdomains and information for subdomains. Supported export formats: `rst`, `csv`, `tsv`, `json`, `yaml`, `html`, `xls`, `xlsx`, `dbf`, `latex`, `ods`.
-* **Very fast**, [collection module](https://github.com/shmilylty/OneForAll/tree/master/collect.py) uses multi-threading, [brute module](https://github.com/shmilylty/OneForAll/tree/master/brute.py) uses [massdns](https://github.com/blechschmidt/massdns), the speed can at least reach 10000pps by the default configuration. DNS resolve and HTTP requests use async-coroutine. [subdomain takeover](https://github.com/shmilylty/OneForAll/tree/master/takeover.py) uses multi-threading.
-* **Good experience**, each module has a progress bar, and save results asynchronously.
-
-If you have any other good ideas, please let me know!😎
-
-
 ## 🚀Start Guide
 
 📢 Please read this document to help you start quickly!
@@ -128,6 +90,13 @@ python3 oneforall.py --target example.com run
 2. If you use pipenv, run the following command: 
 ```bash
 pipenv run python oneforall.py --target example.com run
+```
+
+3. Turn on brute modules, run the following command(Use massdns for enumerating subdomains, the network may be blocked): 
+```bash
+python3 run python oneforall.py --target example.com --burte True run
+# or
+pipenv run python oneforall.py --target example.com --burte True run
 ```
 
 **🧐Instructions for results**
@@ -225,6 +194,43 @@ COMMANDS
 
      version
 ```
+
+## 🎉Why OneForAll？
+
+Project address : [https://github.com/shmilylty/OneForAll](https://github.com/shmilylty/OneForAll)
+
+Problems with other tools
+
+* **Not powerful enough**, few api, cannot automate, cannot valid subdomain, etc.
+
+* **Not friendly enough**, do not have a good user interface.
+
+* **Not quickly enough**, do not use multi-process, multi-threading, coroutine, etc.
+
+* **Lack of maintenance**, lots of issues and bugs, and no one fixed it.
+
+In order to solve the above problems, OneForAll born! As its name, OneForAll is committed to becoming the only one subdomain integration tool you need. We hope that one day OneForAll can be called "probably the best subdomain tool"
+
+At present, OneForAll is under development, there must be a lot of problems and areas for improvement. Welcome to submit [Issues](https://github.com/shmilylty/OneForAll/issues) or [PR](https://github.com/shmilylty/OneForAll/pulls), If you like, star please✨. You can contact me through QQ group [**824414244**](//shang.qq.com/wpa/qunwpa?idkey=125d3689b60445cdbb11e4ddff38036b7f6f2abbf4f7957df5dddba81aa90771) or twitter [tweet](https://twitter.com/shmilylty) to me: 👨‍👨‍👦‍👦.
+
+## 👍Features
+
+* **Powerful collection capability**, For more details, please read [collection module description](https://github.com/shmilylty/OneForAll/tree/master/docs/collection_modules.md).
+1. Use 6 certificate modules: `censys_api`, `certspotter`, `crtsh`, `entrust`, `google`, `spyse_api`.
+2. Use 6 baseline testing modules: scan domain transfer vulnerability `axfr`, cross-domain policy file `cdx`, HTTPS certificate `cert`, content security policy `csp`, robots file `robots`, and sitemap file `sitemap`, NSEC record `nsec`. NSEC3 record and other modules will be added later.
+3. Use 2 web crawler modules: `archirawl`, `commoncrawl`, which is still being debugged and needs to be added and improved). 
+4. Use 24 DNS datasets modules: `binaryedge_api`, `bufferover`, `cebaidu`, `chinaz`, `chinaz_api`, `circl_api`, `cloudflare`, `dnsdb_api`, `dnsdumpster`, `hackertarget`, `ip138`, `ipv4info_api`, `netcraft`, `passivedns_api`, `ptrarchive`, `qianxun`, `rapiddns`, `riddler`, `robtex`, `securitytrails_api`, `sitedossier`, `threatcrowd`, `wzpc`, `ximcx`.
+5. Use 6 DNS queries modules: enumerating SRV records `srv` and collect from `MX`, `NS`, `SOA`, `TXT`, `SPF`. 
+6. Use 6 threat intelligence modules: `alienvault`, `riskiq_ api`, `threatbook_ api`, `threatkeeper `, `virustotal`, `virustotal_ api`, which need to be added and improved.
+7. Use 16 search engines modules: `ask`, `baidu`, `bing`, `bing_api`, `fofa_api`, `gitee`, `github_api`, `google`, `google_api`, `shodan_api`, `so`, `sogou`, `yahoo`, `yandex`, `zoomeye_api`, except for special search engines. General search engines support automatic exclusion of search, full search and recursive search. 
+* **Support subdomain brute force**, can use dictionary mode or custom fuzz mode. Supports bulk brute and recursive brute, and automatically determine wildcard or not and processing.
+* **Support subdmain verification**, default enable, automatically resolve DNS, request subdomain to obtain response, and determine subdomain alive or not.
+* **Support subdomain takeover**, default enable, supports bulk inspection, and automatic takeover subdomain (only Github, remains to be improved at present).
+* **Powerful processing feature**, support automatic deduplicate, DNS resolve, HTTP request, filter valid subdomains and information for subdomains. Supported export formats: `rst`, `csv`, `tsv`, `json`, `yaml`, `html`, `xls`, `xlsx`, `dbf`, `latex`, `ods`.
+* **Very fast**, [collection module](https://github.com/shmilylty/OneForAll/tree/master/collect.py) uses multi-threading, [brute module](https://github.com/shmilylty/OneForAll/tree/master/brute.py) uses [massdns](https://github.com/blechschmidt/massdns), the speed can at least reach 10000pps by the default configuration. DNS resolve and HTTP requests use async-coroutine. [subdomain takeover](https://github.com/shmilylty/OneForAll/tree/master/takeover.py) uses multi-threading.
+* **Good experience**, each module has a progress bar, and save results asynchronously.
+
+If you have any other good ideas, please let me know!😎
 
 ## 🌲Directory structure
 
