@@ -23,10 +23,12 @@ fofa_api_email = ''  # fofa用户邮箱
 fofa_api_key = ''  # fofa用户key
 
 # Google可以免费注册获取API:
-# https://developers.google.com/custom-search/v1/overview
 # 免费的API只能查询前100条结果
-google_api_key = ''  # Google API搜索key
-google_api_cx = ''  # Google API搜索cx
+# https://developers.google.com/custom-search/v1/overview#search_engine_id
+# 创建自定义搜索引擎后需要在响应的控制面板上启用Search the entire web
+google_api_id = ''  # Google API自定义搜索引擎id
+# https://developers.google.com/custom-search/v1/overview#api_key
+google_api_key = ''  # Google API自定义搜索key
 
 # https://api.passivetotal.org/api/docs/
 riskiq_api_username = ''
