@@ -254,7 +254,7 @@ class Module(object):
         path.mkdir(parents=True, exist_ok=True)
         name = self.source + '.json'
         path = path.joinpath(name)
-        with open(path, mode='w', encoding='utf-8', errors='ignore') as file:
+        with open(path, mode='w', errors='ignore') as file:
             result = {'domain': self.domain,
                       'name': self.module,
                       'source': self.source,
