@@ -226,8 +226,7 @@ def save_data(path, data):
     :return: 保存成功与否
     """
     try:
-        with open(path, 'w', encoding="utf-8",
-                  errors='ignore', newline='') as file:
+        with open(path, 'w', errors='ignore', newline='') as file:
             file.write(data)
             return True
     except TypeError:
