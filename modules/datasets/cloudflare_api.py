@@ -23,10 +23,14 @@ class CloudFlareAPI(Query):
         query from source
         """
         account_id_resp = self.get(self.addr + 'accounts')
+        if not account_id_resp:
+            return
         account_id = account_id_resp.json()['result'][0]['id']
         # query domain zone, if it not exist, create
         zones_resp = self.get(self.addr + 'zones',
                               params={'name': self.domain}, check=False)
+        if not zones_resp:
+            return
         if zones_resp.json()['success'] and not zones_resp.json()['result']:
             zone_id = self.create_zone(account_id)
             if zone_id:
@@ -51,6 +55,8 @@ class CloudFlareAPI(Query):
                 "type": "full"}
         create_zone_resp = self.post(
             self.addr + 'zones', json=data, check=False)
+        if not create_zone_resp:
+            return
         if create_zone_resp.json()['success']:
             return create_zone_resp.json()['result']['id']
         else:
@@ -60,6 +66,8 @@ class CloudFlareAPI(Query):
     def list_dns(self, zone_id):
         page = 1
         list_dns_resp = self.get(self.addr + f'zones/{zone_id}/dns_records', params={'page': page, 'per_page': 10})
+        if not list_dns_resp:
+            return
         subdomains = self.match_subdomains(self.domain, list_dns_resp.text)
         self.subdomains = self.subdomains.union(subdomains)
         if not self.subdomains:
@@ -67,14 +75,13 @@ class CloudFlareAPI(Query):
             sleep(5)
             self.list_dns(zone_id)
         else:
-            total_pages = list_dns_resp.json()['result_info']['total_pages']
             while True:
                 list_dns_resp = self.get(self.addr + f'zones/{zone_id}/dns_records',
                                          params={'page': page, 'per_page': 10})
-                total_pages = list_dns_resp.json(
-                )['result_info']['total_pages']
-                subdomains = (self.match_subdomains(
-                    self.domain, list_dns_resp.text))
+                if not list_dns_resp:
+                    return
+                total_pages = list_dns_resp.json()['result_info']['total_pages']
+                subdomains = (self.match_subdomains(self.domain, list_dns_resp.text))
                 self.subdomains = self.subdomains.union(subdomains)
                 page += 1
                 if page > total_pages:
