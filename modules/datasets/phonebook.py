@@ -22,6 +22,8 @@ class PhoneBook(Query):
         data = {"term": self.domain, "maxresults": 1000000, "media": 0, "target": 1,
                 "terminate": [], "timeout": 20}
         resp = self.post(url, json=data)
+        if not resp:
+            return
         json = resp.json()
         ids = json.get('id')
         if not ids:
