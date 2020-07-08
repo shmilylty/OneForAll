@@ -12,7 +12,7 @@ class GoogleAPI(Search):
         self.addr = 'https://www.googleapis.com/customsearch/v1'
         self.delay = 1
         self.key = api.google_api_key
-        self.cx = api.google_api_cx
+        self.id = api.google_api_id
         self.per_page_num = 10  # 每次只能请求10个结果
 
     def search(self, domain, filtered_subdomain='', full_search=False):
@@ -29,7 +29,7 @@ class GoogleAPI(Search):
             time.sleep(self.delay)
             self.header = self.get_header()
             self.proxy = self.get_proxy(self.source)
-            params = {'key': self.key, 'cx': self.cx,
+            params = {'key': self.key, 'cx': self.id,
                       'q': word, 'fields': 'items/link',
                       'start': self.page_num, 'num': self.per_page_num}
             resp = self.get(self.addr, params)
@@ -50,7 +50,7 @@ class GoogleAPI(Search):
         """
         类执行入口
         """
-        if not self.check(self.cx, self.key):
+        if not self.check(self.id, self.key):
             return
         self.begin()
         self.search(self.domain, full_search=True)
@@ -85,4 +85,4 @@ def do(domain):  # 统一入口名字 方便多线程调用
 
 
 if __name__ == '__main__':
-    do('example.com')
+    do('mi.com')
