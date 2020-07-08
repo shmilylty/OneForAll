@@ -22,7 +22,7 @@ class ThreatBookAPI(Query):
         resp = self.post(self.addr, params)
         if not resp:
             return
-        subdomains = self.match_subdomains(self.domain, str(resp.json()))
+        subdomains = self.match_subdomains(self.domain, resp.text)
         self.subdomains = self.subdomains.union(subdomains)
 
     def run(self):

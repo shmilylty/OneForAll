@@ -19,7 +19,7 @@ class CeBaidu(Query):
         resp = self.get(self.addr, params)
         if not resp:
             return
-        subdomains = self.match_subdomains(self.domain, str(resp.json()))
+        subdomains = self.match_subdomains(self.domain, resp.text)
         # 合并搜索子域名搜索结果
         self.subdomains = self.subdomains.union(subdomains)
 
