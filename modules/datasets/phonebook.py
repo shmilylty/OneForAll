@@ -15,11 +15,13 @@ class PhoneBook(Query):
         """
         self.header = self.get_header()
         self.proxy = self.get_proxy(self.source)
-        self.header.update({'Referer': 'https://phonebook.cz/', 'Origin': 'https://phonebook.cz'})
+        self.header.update({'Referer': 'https://phonebook.cz/',
+                            'Origin': 'https://phonebook.cz'})
         addr = 'https://public.intelx.io/phonebook/search'
-        key = 'ac572eea-3902-4e9a-972d-f5996d76174c'
+        key = 'd7d1ed06-f0c5-49d4-a9ca-a167e6d2ffab'
         url = f'{addr}?k={key}'
-        data = {"term": self.domain, "maxresults": 1000000, "media": 0, "target": 1,
+        data = {"term": self.domain, "maxresults": 10000,
+                "media": 0, "target": 1,
                 "terminate": [], "timeout": 20}
         resp = self.post(url, json=data)
         if not resp:
@@ -29,8 +31,10 @@ class PhoneBook(Query):
         if not ids:
             logger.log('ALERT', f'Get PhoneBook id fail')
             return
-        url = f'{addr}/result?k={key}&id={ids}&limit=1000000'
+        url = f'{addr}/result?k={key}&id={ids}&limit=10000'
         resp = self.get(url)
+        if not resp:
+            return
         subdomains = self.match_subdomains(self.domain, resp.text)
         self.subdomains = self.subdomains.union(subdomains)
 
@@ -57,4 +61,4 @@ def do(domain):  # 统一入口名字 方便多线程调用
 
 
 if __name__ == '__main__':
-    do('example.com')
+    do('freebuf.com')

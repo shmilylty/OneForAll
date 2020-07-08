@@ -20,32 +20,22 @@ class CheckRobots(Module):
         正则匹配域名的sitemap文件中的子域
         """
         urls = [f'http://{self.domain}/sitemap.xml',
-                f'https://{self.domain}/sitemap.xml',
                 f'http://www.{self.domain}/sitemap.xml',
-                f'https://www.{self.domain}/sitemap.xml',
                 f'http://{self.domain}/sitemap.txt',
-                f'https://{self.domain}/sitemap.txt',
                 f'http://www.{self.domain}/sitemap.txt',
-                f'https://www.{self.domain}/sitemap.txt',
                 f'http://{self.domain}/sitemap.html',
-                f'https://{self.domain}/sitemap.html',
                 f'http://www.{self.domain}/sitemap.html',
-                f'https://www.{self.domain}/sitemap.html',
                 f'http://{self.domain}/sitemap_index.xml',
-                f'https://{self.domain}/sitemap_index.xml',
-                f'http://www.{self.domain}/sitemap_index.xml',
-                f'https://www.{self.domain}/sitemap_index.xml']
+                f'http://www.{self.domain}/sitemap_index.xml']
         for url in urls:
             self.header = self.get_header()
             self.proxy = self.get_proxy(self.source)
             self.timeout = 10
-            response = self.get(url, check=False, allow_redirects=False)
-            if not response:
+            resp = self.get(url, check=False)
+            if not resp:
                 return
-            if response and len(response.content):
-                self.subdomains = self.match_subdomains(self.domain,
-                                                        response.text)
-
+            if resp and len(resp.content):
+                self.subdomains = self.match_subdomains(self.domain, resp.text)
 
     def run(self):
         """
