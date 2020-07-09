@@ -22,7 +22,7 @@ def get_limit_conn():
 
 
 def get_ports(port):
-    logger.log('DEBUG', f'Getting port range')
+    logger.log('DEBUG', 'Getting port range')
     ports = set()
     if isinstance(port, (set, list, tuple)):
         ports = port
@@ -30,17 +30,17 @@ def get_ports(port):
         if 0 <= port <= 65535:
             ports = {port}
     elif port in {'default', 'small', 'large'}:
-        logger.log('DEBUG', f'{port} port range')
+        logger.log('DEBUG', '{port} port range')
         ports = setting.ports.get(port)
     if not ports:  # 意外情况
-        logger.log('ERROR', f'The specified request port range is incorrect')
+        logger.log('ERROR', 'The specified request port range is incorrect')
         ports = {80}
-    logger.log('INFOR', f'Port range:{ports}')
+    logger.log('INFOR', 'Port range:{ports}')
     return set(ports)
 
 
 def gen_req_data(data, ports):
-    logger.log('INFOR', f'Generating request urls')
+    logger.log('INFOR', 'Generating request urls')
     new_data = []
     for data in data:
         resolve = data.get('resolve')
@@ -70,15 +70,15 @@ def gen_req_data(data, ports):
     return new_data
 
 
-async def fetch(session, url):
+async def fetch(session, method, url):
     """
     请求
 
     :param session: session对象
+    :param method: 请求方法
     :param str url: url地址
     :return: 响应对象和响应文本
     """
-    method = setting.request_method.upper()
     timeout = aiohttp.ClientTimeout(total=None,
                                     connect=None,
                                     sock_read=setting.sockread_timeout,
@@ -104,12 +104,10 @@ async def fetch(session, url):
                 except UnicodeError:
                     try:
                         # 再尝试用gb18030解码
-                        text = await resp.text(encoding='gb18030',
-                                               errors='strict')
+                        text = await resp.text(encoding='gb18030', errors='strict')
                     except UnicodeError:
                         # 最后尝试自动解码
-                        text = await resp.text(encoding=None,
-                                               errors='ignore')
+                        text = await resp.text(encoding=None, errors='ignore')
         return resp, text
     except Exception as e:
         return e
@@ -150,7 +148,7 @@ def get_title(markup):
 
     text = soup.text
     if len(text) <= 200:
-        return text
+        return repr(text)
 
     return 'None'
 
@@ -190,27 +188,45 @@ def get_connector():
                                 limit_per_host=setting.limit_per_host)
 
 
+async def async_request(urls):
+    results = list()
+    connector = get_connector()
+    header = utils.get_random_header()
+    async with ClientSession(connector=connector, headers=header) as session:
+        tasks = []
+        for i, url in enumerate(urls):
+            task = asyncio.ensure_future(fetch(session, 'GET', url))
+            tasks.append(task)
+        if tasks:
+            futures = asyncio.as_completed(tasks)
+            for future in tqdm.tqdm(futures,
+                                    total=len(tasks),
+                                    desc='Request Progress',
+                                    ncols=80):
+                result = await future
+                results.append(result)
+    return results
+
+
 async def bulk_request(data, port):
     ports = get_ports(port)
     no_req_data = utils.get_filtered_data(data)
     to_req_data = gen_req_data(data, ports)
-    method = setting.request_method
+    method = setting.request_method.upper()
     logger.log('INFOR', f'Use {method} method to request')
-    logger.log('INFOR', f'Async subdomains request in progress')
+    logger.log('INFOR', 'Async subdomains request in progress')
     connector = get_connector()
     header = utils.get_random_header()
     async with ClientSession(connector=connector, headers=header) as session:
         tasks = []
         for i, data in enumerate(to_req_data):
             url = data.get('url')
-            task = asyncio.ensure_future(fetch(session, url))
+            task = asyncio.ensure_future(fetch(session, method, url))
             task.add_done_callback(functools.partial(request_callback,
                                                      index=i,
                                                      datas=to_req_data))
             tasks.append(task)
-        # 任务列表里有任务不空时才进行解析
         if tasks:
-            # 等待所有task完成 错误聚合到结果列表里
             futures = asyncio.as_completed(tasks)
             for future in tqdm.tqdm(futures,
                                     total=len(tasks),
@@ -229,6 +245,13 @@ def set_loop_policy():
         asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
 
 
+def set_loop():
+    set_loop_policy()
+    loop = asyncio.get_event_loop()
+    asyncio.set_event_loop(loop)
+    return loop
+
+
 def run_request(domain, data, port):
     """
     HTTP request entrance
@@ -238,17 +261,24 @@ def run_request(domain, data, port):
     :param  str port: range of ports to be requested
     :return list: result
     """
-    logger.log('INFOR', f'Start subdomain request module')
-    set_loop_policy()
-    loop = asyncio.get_event_loop()
-    asyncio.set_event_loop(loop)
+    logger.log('INFOR', 'Start subdomain request module')
+    loop = set_loop()
     data = utils.set_id_none(data)
     request_coroutine = bulk_request(data, port)
     data = loop.run_until_complete(request_coroutine)
-    # 在关闭事件循环前加入一小段延迟让底层连接得到关闭的缓冲时间
     loop.run_until_complete(asyncio.sleep(0.25))
     count = utils.count_alive(data)
     logger.log('INFOR', f'Request module found {domain} have {count} alive subdomains')
+    return data
+
+
+def urls_request(urls):
+    logger.log('INFOR', 'Start urls request module')
+    loop = set_loop()
+    request_coroutine = async_request(urls)
+    data = loop.run_until_complete(request_coroutine)
+    loop.run_until_complete(asyncio.sleep(0.25))
+    logger.log('INFOR', 'End urls request module')
     return data
 
 
