@@ -40,7 +40,7 @@ class Domain(object):
         """
         data_storage_dir = setting.data_storage_dir
         extract_cache_file = data_storage_dir.joinpath('public_suffix_list.dat')
-        tldext = tldextract.TLDExtract(extract_cache_file)
+        tldext = tldextract.TLDExtract(extract_cache_file, None)
         result = self.match()
         if result:
             return tldext(result)
