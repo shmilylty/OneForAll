@@ -15,20 +15,24 @@ from common.database import Database
 from config.log import logger
 
 
-def export(table, db=None, alive=False, limit=None, path=None, format='csv', show=False):
+def domain_to_table(table):
+    return table.replace('.', '_') + "_now_result"
+
+
+def export(target, db=None, alive=False, limit=None, path=None, format='csv', show=False):
     """
     OneForAll export from database module
 
     Example:
-        python3 dbexport.py --table name --format csv --dir= ./result.csv
-        python3 dbexport.py --db result.db --table name --show False
+        python3 dbexport.py --target name --format csv --dir= ./result.csv
+        python3 dbexport.py --db result.db --target name --show False
 
     Note:
         --alive  True/False           Only export alive subdomains or not (default False)
         --format rst/csv/tsv/json/yaml/html/jira/xls/xlsx/dbf/latex/ods (result format)
         --path   Result directory (default directory is ./results)
 
-    :param str  table:   Table to be exported
+    :param str  target:   Table to be exported
     :param str  db:      Database path to be exported (default ./results/result.sqlite3)
     :param bool alive:   Only export the results of alive subdomains (default False)
     :param str  limit:   Export limit (default None)
@@ -38,19 +42,22 @@ def export(table, db=None, alive=False, limit=None, path=None, format='csv', sho
     """
 
     database = Database(db)
-    rows = database.export_data(table, alive, limit)
-    format = utils.check_format(format, len(rows))
-    path = utils.check_path(path, table, format)
-    if show:
-        print(rows.dataset)
-    data = rows.export(format)
+    domains = utils.get_domains(target)
+    datas = []
+    for domain in domains:
+        table_name = domain_to_table(domain)
+        rows = database.export_data(table_name, alive, limit)
+        if rows is None:
+            continue
+        format = utils.check_format(format, len(rows))
+        if show:
+            print(rows.dataset)
+        data = rows.as_dict()
+        datas.extend(data)
     database.close()
-    utils.save_data(path, data)
-    logger.log('ALERT', f'The subdomain result for {table}: {path}')
-    data_dict = rows.as_dict()
-    return data_dict
+    utils.export_all(alive, format, path, datas)
 
 
 if __name__ == '__main__':
-    fire.Fire(export)
-    # save('example_com_last', format='txt')
+    # fire.Fire(export)
+    export('example.com')
