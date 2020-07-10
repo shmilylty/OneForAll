@@ -23,35 +23,38 @@ class CloudFlareAPI(Query):
         query from source
         """
         account_id_resp = self.get(self.addr + 'accounts')
-        if account_id_resp.status_code != 200:
+        if account_id_resp:
+            if account_id_resp.status_code != 200:
+                return
+        else:
             return
         account_id = account_id_resp.json()['result'][0]['id']
         # query domain zone, if it not exist, create
         zones_resp = self.get(self.addr + 'zones',
                               params={'name': self.domain}, check=False)
-
-        if zones_resp.status_code == 200:
-            if zones_resp.json()['success'] and not zones_resp.json()['result']:
-                zone_id = self.create_zone(account_id)
-                if zone_id:
-                    self.list_dns(zone_id)
+        if zones_resp:
+            if zones_resp.status_code == 200:
+                if zones_resp.json()['success'] and not zones_resp.json()['result']:
+                    zone_id = self.create_zone(account_id)
+                    if zone_id:
+                        self.list_dns(zone_id)
+                        return
+                    else:
+                        return
+                elif zones_resp.json()['success']:
+                    zone_id = zones_resp.json()['result'][0]['id']
+                    delete_zone_resp = self.delete(self.addr + f'zones/{zone_id}', check=False)
+                    zone_id = self.create_zone(account_id)
+                    if zone_id:
+                        self.list_dns(zone_id)
                     return
-                else:
-                    return
-            elif zones_resp.json()['success']:
-                zone_id = zones_resp.json()['result'][0]['id']
-                delete_zone_resp = self.delete(self.addr + f'zones/{zone_id}', check=False)
-                zone_id = self.create_zone(account_id)
-                if zone_id:
-                    self.list_dns(zone_id)
+            elif zones_resp.status_code == 403:
+                logger.log('DEBUG',
+                           f'{self.domain} is banned or not a registered domain, so cannot be added to Cloudflare.')
                 return
-        elif zones_resp.status_code == 403:
-            logger.log('DEBUG',
-                       f'{self.domain} is banned or not a registered domain, so cannot be added to Cloudflare.')
-            return
-        else:
-            logger.log('DEBUG',
-                       f'{zones_resp.status_code} {zones_resp.text}')
+            else:
+                logger.log('DEBUG',
+                           f'{zones_resp.status_code} {zones_resp.text}')
         return
 
     def create_zone(self, account_id):
