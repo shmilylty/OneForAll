@@ -44,18 +44,20 @@ def export(target, db=None, alive=False, limit=None, path=None, format='csv', sh
     database = Database(db)
     domains = utils.get_domains(target)
     datas = []
-    for domain in domains:
-        table_name = domain_to_table(domain)
-        rows = database.export_data(table_name, alive, limit)
-        if rows is None:
-            continue
-        format = utils.check_format(format, len(rows))
-        if show:
-            print(rows.dataset)
-        data = rows.as_dict()
-        datas.extend(data)
+    if domains:
+        for domain in domains:
+            table_name = domain_to_table(domain)
+            rows = database.export_data(table_name, alive, limit)
+            if rows is None:
+                continue
+            format = utils.check_format(format, len(rows))
+            if show:
+                print(rows.dataset)
+            data = rows.as_dict()
+            datas.extend(data)
     database.close()
-    utils.export_all(alive, format, path, datas)
+    if datas:
+        utils.export_all(alive, format, path, datas)
 
 
 if __name__ == '__main__':
