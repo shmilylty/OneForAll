@@ -129,7 +129,7 @@ class OneForAll(object):
         :rtype: list
         """
         db = Database()
-        data = dbexport.export(table, alive=self.alive, format=self.format)
+        data = dbexport.export(table, type='table', alive=self.alive, format=self.format)
         db.drop_table(self.new_table)
         db.rename_table(self.domain, self.new_table)
         db.close()
