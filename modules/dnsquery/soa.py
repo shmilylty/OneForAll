@@ -4,7 +4,7 @@ from common.lookup import Lookup
 class QuerySOA(Lookup):
     def __init__(self, domain):
         Lookup.__init__(self)
-        self.domain = self.register(domain)
+        self.domain = self.get_maindomain(domain)
         self.module = 'dnsquery'
         self.source = "QuerySOA"
         self.type = 'SOA'  # 利用的DNS记录的SOA记录收集子域

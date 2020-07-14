@@ -5,7 +5,7 @@ from common.query import Query
 class SecurityTrailsAPI(Query):
     def __init__(self, domain):
         Query.__init__(self)
-        self.domain = self.register(domain)
+        self.domain = self.get_maindomain(domain)
         self.module = 'Dataset'
         self.source = 'SecurityTrailsAPIQuery'
         self.addr = 'https://api.securitytrails.com/v1/domain/'

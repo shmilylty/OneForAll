@@ -6,7 +6,7 @@ from config.log import logger
 class BufferOver(Query):
     def __init__(self, domain):
         Query.__init__(self)
-        self.domain = self.register(domain)
+        self.domain = self.get_maindomain(domain)
         self.module = 'Dataset'
         self.source = 'BufferOverQuery'
         self.addr = 'https://dns.bufferover.run/dns?q='
@@ -26,7 +26,7 @@ class BufferOver(Query):
             return
         if resp.status_code != 200:
             return
-        subdomains = self.match_subdomains(self.domain, resp.text)
+        subdomains = self.match_subdomains(resp.text)
         # 合并搜索子域名搜索结果
         self.subdomains = self.subdomains.union(subdomains)
 

@@ -5,7 +5,7 @@ from common.query import Query
 class ThreatBookAPI(Query):
     def __init__(self, domain):
         Query.__init__(self)
-        self.domain = self.register(domain)
+        self.domain = self.get_maindomain(domain)
         self.module = 'Intelligence'
         self.source = 'ThreatBookAPIQuery'
         self.addr = 'https://api.threatbook.cn/v3/domain/sub_domains'
@@ -22,7 +22,7 @@ class ThreatBookAPI(Query):
         resp = self.post(self.addr, params)
         if not resp:
             return
-        subdomains = self.match_subdomains(self.domain, resp.text)
+        subdomains = self.match_subdomains(resp.text)
         self.subdomains = self.subdomains.union(subdomains)
 
     def run(self):

@@ -5,7 +5,7 @@ from common.query import Query
 class ChinazAPI(Query):
     def __init__(self, domain):
         Query.__init__(self)
-        self.domain = self.register(domain)
+        self.domain = self.get_maindomain(domain)
         self.module = 'Dataset'
         self.source = 'ChinazAPIQuery'
         self.addr = 'https://apidata.chinaz.com/CallAPI/Alexa'
@@ -21,7 +21,7 @@ class ChinazAPI(Query):
         resp = self.get(self.addr, params)
         if not resp:
             return
-        subdomains = self.match_subdomains(self.domain, resp.text)
+        subdomains = self.match_subdomains(resp.text)
         # 合并搜索子域名搜索结果
         self.subdomains = self.subdomains.union(subdomains)
 

@@ -4,7 +4,7 @@ from common.lookup import Lookup
 class QueryNS(Lookup):
     def __init__(self, domain):
         Lookup.__init__(self)
-        self.domain = self.register(domain)
+        self.domain = self.get_maindomain(domain)
         self.module = 'dnsquery'
         self.source = "QueryNS"
         self.type = 'NS'  # 利用的DNS记录的NS记录收集子域

@@ -8,7 +8,7 @@ from common import utils
 class CheckNSEC(Module):
     def __init__(self, domain):
         Module.__init__(self)
-        self.domain = self.register(domain)
+        self.domain = self.get_maindomain(domain)
         self.module = 'check'
         self.source = "CheckNSEC"
 
@@ -21,7 +21,7 @@ class CheckNSEC(Module):
             subdomain = str()
             for item in answer:
                 record = item.to_text()
-                subdomains = self.match_subdomains(self.domain, record)
+                subdomains = self.match_subdomains(record)
                 subdomain = ''.join(subdomains)  # 其实这里的subdomains的长度为1 也就是说只会有一个子域
                 self.subdomains = self.subdomains.union(subdomains)
                 self.gen_record(subdomains, record)

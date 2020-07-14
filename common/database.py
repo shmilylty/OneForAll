@@ -97,22 +97,21 @@ class Database(object):
         :param list results: results list
         :param str module_name: mo
         """
-        logger.log('TRACE',
-                   f'Saving the subdomain results of {table_name} found by module {module_name} into database')
+        logger.log('TRACE', f'Saving the subdomain results of {table_name} '
+                            f'found by module {module_name} into database')
         table_name = table_name.replace('.', '_')
         if results:
             try:
                 self.conn.bulk_query(
-                    f'insert into "{table_name}" ('
-                    f'id, type, alive, resolve, request, new, url, subdomain,'
-                    f'port, level, cname, content, public, status, reason,'
-                    f'title, banner, header, response, times, ttl, cidr, asn,'
-                    f'ip2region, ip2location, resolver, module, source, elapse, find, brute, valid) '
-                    f'values (:id, :type, :alive, :resolve, :request, :new,'
-                    f':url, :subdomain, :port, :level, :cname, :content,'
-                    f':public, :status, :reason, :title, :banner, :header,'
-                    f':response, :times, :ttl, :cidr, :asn, :ip2region, :ip2location, :resolver,'
-                    f':module, :source, :elapse, :find, :brute, :valid)', results)
+                    f'insert into "{table_name}" (id, type, alive, resolve, request, new,'
+                    f'url, subdomain, port, level, cname, content, public, status, reason,'
+                    f'title, banner, header, response, times, ttl, cidr, asn, ip2region,'
+                    f'ip2location, resolver, module, source, elapse, find, brute, valid) '
+                    f'values (:id, :type, :alive, :resolve, :request, :new, :url, '
+                    f':subdomain, :port, :level, :cname, :content, :public, :status,'
+                    f':reason, :title, :banner, :header, :response, :times, :ttl, :cidr,'
+                    f':asn, :ip2region, :ip2location, :resolver, :module, :source,'
+                    f':elapse, :find, :brute, :valid)', results)
             except Exception as e:
                 logger.log('ERROR', e)
 

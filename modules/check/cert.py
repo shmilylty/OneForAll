@@ -14,7 +14,7 @@ from config.log import logger
 class CheckCert(Module):
     def __init__(self, domain):
         Module.__init__(self)
-        self.domain = self.register(domain)
+        self.domain = self.get_maindomain(domain)
         self.port = 443  # ssl port
         self.module = 'Check'
         self.source = 'CertInfo'
@@ -32,7 +32,7 @@ class CheckCert(Module):
         except Exception as e:
             logger.log('DEBUG', e.args)
             return
-        subdomains = self.match_subdomains(self.domain, str(cert_dict))
+        subdomains = self.match_subdomains(str(cert_dict))
         self.subdomains = self.subdomains.union(subdomains)
 
     def run(self):

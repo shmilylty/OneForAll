@@ -4,7 +4,7 @@ from common.query import Query
 class Ximcx(Query):
     def __init__(self, domain):
         Query.__init__(self)
-        self.domain = self.register(domain)
+        self.domain = self.get_maindomain(domain)
         self.module = 'Dataset'
         self.source = 'XimcxQuery'
         self.addr = 'http://sbd.ximcx.cn/DomainServlet'
@@ -20,7 +20,7 @@ class Ximcx(Query):
         if not resp:
             return
         json = resp.json()
-        subdomains = self.match_subdomains(self.domain, str(json))
+        subdomains = self.match_subdomains(str(json))
         # 合并搜索子域名搜索结果
         self.subdomains = self.subdomains.union(subdomains)
 
