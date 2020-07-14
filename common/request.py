@@ -165,19 +165,18 @@ def request_callback(future, index, datas):
         resp, text = result
         datas[index]['reason'] = resp.reason
         datas[index]['status'] = resp.status
+        datas[index]['request'] = 1
         if resp.status == 400 or resp.status >= 500:
-            datas[index]['request'] = 0
             datas[index]['alive'] = 0
         else:
-            datas[index]['request'] = 1
             datas[index]['alive'] = 1
-            headers = resp.headers
-            datas[index]['banner'] = utils.get_sample_banner(headers)
-            datas[index]['header'] = str(dict(headers))[1:-1]
-            if isinstance(text, str):
-                title = get_title(text).strip()
-                datas[index]['title'] = utils.remove_invalid_string(title)
-                datas[index]['response'] = utils.remove_invalid_string(text)
+        headers = resp.headers
+        datas[index]['banner'] = utils.get_sample_banner(headers)
+        datas[index]['header'] = str(dict(headers))[1:-1]
+        if isinstance(text, str):
+            title = get_title(text).strip()
+            datas[index]['title'] = utils.remove_invalid_string(title)
+            datas[index]['response'] = utils.remove_invalid_string(text)
 
 
 def get_connector():
