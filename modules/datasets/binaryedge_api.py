@@ -5,7 +5,7 @@ from common.query import Query
 class BinaryEdgeAPI(Query):
     def __init__(self, domain):
         Query.__init__(self)
-        self.domain = self.register(domain)
+        self.domain = self.get_maindomain(domain)
         self.module = 'Dataset'
         self.source = 'BinaryEdgeAPIQuery'
         self.addr = 'https://api.binaryedge.io/v2/query/domains/subdomain/'
@@ -22,7 +22,7 @@ class BinaryEdgeAPI(Query):
         resp = self.get(url)
         if not resp:
             return
-        subdomains = self.match_subdomains(self.domain, resp.text)
+        subdomains = self.match_subdomains(resp.text)
         self.subdomains = self.subdomains.union(subdomains)
 
     def run(self):

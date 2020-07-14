@@ -6,7 +6,7 @@ from common.query import Query
 class DNSdbAPI(Query):
     def __init__(self, domain):
         Query.__init__(self)
-        self.domain = self.register(domain)
+        self.domain = self.get_maindomain(domain)
         self.module = 'Dataset'
         self.source = 'DNSdbAPIQuery'
         self.addr = 'https://api.dnsdb.info/lookup/rrset/name/'
@@ -23,7 +23,7 @@ class DNSdbAPI(Query):
         resp = self.get(url)
         if not resp:
             return
-        subdomains = self.match_subdomains(self.domain, resp.text)
+        subdomains = self.match_subdomains(resp.text)
         # 合并搜索子域名搜索结果
         self.subdomains = self.subdomains.union(subdomains)
 

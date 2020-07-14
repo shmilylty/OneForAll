@@ -10,7 +10,7 @@ class Gitee(Search):
         self.source = 'GiteeSearch'
         self.module = 'Search'
         self.addr = 'https://search.gitee.com/'
-        self.domain = self.register(domain)
+        self.domain = self.get_maindomain(domain)
         self.header = self.get_header()
 
     def search(self, full_search=False):
@@ -34,7 +34,7 @@ class Gitee(Search):
             if 'class="empty-box"' in resp.text:
                 break
             soup = BeautifulSoup(resp.text, 'html.parser')
-            subdomains = self.match_subdomains(self.domain, soup.text)
+            subdomains = self.match_subdomains(soup.text, fuzzy=False)
             if not subdomains:
                 break
             if not full_search:

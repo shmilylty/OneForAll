@@ -4,7 +4,7 @@ from common.query import Query
 class Riddler(Query):
     def __init__(self, domain):
         Query.__init__(self)
-        self.domain = self.register(domain)
+        self.domain = self.get_maindomain(domain)
         self.module = 'Dataset'
         self.source = 'RiddlerQuery'
         self.addr = 'https://riddler.io/search'
@@ -19,7 +19,7 @@ class Riddler(Query):
         resp = self.get(self.addr, params)
         if not resp:
             return
-        subdomains = self.match_subdomains(self.domain, resp.text)
+        subdomains = self.match_subdomains(resp.text)
         # 合并搜索子域名搜索结果
         self.subdomains = self.subdomains.union(subdomains)
 

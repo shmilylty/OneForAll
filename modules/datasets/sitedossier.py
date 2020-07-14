@@ -5,7 +5,7 @@ from common.query import Query
 class SiteDossier(Query):
     def __init__(self, domain):
         Query.__init__(self)
-        self.domain = self.register(domain)
+        self.domain = self.get_maindomain(domain)
         self.module = 'Dataset'
         self.source = 'SiteDossierQuery'
         self.addr = 'http://www.sitedossier.com/parentdomain/'
@@ -24,7 +24,7 @@ class SiteDossier(Query):
             resp = self.get(url)
             if not resp:
                 return
-            subdomains = self.match_subdomains(self.domain, resp.text)
+            subdomains = self.match_subdomains(resp.text)
             if not subdomains:  # 搜索没有发现子域名则停止搜索
                 break
             # 合并搜索子域名搜索结果

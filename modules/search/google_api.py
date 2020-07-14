@@ -35,7 +35,7 @@ class GoogleAPI(Search):
             resp = self.get(self.addr, params)
             if not resp:
                 return
-            subdomains = self.match_subdomains(domain, resp.text)
+            subdomains = self.match_subdomains(resp.text)
             if not subdomains:
                 break
             if not full_search:

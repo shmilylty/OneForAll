@@ -6,7 +6,7 @@ from config.log import logger
 class CensysAPI(Query):
     def __init__(self, domain):
         Query.__init__(self)
-        self.domain = self.register(domain)
+        self.domain = self.get_maindomain(domain)
         self.module = 'Certificate'
         self.source = "CensysAPIQuery"
         self.addr = 'https://www.censys.io/api/v1/search/certificates'
@@ -33,7 +33,7 @@ class CensysAPI(Query):
         if status != 'ok':
             logger.log('ALERT', f'{self.source} module {status}')
             return
-        subdomains = self.match_subdomains(self.domain, str(json))
+        subdomains = self.match_subdomains(resp.text)
         self.subdomains = self.subdomains.union(subdomains)
         pages = json.get('metadata').get('pages')
         for page in range(2, pages + 1):
@@ -41,7 +41,7 @@ class CensysAPI(Query):
             resp = self.post(self.addr, json=data, auth=(self.id, self.secret))
             if not resp:
                 return
-            subdomains = self.match_subdomains(self.domain, resp.text)
+            subdomains = self.match_subdomains(resp.text)
             self.subdomains = self.subdomains.union(subdomains)
 
     def run(self):

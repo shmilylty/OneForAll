@@ -14,7 +14,7 @@ class CheckCSP(Module):
     """
     def __init__(self, domain, header):
         Module.__init__(self)
-        self.domain = self.register(domain)
+        self.domain = self.get_maindomain(domain)
         self.module = 'Check'
         self.source = 'ContentSecurityPolicy'
         self.csp_header = header
@@ -52,7 +52,7 @@ class CheckCSP(Module):
         if not csp:
             logger.log('DEBUG', f'There is no Content-Security-Policy in the header of {self.domain}')
             return
-        self.subdomains = self.match_subdomains(self.domain, csp)
+        self.subdomains = self.match_subdomains(csp)
 
     def run(self):
         """
