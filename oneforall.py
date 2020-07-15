@@ -198,7 +198,7 @@ class OneForAll(object):
         # Resolve subdomains
         self.data = resolve.run_resolve(self.domain, self.data)
         # Save resolve results
-        resolve.save_data(self.resolve_table, self.data)
+        resolve.save_db(self.resolve_table, self.data)
 
         # Export results without HTTP request
         if not self.req:
@@ -207,7 +207,7 @@ class OneForAll(object):
         # HTTP request
         self.data = request.run_request(self.domain, self.data, self.port)
         # Save HTTP request result
-        request.save_data(self.domain, self.data)
+        request.save_db(self.domain, self.data)
 
         # Add the final result list to the total data list
         self.datas.extend(self.data)

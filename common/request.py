@@ -281,7 +281,7 @@ def urls_request(urls):
     return data
 
 
-def save_data(name, data):
+def save_db(name, data):
     """
     Save request results to database
 

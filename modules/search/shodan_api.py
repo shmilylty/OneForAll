@@ -5,7 +5,7 @@ from common.search import Search
 class ShodanAPI(Search):
     def __init__(self, domain):
         Search.__init__(self)
-        self.domain = self.register(domain)
+        self.domain = self.get_maindomain(domain)
         self.module = 'Search'
         self.source = 'ShodanAPISearch'
         self.addr = 'https://api.shodan.io/shodan/host/search'
@@ -25,7 +25,7 @@ class ShodanAPI(Search):
             resp = self.get(self.addr, params)
             if not resp:
                 return
-            subdomains = self.match_subdomains(self.domain, resp.text)
+            subdomains = self.match_subdomains(resp.text)
             if not subdomains:  # 搜索没有发现子域名则停止搜索
                 break
             if subdomains:

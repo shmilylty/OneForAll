@@ -79,7 +79,7 @@ class CloudFlareAPI(Query):
             logger.log('DEBUG',
                        f'{list_dns_resp.status_code} {list_dns_resp.text}')
             return
-        subdomains = self.match_subdomains(self.domain, list_dns_resp.text)
+        subdomains = self.match_subdomains(list_dns_resp.text)
         self.subdomains = self.subdomains.union(subdomains)
         if not self.subdomains:
             # waiting for cloudflare enumerate subdomains
@@ -94,7 +94,7 @@ class CloudFlareAPI(Query):
                                f'{list_dns_resp.status_code} {list_dns_resp.text}')
                     return
                 total_pages = list_dns_resp.json()['result_info']['total_pages']
-                subdomains = (self.match_subdomains(self.domain, list_dns_resp.text))
+                subdomains = (self.match_subdomains(list_dns_resp.text))
                 self.subdomains = self.subdomains.union(subdomains)
                 page += 1
                 if page > total_pages:

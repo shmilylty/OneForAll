@@ -12,6 +12,7 @@ module_dir = relative_directory.joinpath('modules')  # OneForAll模块目录
 third_party_dir = relative_directory.joinpath('thirdparty')  # 三方工具目录
 data_storage_dir = relative_directory.joinpath('data')  # 数据存放目录
 result_save_dir = relative_directory.joinpath('results')  # 结果保存目录
+temp_save_dir = result_save_dir.joinpath('temp')
 
 # OneForAll入口参数设置
 enable_check_version = True  # 开启最新版本检查

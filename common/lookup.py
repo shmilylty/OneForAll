@@ -20,7 +20,7 @@ class Lookup(Module):
             return None
         for item in answer:
             record = item.to_text()
-            subdomains = self.match_subdomains(self.domain, record)
+            subdomains = self.match_subdomains(record)
             self.subdomains = self.subdomains.union(subdomains)
             self.gen_record(subdomains, record)
         return self.subdomains

@@ -5,7 +5,7 @@ from common.query import Query
 class DNSdumpster(Query):
     def __init__(self, domain):
         Query.__init__(self)
-        self.domain = self.register(domain)
+        self.domain = self.get_maindomain(domain)
         self.module = 'Dataset'
         self.source = "DNSdumpsterQuery"
         self.addr = 'https://dnsdumpster.com/'
@@ -26,7 +26,7 @@ class DNSdumpster(Query):
         resp = self.post(self.addr, data)
         if not resp:
             return
-        subdomains = self.match_subdomains(self.domain, resp.text)
+        subdomains = self.match_subdomains(resp.text)
         if subdomains:
             # 合并搜索子域名搜索结果
             self.subdomains = self.subdomains.union(subdomains)

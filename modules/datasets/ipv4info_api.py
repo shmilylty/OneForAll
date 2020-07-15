@@ -6,7 +6,7 @@ from config.log import logger
 class IPv4InfoAPI(Query):
     def __init__(self, domain):
         Query.__init__(self)
-        self.domain = self.register(domain)
+        self.domain = self.get_maindomain(domain)
         self.module = 'Dataset'
         self.source = 'IPv4InfoAPIQuery'
         self.addr = ' http://ipv4info.com/api_v1/'
@@ -32,7 +32,7 @@ class IPv4InfoAPI(Query):
             except Exception as e:
                 logger.log('DEBUG', e.args)
                 break
-            subdomains = self.match_subdomains(self.domain, str(json))
+            subdomains = self.match_subdomains(str(json))
             if not subdomains:
                 break
             # 合并搜索子域名搜索结果

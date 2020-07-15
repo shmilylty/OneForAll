@@ -54,7 +54,7 @@ class Baidu(Search):
                 # 获取百度跳转URL响应头的Location字段获取直链
                 subdomains = self.redirect_match(domain, resp.text)
             else:
-                subdomains = self.match_subdomains(domain, resp.text)
+                subdomains = self.match_subdomains(resp.text, fuzzy=False)
             if not subdomains:  # 搜索没有发现子域名则停止搜索
                 break
             if not full_search:

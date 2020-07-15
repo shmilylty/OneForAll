@@ -12,7 +12,7 @@ class CheckCDX(Module):
     """
     def __init__(self, domain: str):
         Module.__init__(self)
-        self.domain = self.register(domain)
+        self.domain = self.get_maindomain(domain)
         self.module = 'Check'
         self.source = "CrossDomainXml"
 
@@ -31,7 +31,7 @@ class CheckCDX(Module):
             if not resp:
                 return
             if resp and len(resp.content):
-                self.subdomains = self.match_subdomains(self.domain, resp.text)
+                self.subdomains = self.match_subdomains(resp.text)
 
     def run(self):
         """

@@ -218,7 +218,8 @@ def collect_wildcard_record(domain, authoritative_ns):
             ip, ttl = get_wildcard_record(random_subdomain, resolver)
         except Exception as e:
             logger.log('DEBUG', e.args)
-            logger.log('ALERT', f'Multiple query errors, try to query a new random subdomain')
+            logger.log('ALERT', f'Multiple query errors,'
+                                f'try to query a new random subdomain')
             continue
         if ip is None:
             continue
@@ -255,7 +256,8 @@ def check_dict():
     if not setting.enable_check_dict:
         return
     sec = setting.check_time
-    logger.log('ALERT', f'You have {sec} seconds to check whether the configuration is correct or not')
+    logger.log('ALERT', f'You have {sec} seconds to check '
+                        f'whether the configuration is correct or not')
     logger.log('ALERT', f'If you want to exit, please use `Ctrl + C`')
     try:
         time.sleep(sec)
@@ -324,7 +326,8 @@ def stat_ip_times(result_paths):
                     items = json.loads(line)
                 except Exception as e:
                     logger.log('ERROR', e.args)
-                    logger.log('ERROR', f'Error parsing {result_path} line {line} Skip this line')
+                    logger.log('ERROR', f'Error parsing {result_path} '
+                                        f'line {line} Skip this line')
                     continue
                 status = items.get('status')
                 if status != 'NOERROR':
@@ -360,7 +363,8 @@ def deal_output(output_paths, ip_times, wildcard_ips, wildcard_ttl):
                 qname = items.get('name')[:-1]  # 去除最右边的`.`点号
                 status = items.get('status')
                 if status != 'NOERROR':
-                    logger.log('TRACE', f'Found {qname}\'s result {status} while processing {line}')
+                    logger.log('TRACE', f'Found {qname}\'s result {status} '
+                                        f'while processing {line}')
                     continue
                 data = items.get('data')
                 if 'answers' not in data:
@@ -504,7 +508,7 @@ class Brute(Module):
         if self.place is None:
             self.place = '*.' + domain
         wordlist = self.wordlist
-        main_domain = self.register(domain)
+        main_domain = self.get_maindomain(domain)
         if domain != main_domain:
             wordlist = self.recursive_nextlist
         if self.word:
@@ -519,7 +523,8 @@ class Brute(Module):
         count = len(dict_set)
         logger.log('INFOR', f'Dictionary size: {count}')
         if count > 10000000:
-            logger.log('ALERT', f'The dictionary generated is too large：{count} > 10000000')
+            logger.log('ALERT', f'The generated dictionary is '
+                                f'too large {count} > 10000000')
         return dict_set
 
     def check_brute_params(self):
