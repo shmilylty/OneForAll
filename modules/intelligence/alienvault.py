@@ -4,7 +4,7 @@ from common.query import Query
 class AlienVault(Query):
     def __init__(self, domain):
         Query.__init__(self)
-        self.domain = self.register(domain)
+        self.domain = self.get_maindomain(domain)
         self.module = 'Intelligence'
         self.source = 'AlienVaultQuery'
 
@@ -21,7 +21,7 @@ class AlienVault(Query):
         if not resp:
             return
         json = resp.json()
-        subdomains = self.match_subdomains(self.domain, str(json))
+        subdomains = self.match_subdomains(str(json))
         self.subdomains = self.subdomains.union(subdomains)
 
         url = f'{base}/{self.domain}/url_list'
@@ -29,7 +29,7 @@ class AlienVault(Query):
         if not resp:
             return
         json = resp.json()
-        subdomains = self.match_subdomains(self.domain, str(json))
+        subdomains = self.match_subdomains(str(json))
         self.subdomains = self.subdomains.union(subdomains)
 
     def run(self):

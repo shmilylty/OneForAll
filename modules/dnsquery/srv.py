@@ -14,7 +14,7 @@ from config.setting import data_storage_dir
 class BruteSRV(Module):
     def __init__(self, domain):
         Module.__init__(self)
-        self.domain = self.register(domain)
+        self.domain = self.get_maindomain(domain)
         self.module = 'dnsquery'
         self.source = "BruteSRV"
         self.type = 'SRV'  # 利用的DNS记录的SRV记录查询子域
@@ -50,7 +50,7 @@ class BruteSRV(Module):
                 continue
             for item in answer:
                 record = str(item)
-                subdomains = self.match_subdomains(self.domain, record)
+                subdomains = self.match_subdomains(record)
                 self.subdomains = self.subdomains.union(subdomains)
                 self.gen_record(subdomains, record)
 

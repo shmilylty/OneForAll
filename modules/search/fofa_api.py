@@ -37,7 +37,7 @@ class FoFa(Search):
             if not resp:
                 return
             resp_json = resp.json()
-            subdomains = self.match_subdomains(self.domain, str(resp_json))
+            subdomains = self.match_subdomains(resp.text)
             if not subdomains:  # 搜索没有发现子域名则停止搜索
                 break
             self.subdomains = self.subdomains.union(subdomains)

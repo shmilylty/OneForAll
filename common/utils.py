@@ -237,6 +237,21 @@ def save_data(path, data):
         return False
 
 
+def remove_data(path):
+    """
+    删除保存数据的文件
+
+    :param path: 路径
+    :return: 删除成功与否
+    """
+    try:
+        path.unlink()
+    except Exception as e:
+        logger.log('ERROR', e.args)
+        return False
+    return True
+
+
 def check_response(method, resp):
     """
     检查响应 输出非正常响应返回json的信息

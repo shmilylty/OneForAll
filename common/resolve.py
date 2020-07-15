@@ -48,7 +48,7 @@ def update_data(data, records):
     return data
 
 
-def save_data(name, data):
+def save_db(name, data):
     """
     保存解析结果到数据库
 

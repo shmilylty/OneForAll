@@ -22,7 +22,7 @@ class CheckAXFR(Module):
 
     def __init__(self, domain: str):
         Module.__init__(self)
-        self.domain = self.register(domain)
+        self.domain = self.get_maindomain(domain)
         self.module = 'Check'
         self.source = 'AXFRCheck'
         self.results = []
@@ -45,7 +45,7 @@ class CheckAXFR(Module):
         names = zone.nodes.keys()
         for name in names:
             full_domain = str(name) + '.' + self.domain
-            subdomain = self.match_subdomains(self.domain, full_domain)
+            subdomain = self.match_subdomains(full_domain)
             self.subdomains = self.subdomains.union(subdomain)
             record = zone[name].to_text(name)
             self.results.append(record)

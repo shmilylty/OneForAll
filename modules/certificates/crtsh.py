@@ -5,7 +5,7 @@ from common.query import Query
 class Crtsh(Query):
     def __init__(self, domain):
         Query.__init__(self)
-        self.domain = self.register(domain)
+        self.domain = self.get_maindomain(domain)
         self.module = 'Certificate'
         self.source = 'CrtshQuery'
         self.addr = 'https://crt.sh/'
@@ -21,7 +21,7 @@ class Crtsh(Query):
         if not resp:
             return
         text = resp.text.replace(r'\n', ' ')
-        subdomains = self.match_subdomains(self.domain, text)
+        subdomains = self.match_subdomains(text)
         self.subdomains = self.subdomains.union(subdomains)
 
     def run(self):

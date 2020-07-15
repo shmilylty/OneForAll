@@ -10,7 +10,7 @@ class GithubAPI(Search):
         self.source = 'GithubAPISearch'
         self.module = 'Search'
         self.addr = 'https://api.github.com/search/code'
-        self.domain = self.register(domain)
+        self.domain = self.get_maindomain(domain)
         self.session = requests.Session()
         self.auth_url = 'https://api.github.com'
         self.token = api.github_api_token
@@ -60,7 +60,7 @@ class GithubAPI(Search):
             if resp.status_code != 200:
                 logger.log('ERROR', f'{self.source} module query failed')
                 break
-            subdomains = self.match_subdomains(self.domain, resp.text)
+            subdomains = self.match_subdomains(resp.text)
             if not subdomains:
                 break
             self.subdomains = self.subdomains.union(subdomains)
