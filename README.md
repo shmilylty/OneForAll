@@ -68,11 +68,22 @@ git pull
 
 **✔安装步骤（docker 版）**
 
+首先下载并编辑配置文件，添加自己的`api`和个性化设置，并保留原始文件结构
+
+```
+config
+├── api.py
+├── log.py
+└── setting.py
+```
+
+拉取镜像并执行，其中`~/.config`替换为你自己配置文件所在文件夹的路径
+
 ```shell
 docker pull shmilylty/oneforall
-docker run -it --rm -v ~/results:/OneForAll/results oneforall
+docker run -it --rm -v ~/results:/OneForAll/results -v ~/.config:/OneForAll/config oneforall --target example.com run
 ```
-结果会输出在本地目录`~/results`
+参数直接加在指令末尾，结果会输出在本地目录`~/results`，如需保存到其他位置，可以自行修改
 
 **✨使用演示**
 
@@ -241,7 +252,7 @@ FLAGS
 7. 常见中文单词拼音和常见英文单词。
 8. 从以上获取的字典做优化排序以及脏数据去除处理。
 9. 非常欢迎你贡献更好的字典。
- 
+
 ## 👏用到框架
 
 * [aiodns](https://github.com/saghul/aiodns) - 简单DNS异步解析库。
