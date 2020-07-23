@@ -276,8 +276,8 @@ FLAGS
 
 - [ ] 各模块持续优化和完善
 - [x] 子域监控（标记每次新发现的子域）
-- [ ] 子域收集爬虫实现（包括从JS等静态资源文件中收集子域）
-- [ ] 操作强大交互人性的前端界面实现（暂定：前端：Element + 后端：Flask）
+- [x] 子域收集爬虫实现（包括从JS等静态资源文件中收集子域）
+- [ ] 操作强大交互人性的前端界面实现
 
 更多详细信息请阅读[todo.md](https://github.com/shmilylty/OneForAll/tree/master/docs/todo.md)。
 

@@ -212,39 +212,7 @@ class Module(object):
             return self.proxy
 
     def match_subdomains(self, html, distinct=True, fuzzy=True):
-        """
-        Use regexp to match subdomains
-
-        :param  str html: response html text
-        :param  bool distinct: deduplicate results or not (default True)
-        :param  bool fuzzy: fuzzy match subdomain or not (default True)
-        :return set/list: result set or list
-        """
-        logger.log('TRACE', f'Use regexp to match subdomains in the response body')
-        if fuzzy:
-            regexp = r'(?:[a-z0-9](?:[a-z0-9\-]{0,61}[a-z0-9])?\.){0,}' \
-                     + self.domain.replace('.', r'\.')
-            result = re.findall(regexp, html, re.I)
-            if not result:
-                return set()
-            deal = map(lambda s: s.lower(), result)
-            if distinct:
-                return set(deal)
-            else:
-                return list(deal)
-        else:
-            regexp = r'(?:\>|\"|\'|\=|\,)(?:http\:\/\/|https\:\/\/)?' \
-                     r'(?:[a-z0-9](?:[a-z0-9\-]{0,61}[a-z0-9])?\.){0,}' \
-                     + self.domain.replace('.', r'\.')
-            result = re.findall(regexp, html, re.I)
-        if not result:
-            return set()
-        regexp = r'(?:http://|https://)'
-        deal = map(lambda s: re.sub(regexp, '', s[1:].lower()), result)
-        if distinct:
-            return set(deal)
-        else:
-            return list(deal)
+        return utils.match_subdomains(self.domain, html, distinct, fuzzy)
 
     @staticmethod
     def get_maindomain(domain):
@@ -305,11 +273,11 @@ class Module(object):
                       'new': None,
                       'url': None,
                       'subdomain': None,
+                      'port': None,
                       'level': None,
                       'cname': None,
                       'content': None,
                       'public': None,
-                      'port': None,
                       'status': None,
                       'reason': None,
                       'title': None,
@@ -369,11 +337,11 @@ class Module(object):
                           'new': None,
                           'url': url,
                           'subdomain': subdomain,
+                          'port': 80,
                           'level': level,
                           'cname': cname,
                           'content': content,
                           'public': public,
-                          'port': 80,
                           'status': None,
                           'reason': reason,
                           'title': None,

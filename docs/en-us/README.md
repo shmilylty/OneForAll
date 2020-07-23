@@ -274,8 +274,8 @@ Very warmly welcome all people to make OneForAll better together!
 
 - [ ] Continuous optimize and improve of each module
 - [x] Subdomain monitoring (mark newly discovered subdomain)
-- [ ] Subdomain collection crawler (collect subdomains from static files such as JS)
-- [ ] Implementation of front-end interface for powerful interaction (tentative: front-end: Element + back-end: Flask)
+- [x] Subdomain collection crawler (collect subdomains from static files such as JS)
+- [ ] Implementation of front-end interface for powerful interaction
 
 For more details, read [todo.md](https://github.com/shmilylty/OneForAll/tree/master/docs/todo.md).
 
