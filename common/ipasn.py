@@ -66,7 +66,7 @@ class IPAsnInfo(object):
             result = {"cidr": asn[2], "asn": f'AS{asn[3]} {asn[4]}'}
             return result
         else:
-            return None
+            return {"cidr": "", "asn": ""}
 
 
 if __name__ == "__main__":
