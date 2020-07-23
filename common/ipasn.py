@@ -14,8 +14,8 @@ class Entry(object):
 
 class IPAsnData(object):
     def __init__(self):
-        zip_path = data_storage_dir.joinpath("IP2LOCATION-LITE-ASN.CSV.ZIP")
-        csv_path = data_storage_dir.joinpath("IP2LOCATION-LITE-ASN.CSV")
+        zip_path = data_storage_dir.joinpath('IP2LOCATION-LITE-ASN.CSV.ZIP')
+        csv_path = data_storage_dir.joinpath('IP2LOCATION-LITE-ASN.CSV')
         if csv_path.exists():
             asn_fp = open(csv_path)
         else:
@@ -63,10 +63,10 @@ class IPAsnInfo(object):
     def find(self, ip):
         asn = self.asn.find(ip)
         if asn:
-            result = {"cidr": asn[2], "asn": f'AS{asn[3]} {asn[4]}'}
+            result = {'cidr': asn[2], 'asn': f'AS{asn[3]} {asn[4]}'}
             return result
         else:
-            return None
+            return {'cidr': '', 'asn': ''}
 
 
 if __name__ == "__main__":
