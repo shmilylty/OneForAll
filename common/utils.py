@@ -48,7 +48,6 @@ def gen_fake_header():
     Generate fake request headers
     """
     ua = random.choice(user_agents)
-    ip = gen_random_ip()
     headers = {
         'Accept': 'text/html,application/xhtml+xml,'
                   'application/xml;q=0.9,*/*;q=0.8',
@@ -59,8 +58,7 @@ def gen_fake_header():
         'Referer': 'https://www.google.com/',
         'Upgrade-Insecure-Requests': '1',
         'User-Agent': ua,
-        'X-Forwarded-For': ip,
-        'X-Real-IP': ip
+        'X-Forwarded-For': '127.0.0.1'
     }
     return headers
 
