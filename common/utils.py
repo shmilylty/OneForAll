@@ -17,6 +17,7 @@ from records import Record, RecordCollection
 from dns.resolver import Resolver
 
 from common.domain import Domain
+from common.database import Database
 from config import setting
 from config.log import logger
 
@@ -212,6 +213,21 @@ def check_format(format, count):
         logger.log('ALERT', f'Does not support {format} format')
         logger.log('ALERT', 'So use csv format by default')
         return 'csv'
+
+
+def save_db(name, data, module):
+    """
+    Save request results to database
+
+    :param str  name: table name
+    :param list data: data to be saved
+    :param str module: module name
+    """
+    db = Database()
+    db.drop_table(name)
+    db.create_table(name)
+    db.save_db(name, data, module)
+    db.close()
 
 
 def save_data(path, data):
@@ -663,3 +679,40 @@ def ip_to_int(ip):
         logger.log('ERROR', e.args)
         return None
     return int(ipv4)
+
+
+def match_subdomains(domain, html, distinct=True, fuzzy=True):
+    """
+    Use regexp to match subdomains
+
+    :param  str domain: main domain
+    :param  str html: response html text
+    :param  bool distinct: deduplicate results or not (default True)
+    :param  bool fuzzy: fuzzy match subdomain or not (default True)
+    :return set/list: result set or list
+    """
+    logger.log('TRACE', f'Use regexp to match subdomains in the response body')
+    if fuzzy:
+        regexp = r'(?:[a-z0-9](?:[a-z0-9\-]{0,61}[a-z0-9])?\.){0,}' \
+                 + domain.replace('.', r'\.')
+        result = re.findall(regexp, html, re.I)
+        if not result:
+            return set()
+        deal = map(lambda s: s.lower(), result)
+        if distinct:
+            return set(deal)
+        else:
+            return list(deal)
+    else:
+        regexp = r'(?:\>|\"|\'|\=|\,)(?:http\:\/\/|https\:\/\/)?' \
+                 r'(?:[a-z0-9](?:[a-z0-9\-]{0,61}[a-z0-9])?\.){0,}' \
+                 + domain.replace('.', r'\.')
+        result = re.findall(regexp, html, re.I)
+    if not result:
+        return set()
+    regexp = r'(?:http://|https://)'
+    deal = map(lambda s: re.sub(regexp, '', s[1:].lower()), result)
+    if distinct:
+        return set(deal)
+    else:
+        return list(deal)

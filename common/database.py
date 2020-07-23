@@ -95,7 +95,7 @@ class Database(object):
 
         :param str table_name: table name
         :param list results: results list
-        :param str module_name: mo
+        :param str module_name: module
         """
         logger.log('TRACE', f'Saving the subdomain results of {table_name} '
                             f'found by module {module_name} into database')

@@ -31,7 +31,7 @@ class Collect(object):
             # The crawl module has some problems
             modules = ['certificates', 'check', 'datasets',
                        'dnsquery', 'intelligence', 'search']
-            # modules = ['datasets']
+            # modules = ['certificates']
             for module in modules:
                 module_path = setting.module_dir.joinpath(module)
                 for path in module_path.rglob('*.py'):

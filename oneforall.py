@@ -17,6 +17,7 @@ from brute import Brute
 from common import utils, resolve, request
 from common.database import Database
 from modules.collect import Collect
+from modules.finder import Finder
 from config import setting
 from config.log import logger
 from takeover import Takeover
@@ -208,6 +209,11 @@ class OneForAll(object):
         self.data = request.run_request(self.domain, self.data, self.port)
         # Save HTTP request result
         request.save_db(self.domain, self.data)
+
+        # Finder module
+        if setting.enable_finder_module:
+            finder = Finder()
+            self.data = finder.run(self.domain, self.data, self.port)
 
         # Add the final result list to the total data list
         self.datas.extend(self.data)

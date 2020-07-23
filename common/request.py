@@ -9,7 +9,6 @@ from bs4 import BeautifulSoup
 from common import utils
 from config.log import logger
 from config import setting
-from common.database import Database
 
 
 def get_limit_conn():
@@ -35,7 +34,7 @@ def get_ports(port):
     if not ports:  # 意外情况
         logger.log('ERROR', 'The specified request port range is incorrect')
         ports = {80}
-    logger.log('INFOR', 'Port range:{ports}')
+    logger.log('INFOR', f'Port range:{ports}')
     return set(ports)
 
 
@@ -110,7 +109,7 @@ async def fetch(session, method, url):
                         text = await resp.text(encoding=None, errors='ignore')
         return resp, text
     except Exception as e:
-        return e
+        return e, None
 
 
 def get_title(markup):
@@ -154,15 +153,15 @@ def get_title(markup):
 
 
 def request_callback(future, index, datas):
-    result = future.result()
-    if isinstance(result, BaseException):
-        logger.log('TRACE', result.args)
-        name = utils.get_classname(result)
-        datas[index]['reason'] = name + ' ' + str(result)
+    resp, text = future.result()
+    if isinstance(resp, BaseException):
+        exception = resp
+        logger.log('TRACE', exception.args)
+        name = utils.get_classname(exception)
+        datas[index]['reason'] = name + ' ' + str(exception)
         datas[index]['request'] = 0
         datas[index]['alive'] = 0
-    elif isinstance(result, tuple):
-        resp, text = result
+    else:
         datas[index]['reason'] = resp.reason
         datas[index]['status'] = resp.status
         datas[index]['request'] = 1
@@ -257,17 +256,17 @@ def run_request(domain, data, port):
 
     :param  str domain: domain to be requested
     :param  list data: subdomains data to be requested
-    :param  str port: range of ports to be requested
+    :param  any port: range of ports to be requested
     :return list: result
     """
-    logger.log('INFOR', 'Start subdomain request module')
+    logger.log('INFOR', f'Start requesting subdomains of {domain}')
     loop = set_loop()
     data = utils.set_id_none(data)
     request_coroutine = bulk_request(data, port)
     data = loop.run_until_complete(request_coroutine)
     loop.run_until_complete(asyncio.sleep(0.25))
     count = utils.count_alive(data)
-    logger.log('INFOR', f'Request module found {domain} have {count} alive subdomains')
+    logger.log('INFOR', f'Found that {domain} has {count} alive subdomains')
     return data
 
 
@@ -277,7 +276,6 @@ def urls_request(urls):
     request_coroutine = async_request(urls)
     data = loop.run_until_complete(request_coroutine)
     loop.run_until_complete(asyncio.sleep(0.25))
-    logger.log('INFOR', 'End urls request module')
     return data
 
 
@@ -288,8 +286,5 @@ def save_db(name, data):
     :param str  name: table name
     :param list data: data to be saved
     """
-    db = Database()
-    db.drop_table(name)
-    db.create_table(name)
-    db.save_db(name, data, 'request')
-    db.close()
+    logger.log('INFOR', f'Saving requested results')
+    utils.save_db(name, data, 'request')

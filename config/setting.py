@@ -18,6 +18,7 @@ temp_save_dir = result_save_dir.joinpath('temp')
 enable_check_version = True  # 开启最新版本检查
 enable_dns_resolve = True  # 使用DNS解析子域(默认True)
 enable_http_request = True  # 使用HTTP请求子域(默认True)
+enable_finder_module = True  # 开启finder模块(默认True)
 enable_takeover_check = False  # 开启子域接管风险检查(默认False)
 # 参数port可选值有'default', 'small', 'large'
 http_request_port = 'default'  # HTTP请求子域(默认'default'，探测80端口)
