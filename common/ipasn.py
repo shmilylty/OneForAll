@@ -63,10 +63,10 @@ class IPAsnInfo(object):
     def find(self, ip):
         asn = self.asn.find(ip)
         if asn:
-            result = {'cidr': asn[2], 'asn': f'AS{asn[3]} {asn[4]}'}
+            result = {'cidr': asn[2], 'asn': f'AS{asn[3]}', 'org': asn[4]}
             return result
         else:
-            return {'cidr': '', 'asn': ''}
+            return {'cidr': '', 'asn': '', 'org': ''}
 
 
 if __name__ == "__main__":

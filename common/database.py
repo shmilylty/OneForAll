@@ -69,6 +69,7 @@ class Database(object):
                    f'cname text,'
                    f'content text,'
                    f'public int,'
+                   f'cdn int,'
                    f'status int,'
                    f'reason text,'
                    f'title text,'
@@ -79,6 +80,7 @@ class Database(object):
                    f'ttl text,'
                    f'cidr text,'
                    f'asn text,'
+                   f'org text,'
                    f'ip2region text,'
                    f'ip2location text,'
                    f'resolver text,'
@@ -104,13 +106,14 @@ class Database(object):
             try:
                 self.conn.bulk_query(
                     f'insert into "{table_name}" (id, type, alive, resolve, request, new,'
-                    f'url, subdomain, port, level, cname, content, public, status, reason,'
-                    f'title, banner, header, response, times, ttl, cidr, asn, ip2region,'
-                    f'ip2location, resolver, module, source, elapse, find, brute, valid) '
+                    f'url, subdomain, port, level, cname, content, public, cdn, status,'
+                    f'reason, title, banner, header, response, times, ttl, cidr, asn, org,'
+                    f' ip2region, ip2location, resolver, module, source, elapse, find,'
+                    f'brute, valid) '
                     f'values (:id, :type, :alive, :resolve, :request, :new, :url, '
-                    f':subdomain, :port, :level, :cname, :content, :public, :status,'
+                    f':subdomain, :port, :level, :cname, :content, :public, :cdn, :status,'
                     f':reason, :title, :banner, :header, :response, :times, :ttl, :cidr,'
-                    f':asn, :ip2region, :ip2location, :resolver, :module, :source,'
+                    f':asn, :org, :ip2region, :ip2location, :resolver, :module, :source,'
                     f':elapse, :find, :brute, :valid)', results)
             except Exception as e:
                 logger.log('ERROR', e)
@@ -124,9 +127,8 @@ class Database(object):
         """
         table_name = table_name.replace('.', '_')
         logger.log('TRACE', f'Determining whether the {table_name} table exists')
-        results = self.query(f'select count() from sqlite_master '
-                             f'where type = "table" and '
-                             f'name = "{table_name}"')
+        results = self.query(f'select count() from sqlite_master where type = "table" and'
+                             f' name = "{table_name}"')
         if results.scalar() == 0:
             return False
         else:
@@ -232,11 +234,10 @@ class Database(object):
         :param str limit: limit value
         """
         table_name = table_name.replace('.', '_')
-        query = f'select id, type, new, alive, request, resolve, url, ' \
-                f'subdomain, level, cname, content, public, port, status, ' \
-                f'reason, title, banner, times, ttl, cidr, asn, ip2region, ' \
-                f'ip2location, resolver, module, source, elapse, find, brute, valid ' \
-                f'from "{table_name}"'
+        query = f'select id, type, new, alive, request, resolve, url, subdomain, level,' \
+                f'cname, content, public, cdn, port, status, reason, title, banner,' \
+                f'times, ttl, cidr, asn, org, ip2region, ip2location, resolver, module,' \
+                f'source, elapse, find, brute, valid from "{table_name}"'
         if alive and limit:
             if limit in ['resolve', 'request']:
                 where = f' where {limit} = 1'

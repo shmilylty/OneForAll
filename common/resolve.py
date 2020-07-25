@@ -107,6 +107,7 @@ def deal_output(output_path):
             ttls = list()
             cidrs = list()
             asns = list()
+            orgs = list()
             locs = list()
             regs = list()
             answers = data.get('answers')
@@ -123,6 +124,7 @@ def deal_output(output_path):
                     asn_info = ip_asn.find(ip)
                     cidrs.append(asn_info.get('cidr'))
                     asns.append(asn_info.get('asn'))
+                    orgs.append(asn_info.get('org'))
                     loc = f'{ip_geo.get_country_long(ip)} ' \
                           f'{ip_geo.get_region(ip)} ' \
                           f'{ip_geo.get_city(ip)}'
@@ -137,6 +139,7 @@ def deal_output(output_path):
                     record['ttl'] = ','.join(ttls)
                     record['cidr'] = ','.join(cidrs)
                     record['asn'] = ','.join(asns)
+                    record['org'] = ','.join(orgs)
                     record['ip2location'] = ','.join(locs)
                     record['ip2region'] = ','.join(regs)
                     records[qname] = record

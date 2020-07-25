@@ -1,3 +1,4 @@
+import json
 import asyncio
 import functools
 
@@ -171,7 +172,7 @@ def request_callback(future, index, datas):
             datas[index]['alive'] = 1
         headers = resp.headers
         datas[index]['banner'] = utils.get_sample_banner(headers)
-        datas[index]['header'] = str(dict(headers))[1:-1]
+        datas[index]['header'] = json.dumps(dict(headers))
         if isinstance(text, str):
             title = get_title(text).strip()
             datas[index]['title'] = utils.remove_invalid_string(title)
