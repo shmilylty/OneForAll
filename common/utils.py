@@ -1,3 +1,4 @@
+import json
 import os
 import re
 import sys
@@ -213,6 +214,11 @@ def check_format(format, count):
         logger.log('ALERT', f'Does not support {format} format')
         logger.log('ALERT', 'So use csv format by default')
         return 'csv'
+
+
+def load_json(path):
+    with open(path) as fp:
+        return json.load(fp)
 
 
 def save_db(name, data, module):

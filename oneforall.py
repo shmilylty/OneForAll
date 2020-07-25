@@ -18,6 +18,7 @@ from common import utils, resolve, request
 from common.database import Database
 from modules.collect import Collect
 from modules.finder import Finder
+from modules import iscdn
 from config import setting
 from config.log import logger
 from takeover import Takeover
@@ -214,6 +215,10 @@ class OneForAll(object):
         if setting.enable_finder_module:
             finder = Finder()
             self.data = finder.run(self.domain, self.data, self.port)
+
+        # check cdn
+        self.data = iscdn.check_cdn(self.data)
+        iscdn.save_db(self.domain, self.data)
 
         # Add the final result list to the total data list
         self.datas.extend(self.data)

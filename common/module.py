@@ -4,7 +4,6 @@ Module base class
 """
 
 import json
-import re
 import threading
 import time
 
@@ -278,6 +277,7 @@ class Module(object):
                       'cname': None,
                       'content': None,
                       'public': None,
+                      'cdn': None,
                       'status': None,
                       'reason': None,
                       'title': None,
@@ -288,6 +288,7 @@ class Module(object):
                       'ttl': None,
                       'cidr': None,
                       'asn': None,
+                      'org': None,
                       'ip2region': None,
                       'ip2location': None,
                       'resolver': None,
@@ -319,8 +320,10 @@ class Module(object):
                 times = record.get('times')
                 ttl = record.get('ttl')
                 public = record.get('public')
+                cdn = record.get('cdn')
                 cidr = record.get('cidr')
                 asn = record.get('asn')
+                org = record.get('org')
                 ip2region = record.get('ip2region')
                 ip2location = record.get('ip2location')
                 if isinstance(cname, list):
@@ -342,6 +345,7 @@ class Module(object):
                           'cname': cname,
                           'content': content,
                           'public': public,
+                          'cdn': cdn,
                           'status': None,
                           'reason': reason,
                           'title': None,
@@ -352,6 +356,7 @@ class Module(object):
                           'ttl': ttl,
                           'cidr': cidr,
                           'asn': asn,
+                          'org': org,
                           'ip2region': ip2region,
                           'ip2location': ip2location,
                           'resolver': resolver,
