@@ -23,12 +23,15 @@ def check_cname_count(cnames):
 
 
 def check_cname_keyword(cname):
-    for keyword in cdn_cname_keyword.keys():
-        if keyword in cname:
-            return True
+    names = cname.lower().split(',')
+    for name in names:
+        for keyword in cdn_cname_keyword.keys():
+            if keyword in name:
+                return True
 
 
 def check_header_key(header):
+    header = set(map(lambda x: x.lower(), header.keys()))
     for key in cdn_header_key:
         if key in header:
             return True
@@ -50,13 +53,9 @@ def check_cdn(data):
     for index, item in enumerate(data):
         cname = item.get('cname')
         if cname:
-            cnames = cname.split(',')
-            if check_cname_count(cnames):
-                data[index]['cdn'] = 1
-                continue
             if check_cname_keyword(cname):
                 data[index]['cdn'] = 1
-                continue
+                break
         header = item.get('header')
         if header:
             header = json.loads(header)
