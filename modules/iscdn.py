@@ -37,11 +37,13 @@ def check_header_key(header):
             return True
 
 
-def check_cdn_cidr(ip):
-    ip = ipaddress.ip_address(ip)
-    for cidr in cdn_ip_cidr:
-        if ip in ipaddress.ip_network(cidr):
-            return True
+def check_cdn_cidr(content):
+    ips = set(content.split(','))
+    for ip in ips:
+        ip = ipaddress.ip_address(ip)
+        for cidr in cdn_ip_cidr:
+            if ip in ipaddress.ip_network(cidr):
+                return True
 
 
 def check_cdn_asn(asn):
@@ -55,7 +57,7 @@ def check_cdn(data):
         if cname:
             if check_cname_keyword(cname):
                 data[index]['cdn'] = 1
-                break
+                continue
         header = item.get('header')
         if header:
             header = json.loads(header)
@@ -63,9 +65,9 @@ def check_cdn(data):
                 data[index]['cdn'] = 1
                 continue
         kind = item.get('type')
-        ip = item.get('content')
-        if kind == 'A' and ip:
-            if check_cdn_cidr(ip):
+        content = item.get('content')
+        if kind == 'A' and content:
+            if check_cdn_cidr(content):
                 data[index]['cdn'] = 1
                 continue
         asn = item.get('asn')
