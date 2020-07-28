@@ -23,22 +23,27 @@ def check_cname_count(cnames):
 
 
 def check_cname_keyword(cname):
-    for keyword in cdn_cname_keyword.keys():
-        if keyword in cname:
-            return True
+    names = cname.lower().split(',')
+    for name in names:
+        for keyword in cdn_cname_keyword.keys():
+            if keyword in name:
+                return True
 
 
 def check_header_key(header):
+    header = set(map(lambda x: x.lower(), header.keys()))
     for key in cdn_header_key:
         if key in header:
             return True
 
 
-def check_cdn_cidr(ip):
-    ip = ipaddress.ip_address(ip)
-    for cidr in cdn_ip_cidr:
-        if ip in ipaddress.ip_network(cidr):
-            return True
+def check_cdn_cidr(content):
+    ips = set(content.split(','))
+    for ip in ips:
+        ip = ipaddress.ip_address(ip)
+        for cidr in cdn_ip_cidr:
+            if ip in ipaddress.ip_network(cidr):
+                return True
 
 
 def check_cdn_asn(asn):
@@ -50,10 +55,6 @@ def check_cdn(data):
     for index, item in enumerate(data):
         cname = item.get('cname')
         if cname:
-            cnames = cname.split(',')
-            if check_cname_count(cnames):
-                data[index]['cdn'] = 1
-                continue
             if check_cname_keyword(cname):
                 data[index]['cdn'] = 1
                 continue
@@ -64,9 +65,9 @@ def check_cdn(data):
                 data[index]['cdn'] = 1
                 continue
         kind = item.get('type')
-        ip = item.get('content')
-        if kind == 'A' and ip:
-            if check_cdn_cidr(ip):
+        content = item.get('content')
+        if kind == 'A' and content:
+            if check_cdn_cidr(content):
                 data[index]['cdn'] = 1
                 continue
         asn = item.get('asn')
