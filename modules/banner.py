@@ -1,81 +1,80 @@
 import re
-import json
-import time
 import os
-import hashlib
+import time
 import json
 import string
+import hashlib
 
-from urllib import parse
 from bs4 import BeautifulSoup
 from http.cookies import SimpleCookie
 
 from common import utils
-from common import resolve
-from common import request
 from common.module import Module
 from config import setting
 from config.log import logger
 
 
-class Webanalyzer(Module):
+class Identify(Module):
     def __init__(self):
         Module.__init__(self)
-        self.module = 'Webanalyzer'
-        self.source = 'Webanalyzer'
+        self.module = 'Identify'
+        self.source = 'Identify'
         self.start = time.time()  # 模块开始执行时间
         self.rule_dir = setting.data_storage_dir.joinpath('rules')
         self._targets = {}
         self.load_rules()
         self._cond_parser = Condition()
+        self.url = ''
 
     def run(self, data):
-        logger.log('INFOR', f'Start Webanalyzer module')
+        logger.log('INFOR', f'Start Identify module')
         for index, item in enumerate(data):
-            if item.get('request') == 1:
-                self.url = item.get('url')
-                implies = set()
-                excludes = set()
-                self.parse(index, item)
-                item['banner'] = []
-                for name, rule in RULES.items():
-                    # print(name)
-                    r = self._check_rule(rule)
-                    if r:
-                        if 'implies' in rule:
-                            if isinstance(rule['implies'], str):
-                                implies.add(rule['implies'])
-                            else:
-                                implies.update(rule['implies'])
+            if not item.get('request'):
+                continue
+            self.url = item.get('url')
+            implies = set()
+            excludes = set()
+            self.parse(index, item)
+            banners = []
+            for name, rule in RULES.items():
+                # print(name)
+                r = self._check_rule(rule)
+                if r:
+                    if 'implies' in rule:
+                        if isinstance(rule['implies'], str):
+                            implies.add(rule['implies'])
+                        else:
+                            implies.update(rule['implies'])
 
-                        if 'excludes' in rule:
-                            if isinstance(rule['excludes'], str):
-                                excludes.add(rule['excludes'])
-                            else:
-                                excludes.update(rule['excludes'])
+                    if 'excludes' in rule:
+                        if isinstance(rule['excludes'], str):
+                            excludes.add(rule['excludes'])
+                        else:
+                            excludes.update(rule['excludes'])
 
-                        if r['name'] in excludes:
-                            continue
-                        item['banner'].append(r)
-
-                for imply in implies:
-                    _result = {
-                        'name': imply,
-                        "origin": 'implies'
-                    }
-                    for rule_type in RULE_TYPES:
-                        rule_name = '%s_%s' % (rule_type, imply)
-                        rule = RULES.get(rule_name)
-                        if not rule:
-                            continue
-                        if 'excludes' in rule:
-                            if isinstance(rule['excludes'], str):
-                                excludes.add(rule['excludes'])
-                            else:
-                                excludes.update(rule['excludes'])
-                    if _result['name'] in excludes:
+                    if r['name'] in excludes:
                         continue
-                    item['banner'].append(_result)
+                    banners.append(r)
+
+            for imply in implies:
+                _result = {
+                    'name': imply,
+                    "origin": 'implies'
+                }
+                for rule_type in RULE_TYPES:
+                    rule_name = '%s_%s' % (rule_type, imply)
+                    rule = RULES.get(rule_name)
+                    if not rule:
+                        continue
+                    if 'excludes' in rule:
+                        if isinstance(rule['excludes'], str):
+                            excludes.add(rule['excludes'])
+                        else:
+                            excludes.update(rule['excludes'])
+                if _result['name'] in excludes:
+                    continue
+                banners.append(_result)
+            item['banner'] = json.dumps(banners, ensure_ascii=False)
         self.end = time.time()
         self.elapse = self.end - self.start
 
@@ -94,7 +93,7 @@ class Webanalyzer(Module):
                 if not i.endswith('.json'):
                     continue
 
-                with open(os.path.join(rule_type_dir, i)) as fd:
+                with open(os.path.join(rule_type_dir, i), encoding='utf-8') as fd:
                     try:
                         data = json.load(fd)
                         for match in data['matches']:
@@ -117,7 +116,7 @@ class Webanalyzer(Module):
     def parse(self, index, item) -> hash:
         script = []
         meta = {}
-        if item.get('response') != None:
+        if item.get('response'):
             p = BeautifulSoup(item.get('response'), "html.parser")
             for i in p.find_all("script"):
                 script_src = i.get("src")
@@ -147,7 +146,7 @@ class Webanalyzer(Module):
             "raw_cookies": cookies,
             "raw_response": item.get('header') + item.get('response'),
             "raw_headers": item.get('header'),
-            "md5": hashlib.md5(item.get('response').encode('utf')),
+            "md5": hashlib.md5(item.get('response').encode('utf-8')),
         }
 
     def _check_match(self, match: hash) -> (bool, str):
@@ -259,9 +258,10 @@ class Webanalyzer(Module):
         if self._cond_parser.parse(rule['condition'], cond_map):
             return result
 
-    def save_db(self, domain, data):
-        logger.log('INFOR', f'Saving Webanalyzer results')
-        utils.save_db(domain, data, 'webanalyzer')
+
+def save_db(domain, data):
+    logger.log('INFOR', f'Saving Identify results')
+    utils.save_db(domain, data, 'Identify')
 
 
 __all__ = ["Condition", "ParseException"]
