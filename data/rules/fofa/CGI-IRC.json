@@ -1,5 +1,5 @@
 {
-    "name": "CGI:IRC",
+    "name": "CGI-IRC",
     "author": "fofa",
     "version": "0.1.0",
     "matches": [
@@ -9,7 +9,7 @@
         },
         {
             "search": "body",
-            "text": "<!-- This is part of CGI:IRC"
+            "text": "<!-- This is part of CGI-IRC"
         },
         {
             "search": "body",
