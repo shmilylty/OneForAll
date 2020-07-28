@@ -1,0 +1,19 @@
+{
+    "name": "Werkzeug",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "Werkzeug is a WSGI utility library for Python.",
+    "website": "http://werkzeug.pocoo.org/",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Werkzeug\\/([\\d\\.]+))",
+            "offset": 1
+        },
+        {
+            "status": 302,
+            "certainty": 75,
+            "text": "<p>You should be redirected automatically to target URL:"
+        }
+    ]
+}

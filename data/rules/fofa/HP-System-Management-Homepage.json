@@ -1,0 +1,19 @@
+{
+    "name": "HP-System-Management-Homepage",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "HP System Management Homepage"
+        },
+        {
+            "search": "headers",
+            "text": "Compaq-HMMD"
+        },
+        {
+            "search": "headers",
+            "text": "CompaqHTTPServer"
+        }
+    ]
+}

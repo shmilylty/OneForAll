@@ -1,0 +1,11 @@
+{
+    "name": "SpinCMS",
+    "website": "http://www.spin.cw",
+    "matches": [
+        {
+            "search": "cookies[spincms_session]",
+            "regexp": ".*"
+        }
+    ],
+    "implies": "PHP"
+}

@@ -1,0 +1,11 @@
+{
+    "name": "Motorola_SBG900",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "Motorola SBG900"
+        }
+    ]
+}

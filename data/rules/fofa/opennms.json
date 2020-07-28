@@ -1,0 +1,19 @@
+{
+    "name": "opennms",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "/opennms/login.jsp"
+        },
+        {
+            "search": "body",
+            "text": "/css/gwt-asset.css"
+        },
+        {
+            "search": "body",
+            "text": "OpenNMS\u00ae is a registered trademark of"
+        }
+    ]
+}

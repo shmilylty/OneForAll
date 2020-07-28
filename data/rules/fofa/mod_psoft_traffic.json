@@ -1,0 +1,11 @@
+{
+    "name": "mod_psoft_traffic",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "mod_psoft_traffic"
+        }
+    ]
+}

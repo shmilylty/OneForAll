@@ -1,0 +1,37 @@
+{
+    "name": "Imageview",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Imageview 6 is a 4th generation image gallery script, using AJAX to deliver the best version yet.",
+    "website": "http://www.blackdot.be/?inc=projects/imageview",
+    "matches": [
+        {
+            "regexp": "(?-mix:<td (width=\"160\"|rowspan=\"2\")><iframe allowtransparency=\"yes\" frameborder=\"0\" height=\"100%\" width=\"100%\" scrolling=\"auto\" title=\"(frmcontent|frmlist)\" name=\"(frmcontent|frmlist)\" src=\"albumlist.php\\?album=[^\"]*\"><\\/iframe><\\/td>)"
+        },
+        {
+            "certainty": 25,
+            "text": "<meta name=\"author\" content=\"Jorge Schrauwen\" />"
+        },
+        {
+            "text": "<frame src=\"preload.php\" name=\"frImageview\" id=\"frImageview\" />"
+        },
+        {
+            "text": "<frame src=\"about:blank\" name=\"iHistoryRecorder\" id=\"iHistoryRecorder\" />"
+        },
+        {
+            "regexp": "(?-mix:<meta name=\"description\" content=\"Imageview ([\\d]{1}) :: By Jorge Schrauwen \\(http:\\/\\/www.backdot.be\\)\">)",
+            "offset": 1
+        },
+        {
+            "text": "<link rel=\"Developer\" href=\"http://www.blackdot.be\" title=\"Blackdot.be\" />"
+        },
+        {
+            "regexp": "(?-mix:<title>Imageview ([\\d]{1}) :: Help:: (Administration|Installation|Miscellaneous|User|Welcome|Menu)<\\/title>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<title>Imageview ([\\d]{1}) :: (By Jorge Schrauwen|User Settings|Upload Image|Album View|Administration|RSS Feeds|Install)<\\/title>)",
+            "offset": 1
+        }
+    ]
+}

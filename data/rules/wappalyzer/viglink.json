@@ -1,0 +1,10 @@
+{
+    "name": "VigLink",
+    "website": "http://viglink.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "(?:^[^/]*//[^/]*viglink\\.com/api/|vglnk\\.js)"
+        }
+    ]
+}

@@ -1,0 +1,19 @@
+{
+    "name": "\u6c49\u7801\u8f6f\u4ef6",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "\u6c49\u7801\u8f6f\u4ef6"
+        },
+        {
+            "search": "body",
+            "text": "alt=\"\u6c49\u7801\u8f6f\u4ef6LOGO"
+        },
+        {
+            "search": "body",
+            "text": "content=\"\u6c49\u7801\u8f6f\u4ef6"
+        }
+    ]
+}

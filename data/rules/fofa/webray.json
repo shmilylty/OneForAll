@@ -1,0 +1,15 @@
+{
+    "name": "webray",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "Rayengine"
+        },
+        {
+            "search": "headers",
+            "text": "Drivedby: RaySrv"
+        }
+    ]
+}

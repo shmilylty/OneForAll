@@ -1,0 +1,11 @@
+{
+    "name": "\u4efb\u6211\u884c\u7535\u5546",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "content=\"366EC"
+        }
+    ]
+}

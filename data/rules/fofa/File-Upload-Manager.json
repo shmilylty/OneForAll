@@ -1,0 +1,15 @@
+{
+    "name": "File-Upload-Manager",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "File Upload Manager"
+        },
+        {
+            "search": "body",
+            "text": "<IMG SRC=\"/images/header.jpg\" ALT=\"File Upload Manager\">"
+        }
+    ]
+}

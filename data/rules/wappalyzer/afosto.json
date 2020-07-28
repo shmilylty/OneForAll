@@ -1,0 +1,10 @@
+{
+    "name": "Afosto",
+    "website": "http://afosto.com",
+    "matches": [
+        {
+            "search": "headers[x-powered-by]",
+            "regexp": "Afosto SaaS BV"
+        }
+    ]
+}

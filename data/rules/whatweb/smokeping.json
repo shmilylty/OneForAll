@@ -1,0 +1,16 @@
+{
+    "name": "SmokePing",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "SmokePing keeps track of your network latency",
+    "website": "http://oss.oetiker.ch/smokeping/index.en.html",
+    "matches": [
+        {
+            "text": "<tr><td class=\"menuitem\" colspan=\"2\">&nbsp;-&nbsp;<a class=\"menulink\" HREF=\"?target="
+        },
+        {
+            "regexp": "(?-mix:<A HREF=\"http:\\/\\/oss\\.oetiker\\.ch\\/smokeping\\/counter\\.cgi\\/([^\\s\\/\\\"]+)\"><img border=\"0\" src=\"[^\"]+\"><\\/a>)",
+            "offset": 1
+        }
+    ]
+}

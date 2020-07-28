@@ -1,0 +1,11 @@
+{
+    "name": "X-72e-Nobeian-Transfer",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "X-72e-Nobeian-Transfer"
+        }
+    ]
+}

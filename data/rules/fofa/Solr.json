@@ -1,0 +1,19 @@
+{
+    "name": "Solr",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "Solr Admin"
+        },
+        {
+            "search": "body",
+            "text": "SolrCore Initialization Failures"
+        },
+        {
+            "search": "body",
+            "text": "app_config.solr_path"
+        }
+    ]
+}

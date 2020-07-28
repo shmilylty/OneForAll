@@ -1,0 +1,10 @@
+{
+    "name": "Cloudera",
+    "website": "http://www.cloudera.com",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "cloudera"
+        }
+    ]
+}

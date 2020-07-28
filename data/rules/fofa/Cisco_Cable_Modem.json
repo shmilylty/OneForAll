@@ -1,0 +1,11 @@
+{
+    "name": "Cisco_Cable_Modem",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "Cisco Cable Modem"
+        }
+    ]
+}

@@ -1,0 +1,16 @@
+{
+    "name": "\u767e\u5ea6\u4e91\u52a0\u901f",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "X-Server"
+        },
+        {
+            "search": "headers",
+            "text": "fhl"
+        }
+    ],
+    "condition": "0 and 1"
+}

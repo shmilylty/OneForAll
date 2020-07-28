@@ -1,0 +1,11 @@
+{
+    "name": "Cachelogic-Expired-Domains-Script",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "href=\"http://cachelogic.net\">Cachelogic.net"
+        }
+    ]
+}

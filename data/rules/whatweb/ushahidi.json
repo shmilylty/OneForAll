@@ -1,0 +1,13 @@
+{
+    "name": "Ushahidi",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "The Ushahidi Platform is a platform for information collection, visualization and interactive mapping.",
+    "website": "http://www.ushahidi.com/",
+    "matches": [
+        {
+            "md5": "7350c3f75cb80e857efa88c2fd136da5",
+            "url": "/favicon.ico"
+        }
+    ]
+}

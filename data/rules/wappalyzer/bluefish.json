@@ -1,0 +1,11 @@
+{
+    "name": "Bluefish",
+    "website": "http://sourceforge.net/projects/bluefish",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "Bluefish(?:\\s([\\d.]+))?",
+            "offset": 1
+        }
+    ]
+}

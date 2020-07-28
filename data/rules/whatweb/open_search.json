@@ -1,0 +1,19 @@
+{
+    "name": "OpenSearch",
+    "author": "Caleb Anderson",
+    "version": "0.2",
+    "description": "This plugin identifies open search and extracts the URL. OpenSearch is a collection of simple formats for the sharing of search results.",
+    "website": null,
+    "matches": [
+        {
+            "name": "open search",
+            "regexp": "(?i-mx:<link[^>]+type=[\"']?application\\/opensearchdescription\\+xml['\"]?[^>]*>)"
+        },
+        {
+            "regexp": "(?i-mx:<link[^>]+href[\\s]*=[\\s]*[\"']([^'^\"^>]+)[\"'][^>]+type[\\s]*=[\\s]*[\"']?application\\/opensearchdescription\\+xml['\"]?[^>]*>)"
+        },
+        {
+            "regexp": "(?i-mx:<link[^>]+type[\\s]*=[\\s]*[\"']?application\\/opensearchdescription\\+xml['\"]?[^>]+href[\\s]*=[\\s]*[\"']([^'^\"^>]+)[\"'][^>]*>)"
+        }
+    ]
+}

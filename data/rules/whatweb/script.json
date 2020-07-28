@@ -1,0 +1,15 @@
+{
+    "name": "Script",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "This plugin detects instances of script HTML elements and returns the script language/type.",
+    "website": null,
+    "matches": [
+        {
+            "regexp": "(?i-mx:<script(\\s|>))"
+        },
+        {
+            "regexp": "(?-mix:<script[^>]+(language|type)\\s*=\\s*['\"]?([^'\"\\s]+)['\"]?)"
+        }
+    ]
+}

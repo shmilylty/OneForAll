@@ -1,0 +1,19 @@
+{
+    "name": "\u6cf0\u4fe1TMailer\u90ae\u4ef6\u7cfb\u7edf",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "Tmailer"
+        },
+        {
+            "search": "body",
+            "text": "content=\"Tmailer"
+        },
+        {
+            "search": "body",
+            "text": "href=\"/tmailer/img/logo/favicon.ico"
+        }
+    ]
+}

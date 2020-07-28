@@ -1,0 +1,13 @@
+{
+    "name": "Yahoo! Tag Manager",
+    "website": "https://tagmanager.yahoo.co.jp/",
+    "matches": [
+        {
+            "regexp": "<!-- (?:End )?Yahoo! Tag Manager -->"
+        },
+        {
+            "search": "script",
+            "regexp": "b\\.yjtag\\.jp/iframe"
+        }
+    ]
+}

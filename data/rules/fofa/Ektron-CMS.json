@@ -1,0 +1,15 @@
+{
+    "name": "Ektron-CMS",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "/java/ektron.js"
+        },
+        {
+            "search": "headers",
+            "text": "EktGUID="
+        }
+    ]
+}

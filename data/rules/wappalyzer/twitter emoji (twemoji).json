@@ -1,0 +1,10 @@
+{
+    "name": "Twitter Emoji (Twemoji)",
+    "website": "https://twitter.github.io/twemoji/",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "twemoji(?:\\.min)?\\.js"
+        }
+    ]
+}

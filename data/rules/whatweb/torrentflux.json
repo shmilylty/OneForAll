@@ -1,0 +1,15 @@
+{
+    "name": "TorrentFlux",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Open source PHP client for web based management of torrents. Features, downloads, forum. - http://www.torrentflux.com/",
+    "website": null,
+    "matches": [
+        {
+            "text": "<font class=\"title\">TorrentFlux Login</font>"
+        },
+        {
+            "text": "<td><input type=\"password\" name=\"iamhim\" value=\"\" size=\"15\" style=\"font-family:verdana,helvetica,sans-serif; font-size:9px; color:#000\" /></td>"
+        }
+    ]
+}

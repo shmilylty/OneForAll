@@ -1,0 +1,27 @@
+{
+    "name": "Bentley-Systems-ProjectWise",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "ProjectWise - Project Collaboration and Content Management Software for Architecture, Construction, and Engineering Projects",
+    "website": "http://www.bentley.com/en-US/Products/ProjectWise",
+    "matches": [
+        {
+            "text": "</title><meta http-equiv=\"X-UA-Compatible\" content=\"IE=8\" /><link rel=\"shortcut icon\" href=\"ProjectWise.ico\" />"
+        },
+        {
+            "regexp": "(?-mix:<title>\\s+ProjectWise Web Server\\s+<\\/title>)"
+        },
+        {
+            "certainty": 75,
+            "text": "<!-- Initially invisible login form -->"
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:Bentley.WebSession=)"
+        },
+        {
+            "url": "/ProjectWise.ico",
+            "md5": "c20606b0a22e4c91940798a485d7eff7"
+        }
+    ]
+}

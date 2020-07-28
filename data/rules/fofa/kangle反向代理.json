@@ -1,0 +1,15 @@
+{
+    "name": "kangle\u53cd\u5411\u4ee3\u7406",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "kangle"
+        },
+        {
+            "search": "title",
+            "regexp": "welcome use kangle"
+        }
+    ]
+}

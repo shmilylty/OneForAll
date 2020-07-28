@@ -1,0 +1,16 @@
+{
+    "name": "\u4e50\u89c6\u8def\u7531\u5668",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "\u4e50\u89c6\u8def\u7531\u5668"
+        },
+        {
+            "search": "body",
+            "text": "<div class=\"login-logo\"></div>"
+        }
+    ],
+    "condition": "0 and 1"
+}

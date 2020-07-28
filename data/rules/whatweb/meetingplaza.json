@@ -1,0 +1,22 @@
+{
+    "name": "MeetingPlaza",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "MeetingPlaza Distance Conference Service for internet conferencing, meeting, presentations, seminars, collaboration, events, and training.",
+    "website": "http://www.meetingplaza.com/e/",
+    "matches": [
+        {
+            "certainty": 25,
+            "text": "<html> <body> Hello. I'm MeetingPlaza HTTP Tunneling Server.<br>Date: "
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^InterSpace HTTP Tunneling\\/([^\\s]+)$)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:^InterSpace HTTP Tunneling)",
+            "search": "headers[server]"
+        }
+    ]
+}

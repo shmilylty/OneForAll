@@ -1,0 +1,16 @@
+{
+    "name": "Riskified",
+    "website": "https://www.riskified.com/",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "Riskified Server"
+        },
+        {
+            "regexp": "<[^>]*beacon\\.riskified\\.com"
+        },
+        {
+            "regexp": "<[^>]*c\\.riskified\\.com"
+        }
+    ]
+}

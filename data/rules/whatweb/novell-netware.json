@@ -1,0 +1,48 @@
+{
+    "name": "Novell-NetWare",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Novell NetWare server.",
+    "website": "http://www.novell.com/",
+    "matches": [
+        {
+            "text": "</HEAD><BODY><font size=+2><p>Unauthorized!</font><font size=+1><p>Please login using a full NDS name and context (example: .user.engineering.acme_corp.)</font></BODY></HTML>"
+        },
+        {
+            "regexp": "(?-mix:<TITLE>NetWare Server [^<]+<\\/TITLE><LINK REL=stylesheet TYPE=text\\/css HREF=\\/SYS\\/LOGIN\\/portal\\.css>)"
+        },
+        {
+            "text": "<APPLET CODE=NWSHealth.class NAME=\"NWServerHealth\" CODEBASE=/SYS/Login width=38 height=99>"
+        },
+        {
+            "url": "/",
+            "offset": 1,
+            "regexp": "(?-mix:<br>&nbsp;&nbsp;<font color=teal size=-1><B>Novell (NetWare|Small Business Suite) ([^<]+)<\\/B><\\/font><br>)"
+        },
+        {
+            "url": "/",
+            "regexp": "(?-mix:&nbsp;&nbsp;<font color=teal size=-1><b>(Server Version [\\d\\.]+ revision [A-Z]),[\\s]+([A-Z][a-z]+ [\\d]{1,2}, [\\d]{4}|[\\d]{1,4} [A-Z][a-z]+ [\\d]{1,4})<\\/B><\\/font><br>)"
+        },
+        {
+            "url": "/",
+            "regexp": "(?-mix:&nbsp;&nbsp;<font color=teal size=-1><b>NetWare (Management Portal Version [^,]+),[\\s]+([A-Z][a-z]+ [\\d]{1,2}, [\\d]{4}|[\\d]{1,4} [A-Z][a-z]+ [\\d]{1,4})<\\/B><\\/font><br>)"
+        },
+        {
+            "url": "/TOP.HTML",
+            "text": "<TABLE WIDTH=\"100%\"><TR><TD ALIGN=LEFT VALIGN=TOP><APPLET CODE=\"NWSHealth.class\" NAME=\"NWServerHealth\" CODEBASE=\"/SYS/Login\" width=33 height=52>"
+        },
+        {
+            "url": "/TOP.HTML",
+            "regexp": "(?-mix:<TD ALIGN=RIGHT VALIGN=TOP><font color=\"#524a18\" size=-1><B>Novell NetWare ([^<]+)<\\/B>)",
+            "offset": 1
+        },
+        {
+            "url": "/TOP.HTML",
+            "regexp": "(?-mix:<font color=\"#524a18\" size=-1><b>(Server Version [\\d\\.]+ revision [A-Z]),[\\s]+([A-Z][a-z]+ [\\d]{1,2}, [\\d]{4}|[\\d]{1,4} [A-Z][a-z]+ [\\d]{1,4})<\\/B><\\/font><BR>)"
+        },
+        {
+            "url": "/TOP.HTML",
+            "regexp": "(?-mix:<font color=\"#524a18\" size=-1><b>NetWare (Management Portal Version [\\d\\.]+ revision [A-Z]),[\\s]+([A-Z][a-z]+ [\\d]{1,2}, [\\d]{4}|[\\d]{1,4} [A-Z][a-z]+ [\\d]{1,4})<\\/B><\\/font><BR>)"
+        }
+    ]
+}

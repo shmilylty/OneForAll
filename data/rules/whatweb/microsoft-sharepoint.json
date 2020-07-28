@@ -1,0 +1,30 @@
+{
+    "name": "Microsoft-Sharepoint",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.3",
+    "description": "Microsoft SharePoint 2010 makes it easier for people to work together. Using SharePoint 2010, your people can set up Web sites to share information with others, manage documents from start to finish, and publish reports to help everyone make better decisions.",
+    "website": "http://sharepoint.microsoft.com/",
+    "matches": [
+        {
+            "certainty": 75,
+            "text": "<noscript><div class='noindex'>You may be trying to access this site from a secured browser on the server. Please enable scripts and reload this page.</div></noscript>"
+        },
+        {
+            "certainty": 75,
+            "text": "<noscript><div class='noindex'>Please enable scripts and reload this page. If your browser does not support script, then you can visit the minimal version of this site at <a href="
+        },
+        {
+            "certainty": 75,
+            "text": "<meta name=\"CollaborationServer\" content=\"SharePoint Team Web Site\" />"
+        },
+        {
+            "text": "<input type=\"hidden\" name=\"MSOWebPartPage_PostbackSource\" id=\"MSOWebPartPage_PostbackSource\" value="
+        },
+        {
+            "text": "<meta name=\"GENERATOR\" content=\"Microsoft SharePoint\" />"
+        },
+        {
+            "text": "<meta name=\"progid\" content=\"SharePoint.WebPartPage.Document\" />"
+        }
+    ]
+}

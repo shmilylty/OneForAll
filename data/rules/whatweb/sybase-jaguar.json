@@ -1,0 +1,18 @@
+{
+    "name": "Sybase-Jaguar",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "Sybase Jaguar server - discontinued",
+    "website": "http://www.sybase.com/products/archivedproducts/jaguarcts",
+    "matches": [
+        {
+            "regexp": "(?-mix:^Jaguar Server Version)",
+            "search": "headers[server]"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Jaguar Server Version ([\\d\\.]+)$)",
+            "offset": 1
+        }
+    ]
+}

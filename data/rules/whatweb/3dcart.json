@@ -1,0 +1,25 @@
+{
+    "name": "3dcart",
+    "author": "Napz <napzs@rocketmail.com>, Andrew Horton, Bhavin Senjaliya <bhavin.senjaliya@gmail.com>",
+    "version": "0.3",
+    "description": "3dcart - The 3dcart Shopping Cart Software is a complete ecommerce solution for anyone.",
+    "website": "http://www.3dcart.com/",
+    "matches": [
+        {
+            "text": "<!--START: 3dcart stats-->"
+        },
+        {
+            "text": "<!--END: 3dcart stats-->"
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:3dvisit)"
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:^affiliate\\s)",
+            "name": "affiliate cookie",
+            "certainty": 25
+        }
+    ]
+}

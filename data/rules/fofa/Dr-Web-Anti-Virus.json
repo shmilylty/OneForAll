@@ -1,0 +1,15 @@
+{
+    "name": "Dr-Web-Anti-Virus",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "DRWEB_PERSONAL_OFFICE="
+        },
+        {
+            "search": "body",
+            "text": "/avdesk/includes/system/templates/images/logo_en.png"
+        }
+    ]
+}

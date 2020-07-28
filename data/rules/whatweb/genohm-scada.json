@@ -1,0 +1,21 @@
+{
+    "name": "GenOHM-SCADA",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "GenOHM SCADA is a Visualization and Control system for KNX/EIB networks.",
+    "website": "http://corp.genohm.eu/index.php?option=com_content&view=article&id=39&Itemid=34",
+    "matches": [
+        {
+            "text": "<title>GenOHM Scada Launcher</title>"
+        },
+        {
+            "url": "/favicon.ico",
+            "md5": "311df4268641ef7c01f43a077ff2c9fe"
+        },
+        {
+            "url": "/cgi-bin/scada-vis/index.cgi",
+            "regexp": "(?-mix:var LMVersion = '([^\\s^']+)';)",
+            "offset": 1
+        }
+    ]
+}

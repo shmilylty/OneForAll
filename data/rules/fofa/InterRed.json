@@ -1,0 +1,15 @@
+{
+    "name": "InterRed",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "content=\"InterRed"
+        },
+        {
+            "search": "body",
+            "text": "Created with InterRed"
+        }
+    ]
+}

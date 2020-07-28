@@ -1,0 +1,16 @@
+{
+    "name": "YouTrack",
+    "website": "http://www.jetbrains.com/youtrack/",
+    "matches": [
+        {
+            "regexp": "no-title=\"YouTrack\">"
+        },
+        {
+            "regexp": "data-reactid=\"[^\"]+\">youTrack ([0-9.]+)<",
+            "offset": 1
+        },
+        {
+            "regexp": "type=\"application/opensearchdescription\\+xml\" title=\"YouTrack\"/>"
+        }
+    ]
+}

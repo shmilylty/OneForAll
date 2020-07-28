@@ -1,0 +1,12 @@
+{
+    "name": "TypePad",
+    "author": "Andrew Horton",
+    "version": "0.2",
+    "description": "Blogging platform http://www.typepad.com/",
+    "website": null,
+    "matches": [
+        {
+            "text": "<meta name=\"generator\" content=\"http://www.typepad.com/\""
+        }
+    ]
+}

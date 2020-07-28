@@ -1,0 +1,15 @@
+{
+    "name": "uCore",
+    "website": "http://ucore.io",
+    "matches": [
+        {
+            "search": "cookies[ucore]",
+            "regexp": ".*"
+        },
+        {
+            "search": "meta[generator]",
+            "regexp": "uCore PHP Framework"
+        }
+    ],
+    "implies": "PHP"
+}

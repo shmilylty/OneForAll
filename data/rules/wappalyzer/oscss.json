@@ -1,0 +1,9 @@
+{
+    "name": "osCSS",
+    "website": "http://www.oscss.org",
+    "matches": [
+        {
+            "regexp": "<body onload=\"window\\.defaultStatus='oscss templates';\""
+        }
+    ]
+}

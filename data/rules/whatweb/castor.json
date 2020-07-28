@@ -1,0 +1,30 @@
+{
+    "name": "CAStor",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "CAStor is object storage software designed to store unstructured data also referred to as fixed content or reference information. This includes documents, e-mail, images, audio, video, voice mails, ring tones, and medical images and records.",
+    "website": "http://www.caringo.com/",
+    "matches": [
+        {
+            "url": "/",
+            "text": "<html><head><title>CAStor Node Status</title></head><body><h2>CAStor Node IP"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^CAStor Cluster\\/([^\\s]+)$)",
+            "offset": 1
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^CAStor (Reverse Proxy .+)$)"
+        },
+        {
+            "search": "headers[castor-system-totalgbavailable]",
+            "regexp": "(?-mix:^[\\d]+$)"
+        },
+        {
+            "search": "headers[castor-system-totalgbcapacity]",
+            "regexp": "(?-mix:^[\\d]+$)"
+        }
+    ]
+}

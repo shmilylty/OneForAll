@@ -1,0 +1,16 @@
+{
+    "name": "iLON-SmartServer",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "WindRiver"
+        },
+        {
+            "search": "headers",
+            "text": "i.LON"
+        }
+    ],
+    "condition": "0 and 1"
+}

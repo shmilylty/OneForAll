@@ -1,0 +1,16 @@
+{
+    "name": "Symantec-Client-Security",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Symantec Client Security",
+    "website": "http://www.symantec.com",
+    "matches": [
+        {
+            "text": "<!-- Symantec Client Security Web Based Installation -->"
+        },
+        {
+            "certainty": 75,
+            "regexp": "(?-mix:<META NAME=\"Copyright\" Content=\"Copyright (20[\\d]{2}) Symantec Corporation\">)"
+        }
+    ]
+}

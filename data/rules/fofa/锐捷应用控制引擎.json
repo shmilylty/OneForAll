@@ -1,0 +1,15 @@
+{
+    "name": "\u9510\u6377\u5e94\u7528\u63a7\u5236\u5f15\u64ce",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "window.open(\"/login.do\",\"airWin"
+        },
+        {
+            "search": "title",
+            "regexp": "\u9510\u6377\u5e94\u7528\u63a7\u5236\u5f15\u64ce"
+        }
+    ]
+}

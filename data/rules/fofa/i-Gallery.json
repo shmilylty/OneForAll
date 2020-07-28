@@ -1,0 +1,15 @@
+{
+    "name": "i-Gallery",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "i-Gallery"
+        },
+        {
+            "search": "body",
+            "text": "href=\"igallery.asp"
+        }
+    ]
+}

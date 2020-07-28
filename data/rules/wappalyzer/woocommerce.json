@@ -1,0 +1,24 @@
+{
+    "name": "WooCommerce",
+    "website": "https://woocommerce.com",
+    "matches": [
+        {
+            "regexp": "<!-- WooCommerce"
+        },
+        {
+            "regexp": "<link rel='[^']+' id='woocommerce-(?:layout|smallscreen|general)-css'  href='https?://[^/]+/wp-content/plugins/woocommerce/assets/css/woocommerce(?:-layout|-smallscreen)?\\.css?ver=([\\d.]+)'",
+            "offset": 1
+        },
+        {
+            "search": "meta[generator]",
+            "regexp": "WooCommerce ([\\d.]+)",
+            "offset": 1
+        },
+        {
+            "search": "script",
+            "regexp": "/woocommerce(?:\\.min)?\\.js(?:\\?ver=([0-9.]+))?",
+            "offset": 1
+        }
+    ],
+    "implies": "WordPress"
+}

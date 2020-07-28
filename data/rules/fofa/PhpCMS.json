@@ -1,0 +1,36 @@
+{
+    "name": "PhpCMS",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "Powered by"
+        },
+        {
+            "search": "body",
+            "text": "http://www.phpcms.cn"
+        },
+        {
+            "search": "body",
+            "text": "content=\"Phpcms"
+        },
+        {
+            "search": "body",
+            "text": "Powered by Phpcms"
+        },
+        {
+            "search": "body",
+            "text": "data/config.js"
+        },
+        {
+            "search": "body",
+            "text": "/index.php?m=content&c=index&a=lists"
+        },
+        {
+            "search": "body",
+            "text": "/index.php?m=content&amp;c=index&amp;a=lists"
+        }
+    ],
+    "condition": "(0 and 1) or 2 or 3 or 4 or 5 or 6"
+}

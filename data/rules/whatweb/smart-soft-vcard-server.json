@@ -1,0 +1,33 @@
+{
+    "name": "SMART-SOFT-VCard-Server",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "SMART-SOFT VCard HTTP/SSL server",
+    "website": "http://www.smart-soft.ru/",
+    "matches": [
+        {
+            "text": "<title>Error</title></head><body><h1>403 - Directory browsing not allowed</h1><hr>SMART-SOFT VCard HTTP/SSL server"
+        },
+        {
+            "regexp": "(?-mix:<title>Error<\\/title><\\/head><body><h1>403 - Directory browsing not allowed<\\/h1><hr>SMART-SOFT VCard HTTP\\/SSL server \\(([^\\)]+)\\)<br>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<title>Error<\\/title><\\/head><body><h1>403 - Directory browsing not allowed<\\/h1><hr>SMART-SOFT VCard HTTP\\/SSL server \\([^\\)]+\\)<br>Server - ([\\w]+))"
+        },
+        {
+            "regexp": "(?-mix:^SMART-SOFT VCard)",
+            "search": "headers[server]"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^SMART-SOFT VCard HTTP\\/SSL server \\(([^\\)]+)\\)$)",
+            "offset": 1
+        },
+        {
+            "name": "Exception header",
+            "regexp": "(?-mix:^Directory%20browsing%20not%20allowed$)",
+            "search": "headers[exception]"
+        }
+    ]
+}

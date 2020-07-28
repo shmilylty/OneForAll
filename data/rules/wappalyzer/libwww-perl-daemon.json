@@ -1,0 +1,12 @@
+{
+    "name": "libwww-perl-daemon",
+    "website": "http://metacpan.org/pod/HTTP::Daemon",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "libwww-perl-daemon(?:/([\\d\\.]+))?",
+            "offset": 1
+        }
+    ],
+    "implies": "Perl"
+}

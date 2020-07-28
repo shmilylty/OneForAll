@@ -1,0 +1,14 @@
+{
+    "name": "DovetailWRP",
+    "website": "http://www.dovetailinternet.com",
+    "matches": [
+        {
+            "regexp": "<link[^>]* href=\"\\/DovetailWRP\\/"
+        },
+        {
+            "search": "script",
+            "regexp": "\\/DovetailWRP\\/"
+        }
+    ],
+    "implies": "Microsoft ASP.NET"
+}

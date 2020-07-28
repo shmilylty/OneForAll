@@ -1,0 +1,11 @@
+{
+    "name": "Twitter typeahead.js",
+    "website": "https://twitter.github.io/typeahead.js",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "(?:typeahead|bloodhound)\\.(?:jquery|bundle)?(?:\\.min)?\\.js"
+        }
+    ],
+    "implies": "jQuery"
+}

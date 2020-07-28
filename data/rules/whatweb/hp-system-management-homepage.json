@@ -1,0 +1,22 @@
+{
+    "name": "HP-System-Management-Homepage",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "The HP System Management Homepage is a web-based interface that consolidates and simplifies the management of individual ProLiant and Integrity servers running Microsoft Windows or Linux operating systems, or HP 9000 and HP Integrity servers running HP-UX 11i.",
+    "website": "http://h18002.www1.hp.com/products/servers/management/agents/index.html",
+    "matches": [
+        {
+            "certainty": 75,
+            "regexp": "(?-mix:<TITLE>HP System Management Homepage Login<\\/TITLE>)"
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:Compaq-HMMD=)"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:CompaqHTTPServer\\/[^\\s]+ HP System Management Homepage\\/([\\d\\.]+)$)",
+            "offset": 1
+        }
+    ]
+}

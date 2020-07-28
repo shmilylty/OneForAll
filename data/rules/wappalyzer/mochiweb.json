@@ -1,0 +1,11 @@
+{
+    "name": "MochiWeb",
+    "website": "https://github.com/mochi/mochiweb",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "MochiWeb(?:/([\\d.]+))?",
+            "offset": 1
+        }
+    ]
+}

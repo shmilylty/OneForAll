@@ -1,0 +1,11 @@
+{
+    "name": "BackBee",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "<div id=\"bb5-site-wrapper\">"
+        }
+    ]
+}

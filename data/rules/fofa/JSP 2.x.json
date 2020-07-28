@@ -1,0 +1,11 @@
+{
+    "name": "JSP 2.x",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "JSP/2.2"
+        }
+    ]
+}

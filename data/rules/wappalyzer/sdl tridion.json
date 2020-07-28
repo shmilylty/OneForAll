@@ -1,0 +1,9 @@
+{
+    "name": "SDL Tridion",
+    "website": "http://www.sdl.com/products/tridion",
+    "matches": [
+        {
+            "regexp": "<img[^>]+_tcm\\d{2,3}-\\d{6}\\."
+        }
+    ]
+}

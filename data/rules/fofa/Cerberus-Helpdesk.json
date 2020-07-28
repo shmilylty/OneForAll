@@ -1,0 +1,15 @@
+{
+    "name": "Cerberus-Helpdesk",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "CerberusPublicGUI"
+        },
+        {
+            "search": "body",
+            "text": "<!-- If you have your own stylesheet for HTML elements, you can remove the cerberus-html.css link"
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    "name": "MistCMS",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "MistCMS is a free Content Management System written in PHP that allows you to dynamically edit the content on your website without having to reupload everything every time you want to make a change.",
+    "website": null,
+    "matches": [
+        {
+            "text": "<div class=\"page\">login</div><form method=\"post\" action=\"mist.php\">"
+        },
+        {
+            "text": "<!-- Powered by MistCMS @ dvondrake.com -->"
+        }
+    ]
+}

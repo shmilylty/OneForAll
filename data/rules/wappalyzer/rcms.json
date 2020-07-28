@@ -1,0 +1,10 @@
+{
+    "name": "RCMS",
+    "website": "http://www.rcms.fi",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "^(?:RCMS|ReallyCMS)"
+        }
+    ]
+}

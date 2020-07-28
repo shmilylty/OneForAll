@@ -1,0 +1,19 @@
+{
+    "name": "Dokeos",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "href=\"http://www.dokeos.com\" rel=\"Copyright"
+        },
+        {
+            "search": "body",
+            "text": "content=\"Dokeos"
+        },
+        {
+            "search": "body",
+            "text": "name=\"Generator\" content=\"Dokeos"
+        }
+    ]
+}

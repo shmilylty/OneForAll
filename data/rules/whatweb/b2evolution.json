@@ -1,0 +1,23 @@
+{
+    "name": "b2evolution",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "b2evolution is a powerful blog tool you can install on your own website.",
+    "website": "http://b2evolution.net/",
+    "matches": [
+        {
+            "regexp": "(?i-mx:rsc\\/img\\/powered-by-b2evolution-150t.gif\" alt=\"Powered by b2evolution\")"
+        },
+        {
+            "regexp": "(?-mix:<p class=\"footer\"><a href=\"http:\\/\\/b2evolution.net\\/\" title=\"visit b2evolution's website\"><strong>b2evolution ([^<]+)<\\/strong><\\/a>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<meta name=\"generator\" content=\"b2evolution ([^\\\"]+)\" \\/>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:Powered by <a href=\"http:\\/\\/b2evolution.net[\\/]*\"[^>]+>b2evolution<\\/a>)"
+        }
+    ]
+}

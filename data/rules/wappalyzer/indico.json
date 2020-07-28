@@ -1,0 +1,14 @@
+{
+    "name": "Indico",
+    "website": "http://indico-software.org",
+    "matches": [
+        {
+            "search": "cookies[MAKACSESSION]",
+            "regexp": ".*"
+        },
+        {
+            "regexp": "Powered by\\s+(?:CERN )?<a href=\"http://(?:cdsware\\.cern\\.ch/indico/|indico-software\\.org|cern\\.ch/indico)\">(?:CDS )?Indico( [\\d\\.]+)?",
+            "offset": 1
+        }
+    ]
+}

@@ -1,0 +1,23 @@
+{
+    "name": "ProScan",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "Streams audio",
+    "website": "http://www.proscan.org/",
+    "matches": [
+        {
+            "regexp": "(?-mix:^ProScan)",
+            "search": "headers[server]"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^ProScan ([^\\s]+)$)",
+            "offset": 1
+        },
+        {
+            "name": "icy-notice2 header",
+            "regexp": "(?-mix:^ProScan)",
+            "search": "headers[icy-notice2]"
+        }
+    ]
+}

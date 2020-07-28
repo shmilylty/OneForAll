@@ -1,0 +1,34 @@
+{
+    "name": "Bootstrap",
+    "website": "https://getbootstrap.com",
+    "matches": [
+        {
+            "regexp": "<style>/\\*!\\* Bootstrap v(\\d\\.\\d\\.\\d)",
+            "offset": 1
+        },
+        {
+            "regexp": "<link[^>]+?href=[^\"]/css/([\\d.]+)/bootstrap\\.(?:min\\.)?css",
+            "offset": 1
+        },
+        {
+            "regexp": "<link[^>]+?href=\"[^\"]*bootstrap(?:\\.min)?\\.css"
+        },
+        {
+            "regexp": "<div[^>]+class=\"[^\"]*glyphicon glyphicon-"
+        },
+        {
+            "search": "script",
+            "regexp": "twitter\\.github\\.com/bootstrap"
+        },
+        {
+            "search": "script",
+            "regexp": "bootstrap[.-]([\\d.]*\\d)[^/]*\\.js",
+            "offset": 1
+        },
+        {
+            "search": "script",
+            "regexp": "(?:/([\\d.]+))?(?:/js)?/bootstrap(?:\\.min)?\\.js",
+            "offset": 1
+        }
+    ]
+}

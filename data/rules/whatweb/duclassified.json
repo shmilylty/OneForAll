@@ -1,0 +1,21 @@
+{
+    "name": "DUclassified",
+    "author": "Tonmoy Saikia, Andrew Horton",
+    "version": "0.2",
+    "description": "DUclassified is a free Classified Ad Management system.",
+    "website": "http://www.duware.com/",
+    "matches": [
+        {
+            "certainty": 75,
+            "ghdb": "\"powered by DUclassified\" intitle:DUclassified"
+        },
+        {
+            "name": "default title",
+            "regexp": "(?-mix:<title>DUclassified[\\s\\d\\.]*<\\/title>)"
+        },
+        {
+            "name": "assets/DUclassified.css",
+            "regexp": "(?-mix:<link[^>]href=\"[^\"]*assets\\/DUclassified.css\"[^>]+>)"
+        }
+    ]
+}

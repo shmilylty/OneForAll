@@ -1,0 +1,10 @@
+{
+    "name": "papaya CMS",
+    "website": "https://papaya-cms.com",
+    "matches": [
+        {
+            "regexp": "<link[^>]*/papaya-themes/"
+        }
+    ],
+    "implies": "PHP"
+}

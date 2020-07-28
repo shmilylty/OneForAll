@@ -1,0 +1,16 @@
+{
+    "name": "QNO_Router",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "/QNOVirtual_Keyboard.js"
+        },
+        {
+            "search": "body",
+            "text": "/images/login_img01_03.gif"
+        }
+    ],
+    "condition": "0 and 1"
+}

@@ -1,0 +1,11 @@
+{
+    "name": "\u6cdb\u666e\u5efa\u7b51\u5de5\u7a0b\u65bd\u5de5OA",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "/dwr/interface/LoginService.js"
+        }
+    ]
+}

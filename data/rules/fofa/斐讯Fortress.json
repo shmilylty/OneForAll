@@ -1,0 +1,16 @@
+{
+    "name": "\u6590\u8bafFortress",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "\u6590\u8bafFortress\u9632\u706b\u5899"
+        },
+        {
+            "search": "body",
+            "text": "<meta name=\"author\" content=\"\u4e0a\u6d77\u6590\u8baf\u6570\u636e\u901a\u4fe1\u6280\u672f\u6709\u9650\u516c\u53f8\" />"
+        }
+    ],
+    "condition": "0 and 1"
+}

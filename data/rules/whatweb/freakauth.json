@@ -1,0 +1,15 @@
+{
+    "name": "FreakAuth",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "FreakAuth is a simple authentication library for the Code Igniter PHP framework",
+    "website": "http://freakauth.4webby.com/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<title>FreakAuth &raquo; [^<]+<\\/title>)"
+        },
+        {
+            "regexp": "(?-mix:Welcome on board ! \\/ <a href=\"http[^\"]+\">Login<\\/a>\t\t<\\/div>)"
+        }
+    ]
+}

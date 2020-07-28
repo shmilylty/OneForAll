@@ -1,0 +1,11 @@
+{
+    "name": "Mongrel",
+    "website": "http://mongrel2.org",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "Mongrel"
+        }
+    ],
+    "implies": "Ruby"
+}

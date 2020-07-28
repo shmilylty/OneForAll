@@ -1,0 +1,15 @@
+{
+    "name": "NITC",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "NITC Web Marketing Service"
+        },
+        {
+            "search": "body",
+            "text": "/images/nitc1.png"
+        }
+    ]
+}

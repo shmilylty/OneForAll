@@ -1,0 +1,28 @@
+{
+    "name": "74cms",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "content=\"74cms.com"
+        },
+        {
+            "search": "body",
+            "text": "content=\"\u9a91\u58ebCMS"
+        },
+        {
+            "search": "body",
+            "text": "Powered by <a href=\"http://www.74cms.com/\""
+        },
+        {
+            "search": "body",
+            "text": "/templates/default/css/common.css"
+        },
+        {
+            "search": "body",
+            "text": "selectjobscategory"
+        }
+    ],
+    "condition": "0 or 1 or 2 or (3 and 4)"
+}

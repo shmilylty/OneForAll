@@ -1,0 +1,9 @@
+{
+    "name": "Vimeo",
+    "website": "http://vimeo.com",
+    "matches": [
+        {
+            "regexp": "(?:<(?:param|embed)[^>]+vimeo\\.com/moogaloop|<iframe[^>]player\\.vimeo\\.com)"
+        }
+    ]
+}

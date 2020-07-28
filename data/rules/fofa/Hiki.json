@@ -1,0 +1,19 @@
+{
+    "name": "Hiki",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "content=\"Hiki"
+        },
+        {
+            "search": "body",
+            "text": "/hiki_base.css"
+        },
+        {
+            "search": "body",
+            "text": "by <a href=\"http://hikiwiki.org/"
+        }
+    ]
+}

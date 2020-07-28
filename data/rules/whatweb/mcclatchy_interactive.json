@@ -1,0 +1,15 @@
+{
+    "name": "McClatchy-Interactive",
+    "author": "Shuai Lin",
+    "version": "0.1",
+    "description": "McClatchy-Interactive is a news website engine.",
+    "website": null,
+    "matches": [
+        {
+            "regexp": "(?-mix:<script type=\"text\\/javascript\" src=\"http:\\/\\/media.\\w+.com\\/mistats\\/mianalytics.js\"><\\/script>)"
+        },
+        {
+            "text": "miAppControler contains master settings that can be used to quickly disable"
+        }
+    ]
+}

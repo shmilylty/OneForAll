@@ -1,0 +1,11 @@
+{
+    "name": "epson\u6253\u5370\u673a",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "EPSON-HTTP"
+        }
+    ]
+}

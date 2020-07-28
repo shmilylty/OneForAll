@@ -1,0 +1,10 @@
+{
+    "name": "Tebex",
+    "website": "https://www.tebex.io/",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "https://server\\.tebex\\.io/tebexAccounts/tebexaccounts\\.js"
+        }
+    ]
+}

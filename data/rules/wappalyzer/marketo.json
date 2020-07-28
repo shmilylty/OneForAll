@@ -1,0 +1,10 @@
+{
+    "name": "Marketo",
+    "website": "https://www.marketo.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "munchkin\\.marketo\\.net/munchkin\\.js"
+        }
+    ]
+}

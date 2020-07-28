@@ -1,0 +1,11 @@
+{
+    "name": "Pingoteam",
+    "website": "https://www.pingoteam.ir/",
+    "matches": [
+        {
+            "search": "meta[designer]",
+            "regexp": "Pingoteam"
+        }
+    ],
+    "implies": "PHP"
+}

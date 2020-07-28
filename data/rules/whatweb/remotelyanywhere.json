@@ -1,0 +1,18 @@
+{
+    "name": "RemotelyAnywhere",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "A small HTTP daemon, which enables you to access and manage services, processes, users, and files on the remote computer over the network.",
+    "website": "http://www.remotelyanywhere.com/",
+    "matches": [
+        {
+            "regexp": "(?-mix:^RemotelyAnywhere)",
+            "search": "headers[server]"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^RemotelyAnywhere\\/([\\d\\.]+)$)",
+            "offset": 1
+        }
+    ]
+}

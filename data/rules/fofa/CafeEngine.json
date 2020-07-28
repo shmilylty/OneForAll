@@ -1,0 +1,15 @@
+{
+    "name": "CafeEngine",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "/CafeEngine/style.css"
+        },
+        {
+            "search": "body",
+            "text": "<a href=http://cafeengine.com>CafeEngine.com"
+        }
+    ]
+}

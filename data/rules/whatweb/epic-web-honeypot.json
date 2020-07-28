@@ -1,0 +1,19 @@
+{
+    "name": "Epic-Web-Honeypot",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Epic Web Honeypot",
+    "website": null,
+    "matches": [
+        {
+            "text": "<center><font size=\"3\" face=\"monospace\">******************************** Epic Web Honeypot ********************************</font></center>"
+        },
+        {
+            "regexp": "(?-mix:<center><font size=\"3\" face=\"monospace\">\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\* Version ([^\\s]+) \\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*<\\/font><\\/center>)",
+            "offset": 1
+        },
+        {
+            "text": "<!-- Added OS fingerprints - creds - nmap and honeyd nmap.prints file!-->"
+        }
+    ]
+}

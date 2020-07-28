@@ -1,0 +1,10 @@
+{
+    "name": "Cloudcoins",
+    "website": "https://cloudcoins.co",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "https?://cdn\\.cloudcoins\\.co/javascript/cloudcoins\\.min\\.js"
+        }
+    ]
+}

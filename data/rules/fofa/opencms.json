@@ -1,0 +1,15 @@
+{
+    "name": "opencms",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "content=\"OpenCms"
+        },
+        {
+            "search": "body",
+            "text": "Powered by OpenCms"
+        }
+    ]
+}

@@ -1,0 +1,24 @@
+{
+    "name": "Oracle-Real-User-Experience-Insight",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Oracle Real User Experience Insight - passive network performance analysis and usage analysis",
+    "website": "http://www.oracle.com/technetwork/oem/uxinsight/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<title>Oracle Real User Experience Insight \\-\\[ ([^\\s]+@[^\\s]+) \\]\\-<\\/title>)"
+        },
+        {
+            "regexp": "(?-mix:<title>Oracle Real User Experience Insight \\-\\[ ([\\d\\.a-z]+) \\]\\-<\\/title>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<div class=\"windowWatermark\">Version: ([^\\s]+))",
+            "offset": 1
+        },
+        {
+            "url": "/ruei/rpc.php",
+            "text": "{\"retval\":false,\"error_"
+        }
+    ]
+}

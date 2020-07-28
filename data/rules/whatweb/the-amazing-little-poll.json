@@ -1,0 +1,24 @@
+{
+    "name": "The-Amazing-Little-Poll",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "The Amazing Little Poll is a very simple php polling script.",
+    "website": "http://www.mr-corner.com/LittlePoll/index.html",
+    "matches": [
+        {
+            "regexp": "(?-mix:<h1>The Amazing Little Poll Admin Center v([^<]+)<\\/h1>)",
+            "offset": 1
+        },
+        {
+            "text": "<form action=\"lp_admin.php\" method=\"post\" name=\"form0\">Admin Password:<input type=\"hidden\" name=\"adminstep\" value=\"1\"><input type=\"Password\" name=\"pwd\" size=\"20\"><br><input type=\"Submit\" value=\"OK\"></form>"
+        },
+        {
+            "url": "lp_settings.inc",
+            "regexp": "(?-mix:\\/\\/ Change this password so no one else can access the lp_admin\\.php via the web\\s+\\$pwd=\"([^\"]+)\";)"
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:pollidcookie=)"
+        }
+    ]
+}

@@ -1,0 +1,13 @@
+{
+    "name": "SentinelServer",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Monitor application performance and availability",
+    "website": "http://www.ymor.eu/",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^SentinelServer)"
+        }
+    ]
+}

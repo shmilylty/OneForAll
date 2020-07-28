@@ -1,0 +1,11 @@
+{
+    "name": "wisyCMS",
+    "website": "https://wisy.3we.de",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "^wisy CMS[ v]{0,3}([0-9.,]*)",
+            "offset": 1
+        }
+    ]
+}

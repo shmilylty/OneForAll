@@ -1,0 +1,13 @@
+{
+    "name": "Swiki",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Swiki is a popular implementation of Ward Cunningham's WikiWikiWeb that runs under Comanche.",
+    "website": "http://wiki.squeak.org/swiki/",
+    "matches": [
+        {
+            "url": "/defaultScheme/comSwiki.gif",
+            "md5": "81d538bed9f676fffbdaedb9d95cdbc1"
+        }
+    ]
+}

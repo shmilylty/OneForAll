@@ -1,0 +1,15 @@
+{
+    "name": "Kedacom-TrueSens",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "KEDACOM"
+        },
+        {
+            "search": "body",
+            "text": "/img/kedacom-logo.jpg"
+        }
+    ]
+}

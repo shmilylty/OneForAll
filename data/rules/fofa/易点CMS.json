@@ -1,0 +1,15 @@
+{
+    "name": "\u6613\u70b9CMS",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "DianCMS_SiteName"
+        },
+        {
+            "search": "body",
+            "text": "DianCMS_\u7528\u6237\u767b\u9646\u5f15\u7528"
+        }
+    ]
+}

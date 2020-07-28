@@ -1,0 +1,14 @@
+{
+    "name": "AMR-WinControl",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "This plugin identifies AMR-WinControl server",
+    "website": "http://amr-wincontrol.software.informer.com/",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:AMR_WinControl[_0-9]*\\/([\\d\\.]+))",
+            "offset": 1
+        }
+    ]
+}

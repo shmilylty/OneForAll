@@ -1,0 +1,19 @@
+{
+    "name": "richmail",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "Richmail"
+        },
+        {
+            "search": "body",
+            "text": "/resource/se/lang/se/mail_zh_CN.js"
+        },
+        {
+            "search": "body",
+            "text": "content=\"Richmail"
+        }
+    ]
+}

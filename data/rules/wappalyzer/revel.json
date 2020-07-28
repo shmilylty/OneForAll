@@ -1,0 +1,15 @@
+{
+    "name": "Revel",
+    "website": "https://revel.github.io",
+    "matches": [
+        {
+            "search": "cookies[REVEL_FLASH]",
+            "regexp": ".*"
+        },
+        {
+            "search": "cookies[REVEL_SESSION]",
+            "regexp": ".*"
+        }
+    ],
+    "implies": "Go"
+}

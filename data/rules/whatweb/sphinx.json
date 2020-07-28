@@ -1,0 +1,16 @@
+{
+    "name": "Sphinx",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Sphinx is a tool that makes it easy to create intelligent and beautiful documentation",
+    "website": "http://sphinx.pocoo.org/",
+    "matches": [
+        {
+            "regexp": "(?-mix:Created using <a href=\"http:\\/\\/sphinx\\.pocoo\\.org\\/\">Sphinx<\\/a> ([^\\s]+)\\.)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<div class=\"sphinxsidebar\">[\\s]+<div class=\"sphinxsidebarwrapper\">)"
+        }
+    ]
+}

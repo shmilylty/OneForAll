@@ -1,0 +1,28 @@
+{
+    "name": "CA-SiteMinder",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "CA SiteMinder - Web Access Management",
+    "website": "http://www.ca.com/us/web-access-management.aspx",
+    "matches": [
+        {
+            "regexp": "(?-mix:<td><img alt=\"Logo\" src=\"(\\/)?(siteminderagent\\/)?(pw\\/|pwcgi\\/|pwserv\\/)?siteminder_logo\\.gif\" height=\"44\"><\\/td><\\/tr><\\/table>)"
+        },
+        {
+            "text": "<!-- SiteMinder Encoding=UTF-8; -->"
+        },
+        {
+            "text": "<!-- SiteMinder Encoding=ISO-8859-1; -->"
+        },
+        {
+            "text": "<tr><td></td></tr></table></td></tr></table></center></div><!--</form> --></body></html>"
+        },
+        {
+            "regexp": "(?-mix:\\/\\* SiteMinder Login Form CGI\\s+Copyright \\(C\\) 1999,2000 Netegrity, Inc\\. All rights reserved\\.)"
+        },
+        {
+            "url": "/siteminderagent/forms/login.fcc",
+            "text": "<title>SiteMinder Password Services</title>"
+        }
+    ]
+}

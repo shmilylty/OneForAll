@@ -1,0 +1,12 @@
+{
+    "name": "hapi.js",
+    "website": "http://hapijs.com",
+    "matches": [
+        {
+            "search": "cookies[Fe26.2**]",
+            "regexp": ".*",
+            "certainty": 50
+        }
+    ],
+    "implies": "Node.js"
+}

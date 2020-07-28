@@ -1,0 +1,23 @@
+{
+    "name": "Aardvark-Topsites-PHP",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "Aardvark Topsites PHP is a free topsites script built on PHP and MySQL.",
+    "website": "http://www.aardvarktopsitesphp.com/topsites/",
+    "matches": [
+        {
+            "ghdb": "\"Powered by Aardvark Topsites PHP\""
+        },
+        {
+            "regexp": "(?i-mx:Powered by <a href=\"http:\\/\\/www.aardvarktopsitesphp.com[^>]*>[^A]*Aardvark Topsites PHP)"
+        },
+        {
+            "regexp": "(?-mix:Powered by <a href=\"http:\\/\\/www.aardvarktopsitesphp.com\\/\"><b>Aardvark Topsites PHP<\\/b><\\/a> ([\\d\\.]+))",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:Powered by <a href=\"http:\\/\\/www.aardvarkind.com\\/\">Aardvark Topsites PHP<\\/a> ([\\d\\.]+))",
+            "offset": 1
+        }
+    ]
+}

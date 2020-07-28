@@ -1,0 +1,10 @@
+{
+    "name": "DoubleClick Floodlight",
+    "website": "http://support.google.com/ds/answer/6029713?hl=en",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "https?://fls\\.doubleclick\\.net"
+        }
+    ]
+}

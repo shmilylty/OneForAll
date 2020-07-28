@@ -1,0 +1,11 @@
+{
+    "name": "Liferay",
+    "website": "https://www.liferay.com",
+    "matches": [
+        {
+            "search": "headers[liferay-portal]",
+            "regexp": "[a-z\\s]+([\\d.]+)",
+            "offset": 1
+        }
+    ]
+}

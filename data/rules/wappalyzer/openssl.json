@@ -1,0 +1,11 @@
+{
+    "name": "OpenSSL",
+    "website": "http://openssl.org",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "OpenSSL(?:/([\\d.]+[a-z]?))?",
+            "offset": 1
+        }
+    ]
+}

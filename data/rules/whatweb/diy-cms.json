@@ -1,0 +1,32 @@
+{
+    "name": "DiY-CMS",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "Do It Yourself Content Management System is a feature-rich, php-built, mysql-based, opensource and free CMS.",
+    "website": "http://www.diy-cms.com/",
+    "matches": [
+        {
+            "text": "Powered by: <a href=\"http://www.diy-cms.com\" target=\"_blank\">DIY-CMS</a>"
+        },
+        {
+            "text": "<a href=\"http://www.pghost.eu/14/18/diy_cms-25.html\">Powered by DIY-CMS</a>"
+        },
+        {
+            "text": "<title>DIY-CMS Database Error</title>"
+        },
+        {
+            "text": "<p><b><a href=\"http://www.diy-cms.com/\" target=\"_blank\">Powered by: DIY-CMS</a></b></p></body></html>"
+        },
+        {
+            "text": "<td valign='middle'><img border='0' src=\"admin_skin/default/images//admin_login.png\"></a></td>"
+        },
+        {
+            "regexp": "(?-mix:<META content=\"Powered by DiY-CMS ([\\d\\.]+) [0-9]{4} \" name=\"description\">)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:Powered by <a href=\"http:\\/\\/www.pghost.eu[^>]+>DIY-CMS v ([\\d\\.]+)<\\/a>)",
+            "offset": 1
+        }
+    ]
+}

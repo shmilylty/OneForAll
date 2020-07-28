@@ -1,0 +1,17 @@
+{
+    "name": "styled-components",
+    "website": "https://styled-components.com",
+    "matches": [
+        {
+            "regexp": "<style[^>]*data-styled(?:-components)?[\\s\"]"
+        },
+        {
+            "regexp": "<style[^>]+data-styled-version=\"([0-9]+)\"",
+            "offset": 1
+        },
+        {
+            "regexp": "<[^>]+sc-component-id: sc-"
+        }
+    ],
+    "implies": "React"
+}

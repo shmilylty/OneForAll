@@ -1,0 +1,35 @@
+{
+    "name": "activeWeb-Content-Server",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "Content Server is a comprehensive, scalable content management platform for professional demands. It combines editorial system, website management and development environment for Web applications in one package.",
+    "website": "http://www.active-web.de/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<!--[\\s]+page generated with activeWeb contentserver R([\\d\\.]+))",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<!--[\\s]+activeWeb cache extension R([\\d\\.]+))",
+            "offset": 1
+        },
+        {
+            "text": "<!-- AWNOCACHEBEGIN__AWNOCACHEBEGIN__AWNOCACHEBEGIN__AWNOCACHEBEGIN__AWNOCACHEBEGIN -->"
+        },
+        {
+            "name": "X-AwCache-FollowUp Header",
+            "text": "",
+            "search": "headers[x-awcache-followup]"
+        },
+        {
+            "name": "X-AwCache-Command Header",
+            "text": "",
+            "search": "headers[x-awcache-command]"
+        },
+        {
+            "name": "X-AwCache-ScriptTechnology Header",
+            "search": "headers[x-awcache-scripttechnology]",
+            "regexp": "(?-mix:^.*$)"
+        }
+    ]
+}

@@ -1,0 +1,23 @@
+{
+    "name": "Bugzilla",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "enter_bug.cgi"
+        },
+        {
+            "search": "body",
+            "text": "/cgi-bin/bugzilla/"
+        },
+        {
+            "search": "headers",
+            "text": "Bugzilla_login_request_cookie"
+        },
+        {
+            "search": "title",
+            "regexp": "Bugzilla Main Page"
+        }
+    ]
+}

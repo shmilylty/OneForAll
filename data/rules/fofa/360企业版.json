@@ -1,0 +1,11 @@
+{
+    "name": "360\u4f01\u4e1a\u7248",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "360EntInst"
+        }
+    ]
+}

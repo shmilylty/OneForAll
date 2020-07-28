@@ -1,0 +1,30 @@
+{
+    "name": "AfterLogic-WebMail-Pro",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "AfterLogic WebMail Pro is a webmail front-end for your existing POP3/IMAP mail server.",
+    "website": "http://www.afterlogic.com/mailbee/webmail-pro.asp",
+    "matches": [
+        {
+            "text": "Powered by <a href=\"http://www.afterlogic.com/products/webmail-pro\" target=\"_blank\">AfterLogic WebMail Pro</a><br />"
+        },
+        {
+            "regexp": "(?-mix:AfterLogic Corporation<\\/a>\\s?<\\/div>\\s+<\\/body>\\s<\\/html>\\s<!--\\s?([\\d\\.]+)\\s?-->)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:AfterLogic Corporation<\\/a>\\s?<\\/div>\\s+<!--\\s?([\\d\\.]+)\\s?-->\\s<\\/body>\\s<\\/html>)",
+            "offset": 1
+        },
+        {
+            "name": "PHPWEBMAILSESSID cookie",
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:^PHPWEBMAILSESSID=[^;]+;)"
+        },
+        {
+            "name": "PHPWMADMINSESSID cookie",
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:^PHPWEBMAILSESSID=[^;]+;)"
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+{
+    "name": "\u4e2d\u4f01\u52a8\u529b\u95e8\u6237CMS",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "\u4e2d\u4f01\u52a8\u529b\u63d0\u4f9b\u6280\u672f\u652f\u6301"
+        }
+    ]
+}

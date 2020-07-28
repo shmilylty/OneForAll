@@ -1,0 +1,11 @@
+{
+    "name": "LEPTON",
+    "website": "http://www.lepton-cms.org",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "LEPTON"
+        }
+    ],
+    "implies": "PHP"
+}

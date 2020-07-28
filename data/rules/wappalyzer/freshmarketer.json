@@ -1,0 +1,10 @@
+{
+    "name": "Freshmarketer",
+    "website": "https://www.freshworks.com/marketing-automation/conversion-rate-optimization/",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "cdn\\.freshmarketer\\.com"
+        }
+    ]
+}

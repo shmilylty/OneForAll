@@ -1,0 +1,47 @@
+{
+    "name": "Drupal",
+    "author": "Andrew Horton, Brendan Coles <bcoles@gmail.com>, Bhavin Senjaliya <bhavin.senjaliya@gmail.com>",
+    "version": "0.4",
+    "description": "Drupal is an opensource CMS written in PHP.",
+    "website": "http://www.drupal.org",
+    "matches": [
+        {
+            "regexp": "(?-mix:<script type=\"text\\/javascript\" src=\"[^\\\"]*\\/misc\\/drupal.js[^\\\"]*\"><\\/script>)"
+        },
+        {
+            "regexp": "(?-mix:<[^>]+alt=\"Powered by Drupal, an open source content management system\")"
+        },
+        {
+            "regexp": "(?-mix:@import \"[^\\\"]*\\/misc\\/drupal.css\")"
+        },
+        {
+            "text": "jQuery.extend(Drupal.settings,"
+        },
+        {
+            "certainty": 75,
+            "text": "Drupal.extend("
+        },
+        {
+            "name": "SESS Drupal Cookie",
+            "certainty": 75,
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:^SESS[a-z0-9]{32}=[a-z0-9]{32})"
+        },
+        {
+            "name": "SSESS Drupal Cookie",
+            "certainty": 75,
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:^SSESS[a-z0-9]{32}=[a-z0-9]{32})"
+        },
+        {
+            "module": "Mobile Plugin",
+            "name": "Mobile Plugin Cookie",
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:mobileplugin_group=)"
+        },
+        {
+            "search": "headers[x-drupal-cache]",
+            "regexp": "(?-mix:(HIT|MISS))"
+        }
+    ]
+}

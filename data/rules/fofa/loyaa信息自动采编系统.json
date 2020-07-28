@@ -1,0 +1,11 @@
+{
+    "name": "loyaa\u4fe1\u606f\u81ea\u52a8\u91c7\u7f16\u7cfb\u7edf",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "/Loyaa/common.lib.js"
+        }
+    ]
+}

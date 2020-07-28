@@ -1,0 +1,12 @@
+{
+    "name": "Apple Pay",
+    "website": "https://www.apple.com/apple-pay",
+    "matches": [
+        {
+            "regexp": "<[^>]+aria-labelledby=\"pi-apple_pay"
+        },
+        {
+            "regexp": "<script id=\"apple-pay"
+        }
+    ]
+}

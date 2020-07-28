@@ -1,0 +1,26 @@
+{
+    "name": "Oracle-Primerva",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Enterprise Project Portfolio Management (EPPM) solutions",
+    "website": "http://www.oracle.com/oms/eppm/index.html",
+    "matches": [
+        {
+            "regexp": "(?-mix:<!-- @#\\$ Copyright Start\\s+. 1999 - (20[\\d]{2}) Primavera Systems, Inc\\.  All rights reserved\\.)"
+        },
+        {
+            "text": "<!-- use the default style sheet only.... we do not know the users locale at this time -->"
+        },
+        {
+            "regexp": "(?-mix:<div class=\"IntroAreaBuildId\" id=\"BuildId\">Version ([^,^\\s]+, Build \\d+)(&nbsp;)*<\\/div>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<div align=\"right\" id=\"BuildId\">Version ([^,^\\s]+, Build \\d+)(&nbsp;)*<\\/div>)",
+            "offset": 1
+        },
+        {
+            "text": "<img src=\"img/process_meter.gif\" border=0 id=\"progressimage\"><br><br>Loading Java Plugin and Security Certificate"
+        }
+    ]
+}

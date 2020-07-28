@@ -1,0 +1,16 @@
+{
+    "name": "HTML5",
+    "author": "Andrew Horton",
+    "version": "0.2",
+    "description": "HTML version 5, detected by the doctype declaration",
+    "website": null,
+    "matches": [
+        {
+            "regexp": "(?i-mx:<!DOCTYPE html>)"
+        },
+        {
+            "string": "applicationCache",
+            "regexp": "(?-mix:<html[^>]* manifest=)"
+        }
+    ]
+}

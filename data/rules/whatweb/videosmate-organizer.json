@@ -1,0 +1,29 @@
+{
+    "name": "Videosmate-Organizer",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Videosmate Organizer - Organize your favorite YouTube & Vimeo Videos on your own site in minutes. The script contains an API that can pull videos automatically from YouTube to your site based on the channel name or keywords that you enter. ",
+    "website": "http://videosmate.com/",
+    "matches": [
+        {
+            "text": "</div> <!-- /content-in -->"
+        },
+        {
+            "text": "<!-- script Downloaded from http://videosmate.com -->"
+        },
+        {
+            "regexp": "(?-mix:<!--Copyright (20[\\d]{2}),Videosmate Organizer[\\s]+Downloaded from http:\\/\\/videosmate\\.com)"
+        },
+        {
+            "regexp": "(?-mix:<!-- LICENSED Version  Videosmate ORGANIZER, Ver\\.([^\\s]+) -->)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<a href=http:\\/\\/videosmate\\.com><font color=#ffffff>Powered&nbsp;by&nbsp;Videosmate&nbsp;Organizer&nbsp;Version&nbsp;([^\\s^&]+)&nbsp;Copyright&nbsp;&copy;&nbsp;(20[\\d]{2})<\\/a>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<a href=http:\\/\\/videosmate\\.com><font color=#ffffff>Powered&nbsp;by&nbsp;Videosmate&nbsp;Organizer&nbsp;Version&nbsp;([^\\s^&]+)&nbsp;Copyright&nbsp;&copy;&nbsp;(20[\\d]{2})<\\/a>)"
+        }
+    ]
+}

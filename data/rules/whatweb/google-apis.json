@@ -1,0 +1,16 @@
+{
+    "name": "Google-API",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "This plugin identifies references to Google API in <script>.",
+    "website": null,
+    "matches": [
+        {
+            "regexp": "(?i-mx:<script[^>]+src[\\s]*=[\\s]*[\"|']?http:\\/\\/www.google.com\\/jsapi[^>]*>[\\s]*<\\/script[\\s]*>)",
+            "string": "Dynamic"
+        },
+        {
+            "regexp": "(?i-mx:<script[^>]+src[\\s]*=[\\s]*[\"|']?http:\\/\\/ajax.googleapis.com\\/([a-zA-Z0-9\\/\\.-_]+)[\"|']?[^>]*>[\\s]*<\\/script[\\s]*>)"
+        }
+    ]
+}

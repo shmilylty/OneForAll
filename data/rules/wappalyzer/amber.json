@@ -1,0 +1,10 @@
+{
+    "name": "Amber",
+    "website": "https://amberframework.org",
+    "matches": [
+        {
+            "search": "headers[x-powered-by]",
+            "regexp": "^Amber$"
+        }
+    ]
+}

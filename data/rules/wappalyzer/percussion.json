@@ -1,0 +1,13 @@
+{
+    "name": "Percussion",
+    "website": "http://percussion.com",
+    "matches": [
+        {
+            "regexp": "<[^>]+class=\"perc-region\""
+        },
+        {
+            "search": "meta[generator]",
+            "regexp": "(?:Percussion|Rhythmyx)"
+        }
+    ]
+}

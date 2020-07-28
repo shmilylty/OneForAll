@@ -1,0 +1,11 @@
+{
+    "name": "Planet",
+    "website": "http://planetplanet.org",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "^Planet(?:/([\\d.]+))?",
+            "offset": 1
+        }
+    ]
+}

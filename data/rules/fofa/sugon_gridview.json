@@ -1,0 +1,11 @@
+{
+    "name": "sugon_gridview",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "/common/resources/images/common/app/gridview.ico"
+        }
+    ]
+}

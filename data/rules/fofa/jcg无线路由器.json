@@ -1,0 +1,16 @@
+{
+    "name": "jcg\u65e0\u7ebf\u8def\u7531\u5668",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "Wireless Router"
+        },
+        {
+            "search": "body",
+            "text": "http://www.jcgcn.com"
+        }
+    ],
+    "condition": "0 and 1"
+}

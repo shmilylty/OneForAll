@@ -1,0 +1,10 @@
+{
+    "name": "MantisBT",
+    "website": "http://www.mantisbt.org",
+    "matches": [
+        {
+            "regexp": "<img[^>]+ alt=\"Powered by Mantis Bugtracker"
+        }
+    ],
+    "implies": "PHP"
+}

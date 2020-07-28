@@ -1,0 +1,11 @@
+{
+    "name": "AV-Arcade",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "Powered by <a href=\"http://www.avscripts.net/avarcade/"
+        }
+    ]
+}

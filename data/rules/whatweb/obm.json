@@ -1,0 +1,21 @@
+{
+    "name": "OBM",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "OBM is a free messaging and collaboration software including Groupware, Messaging, CRM, LDAP, Domain management, Smartphones and PDA synchronization",
+    "website": "http://obm.org/",
+    "matches": [
+        {
+            "certainty": 75,
+            "regexp": "(?-mix:<title>Login - OBM ([^\\s^<]+)<\\/title>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<body>[\\s]+[\\s]+<p id=\"aliasource\">[\\s]+<a href=\"http:\\/\\/www\\.obm\\.org\">OBM\\.org<\\/a>[\\s]+<\\/p>[\\s]+<h1>)"
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:OBM_Session=[\\s]+;)"
+        }
+    ]
+}

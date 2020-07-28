@@ -1,0 +1,11 @@
+{
+    "name": "Scientific-Atlanta_Cable_Modem",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "Scientific-Atlanta Cable Modem"
+        }
+    ]
+}

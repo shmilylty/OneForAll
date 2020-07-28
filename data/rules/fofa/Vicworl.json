@@ -1,0 +1,19 @@
+{
+    "name": "Vicworl",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "Powered by Vicworl"
+        },
+        {
+            "search": "body",
+            "text": "content=\"Vicworl"
+        },
+        {
+            "search": "body",
+            "text": "vindex_right_d"
+        }
+    ]
+}

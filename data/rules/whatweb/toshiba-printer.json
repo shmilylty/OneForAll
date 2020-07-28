@@ -1,0 +1,12 @@
+{
+    "name": "ToshibaPrinter",
+    "author": "Andrew Horton",
+    "version": "0.2",
+    "description": "Toshiba printer Top Access",
+    "website": null,
+    "matches": [
+        {
+            "text": "<TITLE CLASS=\"clsTitle1\">TopAccess</title>"
+        }
+    ]
+}

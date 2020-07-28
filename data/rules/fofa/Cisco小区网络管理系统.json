@@ -1,0 +1,11 @@
+{
+    "name": "Cisco\u5c0f\u533a\u7f51\u7edc\u7ba1\u7406\u7cfb\u7edf",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "Cisco\u5c0f\u533a\u7f51\u7edc\u7ba1\u7406\u7cfb\u7edf"
+        }
+    ]
+}

@@ -1,0 +1,30 @@
+{
+    "name": "Azure",
+    "website": "https://azure.microsoft.com",
+    "matches": [
+        {
+            "search": "cookies[ARRAffinity]",
+            "regexp": ".*"
+        },
+        {
+            "search": "cookies[TiPMix]",
+            "regexp": ".*"
+        },
+        {
+            "search": "headers[azure-regionname]",
+            "regexp": ".*"
+        },
+        {
+            "search": "headers[azure-sitename]",
+            "regexp": ".*"
+        },
+        {
+            "search": "headers[azure-slotname]",
+            "regexp": ".*"
+        },
+        {
+            "search": "headers[azure-version]",
+            "regexp": ".*"
+        }
+    ]
+}

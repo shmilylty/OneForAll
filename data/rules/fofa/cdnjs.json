@@ -1,0 +1,15 @@
+{
+    "name": "cdnjs",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "cdnjs.cloudflare.com/ajax/libs"
+        },
+        {
+            "search": "body",
+            "text": "cdnjs.cloudflare.com/ajax/libs"
+        }
+    ]
+}

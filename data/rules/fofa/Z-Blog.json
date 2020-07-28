@@ -1,0 +1,15 @@
+{
+    "name": "Z-Blog",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "generator\" content=\"Z-Blog"
+        },
+        {
+            "search": "headers",
+            "text": "Product: Z-Blog"
+        }
+    ]
+}

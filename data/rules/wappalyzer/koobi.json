@@ -1,0 +1,14 @@
+{
+    "name": "Koobi",
+    "website": "http://dream4.de/cms",
+    "matches": [
+        {
+            "regexp": "<!--[^K>-]+Koobi ([a-z\\d.]+)",
+            "offset": 1
+        },
+        {
+            "search": "meta[generator]",
+            "regexp": "Koobi"
+        }
+    ]
+}

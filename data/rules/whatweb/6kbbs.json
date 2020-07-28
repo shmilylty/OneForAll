@@ -1,0 +1,23 @@
+{
+    "name": "6kbbs",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "6kbbs - Forum",
+    "website": "http://www.6kbbs.net/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<meta name=\"generator\" content=\"6KBBS v([^\"^>]+)\" \\/>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<meta name=\"copyright\" content=\"2003-20[\\d]{2} 6KBBS\" \\/>)"
+        },
+        {
+            "text": "<meta name=\"author\" content=\"www.6kbbs.com\" />"
+        },
+        {
+            "regexp": "(?-mix:Powered by <a href=\"http:\\/\\/www\\.6kbbs\\.com\" target=\"_blank\">6kbbs V([^<^\\s]+)<\\/a> &copy; 2003-20[\\d]{2})",
+            "offset": 1
+        }
+    ]
+}

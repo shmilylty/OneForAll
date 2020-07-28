@@ -1,0 +1,33 @@
+{
+    "name": "Atmail-WebMail",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.3",
+    "description": "Atmail allows users to access IMAP Mailboxes on any server of your choice. You and your users can experience webmail via a fluid, intuitive interface that excels aesthetically and functionally; a benchmark that very few webmail clients have achieved.",
+    "website": "http://www.atmail.com/webmail-client/",
+    "matches": [
+        {
+            "text": "<title>Acceder a UOWebmail</title>"
+        },
+        {
+            "text": "<a href='http://atmail.com/webmail-client/' title='Webmail client' target='_blank'>Powered by Atmail Webmail UO</a>",
+            "version": "UO"
+        },
+        {
+            "regexp": "(?-mix:<a href=\"http:\\/\\/www.atmail.com[\\/]*\" target=\"_blank\">Powered by Atmail[\\s]*<\\/a>)"
+        },
+        {
+            "text": "<td class=\"more\"><a href=\"javascript:ExpandOptions()\"><img src=\"imgs/login-more.gif\" alt=\"more\" border=\"none\"></a></td>"
+        },
+        {
+            "regexp": "(?-mix:<title>Atmail ([\\d\\.]+) - Login Page<\\/title>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<a href=\"http:\\/\\/www.atmail.com\\/\" target=\"_blank\">Powered by Atmail ([\\d\\.]+))",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<input id=\"Mailserverinput\" class=\"input\" type=\"text\" name=\"MailServer\" value=\"([^>]*)\")"
+        }
+    ]
+}

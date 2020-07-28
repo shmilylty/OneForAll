@@ -1,0 +1,10 @@
+{
+    "name": "Storyblok",
+    "website": "https://www.storyblok.com",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "storyblok"
+        }
+    ]
+}

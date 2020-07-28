@@ -1,0 +1,12 @@
+{
+    "name": "FancyBox",
+    "website": "http://fancyapps.com/fancybox",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "jquery\\.fancybox(?:\\.pack|\\.min)?\\.js(?:\\?v=([\\d.]+))?$",
+            "offset": 1
+        }
+    ],
+    "implies": "jQuery"
+}

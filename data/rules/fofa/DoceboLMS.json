@@ -1,0 +1,15 @@
+{
+    "name": "DoceboLMS",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "Powered by Docebo"
+        },
+        {
+            "search": "headers",
+            "text": "docebo_session="
+        }
+    ]
+}

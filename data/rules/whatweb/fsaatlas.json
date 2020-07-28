@@ -1,0 +1,23 @@
+{
+    "name": "fsaATLAS",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "fsaAtlas is an international student and scholar management system.",
+    "website": "http://www.sungardhe.com/Solutions/fsaATLAS/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<title>fsaATLAS Enterprise v\\.([^\\s^<]+)<\\/title>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<div style=\"position:absolute; width:100px; top:0px; right:0px\"><img src=\"images\\/fsaatlastext\\.png\" alt=\"fsaATLAS Enterprise v\\.([^\\s^\"]+)\"\\/><\\/div>)",
+            "offset": 1
+        },
+        {
+            "text": "<form action=\"LoginFinish.asp\" method=\"post\" name=\"MainForm\">"
+        },
+        {
+            "text": "<!-- AP - 06/02/2009 - Defect 1533 - Campus DataLink Link not appearing at the top navigation bar-->"
+        }
+    ]
+}

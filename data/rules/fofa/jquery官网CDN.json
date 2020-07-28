@@ -1,0 +1,15 @@
+{
+    "name": "jquery\u5b98\u7f51CDN",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "code.jquery.com"
+        },
+        {
+            "search": "body",
+            "text": "code.jquery.com"
+        }
+    ]
+}

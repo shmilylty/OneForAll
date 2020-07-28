@@ -1,0 +1,24 @@
+{
+    "name": "BIGACE",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "BIGACE is not just an easy to use Web Content Management System (CMS), but offers also a scripting API and an extensible architecture for developing, maintaining, and deploying applications.",
+    "website": "http://www.bigace.de/",
+    "matches": [
+        {
+            "text": "Powered by <a href=\"http://www.bigace.de/\" target=\"_blank\">BIGACE</a>"
+        },
+        {
+            "regexp": "(?-mix:Powered by <a href=\"http:\\/\\/www.bigace.de\\/\"[^>]*>BIGACE ([\\d\\.]+)<\\/a>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<meta name=\"generator\" content=\"BIGACE ([\\d\\.]+)\"( \\/)?>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<!--[\\r\\n][\\r\\n]   Site is running BIGACE ([\\d\\.]+) [\\r\\n]        a PHP based Web CMS for MySQL[\\r\\n]             \\(C\\) Kevin Papst \\(www.bigace.de\\)[\\r\\n])",
+            "offset": 1
+        }
+    ]
+}

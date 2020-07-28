@@ -1,0 +1,22 @@
+{
+    "name": "TreeNeWS",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Probably a 3Com Corporation or Trapeze Networks wireless access point",
+    "website": null,
+    "matches": [
+        {
+            "url": "/vendor.js",
+            "regexp": "(?-mix:var _VENDOR_ = \"([^\"]+)\";)"
+        },
+        {
+            "url": "/vendor.js",
+            "regexp": "(?-mix:var _OTHER_SYSTEM_MANAGEMENT_NAME_ = '([^']+)';)"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^TreeNeWS\\/([^\\s]+)$)",
+            "offset": 1
+        }
+    ]
+}

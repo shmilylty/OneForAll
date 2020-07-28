@@ -1,0 +1,11 @@
+{
+    "name": "\u4e1c\u65b9\u901a\u5e94\u7528\u670d\u52a1\u5668TongWeb",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "TongWeb Server"
+        }
+    ]
+}

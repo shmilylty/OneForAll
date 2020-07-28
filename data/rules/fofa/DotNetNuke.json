@@ -1,0 +1,23 @@
+{
+    "name": "DotNetNuke",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "DotNetNukeAnonymous"
+        },
+        {
+            "search": "headers",
+            "text": "Dnnoutputcache"
+        },
+        {
+            "search": "body",
+            "text": "content=\"DotNetNuke"
+        },
+        {
+            "search": "body",
+            "text": "content=\",DotNetNuke"
+        }
+    ]
+}

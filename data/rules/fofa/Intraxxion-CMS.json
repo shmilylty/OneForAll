@@ -1,0 +1,15 @@
+{
+    "name": "Intraxxion-CMS",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "content=\"Intraxxion"
+        },
+        {
+            "search": "body",
+            "text": "<!-- site built by Intraxxion"
+        }
+    ]
+}

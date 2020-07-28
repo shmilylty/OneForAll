@@ -1,0 +1,15 @@
+{
+    "name": "Burning-Board-Lite",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "Powered by <b><a href=\"http://www.woltlab.de"
+        },
+        {
+            "search": "body",
+            "text": "Powered by <b>Burning Board"
+        }
+    ]
+}

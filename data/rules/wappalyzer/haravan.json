@@ -1,0 +1,10 @@
+{
+    "name": "Haravan",
+    "website": "https://www.haravan.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "haravan.*\\.js"
+        }
+    ]
+}

@@ -1,0 +1,21 @@
+{
+    "name": "TeveoLive-Video-Broadcast-Software",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "TeveoLive webcam - Homepage [offline]: http://www.teveo.com/",
+    "website": null,
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^TeveoLive HTTP Server$)"
+        },
+        {
+            "search": "headers[xvideowidth]",
+            "regexp": "(?-mix:^\\d+$)"
+        },
+        {
+            "search": "headers[xvideoheight]",
+            "regexp": "(?-mix:^\\d+$)"
+        }
+    ]
+}

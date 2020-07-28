@@ -1,0 +1,20 @@
+{
+    "name": "Cyn_in",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Cyn.in is a collaboration software that inter-connects your people with each other and their collective knowledge, seamlessly.",
+    "website": "http://www.cynapse.com/cynin",
+    "matches": [
+        {
+            "text": "<meta name=\"generator\" content=\"cyn.in - http://cyn.in\" />"
+        },
+        {
+            "md5": "3640b38549e4eeb872f66ec53ee27842",
+            "url": "/favicon.ico"
+        },
+        {
+            "regexp": "(?-mix:<a href=\"http:\\/\\/www\\.cynapse\\.com\\/cynin\" target=\"_blank\" class=\"smallcolophonmainlink\">Powered by cyn\\.in v([^\\s]+) - free open source edition<\\/a>)",
+            "offset": 1
+        }
+    ]
+}

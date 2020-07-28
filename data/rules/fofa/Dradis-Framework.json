@@ -1,0 +1,15 @@
+{
+    "name": "Dradis-Framework",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "_dradis_session="
+        },
+        {
+            "search": "body",
+            "text": "<p class=\"copyright\">Dradis"
+        }
+    ]
+}

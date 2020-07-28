@@ -1,0 +1,15 @@
+{
+    "name": "IBM WebSphere Portal",
+    "website": "http://ibm.com/software/websphere/portal",
+    "matches": [
+        {
+            "search": "headers[ibm-web2-location]",
+            "regexp": ".*"
+        },
+        {
+            "search": "headers[itx-generated-timestamp]",
+            "regexp": ".*"
+        }
+    ],
+    "implies": "Java"
+}

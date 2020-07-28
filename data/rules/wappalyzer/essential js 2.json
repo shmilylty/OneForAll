@@ -1,0 +1,9 @@
+{
+    "name": "Essential JS 2",
+    "website": "https://www.syncfusion.com/javascript-ui-controls",
+    "matches": [
+        {
+            "regexp": "<[^>]+ class ?= ?\"(?:e-control|[^\"]+ e-control)(?: )[^\"]* e-lib\\b"
+        }
+    ]
+}

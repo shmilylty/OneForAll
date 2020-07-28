@@ -1,0 +1,14 @@
+{
+    "name": "Card-Reader-Adapter",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Card Reader Adapter - Unknown manufacturer [Korean]",
+    "website": null,
+    "matches": [
+        {
+            "certainty": 75,
+            "status": 401,
+            "text": "<HTML> <Title> 401 unAuthorized </title>                   <body> <H1> 401 unauthorized request </H1></body>                   </HTML>"
+        }
+    ]
+}

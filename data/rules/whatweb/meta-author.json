@@ -1,0 +1,15 @@
+{
+    "name": "Meta-Author",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "This plugin retrieves the author name from the meta name tag - info: http://www.webmarketingnow.com/tips/meta-tags-uncovered.html#author",
+    "website": null,
+    "matches": [
+        {
+            "regexp": "(?i-mx:<meta[^>^=]+name[\\s]*=[\\s]*['\"]?author['\"]?[^>^=]+content[\\s]*=[\\s]*['\"]([^'^\"^>]+))"
+        },
+        {
+            "regexp": "(?i-mx:<meta[^>^=]+content[\\s]*=[\\s]*['\"]([^\"^'^>]+)['\"][^>^=]+name[\\s]*=[\\s]*['\"]?author['\"]?)"
+        }
+    ]
+}

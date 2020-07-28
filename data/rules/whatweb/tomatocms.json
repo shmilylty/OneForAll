@@ -1,0 +1,19 @@
+{
+    "name": "TomatoCMS",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "TomatoCMS considers each web page made up of many different elements called widgets. You can easily create, customize the layout of your site like never before through a visual tool called Layout Editor very easy and convenient.",
+    "website": "http://www.tomatocms.com/",
+    "matches": [
+        {
+            "text": "<a href=\"http://www.tomatocms.com\" title=\"Powered by TomatoCMS\" target=\"_blank\">"
+        },
+        {
+            "text": "\tTomato.Core.Widget.Loader.baseUrl = 'http://"
+        },
+        {
+            "text": "\t\t\t\t\t<h1>TomatoCMS Install Wizard</h1>",
+            "version": "Install Page"
+        }
+    ]
+}

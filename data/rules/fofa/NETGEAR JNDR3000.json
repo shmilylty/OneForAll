@@ -1,0 +1,11 @@
+{
+    "name": "NETGEAR JNDR3000",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "NETGEAR JNDR3000"
+        }
+    ]
+}

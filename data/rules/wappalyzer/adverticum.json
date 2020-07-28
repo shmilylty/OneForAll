@@ -1,0 +1,13 @@
+{
+    "name": "Adverticum",
+    "website": "http://adverticum.net",
+    "matches": [
+        {
+            "regexp": "<div (?:id=\"[a-zA-Z0-9_]*\" )?class=\"goAdverticum\""
+        },
+        {
+            "search": "script",
+            "regexp": "(?:ad\\.)?adverticum\\.net/g3\\.js"
+        }
+    ]
+}

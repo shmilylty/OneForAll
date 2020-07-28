@@ -1,0 +1,11 @@
+{
+    "name": "WebSite X5",
+    "website": "http://websitex5.com",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "Incomedia WebSite X5 (\\w+ [\\d.]+)",
+            "offset": 1
+        }
+    ]
+}

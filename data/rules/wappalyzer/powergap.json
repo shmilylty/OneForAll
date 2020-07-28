@@ -1,0 +1,12 @@
+{
+    "name": "Powergap",
+    "website": "http://powergap.de",
+    "matches": [
+        {
+            "regexp": "<a[^>]+title=\"POWERGAP"
+        },
+        {
+            "regexp": "<input type=\"hidden\" name=\"shopid\""
+        }
+    ]
+}

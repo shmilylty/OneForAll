@@ -1,0 +1,15 @@
+{
+    "name": "GeoServer",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "/org.geoserver.web.GeoServerBasePage/"
+        },
+        {
+            "search": "body",
+            "text": "class=\"geoserver lebeg"
+        }
+    ]
+}

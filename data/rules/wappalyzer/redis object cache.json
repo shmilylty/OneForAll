@@ -1,0 +1,13 @@
+{
+    "name": "Redis Object Cache",
+    "website": "https://wprediscache.com",
+    "matches": [
+        {
+            "regexp": "<!--\\s+Performance optimized by Redis Object Cache"
+        }
+    ],
+    "implies": [
+        "Redis",
+        "WordPress"
+    ]
+}

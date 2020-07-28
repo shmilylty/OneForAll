@@ -1,0 +1,13 @@
+{
+    "name": "Lightspeed eCom",
+    "website": "http://www.lightspeedhq.com/products/ecommerce/",
+    "matches": [
+        {
+            "regexp": "<!-- \\[START\\] 'blocks/head\\.rain' -->"
+        },
+        {
+            "search": "script",
+            "regexp": "http://assets\\.webshopapp\\.com"
+        }
+    ]
+}

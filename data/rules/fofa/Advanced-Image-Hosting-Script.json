@@ -1,0 +1,20 @@
+{
+    "name": "Advanced-Image-Hosting-Script",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "Powered by"
+        },
+        {
+            "search": "body",
+            "text": "yabsoft.com"
+        },
+        {
+            "search": "body",
+            "text": "Welcome to install AIHS Script"
+        }
+    ],
+    "condition": "(0 and 1) or 2"
+}

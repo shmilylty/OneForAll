@@ -1,0 +1,19 @@
+{
+    "name": "Jcow",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "content=\"Jcow"
+        },
+        {
+            "search": "body",
+            "text": "content=\"Powered by Jcow"
+        },
+        {
+            "search": "body",
+            "text": "end jcow_application_box"
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "name": "Solve Media",
+    "website": "http://solvemedia.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "^https?://api\\.solvemedia\\.com/"
+        }
+    ]
+}

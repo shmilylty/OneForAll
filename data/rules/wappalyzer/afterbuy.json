@@ -1,0 +1,13 @@
+{
+    "name": "AfterBuy",
+    "website": "http://www.afterbuy.de",
+    "matches": [
+        {
+            "regexp": "<dd>This OnlineStore is brought to you by ViA-Online GmbH Afterbuy\\. Information and contribution at https://www\\.afterbuy\\.de</dd>"
+        },
+        {
+            "search": "script",
+            "regexp": "shop-static\\.afterbuy\\.de"
+        }
+    ]
+}

@@ -1,0 +1,23 @@
+{
+    "name": "78oa",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "/resource/javascript/system/runtime.min.js"
+        },
+        {
+            "search": "body",
+            "text": "license.78oa.com"
+        },
+        {
+            "search": "title",
+            "regexp": "78oa"
+        },
+        {
+            "search": "body",
+            "text": "src=\"/module/index.php"
+        }
+    ]
+}

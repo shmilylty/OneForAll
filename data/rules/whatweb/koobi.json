@@ -1,0 +1,49 @@
+{
+    "name": "Koobi",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "Shop/CMS software [German]",
+    "website": "http://www.Dream4.de/",
+    "matches": [
+        {
+            "regexp": "(?i-mx:Powered by <a title=\"Koobi ist ein komfortables und leistungsf&auml;higes Content-Management-System \\(CMS\\) f&uuml;r Privatpersonen, Vereine, kleine und mittelst&auml;ndische Unternehmen, die einen professionellen Internetauftritt realisieren m&ouml;chten.\"[^>]+>Koobi)"
+        },
+        {
+            "text": "<!-- powered by koobi - do not remove this info! -->"
+        },
+        {
+            "string": "Pro",
+            "regexp": "(?i-mx:powered by <a class=\"foot\" href=\"http:\\/\\/www.dream4.de\\/[^>]+>Koobi Pro ([\\d\\.]+)<\\/a>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<meta name=\"generator\" content=\"\\(c\\) Koobi ([\\d\\.]+), http:\\/\\/www.dream4.de\" \\/>)",
+            "offset": 1
+        },
+        {
+            "offset": 1,
+            "regexp": "(?i-mx:Powered by <a title=\"Koobi ist ein komfortables und leistungsf&auml;higes Content-Management-System \\(CMS\\) f&uuml;r Privatpersonen, Vereine, kleine und mittelst&auml;ndische Unternehmen, die einen professionellen Internetauftritt realisieren m&ouml;chten.\"[^>]*>Koobi[\\ :]*(SHOP|PRO|CMS)<\\/a> ([\\d\\.]+))"
+        },
+        {
+            "offset": 1,
+            "regexp": "(?i-mx:Powered by <a[^>]+href=\"http:\\/\\/www.dream4.de\\/cms\\/content\\/6\\/koobi\\/1\\/\">Koobi<\\/a> (PRO|SHOP|CMS)[\\s]*([\\d\\.\\ a-z]+))"
+        },
+        {
+            "regexp": "(?i-mx:powered by <a[^>]+href=\"http:\\/\\/www.dream4.de\\/[^>]+>koobi-cms<\\/a> ([\\d\\.]+))",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<div class=\"copyright\">powered by Koobi CMS ([\\d\\.]+))",
+            "offset": 1
+        },
+        {
+            "offset": 1,
+            "regexp": "(?-mix:    Diese Webseite wurde mit Koobi[\\ :]*(SHOP|PRO|CMS)[\\ \\-]*([\\d\\.\\ a-z]+) erstellt.)"
+        },
+        {
+            "string": "Nulled",
+            "regexp": "(?-mix:powered by <a class=\"foot\" href=\"http:\\/\\/www.antichat.ru\" target=\"_blank\">Koobi Pro ([\\d\\.]+) \\[nulled by censored! from antichat.ru\\]<\\/a>)",
+            "offset": 1
+        }
+    ]
+}

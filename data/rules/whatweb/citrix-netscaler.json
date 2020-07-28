@@ -1,0 +1,23 @@
+{
+    "name": "Citrix-NetScaler",
+    "author": "Aung Khant <http://yehg.net/>, Andrew Horton, Bhavin Senjaliya",
+    "version": "0.3",
+    "description": "Citrix NetScaler  - http://www.citrix.com/netscaler",
+    "website": null,
+    "matches": [
+        {
+            "regexp": "(?-mix:NS\\-CACHE)",
+            "search": "headers[via]"
+        },
+        {
+            "search": "headers[via]",
+            "regexp": "(?-mix:NS\\-CACHE\\-(\\d{1,4}\\.\\d{1,4}):)",
+            "offset": 1
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:^NSC_)",
+            "name": "NSC_ cookie"
+        }
+    ]
+}

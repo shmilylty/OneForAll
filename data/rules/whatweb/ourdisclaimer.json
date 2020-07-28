@@ -1,0 +1,17 @@
+{
+    "name": "OurDisclaimer",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "OurDisclaimer.com - Third party disclaimer service.",
+    "website": "http://ourdisclaimer.com/",
+    "matches": [
+        {
+            "regexp": "(?i-mx:<a[^>]+href[\\s]*=[\\s]*\"http:\\/\\/ourdisclaimer.com\\/\\?i=([^\\\"]+))",
+            "offset": 1
+        },
+        {
+            "regexp": "(?i-mx:<iframe[^>]+src[\\s]*=[\\s]*\"http:\\/\\/ourdisclaimer.com\\/\\?i=([^\\\"]+))",
+            "offset": 1
+        }
+    ]
+}

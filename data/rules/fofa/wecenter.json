@@ -1,0 +1,15 @@
+{
+    "name": "wecenter",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "aw_template.js"
+        },
+        {
+            "search": "body",
+            "text": "WeCenter"
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    "name": "bitweaver",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "content=\"bitweaver"
+        },
+        {
+            "search": "body",
+            "text": "href=\"http://www.bitweaver.org\">Powered by"
+        }
+    ]
+}

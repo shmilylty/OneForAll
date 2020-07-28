@@ -1,0 +1,11 @@
+{
+    "name": "Barracuda-Load-Balancer",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "BARRACUDA_LB_COOKIE"
+        }
+    ]
+}

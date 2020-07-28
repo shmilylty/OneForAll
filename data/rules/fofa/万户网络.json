@@ -1,0 +1,11 @@
+{
+    "name": "\u4e07\u6237\u7f51\u7edc",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "css/css_whir.css"
+        }
+    ]
+}

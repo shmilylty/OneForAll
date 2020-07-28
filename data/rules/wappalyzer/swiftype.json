@@ -1,0 +1,10 @@
+{
+    "name": "Swiftype",
+    "website": "http://swiftype.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "swiftype\\.com/embed\\.js$"
+        }
+    ]
+}

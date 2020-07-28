@@ -1,0 +1,13 @@
+{
+    "name": "xtCommerce",
+    "website": "https://www.xt-commerce.com",
+    "matches": [
+        {
+            "regexp": "<div class=\"copyright\">[^<]+<a[^>]+>xt:Commerce"
+        },
+        {
+            "search": "meta[generator]",
+            "regexp": "xt:Commerce"
+        }
+    ]
+}

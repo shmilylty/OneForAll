@@ -1,0 +1,10 @@
+{
+    "name": "WebPublisher",
+    "website": "http://scannet.dk",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "WEB\\|Publisher"
+        }
+    ]
+}

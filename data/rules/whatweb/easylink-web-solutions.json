@@ -1,0 +1,20 @@
+{
+    "name": "easyLink-Web-Solutions",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.3",
+    "description": "German Content Management System",
+    "website": "http://www.mountaingrafix.eu/tag/easylink/",
+    "matches": [
+        {
+            "text": "Dieser Abschnitt darf nur mit Genehmigung des Entwicklers entfernt werden und bedarf einer"
+        },
+        {
+            "regexp": "(?-mix:<meta name=\"generator\" content=\"easyLink v([\\d\\.]+)\" \\/>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:[P|p]?owered by easyLink v([\\d\\.]+))",
+            "offset": 1
+        }
+    ]
+}

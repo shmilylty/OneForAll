@@ -1,0 +1,23 @@
+{
+    "name": "SmugMug",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "SmugMug is a paid digital photo sharing website",
+    "website": "http://www.smugmug.com/",
+    "matches": [
+        {
+            "regexp": "(?-mix:^SmugMug)",
+            "search": "headers[x-powered-by]"
+        },
+        {
+            "search": "headers[x-powered-by]",
+            "regexp": "(?-mix:^SmugMug\\/([\\d\\.]+)$)",
+            "offset": 1
+        },
+        {
+            "name": "X-SmugMug-Values HTTP Header",
+            "regexp": "(?-mix:)",
+            "search": "headers[x-smugmug-values]"
+        }
+    ]
+}

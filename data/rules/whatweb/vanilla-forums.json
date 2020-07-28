@@ -1,0 +1,26 @@
+{
+    "name": "Vanilla-Forums",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Vanilla Forums - open-source, standards-compliant, customizable discussion forums.",
+    "website": "http://vanillaforums.org/",
+    "matches": [
+        {
+            "search": "headers[x-garden-version]",
+            "regexp": "(?-mix:^Vanilla ([^\\s]+)$)",
+            "offset": 1
+        },
+        {
+            "offset": 1,
+            "regexp": "(?-mix:Powered by <a href=\"(http:\\/\\/)?getvanilla\\.com\\/?\">Vanilla ([^\\s^<]+)<\\/a>)"
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:Vanilla=deleted; expires=)"
+        },
+        {
+            "certainty": 25,
+            "regexp": "(?i-mx:<body id=[\"'](DiscussionsPage|vanilla))"
+        }
+    ]
+}

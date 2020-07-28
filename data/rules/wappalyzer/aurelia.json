@@ -1,0 +1,19 @@
+{
+    "name": "Aurelia",
+    "website": "http://aurelia.io",
+    "matches": [
+        {
+            "regexp": "<[^>]+aurelia-app=[^>]"
+        },
+        {
+            "regexp": "<[^>]+data-main=[^>]aurelia-bootstrapper"
+        },
+        {
+            "regexp": "<[^>]+au-target-id=[^>]\\d"
+        },
+        {
+            "search": "script",
+            "regexp": "aurelia(?:\\.min)?\\.js"
+        }
+    ]
+}

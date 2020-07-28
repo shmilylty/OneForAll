@@ -1,0 +1,11 @@
+{
+    "name": "BrewBlogger",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "developed by <a href=\"http://www.zkdigital.com"
+        }
+    ]
+}

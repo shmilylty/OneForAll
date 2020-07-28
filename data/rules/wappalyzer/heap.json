@@ -1,0 +1,10 @@
+{
+    "name": "Heap",
+    "website": "http://heapanalytics.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "heap-\\d+\\.js"
+        }
+    ]
+}

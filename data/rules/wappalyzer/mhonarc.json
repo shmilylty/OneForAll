@@ -1,0 +1,10 @@
+{
+    "name": "MHonArc",
+    "website": "http://www.mhonarc.at",
+    "matches": [
+        {
+            "regexp": "<!-- MHonArc v([0-9.]+) -->",
+            "offset": 1
+        }
+    ]
+}

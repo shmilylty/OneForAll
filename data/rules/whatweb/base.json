@@ -1,0 +1,16 @@
+{
+    "name": "BASE",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Basic Analysis and Security Engine (BASE) - front end for the snort IDS system.",
+    "website": "http://base.secureideas.net/",
+    "matches": [
+        {
+            "text": "<!-- Basic Analysis and Security Engine (BASE) -->"
+        },
+        {
+            "regexp": "(?-mix:<!-- Basic Analysis and Security Engine \\(BASE\\) ([\\d\\.]+ \\([^\\)]+\\)) -->)",
+            "offset": 1
+        }
+    ]
+}

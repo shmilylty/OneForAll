@@ -1,0 +1,10 @@
+{
+    "name": "NEO - Omnichannel Commerce Platform",
+    "website": "http://www.jetecommerce.com.br/",
+    "matches": [
+        {
+            "search": "headers[powered]",
+            "regexp": "jet-neo"
+        }
+    ]
+}

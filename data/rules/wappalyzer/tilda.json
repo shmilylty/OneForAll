@@ -1,0 +1,13 @@
+{
+    "name": "Tilda",
+    "website": "https://tilda.cc",
+    "matches": [
+        {
+            "regexp": "<link[^>]* href=[^>]+tilda(?:cdn|\\.ws|-blocks)"
+        },
+        {
+            "search": "script",
+            "regexp": "tilda(?:cdn|\\.ws|-blocks)"
+        }
+    ]
+}

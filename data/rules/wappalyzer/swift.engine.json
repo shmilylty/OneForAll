@@ -1,0 +1,10 @@
+{
+    "name": "swift.engine",
+    "website": "http://mittec.ru/default",
+    "matches": [
+        {
+            "search": "headers[x-powered-by]",
+            "regexp": "swift\\.engine"
+        }
+    ]
+}

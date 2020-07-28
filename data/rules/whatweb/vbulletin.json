@@ -1,0 +1,89 @@
+{
+    "name": "VBulletin",
+    "author": "Andrew Horton, @csalazar, Bhavin Senjaliya <bhavin.senjaliya@gmail.com>",
+    "version": "0.5",
+    "description": "VBulletin is a PHP forum.",
+    "website": null,
+    "matches": [
+        {
+            "ghdb": "\"Powered by vBulletin\" inurl:newreply.php"
+        },
+        {
+            "regexp": "(?-mix:<meta name=\"generator\" content=\"vBulletin)"
+        },
+        {
+            "certainty": 75,
+            "regexp": "(?-mix:\\* vBulletin [0-9a-z.]+ CSS)"
+        },
+        {
+            "name": "vbulletin_global.js",
+            "regexp": "(?-mix:<script type=\"text\\/javascript\" src=\"[a-z0-9.\\/]*vbulletin_global.js)"
+        },
+        {
+            "certainty": 75,
+            "text": "vb_bullet.gif\""
+        },
+        {
+            "regexp": "(?-mix:Powered by(:)? vBulletin(&reg;)? Version)"
+        },
+        {
+            "certainty": 50,
+            "regexp": "(?-mix:Copyright &copy;2000 - [0-9]+, Jelsoft Enterprises Ltd.)"
+        },
+        {
+            "offset": 2,
+            "name": "version",
+            "regexp": "(?-mix:Powered by(:)? vBulletin(&reg;)? Version ([0-9a-z.]+))"
+        },
+        {
+            "name": "version",
+            "regexp": "(?-mix:<meta name=\"generator\" content=\"vBulletin ([0-9a-z.]+)\" \\/>)",
+            "offset": 1
+        },
+        {
+            "name": "version",
+            "regexp": "(?-mix:\\* vBulletin ([0-9a-z.]+) CSS)",
+            "offset": 1
+        },
+        {
+            "name": "version",
+            "regexp": "(?-mix:clientscript\\/vbulletin_md5\\.js,qv=(\\d+)\\.pagespeed\\..*?js\">)",
+            "offset": 1
+        },
+        {
+            "name": "version",
+            "regexp": "(?-mix:clientscript\\/vbulletin-core\\.js\\?v=(\\d+))",
+            "offset": 1
+        },
+        {
+            "name": "version",
+            "regexp": "(?-mix:\\/vbulletin\\/clientscript\\/guestforum\\.js\\?v=(\\d+))",
+            "offset": 1
+        },
+        {
+            "name": "version",
+            "regexp": "(?-mix:clientscript\\/vbulletin_global\\.js\\?v=(\\d+))",
+            "offset": 1
+        },
+        {
+            "name": "version",
+            "regexp": "(?-mix:\\/vbulletin_read_marker\\.js\\?v=(\\d+))",
+            "offset": 1
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:bblastactivity)",
+            "name": "bblastactivity cookie"
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:bblastvisit)",
+            "name": "bblastvisit cookie"
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:bbsessionhash)",
+            "name": "bbsessionhash cookie"
+        }
+    ]
+}

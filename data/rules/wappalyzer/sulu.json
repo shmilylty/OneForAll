@@ -1,0 +1,12 @@
+{
+    "name": "Sulu",
+    "website": "http://sulu.io",
+    "matches": [
+        {
+            "search": "headers[x-generator]",
+            "regexp": "Sulu/?(.+)?$",
+            "offset": 1
+        }
+    ],
+    "implies": "Symfony"
+}

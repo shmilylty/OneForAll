@@ -1,0 +1,15 @@
+{
+    "name": "3COM NBX",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "NBX NetSet"
+        },
+        {
+            "search": "body",
+            "text": "splashTitleIPTelephony"
+        }
+    ]
+}

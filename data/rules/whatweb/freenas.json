@@ -1,0 +1,32 @@
+{
+    "name": "FreeNAS",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "FreeNAS is an Open Source Storage Platform based on FreeBSD and supports sharing across Windows, Apple, and UNIX-like systems.",
+    "website": "http://www.freenas.org/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<div id=\"login\" data-dojo-type=\"dijit\\.Dialog\" data-dojo-props=\"title: 'Welcome to FreeNAS&trade; ([^']+)'\">)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<div id=\"login\" dojoType=\"dijit\\.Dialog\" title=\"Welcome to FreeNAS ([^\\s]+)\">)",
+            "offset": 1
+        },
+        {
+            "text": "<!-- THIS IS A LOGIN WEBPAGE -->"
+        },
+        {
+            "text": "<a href=\"/\" title=\"FreeNAS&trade;\"><img src=\"/static/images/ui/freenas-logo.png?cache=\" alt=\"FreeNAS&trade;\" style=\"padding-left:10px;\"/></a>"
+        },
+        {
+            "url": "/static/images/ui/freenas-logo.png",
+            "md5": "e9f74076206e249ead75559119c028c6"
+        },
+        {
+            "url": "/",
+            "search": "headers[location]",
+            "regexp": "(?-mix:https?:\\/\\/[^\\/]+\\/account\\/login\\/\\?next=\\/)"
+        }
+    ]
+}

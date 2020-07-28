@@ -1,0 +1,19 @@
+{
+    "name": "phpMyadmin",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "Set-Cookie: phpMyAdmin="
+        },
+        {
+            "search": "title",
+            "regexp": "phpMyAdmin "
+        },
+        {
+            "search": "body",
+            "text": "pma_password"
+        }
+    ]
+}

@@ -1,0 +1,13 @@
+{
+    "name": "Intermec-EasyLAN",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Intermec EasyLAN web interface",
+    "website": "http://www.intermec.com",
+    "matches": [
+        {
+            "url": "/imec.jpg",
+            "md5": "d0204544f2a9ec61184efb62d0b51515"
+        }
+    ]
+}

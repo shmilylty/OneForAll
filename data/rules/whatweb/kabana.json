@@ -1,0 +1,20 @@
+{
+    "name": "Kibana",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "Kibana is an open source data visualization platform that allows you to interact with your data",
+    "website": "https://www.elastic.co/products/kibana",
+    "matches": [
+        {
+            "search": "headers[x-app-name]",
+            "regexp": "(?-mix:^kibana$)"
+        },
+        {
+            "text": "<body kibana ng-class"
+        },
+        {
+            "regexp": "(?-mix:<script>\\s+window\\.KIBANA_VERSION='([\\d\\.]+)';\\s+window\\.KIBANA_BUILD_NUM='[\\d]+';)",
+            "offset": 1
+        }
+    ]
+}

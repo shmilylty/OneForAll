@@ -1,0 +1,19 @@
+{
+    "name": "CitusCMS",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "Powered by CitusCMS"
+        },
+        {
+            "search": "body",
+            "text": "<strong>CitusCMS</strong>"
+        },
+        {
+            "search": "body",
+            "text": "content=\"CitusCMS"
+        }
+    ]
+}

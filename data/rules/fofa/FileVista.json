@@ -1,0 +1,15 @@
+{
+    "name": "FileVista",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "Welcome to FileVista"
+        },
+        {
+            "search": "body",
+            "text": "<a href=\"http://www.gleamtech.com/products/filevista/web-file-manager"
+        }
+    ]
+}

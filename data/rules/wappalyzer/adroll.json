@@ -1,0 +1,10 @@
+{
+    "name": "AdRoll",
+    "website": "http://adroll.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "(?:a|s)\\.adroll\\.com"
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    "name": "Startbbs",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "content=\"Startbbs"
+        },
+        {
+            "search": "headers",
+            "text": "stb_csrf_cookie"
+        }
+    ]
+}

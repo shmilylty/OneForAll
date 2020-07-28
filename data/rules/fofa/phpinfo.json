@@ -1,0 +1,16 @@
+{
+    "name": "phpinfo",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "phpinfo"
+        },
+        {
+            "search": "body",
+            "text": "Virtual Directory Support "
+        }
+    ],
+    "condition": "0 and 1"
+}

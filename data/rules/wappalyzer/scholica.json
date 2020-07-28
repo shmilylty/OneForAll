@@ -1,0 +1,10 @@
+{
+    "name": "Scholica",
+    "website": "http://scholica.com",
+    "matches": [
+        {
+            "search": "headers[x-scholica-version]",
+            "regexp": ".*"
+        }
+    ]
+}

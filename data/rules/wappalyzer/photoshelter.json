@@ -1,0 +1,17 @@
+{
+    "name": "PhotoShelter",
+    "website": "https://www.photoshelter.com",
+    "matches": [
+        {
+            "regexp": "<!--\\s+#+ Powered by the PhotoShelter Beam platform"
+        },
+        {
+            "regexp": "<link[^>]+c\\.photoshelter\\.com"
+        }
+    ],
+    "implies": [
+        "PHP",
+        "MySQL",
+        "jQuery"
+    ]
+}

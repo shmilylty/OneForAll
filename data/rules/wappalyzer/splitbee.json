@@ -1,0 +1,10 @@
+{
+    "name": "Splitbee",
+    "website": "https://splitbee.io",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "^https:\\/\\/cdn\\.splitbee\\.io\\/sb\\.js"
+        }
+    ]
+}

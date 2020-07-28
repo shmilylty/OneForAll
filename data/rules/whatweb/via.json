@@ -1,0 +1,13 @@
+{
+    "name": "Via-Proxy",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.3",
+    "description": "This plugin extracts the proxy server details from the Via param of the HTTP header.",
+    "website": null,
+    "matches": [
+        {
+            "search": "headers[via]",
+            "regexp": "(?-mix:^.*$)"
+        }
+    ]
+}

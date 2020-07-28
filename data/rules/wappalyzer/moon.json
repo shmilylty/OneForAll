@@ -1,0 +1,10 @@
+{
+    "name": "Moon",
+    "website": "https://kbrsh.github.io/moon/",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "/moon(?:\\.min)?\\.js$"
+        }
+    ]
+}

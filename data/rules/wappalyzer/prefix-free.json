@@ -1,0 +1,10 @@
+{
+    "name": "Prefix-Free",
+    "website": "https://leaverou.github.io/prefixfree/",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "prefixfree\\.js"
+        }
+    ]
+}

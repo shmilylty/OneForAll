@@ -1,0 +1,15 @@
+{
+    "name": "xfinity",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "Xfinity"
+        },
+        {
+            "search": "body",
+            "text": "/reset-meyer-1.0.min.css"
+        }
+    ]
+}

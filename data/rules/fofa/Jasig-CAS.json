@@ -1,0 +1,11 @@
+{
+    "name": "Jasig-CAS",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "Powered by <a href=\"http://www.jasig.org/cas"
+        }
+    ]
+}

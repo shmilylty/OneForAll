@@ -1,0 +1,13 @@
+{
+    "name": "SweetAlert",
+    "website": "https://t4t5.github.io/sweetalert/",
+    "matches": [
+        {
+            "regexp": "<link[^>]+?href=\"[^\"]+sweet-alert(?:\\.min)?\\.css"
+        },
+        {
+            "search": "script",
+            "regexp": "sweet-alert(?:\\.min)?\\.js"
+        }
+    ]
+}

@@ -1,0 +1,14 @@
+{
+    "name": "Pagely",
+    "website": "https://pagely.com/",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "^Pagely"
+        }
+    ],
+    "implies": [
+        "WordPress",
+        "Amazon Web Services"
+    ]
+}

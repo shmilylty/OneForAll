@@ -1,0 +1,10 @@
+{
+    "name": "OpenUI5",
+    "website": "http://openui5.org/",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "sap-ui-core\\.js"
+        }
+    ]
+}

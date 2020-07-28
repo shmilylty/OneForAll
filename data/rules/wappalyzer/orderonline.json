@@ -1,0 +1,14 @@
+{
+    "name": "OrderOnline",
+    "website": "https://orderonline.id",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "^cdn\\.orderonline\\.id/$"
+        }
+    ],
+    "implies": [
+        "PHP",
+        "MongoDB"
+    ]
+}

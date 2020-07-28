@@ -1,0 +1,13 @@
+{
+    "name": "PHPDirector",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "PHPDirector is a content management system that allows users to create there own video sharing websites.",
+    "website": "http://www.phpdirector.co.uk/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<a href=\"http:\\/\\/www.phpdirector.co.uk\\/\">Powered by PHP Director ([\\d\\.]+)<\\/a>)",
+            "offset": 1
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    "name": "Kampyle",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "http://cf.kampyle.com/k_button.js"
+        },
+        {
+            "search": "body",
+            "text": "Start Kampyle Feedback Form Button"
+        }
+    ]
+}

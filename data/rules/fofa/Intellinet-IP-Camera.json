@@ -1,0 +1,15 @@
+{
+    "name": "Intellinet-IP-Camera",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "Copyright &copy;  INTELLINET NETWORK SOLUTIONS"
+        },
+        {
+            "search": "body",
+            "text": "http://www.intellinet-network.com/driver/NetCam.exe"
+        }
+    ]
+}

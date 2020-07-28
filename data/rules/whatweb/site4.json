@@ -1,0 +1,22 @@
+{
+    "name": "Site4",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Site4 is a danish CMS system for webshops and homepages.",
+    "website": "http://www.Site4.dk/",
+    "matches": [
+        {
+            "text": "<title>SITE4.dk Site4 Setup Error..</title>",
+            "url": "/error.asp"
+        },
+        {
+            "text": "<img src=\"http://www.site4.dk/images/site4logo.jpg\">\n"
+        },
+        {
+            "text": "<div class=\"caption\" align=\"center\"><b>A Site4 event or error occured..</b></div></td>"
+        },
+        {
+            "text": "To read more about SITE4.dk please <a class=\"smalltext\" style=\"text-decoration:none;\" href=\"http://www.site4.dk\"><b>click here</b></a>"
+        }
+    ]
+}

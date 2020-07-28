@@ -1,0 +1,10 @@
+{
+    "name": "ef.js",
+    "website": "http://ef.js.org",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "/ef(?:-core)?(?:\\.min|\\.dev)?\\.js"
+        }
+    ]
+}

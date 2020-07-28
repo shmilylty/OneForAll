@@ -1,0 +1,22 @@
+{
+    "name": "eMeeting-Online-Dating-Software",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "Dating Software by eMeeting Ltd",
+    "website": "http://www.datingscripts.org/",
+    "matches": [
+        {
+            "text": "<html xmlns=\"http://www.w3.org/1999/xhtml\"><head><title>Admin Area Login</title>"
+        },
+        {
+            "text": "\t\t\t\t<td valign=\"bottom\"><h2>Admin Area Login</h2></td>"
+        },
+        {
+            "text": "<a href=\"http://www.datingscripts.org\" alt=\"Dating Software by eMeeting Ltd\" target=\"_blank\">Dating Software Powered by eMeeting Ltd</a>"
+        },
+        {
+            "regexp": "(?-mix:<p>eMeeting Dating Software <strong>Version ([\\d\\.]+)<\\/strong>)",
+            "offset": 1
+        }
+    ]
+}

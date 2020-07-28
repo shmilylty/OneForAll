@@ -1,0 +1,15 @@
+{
+    "name": "iGuard-Security-System",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "iGuard Embedded Web Server"
+        },
+        {
+            "search": "body",
+            "text": "content=\"Lucky-Tech iGuard"
+        }
+    ]
+}

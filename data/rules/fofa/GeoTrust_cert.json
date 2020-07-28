@@ -1,0 +1,11 @@
+{
+    "name": "GeoTrust_cert",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "//smarticon.geotrust.com/si.js"
+        }
+    ]
+}

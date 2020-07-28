@@ -1,0 +1,11 @@
+{
+    "name": "Allegro RomPager",
+    "website": "http://allegrosoft.com/embedded-web-server-s2",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "Allegro-Software-RomPager(?:/([\\d.]+))?",
+            "offset": 1
+        }
+    ]
+}

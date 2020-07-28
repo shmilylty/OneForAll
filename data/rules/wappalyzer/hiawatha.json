@@ -1,0 +1,11 @@
+{
+    "name": "Hiawatha",
+    "website": "http://hiawatha-webserver.org",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "Hiawatha v([\\d.]+)",
+            "offset": 1
+        }
+    ]
+}

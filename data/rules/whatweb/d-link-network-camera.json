@@ -1,0 +1,21 @@
+{
+    "name": "D-Link-Network-Camera",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "D-Link network camera web interface",
+    "website": "http://www.dlink.com/",
+    "matches": [
+        {
+            "text": "<title>DCS-5300</title></head>",
+            "version": "DCS-5300"
+        },
+        {
+            "text": "<TITLE>DCS-950G</TITLE>",
+            "version": "DCS-950G"
+        },
+        {
+            "text": "if (document.domain.toLowerCase() == \"DCS-950G\".toLowerCase())",
+            "version": "DCS-950G"
+        }
+    ]
+}

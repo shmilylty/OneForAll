@@ -1,0 +1,20 @@
+{
+    "name": "QuiXplorer",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "QuiXplorer is a multi-user, web-based file-manager. It allows you to manage and/or share files over the internet, or an intranet.",
+    "website": "http://quixplorer.sourceforge.net/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<title>QuiXplorer ([^\\s]+) - the QuiX project<\\/title>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<A class=\"title\" href=\"http:\\/\\/quixplorer\\.sourceforge\\.net\" target=\"_blank\">QuiXplorer ([^<]+)<\\/A> - <A href=\"http:\\/\\/quix\\.tk\" target=\"_blank\">the QuiX project<\\/A><\\/SMALL>)",
+            "offset": 1
+        },
+        {
+            "text": "<A class=\"title\" href=\"http://quixplorer.sourceforge.net\" target=\"_blank\">QuiXplorer</A> - <A href=\"http://quix.tk\" target=\"_blank\">the QuiX project</A></SMALL>"
+        }
+    ]
+}

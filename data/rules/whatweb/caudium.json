@@ -1,0 +1,23 @@
+{
+    "name": "Caudium",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "Caudium is the name of a GPL-ed (free for commercial and personal use) web server written in Pike and in C. It is originally based on the Roxen Challenger 1.3 code base.",
+    "website": "http://www.caudium.net/",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:Caudium\\/([\\d\\.]+))",
+            "offset": 1
+        },
+        {
+            "name": "HTTP Server Header",
+            "regexp": "(?-mix:Caudium)",
+            "search": "headers[server]"
+        },
+        {
+            "search": "headers[x-got-fish]",
+            "regexp": "(?-mix:(Pike v[\\d\\.]+ release [\\d]+)$)"
+        }
+    ]
+}

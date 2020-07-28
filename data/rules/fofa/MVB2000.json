@@ -1,0 +1,15 @@
+{
+    "name": "MVB2000",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "MVB2000"
+        },
+        {
+            "search": "body",
+            "text": "The Magic Voice Box"
+        }
+    ]
+}

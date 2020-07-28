@@ -1,0 +1,13 @@
+{
+    "name": "Squarespace",
+    "website": "http://www.squarespace.com",
+    "matches": [
+        {
+            "search": "headers[x-servedby]",
+            "regexp": "squarespace"
+        },
+        {
+            "regexp": "<!-- This is Squarespace\\. -->"
+        }
+    ]
+}

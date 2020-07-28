@@ -1,0 +1,10 @@
+{
+    "name": "Crownpeak",
+    "website": "http://www.crownpeak.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "c\\.evidon\\.com"
+        }
+    ]
+}

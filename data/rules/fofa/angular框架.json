@@ -1,0 +1,15 @@
+{
+    "name": "angular\u6846\u67b6",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "src=\"angular.min.js"
+        },
+        {
+            "search": "body",
+            "text": "src=\"angular.js"
+        }
+    ]
+}

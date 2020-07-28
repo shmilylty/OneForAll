@@ -1,0 +1,32 @@
+{
+    "name": "DedeCMS",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "Power by DedeCms"
+        },
+        {
+            "search": "body",
+            "text": "Powered by"
+        },
+        {
+            "search": "body",
+            "text": "http://www.dedecms.com/"
+        },
+        {
+            "search": "body",
+            "text": "DedeCMS"
+        },
+        {
+            "search": "body",
+            "text": "/templets/default/style/dedecms.css"
+        },
+        {
+            "search": "title",
+            "regexp": "Powered by DedeCms"
+        }
+    ],
+    "condition": "0 or (1 and 2 and 3) or 4 or 5"
+}

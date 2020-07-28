@@ -1,0 +1,20 @@
+{
+    "name": "ASPilot-Cart",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Before you spend thousands on an E-Commerce site, check out our feature rich web site and e-commerce/shopping cart solution. The power of Enterprise, the simplicity of basic carts & the usefulness you expect.",
+    "website": "http://www.pilotcart.com/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<meta name=\"copyright\" content=\"Pilot Cart, Copyright 2003-[0-9]{4} Scarab Media dba ASPilot.com - All Rights Reserved Worldwide.\">)"
+        },
+        {
+            "regexp": "(?i-mx:<a[^>]*href=\"http:\\/\\/www.PilotCart.com[^>]*>Powered by Pilot[^>]*Cart V.[\\s]*([\\d\\.]+)<\\/a>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?i-mx:Powered By[^<]*<a[^>]*href=\"http:\\/\\/www.aspilot.com[^>]*>Pilot[^>]*Cart V.[\\s]*([\\d\\.]+)<\\/a>)",
+            "offset": 1
+        }
+    ]
+}

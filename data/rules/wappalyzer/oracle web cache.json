@@ -1,0 +1,11 @@
+{
+    "name": "Oracle Web Cache",
+    "website": "http://oracle.com",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "Oracle(?:AS)?[- ]Web[- ]Cache(?:[- /]([\\da-z./]+))?",
+            "offset": 1
+        }
+    ]
+}

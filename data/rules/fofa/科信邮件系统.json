@@ -1,0 +1,15 @@
+{
+    "name": "\u79d1\u4fe1\u90ae\u4ef6\u7cfb\u7edf",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "/systemfunction.pack.js"
+        },
+        {
+            "search": "body",
+            "text": "lo_computername"
+        }
+    ]
+}

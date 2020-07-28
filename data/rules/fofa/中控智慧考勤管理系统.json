@@ -1,0 +1,20 @@
+{
+    "name": "\u4e2d\u63a7\u667a\u6167\u8003\u52e4\u7ba1\u7406\u7cfb\u7edf",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "/media/images/ZKECO16.ico"
+        },
+        {
+            "search": "headers",
+            "text": "sessionidadms"
+        },
+        {
+            "search": "title",
+            "regexp": "\u8003\u52e4\u7ba1\u7406\u7cfb\u7edf"
+        }
+    ],
+    "condition": "(0 or 1) and 2"
+}

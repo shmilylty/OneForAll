@@ -1,0 +1,15 @@
+{
+    "name": "Kayako-SupportSuite",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "Powered By Kayako eSupport"
+        },
+        {
+            "search": "body",
+            "text": "Help Desk Software By Kayako eSupport"
+        }
+    ]
+}

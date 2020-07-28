@@ -1,0 +1,10 @@
+{
+    "name": "Immutable.js",
+    "website": "https://facebook.github.io/immutable-js/",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "^immutable\\.(?:min\\.)?js$"
+        }
+    ]
+}

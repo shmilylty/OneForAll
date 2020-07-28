@@ -1,0 +1,11 @@
+{
+    "name": "Check-Point-SSL-Network-Extender",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "Check Point SVN foundation"
+        }
+    ]
+}

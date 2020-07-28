@@ -1,0 +1,10 @@
+{
+    "name": "Google App Engine",
+    "website": "http://code.google.com/appengine",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "Google Frontend"
+        }
+    ]
+}

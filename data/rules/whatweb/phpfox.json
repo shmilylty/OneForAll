@@ -1,0 +1,17 @@
+{
+    "name": "phpFox",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "phpFox is a featured packed social networking solution that creates communities with features found on major social networking websites like Facebook and MySpace.",
+    "website": "http://www.phpfox.com/",
+    "matches": [
+        {
+            "regexp": "(?-mix:Powered By <a href=\"http:\\/\\/www\\.phpfox\\.com\\/\"[^>]*>phpFoX<\\/a> Version ([\\d\\.]+))",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<a href=\"http:\\/\\/www\\.phpfox\\.com\\/\"[^>]*>Powered by phpFoX Version ([\\d\\.]+)<\\/a>)",
+            "offset": 1
+        }
+    ]
+}

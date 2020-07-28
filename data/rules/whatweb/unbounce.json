@@ -1,0 +1,24 @@
+{
+    "name": "UnBounce",
+    "author": "Bhavin Senjaliya <bhavin.senjaliya@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "UnBounce - Landing page system.",
+    "website": "https://www.unbounce.com/",
+    "matches": [
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:^ubpv)",
+            "name": "ubpv cookie"
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:^ubvs)",
+            "name": "ubvs cookie"
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:^ubvt)",
+            "name": "ubvt cookie"
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+{
+    "name": "Highlight.js",
+    "website": "https://highlightjs.org/",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "/(?:([\\d.])+/)?highlight(?:\\.min)?\\.js",
+            "offset": 1
+        }
+    ]
+}

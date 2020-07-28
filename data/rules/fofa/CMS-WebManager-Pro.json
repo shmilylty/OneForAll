@@ -1,0 +1,15 @@
+{
+    "name": "CMS-WebManager-Pro",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "content=\"Webmanager-pro"
+        },
+        {
+            "search": "body",
+            "text": "href=\"http://webmanager-pro.com\">Web.Manager"
+        }
+    ]
+}

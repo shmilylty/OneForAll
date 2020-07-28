@@ -1,0 +1,19 @@
+{
+    "name": "Acme_Serve",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "Minimal Java HTTP server class. This class implements a very small embeddable HTTP server. It runs Servlets compatible with the API used by JavaSoft's JavaServer server. Used as an embedded server for many devices.",
+    "website": "http://www.acme.com/java/software/Acme.Serve.Serve.html",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Acme\\.Serve\\/v([\\d\\.]+) of [\\d]{2}[a-z]{3}[\\d]{2}$)",
+            "offset": 1
+        },
+        {
+            "name": "Date from server header",
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Acme\\.Serve\\/v[\\d\\.]+ of ([\\d]{2}[a-z]{3}[\\d]{2})$)"
+        }
+    ]
+}

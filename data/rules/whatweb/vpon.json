@@ -1,0 +1,23 @@
+{
+    "name": "VPON",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Video Picture on Net (VPON) is a remote video web server",
+    "website": "http://www.vpon21.com/",
+    "matches": [
+        {
+            "url": "/ctrl_ver.js",
+            "regexp": "(?-mix:^var live_video_control_version =\"([^\"]+)\";)",
+            "offset": 1
+        },
+        {
+            "url": "/ctrl_ver.js",
+            "regexp": "(?-mix:^var vpon_platform = \"([^\"]+)\";)"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^VPON Server\\/([\\d\\.]+)$)",
+            "offset": 1
+        }
+    ]
+}

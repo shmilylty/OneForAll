@@ -1,0 +1,19 @@
+{
+    "name": "v5shop",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "v5shop"
+        },
+        {
+            "search": "body",
+            "text": "content=\"V5shop"
+        },
+        {
+            "search": "body",
+            "text": "Powered by V5Shop"
+        }
+    ]
+}

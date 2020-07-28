@@ -1,0 +1,11 @@
+{
+    "name": "google map",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "maps.googleapis.com/maps/api/js"
+        }
+    ]
+}

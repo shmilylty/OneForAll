@@ -1,0 +1,14 @@
+{
+    "name": "OpenNemas",
+    "website": "http://www.opennemas.com",
+    "matches": [
+        {
+            "search": "headers[x-powered-by]",
+            "regexp": "OpenNemas"
+        },
+        {
+            "search": "meta[generator]",
+            "regexp": "OpenNemas"
+        }
+    ]
+}

@@ -1,0 +1,17 @@
+{
+    "name": "kolors4u",
+    "website": "http://kolors4u.com",
+    "matches": [
+        {
+            "search": "headers[x-content-encoded-by]",
+            "regexp": "kolors4u ([\\d.]+)",
+            "offset": 1
+        },
+        {
+            "search": "meta[generator]",
+            "regexp": "kolors4u (?: ([\\d.]+))?",
+            "offset": 1
+        }
+    ],
+    "implies": "WordPress"
+}

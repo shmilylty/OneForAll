@@ -1,0 +1,10 @@
+{
+    "name": "Inwemo",
+    "website": "https://inwemo.com/",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "https?://cdn\\.inwemo\\.com/inwemo\\.min\\.js"
+        }
+    ]
+}

@@ -1,0 +1,14 @@
+{
+    "name": "1&1 Hosting",
+    "author": "Bhavin Senjaliya <bhavin.senjaliya@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "1&1 Hosting, Domains, Website Services & Servers",
+    "website": "https://www.1and1.com/",
+    "matches": [
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:DIY_SB)",
+            "name": "DIY_SB cookie"
+        }
+    ]
+}

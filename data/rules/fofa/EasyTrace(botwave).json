@@ -1,0 +1,16 @@
+{
+    "name": "EasyTrace(botwave)",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "EasyTrace"
+        },
+        {
+            "search": "body",
+            "text": "login_page"
+        }
+    ],
+    "condition": "0 and 1"
+}

@@ -1,0 +1,31 @@
+{
+    "name": "Umbraco",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "umbraco is an open source project with roots back to year 2000 even though it wasn't released as open source until 2004.",
+    "website": "http://www.umbraco.org",
+    "matches": [
+        {
+            "ghdb": "\"powered by umbraco\"",
+            "certainty": 25
+        },
+        {
+            "text": "<meta name=\"generator\" content=\"umbraco\" />"
+        },
+        {
+            "regexp": "(?i-mx:Powered by[^<]*<a[\\s]+href=\"http:\\/\\/[www.]*umbraco.org[^>]*>Umbraco<\\/a>)"
+        },
+        {
+            "regexp": "(?i-mx:powered by[^<]*<a[\\s]+href=\"http:\\/\\/[www.]*umbraco.org[^>]*>umbraco v([^<]+)<\\/a>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?i-mx:powered by[^<]*<a[\\s]+href=\"http:\\/\\/[www.]*umbraco.org[^>]*>umbraco v4<\\/a>)",
+            "version": "4.x"
+        },
+        {
+            "regexp": "(?i-mx:<meta name=\"generator\"[^>]*content=\"umbraco[\\s]+([0-9\\.]+)\")",
+            "offset": 1
+        }
+    ]
+}

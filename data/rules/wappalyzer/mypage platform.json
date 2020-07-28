@@ -1,0 +1,17 @@
+{
+    "name": "MYPAGE Platform",
+    "website": "https://www.mypage.vn",
+    "matches": [
+        {
+            "search": "cookies[mypage_session]",
+            "regexp": ".*"
+        },
+        {
+            "search": "headers[cms-version]",
+            "regexp": "^(.+)$",
+            "offset": 1,
+            "certainty": 0
+        }
+    ],
+    "implies": "Laravel"
+}

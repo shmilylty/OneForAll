@@ -1,0 +1,19 @@
+{
+    "name": "ThinkSNS",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "_static/image/favicon.ico"
+        },
+        {
+            "search": "headers",
+            "text": "T3_lang"
+        },
+        {
+            "search": "headers",
+            "text": "TSV3_lang"
+        }
+    ]
+}

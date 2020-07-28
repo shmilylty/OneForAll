@@ -1,0 +1,10 @@
+{
+    "name": "Kontaktify",
+    "website": "https://www.kontaktify.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "//(?:www\\.)?kontaktify\\.com/embed\\.js"
+        }
+    ]
+}

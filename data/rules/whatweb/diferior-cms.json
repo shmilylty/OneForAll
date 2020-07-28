@@ -1,0 +1,15 @@
+{
+    "name": "Diferior-CMS",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Diferior is a multi-purpose content management system, meaning that it provides all the necessary tools to easily publish and organize your content.",
+    "website": "http://diferior.com/",
+    "matches": [
+        {
+            "text": "&#8212; Powered by Diferior</title>"
+        },
+        {
+            "regexp": "(?-mix:<a href=\"http:\\/\\/diferior.com\" rel=\"external_dif[^>]+>Powered by Diferior, Copyright &copy; 2007, 2008 Povilas Musteikis<\\/a><br\\/>)"
+        }
+    ]
+}

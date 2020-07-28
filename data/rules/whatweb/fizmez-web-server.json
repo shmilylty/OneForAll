@@ -1,0 +1,19 @@
+{
+    "name": "Fizmez-Web-Server",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Fizmez Web Server - A webserver written entirely in Java. Useful for learning about servers and daemons. The whole package comes in at under 20Kbytes compressed.",
+    "website": "http://sourceforge.net/projects/fizmezwebserver/",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Fizmez\\/0\\.0\\.1)",
+            "version": "1.0"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Fizmez\\/([1-9]+\\.[\\d\\.]+))",
+            "offset": 1
+        }
+    ]
+}

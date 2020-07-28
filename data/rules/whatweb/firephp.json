@@ -1,0 +1,22 @@
+{
+    "name": "FirePHP",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "FirePHP enables you to log to your Firebug Console using a simple PHP method call. FirePHP works by sending JSON encoded debug data in the response headers instead of the page content.",
+    "website": "http://www.firephp.org/",
+    "matches": [
+        {
+            "search": "headers[x-wf-1-plugin-1]",
+            "regexp": "(?-mix:^http:\\/\\/meta\\.firephp\\.org\\/Wildfire\\/Plugin\\/FirePHP\\/Library-FirePHPCore\\/([^\\s]+)$)",
+            "offset": 1
+        },
+        {
+            "search": "headers[x-wf-1-structure-1]",
+            "regexp": "(?-mix:^http:\\/\\/meta\\.firephp\\.org\\/Wildfire\\/Structure\\/FirePHP\\/(FirebugConsole\\/[^\\s]+)$)"
+        },
+        {
+            "search": "headers[x-wf-protocol-1]",
+            "regexp": "(?-mix:^http:\\/\\/meta\\.wildfirehq\\.org\\/Protocol\\/)"
+        }
+    ]
+}

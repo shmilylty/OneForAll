@@ -1,0 +1,19 @@
+{
+    "name": "FineCMS",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "Powered by FineCMS"
+        },
+        {
+            "search": "body",
+            "text": "dayrui@gmail.com"
+        },
+        {
+            "search": "body",
+            "text": "Copyright\" content=\"FineCMS"
+        }
+    ]
+}

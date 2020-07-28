@@ -1,0 +1,11 @@
+{
+    "name": "\u4e07\u7f51\u4f01\u4e1a\u4e91\u90ae\u7bb1",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "static.mxhichina.com/images/favicon.ico"
+        }
+    ]
+}

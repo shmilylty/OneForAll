@@ -1,0 +1,9 @@
+{
+    "name": "Strato",
+    "website": "http://shop.strato.com",
+    "matches": [
+        {
+            "regexp": "<a href=\"http://www\\.strato\\.de/\" target=\"_blank\">"
+        }
+    ]
+}

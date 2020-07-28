@@ -1,0 +1,23 @@
+{
+    "name": "PHP-Photo-Album",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "PHP Photo Album",
+    "website": "http://www.phpalbum.net/dw",
+    "matches": [
+        {
+            "certainty": 75,
+            "regexp": "(?-mix:<!--phpalbum ([^\\s]+) -->)",
+            "offset": 1
+        },
+        {
+            "text": "<LINK REL=\"stylesheet\" HREF=\"main.php?cmd=theme&var1=style_css\" TYPE=\"text/css\">"
+        },
+        {
+            "text": "<font size=\"2\">Powered by </font><a class=\"me\" href=\"http://www.phpalbum.net\"><font size=\"2\">PHP Photo Album</font></a>"
+        },
+        {
+            "text": "<!-- <font size=\"2\">Powered by <a class=\"me\"href=\"http://www.phpalbum.net\">PHP Photo Album</font></a> -->"
+        }
+    ]
+}

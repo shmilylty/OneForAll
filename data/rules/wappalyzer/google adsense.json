@@ -1,0 +1,22 @@
+{
+    "name": "Google AdSense",
+    "website": "https://www.google.fr/adsense/start/",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "googlesyndication\\.com/"
+        },
+        {
+            "search": "script",
+            "regexp": "ad\\.ca\\.doubleclick\\.net"
+        },
+        {
+            "search": "script",
+            "regexp": "2mdn\\.net"
+        },
+        {
+            "search": "script",
+            "regexp": "ad\\.ca\\.doubleclick\\.net"
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+{
+    "name": "Webs",
+    "website": "http://webs.com",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "Webs\\.com/?([\\d\\.]+)?",
+            "offset": 1
+        }
+    ]
+}

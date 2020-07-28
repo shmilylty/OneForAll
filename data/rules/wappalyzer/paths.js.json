@@ -1,0 +1,10 @@
+{
+    "name": "Paths.js",
+    "website": "https://github.com/andreaferretti/paths-js",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "paths(?:\\.min)?\\.js"
+        }
+    ]
+}

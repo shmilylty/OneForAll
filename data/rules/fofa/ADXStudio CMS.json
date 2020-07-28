@@ -1,0 +1,19 @@
+{
+    "name": "ADXStudio CMS",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "Powered by Adxstudio"
+        },
+        {
+            "search": "body",
+            "text": "poweredbyadx.png"
+        },
+        {
+            "search": "headers",
+            "text": "anonprofile"
+        }
+    ]
+}

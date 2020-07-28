@@ -1,0 +1,23 @@
+{
+    "name": "pragmaMx",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "pragmaMx - CMS",
+    "website": "http://www.pragmamx.org/",
+    "matches": [
+        {
+            "text": "<!-- COPYRIGHT www.pragmamx.ca / Ne touchez pas / Do not touch -->"
+        },
+        {
+            "regexp": "(?-mix:<meta name=\"generator\" content=\"pragmaMx ([^\\s]+) - by http:\\/\\/pragmaMx\\.org\" \\/>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<!-- (pmx-templatesystem v[^\\s^\\/]+)\\/20[\\d]{2}-[\\d]{2}-[\\d]{2} -->)"
+        },
+        {
+            "regexp": "(?-mix:<p>Diese Webseite basiert auf pragmaMx ([^\\s]+)\\.<\\/p>)",
+            "offset": 1
+        }
+    ]
+}

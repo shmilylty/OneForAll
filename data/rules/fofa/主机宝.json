@@ -1,0 +1,11 @@
+{
+    "name": "\u4e3b\u673a\u5b9d",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "\u60a8\u8bbf\u95ee\u7684\u662f\u4e3b\u673a\u5b9d\u670d\u52a1\u5668\u9ed8\u8ba4\u9875"
+        }
+    ]
+}

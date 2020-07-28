@@ -1,0 +1,14 @@
+{
+    "name": "Highcharts",
+    "website": "https://www.highcharts.com",
+    "matches": [
+        {
+            "regexp": "<svg[^>]*><desc>Created with Highcharts ([\\d.]*)",
+            "offset": 1
+        },
+        {
+            "search": "script",
+            "regexp": "highcharts.*\\.js"
+        }
+    ]
+}

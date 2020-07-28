@@ -1,0 +1,10 @@
+{
+    "name": "Riot",
+    "website": "https://riot.js.org/",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "riot(?:\\+compiler)?(?:\\.min)?\\.js"
+        }
+    ]
+}

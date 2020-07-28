@@ -1,0 +1,83 @@
+{
+    "name": "ASP_NET",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton, Bhavin Senjaliya, Andrew Horton",
+    "version": "0.8",
+    "description": "ASP.NET is a free web framework that enables great Web applications. Used by millions of developers, it runs some of the biggest sites in the world.",
+    "website": "https://www.asp.net/",
+    "matches": [
+        {
+            "text": "vti_title:SR|Web Settings for Active Server Pages"
+        },
+        {
+            "regexp": "(?-mix:connectionstring=DRIVER=([^\\n]+))"
+        },
+        {
+            "regexp": "(?-mix:connectionstring=Provider=([^\\n]+))"
+        },
+        {
+            "regexp": "(?-mix:connectionString=\"([^\\\"]+))"
+        },
+        {
+            "regexp": "(?-mix:<add key=\"ConnectionString\" value=\"([^\\\"]+))"
+        },
+        {
+            "search": "body",
+            "string": "Verbose error messages",
+            "text": "This error page might contain sensitive information because ASP.NET is configured to show verbose error messages"
+        },
+        {
+            "search": "body",
+            "regexp": "(?-mix:<b> Source File: <\\/b> ([^<]+)<b> &nbsp;&nbsp; Line:.*This error page might contain sensitive information because ASP.NET)"
+        },
+        {
+            "string": "ViewState Encrypted",
+            "search": "body",
+            "text": "name=\"__VIEWSTATEENCRYPTED\" id=\"__VIEWSTATEENCRYPTED\""
+        },
+        {
+            "name": "x-powered-by HTTP header",
+            "search": "headers[x-powered-by]",
+            "regexp": "(?-mix:asp\\.net)"
+        },
+        {
+            "name": "X-AspNet-Version HTTP header",
+            "search": "headers[x-aspnet-version]",
+            "regexp": "(?-mix:^(.*)$)",
+            "offset": 1
+        },
+        {
+            "module": "AnonymousIdentificationModule",
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:^anonymousID=[^;]+; expires=[^;]+; path=[^;]+; HttpOnly)"
+        },
+        {
+            "module": "AnonymousIdentificationModule",
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:^chkvalues=[^;]+; expires=[^;]+; path=[^;]+; HttpOnly)"
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:^__RequestVerificationToken)",
+            "name": "__RequestVerificationToken cookie"
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:^.ASPXANONYMOUS)",
+            "name": ".ASPXANONYMOUS cookie"
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:^ASP.NET_SessionId)",
+            "name": "ASP.NET_SessionId cookie"
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:^ASPSESSIONID)",
+            "name": "ASPSESSIONID cookie"
+        },
+        {
+            "search": "body",
+            "text": "<input type=\"hidden\" name=\"__VIEWSTATE\" id=\"__VIEWSTATE\""
+        }
+    ]
+}

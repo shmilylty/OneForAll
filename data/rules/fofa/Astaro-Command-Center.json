@@ -1,0 +1,15 @@
+{
+    "name": "Astaro-Command-Center",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "/acc_aggregated_reporting.js"
+        },
+        {
+            "search": "body",
+            "text": "/js/_variables_from_backend.js?"
+        }
+    ]
+}

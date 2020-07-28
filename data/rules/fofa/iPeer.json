@@ -1,0 +1,23 @@
+{
+    "name": "iPeer",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "Powered by iPeer"
+        },
+        {
+            "search": "headers",
+            "text": "IPEER="
+        },
+        {
+            "search": "body",
+            "text": "/js/ipeer.js"
+        },
+        {
+            "search": "body",
+            "text": "/css/ipeer.css"
+        }
+    ]
+}

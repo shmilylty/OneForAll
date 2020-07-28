@@ -1,0 +1,15 @@
+{
+    "name": "\u4efb\u6211\u884cCRM",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "\u4efb\u6211\u884cCRM"
+        },
+        {
+            "search": "body",
+            "text": "CRM_LASTLOGINUSERKEY"
+        }
+    ]
+}

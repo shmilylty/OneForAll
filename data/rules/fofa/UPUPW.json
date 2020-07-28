@@ -1,0 +1,11 @@
+{
+    "name": "UPUPW",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "UPUPW\u73af\u5883\u96c6\u6210\u5305"
+        }
+    ]
+}

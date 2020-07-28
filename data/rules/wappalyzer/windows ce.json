@@ -1,0 +1,10 @@
+{
+    "name": "Windows CE",
+    "website": "http://microsoft.com",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "\\bWinCE\\b"
+        }
+    ]
+}

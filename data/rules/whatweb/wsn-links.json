@@ -1,0 +1,31 @@
+{
+    "name": "WSN-Links",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "WSN Links is a links directory with google pageranks, link checking, reciprocal linking facilities and much more. Multilingual and highly extensible, it offers more than you could imagine in a links directory.",
+    "website": "http://www.wsnlinks.com/",
+    "matches": [
+        {
+            "text": "<title>WSN Links Administration Panel</title>"
+        },
+        {
+            "regexp": "(?-mix:<span class=\"group\" style=\"margin-left: 8px;\">WSN Links ([\\d\\.]+) Admin Login<\\/span>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<span class=\"group\">WSN Links ([\\d\\.]+) Admin Panel<\\/span>)",
+            "offset": 1
+        },
+        {
+            "certainty": 25,
+            "text": "<!-- place any jquery-dependent script tags that need to be before the /head tag in here -->"
+        },
+        {
+            "certainty": 25,
+            "regexp": "(?-mix:<div class=\"boxtitle\" on[c|C]lick=\"minmax\\('[a-z]+box'\\)\"><img src=)"
+        },
+        {
+            "text": "<textarea readonly rows=\"20\" cols=\"75\">WSN Links License Agreement"
+        }
+    ]
+}

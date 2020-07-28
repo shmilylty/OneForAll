@@ -1,0 +1,15 @@
+{
+    "name": "\u84dd\u51ccEIS\u667a\u6167\u534f\u540c\u5e73\u53f0",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "/scripts/jquery.landray.common.js"
+        },
+        {
+            "search": "body",
+            "text": "v11_QRcodeBar clr"
+        }
+    ]
+}

@@ -1,0 +1,14 @@
+{
+    "name": "Translucide",
+    "website": "http://www.translucide.net",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "lucide\\.init(?:\\.min)?\\.js"
+        }
+    ],
+    "implies": [
+        "PHP",
+        "jQuery"
+    ]
+}

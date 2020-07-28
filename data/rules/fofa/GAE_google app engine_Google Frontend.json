@@ -1,0 +1,15 @@
+{
+    "name": "GAE/google app engine/Google Frontend",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "Server: Google Frontend"
+        },
+        {
+            "search": "headers",
+            "text": "Server: GFE"
+        }
+    ]
+}

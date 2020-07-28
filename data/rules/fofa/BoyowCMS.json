@@ -1,0 +1,11 @@
+{
+    "name": "BoyowCMS",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "publish by BoyowCMS"
+        }
+    ]
+}

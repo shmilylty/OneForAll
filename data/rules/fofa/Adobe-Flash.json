@@ -1,0 +1,19 @@
+{
+    "name": "Adobe-Flash",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "/x-shockwave-flash"
+        },
+        {
+            "search": "body",
+            "text": "/go/getflashplayer"
+        },
+        {
+            "search": "body",
+            "text": "embedswf"
+        }
+    ]
+}

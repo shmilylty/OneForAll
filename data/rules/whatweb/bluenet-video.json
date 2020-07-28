@@ -1,0 +1,21 @@
+{
+    "name": "BlueNet-Video",
+    "author": "Andrew Horton",
+    "version": "0.1",
+    "description": "BlueNet Video Server is an device that can stream CTV video over the internet. It uses an ActiveX plugin. Product listing - http://kelgor.net/kelcart/products/Bluenet-Video-Server.html",
+    "website": "http://www.batblue.com/themes/BatBlue/videos/BlueNETVideo.html",
+    "matches": [
+        {
+            "string": "window.location.href='/cgi-bin/client_execute.cgi?tUD=0';"
+        },
+        {
+            "url": "/cgi-bin/client_execute.cgi?tUD=0",
+            "regexp": "(?-mix:<title>BlueNet Video Viewer Version ([^<]+)<\\/title>)",
+            "offset": 1
+        },
+        {
+            "string": "clsid:4A7C606D-03DB-4E91-9AB0-275F5A4599FD",
+            "url": "/cgi-bin/client_execute.cgi?tUD=0"
+        }
+    ]
+}

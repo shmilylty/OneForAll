@@ -1,0 +1,15 @@
+{
+    "name": "\u767e\u5ea6\u5728\u7ebfweb\u7f16\u8f91\u5668",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "ueditor.all.js"
+        },
+        {
+            "search": "body",
+            "text": "UE.getEditor"
+        }
+    ]
+}

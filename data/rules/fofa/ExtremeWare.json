@@ -1,0 +1,15 @@
+{
+    "name": "ExtremeWare",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "ExtremeWare"
+        },
+        {
+            "search": "body",
+            "text": "<frame src=\"extremetop"
+        }
+    ]
+}

@@ -1,0 +1,16 @@
+{
+    "name": "\u5408\u6b63\u7f51\u7ad9\u7fa4\u5185\u5bb9\u7ba1\u7406\u7cfb\u7edf",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "Produced By"
+        },
+        {
+            "search": "body",
+            "text": "\u7f51\u7ad9\u7fa4\u5185\u5bb9\u7ba1\u7406\u7cfb\u7edf"
+        }
+    ],
+    "condition": "0 and 1"
+}

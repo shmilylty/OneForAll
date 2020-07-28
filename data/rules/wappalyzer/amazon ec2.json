@@ -1,0 +1,11 @@
+{
+    "name": "Amazon EC2",
+    "website": "http://aws.amazon.com/ec2/",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "\\(Amazon\\)"
+        }
+    ],
+    "implies": "Amazon Web Services"
+}

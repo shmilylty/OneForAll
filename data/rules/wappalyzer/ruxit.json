@@ -1,0 +1,10 @@
+{
+    "name": "Ruxit",
+    "website": "http://ruxit.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "ruxitagentjs"
+        }
+    ]
+}

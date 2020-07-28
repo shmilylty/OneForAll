@@ -1,0 +1,28 @@
+{
+    "name": "Energine",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Energine Content Management Framework - XML based PHP5 content management framework",
+    "website": "http://energine.org/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<script type=\"text\\/javascript\" src=\"[^\"]*scripts\\/Energine.js\"><\\/script>)"
+        },
+        {
+            "regexp": "(?-mix:<link rel=\"stylesheet\" type=\"text\\/css\" href=\"[^\"]*stylesheets\\/energine.css\" \\/>)"
+        },
+        {
+            "text": "<div id=\"footer\"><span class=\"copyright\">Powered by <a href=\"http://energine.org\">Energine</a><br/>"
+        },
+        {
+            "text": "<span class=\"copyright\">Powered by <a href= \"http://energine.org/\">Energine</a></span>"
+        },
+        {
+            "certainty": 75,
+            "text": "<div id=\"footer\">Powered by Energine.</div>"
+        },
+        {
+            "text": "<div id=\"footer\">Powered by <a href=\"http://energine.org\">Energine</a>"
+        }
+    ]
+}

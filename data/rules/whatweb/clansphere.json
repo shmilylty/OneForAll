@@ -1,0 +1,27 @@
+{
+    "name": "ClanSphere",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Free OpenSource Clan CMS",
+    "website": "www.csphere.eu/index/clansphere/about",
+    "matches": [
+        {
+            "text": "<title>ClanSphere - News</title>"
+        },
+        {
+            "text": "<meta name=\"generator\" content=\"ClanSphere\" />"
+        },
+        {
+            "regexp": "(?i-mx:Powered by <a href=\"http:\\/\\/www.csphere.eu[^>]+>Clansphere[\\ CSP]*)"
+        },
+        {
+            "regexp": "(?i-mx:<a href=\"[\\/]*index.php\\?mod=clansphere&amp;action=about[^>]+>Powered by Clansphere[\\ CSP]*)"
+        },
+        {
+            "regexp": "(?i-mx:<a href=\"[\\/]*index.php\\?mod=clansphere&amp;action=about[^>]+>Clansphere[\\ CSP]*)"
+        },
+        {
+            "regexp": "(?-mix:powered by <a href=\"http:\\/\\/www.clansphere.net[^>]+>ClanSphere Project<\\/a>)"
+        }
+    ]
+}

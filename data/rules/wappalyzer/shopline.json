@@ -1,0 +1,10 @@
+{
+    "name": "Shopline",
+    "website": "https://shoplineapp.com/",
+    "matches": [
+        {
+            "search": "meta[og:image]",
+            "regexp": "https\\:\\/\\/img\\.shoplineapp\\.com"
+        }
+    ]
+}

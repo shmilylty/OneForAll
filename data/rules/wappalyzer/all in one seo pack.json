@@ -1,0 +1,11 @@
+{
+    "name": "All in One SEO Pack",
+    "website": "https://wordpress.org/plugins/all-in-one-seo-pack/",
+    "matches": [
+        {
+            "regexp": "<!-- All in One SEO Pack ([\\d.]+) ",
+            "offset": 1
+        }
+    ],
+    "implies": "WordPress"
+}

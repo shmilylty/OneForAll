@@ -1,0 +1,21 @@
+{
+    "name": "X7-Chat",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "X7 Chat is a free script that can be modified and redistributed in any way that you want as long as the X7 Chat copyright logo remains in place.",
+    "website": "http://x7chat.com/",
+    "matches": [
+        {
+            "certainty": 75,
+            "ghdb": "inurl:x7chat \"Please enter your username and password to login\""
+        },
+        {
+            "regexp": "(?-mix:Powered By <a href=\"http:\\/\\/www.x7chat.com\\/\" target=\"_blank\">X7 Chat<\\/a> ([\\d\\.A-Z]+)[\\s]*[^&]*&copy; 2004 By The <a href=\"http:\\/\\/www.x7chat.com\\/\" target=\"_blank\">X7 Group<\\/a>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<Br><font size=\"2\">Powered By X7 Chat Version ([^<]+)<\\/font>)",
+            "offset": 1
+        }
+    ]
+}

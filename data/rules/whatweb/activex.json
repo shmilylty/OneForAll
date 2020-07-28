@@ -1,0 +1,16 @@
+{
+    "name": "ActiveX",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.3",
+    "description": "ActiveX is a framework based on Microsoft's Component Object Model (COM) and Object Linking and Embedding (OLE) technologies. ActiveX components officially operate only with Microsoft's Internet Explorer web browser and the Microsoft Windows operating system. - More info: http://en.wikipedia.org/wiki/ActiveX",
+    "website": null,
+    "matches": [
+        {
+            "regexp": "(?i-mx:<object [^>]*classid=[\"']?clsid:([\\s]*[a-f\\d\\-]+)['\"]?)"
+        },
+        {
+            "string": "Flash-ActiveX",
+            "regexp": "(?-mix:d27cdb6e-ae6d-11cf-96b8-444553540000)"
+        }
+    ]
+}

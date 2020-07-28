@@ -1,0 +1,19 @@
+{
+    "name": "HoloCMS",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "HoloCMS. Requires PHP.",
+    "website": null,
+    "matches": [
+        {
+            "regexp": "(?-mix:<meta name=\"build\" content=\"([^\\ ]+) - [^-]+- HoloCMS\" \\/>)",
+            "offset": 1
+        },
+        {
+            "text": "<div id=\"remember-me-notification\" class=\"bottom-bubble\" style=\"display:none;\">"
+        },
+        {
+            "regexp": "(?-mix:^Powered by HoloCMS &copy[;]* 2008 Meth0d & Parts by Yifan, sisija)"
+        }
+    ]
+}

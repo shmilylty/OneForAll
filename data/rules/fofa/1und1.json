@@ -1,0 +1,11 @@
+{
+    "name": "1und1",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "/shop/catalog/browse?sessid="
+        }
+    ]
+}

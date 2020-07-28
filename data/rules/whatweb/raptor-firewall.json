@@ -1,0 +1,18 @@
+{
+    "name": "Raptor-Firewall",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "Raptor Firewall (previously known as Raptor EagleNT) was acquired by Symantec and has been discontinued",
+    "website": "http://www.symantec.com/en/nz/business/support/overview.jsp?pid=52789",
+    "matches": [
+        {
+            "regexp": "(?-mix:^Simple, Secure Web Server)",
+            "search": "headers[server]"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Simple, Secure Web Server (.+)$)",
+            "offset": 1
+        }
+    ]
+}

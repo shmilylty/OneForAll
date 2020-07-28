@@ -1,0 +1,34 @@
+{
+    "name": "WSN-Gallery",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "WSN Gallery is a media gallery for images, videos and more. It can resize and edit images, and convert videos to play in the integrated flash player for a YouTube-style video site. Translatable to any language, it offers a vast array of features to power your gallery site.",
+    "website": "http://www.wsngallery.com/",
+    "matches": [
+        {
+            "text": "<title>WSN Gallery Admin Login</title>"
+        },
+        {
+            "text": "<title>WSN Gallery Administration Panel</title>"
+        },
+        {
+            "offset": 1,
+            "regexp": "(?-mix:<span class=\"(topbar|group)\" style=\"margin-left: 8px;\">WSN Gallery ([\\d\\.]+) Admin Login<\\/span>)"
+        },
+        {
+            "offset": 1,
+            "regexp": "(?-mix:<span class=\"(topbar|group)\">WSN Gallery ([\\d\\.]+) Admin Panel<\\/span>)"
+        },
+        {
+            "certainty": 25,
+            "text": "<!-- place any jquery-dependent script tags that need to be before the /head tag in here -->"
+        },
+        {
+            "certainty": 25,
+            "regexp": "(?-mix:<div class=\"boxtitle\" on[c|C]lick=\"minmax\\('[a-z]+box'\\)\"><img src=)"
+        },
+        {
+            "text": "<textarea readonly rows=\"20\" cols=\"75\">WSN Gallery License Agreement"
+        }
+    ]
+}

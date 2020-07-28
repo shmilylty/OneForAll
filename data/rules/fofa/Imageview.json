@@ -1,0 +1,19 @@
+{
+    "name": "Imageview",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "content=\"Imageview"
+        },
+        {
+            "search": "body",
+            "text": "By Jorge Schrauwen"
+        },
+        {
+            "search": "body",
+            "text": "href=\"http://www.blackdot.be\" title=\"Blackdot.be"
+        }
+    ]
+}

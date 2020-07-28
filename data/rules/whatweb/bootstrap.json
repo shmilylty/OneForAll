@@ -1,0 +1,119 @@
+{
+    "name": "Bootstrap",
+    "author": "Janosch Maier @Phylu",
+    "version": "0.3",
+    "description": "Bootstrap is an open source toolkit for developing with HTML, CSS, and JS. ",
+    "website": "https://getbootstrap.com/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<script [^>]*bootstrap)"
+        },
+        {
+            "regexp": "(?-mix:<link [^>]*bootstrap)"
+        },
+        {
+            "offset": 1,
+            "regexp": "(?-mix:bootstrap(\\.min)?\\.js\\?ver=([0-9\\.]+)['\"])"
+        },
+        {
+            "offset": 0,
+            "regexp": "(?-mix:bootstrap\\/([0-9\\.]+)(\\/js)?\\/bootstrap(\\.min)?\\.js)"
+        },
+        {
+            "offset": 0,
+            "regexp": "(?-mix:bootstrap-([0-9\\.]+)(\\.min)?\\.js)"
+        },
+        {
+            "offset": 1,
+            "regexp": "(?-mix:bootstrap(\\.min)?\\.css\\?ver=([0-9\\.]+)['\"])"
+        },
+        {
+            "offset": 0,
+            "regexp": "(?-mix:bootstrap\\/([0-9\\.]+)(\\/css)?\\/bootstrap(\\.min)?\\.css)"
+        },
+        {
+            "offset": 0,
+            "regexp": "(?-mix:bootstrap-([0-9\\.]+)(\\.min)?\\.css)"
+        },
+        {
+            "url": "bootstrap/js/bootstrap.js",
+            "offset": 1,
+            "regexp": "(?-mix:Bootstrap ([vV])?([0-9\\.]+))"
+        },
+        {
+            "url": "bootstrap/js/bootstrap.bundle.js",
+            "offset": 1,
+            "regexp": "(?-mix:Bootstrap ([vV])?([0-9\\.]+))"
+        },
+        {
+            "url": "bootstrap/js/bootstrap.min.js",
+            "offset": 1,
+            "regexp": "(?-mix:Bootstrap ([vV])?([0-9\\.]+))"
+        },
+        {
+            "url": "bootstrap/js/bootstrap.bundle.min.js",
+            "offset": 1,
+            "regexp": "(?-mix:Bootstrap ([vV])?([0-9\\.]+))"
+        },
+        {
+            "url": "js/bootstrap.js",
+            "offset": 1,
+            "regexp": "(?-mix:Bootstrap ([vV])?([0-9\\.]+))"
+        },
+        {
+            "url": "js/bootstrap.bundle.js",
+            "offset": 1,
+            "regexp": "(?-mix:Bootstrap ([vV])?([0-9\\.]+))"
+        },
+        {
+            "url": "js/bootstrap.min.js",
+            "offset": 1,
+            "regexp": "(?-mix:Bootstrap ([vV])?([0-9\\.]+))"
+        },
+        {
+            "url": "js/bootstrap.bundle.min.js",
+            "offset": 1,
+            "regexp": "(?-mix:Bootstrap ([vV])?([0-9\\.]+))"
+        },
+        {
+            "url": "bootstrap/css/bootstrap.css",
+            "offset": 1,
+            "regexp": "(?-mix:Bootstrap ([vV])?([0-9\\.]+))"
+        },
+        {
+            "url": "bootstrap/css/bootstrap.bundle.css",
+            "offset": 1,
+            "regexp": "(?-mix:Bootstrap ([vV])?([0-9\\.]+))"
+        },
+        {
+            "url": "bootstrap/css/bootstrap.min.css",
+            "offset": 1,
+            "regexp": "(?-mix:Bootstrap ([vV])?([0-9\\.]+))"
+        },
+        {
+            "url": "bootstrap/css/bootstrap.bundle.min.css",
+            "offset": 1,
+            "regexp": "(?-mix:Bootstrap ([vV])?([0-9\\.]+))"
+        },
+        {
+            "url": "css/bootstrap.css",
+            "offset": 1,
+            "regexp": "(?-mix:Bootstrap ([vV])?([0-9\\.]+))"
+        },
+        {
+            "url": "css/bootstrap.bundle.css",
+            "offset": 1,
+            "regexp": "(?-mix:Bootstrap ([vV])?([0-9\\.]+))"
+        },
+        {
+            "url": "css/bootstrap.min.css",
+            "offset": 1,
+            "regexp": "(?-mix:Bootstrap ([vV])?([0-9\\.]+))"
+        },
+        {
+            "url": "css/bootstrap.bundle.min.css",
+            "offset": 1,
+            "regexp": "(?-mix:Bootstrap ([vV])?([0-9\\.]+))"
+        }
+    ]
+}

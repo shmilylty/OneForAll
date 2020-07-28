@@ -1,0 +1,24 @@
+{
+    "name": "\u9010\u6d6azoomla",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "script src=\"http://code.zoomla.cn/"
+        },
+        {
+            "search": "body",
+            "text": "NodePage.aspx"
+        },
+        {
+            "search": "body",
+            "text": "Item"
+        },
+        {
+            "search": "body",
+            "text": "/style/images/win8_symbol_140x140.png"
+        }
+    ],
+    "condition": "0 or (1 and 2) or 3"
+}

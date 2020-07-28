@@ -1,0 +1,15 @@
+{
+    "name": "\u5929\u878d\u4fe1VPN",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "TopWebServer"
+        },
+        {
+            "search": "headers",
+            "text": "topsecsvportalname"
+        }
+    ]
+}

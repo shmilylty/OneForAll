@@ -1,0 +1,18 @@
+{
+    "name": "CBS-Interactive",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "CBS Interactive - online content network",
+    "website": "http://www.cbsinteractive.com/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<script[^>]+ src=\"http:\\/\\/dw\\.com\\.com\\/js\\/dw\\.js\"><\\/script>)"
+        },
+        {
+            "regexp": "(?-mix:<script>DW.pageParams = \\{siteId:'([^']+)'\\};DW.clear\\(\\);<\\/script>)"
+        },
+        {
+            "regexp": "(?-mix:<img src=\"http:\\/\\/dw\\.com\\.com\\/clear\\/c\\.gif\\?sid=([^\"^\\s^>^&]+))"
+        }
+    ]
+}

@@ -1,0 +1,19 @@
+{
+    "name": "kingcms",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "kingcms"
+        },
+        {
+            "search": "body",
+            "text": "content=\"KingCMS"
+        },
+        {
+            "search": "body",
+            "text": "Powered by KingCMS"
+        }
+    ]
+}

@@ -1,0 +1,23 @@
+{
+    "name": "AlstraSoft-EPay-Enterprise",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "AlstraSoft EPay Enterprise - peer to peer payment system - Requires PHP and MySQL",
+    "website": "http://www.alstrasoft.com/epay_enterprise.htm",
+    "matches": [
+        {
+            "text": "<a class=copy href=\"http://www.alstrasoft.com/\" target=\"_blank\">Powered by EPay Enterprise.</a>&nbsp;"
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:ln=English)",
+            "certainty": 25
+        },
+        {
+            "text": " <tr><td align=center><input class=submit type=submit name=send value=\"LOGIN NOW!\"></td></tr>"
+        },
+        {
+            "text": "<tr><td class=capl><a href='/shop.htm?action=view'>TOP CATEGORIES</a>&nbsp;&nbsp;&gt;&gt;&nbsp;"
+        }
+    ]
+}

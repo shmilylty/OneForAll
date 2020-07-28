@@ -1,0 +1,10 @@
+{
+    "name": "RD Station",
+    "website": "http://rdstation.com.br",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "d335luupugsy2\\.cloudfront\\.net/js/loader-scripts/.*-loader\\.js"
+        }
+    ]
+}

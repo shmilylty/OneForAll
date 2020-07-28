@@ -1,0 +1,18 @@
+{
+    "name": "nginx",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Nginx (Engine-X) is a free, open-source, high-performance HTTP server and reverse proxy, as well as an IMAP/POP3 proxy server.",
+    "website": "http://nginx.net/",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^nginx$)"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^nginx\\/([^\\s]+).*$)",
+            "offset": 1
+        }
+    ]
+}

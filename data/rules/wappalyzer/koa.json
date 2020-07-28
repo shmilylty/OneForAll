@@ -1,0 +1,11 @@
+{
+    "name": "Koa",
+    "website": "http://koajs.com",
+    "matches": [
+        {
+            "search": "headers[x-powered-by]",
+            "regexp": "^koa$"
+        }
+    ],
+    "implies": "Node.js"
+}

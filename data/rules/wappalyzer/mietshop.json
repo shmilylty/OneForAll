@@ -1,0 +1,13 @@
+{
+    "name": "Mietshop",
+    "website": "http://www.mietshop.de/",
+    "matches": [
+        {
+            "regexp": "<a href=\"https://ssl\\.mietshop\\.d"
+        },
+        {
+            "search": "meta[generator]",
+            "regexp": "Mietshop"
+        }
+    ]
+}

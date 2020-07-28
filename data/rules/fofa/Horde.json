@@ -1,0 +1,19 @@
+{
+    "name": "Horde",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "IMP: Copyright 2001-2009 The Horde Project"
+        },
+        {
+            "search": "headers",
+            "text": "Horde3"
+        },
+        {
+            "search": "headers",
+            "text": "Set-Cookie: Horde"
+        }
+    ]
+}

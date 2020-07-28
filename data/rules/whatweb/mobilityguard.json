@@ -1,0 +1,13 @@
+{
+    "name": "MobilityGuard",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "MobilityGuard is a suite of security products from the company by the same name.",
+    "website": "http://www.mobilityguard.com/",
+    "matches": [
+        {
+            "url": "/mg-local/cookie.html",
+            "text": "<font size=2>Click here for more information about MobilityGuard.</font></a></center><br>"
+        }
+    ]
+}

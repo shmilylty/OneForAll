@@ -1,0 +1,26 @@
+{
+    "name": "eFront",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "eFront is a modern learning system, bundled with key enterprise functionality ranging from skill-gap analysis and branch management to tailor-made reports.",
+    "website": "http://www.efrontlearning.net/",
+    "matches": [
+        {
+            "text": "<body  onkeypress = \"if (window.eF_js_keypress) eF_js_keypress(event);\" onbeforeunload = \"if (window.getPeriodicData) getPeriodicData();\">"
+        },
+        {
+            "text": "<script>var BOOKMARKTRANSLATION = 'Bookmarks';var NODATAFOUND = 'No data found';</script>"
+        },
+        {
+            "text": "</script><script>if (__shouldTriggerNextNotifications) { new Ajax.Request(\"send_notifications.php?ajax=1\", {method:'get', asynchronous:true}); } </script>"
+        },
+        {
+            "regexp": "(?-mix:<div><a href = \"http:\\/\\/www\\.efrontlearning\\.net\">eFront<\\/a> \\(version ([^\\)]+)\\) &bull; Community Edition &bull; <a href = \"index\\.php\\?ctg=contact\">)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<script type = \"text\\/javascript\" src = \"js\\/scripts\\.php\\?(build=[\\d]+)&load=[^\"^>]+\"> <\\/script>)",
+            "offset": 1
+        }
+    ]
+}

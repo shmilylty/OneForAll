@@ -1,0 +1,20 @@
+{
+    "name": "HyNetOS-httpd",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "HyNetOS is a network operating system specifically designed for embedded systems, where computing and memory resources are limited.",
+    "website": "http://www.msc-ge.com/en/produkte/elekom/mc/hyperstone/sw_hynetos.html",
+    "matches": [
+        {
+            "os": "HyNetOS",
+            "search": "headers[server]",
+            "regexp": "(?-mix:^HyNetOS\\/([^\\s]+)$)",
+            "offset": 1
+        },
+        {
+            "os": "HyNetOS",
+            "regexp": "(?-mix:^HyNetOS)",
+            "search": "headers[server]"
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+{
+    "name": "SIEMENS IP Cameras",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "SIEMENS IP Camera"
+        }
+    ]
+}

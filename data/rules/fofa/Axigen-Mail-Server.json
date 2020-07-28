@@ -1,0 +1,15 @@
+{
+    "name": "Axigen-Mail-Server",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "AXIGEN Webmail - "
+        },
+        {
+            "search": "headers",
+            "text": "Axigen-Webmail"
+        }
+    ]
+}

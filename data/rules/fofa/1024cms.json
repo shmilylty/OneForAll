@@ -1,0 +1,15 @@
+{
+    "name": "1024cms",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "Powered by 1024 CMS"
+        },
+        {
+            "search": "body",
+            "text": "generator\" content=\"1024 CMS (c)"
+        }
+    ]
+}

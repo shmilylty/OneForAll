@@ -1,0 +1,10 @@
+{
+    "name": "M.R. Inc SiteFrame",
+    "website": "http://mrincworld.com",
+    "matches": [
+        {
+            "search": "headers[powered-by]",
+            "regexp": "M\\.R\\. Inc SiteFrame"
+        }
+    ]
+}

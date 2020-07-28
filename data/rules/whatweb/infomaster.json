@@ -1,0 +1,32 @@
+{
+    "name": "Infomaster",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "InfoMaster ePlanning software - asset management and property development application tracking and planning",
+    "website": "http://www.infomaster.com.au/",
+    "matches": [
+        {
+            "string": "MasterView",
+            "regexp": "(?-mix:<head><title>[\\s]+MasterView ([\\d\\.]+) Property Master[\\s]+<\\/title>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:class=\"ackn\">[\\s]*Powered by InfoMaster)"
+        },
+        {
+            "text": "<link href=\"../../MasterView.css\" type=\"text/css\" rel=\"stylesheet\"",
+            "string": "MasterView"
+        },
+        {
+            "text": "<link href=\"../../App_Themes/MasterView/MPLeftNavStyle/PanelBar.MPIFMA.css\" type=\"text/css\" rel=\"stylesheet\" />",
+            "string": "MasterView"
+        },
+        {
+            "text": "<script language=\"javascript\" src=\"../../common/masterView.js\"></script>",
+            "string": "MasterView"
+        },
+        {
+            "regexp": "(?-mix:<form name=\"frm(MasterView|MasterPlan)\" method=\"post\" action=\"default\\.aspx)"
+        }
+    ]
+}

@@ -1,0 +1,17 @@
+{
+    "name": "WSTOOL",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "WSTOOL is OS-independence Web vulnerability scanner",
+    "website": "http://wstool.sourceforge.net/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<a href=\"http:\\/\\/sourceforge\\.net\\/projects\\/wstool\" target=\"_blank\">Server Error & SQL Injection Sacnner \\(Ver ([^\\s^\\)]+)\\)<\\/a>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<title>Server Error & SQL Injection Sacnner \\(Ver ([^\\s^\\)]+)\\)<\\/title>)",
+            "offset": 1
+        }
+    ]
+}

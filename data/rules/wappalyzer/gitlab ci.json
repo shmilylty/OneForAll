@@ -1,0 +1,11 @@
+{
+    "name": "GitLab CI",
+    "website": "http://about.gitlab.com/gitlab-ci",
+    "matches": [
+        {
+            "search": "meta[description]",
+            "regexp": "GitLab Continuous Integration"
+        }
+    ],
+    "implies": "Ruby on Rails"
+}

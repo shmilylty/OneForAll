@@ -1,0 +1,10 @@
+{
+    "name": "S.Builder",
+    "website": "http://www.sbuilder.ru",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "S\\.Builder"
+        }
+    ]
+}

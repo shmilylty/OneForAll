@@ -1,0 +1,19 @@
+{
+    "name": "Phabricator",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "phsid"
+        },
+        {
+            "search": "body",
+            "text": "phabricator-application-launch-container"
+        },
+        {
+            "search": "body",
+            "text": "res/phabricator"
+        }
+    ]
+}

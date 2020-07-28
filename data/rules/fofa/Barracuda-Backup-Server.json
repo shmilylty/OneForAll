@@ -1,0 +1,11 @@
+{
+    "name": "Barracuda-Backup-Server",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "BACKUP_LOCAL_LOCALE"
+        }
+    ]
+}

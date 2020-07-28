@@ -1,0 +1,15 @@
+{
+    "name": "Edito-CMS",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Edito CMS [Polish]",
+    "website": "http://www.edito.pl/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<meta name=\"(g|G)enerator\" content=\"(E|e)dito( CMS)? - www\\.edito\\.pl\"[\\s]*\\/?>)"
+        },
+        {
+            "regexp": "(?i-mx:Powered by[\\s]*:?[\\s]+<a[^>]+href=\"http:\\/\\/www.edito.pl[\\/]?\"[^>]+title=\"Edito CMS\"[^>]*>)"
+        }
+    ]
+}

@@ -1,0 +1,14 @@
+{
+    "name": "Rakuten DBCore",
+    "website": "http://ecservice.rakuten.com.br",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "Rakuten DBCore"
+        },
+        {
+            "search": "meta[generator:site]",
+            "regexp": "http://ecservice\\.rakuten\\.com\\.br"
+        }
+    ]
+}

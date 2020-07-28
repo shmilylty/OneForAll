@@ -1,0 +1,14 @@
+{
+    "name": "libwww-perl-daemon",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Perl CPAN HTTP::Daemon - a simple http server class. Instances of the HTTP::Daemon class are HTTP/1.1 servers that listen on a socket for incoming requests.",
+    "website": "http://search.cpan.org/~gaas/HTTP-Daemon-6.00/lib/HTTP/Daemon.pm",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^libwww-perl-daemon\\/([^\\s]+))",
+            "offset": 1
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "name": "Movable Type",
+    "website": "http://movabletype.org",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "Movable Type"
+        }
+    ]
+}

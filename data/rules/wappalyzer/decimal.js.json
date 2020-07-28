@@ -1,0 +1,21 @@
+{
+    "name": "decimal.js",
+    "website": "https://mikemcl.github.io/decimal.js/",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "decimal[.-]([\\d.]*\\d+)(?:\\.min)?\\.js",
+            "offset": 1
+        },
+        {
+            "search": "script",
+            "regexp": "/([\\d.]*\\d+)/decimal(?:\\.min)?\\.js",
+            "offset": 1
+        },
+        {
+            "search": "script",
+            "regexp": "decimal(?:\\.min)?\\.js(?:\\?ver(?:sion)?=([\\d.]*\\d+))?",
+            "offset": 1
+        }
+    ]
+}

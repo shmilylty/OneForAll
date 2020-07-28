@@ -1,0 +1,19 @@
+{
+    "name": "Pluck-CMS",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Pluck is a small and simple content management system. - Requires: PHP",
+    "website": "http://www.pluck-cms.org/",
+    "matches": [
+        {
+            "ghdb": "\"powered by pluck\" +admin inurl:\"file=kop1.php\""
+        },
+        {
+            "regexp": "(?-mix:<meta name=\"generator\" content=\"pluck ([^\\s^\"]+)\" \\/>)",
+            "offset": 1
+        },
+        {
+            "text": "powered by <a href=\"http://www.pluck-cms.org\">pluck</a>"
+        }
+    ]
+}

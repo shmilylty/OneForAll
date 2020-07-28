@@ -1,0 +1,10 @@
+{
+    "name": "Svbtle",
+    "website": "https://www.svbtle.com",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "^Svbtle\\.com$"
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "name": "GSAP",
+    "website": "https://greensock.com/gsap",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "TweenMax(?:\\.min)?\\.js"
+        }
+    ]
+}

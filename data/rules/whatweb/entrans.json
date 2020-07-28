@@ -1,0 +1,16 @@
+{
+    "name": "Entrans",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Entrans is an online translation tool. The tool can be used by the online community to give suggestions for a list of English words/phrases that needs to be translated into a specific Indic Language.",
+    "website": "http://entrans.sourceforge.net/",
+    "matches": [
+        {
+            "text": "<li ><a href=\"list.php?category=all&amp;page=1\" >View All Strings</a> </li>"
+        },
+        {
+            "certainty": 25,
+            "text": "<title>Entrans</title>"
+        }
+    ]
+}

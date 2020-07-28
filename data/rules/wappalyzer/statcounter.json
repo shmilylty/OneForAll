@@ -1,0 +1,10 @@
+{
+    "name": "Statcounter",
+    "website": "http://www.statcounter.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "statcounter\\.com/counter/counter"
+        }
+    ]
+}

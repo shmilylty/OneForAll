@@ -1,0 +1,19 @@
+{
+    "name": "\u64ce\u5929\u7535\u5b50\u653f\u52a1",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "App_Themes/1/Style.css"
+        },
+        {
+            "search": "body",
+            "text": "window.location = \"homepages/index.aspx"
+        },
+        {
+            "search": "body",
+            "text": "homepages/content_page.aspx"
+        }
+    ]
+}

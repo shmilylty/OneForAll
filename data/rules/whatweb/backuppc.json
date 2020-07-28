@@ -1,0 +1,28 @@
+{
+    "name": "BackupPC",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "BackupPC is a high-performance, enterprise-grade system for backing up Linux, WinXX and MacOSX PCs and laptops to a server's disk.",
+    "website": "http://backuppc.sourceforge.net/",
+    "matches": [
+        {
+            "certainty": 75,
+            "ghdb": "inurl:\"/cgi-bin/BackupPC_Admin\""
+        },
+        {
+            "text": "<input type=\"hidden\" name=\"action\" value=\"hostInfo\"><input type=\"submit\" value=\"Go\" name=\"ignore\">"
+        },
+        {
+            "text": "</head><body onLoad=\"document.getElementById('NavMenu').style.height=document.body.scrollHeight\">"
+        },
+        {
+            "search": "headers[www-authenticate]",
+            "regexp": "(?-mix:Basic realm=\"(Backup Admin|BackupPC admin|backuppc)\")"
+        },
+        {
+            "url": "/",
+            "search": "headers[location]",
+            "regexp": "(?-mix:\\/cgi-bin\\/BackupPC_Admin$)"
+        }
+    ]
+}

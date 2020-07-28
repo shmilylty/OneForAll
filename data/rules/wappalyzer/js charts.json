@@ -1,0 +1,10 @@
+{
+    "name": "JS Charts",
+    "website": "http://www.jscharts.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "jscharts.{0,32}\\.js"
+        }
+    ]
+}

@@ -1,0 +1,16 @@
+{
+    "name": "Yahoo Advertising",
+    "website": "http://advertising.yahoo.com",
+    "matches": [
+        {
+            "regexp": "<iframe[^>]+adserver\\.yahoo\\.com"
+        },
+        {
+            "regexp": "<img[^>]+clicks\\.beap\\.bc\\.yahoo\\.com"
+        },
+        {
+            "search": "script",
+            "regexp": "adinterax\\.com"
+        }
+    ]
+}

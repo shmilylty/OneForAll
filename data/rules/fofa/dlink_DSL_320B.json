@@ -1,0 +1,11 @@
+{
+    "name": "dlink_DSL_320B",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "DSL-320B"
+        }
+    ]
+}

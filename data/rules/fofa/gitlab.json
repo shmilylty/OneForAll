@@ -1,0 +1,19 @@
+{
+    "name": "gitlab",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "_gitlab_session"
+        },
+        {
+            "search": "body",
+            "text": "gon.default_issues_tracker"
+        },
+        {
+            "search": "body",
+            "text": "GitLab Community Edition"
+        }
+    ]
+}

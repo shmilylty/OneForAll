@@ -1,0 +1,15 @@
+{
+    "name": "\u963f\u91cc\u4e91CDN",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "cdn.aliyuncs.com"
+        },
+        {
+            "search": "body",
+            "text": "cdn.aliyuncs.com"
+        }
+    ]
+}

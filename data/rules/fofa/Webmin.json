@@ -1,0 +1,15 @@
+{
+    "name": "Webmin",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "Login to Webmin"
+        },
+        {
+            "search": "body",
+            "text": "Webmin server on"
+        }
+    ]
+}

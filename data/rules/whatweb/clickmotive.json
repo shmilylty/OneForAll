@@ -1,0 +1,19 @@
+{
+    "name": "ClickMotive",
+    "author": "Bhavin Senjaliya <bhavin.senjaliya@gmail.com>",
+    "version": "0.1",
+    "description": "ClickMotive CMS",
+    "website": "http://example.com/",
+    "matches": [
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:ddcaffinitygroup)",
+            "name": "ddcaffinitygroup cookie"
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:ddcpoolid)",
+            "name": "ddcpoolid cookie"
+        }
+    ]
+}

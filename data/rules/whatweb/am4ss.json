@@ -1,0 +1,22 @@
+{
+    "name": "AM4SS",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Advanced Management For Services Sites (AM4SS)",
+    "website": "http://am4ss.org/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<meta name=\"copyright\" content=\"Powered by am4ss ([^\\s]+) (Programmed By|programming by) Mohammed Cherkaoui\" \\/>)",
+            "offset": 1
+        },
+        {
+            "text": "<!-- Header end and right block start -->"
+        },
+        {
+            "text": "Powered By <a href=\"http://am4ss.com\"><font color=\"#FF000\">AM4SS</font></a>"
+        },
+        {
+            "regexp": "(?-mix:<link rel=\"stylesheet\" type=\"text\\/css\" href=\"templates\\/[^\\/]+\\/am4ss\\.css\" \\/>)"
+        }
+    ]
+}

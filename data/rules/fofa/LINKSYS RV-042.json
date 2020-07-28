@@ -1,0 +1,11 @@
+{
+    "name": "LINKSYS RV-042",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "LINKSYS RV-042"
+        }
+    ]
+}

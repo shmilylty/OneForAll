@@ -1,0 +1,11 @@
+{
+    "name": "UMI.CMS",
+    "website": "https://www.umi-cms.ru",
+    "matches": [
+        {
+            "search": "headers[x-generated-by]",
+            "regexp": "UMI\\.CMS"
+        }
+    ],
+    "implies": "PHP"
+}

@@ -1,0 +1,11 @@
+{
+    "name": "Linksys LCAD03FLN",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "Linksys LCAD03FLN"
+        }
+    ]
+}

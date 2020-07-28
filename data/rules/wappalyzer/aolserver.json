@@ -1,0 +1,11 @@
+{
+    "name": "AOLserver",
+    "website": "http://aolserver.com",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "AOLserver/?([\\d.]+)?",
+            "offset": 1
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "name": "Clicky",
+    "website": "http://getclicky.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "static\\.getclicky\\.com"
+        }
+    ]
+}

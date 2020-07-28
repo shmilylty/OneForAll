@@ -1,0 +1,14 @@
+{
+    "name": "Kamva",
+    "website": "https://kamva.ir",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "[CK]amva"
+        },
+        {
+            "search": "script",
+            "regexp": "cdn\\.mykamva\\.ir"
+        }
+    ]
+}

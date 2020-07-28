@@ -1,0 +1,10 @@
+{
+    "name": "deepMiner",
+    "website": "https://github.com/deepwn/deepMiner",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "deepMiner\\.js"
+        }
+    ]
+}

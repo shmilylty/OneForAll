@@ -1,0 +1,16 @@
+{
+    "name": "\u7ba1\u7406\u6613",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "\u7ba1\u7406\u6613"
+        },
+        {
+            "search": "body",
+            "text": "minierp"
+        }
+    ],
+    "condition": "0 and 1"
+}

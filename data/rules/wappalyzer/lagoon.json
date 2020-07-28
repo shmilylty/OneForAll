@@ -1,0 +1,14 @@
+{
+    "name": "Lagoon",
+    "website": "https://www.amazee.io/hosting",
+    "matches": [
+        {
+            "search": "headers[x-lagoon]",
+            "regexp": ".*"
+        },
+        {
+            "search": "headers[x-lagoon]",
+            "regexp": ".*"
+        }
+    ]
+}

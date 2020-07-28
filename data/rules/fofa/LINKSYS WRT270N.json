@@ -1,0 +1,11 @@
+{
+    "name": "LINKSYS WRT270N",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "LINKSYS WRT270N"
+        }
+    ]
+}

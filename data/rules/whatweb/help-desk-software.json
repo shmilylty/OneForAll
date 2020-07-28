@@ -1,0 +1,17 @@
+{
+    "name": "Help-Desk-Software",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Help Desk Software - a simple yet powerful helpdesk solution - Requires: PHP and MySQL",
+    "website": "http://freehelpdesk.org/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<div class=\"AdminTDSmall\">[\\s]+powered by <a href=\"http:\\/\\/freehelpdesk\\.org\\/\\?ver=([^\"^>^\\s]+)\" target=\"_blank\">freehelpdesk\\.org<\\/a>[\\s]+<\\/div>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<\\/html>[\\s]+<font style='font-size:0px'>([^<^\\s]+)<\\/font>)",
+            "offset": 1
+        }
+    ]
+}

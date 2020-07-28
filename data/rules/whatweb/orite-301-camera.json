@@ -1,0 +1,18 @@
+{
+    "name": "ORITE-301-Camera",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Orite IC301 web cam interface",
+    "website": null,
+    "matches": [
+        {
+            "text": "\t<TITLE>ORITE Audio IP-Camera IC-301 </TITLE>"
+        },
+        {
+            "text": "<TITLE>Orite IC301</TITLE>"
+        },
+        {
+            "text": "\tvar s='<frameset cols=\"220, *\" id=totalframeset frameborder=\"NO\" border=\"0\" framespacing=\"0\" noresize>'"
+        }
+    ]
+}

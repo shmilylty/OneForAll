@@ -1,0 +1,44 @@
+{
+    "name": "Plone",
+    "author": "Andrew Horton",
+    "version": "0.2",
+    "description": "Plone Content Management System (CMS)",
+    "website": "http://plone.org",
+    "matches": [
+        {
+            "name": "URL Pattern",
+            "certainty": 75,
+            "ghdb": "inurl:\"acl_users/credentials_cookie_auth/require_login?came_from\""
+        },
+        {
+            "name": "meta generator tag",
+            "regexp": "(?-mix:<meta name=\"generator\" content=\"[^>]*http:\\/\\/plone.org\" \\/>)"
+        },
+        {
+            "name": "plone css",
+            "regexp": "(?-mix:(@import url|text\\/css)[^>]*portal_css\\/.*plone.*css(\\)|\"))"
+        },
+        {
+            "name": "plone javascript",
+            "regexp": "(?-mix:src=\"[^\"]*ploneScripts[0-9]+.js\")"
+        },
+        {
+            "text": "<div class=\"visualIcon contenttype-plone-site\">"
+        },
+        {
+            "name": "div tag, visual-portal-wrapper",
+            "certainty": 75,
+            "text": "<div id=\"visual-portal-wrapper\">"
+        },
+        {
+            "name": "X-Caching-Rule-Id: plone-content-types",
+            "search": "headers[x-caching-rule-id]",
+            "regexp": "(?i-mx:plone-content-types)"
+        },
+        {
+            "name": "X-Cache-Rule: plone-content-types",
+            "search": "headers[x-cache-rule]",
+            "regexp": "(?i-mx:plone-content-types)"
+        }
+    ]
+}

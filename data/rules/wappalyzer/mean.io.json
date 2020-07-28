@@ -1,0 +1,15 @@
+{
+    "name": "Mean.io",
+    "website": "http://mean.io",
+    "matches": [
+        {
+            "search": "headers[x-powered-cms]",
+            "regexp": "Mean\\.io"
+        }
+    ],
+    "implies": [
+        "MongoDB",
+        "Express",
+        "Angular"
+    ]
+}

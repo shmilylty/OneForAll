@@ -1,0 +1,24 @@
+{
+    "name": "Posterous",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Posterous publishing platform. If you can email, you can manage a website and share it with small groups or the world using Posterous. - https://posterous.com/",
+    "website": null,
+    "matches": [
+        {
+            "text": "<meta name=\"generator\" content=\"Posterous\" />"
+        },
+        {
+            "text": "<div class=\"posterous_site_data\" data-post-id=\""
+        },
+        {
+            "regexp": "(?-mix:<meta property=\"og:site_name\" content=\"([^\"]+)'s posterous\" \\/>)"
+        },
+        {
+            "text": "<li class=\"first\"><a href=\"http://posterous.com/login?jumpto=http"
+        },
+        {
+            "regexp": "(?-mix:<html><body>You are being <a href=\"http:\\/\\/([^\"]+)\\.posterous\\.com\\/\">redirected<\\/a>\\.<\\/body><\\/html>)"
+        }
+    ]
+}

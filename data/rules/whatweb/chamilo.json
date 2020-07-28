@@ -1,0 +1,31 @@
+{
+    "name": "Chamilo",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Chamilo is a fully-fledged e-learning system. Chamilo can be connected to any open-specification system.",
+    "website": "http://www.chamilo.org/",
+    "matches": [
+        {
+            "search": "headers[x-powered-by]",
+            "regexp": "(?-mix:^Chamilo ([\\d\\.]+))",
+            "offset": 1
+        },
+        {
+            "text": "<link href=\"http://www.chamilo.org/documentation.php\" rel=\"Help\" />"
+        },
+        {
+            "regexp": "(?-mix:<meta name=\"Generator\" content=\"Chamilo ([\\d\\.]+)\">)"
+        },
+        {
+            "text": "<!-- end of #main\" started at the end of banner.inc.php -->"
+        },
+        {
+            "offset": 1,
+            "regexp": "(?-mix:<\\/div>(Portal|Plattform|Platform|Plataforma) <a href=\"http:\\/\\/www\\.chamilo\\.org\\/?\" target=\"_blank\">Chamilo ([^<^\\s]+)<\\/a> &copy;)"
+        },
+        {
+            "offset": 1,
+            "regexp": "(?-mix:<div class=\"copyright\">(Portal|Plattform|Platform|Plataforma) <a href=\"http:\\/\\/www\\.chamilo\\.org\\/?\" target=\"_blank\">Chamilo ([^<^\\s]+)<\\/a> &copy;)"
+        }
+    ]
+}

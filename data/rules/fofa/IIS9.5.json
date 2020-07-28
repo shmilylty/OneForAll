@@ -1,0 +1,11 @@
+{
+    "name": "IIS9.5",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "IIS/9.5"
+        }
+    ]
+}

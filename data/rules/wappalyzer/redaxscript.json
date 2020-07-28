@@ -1,0 +1,12 @@
+{
+    "name": "Redaxscript",
+    "website": "https://redaxscript.com",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "^Redaxscript ([\\d\\.]+)",
+            "offset": 1
+        }
+    ],
+    "implies": "PHP"
+}

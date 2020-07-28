@@ -1,0 +1,15 @@
+{
+    "name": "Analysys Ark",
+    "website": "https://ark.analysys.cn",
+    "matches": [
+        {
+            "search": "cookies[ARK_ID]",
+            "regexp": ".*"
+        },
+        {
+            "search": "script",
+            "regexp": "AnalysysFangzhou_JS_SDK\\.min\\.js\\?v=([\\d.]+)",
+            "offset": 1
+        }
+    ]
+}

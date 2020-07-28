@@ -1,0 +1,11 @@
+{
+    "name": "ICEFLOW_VPN",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "Server: ICEFLOW"
+        }
+    ]
+}

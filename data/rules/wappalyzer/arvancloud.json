@@ -1,0 +1,10 @@
+{
+    "name": "ArvanCloud",
+    "website": "http://www.ArvanCloud.com",
+    "matches": [
+        {
+            "search": "headers[ar-poweredby]",
+            "regexp": "Arvan Cloud \\(arvancloud\\.com\\)"
+        }
+    ]
+}

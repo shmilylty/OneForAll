@@ -1,0 +1,10 @@
+{
+    "name": "W3Counter",
+    "website": "http://www.w3counter.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "w3counter\\.com/tracker\\.js"
+        }
+    ]
+}

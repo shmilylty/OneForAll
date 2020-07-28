@@ -1,0 +1,14 @@
+{
+    "name": "VP-ASP",
+    "website": "http://www.vpasp.com",
+    "matches": [
+        {
+            "regexp": "<a[^>]+>Powered By VP-ASP Shopping Cart</a>"
+        },
+        {
+            "search": "script",
+            "regexp": "vs350\\.js"
+        }
+    ],
+    "implies": "Microsoft ASP.NET"
+}

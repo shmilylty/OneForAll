@@ -1,0 +1,9 @@
+{
+    "name": "Tictail",
+    "website": "https://tictail.com",
+    "matches": [
+        {
+            "regexp": "<link[^>]*tictail\\.com"
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    "name": "CMS-Made-Simple",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "CMSSESSID"
+        },
+        {
+            "search": "body",
+            "text": "content=\"CMS Made Simple"
+        }
+    ]
+}

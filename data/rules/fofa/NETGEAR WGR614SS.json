@@ -1,0 +1,11 @@
+{
+    "name": "NETGEAR WGR614SS",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "NETGEAR WGR614SS"
+        }
+    ]
+}

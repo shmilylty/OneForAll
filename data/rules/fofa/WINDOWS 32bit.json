@@ -1,0 +1,11 @@
+{
+    "name": "WINDOWS 32bit",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "Win32"
+        }
+    ]
+}

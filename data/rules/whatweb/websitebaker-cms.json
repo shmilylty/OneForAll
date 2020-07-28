@@ -1,0 +1,25 @@
+{
+    "name": "WebsiteBaker-CMS",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "WebsiteBaker open source content management system (CMS).",
+    "website": "http://www.websitebaker2.org",
+    "matches": [
+        {
+            "regexp": "(?-mix:<meta name=\"generator\" content=\"WebsiteBaker ([\\d\\.]+) CMS; www\\.websitebaker2?\\.org\"[\\s]?\\/?>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:[pP]owered by <a href=\"http:\\/\\/www\\.websitebaker2?\\.org\"( target=\"_blank\")?>WebsiteBaker<\\/a>)"
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:wb_[\\d]{4}_session_id=[^;]+;)"
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:wb_session_id=[^;]+;)",
+            "certainty": 75
+        }
+    ]
+}

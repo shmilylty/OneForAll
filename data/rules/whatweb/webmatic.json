@@ -1,0 +1,16 @@
+{
+    "name": "Webmatic",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "Webmatic CMS",
+    "website": "http://www.webmatic.it/it/",
+    "matches": [
+        {
+            "text": "Powered&nbsp;by&nbsp;<a href=\"http://www.webmatic.it\">Webmatic</a>"
+        },
+        {
+            "regexp": "(?i-mx: href=\"http:\\/\\/www.valarsoft.com\"[^>]+>Powered by: Webmatic ([^<]+)<\\/a>)",
+            "offset": 1
+        }
+    ]
+}

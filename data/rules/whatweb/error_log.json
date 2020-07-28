@@ -1,0 +1,15 @@
+{
+    "name": "error_log",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "This plugin identifies PHP error_logs and and extracts the local file path.",
+    "website": null,
+    "matches": [
+        {
+            "regexp": "(?-mix:\\[[\\d]{2}\\-[A-Za-z]{3,4}\\-[\\d]{4} [\\d]{2}:[\\d]{2}:[\\d]{2}\\] PHP .{1,50}: .* in (.*) on line [0-9]+)"
+        },
+        {
+            "regexp": "(?-mix:\\[[\\d]{2}\\-[A-Za-z]{3,4}\\-[\\d]{4} [\\d]{2}:[\\d]{2}:[\\d]{2}\\] PHP .{1,50}: .* in \\/home\\/([^\\/]{1,32})\\/.* on line [0-9]+)"
+        }
+    ]
+}

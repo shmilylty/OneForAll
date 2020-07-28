@@ -1,0 +1,15 @@
+{
+    "name": "zepto.js",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "zepto.js"
+        },
+        {
+            "search": "body",
+            "text": "zepto.min.js"
+        }
+    ]
+}

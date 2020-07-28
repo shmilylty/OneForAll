@@ -1,0 +1,15 @@
+{
+    "name": "ASPilot-Cart",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "content=\"Pilot Cart"
+        },
+        {
+            "search": "body",
+            "text": "/pilot_css_default.css"
+        }
+    ]
+}

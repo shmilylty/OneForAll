@@ -1,0 +1,28 @@
+{
+    "name": "Niagara-Web-Server",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "Niagara Web Server",
+    "website": null,
+    "matches": [
+        {
+            "regexp": "(?-mix:Niagara Web Server)",
+            "search": "headers[server]"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:Niagara Web Server\\/([\\d\\.]+))",
+            "offset": 1
+        },
+        {
+            "search": "headers[niagara-release]",
+            "regexp": "(?-mix:^(.*)$)",
+            "offset": 1
+        },
+        {
+            "name": "Niagara-ffs HTTP Header",
+            "regexp": "(?-mix:)",
+            "search": "headers[niagara-ffs]"
+        }
+    ]
+}

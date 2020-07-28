@@ -1,0 +1,10 @@
+{
+    "name": "BittAds",
+    "website": "http://bittads.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "bittads\\.com/js/bitt\\.js$"
+        }
+    ]
+}

@@ -1,0 +1,21 @@
+{
+    "name": "aspWebLinks",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "Web app for categorizing links",
+    "website": "http://www.fullrevolution.com/",
+    "matches": [
+        {
+            "regexp": "(?-mix:Powered By aspWebLinks ([\\d\\.]+) from <A[^>]*HREF=[\"']http:\\/\\/www.fullrevolution.com[^>]*>Full Revolution, Inc.<\\/A>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<A[^>]*HREF=[\"']http:\\/\\/www.fullrevolution.com[^>]*>Powered By aspWebLinks ([\\d\\.]+)<\\/A>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<title>aspWebLinks ([\\d\\.]+)<\\/title>)",
+            "offset": 1
+        }
+    ]
+}

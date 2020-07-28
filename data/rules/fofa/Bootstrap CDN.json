@@ -1,0 +1,15 @@
+{
+    "name": "Bootstrap CDN",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "cdn.bootcss.com"
+        },
+        {
+            "search": "body",
+            "text": "cdn.bootcss.com"
+        }
+    ]
+}

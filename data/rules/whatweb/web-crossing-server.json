@@ -1,0 +1,23 @@
+{
+    "name": "Web-Crossing-Server",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "",
+    "website": "http://bayspire.com/",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Web Crossing\\/([^\\s]+)$)",
+            "offset": 1
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Web Crossing\\(r\\) [^\\s]+-v([\\d\\.]+) built)",
+            "offset": 1
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:webxSess=[\\d]+\\.[^\\s]+;)"
+        }
+    ]
+}

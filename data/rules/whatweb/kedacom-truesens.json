@@ -1,0 +1,20 @@
+{
+    "name": "Kedacom-TrueSens",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Kedacom TrueSens videoconferencing system",
+    "website": "http://www.kedacom.co/defaulti.aspx?id=2",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^KEDACOM-Webs$)"
+        },
+        {
+            "url": "/index.htm",
+            "text": "<body><span style=\"font:12px;\">Loading...</span></body>"
+        },
+        {
+            "text": "<img src=\"./img/kedacom-logo.jpg\" alt=\"WEB CONSOLE\" /></td>"
+        }
+    ]
+}

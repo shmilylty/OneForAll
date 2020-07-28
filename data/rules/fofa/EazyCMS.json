@@ -1,0 +1,15 @@
+{
+    "name": "EazyCMS",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "powered by eazyCMS"
+        },
+        {
+            "search": "body",
+            "text": "<a class=\"actionlink\" href=\"http://www.eazyCMS.com"
+        }
+    ]
+}

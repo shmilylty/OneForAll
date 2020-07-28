@@ -1,0 +1,19 @@
+{
+    "name": "\u5355\u70b9CRM\u7cfb\u7edf",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "URL=general/ERP/LOGIN/"
+        },
+        {
+            "search": "body",
+            "text": "content=\"\u5355\u70b9CRM\u7cfb\u7edf"
+        },
+        {
+            "search": "title",
+            "regexp": "\u5ba2\u6237\u5173\u7cfb\u7ba1\u7406-CRM"
+        }
+    ]
+}

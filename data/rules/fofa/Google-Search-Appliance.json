@@ -1,0 +1,15 @@
+{
+    "name": "Google-Search-Appliance",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "Google Search Appliance"
+        },
+        {
+            "search": "headers",
+            "text": "Google Search Appliance"
+        }
+    ]
+}

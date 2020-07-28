@@ -1,0 +1,11 @@
+{
+    "name": "NETGEAR C7000-100NAS",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "NETGEAR C7000-100NAS"
+        }
+    ]
+}

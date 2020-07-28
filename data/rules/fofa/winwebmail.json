@@ -1,0 +1,19 @@
+{
+    "name": "winwebmail",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "winwebmail"
+        },
+        {
+            "search": "body",
+            "text": "WinWebMail Server"
+        },
+        {
+            "search": "body",
+            "text": "images/owin.css"
+        }
+    ]
+}

@@ -1,0 +1,19 @@
+{
+    "name": "Calypso-ION-8r-Device",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "Calypso ION-8r Device"
+        },
+        {
+            "search": "headers",
+            "text": "Calypso ION8r Device"
+        },
+        {
+            "search": "body",
+            "text": "/A/cfg/entercmd.stm"
+        }
+    ]
+}

@@ -1,0 +1,21 @@
+{
+    "name": "PHP-Update",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "Open-source Content Management System. Homepage used to be http://www.php-update.co.uk",
+    "website": null,
+    "matches": [
+        {
+            "text": "Powered by <a href=\"http://www.php-update.co.uk\" target=\"_blank\">PHP-Update</a>"
+        },
+        {
+            "regexp": "(?-mix:Powered by <a href=[^>]*http:\\/\\/www.php-update.co.uk[^>]*>PHP[\\ \\-]*Update<\\/a>)"
+        },
+        {
+            "regexp": "(?i-mx:>Powered by PHP-Update<\\/a>)"
+        },
+        {
+            "text": "<a href=\"http://www.php-update.co.uk\">Powered by PHP-Update </a>"
+        }
+    ]
+}

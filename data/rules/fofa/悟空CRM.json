@@ -1,0 +1,15 @@
+{
+    "name": "\u609f\u7a7aCRM",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "\u609f\u7a7aCRM"
+        },
+        {
+            "search": "body",
+            "text": "/Public/js/5kcrm.js"
+        }
+    ]
+}

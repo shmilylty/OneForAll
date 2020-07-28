@@ -1,0 +1,16 @@
+{
+    "name": "\u56fd\u5bb6\u6570\u5b57\u5316\u5b66\u4e60\u8d44\u6e90\u4e2d\u5fc3\u7cfb\u7edf",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "\u9875\u9762\u52a0\u8f7d\u4e2d,\u8bf7\u7a0d\u5019"
+        },
+        {
+            "search": "body",
+            "text": "FrontEnd"
+        }
+    ],
+    "condition": "0 and 1"
+}

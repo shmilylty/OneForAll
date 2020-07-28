@@ -1,0 +1,18 @@
+{
+    "name": "thin",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Thin is a Ruby web server that glues together 3 of the best Ruby libraries in web history: the Mongrel parser, Event Machine, and Rack",
+    "website": "http://code.macournoyer.com/thin/",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^thin ([^\\s]+) codename (.+)$)",
+            "offset": 1
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^thin [^\\s]+ (codename .+)$)"
+        }
+    ]
+}

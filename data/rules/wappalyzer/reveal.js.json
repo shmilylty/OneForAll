@@ -1,0 +1,11 @@
+{
+    "name": "Reveal.js",
+    "website": "http://lab.hakim.se/reveal-js",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "(?:^|/)reveal(?:\\.min)?\\.js"
+        }
+    ],
+    "implies": "Highlight.js"
+}

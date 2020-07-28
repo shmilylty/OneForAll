@@ -1,0 +1,10 @@
+{
+    "name": "Pendo",
+    "website": "https://pendo.io",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "cdn\\.pendo\\.io*\\.js"
+        }
+    ]
+}

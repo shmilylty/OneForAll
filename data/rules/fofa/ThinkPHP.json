@@ -1,0 +1,15 @@
+{
+    "name": "ThinkPHP",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "thinkphp"
+        },
+        {
+            "search": "headers",
+            "text": "think_template"
+        }
+    ]
+}

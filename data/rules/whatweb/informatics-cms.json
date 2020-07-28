@@ -1,0 +1,19 @@
+{
+    "name": "Informatics-CMS",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Informatics custom Content Management System (CMS)",
+    "website": "http://www.informaticsinc.com/Content/Services/Web-Design-and-Development/Content-Management-Systems.aspx",
+    "matches": [
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:[\\d]+=HTMLTitle=[^\\s]*&OrgName=[^\\s]+&EmailThankYou=[^\\s]*&DefaultIdPage=[^\\s]+&State=)"
+        },
+        {
+            "text": "<meta name=\"author\" content=\"Informatics, Inc.\">"
+        },
+        {
+            "regexp": "(?-mix:Web Application by <a href=\"http:\\/\\/www\\.(ia-informatics|informaticsinc)\\.com\" [^>]*target=\"_blank\"><b>Informatics, Inc\\.<\\/b><\\/a>)"
+        }
+    ]
+}

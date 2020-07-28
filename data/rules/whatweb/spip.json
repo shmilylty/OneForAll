@@ -1,0 +1,39 @@
+{
+    "name": "SPIP",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "SPIP is a publishing system for the Internet in which great importance is attached to collaborative working, to multilingual environments, and to simplicity of use for web authors.",
+    "website": "http://www.spip.net/",
+    "matches": [
+        {
+            "text": "<div class=\"formulaire_spip formulaire_recherche\""
+        },
+        {
+            "regexp": "(?-mix:<meta name=\"generator\" content=\"SPIP ([^\\s]+) \\[[\\d]+\\]\"( \\/)?>)",
+            "offset": 1
+        },
+        {
+            "search": "headers[composed-by]",
+            "regexp": "(?-mix:SPIP ([^@]{1,10}) @ www\\.spip\\.net)",
+            "offset": 1
+        },
+        {
+            "search": "headers[composed-by]",
+            "regexp": "(?-mix:SPIP [^@]{1,10} @ www\\.spip\\.net \\+ (.+))"
+        },
+        {
+            "search": "headers[composed-by]",
+            "regexp": "(?-mix:SPIP @ www\\.spip\\.net)"
+        },
+        {
+            "search": "headers[x-spip-cache]",
+            "regexp": "(?-mix:^.+$)"
+        },
+        {
+            "text": "<a href=\"spip.php"
+        },
+        {
+            "text": "<img src='/spip"
+        }
+    ]
+}

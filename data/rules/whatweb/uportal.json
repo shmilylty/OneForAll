@@ -1,0 +1,21 @@
+{
+    "name": "uPortal",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "uPortal",
+    "website": null,
+    "matches": [
+        {
+            "ghdb": "\"powered by uportal\"",
+            "certainty": 75
+        },
+        {
+            "regexp": "(?-mix:<img[^>]*alt=\"Powered by uPortal ([\\d\\.]+)\"[^>]*>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<a target=\"_blank\" title=\"Powered by \\$\" href=\"http:\\/\\/www.uportal.org\">Powered by uPortal ([^<]+)<\\/a>)",
+            "offset": 1
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+{
+    "name": "OpenCart",
+    "website": "http://www.opencart.com",
+    "matches": [
+        {
+            "search": "cookies[OCSESSID]",
+            "regexp": ".*"
+        }
+    ],
+    "implies": "PHP"
+}

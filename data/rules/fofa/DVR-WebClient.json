@@ -1,0 +1,15 @@
+{
+    "name": "DVR-WebClient",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "259F9FDF-97EA-4C59-B957-5160CAB6884E"
+        },
+        {
+            "search": "title",
+            "regexp": "DVR-WebClient"
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+{
+    "name": "Foxycart",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "<script src=\"//cdn.foxycart.com"
+        }
+    ]
+}

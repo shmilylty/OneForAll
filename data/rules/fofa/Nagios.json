@@ -1,0 +1,15 @@
+{
+    "name": "Nagios",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "Nagios access"
+        },
+        {
+            "search": "body",
+            "text": "/nagios/cgi-bin/status.cgi"
+        }
+    ]
+}

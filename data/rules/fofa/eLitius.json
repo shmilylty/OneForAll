@@ -1,0 +1,15 @@
+{
+    "name": "eLitius",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "content=\"eLitius"
+        },
+        {
+            "search": "body",
+            "text": "target=\"_blank\" title=\"Affiliate"
+        }
+    ]
+}

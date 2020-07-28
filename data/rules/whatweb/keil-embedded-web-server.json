@@ -1,0 +1,21 @@
+{
+    "name": "Keil-Embedded-WEB-Server",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "Keil Embedded WEB Server",
+    "website": "http://www.keil.com/",
+    "matches": [
+        {
+            "text": "<head><title>Keil Embedded WEB Server</title></head><body><h2>HTTP 1.0 401 Error. Unauthorized Access</h2>You are not authorized to access this server.<hr>"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Keil-EWEB\\/([^\\s]+)$)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:^Keil-EWEB)",
+            "search": "headers[server]"
+        }
+    ]
+}

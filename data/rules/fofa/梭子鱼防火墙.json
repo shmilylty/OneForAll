@@ -1,0 +1,16 @@
+{
+    "name": "\u68ad\u5b50\u9c7c\u9632\u706b\u5899",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "http://www.barracudanetworks.com?a=bsf_product\" class=\"transbutton"
+        },
+        {
+            "search": "body",
+            "text": "/cgi-mod/header_logo.cgi"
+        }
+    ],
+    "condition": "0 and 1"
+}

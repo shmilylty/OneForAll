@@ -1,0 +1,19 @@
+{
+    "name": "PHP-Slim",
+    "author": "Marcelo Gimenes <marcelo.gimenes.oliveira@gmail.com>",
+    "version": "0.2",
+    "description": "Slim Framework",
+    "website": "https://www.slimframework.com/",
+    "matches": [
+        {
+            "name": "Slim < 4.0",
+            "text": "to ensure your URL is spelled correctly. If all else fails, you can",
+            "url": "e6fqv8av"
+        },
+        {
+            "name": "Slim > 4.0",
+            "text": "The requested resource could not be found. Please verify the URI and try again.",
+            "url": "e6fqv8av"
+        }
+    ]
+}

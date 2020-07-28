@@ -1,0 +1,36 @@
+{
+    "name": "AWStats",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "AWStats - Free log file analyzer for advanced statistics (GNU GPL).",
+    "website": "http://awstats.sourceforge.net/",
+    "matches": [
+        {
+            "certainty": 75,
+            "ghdb": "inurl:awstats ext:pl +intitle:\"Statistics for\""
+        },
+        {
+            "text": "<a href=\"http://awstats.sourceforge.net\" target=\"_newawstats\">Created by awstats</a><br>"
+        },
+        {
+            "text": "<meta http-equiv=\"description\" content=\"Awstats - Advanced Web Statistics for"
+        },
+        {
+            "name": "default logo",
+            "text": "<a href=\"http://awstats.sourceforge.net\" target=\"_newawstats\"><img src=\"/icon/other/awstats_logo1.png\" border=0 alt=\"awstats Official Web Site\" title=\"awstats Official Web Site\"></a>"
+        },
+        {
+            "regexp": "(?-mix:<meta name=\"generator\" content=\"AWStats ([0-9\\.]+ \\(build [0-9\\.]+\\)))",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<FONT COLOR=\"#000000\"><b>Advanced Web Statistics ([0-9\\.]+ \\(build [0-9\\.]+\\)))",
+            "offset": 1
+        },
+        {
+            "url": "awstats.pl?framename=mainright",
+            "regexp": "(?-mix:<FONT COLOR=\"#000000\"><b>Advanced Web Statistics ([0-9\\.]+ \\(build [0-9\\.]+\\)))",
+            "offset": 1
+        }
+    ]
+}

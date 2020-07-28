@@ -1,0 +1,10 @@
+{
+    "name": "Simpl\u00e9bo",
+    "website": "https://www.simplebo.fr",
+    "matches": [
+        {
+            "search": "headers[x-servedby]",
+            "regexp": "simplebo"
+        }
+    ]
+}

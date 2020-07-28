@@ -1,0 +1,16 @@
+{
+    "name": "Blogger",
+    "author": "Andrew Horton",
+    "version": "0.2",
+    "description": "Blogger.com free blogging site",
+    "website": null,
+    "matches": [
+        {
+            "text": "<meta content='blogger' name='generator'/>"
+        },
+        {
+            "name": "Powered by link",
+            "regexp": "(?-mix:<a href=\"http:\\/\\/www.blogger.com\"><img [^>]* alt=\"Powered by Blogger\"><\\/a>)"
+        }
+    ]
+}

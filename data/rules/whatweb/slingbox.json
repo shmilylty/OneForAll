@@ -1,0 +1,17 @@
+{
+    "name": "SlingBox",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "The Slingbox is a TV streaming media device that encodes video for transmission over the Internet",
+    "website": "http://slingbox.com/",
+    "matches": [
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:_sling_skey=[^;]+)"
+        },
+        {
+            "regexp": "(?-mix:<!-- Footer start -->\\s+<div id=\"footer_center\">\\s+<p>Portal Version:&nbsp;([^,]+), Plugin Version:&nbsp;)",
+            "offset": 1
+        }
+    ]
+}

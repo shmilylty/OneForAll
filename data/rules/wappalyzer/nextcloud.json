@@ -1,0 +1,15 @@
+{
+    "name": "Nextcloud",
+    "website": "https://nextcloud.com/",
+    "matches": [
+        {
+            "regexp": "<script[^>]*>[^<]*nextcloud_[^<]*oc_config={[^}]*\"version\":\"([\\d.]+)\"",
+            "offset": 1
+        },
+        {
+            "search": "meta[apple-itunes-app]",
+            "regexp": "app-id=1125420102"
+        }
+    ],
+    "implies": "PHP"
+}

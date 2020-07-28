@@ -1,0 +1,11 @@
+{
+    "name": "Seravo",
+    "website": "https://seravo.com",
+    "matches": [
+        {
+            "search": "headers[x-powered-by]",
+            "regexp": "^Seravo"
+        }
+    ],
+    "implies": "WordPress"
+}

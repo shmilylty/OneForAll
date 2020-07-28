@@ -1,0 +1,21 @@
+{
+    "name": "Visec",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Visec - Surveillance Software",
+    "website": "http://www.visec.net/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<!--wml-->\\s+<!--bad-->)"
+        },
+        {
+            "url": "/favicon.ico",
+            "md5": "2e5e985fe125e3f8fca988a86689b127"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^VISEC\\/([^\\s]+)$)",
+            "offset": 1
+        }
+    ]
+}

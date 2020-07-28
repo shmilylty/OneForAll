@@ -1,0 +1,22 @@
+{
+    "name": "Free-Realty",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Free Realty is primarily designed for real estate agents and offices to list properties on the internet.",
+    "website": "http://freerealty.rwcinc.net/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<!--FreeRealty ([^\\s]+) -->)",
+            "offset": 1
+        },
+        {
+            "text": "<font class=\"foot\">This tool is Open Source and released under the <a href=\"http://www.gnu.org/copyleft/gpl.html\">GPL</a></font>"
+        },
+        {
+            "text": "<!-- THUS ENDETH THE MAIN CONTENT -->"
+        },
+        {
+            "text": "<!-- HERE BEGINNETH THE FOOTER --><div class=\"foot\">"
+        }
+    ]
+}

@@ -1,0 +1,13 @@
+{
+    "name": "Fortune3",
+    "website": "http://fortune3.com",
+    "matches": [
+        {
+            "regexp": "(?:<link [^>]*href=\"[^\\/]*\\/\\/www\\.fortune3\\.com\\/[^\"]*siterate\\/rate\\.css|Powered by <a [^>]*href=\"[^\"]+fortune3\\.com)"
+        },
+        {
+            "search": "script",
+            "regexp": "cartjs\\.php\\?(?:.*&)?s=[^&]*myfortune3cart\\.com"
+        }
+    ]
+}

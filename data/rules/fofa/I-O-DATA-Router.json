@@ -1,0 +1,11 @@
+{
+    "name": "I-O-DATA-Router",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "I-O DATA Wireless Broadband Router"
+        }
+    ]
+}

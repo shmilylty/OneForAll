@@ -1,0 +1,17 @@
+{
+    "name": "Vigor-Router",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Vigor router",
+    "website": "http://www.draytek.com/user/PdInfoDetail.php?Id=20",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^(VigorAccess) Web Server$)"
+        },
+        {
+            "search": "headers[www-authenticate]",
+            "regexp": "(?-mix:^Basic realm=\"(Login to )?Vigor ([\\d]+)\"$)"
+        }
+    ]
+}

@@ -1,0 +1,29 @@
+{
+    "name": "acarsd",
+    "author": "Andrew Horton",
+    "version": "0.1",
+    "description": "acarsd is an Aircraft Communication Addressing and Reporting System (ACARS) decoder for a LINUX or Windows. It decodes ACARS transmissions collected from a radio scanner in real-time using sound cards. acarsd also provides realtime webserver.",
+    "website": "http://www.acarsd.org/",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^acarsd\\/([^\\s]+)$)",
+            "offset": 1
+        },
+        {
+            "certainty": 75,
+            "text": "<meta name=\"author\" content=\"KjM <acarsd@acarsd.org>\">"
+        },
+        {
+            "certainty": 75,
+            "regexp": "(?-mix:<title>[^<]*RealTime Web ACARS)"
+        },
+        {
+            "certainty": 75,
+            "text": "<!-- MAIN PART OF WEBACARS -->"
+        },
+        {
+            "regexp": "(?-mix:<meta name=\"description\" content=\"Realtime Web ACARS - [^\\s]+ Location: ([^\\.^\\\"^>]+)\\.)"
+        }
+    ]
+}

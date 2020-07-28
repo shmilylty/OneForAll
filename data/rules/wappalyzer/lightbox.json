@@ -1,0 +1,13 @@
+{
+    "name": "Lightbox",
+    "website": "http://lokeshdhakar.com/projects/lightbox2/",
+    "matches": [
+        {
+            "regexp": "<link [^>]*href=\"[^\"]+lightbox(?:\\.min)?\\.css"
+        },
+        {
+            "search": "script",
+            "regexp": "lightbox(?:-plus-jquery)?.{0,32}\\.js"
+        }
+    ]
+}

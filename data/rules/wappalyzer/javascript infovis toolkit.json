@@ -1,0 +1,10 @@
+{
+    "name": "JavaScript Infovis Toolkit",
+    "website": "https://philogb.github.io/jit/",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "jit(?:-yc)?\\.js"
+        }
+    ]
+}

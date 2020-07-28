@@ -1,0 +1,18 @@
+{
+    "name": "Phion-Firewall",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "Phion Firewall is now Barracuda NG Firewall",
+    "website": "http://www.phion.com/INT/products/perimeter_security/Pages/default.aspx",
+    "matches": [
+        {
+            "regexp": "(?-mix:^Phion)",
+            "search": "headers[server]"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Phion\\/(.+)$)",
+            "offset": 1
+        }
+    ]
+}

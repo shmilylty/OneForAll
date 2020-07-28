@@ -1,0 +1,16 @@
+{
+    "name": "iTalkBB",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "iTalkBB is a local and long distance calling service provided by iTalk Broadband Corporation. It combines voice and internet networks to provide inbound and outbound long distance and local calling solutions.",
+    "website": "http://www.italkbb.com/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<HTML><HEAD><TITLE>[^>]+ V([\\d\\.]+)[\\s]+<\\/TITLE><STYLE type=text\\/css>TD \\{FONT-SIZE: 12px; LINE-HEIGHT: normal; TEXT-ALIGN: center\\}<\\/STYLE>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?i-mx:<P align=center><FONT size=5>welcome to phone settings<\\/FONT><\\/P><FORM action=\\/a )"
+        }
+    ]
+}

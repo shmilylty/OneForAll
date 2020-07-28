@@ -1,0 +1,28 @@
+{
+    "name": "Zimplit-CMS",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "Zimplit CMS: The easiest Open Source Content Management System for small web- and minisites",
+    "website": "http://www.zimplit.com/",
+    "matches": [
+        {
+            "regexp": "(?i-mx:<script[^>]+src=\"http:\\/\\/(client\\.zimplit|www\\.zimplit|zimplit)\\.(org|com)\\/(users\\/publicUser|editor)\\/(jquery|ZimgZoomer|ZZMenu)\\.js\"[^>]*><\\/script>)"
+        },
+        {
+            "offset": 2,
+            "regexp": "(?i-mx:<script[^>]+src=\"http:\\/\\/(client\\.zimplit|www\\.zimplit|zimplit)\\.(org|com)\\/users\\/publicUser_v([\\d\\._]+)\\/(jquery|ZimgZoomer|ZZMenu)\\.js\"[^>]*><\\/script>)"
+        },
+        {
+            "text": "<!-- YOU ARE ONLY ALLOWED TO HIDE, DELETE OR MODIFY \"POWERED BY ZIMPLIT CMS\" LINK, IF THE DOMAIN HAS BEEN REGISTERED WITH A COMMERCIAL LICENSE AT WWW.ZIMPLIT.ORG -->"
+        },
+        {
+            "text": "<!-- Please don't delete this. You can use this template for free and this is the only way that you can say thanks to me -->"
+        },
+        {
+            "regexp": "(?i-mx:<a[^>]+href=\"http:\\/\\/(www\\.)?zimplit\\.org\\/?\"[^>]*>Powered(&nbsp;| )by(&nbsp;| )Zimplit(&nbsp;| )CMS<\\/a>)"
+        },
+        {
+            "regexp": "(?i-mx:Powered(&nbsp;| )by(&nbsp;| )<A[^>]+href=\"http:\\/\\/(www\\.)?zimplit\\.org\\/?\"[^>]*>Zimplit(&nbsp;| )CMS<\\/A>)"
+        }
+    ]
+}

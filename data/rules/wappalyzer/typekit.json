@@ -1,0 +1,10 @@
+{
+    "name": "Typekit",
+    "website": "http://typekit.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "use\\.typekit\\.com"
+        }
+    ]
+}

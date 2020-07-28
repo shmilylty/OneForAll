@@ -1,0 +1,10 @@
+{
+    "name": "three.js",
+    "website": "https://threejs.org",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "three(?:\\.min)?\\.js"
+        }
+    ]
+}

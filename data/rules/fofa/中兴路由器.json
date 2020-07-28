@@ -1,0 +1,11 @@
+{
+    "name": "\u4e2d\u5174\u8def\u7531\u5668",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "Server: Mini web server 1.0 ZTE corp 2005."
+        }
+    ]
+}

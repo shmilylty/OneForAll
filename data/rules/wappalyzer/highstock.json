@@ -1,0 +1,15 @@
+{
+    "name": "Highstock",
+    "website": "http://highcharts.com/products/highstock",
+    "matches": [
+        {
+            "regexp": "<svg[^>]*><desc>Created with Highstock ([\\d.]*)",
+            "offset": 1
+        },
+        {
+            "search": "script",
+            "regexp": "highstock[.-]?([\\d\\.]*\\d).*\\.js",
+            "offset": 1
+        }
+    ]
+}

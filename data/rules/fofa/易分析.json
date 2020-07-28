@@ -1,0 +1,15 @@
+{
+    "name": "\u6613\u5206\u6790",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "\u6613\u5206\u6790 PHPStat Analytics"
+        },
+        {
+            "search": "body",
+            "text": "PHPStat Analytics \u7f51\u7ad9\u6570\u636e\u5206\u6790\u7cfb\u7edf"
+        }
+    ]
+}

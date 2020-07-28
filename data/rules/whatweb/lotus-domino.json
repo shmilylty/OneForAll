@@ -1,0 +1,27 @@
+{
+    "name": "Lotus-Domino",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Lotus Domino - Social business application platform",
+    "website": "https://www-01.ibm.com/software/lotus/products/domino/",
+    "matches": [
+        {
+            "certainty": 25,
+            "ghdb": "filetype:nsf"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Lotus-Domino\\/([^\\s]+))",
+            "offset": 1
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Lotus-Domino$)"
+        },
+        {
+            "certainty": 75,
+            "url": "/favicon.ico",
+            "md5": "639b61409215d770a99667b446c80ea1"
+        }
+    ]
+}

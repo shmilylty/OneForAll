@@ -1,0 +1,22 @@
+{
+    "name": "Liveinternet",
+    "website": "http://liveinternet.ru/rating/",
+    "matches": [
+        {
+            "regexp": "<script[^<>]*>[^]{0,128}?src\\s*=\\s*['\"]//counter\\.yadro\\.ru/hit(?:;\\S+)?\\?(?:t\\d+\\.\\d+;)?r"
+        },
+        {
+            "regexp": "<!--LiveInternet counter-->"
+        },
+        {
+            "regexp": "<!--/LiveInternet-->"
+        },
+        {
+            "regexp": "<a href=\"http://www\\.liveinternet\\.ru/click\""
+        },
+        {
+            "search": "script",
+            "regexp": "/js/al/common\\.js\\?[0-9_]+"
+        }
+    ]
+}

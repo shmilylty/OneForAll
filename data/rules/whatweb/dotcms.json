@@ -1,0 +1,23 @@
+{
+    "name": "DotCMS",
+    "author": "Andrew Horton, Bhavin Senjaliya",
+    "version": "0.3",
+    "description": "DotCMS is an opensource CMS written in Java. Has enterprise support",
+    "website": "http://www.dotcms.org/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<img[^>]+src=\"[^\"]*\\/dotAsset\\/)"
+        },
+        {
+            "regexp": "(?-mix:<link[^>]+href=\"[^\"]*\\/dotAsset\\/)"
+        },
+        {
+            "regexp": "(?-mix:<a[^>]+href=\"[^h][^\"]*index\\.dot)"
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:dotcms)",
+            "name": "dotcms cookie"
+        }
+    ]
+}

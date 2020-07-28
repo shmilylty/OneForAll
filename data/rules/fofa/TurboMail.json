@@ -1,0 +1,19 @@
+{
+    "name": "TurboMail",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "Powered by TurboMail"
+        },
+        {
+            "search": "body",
+            "text": "wzcon1 clearfix"
+        },
+        {
+            "search": "title",
+            "regexp": "TurboMail\u90ae\u4ef6\u7cfb\u7edf"
+        }
+    ]
+}

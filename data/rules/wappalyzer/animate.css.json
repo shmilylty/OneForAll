@@ -1,0 +1,10 @@
+{
+    "name": "animate.css",
+    "website": "https://daneden.github.io/animate.css/",
+    "matches": [
+        {
+            "regexp": "<link [^>]+(?:/([\\d.]+)/)?animate\\.(?:min\\.)?css",
+            "offset": 1
+        }
+    ]
+}

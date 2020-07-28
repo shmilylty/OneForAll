@@ -1,0 +1,13 @@
+{
+    "name": "Fact Finder",
+    "website": "http://fact-finder.com",
+    "matches": [
+        {
+            "regexp": "<!-- Factfinder"
+        },
+        {
+            "search": "script",
+            "regexp": "Suggest\\.ff"
+        }
+    ]
+}

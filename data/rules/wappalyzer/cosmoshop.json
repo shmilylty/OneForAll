@@ -1,0 +1,10 @@
+{
+    "name": "Cosmoshop",
+    "website": "http://cosmoshop.de",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "cosmoshop_functions\\.js"
+        }
+    ]
+}

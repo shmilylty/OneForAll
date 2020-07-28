@@ -1,0 +1,19 @@
+{
+    "name": "shopnc",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "Powered by ShopNC"
+        },
+        {
+            "search": "body",
+            "text": "Copyright 2007-2014 ShopNC Inc"
+        },
+        {
+            "search": "body",
+            "text": "content=\"ShopNC"
+        }
+    ]
+}

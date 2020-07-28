@@ -1,0 +1,23 @@
+{
+    "name": "Mambo",
+    "author": "Andrew Horton, Brendan Coles <bcoles@gmail.com>",
+    "version": "0.6",
+    "description": "Mambo CMS (http://mambo-foundation.org)",
+    "website": null,
+    "matches": [
+        {
+            "regexp": "(?-mix:<meta name=\"Generator\" content=\"Mambo - Copyright 2000 - [0-9]+ Miro International Pty Ltd.  All rights reserved.\" \\/>)"
+        },
+        {
+            "regexp": "(?-mix:<meta name=\"description\" content=\"Mambo - the dynamic portal engine and content management system\" \\/>)"
+        },
+        {
+            "url": "README.php",
+            "text": "Mambo is OSI Certified Open Source Software, released under the GNU General Public License"
+        },
+        {
+            "url": "administrator/templates/mambo_admin/templateDetails.xml",
+            "regexp": "(?-mix:(<name>Mambo Admin<\\/name>|<authorUrl>http:\\/\\/www\\.mambo\\-foundation\\.org<\\/authorUrl>))"
+        }
+    ]
+}

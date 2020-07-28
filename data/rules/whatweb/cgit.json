@@ -1,0 +1,22 @@
+{
+    "name": "cgit",
+    "author": "Fabian Affolter <fabian@engineering.ch>",
+    "version": "0.1",
+    "description": "A web frontend for git repositories written in C.",
+    "website": "http://git.zx2c4.com/cgit/",
+    "matches": [
+        {
+            "text": "<div id='cgit'><table id='header'>"
+        },
+        {
+            "text": "<link rel='stylesheet' type='text/css' href='/cgit.css'/>"
+        },
+        {
+            "text": "<div class='footer'>Copyright &copy; 2000 &ndash; 20[d]{2} Jason A. Donenfeld. All Rights Reserved.</div>"
+        },
+        {
+            "name": "meta generator",
+            "text": "<meta name='generator' content='cgit v([^ ]+)'/>"
+        }
+    ]
+}

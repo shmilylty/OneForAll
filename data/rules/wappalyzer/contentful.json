@@ -1,0 +1,9 @@
+{
+    "name": "Contentful",
+    "website": "http://www.contentful.com",
+    "matches": [
+        {
+            "regexp": "<[^>]+(?:https?:)?//(?:assets|downloads|images|videos)\\.(?:ct?fassets\\.net|contentful\\.com)"
+        }
+    ]
+}

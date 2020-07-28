@@ -1,0 +1,10 @@
+{
+    "name": "Timeplot",
+    "website": "http://www.simile-widgets.org/timeplot/",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "timeplot.*\\.js"
+        }
+    ]
+}

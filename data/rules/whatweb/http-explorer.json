@@ -1,0 +1,18 @@
+{
+    "name": "Http-Explorer",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Http explorer is a free easy-to-use web server with which you can share your musics, videos and images for several web displays",
+    "website": "http://http-explorer.sourceforge.net/",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Http explorer ([^\\s]+)$)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<p id=\"pgfooter_p_main\">\\s+<a href=\"http:\\/\\/http\\-explorer\\.sourceforge\\.net\\/\\?lang=[^\"]+\">Http explorer\\s+([^\\s^<]+)<\\/a>)",
+            "offset": 1
+        }
+    ]
+}

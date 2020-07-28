@@ -1,0 +1,19 @@
+{
+    "name": "Inktomi-Search",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Inktomi Search engine",
+    "website": "http://www.inktomi.com/products/search/",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Inktomi Search ([^\\s]+)$)",
+            "offset": 1
+        },
+        {
+            "url": "/util/badkey.html",
+            "regexp": "(?-mix:<font size=\"\\+1\"><b>License Key Problems<\\/b><\\/font><br>[\\s]+<b>Inktomi Search ([^<^\\s]+)<\\/b><br>)",
+            "offset": 1
+        }
+    ]
+}

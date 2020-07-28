@@ -1,0 +1,11 @@
+{
+    "name": "Amazon ELB",
+    "website": "https://aws.amazon.com/elasticloadbalancing/",
+    "matches": [
+        {
+            "search": "cookies[AWSELB]",
+            "regexp": ".*"
+        }
+    ],
+    "implies": "Amazon Web Services"
+}

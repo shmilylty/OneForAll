@@ -1,0 +1,22 @@
+{
+    "name": "darkstat",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "darkstat captures network traffic, calculates statistics about usage, and serves reports over HTTP.",
+    "website": "http://unix4lyfe.org/darkstat/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<li class=\"label\">darkstat ([^\\s^<]+)<\\/li><li><a href=\"[^\"]+\">graphs<\\/a><\\/li>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<title>darkstat ([^\\s]+) : graphs ([^\\s^\\)]+)<\\/title>)",
+            "offset": 1
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^darkstat\\/([^\\s]+)$)",
+            "offset": 1
+        }
+    ]
+}

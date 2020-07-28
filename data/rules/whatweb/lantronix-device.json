@@ -1,0 +1,32 @@
+{
+    "name": "Lantronix-Device",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "Lantronix provides device networking and remote access products for remote IT management allowing remote computer access and offsite device control. Manage industrial control systems, or administer your entire data center using KVM over IP switches.",
+    "website": "http://www.lantronix.com/",
+    "matches": [
+        {
+            "url": "/summary.html",
+            "regexp": "(?-mix:<TITLE>Lantronix ThinWeb Manager ([\\d\\.]+): Home<\\/TITLE>)",
+            "offset": 1
+        },
+        {
+            "url": "/navigation.html",
+            "regexp": "(?-mix:<img src=\"logo\\.gif\" width=129 height=84 border=0 alt=\"Lantronix ThinWeb Manager ([\\d\\.]+)\"><br>)",
+            "offset": 1
+        },
+        {
+            "url": "/navigation.html",
+            "regexp": "(?-mix:<font face=\"Arial,Helvetica\" color=\"#660066\"><b>([^<]+)<\\/b><\\/font><br><br>)"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Gordian Embedded([\\d\\.]+)$)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:^Gordian Embedded)",
+            "search": "headers[server]"
+        }
+    ]
+}

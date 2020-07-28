@@ -1,0 +1,35 @@
+{
+    "name": "Sipura-VoIP-Phone",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Sipura VoIP phone. Cisco Systems acquired Sipura Technologies for its Linksys division in 2005.",
+    "website": "http://www.sipura.net/",
+    "matches": [
+        {
+            "text": "<form action=\"bsipura.spa\" method=\"POST\">"
+        },
+        {
+            "text": "<img width=\"100%\" src=\"/spabanner.jpg\" border=\"0\" alt=\"Sipura Technology Inc\">"
+        },
+        {
+            "regexp": "(?-mix:<tr bgcolor=\"#dcdcdc\"><td>Product Name:<td><font color=\"darkblue\">([^<]+)<\\/font><td>Serial Number:<td>)"
+        },
+        {
+            "regexp": "(?-mix:<tr bgcolor=\"#d3d3d3\"><td>Software Version:<td><font color=\"darkblue\">([^<]+)<\\/font><td>Hardware Version:<td><font color=\"darkblue\">[^<]+<\\/font>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<tr bgcolor=\"#d3d3d3\"><td>Software Version:<td><font color=\"darkblue\">[^<]+<\\/font><td>Hardware Version:<td><font color=\"darkblue\">([^<]+)<\\/font>)"
+        },
+        {
+            "regexp": "(?-mix:<tr bgcolor=\"#dcdcdc\"><td>MAC Address:<td><font color=\"darkblue\">([A-F\\d]{12})<\\/font><td>Client Certificate:<td>)"
+        },
+        {
+            "regexp": "(?-mix:<\\/font><a href=\"\\/calllog\\.htm\" target=_calllog_[\\d]+><font class=swalft>(Call History)<\\/font><\\/a><\\/p><\\/div>)"
+        },
+        {
+            "url": "/pdir.htm",
+            "regexp": "(?-mix:<td>[\\d]+\\.<td>&nbsp;<input class=\"inputc\" size=\"40\" name=\"[\\d]+\" value=\"(n=[^;]*;p=[\\d]+)\" maxlength=[\\d]+>)"
+        }
+    ]
+}

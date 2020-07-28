@@ -1,0 +1,15 @@
+{
+    "name": "weiphp",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "content=\"WeiPHP"
+        },
+        {
+            "search": "body",
+            "text": "/css/weiphp.css"
+        }
+    ]
+}

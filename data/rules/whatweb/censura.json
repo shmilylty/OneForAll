@@ -1,0 +1,13 @@
+{
+    "name": "Censura",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "Censura - the flexible, robust, reviews and ratings application.",
+    "website": "http://www.censura.info/",
+    "matches": [
+        {
+            "regexp": "(?-mix:Powered by: <a[^>]* href=\"http:\\/\\/www.censura.info\">Censura<\\/a> version ([\\d\\.]+))",
+            "offset": 1
+        }
+    ]
+}

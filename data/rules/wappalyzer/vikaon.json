@@ -1,0 +1,11 @@
+{
+    "name": "Vikaon",
+    "website": "http://www.vikaon.com",
+    "matches": [
+        {
+            "search": "headers[x-vikaon-version]",
+            "regexp": "^(.+)$",
+            "offset": 1
+        }
+    ]
+}

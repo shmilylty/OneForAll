@@ -1,0 +1,11 @@
+{
+    "name": "huawei_auth_server",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "75718C9A-F029-11d1-A1AC-00C04FB6C223"
+        }
+    ]
+}

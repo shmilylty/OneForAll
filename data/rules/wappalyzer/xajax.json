@@ -1,0 +1,10 @@
+{
+    "name": "Xajax",
+    "website": "http://xajax-project.org",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "xajax_core.*\\.js"
+        }
+    ]
+}

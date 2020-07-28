@@ -1,0 +1,12 @@
+{
+    "name": "Fastspring",
+    "website": "https://fastspring.com",
+    "matches": [
+        {
+            "regexp": "<a [^>]*href=\"https?://sites\\.fastspring\\.com"
+        },
+        {
+            "regexp": "<form [^>]*action=\"https?://sites\\.fastspring\\.com"
+        }
+    ]
+}

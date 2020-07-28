@@ -1,0 +1,11 @@
+{
+    "name": "Lodash",
+    "website": "http://www.lodash.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "lodash.*\\.js"
+        }
+    ],
+    "excludes": "Underscore.js"
+}

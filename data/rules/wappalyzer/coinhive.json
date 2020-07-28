@@ -1,0 +1,15 @@
+{
+    "name": "CoinHive",
+    "website": "https://coinhive.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "\\/(?:coinhive|(authedmine))(?:\\.min)?\\.js",
+            "offset": 1
+        },
+        {
+            "search": "script",
+            "regexp": "coinhive\\.com/lib"
+        }
+    ]
+}

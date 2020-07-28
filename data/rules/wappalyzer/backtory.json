@@ -1,0 +1,10 @@
+{
+    "name": "Backtory",
+    "website": "https://backtory.com",
+    "matches": [
+        {
+            "search": "headers[x-powered-by]",
+            "regexp": "Backtory"
+        }
+    ]
+}

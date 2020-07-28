@@ -1,0 +1,11 @@
+{
+    "name": "Microsoft HTTPAPI",
+    "website": "http://microsoft.com",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "Microsoft-HTTPAPI(?:/([\\d.]+))?",
+            "offset": 1
+        }
+    ]
+}

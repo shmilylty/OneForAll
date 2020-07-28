@@ -1,0 +1,10 @@
+{
+    "name": "PHPDebugBar",
+    "website": "http://phpdebugbar.com/",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "debugbar.*\\.js"
+        }
+    ]
+}

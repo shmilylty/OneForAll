@@ -1,0 +1,15 @@
+{
+    "name": "\u5143\u5e74\u8d22\u52a1\u8f6f\u4ef6",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "yuannian.css"
+        },
+        {
+            "search": "body",
+            "text": "/image/logo/yuannian.gif"
+        }
+    ]
+}

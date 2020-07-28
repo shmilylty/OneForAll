@@ -1,0 +1,16 @@
+{
+    "name": "Hogan.js",
+    "website": "https://twitter.github.io/hogan.js/",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "hogan-[.-]([\\d.]*\\d)[^/]*\\.js",
+            "offset": 1
+        },
+        {
+            "search": "script",
+            "regexp": "([\\d.]+)/hogan(?:\\.min)?\\.js",
+            "offset": 1
+        }
+    ]
+}

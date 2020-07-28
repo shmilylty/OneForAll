@@ -1,0 +1,24 @@
+{
+    "name": "OpenConf",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "OpenConf is an abstract and peer-review management system that greatly facilitates the submission and review processes for conferences, workshops, and symposia.",
+    "website": "http://www.openconf.com/",
+    "matches": [
+        {
+            "text": "Powered by <a href=\"http://www.OpenConf.org\" target=\"_blank\">OpenConf</a>"
+        },
+        {
+            "offset": 1,
+            "regexp": "(?-mix:<div class=\"powered\">Powered by <a href=\"http:\\/\\/www\\.OpenConf\\.com\" target=\"_blank\">OpenConf<\\/a>(<sup>&reg;<\\/sup>)?<!--([^\\s]+)-->)"
+        },
+        {
+            "regexp": "(?-mix:<script type=\"text\\/javascript\" src=\"openconf\\.js\\?v=([^\\s^\"]+)\"><\\/script>)",
+            "offset": 1
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:OPENCONF=[^;]+;)"
+        }
+    ]
+}

@@ -1,0 +1,36 @@
+{
+    "name": "Dell-KACE-Appliance",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Dell KACE System Management Appliance",
+    "website": "http://www.kace.com/products/overview",
+    "matches": [
+        {
+            "url": "/common/about.php",
+            "regexp": "(?-mix:<b>K1000 Systems Management Appliance<\\/b> <b>v([^\\s^<]+)<\\/b>)",
+            "offset": 1
+        },
+        {
+            "search": "headers[x-dellkace-version]",
+            "regexp": "(?-mix:^(.+)$)",
+            "offset": 1
+        },
+        {
+            "search": "headers[x-dellkace-host]",
+            "regexp": "(?-mix:^(.+)$)"
+        },
+        {
+            "search": "headers[x-dellkace-appliance]",
+            "regexp": "(?-mix:^(.+)$)"
+        },
+        {
+            "search": "headers[x-kbox-version]",
+            "regexp": "(?-mix:^(.+)$)",
+            "offset": 1
+        },
+        {
+            "search": "headers[x-kbox-webserver]",
+            "regexp": "(?-mix:^(.+)$)"
+        }
+    ]
+}

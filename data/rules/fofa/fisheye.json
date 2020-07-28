@@ -1,0 +1,15 @@
+{
+    "name": "fisheye",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "Set-Cookie: FESESSIONID"
+        },
+        {
+            "search": "body",
+            "text": "fisheye-16.ico"
+        }
+    ]
+}

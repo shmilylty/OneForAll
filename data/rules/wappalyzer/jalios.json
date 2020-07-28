@@ -1,0 +1,10 @@
+{
+    "name": "Jalios",
+    "website": "http://www.jalios.com",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "Jalios"
+        }
+    ]
+}

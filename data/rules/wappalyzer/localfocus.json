@@ -1,0 +1,13 @@
+{
+    "name": "LocalFocus",
+    "website": "https://www.localfocus.nl/en/",
+    "matches": [
+        {
+            "regexp": "<iframe[^>]+\\blocalfocus\\b"
+        }
+    ],
+    "implies": [
+        "Angular",
+        "D3"
+    ]
+}

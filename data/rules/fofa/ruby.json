@@ -1,0 +1,27 @@
+{
+    "name": "ruby",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "ruby"
+        },
+        {
+            "search": "headers",
+            "text": "WEBrick"
+        },
+        {
+            "search": "headers",
+            "text": "Phusion"
+        },
+        {
+            "search": "headers",
+            "text": "Mongrel"
+        },
+        {
+            "search": "headers",
+            "text": "X-Rack-Cache"
+        }
+    ]
+}

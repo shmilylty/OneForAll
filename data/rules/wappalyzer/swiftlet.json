@@ -1,0 +1,26 @@
+{
+    "name": "Swiftlet",
+    "website": "http://swiftlet.org",
+    "matches": [
+        {
+            "search": "headers[x-generator]",
+            "regexp": "Swiftlet"
+        },
+        {
+            "search": "headers[x-powered-by]",
+            "regexp": "Swiftlet"
+        },
+        {
+            "search": "headers[x-swiftlet-cache]",
+            "regexp": ".*"
+        },
+        {
+            "regexp": "Powered by <a href=\"[^>]+Swiftlet"
+        },
+        {
+            "search": "meta[generator]",
+            "regexp": "Swiftlet"
+        }
+    ],
+    "implies": "PHP"
+}

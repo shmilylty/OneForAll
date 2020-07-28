@@ -1,0 +1,15 @@
+{
+    "name": "Vimeo",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Vimeo.com video player",
+    "website": "http://vimeo.com/",
+    "matches": [
+        {
+            "regexp": "(?i-mx:<(param|object|embed) [^>]+vimeo\\.com\\/moogaloop)"
+        },
+        {
+            "regexp": "(?-mix:<iframe [^>]*src=['\"]https?:\\/\\/player\\.vimeo\\.com\\/video\\/)"
+        }
+    ]
+}

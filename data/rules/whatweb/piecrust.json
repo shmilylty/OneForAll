@@ -1,0 +1,20 @@
+{
+    "name": "PieCrust",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "PieCrust is a static website generator and lightweight CMS that's all managed with text files.",
+    "website": "http://bolt80.com/piecrust/",
+    "matches": [
+        {
+            "text": "<meta name=\"generator\" content=\"PieCrust\" />"
+        },
+        {
+            "regexp": "(?-mix:<meta name=\"generator\" content=\"PieCrust ([^\\s^\"]+)\" \\/>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:Baked with <em><a href=\"http:\\/\\/bolt80\\.com\\/piecrust\\/\">PieCrust<\\/a> ([^\\s^<]+)<\\/em>\\.<\\/p>)",
+            "offset": 1
+        }
+    ]
+}

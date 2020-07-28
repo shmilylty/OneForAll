@@ -1,0 +1,16 @@
+{
+    "name": "\u5317\u4eac\u6e05\u79d1\u9510\u534eCEMIS",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "/theme/2009/image"
+        },
+        {
+            "search": "body",
+            "text": "login.asp"
+        }
+    ],
+    "condition": "0 and 1"
+}

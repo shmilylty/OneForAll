@@ -1,0 +1,18 @@
+{
+    "name": "ispCP-Omega",
+    "author": "Andrew Horton",
+    "version": "0.3",
+    "description": "PHP opensource, virtual hosting system",
+    "website": "http://www.isp-control.net/",
+    "matches": [
+        {
+            "text": "<title>ispCP Omega a Virtual Hosting Control System</title>"
+        },
+        {
+            "text": "Powered by <a class=\"login\" href=\"http://www.isp-control.net\" target=\"_blank\">ispCP Omega"
+        },
+        {
+            "text": "themes/omega_original/images/login/login_lock.jpg"
+        }
+    ]
+}

@@ -1,0 +1,21 @@
+{
+    "name": "Owl-Intranet-Engine",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Owl is a multi user document repository (knowledge base) system written in PHP for publishing files/documents onto the web.",
+    "website": "http://owl.anytimecomm.com",
+    "matches": [
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:owl_sessid=)"
+        },
+        {
+            "regexp": "(?-mix:<a class=\"version2\" href=\"http:\\/\\/owl\\.sourceforge\\.net\\/\" target=\"_blank\">Owl Intranet Engine, Version Owl ([^<]+)<\\/a>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<title>[^<]+ Owl ([\\d\\.]+ [\\d]{8})<\\/title>)",
+            "offset": 1
+        }
+    ]
+}

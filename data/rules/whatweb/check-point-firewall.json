@@ -1,0 +1,17 @@
+{
+    "name": "Check-Point-Firewall",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Check Point Firewall",
+    "website": "http://www.checkpoint.com/",
+    "matches": [
+        {
+            "search": "headers[location]",
+            "regexp": "(?-mix:\\/fwauthredirect[\\d]{1,3}\\.[\\d]{1,3}\\.[\\d]{1,3}\\.[\\d]{1,3}id[\\d]+$)"
+        },
+        {
+            "status": 401,
+            "regexp": "(?-mix:FW-1 at ([^\\s]+): Unauthorized to access the document\\.)"
+        }
+    ]
+}

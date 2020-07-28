@@ -1,0 +1,15 @@
+{
+    "name": "Mercurial",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Mercurial is a free, distributed source control management tool.",
+    "website": "http://mercurial.selenic.com/",
+    "matches": [
+        {
+            "text": "<a href=\"http://mercurial.selenic.com/\" title=\"Mercurial\" style=\"float: right;\">Mercurial</a>"
+        },
+        {
+            "regexp": "(?-mix:<div id=\"powered-by\">[\\s]+<p><a href=\"http:\\/\\/mercurial\\.selenic\\.com\\/\" title=\"Mercurial\">)"
+        }
+    ]
+}

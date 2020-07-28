@@ -1,0 +1,10 @@
+{
+    "name": "Venda",
+    "website": "http://venda.com",
+    "matches": [
+        {
+            "search": "headers[x-venda-hitid]",
+            "regexp": ".*"
+        }
+    ]
+}

@@ -1,0 +1,14 @@
+{
+    "name": "Infusionsoft",
+    "website": "http://infusionsoft.com",
+    "matches": [
+        {
+            "regexp": "<input [^>]*name=\"infusionsoft_version\" [^>]*value=\"([^>]*)\" [^>]*\\/>",
+            "offset": 1
+        },
+        {
+            "regexp": "<input [^>]*value=\"([^>]*)\" [^>]*name=\"infusionsoft_version\" [^>]*\\/>",
+            "offset": 1
+        }
+    ]
+}

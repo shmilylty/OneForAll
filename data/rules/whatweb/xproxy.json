@@ -1,0 +1,22 @@
+{
+    "name": "xproxy",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "xproxy",
+    "website": null,
+    "matches": [
+        {
+            "regexp": "(?-mix:^xproxy)",
+            "search": "headers[server]"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^xproxy\\/([^\\(]+)\\([\\d]+\\)$)",
+            "offset": 1
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^xproxy\\/[^\\(]+\\(([\\d]+)\\)$)"
+        }
+    ]
+}

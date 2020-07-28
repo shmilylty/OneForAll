@@ -1,0 +1,32 @@
+{
+    "name": "metasploit",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "Metasploit is initializing..."
+        },
+        {
+            "search": "headers",
+            "text": "https://dev.metasploit.com"
+        },
+        {
+            "search": "body",
+            "text": "r7bottom-strip"
+        },
+        {
+            "search": "body",
+            "text": "metasploit"
+        },
+        {
+            "search": "headers",
+            "text": "_ui_session"
+        },
+        {
+            "search": "body",
+            "text": "metasploit"
+        }
+    ],
+    "condition": "0 or 1 or (2 and 3) or (4 and 5)"
+}

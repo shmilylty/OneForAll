@@ -1,0 +1,15 @@
+{
+    "name": "iGENUS\u90ae\u4ef6\u7cfb\u7edf",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "Copyright by<A HREF=\"http://www.igenus.org"
+        },
+        {
+            "search": "title",
+            "regexp": "iGENUS webmail"
+        }
+    ]
+}

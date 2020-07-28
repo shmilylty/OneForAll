@@ -1,0 +1,20 @@
+{
+    "name": "mod_wsgi",
+    "website": "https://code.google.com/p/modwsgi",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "mod_wsgi(?:/([\\d.]+))?",
+            "offset": 1
+        },
+        {
+            "search": "headers[x-powered-by]",
+            "regexp": "mod_wsgi(?:/([\\d.]+))?",
+            "offset": 1
+        }
+    ],
+    "implies": [
+        "Python",
+        "Apache"
+    ]
+}

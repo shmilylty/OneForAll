@@ -1,0 +1,11 @@
+{
+    "name": "Acme embeddable HTTP server",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "Server: Acme"
+        }
+    ]
+}

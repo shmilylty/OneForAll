@@ -1,0 +1,11 @@
+{
+    "name": "basket.js",
+    "website": "https://addyosmani.github.io/basket.js/",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "basket.*\\.js",
+            "certainty": 10
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    "name": "soeasy\u7f51\u7ad9\u96c6\u7fa4\u7cfb\u7edf",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "EGSS_User"
+        },
+        {
+            "search": "title",
+            "regexp": "SoEasy\u7f51\u7ad9\u96c6\u7fa4"
+        }
+    ]
+}

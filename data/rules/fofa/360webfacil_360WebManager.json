@@ -1,0 +1,20 @@
+{
+    "name": "360webfacil_360WebManager",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "publico/template/"
+        },
+        {
+            "search": "body",
+            "text": "zonapie"
+        },
+        {
+            "search": "body",
+            "text": "360WebManager Software"
+        }
+    ],
+    "condition": "(0 and 1) or 2"
+}

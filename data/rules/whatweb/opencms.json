@@ -1,0 +1,33 @@
+{
+    "name": "OpenCms",
+    "author": "Emilio Casbas, Andrew Horton, Brendan Coles <bcoles@gmail.com>",
+    "version": "0.4",
+    "description": "OpenCms, professional and easy to use CMS.",
+    "website": "http://www.opencms.org/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<meta name=\"generator\"[^>]+content=\"OpenCms\"( \\/)?>)"
+        },
+        {
+            "regexp": "(?-mix:<meta name=\"generator\"[^>]+content=\"Opencms version ([\\d\\.]+)\"( \\/)?>)",
+            "offset": 1
+        },
+        {
+            "certainty": 75,
+            "regexp": "(?-mix:<(link|img)[^>]+(href|src)=\"[^\"^:]*\\/(opencms|export)\\/(sites|system)\\/[^\"]+\"[^>]*>)"
+        },
+        {
+            "certainty": 25,
+            "regexp": "(?-mix:<(link|img)[^>]+(href|src)=\"[^\"^:]*\\/opencms\\/[^\"]+\"[^>]*>)"
+        },
+        {
+            "regexp": "(?-mix:^OpenCms)",
+            "search": "headers[server]"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^OpenCms\\/([a-z\\d\\.]+))",
+            "offset": 1
+        }
+    ]
+}

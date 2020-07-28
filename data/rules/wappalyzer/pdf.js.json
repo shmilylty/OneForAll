@@ -1,0 +1,9 @@
+{
+    "name": "PDF.js",
+    "website": "https://mozilla.github.io/pdf.js/",
+    "matches": [
+        {
+            "regexp": "<\\/div>\\s*<!-- outerContainer -->\\s*<div\\s*id=\"printContainer\"><\\/div>"
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    "name": "CMSQLite",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "CMSQLite is a small, fast, flexible and complete Content-Management-System (CMS). ",
+    "website": "http://cmsqlite.net/",
+    "matches": [
+        {
+            "text": "<div id=\"cmsqliteFooter\"><span id=\"anchorFooter\"><a href=\"http://www.cmsqlite.net\" target=\"_blank\">powered by CMSQLite</a></span></div></body></html>"
+        },
+        {
+            "text": "<meta name=\"generator\" content=\"www.CMSQLite.net by www.Netzabdruck.de\" />"
+        }
+    ]
+}

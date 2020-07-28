@@ -1,0 +1,10 @@
+{
+    "name": "SeamlessCMS",
+    "website": "http://www.seamlesscms.com",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "^Seamless\\.?CMS"
+        }
+    ]
+}

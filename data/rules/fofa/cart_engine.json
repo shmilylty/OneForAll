@@ -1,0 +1,11 @@
+{
+    "name": "cart_engine",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "skins/_common/jscripts.css"
+        }
+    ]
+}

@@ -1,0 +1,20 @@
+{
+    "name": "InvoicePlane",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "InvoicePlane"
+        },
+        {
+            "search": "headers",
+            "text": "ip_session"
+        },
+        {
+            "search": "headers",
+            "text": "ci_session"
+        }
+    ],
+    "condition": "0 and (1 or 2)"
+}

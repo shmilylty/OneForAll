@@ -1,0 +1,22 @@
+{
+    "name": "Artiphp-CMS",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Artiphp CMS - open source CMS - Requires PHP",
+    "website": "http://www.artiphp.com/",
+    "matches": [
+        {
+            "text": "<!--  fin ArtiMenu horizontal -->"
+        },
+        {
+            "text": "<!--  Fin ArtiMenu horizontal -->"
+        },
+        {
+            "text": "<!-- copyright Artiphp, merci de respecter notre travail en laissant notre signature -->"
+        },
+        {
+            "offset": 3,
+            "regexp": "(?-mix:<div id=\"copyright\">\\s*(<p class=\"copyright\">)?\\s*<a href=\"http:\\/\\/www\\.(artiphp|artiloo)\\.com\"( target=\"_blank\")?>Artiphp ([^<]+)<\\/a> &copy; 2001-20[\\d]{2} est un logiciel libre)"
+        }
+    ]
+}

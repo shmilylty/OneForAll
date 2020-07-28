@@ -1,0 +1,29 @@
+{
+    "name": "Citrix-Access-Gateway",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Citrix Access Gateway is a secure application access solution that provides administrators granular application-level control while empowering users with remote access from anywhere.",
+    "website": "https://www.citrix.com/English/ps2/products/product.asp?contentID=15005",
+    "matches": [
+        {
+            "text": "<HTML><HEAD><TITLE>Citrix Access Gateway</TITLE>"
+        },
+        {
+            "text": "<link rel=\"SHORTCUT ICON\" href=\"/vpn/images/AccessGateway.ico\" type=\"image/vnd.microsoft.icon\">"
+        },
+        {
+            "text": "<!--CONTENT CONTENT CONTENT CONTENT CONTENT--->"
+        },
+        {
+            "text": "</div><!---end of div c_logon_maincontent-->"
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:ezisneercsresu=)"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Cyms-SecS v[\\d\\.]+$)"
+        }
+    ]
+}

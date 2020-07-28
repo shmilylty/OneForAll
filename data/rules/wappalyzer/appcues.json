@@ -1,0 +1,10 @@
+{
+    "name": "Appcues",
+    "website": "https://appcues.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "fast\\.appcues.com*\\.js"
+        }
+    ]
+}

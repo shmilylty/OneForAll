@@ -1,0 +1,21 @@
+{
+    "name": "Axway-SecureTransport",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Axway SecureTransport is a secure, multi-protocol managed file transfer solution",
+    "website": "http://www.axway.com/products-solutions/mft/gateways/securetransport",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^SecureTransport\\/([^\\s]+))",
+            "offset": 1
+        },
+        {
+            "text": "<!-- /application.bar -->"
+        },
+        {
+            "certainty": 75,
+            "text": "<title>Welcome to SecureTransport</title>"
+        }
+    ]
+}

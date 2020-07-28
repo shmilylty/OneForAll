@@ -1,0 +1,15 @@
+{
+    "name": "Ikonboard",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "content=\"Ikonboard"
+        },
+        {
+            "search": "body",
+            "text": "Powered by <a href=\"http://www.ikonboard.com"
+        }
+    ]
+}

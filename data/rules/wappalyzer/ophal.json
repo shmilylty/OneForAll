@@ -1,0 +1,21 @@
+{
+    "name": "Ophal",
+    "website": "http://ophal.org",
+    "matches": [
+        {
+            "search": "headers[x-powered-by]",
+            "regexp": "Ophal(?: (.+))? \\(ophal\\.org\\)",
+            "offset": 1
+        },
+        {
+            "search": "meta[generator]",
+            "regexp": "Ophal(?: (.+))? \\(ophal\\.org\\)",
+            "offset": 1
+        },
+        {
+            "search": "script",
+            "regexp": "ophal\\.js"
+        }
+    ],
+    "implies": "Lua"
+}

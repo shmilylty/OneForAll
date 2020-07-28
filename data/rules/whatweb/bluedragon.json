@@ -1,0 +1,24 @@
+{
+    "name": "BlueDragon",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "BlueDragon for the Microsoft .NET Framework allows you to natively integrate and deploy your ColdFusion applications on the .NET platform.",
+    "website": "http://www.newatlanta.com/products/bluedragon/product_info/overview.cfm",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:BlueDragon Server (JXAS|JX))",
+            "offset": 1
+        },
+        {
+            "search": "headers[x-powered-by]",
+            "regexp": "(?-mix:BlueDragon Server\\/([^\\s^,]+))",
+            "offset": 1
+        },
+        {
+            "offset": 2,
+            "search": "headers[server]",
+            "regexp": "(?-mix:BlueDragon Server( JXAS| JX)?(\\/| )([\\d\\.]+))"
+        }
+    ]
+}

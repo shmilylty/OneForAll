@@ -1,0 +1,12 @@
+{
+    "name": "XtraBusinessHosting",
+    "author": "Andrew Horton",
+    "version": "0.2",
+    "description": "Hosting at Xtra.co.nz",
+    "website": null,
+    "matches": [
+        {
+            "text": "<title>Xtra Business: Web Hosting</title>"
+        }
+    ]
+}

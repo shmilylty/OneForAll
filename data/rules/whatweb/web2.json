@@ -1,0 +1,20 @@
+{
+    "name": "Web2",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "A nice web server, easy to setup! lots of features including cgi, ssi, aliasing, virtual domains and more! - Homepage : Way Back Machine [2005-04-01] - http://web.archive.org/web/20050401233601/http://dink.org/",
+    "website": null,
+    "matches": [
+        {
+            "os": "Mac OS/2",
+            "regexp": "(?-mix:^Web\\/2 )",
+            "search": "headers[server]"
+        },
+        {
+            "os": "Mac OS/2",
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Web\\/2 v([^\\r^\\n]+)$)",
+            "offset": 1
+        }
+    ]
+}

@@ -1,0 +1,20 @@
+{
+    "name": "Atlassian Jira",
+    "website": "http://www.atlassian.com/software/jira/overview/",
+    "matches": [
+        {
+            "regexp": "Powered by\\s+<a href=[^>]+atlassian\\.com/(?:software/jira|jira-bug-tracking/)[^>]+>Atlassian\\s+JIRA(?:[^v]*v(?:ersion: )?(\\d+\\.\\d+(?:\\.\\d+)?))?",
+            "offset": 1
+        },
+        {
+            "search": "meta[ajs-version-number]",
+            "regexp": "^(.+)$",
+            "offset": 1
+        },
+        {
+            "search": "meta[application-name]",
+            "regexp": "JIRA"
+        }
+    ],
+    "implies": "Java"
+}

@@ -1,0 +1,23 @@
+{
+    "name": "gitweb",
+    "website": "http://git-scm.com",
+    "matches": [
+        {
+            "regexp": "<!-- git web interface version ([\\d.]+)?",
+            "offset": 1
+        },
+        {
+            "search": "meta[generator]",
+            "regexp": "gitweb(?:/([\\d.]+\\d))?",
+            "offset": 1
+        },
+        {
+            "search": "script",
+            "regexp": "static/gitweb\\.js$"
+        }
+    ],
+    "implies": [
+        "Perl",
+        "git"
+    ]
+}

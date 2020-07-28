@@ -1,0 +1,15 @@
+{
+    "name": "25yi",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "Powered by 25yi"
+        },
+        {
+            "search": "body",
+            "text": "css/25yi.css"
+        }
+    ]
+}

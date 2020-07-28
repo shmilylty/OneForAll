@@ -1,0 +1,28 @@
+{
+    "name": "CASino",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "rbcas.com"
+        },
+        {
+            "search": "body",
+            "text": "CASino"
+        },
+        {
+            "search": "headers",
+            "text": "_CASinoApp_session"
+        },
+        {
+            "search": "headers",
+            "text": "_my-casino_session"
+        },
+        {
+            "search": "body",
+            "text": "casino_and_overrides.css"
+        }
+    ],
+    "condition": "(0 and 1) or 2 or 3 or 4"
+}

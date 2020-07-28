@@ -1,0 +1,14 @@
+{
+    "name": "WebsiteBaker",
+    "website": "http://websitebaker2.org/en/home.php",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "WebsiteBaker"
+        }
+    ],
+    "implies": [
+        "PHP",
+        "MySQL"
+    ]
+}

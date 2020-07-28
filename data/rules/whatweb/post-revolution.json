@@ -1,0 +1,12 @@
+{
+    "name": "Post-Revolution",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Post Revolution - CMS",
+    "website": "http://postrev.com.ar/",
+    "matches": [
+        {
+            "text": "Powered by <a href=\"http://www.postrev.com.ar/\">Post Revolution</a>"
+        }
+    ]
+}

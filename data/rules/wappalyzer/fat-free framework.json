@@ -1,0 +1,11 @@
+{
+    "name": "Fat-Free Framework",
+    "website": "http://fatfreeframework.com",
+    "matches": [
+        {
+            "search": "headers[x-powered-by]",
+            "regexp": "^Fat-Free Framework$"
+        }
+    ],
+    "implies": "PHP"
+}

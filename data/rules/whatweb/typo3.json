@@ -1,0 +1,22 @@
+{
+    "name": "TYPO3",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton, Bhavin Senjaliya <bhavin.senjaliya@gmail.com>, Janosch Maier @Phylu",
+    "version": "0.4",
+    "description": "TYPO3 is a free Open Source content management system for enterprise purposes on the web and in intranets. It offers full flexibility and extendability while featuring an accomplished set of ready-made interfaces, functions and modules.",
+    "website": "http://typo3.com/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<meta name=\"generator\" content=\"TYPO3 ([\\d\\.]+) CMS\")",
+            "offset": 1
+        },
+        {
+            "text": "<!--TYPO3SEARCH_end-->",
+            "certainty": 75
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:^fe_typo_user)",
+            "name": "fe_typo_user cookie"
+        }
+    ]
+}

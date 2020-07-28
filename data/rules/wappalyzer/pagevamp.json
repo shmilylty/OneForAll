@@ -1,0 +1,10 @@
+{
+    "name": "Pagevamp",
+    "website": "https://www.pagevamp.com",
+    "matches": [
+        {
+            "search": "headers[x-servedby]",
+            "regexp": "pagevamp"
+        }
+    ]
+}

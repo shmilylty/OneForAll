@@ -1,0 +1,17 @@
+{
+    "name": "TaskFreak",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "TaskFreak! Original is a simple but efficient web based task manager written in PHP.",
+    "website": "http://www.taskfreak.com/original/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<br>Powered by <a href=\"http:\\/\\/www.taskfreak.com\">TaskFreak <\\/a> v([\\d\\.]+) - Released on [\\d\\-]+ under GNU General Public License)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:    <a href=\"http:\\/\\/www.taskfreak.com\">TaskFreak! multi user<\\/a> v([\\d\\.]+) - Released on [\\d\\-]+ under GNU General Public License)",
+            "offset": 1
+        }
+    ]
+}

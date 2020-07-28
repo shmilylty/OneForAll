@@ -1,0 +1,34 @@
+{
+    "name": "F5-BigIP",
+    "author": "Bhavin Senjaliya <bhavin.senjaliya@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "F5 BIG IP provides application delivery networking (ADN) technology for the delivery of web applications and the security, performance, availability of servers, data storage devices, and other network and cloud resources.",
+    "website": "https://f5.com/products/big-ip",
+    "matches": [
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?i-mx:BIGIP)",
+            "name": "BIGIP cookie"
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:CEBrowser)",
+            "name": "CEBrowser cookie"
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:ceSessionUID)",
+            "name": "ceSessionUID cookie"
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:LoadingAsMobile)",
+            "name": "LoadingAsMobile cookie"
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:_SitePath)",
+            "name": "_SitePath cookie"
+        }
+    ]
+}

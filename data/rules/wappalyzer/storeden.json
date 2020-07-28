@@ -1,0 +1,10 @@
+{
+    "name": "Storeden",
+    "website": "https://www.storeden.com",
+    "matches": [
+        {
+            "search": "headers[x-powered-by]",
+            "regexp": "Storeden"
+        }
+    ]
+}

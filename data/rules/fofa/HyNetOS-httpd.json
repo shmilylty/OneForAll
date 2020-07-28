@@ -1,0 +1,11 @@
+{
+    "name": "HyNetOS-httpd",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "HyNetOS"
+        }
+    ]
+}

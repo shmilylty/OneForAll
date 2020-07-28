@@ -1,0 +1,12 @@
+{
+    "name": "AWStats",
+    "website": "http://awstats.sourceforge.net",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "AWStats ([\\d.]+(?: \\(build [\\d.]+\\))?)",
+            "offset": 1
+        }
+    ],
+    "implies": "Perl"
+}

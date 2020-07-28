@@ -1,0 +1,9 @@
+{
+    "name": "FAST ESP",
+    "website": "http://microsoft.com/enterprisesearch",
+    "matches": [
+        {
+            "regexp": "<form[^>]+id=\"fastsearch\""
+        }
+    ]
+}

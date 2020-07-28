@@ -1,0 +1,11 @@
+{
+    "name": "chillyCMS",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "powered by <a href=\"http://FrozenPepper.de"
+        }
+    ]
+}

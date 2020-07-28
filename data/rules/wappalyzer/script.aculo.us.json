@@ -1,0 +1,10 @@
+{
+    "name": "script.aculo.us",
+    "website": "https://script.aculo.us",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "/(?:scriptaculous|protoaculous)(?:\\.js|/)"
+        }
+    ]
+}

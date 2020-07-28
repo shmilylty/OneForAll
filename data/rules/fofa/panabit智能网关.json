@@ -1,0 +1,11 @@
+{
+    "name": "panabit\u667a\u80fd\u7f51\u5173",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "panabit"
+        }
+    ]
+}

@@ -1,0 +1,12 @@
+{
+    "name": "BaseHTTP",
+    "website": "http://docs.python.org/2/library/basehttpserver.html",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "BaseHTTP\\/?([\\d\\.]+)?",
+            "offset": 1
+        }
+    ],
+    "implies": "Python"
+}

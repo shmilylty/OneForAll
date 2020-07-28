@@ -1,0 +1,22 @@
+{
+    "name": "1C-Bitrix",
+    "website": "http://www.1c-bitrix.ru",
+    "matches": [
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "BITRIX_"
+        },
+        {
+            "search": "headers[x-powered-cms]",
+            "regexp": "Bitrix Site Manager"
+        },
+        {
+            "regexp": "(?:<link[^>]+components/bitrix|(?:src|href)=\"/bitrix/(?:js|templates))"
+        },
+        {
+            "search": "script",
+            "regexp": "1c-bitrix"
+        }
+    ],
+    "implies": "PHP"
+}

@@ -1,0 +1,29 @@
+{
+    "name": "CMScontrol",
+    "author": "Brendan Coles <bcoles at gmail dot com>",
+    "version": "0.2",
+    "description": "CMScontrol",
+    "website": "http://www.cmscontrol.com/",
+    "matches": [
+        {
+            "ghdb": "+CMScontrol inurl:\"index.php?id_menu=\"",
+            "certainty": 25
+        },
+        {
+            "regexp": "(?i-mx:<META name=[\\\"\\']*generator[\\\"\\']* content=[\\\"\\']*CMScontrol eContent[\\\"\\']*>)"
+        },
+        {
+            "regexp": "(?i-mx:<META name=[\\\"\\']*formatter[\\\"\\']* content=[\\\"\\']*CMScontrol eContent[\\\"\\']*>)"
+        },
+        {
+            "regexp": "(?i-mx:<META name=[\\\"\\']*abstract[\\\"\\']* content=[\\\"\\']*CMScontrol[\\\"\\']*>)"
+        },
+        {
+            "text": "document.write(\"<ME\"+\"TA ht\"+\"tp-eq\"+\"uiv=\\\"REF\"+\"RESH\\\" con\"+\"tent=\\\"1.00; u\"+\"rl=\"+\"index\"+\".\"+\"ph\"+\"p\\\">\");"
+        },
+        {
+            "regexp": "(?i-mx:<META NAME=[\\\"\\']*generator[\\\"\\']* CONTENT=[\\\"\\']*CMScontrol rel 3.x[\\\"\\']*>)",
+            "version": "3.x"
+        }
+    ]
+}

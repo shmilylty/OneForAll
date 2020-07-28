@@ -1,0 +1,13 @@
+{
+    "name": "Polymer",
+    "website": "http://polymer-project.org",
+    "matches": [
+        {
+            "regexp": "(?:<polymer-[^>]+|<link[^>]+rel=\"import\"[^>]+/polymer\\.html\")"
+        },
+        {
+            "search": "script",
+            "regexp": "polymer\\.js"
+        }
+    ]
+}

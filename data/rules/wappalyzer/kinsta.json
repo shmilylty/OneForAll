@@ -1,0 +1,11 @@
+{
+    "name": "Kinsta",
+    "website": "https://kinsta.com",
+    "matches": [
+        {
+            "search": "headers[x-kinsta-cache]",
+            "regexp": ".*"
+        }
+    ],
+    "implies": "WordPress"
+}

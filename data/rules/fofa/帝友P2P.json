@@ -1,0 +1,15 @@
+{
+    "name": "\u5e1d\u53cbP2P",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "/js/diyou.js"
+        },
+        {
+            "search": "body",
+            "text": "src=\"/dyweb/dythemes"
+        }
+    ]
+}

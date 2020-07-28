@@ -1,0 +1,10 @@
+{
+    "name": "LOU",
+    "website": "https://www.louassist.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "cdn\\.louassist\\.com*"
+        }
+    ]
+}

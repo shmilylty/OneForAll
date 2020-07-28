@@ -1,0 +1,10 @@
+{
+    "name": "Linkedin",
+    "website": "http://linkedin.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "//platform\\.linkedin\\.com/in\\.js"
+        }
+    ]
+}

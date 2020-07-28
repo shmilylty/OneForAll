@@ -1,0 +1,9 @@
+{
+    "name": "Docker",
+    "website": "https://www.docker.com/",
+    "matches": [
+        {
+            "regexp": "<!-- This comment is expected by the docker HEALTHCHECK  -->"
+        }
+    ]
+}

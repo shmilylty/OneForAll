@@ -1,0 +1,15 @@
+{
+    "name": "\u6c83\u79d1\u7f51\u5f02\u7f51\u540c\u663e\u7cfb\u7edf",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "\u6c83\u79d1\u7f51"
+        },
+        {
+            "search": "title",
+            "regexp": "\u5f02\u7f51\u540c\u663e\u7cfb\u7edf"
+        }
+    ]
+}

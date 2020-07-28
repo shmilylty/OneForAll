@@ -1,0 +1,37 @@
+{
+    "name": "BigCommerce",
+    "author": "Claudio Salazar <csalazar at spect dot cl>, Bhavin Senjaliya, Andrew Horton",
+    "version": "0.3",
+    "description": "Fully loaded with killer features.",
+    "website": "http://www.bigcommerce.com/",
+    "matches": [
+        {
+            "name": "iselector.css is a common file in BigCommerce systems",
+            "regexp": "(?-mix:\\/iselector.css)",
+            "certainty": 25
+        },
+        {
+            "regexp": "(?-mix:config.ShopPath = )",
+            "certainty": 25
+        },
+        {
+            "regexp": "(?-mix:config.AppPath = )",
+            "certainty": 25
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:^fornax_anonymousId)",
+            "name": "fornax_anonymousId cookie"
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:^RECENTLY_VIEWED_PRODUCTS)",
+            "name": "RECENTLY_VIEWED_PRODUCTS cookie"
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:^SHOP_SESSION_TOKEN)",
+            "name": "SHOP_SESSION_TOKEN cookie"
+        }
+    ]
+}

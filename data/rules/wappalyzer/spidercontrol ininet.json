@@ -1,0 +1,10 @@
+{
+    "name": "SpiderControl iniNet",
+    "website": "http://spidercontrol.net/ininet",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "iniNet SpiderControl"
+        }
+    ]
+}

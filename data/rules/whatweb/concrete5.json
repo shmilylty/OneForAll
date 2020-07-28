@@ -1,0 +1,23 @@
+{
+    "name": "Concrete5",
+    "author": "Andrew Horton",
+    "version": "0.3",
+    "description": "Concrete5 is an OpenSource CMS written in PHP.",
+    "website": "www.concrete5.org",
+    "matches": [
+        {
+            "name": "JavaScript",
+            "regexp": "(?-mix:\\bvar CCM_DISPATCHER_FILENAME ?=)"
+        },
+        {
+            "name": "meta generator tag",
+            "regexp": "(?-mix:<meta name=\"generator\" content=\"concrete5 - ([0-9\\.a-z]+)\")",
+            "offset": 1
+        },
+        {
+            "name": "CONCRETE5 cookie",
+            "search": "headers[set-cookie]",
+            "regexp": "(?i-mx:^CONCRETE5=)"
+        }
+    ]
+}

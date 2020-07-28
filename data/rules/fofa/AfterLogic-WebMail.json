@@ -1,0 +1,15 @@
+{
+    "name": "AfterLogic-WebMail",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "AfterLogic WebMail Pro"
+        },
+        {
+            "search": "headers",
+            "text": "PHPWEBMAILSESSID"
+        }
+    ]
+}

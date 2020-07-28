@@ -1,0 +1,11 @@
+{
+    "name": "Safe3WAF",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "Safe3WAF"
+        }
+    ]
+}

@@ -1,0 +1,20 @@
+{
+    "name": "Arab-Portal",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "Arab-Portal",
+    "website": null,
+    "matches": [
+        {
+            "regexp": "(?-mix:<META NAME=\"COPYRIGHT\" CONTENT=\"Copyright[^\\>]*by Arab[\\s]*Portal\")"
+        },
+        {
+            "regexp": "(?-mix:<META content=\"[^>]*Powered by: Arab Portal v([\\d\\.]+), Copyright[^>]*\" name=\"description\">)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<center><font size=2>Powered by: Arab[\\s]*Portal v([\\d\\.]+)[\\s]*, Copyright)",
+            "offset": 1
+        }
+    ]
+}

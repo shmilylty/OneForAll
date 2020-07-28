@@ -1,0 +1,29 @@
+{
+    "name": "Liferay",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.3",
+    "description": "Liferay Portal is an enterprise web platform for building business solutions that deliver immediate results and long-term value.",
+    "website": "http://www.liferay.com/",
+    "matches": [
+        {
+            "text": "Powered by Liferay Portal",
+            "certainty": 10
+        },
+        {
+            "text": "<![CDATA[*/Liferay.Util.addInputFocus();/*]]>*"
+        },
+        {
+            "search": "headers[liferay-portal]",
+            "regexp": "(?-mix:^Liferay Portal (.+ Edition) (.+)$)"
+        },
+        {
+            "search": "headers[liferay-portal]",
+            "offset": 1,
+            "regexp": "(?-mix:^Liferay Portal (.+ Edition) (.+)$)"
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:GUEST_LANGUAGE_ID=[a-z]{2,3}_[A-Z]{2,3};)"
+        }
+    ]
+}

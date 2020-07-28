@@ -1,0 +1,11 @@
+{
+    "name": "Spring",
+    "website": "https://spring.io/",
+    "matches": [
+        {
+            "search": "headers[x-application-context]",
+            "regexp": ".*"
+        }
+    ],
+    "implies": "Java"
+}

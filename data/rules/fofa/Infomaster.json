@@ -1,0 +1,19 @@
+{
+    "name": "Infomaster",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "/MasterView.css"
+        },
+        {
+            "search": "body",
+            "text": "/masterView.js"
+        },
+        {
+            "search": "body",
+            "text": "/MasterView/MPLeftNavStyle/PanelBar.MPIFMA.css"
+        }
+    ]
+}

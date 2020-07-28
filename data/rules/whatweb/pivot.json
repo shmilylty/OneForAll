@@ -1,0 +1,23 @@
+{
+    "name": "Pivot",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Pivot is a web-based tool to help you maintain dynamic sites, like weblogs or online journals.",
+    "website": "http://www.pivotlog.net/",
+    "matches": [
+        {
+            "certainty": 25,
+            "text": "<!-- Includes for Thickbox script -->"
+        },
+        {
+            "text": "<title>Pivot &#187; setup</title>"
+        },
+        {
+            "text": "<td width='75%'><input type=\"text\" name=\"sitename\" value=\"Pivot Powered\" size=\"40\" class=\"input\" /></td>"
+        },
+        {
+            "regexp": "(?-mix:<a href=\"http:\\/\\/www\\.pivotlog\\.net\\/\\?ver=Pivot[^\"]+\" target=\"_blank\" title=\"Pivot - ([^:]+): '[^']+'\"><img[^>]+alt=\"Pivot - [^\"]+\" \\/><\\/a>)",
+            "offset": 1
+        }
+    ]
+}

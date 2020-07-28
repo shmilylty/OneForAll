@@ -1,0 +1,22 @@
+{
+    "name": "Now",
+    "website": "https://zeit.co/now",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "^now$"
+        },
+        {
+            "search": "headers[x-now-trace]",
+            "regexp": ".*"
+        },
+        {
+            "search": "headers[x-now-id]",
+            "regexp": ".*"
+        },
+        {
+            "search": "headers[x-now-cache]",
+            "regexp": ".*"
+        }
+    ]
+}

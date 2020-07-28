@@ -1,0 +1,11 @@
+{
+    "name": "GeekLog",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "Powered By <a href=\"http://www.geeklog.net/"
+        }
+    ]
+}

@@ -1,0 +1,13 @@
+{
+    "name": "jsDelivr",
+    "website": "https://www.jsdelivr.com/",
+    "matches": [
+        {
+            "regexp": "<[^>]+?//cdn\\.jsdelivr\\.net/"
+        },
+        {
+            "search": "script",
+            "regexp": "//cdn\\.jsdelivr\\.net/"
+        }
+    ]
+}

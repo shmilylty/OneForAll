@@ -1,0 +1,19 @@
+{
+    "name": "CaupoShop-Classic",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "Powered by CaupoShop"
+        },
+        {
+            "search": "body",
+            "text": "<!-- CaupoShop Classic"
+        },
+        {
+            "search": "body",
+            "text": "<a href=\"http://www.caupo.net\" target=\"_blank\">CaupoNet"
+        }
+    ]
+}

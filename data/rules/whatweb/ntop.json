@@ -1,0 +1,25 @@
+{
+    "name": "ntop",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "ntop is a network traffic probe that shows the network usage, similar to what the popular top Unix command does.",
+    "website": "http://www.ntop.org/products/ntop/",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^ntop\\/([^\\s]+))",
+            "offset": 1
+        },
+        {
+            "text": "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"ntop RSS Feed\" href=\"http://www.ntop.org/blog/?feed=rss2\" />"
+        },
+        {
+            "certainty": 75,
+            "text": "<TITLE>Global Traffic Statistics</TITLE>"
+        },
+        {
+            "search": "headers[www-authenticate]",
+            "text": "Basic realm=\"NTOP\""
+        }
+    ]
+}

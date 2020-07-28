@@ -1,0 +1,11 @@
+{
+    "name": "awstats_misc_tracker",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "/js/awstats_misc_tracker.js"
+        }
+    ]
+}

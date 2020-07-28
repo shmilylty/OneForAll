@@ -1,0 +1,10 @@
+{
+    "name": "Reddit",
+    "website": "http://code.reddit.com",
+    "matches": [
+        {
+            "regexp": "(?:<a[^>]+Powered by Reddit|powered by <a[^>]+>reddit<)"
+        }
+    ],
+    "implies": "Python"
+}

@@ -1,0 +1,19 @@
+{
+    "name": "\u534f\u4f17OA",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "Powered by \u534f\u4f17OA"
+        },
+        {
+            "search": "body",
+            "text": "admin@cnoa.cn"
+        },
+        {
+            "search": "body",
+            "text": "Powered by CNOA.CN"
+        }
+    ]
+}

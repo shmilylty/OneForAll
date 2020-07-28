@@ -1,0 +1,30 @@
+{
+    "name": "EZCMS",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "Building your own website is easy with the EZ Websites Builder",
+    "website": "http://www.ezwebsites.com.au",
+    "matches": [
+        {
+            "text": "        <td align=\"right\"><a href=\"http://www.ezwebsites.com.au\" class=\"credits\">Site Powered by EZCMS</a></td>"
+        },
+        {
+            "text": "      <td width=\"100%\" align=\"left\" valign=\"bottom\" background=\"images/headerbg.png\"><div align=\"right\"><img src=\"images/headerright.png\" border=\"0\"></div></td>"
+        },
+        {
+            "md5": "3f9861ab3124420694f663c82bf770ab",
+            "url": "admin/images/headerright.png"
+        },
+        {
+            "text": "<title>EZCMS Content Management System</title>"
+        },
+        {
+            "regexp": "(?-mix:<center><strong>EZCMS ([\\d\\.]+) )",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:Powered by <a href=\"http:\\/\\/ezcms.eztechhelp.com\\/\">EZCMS ([\\d\\.]+)<\\/a>)",
+            "offset": 1
+        }
+    ]
+}

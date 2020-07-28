@@ -1,0 +1,15 @@
+{
+    "name": "Citrix-XenServer",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "Citrix Systems, Inc. XenServer"
+        },
+        {
+            "search": "body",
+            "text": "<a href=\"XenCenterSetup.exe\">XenCenter installer</a>"
+        }
+    ]
+}

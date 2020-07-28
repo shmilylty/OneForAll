@@ -1,0 +1,16 @@
+{
+    "name": "NSFOCUS_WAF",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "WAF NSFOCUS"
+        },
+        {
+            "search": "body",
+            "text": "/images/logo/nsfocus.png"
+        }
+    ],
+    "condition": "0 and 1"
+}

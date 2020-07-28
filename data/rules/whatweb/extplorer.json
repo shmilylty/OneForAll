@@ -1,0 +1,17 @@
+{
+    "name": "eXtplorer",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "eXtplorer is a PHP and Javascript-based File Manager",
+    "website": "http://extplorer.net/",
+    "matches": [
+        {
+            "url": "/extplorer.xml",
+            "regexp": "(?-mix:<version>([^<]+)<\\/version>)",
+            "offset": 1
+        },
+        {
+            "text": "<title>Login - eXtplorer</title>"
+        }
+    ]
+}

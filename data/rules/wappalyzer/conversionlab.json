@@ -1,0 +1,10 @@
+{
+    "name": "ConversionLab",
+    "website": "http://www.trackset.it/conversionlab",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "conversionlab\\.trackset\\.com/track/tsend\\.js"
+        }
+    ]
+}

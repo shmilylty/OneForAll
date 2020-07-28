@@ -1,0 +1,48 @@
+{
+    "name": "CGI:IRC",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "CGI:IRC is a Perl/CGI program to use IRC from a web browser. This plugin extracts the version and the default server, channel and nickname",
+    "website": "http://cgiirc.org/",
+    "matches": [
+        {
+            "text": "<title>CGI:IRC Login</title>"
+        },
+        {
+            "text": "<body bgcolor=\"#ffffff\" text=\"#000000\" onload=\"setcharset();\">"
+        },
+        {
+            "text": "<form method=\"post\" action=\"irc.cgi\" name=\"loginform\" onsubmit=\"setjs()\">"
+        },
+        {
+            "text": "<small><a href=\"irc.cgi?adv=1\">Advanced..</a></small>"
+        },
+        {
+            "regexp": "(?-mix:^<!-- This is part of CGI:IRC ([\\d\\.]+))",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:^<small id=\"ietest\"><a href=\"http:\\/\\/cgiirc.org\\/\">CGI:IRC<\\/a> ([^<]{3,25})<br \\/>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:^<small id=\"ietest\"><a href=\"http:\\/\\/cgiirc.sourceforge.net\\/\">CGI:IRC<\\/a> ([^<]{3,25})<br \\/>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:^bgcolor=\"#f1f1f1\"><input type=\"text\" name=\"Nickname\" value=\"([^\"]+)\"><\\/td><\\/tr>)"
+        },
+        {
+            "regexp": "(?-mix:^bgcolor=\"#f1f1f1\"><input type=\"text\" name=\"Channel\" value=\"([^\"]+)\"[^>]*><\\/td><\\/tr>)"
+        },
+        {
+            "regexp": "(?-mix:^bgcolor=\"#f1f1f1\"><select name=\"Channel\" style=\"width: 100%\"[^>]*><option[^>]*>([^<]*)<\\/option>)"
+        },
+        {
+            "regexp": "(?-mix:^bgcolor=\"#f1f1f1\"><input type=\"text\" name=\"Server\" value=\"([^\"]+)\"[^>]*><\\/td><\\/tr>)"
+        },
+        {
+            "regexp": "(?-mix:^bgcolor=\"#f1f1f1\"><select name=\"Server\" style=\"width: 100%\"[^>]*><option[^>]*>([^<]*)<\\/option>)"
+        }
+    ]
+}

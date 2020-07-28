@@ -1,0 +1,15 @@
+{
+    "name": "Brother-Printer",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "<FRAME SRC=\"/printer/inc_head.html"
+        },
+        {
+            "search": "body",
+            "text": "<IMG src=\"/common/image/HL4040CN"
+        }
+    ]
+}

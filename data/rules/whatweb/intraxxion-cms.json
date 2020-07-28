@@ -1,0 +1,19 @@
+{
+    "name": "Intraxxion-CMS",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Intraxxion - CMS",
+    "website": "http://intraxxion.com/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<meta name=\"generator\" content=\"Intraxxion CMS ([\\d\\.]{1,5})\" \\/>)",
+            "offset": 1
+        },
+        {
+            "text": "<!-- site built by Intraxxion, www.intraxxion.com, info@intraxxion.com, tel: +31 45 5650207, fax: +31 45 5650123"
+        },
+        {
+            "text": "<!-- site built by Intraxxion, www.intraxxion.com, more_info@intraxxion.com, tel: +31 45 5650207, fax: +31 45 5650123"
+        }
+    ]
+}

@@ -1,0 +1,13 @@
+{
+    "name": "AppNexus",
+    "website": "http://appnexus.com",
+    "matches": [
+        {
+            "regexp": "<(?:iframe|img)[^>]+adnxs\\.(?:net|com)"
+        },
+        {
+            "search": "script",
+            "regexp": "adnxs\\.(?:net|com)"
+        }
+    ]
+}

@@ -1,0 +1,24 @@
+{
+    "name": "CactuShop",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "ASP and ASP.NET SEO optimized database-driven e-commerce storefront software.",
+    "website": "http://www.cactushop.com/",
+    "matches": [
+        {
+            "text": "<select name=\"numCurrencyID\" class=\"currencymenu\" onchange=\"javascript:document.getElementById('currmenuform').submit();\">"
+        },
+        {
+            "certainty": 75,
+            "regexp": "(?-mix:<!-- MYDEVLICNUM -->)"
+        },
+        {
+            "regexp": "(?-mix:<!-- CactuShop v\\.?([^\\s]+) license: [\\s]+ -->)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<!---?[\\s]+===============================================================================[\\s]+CACTUSHOP v?([^\\s]+) ASP SHOPPING CART)",
+            "offset": 1
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "name": "DoubleClick for Publishers (DFP)",
+    "website": "http://www.google.com/dfp",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "googletagservices\\.com/tag/js/gpt(?:_mobile)?\\.js"
+        }
+    ]
+}

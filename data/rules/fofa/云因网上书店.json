@@ -1,0 +1,15 @@
+{
+    "name": "\u4e91\u56e0\u7f51\u4e0a\u4e66\u5e97",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "main/building.cfm"
+        },
+        {
+            "search": "body",
+            "text": "href=\"../css/newscomm.css"
+        }
+    ]
+}

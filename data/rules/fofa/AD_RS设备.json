@@ -1,0 +1,11 @@
+{
+    "name": "AD_RS\u8bbe\u5907",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "AD_RS_COOKIE"
+        }
+    ]
+}

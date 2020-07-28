@@ -1,0 +1,20 @@
+{
+    "name": "Taurus-Server-Appliance",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "The Taurus Server Appliance is an all-in-one networking device solution for the small to midsize business.",
+    "website": "http://www.celestix.com/",
+    "matches": [
+        {
+            "certainty": 75,
+            "text": "<title>The Taurus Server Appliance</title>"
+        },
+        {
+            "text": "<b><font color=#FFFFFF>Welcome to Taurus </font></b>"
+        },
+        {
+            "regexp": "(?-mix:<div align=center><font size=-2 color=#FFFFFF>Software Version : CeLinuX-([\\d\\.]+)<\\/font><\\/div>)",
+            "offset": 1
+        }
+    ]
+}

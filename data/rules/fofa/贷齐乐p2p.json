@@ -1,0 +1,15 @@
+{
+    "name": "\u8d37\u9f50\u4e50p2p",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "/js/jPackageCss/jPackage.css"
+        },
+        {
+            "search": "body",
+            "text": "src=\"/js/jPackage"
+        }
+    ]
+}

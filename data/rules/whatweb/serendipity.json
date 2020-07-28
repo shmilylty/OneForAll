@@ -1,0 +1,35 @@
+{
+    "name": "Serendipity",
+    "author": "Brendan Coles <bcoles@gmail.com>, Brendan Coles <bcoles at gmail dot com>, Andrew Horton, Napz",
+    "version": "0.3",
+    "description": "Serendipity - a PHP Weblog/Blog software. Serendipity is a PHP-powered weblog application which gives the user an easy way to maintain an online diary, weblog or even a complete homepage.",
+    "website": "http://www.s9y.org",
+    "matches": [
+        {
+            "regexp": "(?i-mx:<meta name=\"Powered-By\" content=\"Serendipity v.([^\"]+)\" \\/>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:My weblog is proudly powered by <a href=\"http:\\/\\/www.s9y.org\">Serendipity ([^<]+)<\\/a>.<br \\/>)",
+            "offset": 1
+        },
+        {
+            "text": "<p>Powered by <a href=\"http://www.s9y.org\" target=\"_blank\">Serendipity</a>"
+        },
+        {
+            "text": "<div class=\"copyright\">Powered by <a href=\"http://www.s9y.org\" title=\"a PHP Weblog/Blog software\">Serendipity</a>"
+        },
+        {
+            "text": "serendipity_entry_body"
+        },
+        {
+            "text": "serendipity_entry_author_Admin"
+        },
+        {
+            "text": "serendipity_entryFooter"
+        },
+        {
+            "text": "<div id=\"serendipityLeftSideBar\">"
+        }
+    ]
+}

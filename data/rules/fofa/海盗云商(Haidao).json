@@ -1,0 +1,11 @@
+{
+    "name": "\u6d77\u76d7\u4e91\u5546(Haidao)",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "haidao.web.general.js"
+        }
+    ]
+}

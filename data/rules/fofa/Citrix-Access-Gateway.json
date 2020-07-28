@@ -1,0 +1,23 @@
+{
+    "name": "Citrix-Access-Gateway",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "Citrix Access Gateway"
+        },
+        {
+            "search": "body",
+            "text": "href=\"/vpn/images/AccessGateway.ico"
+        },
+        {
+            "search": "headers",
+            "text": "ezisneercsresu="
+        },
+        {
+            "search": "headers",
+            "text": "Cyms-SecS"
+        }
+    ]
+}

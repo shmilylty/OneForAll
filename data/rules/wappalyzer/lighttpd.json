@@ -1,0 +1,11 @@
+{
+    "name": "lighttpd",
+    "website": "http://www.lighttpd.net",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "lighttpd(?:/([\\d.]+))?",
+            "offset": 1
+        }
+    ]
+}

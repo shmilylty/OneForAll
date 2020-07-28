@@ -1,0 +1,30 @@
+{
+    "name": "Safedog",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Safedog WAF",
+    "website": "",
+    "matches": [
+        {
+            "name": "Server Header",
+            "regexp": "(?-mix:^Safedog)",
+            "search": "headers[server]"
+        },
+        {
+            "name": "Server Header Version Detection",
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Safedog\\/([\\d\\.]+))",
+            "offset": 1
+        },
+        {
+            "name": "X-Powered-By Header",
+            "regexp": "(?-mix:^WAF\\/2\\.0)",
+            "search": "headers[x-powered-by]"
+        },
+        {
+            "name": "safedog-flow-item Cookie",
+            "text": "safedog-flow-item=",
+            "search": "headers[set-cookie]"
+        }
+    ]
+}

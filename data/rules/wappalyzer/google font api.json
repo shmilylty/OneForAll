@@ -1,0 +1,13 @@
+{
+    "name": "Google Font API",
+    "website": "http://google.com/fonts",
+    "matches": [
+        {
+            "regexp": "<link[^>]* href=[^>]+fonts\\.(?:googleapis|google)\\.com"
+        },
+        {
+            "search": "script",
+            "regexp": "googleapis\\.com/.+webfont"
+        }
+    ]
+}

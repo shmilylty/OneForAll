@@ -1,0 +1,50 @@
+{
+    "name": "Request-Tracker",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Request Tracker (RT) is an open-source issue tracking system which thousands of organizations use for bug tracking, help desk ticketing, customer service, workflow processes, change management, network operations, youth counselling and even more.",
+    "website": "http://bestpractical.com/rtfm/",
+    "matches": [
+        {
+            "url": "/NoAuth/images/favicon.png",
+            "md5": "1e35f1aa90c98ca2bab85c26ae3e1ba7"
+        },
+        {
+            "text": "<link rel=\"stylesheet\" href=\"/NoAuth/webrtfm.css\" type=\"text/css\" />",
+            "module": "FAQ Manager"
+        },
+        {
+            "text": "<link rel=\"stylesheet\" href=\"/RTIR/NoAuth/webrtir.css\" type=\"text/css\">",
+            "module": "Incident Response"
+        },
+        {
+            "text": "<link rel=\"shortcut icon\" href=\"/NoAuth/images//favicon.png\" type=\"image/png\" />",
+            "module": "Incident Response"
+        },
+        {
+            "text": "<link rel=\"shortcut icon\" href=\"/NoAuth/images/favicon.png\" type=\"image/png\" />"
+        },
+        {
+            "text": "<link rel=\"stylesheet\" href=\"/NoAuth/css/print.css\" type=\"text/css\" media=\"print\" />"
+        },
+        {
+            "certainty": 25,
+            "text": "<p id=\"bpscredits\">"
+        },
+        {
+            "regexp": "(?-mix:<span class=\"rtname\">RT for ([^<]+)<\\/span>)"
+        },
+        {
+            "regexp": "(?-mix:<div class=\"titlebox-title\">[\\s]*<span class=\"left\">[\\s]*Login[\\s]*<\\/span>[\\s]*<span class=\"right\">[\\s]*([^\\s]+)[\\s]*<\\/span>[\\s]*<\\/div>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:&#187;&#124;&#171; RT ([^\\s]+) Copyright 1996-20[\\d]{2} <a href=\"http:\\/\\/www\\.bestpractical\\.com\\?rt=([^\\s^\"^>]+)\">Best Practical Solutions, LLC<\\/a>\\.)",
+            "offset": 1
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:RT_SID_[^\\s^=]+=[a-f\\d]{32};)"
+        }
+    ]
+}

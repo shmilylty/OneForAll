@@ -1,0 +1,15 @@
+{
+    "name": "Carel-Data-Server",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "src=\"/MPwebCoreFn.js"
+        },
+        {
+            "search": "headers",
+            "text": "CarelDataServer"
+        }
+    ]
+}

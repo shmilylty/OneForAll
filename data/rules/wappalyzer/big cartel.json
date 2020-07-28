@@ -1,0 +1,10 @@
+{
+    "name": "Big Cartel",
+    "website": "https://www.bigcartel.com",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "Big Cartel"
+        }
+    ]
+}

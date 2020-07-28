@@ -1,0 +1,46 @@
+{
+    "name": "ARRIS-Touchstone-Router",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "ARRIS Touchstone router",
+    "website": "http://www.arrisi.com/products/touchstone/",
+    "matches": [
+        {
+            "certainty": 25,
+            "search": "headers[server]",
+            "regexp": "(?-mix:^NET-DK\\/[\\d\\.]+$)"
+        },
+        {
+            "url": "/logo_t.gif",
+            "md5": "634c757842b122c6cd4458051ab0ed12"
+        },
+        {
+            "regexp": "(?-mix:<br><center>&#169 Copyright (2004-)?20[\\d]{2}, ARRIS Group, Inc\\., All rights reserved\\.<\\/center><\\/BODY><\\/HTML>)"
+        },
+        {
+            "text": "<FRAME name=\"tabs\" src=\"/menu.htm?3\" frameborder=\"0\" scrolling=\"no\">"
+        },
+        {
+            "url": "/vers.htm",
+            "regexp": "(?-mix:<BR> SW_REV: ([^\\s^<]+)<BR> MODEL: ([^\\s^<]+)  <\\/TD><\\/TR><tr vAlign=top><td width=\"170\">Product Type:<\\/td>)",
+            "offset": 1
+        },
+        {
+            "url": "/cgi-bin/vers_cgi",
+            "regexp": "(?-mix:HW_REV: [^<]+<br>[\\s]+VENDOR: Arris Interactive, L\\.L\\.C\\.<br>[\\s]+BOOTR: [^<]+<br>[\\s]+SW_REV: ([^\\s^<]+)<br>[\\s]+MODEL: ([^\\s^<]+)<\\/td>)",
+            "offset": 1
+        },
+        {
+            "url": "/cgi-bin/vers_cgi",
+            "regexp": "(?-mix:HW_REV: [^<]+<br>[\\s]+VENDOR: Arris Interactive, L\\.L\\.C\\.<br>[\\s]+BOOTR: ([^<^\\s]+)<br>[\\s]+SW_REV: ([^\\s^<]+)<br>[\\s]+MODEL: ([^\\s^<]+)<\\/td>)"
+        },
+        {
+            "url": "/cgi-bin/vers_cgi",
+            "regexp": "(?-mix:HW_REV: [^<]+<br>[\\s]+VENDOR: Arris Interactive, L\\.L\\.C\\.<br>[\\s]+BOOTR: [^<]+<br>[\\s]+SW_REV: ([^\\s^<]+)<br>[\\s]+MODEL: ([^\\s^<]+)<\\/td>)"
+        },
+        {
+            "url": "/vers.htm",
+            "regexp": "(?-mix:<BR> SW_REV: ([^\\s^<]+)<BR> MODEL: ([^\\s^<]+)  <\\/TD><\\/TR><tr vAlign=top><td width=\"170\">Product Type:<\\/td>)"
+        }
+    ]
+}

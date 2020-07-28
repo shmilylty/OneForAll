@@ -1,0 +1,15 @@
+{
+    "name": "URP\u6559\u52a1\u7cfb\u7edf",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "URP \u7efc\u5408\u6559\u52a1\u7cfb\u7edf"
+        },
+        {
+            "search": "body",
+            "text": "\u5317\u4eac\u6e05\u5143\u4f18\u8f6f\u79d1\u6280\u6709\u9650\u516c\u53f8"
+        }
+    ]
+}

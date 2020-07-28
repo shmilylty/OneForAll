@@ -1,0 +1,12 @@
+{
+    "name": "reCAPTCHA",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "reCAPTCHA is a free CAPTCHA service that helps to digitize books, newspapers and old time radio shows.",
+    "website": "http://www.google.com/recaptcha",
+    "matches": [
+        {
+            "regexp": "(?-mix:<noscript>[\\s]*<iframe src=\"http:\\/\\/www\\.google\\.com\\/recaptcha\\/api\\/noscript\\?k=)"
+        }
+    ]
+}

@@ -1,0 +1,26 @@
+{
+    "name": "Apache-Wicket",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "Apache Wicket, commonly referred to as Wicket, is a lightweight component-based web application framework for the Java programming language",
+    "website": "http://wicket.apache.org/",
+    "matches": [
+        {
+            "ghdb": "inurl:\"wicket:bookmarkablePage=:\""
+        },
+        {
+            "name": "XMLNS data",
+            "regexp": "(?-mix:xmlns:wicket=\"(http:\\/\\/wicket\\.sourceforge\\.net\\/|http:\\/\\/wicket\\.apache\\.org\\/)\">)"
+        },
+        {
+            "name": "Wicket ID scheme",
+            "certainty": 75,
+            "regexp": "(?-mix: wicket:id=\"[^\"]*\")"
+        },
+        {
+            "name": "Wicket Resource scheme",
+            "certainty": 25,
+            "regexp": "(?-mix:<[^=]+[ ]?=[ ]?['\"]?wicket\\/[^\\/]+\\/org\\.apache\\.wicket\\.)"
+        }
+    ]
+}

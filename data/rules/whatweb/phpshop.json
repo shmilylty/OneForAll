@@ -1,0 +1,20 @@
+{
+    "name": "PHPShop",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "PHPShop - A shopping cart application. Documentation, download, demo, and forums are provided. (PHP,MySQL)",
+    "website": "http://code.google.com/p/phpshop/",
+    "matches": [
+        {
+            "certainty": 25,
+            "regexp": "(?i-mx:Powered by phpShop)"
+        },
+        {
+            "regexp": "(?i-mx:Powered by <a href=\"http:\\/\\/www.phpshop.org\"[^>]*>phpShop<\\/a>)"
+        },
+        {
+            "regexp": "(?-mix:Powered by <a href=\"http:\\/\\/www.phpshop.org\"[^>]*>phpShop<\\/a>[\\r\\n\\s]+([\\d\\.]+) )",
+            "offset": 1
+        }
+    ]
+}

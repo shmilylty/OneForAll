@@ -1,0 +1,15 @@
+{
+    "name": "Enigma2",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "href=\"/web/movielist.rss?tag"
+        },
+        {
+            "search": "title",
+            "regexp": "Enigma2 WebControl"
+        }
+    ]
+}

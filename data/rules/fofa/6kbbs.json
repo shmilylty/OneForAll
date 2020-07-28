@@ -1,0 +1,15 @@
+{
+    "name": "6kbbs",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "Powered by 6kbbs"
+        },
+        {
+            "search": "body",
+            "text": "generator\" content=\"6KBBS"
+        }
+    ]
+}

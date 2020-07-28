@@ -1,0 +1,10 @@
+{
+    "name": "EPages",
+    "website": "http://www.epages.com/",
+    "matches": [
+        {
+            "search": "headers[x-epages-requestid]",
+            "regexp": ".*"
+        }
+    ]
+}

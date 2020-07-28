@@ -1,0 +1,11 @@
+{
+    "name": "H3C ER3108GW",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "ER3108GW\u7cfb\u7edf\u7ba1\u7406"
+        }
+    ]
+}

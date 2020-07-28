@@ -1,0 +1,15 @@
+{
+    "name": "Interspire-Shopping-Cart",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "content=\"Interspire Shopping Cart"
+        },
+        {
+            "search": "body",
+            "text": "class=\"PoweredBy\">Interspire Shopping Cart"
+        }
+    ]
+}

@@ -1,0 +1,26 @@
+{
+    "name": "XOOPS",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "eXtensible Object Oriented Portal System (XOOPS) open source CMS and portal system",
+    "website": "http://www.xoops.org/",
+    "matches": [
+        {
+            "certainty": 75,
+            "text": "<!-- RMV: added module header -->"
+        },
+        {
+            "text": "<meta name=\"generator\" content=\"XOOPS\" />"
+        },
+        {
+            "text": "<meta name=\"author\" content=\"XOOPS\" />"
+        },
+        {
+            "regexp": "(?-mix:Powered by XOOPS [^\\s]+ 2001-20[\\d]{2} <a href=\"http:\\/\\/(xoops\\.sourceforge\\.net|www\\.xoops\\.org\\/)\")"
+        },
+        {
+            "regexp": "(?-mix:Powered by XOOPS ([^\\s]+) [^\\s]+ 2001-20[\\d]{2} <a href=\"http:\\/\\/(xoops\\.sourceforge\\.net|www\\.xoops\\.org\\/)\")",
+            "offset": 1
+        }
+    ]
+}

@@ -1,0 +1,17 @@
+{
+    "name": "Dancer",
+    "website": "http://perldancer.org",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "Perl Dancer ([\\d.]+)",
+            "offset": 1
+        },
+        {
+            "search": "headers[x-powered-by]",
+            "regexp": "Perl Dancer ([\\d.]+)",
+            "offset": 1
+        }
+    ],
+    "implies": "Perl"
+}

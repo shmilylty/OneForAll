@@ -1,0 +1,21 @@
+{
+    "name": "ClientExec",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "ClientExec is a comprehensive and flexible web hosting billing solution designed for customer billing, helpdesk, e-mail and (team) management and communication. ClientExec was conceived and built with small to mid-sized hosting companies in mind.",
+    "website": "http://www.clientexec.com/",
+    "matches": [
+        {
+            "text": "<!-- These should not have debug at the end for production -->"
+        },
+        {
+            "text": "<title>Support Center - Powered By ClientExec</title>"
+        },
+        {
+            "text": "<form action=\"index.php?fuse=admin&amp;action=Login&amp;public=1\" method=\"post\""
+        },
+        {
+            "regexp": "(?-mix:<img class=\"logo\" src=\"templates\\/([^\\/]+)\\/images\\/public\\/caption_photo\\.jpg\" alt=\"clientexec\" \\/>)"
+        }
+    ]
+}

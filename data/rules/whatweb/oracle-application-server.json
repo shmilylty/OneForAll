@@ -1,0 +1,27 @@
+{
+    "name": "Oracle-Application-Server",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Oracle Application Server - superseded by Oracle iAS (Internet Application Server)",
+    "website": "http://www.oracle.com/technetwork/middleware/ias/index.html",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Oracle-Application-Server-(1[01]g))"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Oracle-Application-Server-1[01]g\\/([^\\s]+))",
+            "offset": 1
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Oracle Application Server\\/1[01]g \\(([^\\s^\\)]+)\\))",
+            "offset": 1
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Oracle[ -]Application[ -]Server.+ (OracleAS-Web-Cache-1[01]g\\/[^\\s]+))"
+        }
+    ]
+}

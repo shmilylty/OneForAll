@@ -1,0 +1,10 @@
+{
+    "name": "RoundCube",
+    "website": "http://roundcube.net",
+    "matches": [
+        {
+            "regexp": "<title>RoundCube"
+        }
+    ],
+    "implies": "PHP"
+}

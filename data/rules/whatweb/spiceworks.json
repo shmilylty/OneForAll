@@ -1,0 +1,18 @@
+{
+    "name": "Spiceworks",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Spiceworks' single, easy-to-use interface combines Network Inventory, Help Desk, Mapping, Reporting, Monitoring and Troubleshooting",
+    "website": "http://www.spiceworks.com/product/",
+    "matches": [
+        {
+            "text": "<meta name=\"author\" content=\"Spiceworks, Inc.\" />"
+        },
+        {
+            "text": "<p>Spiceworks is compatible with <a href=\"http://community.spiceworks.com/help/Spiceworks_Requirements#Browser\">modern browsers</a>, and requires JavaScript, Cookies, and Stylesheets (CSS) to function correctly.</p>"
+        },
+        {
+            "text": "<title>Spiceworks - Login Required</title>"
+        }
+    ]
+}

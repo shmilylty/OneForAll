@@ -1,0 +1,11 @@
+{
+    "name": "Linksys BEFSR41/BEFSR11/BEFSRU31",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "Linksys BEFSR41/BEFSR11/BEFSRU31"
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "name": "DoubleClick Campaign Manager (DCM)",
+    "website": "http://www.doubleclickbygoogle.com/solutions/digital-marketing/campaign-manager/",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "2mdn\\.net"
+        }
+    ]
+}

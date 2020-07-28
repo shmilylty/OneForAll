@@ -1,0 +1,23 @@
+{
+    "name": "TOTVS-SmartClient",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "TOTVS SmartClient MacOS TOTVS Application Server.",
+    "website": "http://www.totvs.com/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<object\\s+classid=\"clsid:[a-f\\d\\-]+\"\\s+codebase=\"TotvsSmartClientax\\.cab#version=([^\"]+)\")",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<param name=\"StartProgram\" value=\"([^\"]+)\"> <<= Programa)"
+        },
+        {
+            "regexp": "(?-mix:<param name=\"Environment\" value=\"([^\"]+)\"> <<= Ambiente)"
+        },
+        {
+            "search": "headers[TotvsSmartClient]",
+            "regexp": "(?-mix:^TotvsSmartClient$)"
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+{
+    "name": "Pimcore",
+    "website": "http://pimcore.org",
+    "matches": [
+        {
+            "search": "headers[x-powered-by]",
+            "regexp": "^pimcore$"
+        }
+    ],
+    "implies": "PHP"
+}

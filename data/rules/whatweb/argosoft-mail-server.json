@@ -1,0 +1,35 @@
+{
+    "name": "ArGoSoft-Mail-Server",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.5",
+    "description": "ArGoSoft-Mail-Server web interface",
+    "website": "http://www.argosoft.com/",
+    "matches": [
+        {
+            "ghdb": "intitle:\"adding new user\" \"ArGoSoft Mail Server\" inurl:addnewuser",
+            "certainty": 75
+        },
+        {
+            "os": "Windows NT/2000",
+            "regexp": "(?-mix:ArGoSoft Mail Server Pro for WinNT\\/2000, Version [\\d\\.]+ \\(([\\d\\.]+)\\)<\\/p>)",
+            "offset": 1
+        },
+        {
+            "os": "Windows NT/2000/XP",
+            "regexp": "(?-mix:ArGoSoft Mail Server Pro for WinNT\\/2000\\/XP, Version [\\d\\.]+ \\(([\\d\\.]+)\\)<\\/p>)",
+            "offset": 1
+        },
+        {
+            "search": "headers[server]",
+            "os": "Windows NT/2000",
+            "regexp": "(?-mix:ArGoSoft Mail Server Pro for WinNT\\/2000, Version [\\d\\.]+ \\(([\\d\\.]+)\\))",
+            "offset": 1
+        },
+        {
+            "search": "headers[server]",
+            "os": "Windows NT/2000/XP",
+            "regexp": "(?-mix:ArGoSoft Mail Server Pro for WinNT\\/2000\\/XP, Version [\\d\\.]+ \\(([\\d\\.]+)\\))",
+            "offset": 1
+        }
+    ]
+}

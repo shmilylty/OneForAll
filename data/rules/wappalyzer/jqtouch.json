@@ -1,0 +1,10 @@
+{
+    "name": "jQTouch",
+    "website": "http://jqtouch.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "jqtouch.*\\.js"
+        }
+    ]
+}

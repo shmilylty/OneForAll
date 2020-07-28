@@ -1,0 +1,19 @@
+{
+    "name": "DeluxeBB",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "DeluxeBB is a powerful open source bulletin board, which helps you create your own web communities in less than 10 minutes. The board is written completely in PHP and uses a MySQL database to store its content.",
+    "website": "http://www.deluxebb.com/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<!-- \\|-\\|-\\|-\\|-\\|-\\|-\\|-\\|-\\|-\\|-\\|-\\|-\\|-\\|-\\|-\\|-\\|-\\|-\\|-\\|[\\r\\n\\s]+\\| This forum is coded by and          \\|[\\r\\n\\s]+\\| copyrighted to Frank Nissel         \\|)"
+        },
+        {
+            "text": "<meta name=\"description\" content=\"powered by DeluxeBB - www.deluxebb.com\" />"
+        },
+        {
+            "regexp": "(?-mix:<p><a href=\"http:\\/\\/www.deluxebb.com\" target=\"_blank\">DeluxeBB ([\\d\\.]+)<\\/a> is copyrighted to the DeluxeBB team '05)",
+            "offset": 1
+        }
+    ]
+}

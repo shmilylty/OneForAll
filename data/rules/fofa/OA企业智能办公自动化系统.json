@@ -1,0 +1,16 @@
+{
+    "name": "OA\u4f01\u4e1a\u667a\u80fd\u529e\u516c\u81ea\u52a8\u5316\u7cfb\u7edf",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "input name=\"S1\" type=\"image\""
+        },
+        {
+            "search": "body",
+            "text": "count/mystat.asp"
+        }
+    ],
+    "condition": "0 and 1"
+}

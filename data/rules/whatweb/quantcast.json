@@ -1,0 +1,13 @@
+{
+    "name": "Quantcast",
+    "author": "Andrew Horton",
+    "version": "0.1",
+    "description": "Visitor demographics and statistics. www.quantcast.com",
+    "website": null,
+    "matches": [
+        {
+            "name": "quant.js",
+            "regexp": "(?-mix:<script[^>]+src=[\"']http:\\/\\/edge.quantserve.com\\/quant.js[\"'])"
+        }
+    ]
+}

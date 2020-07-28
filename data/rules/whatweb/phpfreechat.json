@@ -1,0 +1,17 @@
+{
+    "name": "phpFreeChat",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "phpFreeChat is a free, simple to install, fast, customizable and multi languages chat that uses a simple filesystem for message and nickname storage.",
+    "website": "http://www.phpfreechat.net/",
+    "matches": [
+        {
+            "ghdb": "\"powered by phpfreechat\"",
+            "certainty": 75
+        },
+        {
+            "regexp": "(?-mix:<img src=\"http:\\/\\/www.phpfreechat.net\\/pub\\/logo[2]*_80x15.gif\" alt=\"PHP FREE CHAT \\[powered by phpFreeChat-([\\d\\.\\-a-z]*)\\]\")",
+            "offset": 1
+        }
+    ]
+}

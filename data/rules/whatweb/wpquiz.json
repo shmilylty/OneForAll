@@ -1,0 +1,15 @@
+{
+    "name": "wpQuiz",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "wpQuiz is a fully-featured quiz script.",
+    "website": "http://www.wireplastik.com/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<title>[^>]*>> [Register|Login]+ - wp[q|Q]+uiz<\\/title>)"
+        },
+        {
+            "text": "<div class='small' style='text-align: center;'>Powered by wpQuiz</div>\n"
+        }
+    ]
+}

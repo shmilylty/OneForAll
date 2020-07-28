@@ -1,0 +1,10 @@
+{
+    "name": "Mixpanel",
+    "website": "https://mixpanel.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "api\\.mixpanel\\.com/track"
+        }
+    ]
+}

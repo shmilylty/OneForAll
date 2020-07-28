@@ -1,0 +1,9 @@
+{
+    "name": "Irroba",
+    "website": "https://www.irroba.com.br/",
+    "matches": [
+        {
+            "regexp": "<a[^>]*href=\"https://www\\.irroba\\.com\\.br"
+        }
+    ]
+}

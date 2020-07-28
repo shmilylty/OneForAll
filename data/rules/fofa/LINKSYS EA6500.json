@@ -1,0 +1,11 @@
+{
+    "name": "LINKSYS EA6500",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "LINKSYS EA6500"
+        }
+    ]
+}

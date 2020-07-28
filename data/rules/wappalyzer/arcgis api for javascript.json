@@ -1,0 +1,14 @@
+{
+    "name": "ArcGIS API for JavaScript",
+    "website": "https://developers.arcgis.com/javascript/",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "js\\.arcgis\\.com"
+        },
+        {
+            "search": "script",
+            "regexp": "basemaps\\.arcgis\\.com"
+        }
+    ]
+}

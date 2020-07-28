@@ -1,0 +1,23 @@
+{
+    "name": "PHPEasyData",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.3",
+    "description": "PHPEasyData is a French Content Management System",
+    "website": "http://www.phpeasydata.com/",
+    "matches": [
+        {
+            "text": "<div id='phpeasydata_container'  >"
+        },
+        {
+            "text": "  <head><title>PhpEasyData login page</title>"
+        },
+        {
+            "regexp": "(?-mix:<a[^>]*href=\"http:\\/\\/www.(phpeasydata.com|freewebmaster-scripts.com\\/phpeasydata)[^>]*>PHPEasyData[\\s]*([^<]+)<\\/a>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:n main de pages dynamiques. \" target=\"_blank\"[\\s]*>PhpEasyData[\\s]*([^<]+)<\\/a><\\/b>)",
+            "offset": 1
+        }
+    ]
+}

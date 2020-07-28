@@ -1,0 +1,23 @@
+{
+    "name": "Hyperwave-IS",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "Hyperwave Information Server",
+    "website": "http://www.hyperwave.com/",
+    "matches": [
+        {
+            "regexp": "(?-mix:^Hyperwave-)",
+            "search": "headers[server]"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Hyperwave-IS\\/([^\\s]+)$)",
+            "offset": 1
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Hyperwave-Information-Server\\/([^\\s]+)$)",
+            "offset": 1
+        }
+    ]
+}

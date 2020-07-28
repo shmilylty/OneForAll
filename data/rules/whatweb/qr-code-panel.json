@@ -1,0 +1,17 @@
+{
+    "name": "QR-Code-Panel",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "QR-Code Panel for PHP-Fusion",
+    "website": "http://www.g0lgs.co.uk/downloads.php",
+    "matches": [
+        {
+            "regexp": "(?-mix:<tr><td width='100%' align='center' class='small'>QR-Code Panel<a title='V[^\\s^<]+ \\([\\d]{2}\\/[\\d]{2}\\/[\\d]{4}\\)'> V([^\\s^<]+)<\\/a><br \\/>)",
+            "offset": 1
+        },
+        {
+            "certainty": 75,
+            "regexp": "(?-mix:&copy; [\\d]{4} by <a href='http:\\/\\/www\\.g0lgs\\.co\\.uk\\/downloads\\.php'>G0LGS<\\/a><\\/td><\\/tr>)"
+        }
+    ]
+}

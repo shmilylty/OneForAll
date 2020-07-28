@@ -1,0 +1,19 @@
+{
+    "name": "cmseasy",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "Powered by CmsEasy"
+        },
+        {
+            "search": "headers",
+            "text": "http://www.cmseasy.cn/service_1.html"
+        },
+        {
+            "search": "body",
+            "text": "content=\"CmsEasy"
+        }
+    ]
+}

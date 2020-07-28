@@ -1,0 +1,11 @@
+{
+    "name": "\u84dd\u76feBDWebGuard",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "BACKGROUND: url(images/loginbg.jpg) #e5f1fc"
+        }
+    ]
+}

@@ -1,0 +1,24 @@
+{
+    "name": "sabros_us",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "sabros.us  is a CMS to put your bookmarks online with folksonomy support; just like del.icio.us, but the big diference is you will have the complete control of the source code.",
+    "website": "http://sabros.us/",
+    "matches": [
+        {
+            "text": "\t<title>sabros.us/"
+        },
+        {
+            "text": "\t\t<p class=\"powered\">powered by: <a title=\"sabros.us\" href=\"http://sabros.us/\">sabros.us</a></p>",
+            "version": "1.8"
+        },
+        {
+            "text": "\t\t<p class=\"powered\">powered by: <a title=\"sabros.us\" href=\"http://sourceforge.net/projects/sabrosus/\">sabros.us</a></p>",
+            "version": "1.7"
+        },
+        {
+            "regexp": "(?-mix:\t<meta name=\"generator\" content=\"sabros.us ([\\d\\.]+)\" \\/>)",
+            "offset": 1
+        }
+    ]
+}

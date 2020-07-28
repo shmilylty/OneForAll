@@ -1,0 +1,10 @@
+{
+    "name": "MadAdsMedia",
+    "website": "http://madadsmedia.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "^https?://(?:ads-by|pixel)\\.madadsmedia\\.com/"
+        }
+    ]
+}

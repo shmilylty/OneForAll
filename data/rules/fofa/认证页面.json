@@ -1,0 +1,11 @@
+{
+    "name": "\u8ba4\u8bc1\u9875\u9762",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "Www-Authenticate"
+        }
+    ]
+}

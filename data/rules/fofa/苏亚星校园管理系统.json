@@ -1,0 +1,11 @@
+{
+    "name": "\u82cf\u4e9a\u661f\u6821\u56ed\u7ba1\u7406\u7cfb\u7edf",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "/ws2004/Public/"
+        }
+    ]
+}

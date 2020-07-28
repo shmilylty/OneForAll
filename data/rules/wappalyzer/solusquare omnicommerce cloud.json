@@ -1,0 +1,15 @@
+{
+    "name": "Solusquare OmniCommerce Cloud",
+    "website": "https://www.solusquare.com",
+    "matches": [
+        {
+            "search": "cookies[_solusquare]",
+            "regexp": ".*"
+        },
+        {
+            "search": "meta[generator]",
+            "regexp": "^Solusquare$"
+        }
+    ],
+    "implies": "Adobe ColdFusion"
+}

@@ -1,0 +1,10 @@
+{
+    "name": "FluxBB",
+    "website": "https://fluxbb.org",
+    "matches": [
+        {
+            "regexp": "<p id=\"poweredby\">[^<]+<a href=\"https?://fluxbb\\.org/\">"
+        }
+    ],
+    "implies": "PHP"
+}

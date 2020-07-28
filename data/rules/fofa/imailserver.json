@@ -1,0 +1,15 @@
+{
+    "name": "imailserver",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "myICalUserName"
+        },
+        {
+            "search": "headers",
+            "text": "Ipswitch-IMail"
+        }
+    ]
+}

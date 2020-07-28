@@ -1,0 +1,11 @@
+{
+    "name": "Cisco-Adaptive-Security-Appliance",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "Adaptive Security Appliance HTTP"
+        }
+    ]
+}

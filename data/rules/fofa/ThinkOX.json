@@ -1,0 +1,15 @@
+{
+    "name": "ThinkOX",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "Powered By ThinkOX"
+        },
+        {
+            "search": "title",
+            "regexp": "ThinkOX"
+        }
+    ]
+}

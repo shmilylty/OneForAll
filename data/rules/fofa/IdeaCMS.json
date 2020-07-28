@@ -1,0 +1,15 @@
+{
+    "name": "IdeaCMS",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "Powered By IdeaCMS"
+        },
+        {
+            "search": "body",
+            "text": "m_ctr32"
+        }
+    ]
+}

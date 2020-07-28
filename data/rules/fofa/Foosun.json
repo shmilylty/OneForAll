@@ -1,0 +1,19 @@
+{
+    "name": "Foosun",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "Created by DotNetCMS"
+        },
+        {
+            "search": "body",
+            "text": "For Foosun"
+        },
+        {
+            "search": "body",
+            "text": "Powered by www.Foosun.net,Products:Foosun Content Manage system"
+        }
+    ]
+}

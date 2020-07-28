@@ -1,0 +1,15 @@
+{
+    "name": "WordPress-Stats",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "WordPress.com Stats",
+    "website": "https://wordpress.com",
+    "matches": [
+        {
+            "regexp": "(?-mix:<script src=\"https?:\\/\\/(ssl-)?stats\\.wordpress\\.com\\/[^\"]+\" type=\"text\\/javascript\"><\\/script>)"
+        },
+        {
+            "regexp": "(?-mix:<noscript><img src=\"https?:\\/\\/stats\\.wordpress\\.com\\/b\\.gif\\?v=noscript\")"
+        }
+    ]
+}

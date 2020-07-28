@@ -1,0 +1,11 @@
+{
+    "name": "\u84dd\u8baf",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "Powered-By-ChinaCache"
+        }
+    ]
+}

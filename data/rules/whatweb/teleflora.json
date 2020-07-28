@@ -1,0 +1,14 @@
+{
+    "name": "Teleflora",
+    "author": "Bhavin Senjaliya <bhavin.senjaliya@gmail.com>",
+    "version": "0.1",
+    "description": "Teleflora is a flower delivery service.",
+    "website": "https://www.teleflora.com/",
+    "matches": [
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:^sdt)",
+            "name": "sdt cookie"
+        }
+    ]
+}

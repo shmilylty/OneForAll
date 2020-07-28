@@ -1,0 +1,14 @@
+{
+    "name": "Tealium",
+    "website": "http://tealium.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "^(?:https?:)?//tags\\.tiqcdn\\.com/"
+        },
+        {
+            "search": "script",
+            "regexp": "/tealium/utag\\.js$"
+        }
+    ]
+}

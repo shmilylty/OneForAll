@@ -1,0 +1,14 @@
+{
+    "name": "Gordano-Messaging-Suite",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Gordano WebMail Server web interface",
+    "website": "http://gordano.com/products/webmail.htm",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "offset": 1,
+            "regexp": "(?-mix:^Gordano (Messaging Suite )?Web Server v([^\\s]+)$)"
+        }
+    ]
+}

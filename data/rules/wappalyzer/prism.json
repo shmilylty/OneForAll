@@ -1,0 +1,10 @@
+{
+    "name": "Prism",
+    "website": "http://prismjs.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "prism\\.js"
+        }
+    ]
+}

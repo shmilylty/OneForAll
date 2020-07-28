@@ -1,0 +1,14 @@
+{
+    "name": "ownCloud",
+    "website": "https://owncloud.org",
+    "matches": [
+        {
+            "regexp": "<a href=\"https://owncloud\\.com\" target=\"_blank\">ownCloud Inc\\.</a><br/>Your Cloud, Your Data, Your Way!"
+        },
+        {
+            "search": "meta[apple-itunes-app]",
+            "regexp": "app-id=543672169"
+        }
+    ],
+    "implies": "PHP"
+}

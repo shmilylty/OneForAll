@@ -1,0 +1,22 @@
+{
+    "name": "HttpFileServer",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "You can use HFS (HTTP File Server) to send and receive files. Access your remote files, over the network.",
+    "website": "http://www.rejetto.com/hfs/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<div id=footer>[\\s]+<a href=\"http:\\/\\/www\\.rejetto\\.com\\/hfs\\/\">HttpFileServer ([^<]+)<\\/a>[\\s]+<br \\/>Servertime)",
+            "offset": 1
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^HFS (\\d\\.\\d.+)$)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:^HFS )",
+            "search": "headers[server]"
+        }
+    ]
+}

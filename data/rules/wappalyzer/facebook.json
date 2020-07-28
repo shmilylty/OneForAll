@@ -1,0 +1,10 @@
+{
+    "name": "Facebook",
+    "website": "http://facebook.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "//connect\\.facebook\\.net/[^/]*/[a-z]*\\.js"
+        }
+    ]
+}

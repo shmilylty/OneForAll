@@ -1,0 +1,11 @@
+{
+    "name": "TP-Link TL-WR740Nv2",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "TP-Link TL-WR740Nv2"
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    "name": "PageAdmin",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "content=\"PageAdmin CMS\""
+        },
+        {
+            "search": "body",
+            "text": "/e/images/favicon.ico"
+        }
+    ]
+}

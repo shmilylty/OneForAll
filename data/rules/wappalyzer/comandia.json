@@ -1,0 +1,9 @@
+{
+    "name": "Comandia",
+    "website": "http://comandia.com",
+    "matches": [
+        {
+            "regexp": "<link[^>]+=['\"]//cdn\\.mycomandia\\.com"
+        }
+    ]
+}

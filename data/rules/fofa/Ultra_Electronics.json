@@ -1,0 +1,15 @@
+{
+    "name": "Ultra_Electronics",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "/preauth/login.cgi"
+        },
+        {
+            "search": "body",
+            "text": "/preauth/style.css"
+        }
+    ]
+}

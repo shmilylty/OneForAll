@@ -1,0 +1,19 @@
+{
+    "name": "Avaya-Secure-Router",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "<b>About Avaya Secure Router</b>"
+        },
+        {
+            "search": "body",
+            "text": "<span id=\"guiname\">Avaya Secure Router"
+        },
+        {
+            "search": "headers",
+            "text": "Avaya Http Server"
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "name": "Zeuscart",
+    "website": "http://zeuscart.com",
+    "matches": [
+        {
+            "regexp": "<form name=\"product\" method=\"post\" action=\"[^\"]+\\?do=addtocart&prodid=\\d+\"(?!<\\/form>.)+<input type=\"hidden\" name=\"addtocart\" value=\"\\d+\">"
+        }
+    ],
+    "implies": "PHP"
+}

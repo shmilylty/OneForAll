@@ -1,0 +1,10 @@
+{
+    "name": "Wowza Media Server",
+    "website": "http://www.wowza.com",
+    "matches": [
+        {
+            "regexp": "<title>Wowza Media Server \\d+ ((?:\\w+ Edition )?\\d+\\.[\\d\\.]+(?: build\\d+)?)?",
+            "offset": 1
+        }
+    ]
+}

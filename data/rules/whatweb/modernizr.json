@@ -1,0 +1,16 @@
+{
+    "name": "Modernizr",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Modernizr adds classes to the <html> element which allow you to target specific browser functionality in your stylesheet. You don't actually need to write any Javascript to use it. [JavaScript]",
+    "website": "http://www.modernizr.com/",
+    "matches": [
+        {
+            "regexp": "(?i-mx:<script [^>]*src=[\"'][^>]*modernizr[^>]*\\.js)"
+        },
+        {
+            "regexp": "(?i-mx:<script [^>]*src=[\"'][^>]*modernizr-([^>]+)\\.js)",
+            "offset": 1
+        }
+    ]
+}

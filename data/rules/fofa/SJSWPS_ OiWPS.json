@@ -1,0 +1,15 @@
+{
+    "name": "SJSWPS_ OiWPS",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "Sun-Java-System-Web-Proxy-Server"
+        },
+        {
+            "search": "headers",
+            "text": "Oracle-iPlanet-Proxy-Server"
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+{
+    "name": "Dell-Printer",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "Dell Laser Printer"
+        }
+    ]
+}

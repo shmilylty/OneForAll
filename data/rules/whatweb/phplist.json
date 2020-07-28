@@ -1,0 +1,26 @@
+{
+    "name": "phplist",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "phplist is the world's most popular open source email campaign manager.",
+    "website": "http://www.phplist.com/",
+    "matches": [
+        {
+            "text": "<html><head><title>Nothing here</title></head><body>"
+        },
+        {
+            "text": "<p>You probably want to be <a href=\"../\">here</a> or <a href=\"admin/\">here</a>.</p>"
+        },
+        {
+            "text": "<meta name=\"Author\" content=\"Michiel Dethmers - http://www.phplist.com\" />"
+        },
+        {
+            "regexp": "(?-mix:<meta name=\"Powered-By\" content=\"phplist version ([^\"]+)\" \\/>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<span class=\"urhere\">phplist powered by <\\/span><a class=\"urhere\" href=\"http:\\/\\/www\\.phplist\\.com\" target=\"_blank\">phplist<\\/a> - version ([^<]+)<\\/td>)",
+            "offset": 1
+        }
+    ]
+}

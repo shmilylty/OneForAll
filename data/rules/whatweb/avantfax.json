@@ -1,0 +1,23 @@
+{
+    "name": "AvantFAX",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "AvantFAX is a web application for managing faxes on HylaFAX fax servers.",
+    "website": "http://avantfax.com/",
+    "matches": [
+        {
+            "text": "<meta name=\"description\" content=\"Web 2.0 HylaFAX management\" />"
+        },
+        {
+            "text": "</label><br /><br /><input type=\"password\" name=\"password\" id=\"password\" style=\"width: 12em\" maxlength=\"15\" /></p><br />"
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:AvantFAX=[a-z\\d]{26}; path=\\/)"
+        },
+        {
+            "regexp": "(?-mix:<p><a href=\"http:\\/\\/www\\.avantfax\\.com\" target=\"_blank\"><img src=\"images\\/avantfax-big\\.png\" border=\"0\" alt=\"AvantFAX\" \\/><\\/a><\\/p>[\\s]+<p align=\"center\">([^\\s^<]+)<\\/p>)",
+            "offset": 1
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    "name": "reviewboard",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "/static/rb/images/delete"
+        },
+        {
+            "search": "headers",
+            "text": "rbsessionid"
+        }
+    ]
+}

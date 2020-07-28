@@ -1,0 +1,11 @@
+{
+    "name": "\u4e91\u9501",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "yunsuo_session_verify"
+        }
+    ]
+}

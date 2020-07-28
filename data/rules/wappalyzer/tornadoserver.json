@@ -1,0 +1,11 @@
+{
+    "name": "TornadoServer",
+    "website": "http://tornadoweb.org",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "TornadoServer(?:/([\\d.]+))?",
+            "offset": 1
+        }
+    ]
+}

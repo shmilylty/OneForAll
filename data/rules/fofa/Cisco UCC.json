@@ -1,0 +1,16 @@
+{
+    "name": "Cisco UCC",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "Cisco Unified Contact Center"
+        },
+        {
+            "search": "headers",
+            "text": "cisco"
+        }
+    ],
+    "condition": "0 and 1"
+}

@@ -1,0 +1,15 @@
+{
+    "name": "FreeNAS",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "title=\"Welcome to FreeNAS"
+        },
+        {
+            "search": "body",
+            "text": "/images/ui/freenas-logo.png"
+        }
+    ]
+}

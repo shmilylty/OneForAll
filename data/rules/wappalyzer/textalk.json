@@ -1,0 +1,10 @@
+{
+    "name": "Textalk",
+    "website": "https://www.textalk.se",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "Textalk Webshop"
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "name": "Rubicon Project",
+    "website": "http://rubiconproject.com/",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "https?://[^/]*\\.rubiconproject\\.com"
+        }
+    ]
+}

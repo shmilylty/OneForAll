@@ -1,0 +1,15 @@
+{
+    "name": "IIS",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "Microsoft-IIS"
+        },
+        {
+            "search": "headers",
+            "text": "X-Powered-By: WAF/2.0"
+        }
+    ]
+}

@@ -1,0 +1,36 @@
+{
+    "name": "phpBB",
+    "author": "Andrew Horton",
+    "version": "0.3",
+    "description": "phpBB is a free forum",
+    "website": "http://phpbb.org/",
+    "matches": [
+        {
+            "text": "<!-- link rel=\"stylesheet\" href=\"templates/subSilver/subSilver.css"
+        },
+        {
+            "text": "/images/logo_phpBB.gif",
+            "certainty": 75
+        },
+        {
+            "text": "We request you retain the full copyright notice below including the link to www.phpbb.com."
+        },
+        {
+            "name": "Powered by...",
+            "regexp": "(?-mix:Powered by <a href=\"http:\\/\\/www.phpbb.com\\/\"( target=\"_phpbb\")?( class=\"copyright\")?>phpBB<\\/a>[ ]+&copy;[ 0-9,\\.]+ phpBB Group)"
+        },
+        {
+            "name": "folder icons",
+            "regexp": "(?-mix:<td width=\"20\" align=\"center\"><img src=\"[^\"]+images\\/folder_new_big.gif\" alt=\"New posts\"\\/><\\/td>)"
+        },
+        {
+            "name": "In total there are x users online ::",
+            "regexp": "(?-mix:In total there are <b>[0-9]+<\\/b> users online :: [0-9]+ Registered, [0-9]+ Hidden and [0-9]+ Guests)"
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:phpbb([\\d])mysql_(data=a%3A|sid=[a-f\\d]{32};))",
+            "offset": 1
+        }
+    ]
+}

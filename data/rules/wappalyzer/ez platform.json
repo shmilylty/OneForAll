@@ -1,0 +1,11 @@
+{
+    "name": "eZ Platform",
+    "website": "https://ezplatform.com/",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "eZ Platform"
+        }
+    ],
+    "implies": "Symfony"
+}

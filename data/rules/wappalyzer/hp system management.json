@@ -1,0 +1,10 @@
+{
+    "name": "HP System Management",
+    "website": "http://hp.com",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "HP System Management"
+        }
+    ]
+}

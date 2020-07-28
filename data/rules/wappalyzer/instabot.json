@@ -1,0 +1,10 @@
+{
+    "name": "Instabot",
+    "website": "https://instabot.io/",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "/rokoInstabot\\.js"
+        }
+    ]
+}

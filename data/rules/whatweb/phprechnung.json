@@ -1,0 +1,20 @@
+{
+    "name": "phpRechnung",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "phpRechnung is easy-to-use Web-based multilingual accounting software",
+    "website": "http://www.loenshotel.de/phpRechnung/",
+    "matches": [
+        {
+            "text": "<a class='slink' title='phpInvoice Home' href='http://www.ecorak.de/phpRechnung/' target='_blank'>"
+        },
+        {
+            "regexp": "(?-mix:<title>phpRechnung ([^-]+) - Login<\\/title>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<title>phpInvoice ([^-]+) - Login<\\/title>)",
+            "offset": 1
+        }
+    ]
+}

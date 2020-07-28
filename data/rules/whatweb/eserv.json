@@ -1,0 +1,22 @@
+{
+    "name": "Eserv",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Eserv - Mail Server - SMTP/POP3/IMAP/HTTP",
+    "website": "http://www.eserv.ru/",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Eserv\\/([^\\s]+))",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<meta name=\"generator\" content=\"Eserv\\/([^\\s^\"]+)\" \\/>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<span id='powered_by'>[^<]+<a href=\"http:\\/\\/www\\.eserv\\.ru\\/\"><span itemprop=\"name\">Eserv<\\/span><\\/a>\\/([^\\s]+))",
+            "offset": 1
+        }
+    ]
+}

@@ -1,0 +1,19 @@
+{
+    "name": "IQeye-Netcam",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "IQEYE: Live Images"
+        },
+        {
+            "search": "body",
+            "text": "content=\"Brian Lau, IQinVision"
+        },
+        {
+            "search": "body",
+            "text": "loc = \"iqeyevid.html"
+        }
+    ]
+}

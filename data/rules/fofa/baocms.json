@@ -1,0 +1,15 @@
+{
+    "name": "baocms",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "content=\"BAOCMS"
+        },
+        {
+            "search": "title",
+            "regexp": "baocms"
+        }
+    ]
+}

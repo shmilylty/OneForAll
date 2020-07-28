@@ -1,0 +1,15 @@
+{
+    "name": "HUAWEI Inner Web",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "HUAWEI Inner Web"
+        },
+        {
+            "search": "body",
+            "text": "hidden_frame.html"
+        }
+    ]
+}

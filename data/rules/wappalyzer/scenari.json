@@ -1,0 +1,16 @@
+{
+    "name": "Scenari",
+    "website": "https://demo.scenari.site",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "^Roadiz ?(?:master|develop)? v?[0-9\\.]+ - Scenari v?([0-9\\.]+)",
+            "offset": 1
+        }
+    ],
+    "implies": [
+        "Roadiz CMS",
+        "PHP",
+        "Symfony"
+    ]
+}

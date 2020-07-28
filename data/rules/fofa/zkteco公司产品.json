@@ -1,0 +1,19 @@
+{
+    "name": "zkteco\u516c\u53f8\u4ea7\u54c1",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "/media/images/ZKECO16.ico"
+        },
+        {
+            "search": "headers",
+            "text": "sessionidadms"
+        },
+        {
+            "search": "body",
+            "text": "ZKTeco Inc. All Rights Reserved"
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "name": "NetSuite",
+    "website": "http://netsuite.com",
+    "matches": [
+        {
+            "search": "cookies[NS_VER]",
+            "regexp": ".*"
+        }
+    ]
+}

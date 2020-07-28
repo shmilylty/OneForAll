@@ -1,0 +1,10 @@
+{
+    "name": "SoftTr",
+    "website": "http://www.softtr.com",
+    "matches": [
+        {
+            "search": "meta[author]",
+            "regexp": "SoftTr E-Ticaret Sitesi Yaz\u0131l\u0131m\u0131"
+        }
+    ]
+}

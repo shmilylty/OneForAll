@@ -1,0 +1,10 @@
+{
+    "name": "TrackJs",
+    "website": "http://trackjs.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "tracker\\.js"
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    "name": "Storm",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "Storm UI"
+        },
+        {
+            "search": "body",
+            "text": "stormtimestr"
+        }
+    ]
+}

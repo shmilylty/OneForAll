@@ -1,0 +1,48 @@
+{
+    "name": "My-WebCamXP-Server",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "WebCamXP web interface",
+    "website": "http://www.webcamxp.com",
+    "matches": [
+        {
+            "text": "<html><head><title>my webcamXP server!</title>"
+        },
+        {
+            "text": "\t\t\t<h1><span>webcamXP 5</span></h1>"
+        },
+        {
+            "text": "newWindow = window.open(camstr, winstr, 'toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=' + width + ',height=' + height);"
+        },
+        {
+            "text": "<br><br><table border=\"1\" cellpadding=\"0\" cellspacing=\"0\" bordercolor=\"#579A48\"><tr><td><a href=\"http://www.webcamXP.com\"><img src=\"http://www.darkwet.net/banners/webcamxp2.gif\" width=\"88\" height=\"31\" border=\"0\"></a>"
+        },
+        {
+            "text": "<html><head><title>webcamXP :: unauthorized access</title></head>"
+        },
+        {
+            "regexp": "(?-mix:<meta name=\"generator\" content=\"webcamXP [^\"]{0,15}v([\\d\\.]+)\">)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:mXP.com\" target=\"_blank\">webcamXP 5<\\/a> v([\\d\\.]+))",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:powered by <a href=\"http:\\/\\/www.webcamXP.com\" target=\"_blank\">webcamXP<\\/a>[\\ \\d]* v([\\d\\.a-z\\ ]+)<\\/div>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<\\/td><\\/tr><\\/table><br>powered by webcamXP PRO[\\ \\d]* v([\\d\\.]+)<br><br><br><\\/font><\\/center><\\/body><\\/html>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:\t\t\tpowered by <a href=\"http:\\/\\/www.webcamxp.com\" title=\"www.webcamxp.com\">webcamxp 5<\\/a> v([\\d\\.]+))",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:powered by <a href=\"http:\\/\\/www.webcamXP.com\" target=\"_blank\">webcamXP 5<\\/a> v([\\d\\.]+)<\\/a>)",
+            "offset": 1
+        }
+    ]
+}

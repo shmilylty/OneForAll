@@ -1,0 +1,25 @@
+{
+    "name": "Ultimate-Bulletin-Board",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Since 1997, thousands of websites have chosen UBB for their forum software solution. With the integrated Portal and Photo Gallery (UBB.Gallery) you can create your entire website using UBB without the need to buy anything else",
+    "website": "http://ubbcentral.com/",
+    "matches": [
+        {
+            "certainty": 75,
+            "ghdb": "filetype:cgi inurl:/ultimatebb.cgi"
+        },
+        {
+            "regexp": "(?-mix:<meta name=\"generator\" content=\"UBB\\.threads ([\\d\\.]+)\" \\/>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<center>Powered by <a target=\"_blank\" style=\"TEXT-DECORATION: none; COLOR: #000066; FONT-SIZE: 10px\" href=\"http:\\/\\/www.php121.com\"><U>PHP121<\\/U><\\/a> v([\\d\\.]+)<\\/center>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<a href=\"http:\\/\\/www.groupee.com\\/landing\\/goto\\.php\\?a=ubb\\.classic\">Powered by UBB.classic&trade;[\\s]+([\\d\\.]+)(<!-- [\\d\\.]+ -->)?<\\/a>)",
+            "offset": 1
+        }
+    ]
+}

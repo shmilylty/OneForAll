@@ -1,0 +1,9 @@
+{
+    "name": "ClickFunnels",
+    "website": "https://www.clickfunnels.com",
+    "matches": [
+        {
+            "regexp": "<meta property=\"cf:app_domain\" content=\"app\\.clickfunnels\\.com\""
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "name": "BigBangShop",
+    "website": "https://www.bigbangshop.com.br",
+    "matches": [
+        {
+            "search": "headers[x-server]",
+            "regexp": "BIGBANGSHOP"
+        }
+    ]
+}

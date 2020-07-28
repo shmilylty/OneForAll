@@ -1,0 +1,10 @@
+{
+    "name": "Mustache",
+    "website": "https://mustache.github.io",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "mustache(?:\\.min)?\\.js"
+        }
+    ]
+}

@@ -1,0 +1,13 @@
+{
+    "name": "Business Catalyst",
+    "website": "http://businesscatalyst.com",
+    "matches": [
+        {
+            "regexp": "<!-- BC_OBNW -->"
+        },
+        {
+            "search": "script",
+            "regexp": "CatalystScripts"
+        }
+    ]
+}

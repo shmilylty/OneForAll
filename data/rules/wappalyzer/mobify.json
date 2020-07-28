@@ -1,0 +1,10 @@
+{
+    "name": "Mobify",
+    "website": "https://www.mobify.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "//cdn\\.mobify\\.com/"
+        }
+    ]
+}

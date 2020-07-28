@@ -1,0 +1,11 @@
+{
+    "name": "Access-Control",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "Access-Control-Allow-Methods"
+        }
+    ]
+}

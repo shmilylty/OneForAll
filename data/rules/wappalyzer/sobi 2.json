@@ -1,0 +1,10 @@
+{
+    "name": "SOBI 2",
+    "website": "http://www.sigsiu.net/sobi2.html",
+    "matches": [
+        {
+            "regexp": "(?:<!-- start of Sigsiu Online Business Index|<div[^>]* class=\"sobi2)"
+        }
+    ],
+    "implies": "Joomla"
+}

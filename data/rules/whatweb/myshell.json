@@ -1,0 +1,16 @@
+{
+    "name": "MyShell",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "MyShell - PHP powered shell",
+    "website": null,
+    "matches": [
+        {
+            "text": "&nbsp;| ::::::::::&nbsp;<a href=\"http://www.digitart.net\" target=\"_blank\" style=\"text-decoration:none\"><b>MyShell</b> &copy;2001 Digitart Producciones</a>"
+        },
+        {
+            "regexp": "(?-mix:<title>MyShell ([\\d\\.]+ build [\\d]{8})<\\/title>)",
+            "offset": 1
+        }
+    ]
+}

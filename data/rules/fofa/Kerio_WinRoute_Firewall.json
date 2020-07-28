@@ -1,0 +1,15 @@
+{
+    "name": "Kerio_WinRoute_Firewall",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "Kerio WinRoute Firewall"
+        },
+        {
+            "search": "body",
+            "text": "style/bodyNonauth.css"
+        }
+    ]
+}

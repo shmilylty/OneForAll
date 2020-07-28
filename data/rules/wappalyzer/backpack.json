@@ -1,0 +1,11 @@
+{
+    "name": "Backpack",
+    "website": "https://backpackforlaravel.com",
+    "matches": [
+        {
+            "search": "cookies[backpack_session]",
+            "regexp": ".*"
+        }
+    ],
+    "implies": "Laravel"
+}

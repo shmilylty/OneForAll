@@ -1,0 +1,15 @@
+{
+    "name": "CameraLife",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "content=\"Camera Life"
+        },
+        {
+            "search": "body",
+            "text": "This site is powered by Camera Life"
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "name": "Snoobi",
+    "website": "http://www.snoobi.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "snoobi\\.com/snoop\\.php"
+        }
+    ]
+}

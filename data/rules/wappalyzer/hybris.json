@@ -1,0 +1,14 @@
+{
+    "name": "Hybris",
+    "website": "https://hybris.com",
+    "matches": [
+        {
+            "search": "cookies[_hybris]",
+            "regexp": ".*"
+        },
+        {
+            "regexp": "<[^>]+/(?:sys_master|hybr|_ui/(?:responsive/)?(?:desktop|common(?:/images|/img)?))/"
+        }
+    ],
+    "implies": "Java"
+}

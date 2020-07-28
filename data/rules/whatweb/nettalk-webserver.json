@@ -1,0 +1,18 @@
+{
+    "name": "NetTalk-WebServer",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "Webserver using NetTalk. NetTalk is the de-facto standard tool for TCP/IP networking in Clarion.",
+    "website": "http://www.capesoft.com/docs/NetTalk/nettalk.htm",
+    "matches": [
+        {
+            "regexp": "(?-mix:^NetTalk-WebServer)",
+            "search": "headers[server]"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^NetTalk-WebServer\\/([\\d\\.]+)$)",
+            "offset": 1
+        }
+    ]
+}

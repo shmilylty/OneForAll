@@ -1,0 +1,19 @@
+{
+    "name": "BugTracker.NET",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "href=\"btnet.css"
+        },
+        {
+            "search": "body",
+            "text": "valign=middle><a href=http://ifdefined.com/bugtrackernet.html>"
+        },
+        {
+            "search": "body",
+            "text": "<div class=logo>BugTracker.NET"
+        }
+    ]
+}

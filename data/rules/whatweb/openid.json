@@ -1,0 +1,13 @@
+{
+    "name": "OpenID",
+    "author": "Caleb Anderson",
+    "version": "0.1",
+    "description": "openid detection",
+    "website": null,
+    "matches": [
+        {
+            "name": "openid",
+            "regexp": "(?i-mx:<link [^>]*rel=['\"](openid\\.server|openid\\.delegate)['\"][^>]*>)"
+        }
+    ]
+}

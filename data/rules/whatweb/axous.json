@@ -1,0 +1,19 @@
+{
+    "name": "Axous",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Axous is an e-shop system for software venders.",
+    "website": "http://www.axous.com/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<meta name=\"generator\" content=\"Axous V([^\"]+)\" \\/>)"
+        },
+        {
+            "regexp": "(?-mix:Powered by <a href=\"http:\\/\\/www\\.axous\\.com\\/\" target=\"_blank\" title=\"Axous Shareware Shop\">Axous ([^\\s]+)<\\/a> &copy;)",
+            "offset": 1
+        },
+        {
+            "text": "<div class=\"tit2 tit3\">Products</div>"
+        }
+    ]
+}

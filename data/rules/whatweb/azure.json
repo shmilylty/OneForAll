@@ -1,0 +1,19 @@
+{
+    "name": "AzureCloud",
+    "author": "Bhavin Senjaliya <bhavin.senjaliya@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "Windows Azure cloud platform",
+    "website": "https://azure.microsoft.com/",
+    "matches": [
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:ARRAffinity)",
+            "name": "ARRAffinity cookie"
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:WAWebSiteSID)",
+            "name": "WAWebSiteSID cookie"
+        }
+    ]
+}

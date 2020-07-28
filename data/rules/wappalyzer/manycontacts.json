@@ -1,0 +1,10 @@
+{
+    "name": "ManyContacts",
+    "website": "http://www.manycontacts.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "\\/assets\\/js\\/manycontacts\\.min\\.js"
+        }
+    ]
+}

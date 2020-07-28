@@ -1,0 +1,10 @@
+{
+    "name": "Volusion (V2)",
+    "website": "https://www.volusion.com",
+    "matches": [
+        {
+            "regexp": "<body [^>]*data-vn-page-name"
+        }
+    ],
+    "implies": "AngularJS"
+}

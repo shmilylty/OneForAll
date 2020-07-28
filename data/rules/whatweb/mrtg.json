@@ -1,0 +1,30 @@
+{
+    "name": "MRTG",
+    "author": "Aung Khant <http://yehg.net/>, Andrew Horton",
+    "version": "0.2",
+    "description": "MRTG - Multi Router Traffic Grapher - http://oss.oetiker.ch/mrtg/",
+    "website": null,
+    "matches": [
+        {
+            "name": "Title",
+            "regexp": "(?i-mx:<TITLE>MRTG Index Page<\\/TITLE>)"
+        },
+        {
+            "name": "Logo in footer",
+            "regexp": "(?mi-x:HREF=\"http:\\/\\/oss.oetiker.ch\\/mrtg\\/\"><IMG[\\s]*BORDER=0 SRC=\"mrtg-l.png\")"
+        },
+        {
+            "name": "Logo in footer2",
+            "regexp": "(?mi-x:HREF=\"http:\\/\\/www.ee.ethz.ch\\/~oetiker\\/webtools\\/mrtg\\/\">.*src=mrtg-l.png alt=MRTG)"
+        },
+        {
+            "name": "Logo image",
+            "url": "/mrtg-l.png",
+            "md5": "241244d0d8845dcad7e891e84e79d63f"
+        },
+        {
+            "regexp": "(?mi-x:<title>MRTG Index Page.*version ([^<]+)<\\/font><\\/td>)",
+            "offset": 1
+        }
+    ]
+}

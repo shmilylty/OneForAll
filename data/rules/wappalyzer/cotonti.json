@@ -1,0 +1,11 @@
+{
+    "name": "Cotonti",
+    "website": "http://www.cotonti.com",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "Cotonti"
+        }
+    ],
+    "implies": "PHP"
+}

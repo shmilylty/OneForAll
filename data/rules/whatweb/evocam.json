@@ -1,0 +1,24 @@
+{
+    "name": "Evo-Cam",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "EvoCam is the ultimate webcam software for Mac OS X",
+    "website": "http://www.evological.com/evocam.html",
+    "matches": [
+        {
+            "regexp": "(?-mix:<title>EvoCam( \\d)*<\\/title>)"
+        },
+        {
+            "regexp": "(?-mix:<TITLE>EvoCam( Java| JavaScript)? Example Page<\\/TITLE>)"
+        },
+        {
+            "text": "Powered by <A HREF=\"http://www.evological.com/evocam.html\">EvoCam</A>"
+        },
+        {
+            "regexp": "(?-mix:<applet archive=\"evocam.jar\" code=\"com.evological.evocam.class\")"
+        },
+        {
+            "regexp": "(?i-mx:<param name=\"archive\" value=\"evocam.jar\">)"
+        }
+    ]
+}

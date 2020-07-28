@@ -1,0 +1,21 @@
+{
+    "name": "Glossword",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "Glossword helps you to create and publish online multilingual dictionary, glossary, or reference.",
+    "website": "http://glossword.biz/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<meta name=\"generator\" content=\"Glossword version ([\\d\\.\\-a-z]+)\" \\/>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<meta content=\"Glossword version ([\\d\\.\\-a-z]+)\" name=\"generator\" \\/>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<p>Powered by <a href=\"http:\\/\\/glossword.info\\/\" style=\"text-decoration:underline\">Glossword<\\/a> ([\\d\\.]+)<\\/p>)",
+            "offset": 1
+        }
+    ]
+}

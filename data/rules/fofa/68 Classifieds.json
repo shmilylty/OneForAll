@@ -1,0 +1,16 @@
+{
+    "name": "68 Classifieds",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "powered by"
+        },
+        {
+            "search": "body",
+            "text": "68 Classifieds"
+        }
+    ],
+    "condition": "0 and 1"
+}

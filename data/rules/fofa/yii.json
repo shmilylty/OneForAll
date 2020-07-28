@@ -1,0 +1,11 @@
+{
+    "name": "yii",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "YII_CSRF_TOKEN"
+        }
+    ]
+}

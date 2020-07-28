@@ -1,0 +1,10 @@
+{
+    "name": "IBM WebSphere Commerce",
+    "website": "http://ibm.com/software/genservers/commerceproductline",
+    "matches": [
+        {
+            "regexp": "<(?:a|link|script)[^>]*(?:href|src)=\".*(/wcsstore/|webapp\\/wcs)"
+        }
+    ],
+    "implies": "Java"
+}

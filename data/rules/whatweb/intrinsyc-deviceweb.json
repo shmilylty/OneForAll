@@ -1,0 +1,14 @@
+{
+    "name": "Intrinsyc-deviceWEB",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Intrinsyc deviceWEB - a web server specialized for embedded devices",
+    "website": "http://www.intrinsyc.com/",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Intrinsyc deviceWEB v([\\d\\.]+)$)",
+            "offset": 1
+        }
+    ]
+}

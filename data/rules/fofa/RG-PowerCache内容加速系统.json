@@ -1,0 +1,11 @@
+{
+    "name": "RG-PowerCache\u5185\u5bb9\u52a0\u901f\u7cfb\u7edf",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "RG-PowerCache"
+        }
+    ]
+}

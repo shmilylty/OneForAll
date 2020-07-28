@@ -1,0 +1,11 @@
+{
+    "name": "Comcast_Business",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "cmn/css/common-min.css"
+        }
+    ]
+}

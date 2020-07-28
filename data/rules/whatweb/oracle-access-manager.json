@@ -1,0 +1,23 @@
+{
+    "name": "Oracle-Access-Manager",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Oracle Access Manager - Comprehensive Access Management for Applications, Data, and Web Services -H omepage: http://www.oracle.com/us/products/middleware/identity-management/access-management/overview/index.html",
+    "website": null,
+    "matches": [
+        {
+            "regexp": "(?-mix:<p id=\"footerVersion\">Oracle Access Manager Version: ([^\\s]+)<\\/p>)",
+            "offset": 1
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:ObSSOCookie=[^;]+;)",
+            "certainty": 75
+        },
+        {
+            "search": "headers[location]",
+            "regexp": "(?-mix:obrareq\\.cgi)",
+            "certainty": 75
+        }
+    ]
+}

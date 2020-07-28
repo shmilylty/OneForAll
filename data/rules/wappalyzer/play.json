@@ -1,0 +1,11 @@
+{
+    "name": "Play",
+    "website": "https://www.playframework.com",
+    "matches": [
+        {
+            "search": "cookies[PLAY_SESSION]",
+            "regexp": ".*"
+        }
+    ],
+    "implies": "Scala"
+}

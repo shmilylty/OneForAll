@@ -1,0 +1,19 @@
+{
+    "name": "Apache-Archiva",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "Apache Archiva"
+        },
+        {
+            "search": "body",
+            "text": "/archiva.js"
+        },
+        {
+            "search": "body",
+            "text": "/archiva.css"
+        }
+    ]
+}

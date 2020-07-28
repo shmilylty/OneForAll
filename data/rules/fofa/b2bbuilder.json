@@ -1,0 +1,15 @@
+{
+    "name": "b2bbuilder",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "content=\"B2Bbuilder"
+        },
+        {
+            "search": "body",
+            "text": "translateButtonId = \"B2Bbuilder"
+        }
+    ]
+}

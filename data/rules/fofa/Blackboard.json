@@ -1,0 +1,15 @@
+{
+    "name": "Blackboard",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "X-Blackboard-Product"
+        },
+        {
+            "search": "headers",
+            "text": "X-Blackboard-Appserver"
+        }
+    ]
+}

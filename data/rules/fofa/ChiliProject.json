@@ -1,0 +1,19 @@
+{
+    "name": "ChiliProject",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "Powered by <a href=\"https://www.chiliproject.org/"
+        },
+        {
+            "search": "body",
+            "text": "content=\"ChiliProject"
+        },
+        {
+            "search": "headers",
+            "text": "_chiliproject_session="
+        }
+    ]
+}

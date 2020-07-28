@@ -1,0 +1,22 @@
+{
+    "name": "Forest-Blog",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "Forest Blog",
+    "website": "http://www.hostforest.co.uk/Products/blog.asp",
+    "matches": [
+        {
+            "regexp": "(?-mix:Powered [B|b]?y[:]? <a href=\"http:\\/\\/www.hostforest.co.uk\\/[^\"]*\"[^>]+title=\"Forest Blog\"[^>]*>)"
+        },
+        {
+            "text": "<title>Forest Blog Administration</title>"
+        },
+        {
+            "text": "\t\t\t<h1>Forest Blog Administration</h1>"
+        },
+        {
+            "regexp": "(?-mix:Powered [B|b]?y[:]? <a href=\"http:\\/\\/www.hostforest.co.uk\\/[^\"]*\"[^>]+title=\"Forest Blog\"[^>]*>Forest Blog<\\/a> v([\\d\\.]+))",
+            "offset": 1
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    "name": "destoon",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "<meta name=\"generator\" content=\"Destoon"
+        },
+        {
+            "search": "body",
+            "text": "destoon_moduleid"
+        }
+    ]
+}

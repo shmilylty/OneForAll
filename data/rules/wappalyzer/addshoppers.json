@@ -1,0 +1,10 @@
+{
+    "name": "AddShoppers",
+    "website": "http://www.addshoppers.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "cdn\\.shop\\.pe/widget/"
+        }
+    ]
+}

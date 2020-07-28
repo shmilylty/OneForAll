@@ -1,0 +1,11 @@
+{
+    "name": "\u5e15\u62c9\u8fea\u7edf\u4e00\u5b89\u5168\u7ba1\u7406\u548c\u7efc\u5408\u5ba1\u8ba1\u7cfb\u7edf",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "module/image/pldsec.css"
+        }
+    ]
+}

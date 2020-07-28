@@ -1,0 +1,12 @@
+{
+    "name": "VuePress",
+    "website": "https://vuepress.vuejs.org/",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "^VuePress(?: ([0-9.]+))?$",
+            "offset": 1
+        }
+    ],
+    "implies": "Vue.js"
+}

@@ -1,0 +1,21 @@
+{
+    "name": "ComersusCart",
+    "author": "Andrew Horton",
+    "version": "0.3",
+    "description": "ComersusCart is an open-source shopping cart using ASP. Comersus is an active server pages software for running a professional store, seamlessly integrated with the rest of your web site. Comersus Cart is free and it can be used for commercial purposes. Full source code included and compatible with Windows and Linux Servers.",
+    "website": "http://www.comersus.com/",
+    "matches": [
+        {
+            "regexp": "(?i-mx:<meta NAME=\"DESCRIPTION\" CONTENT=\"Powered by Comersus http:\\/\\/www.comersus.com\">)"
+        },
+        {
+            "regexp": "(?i-mx:<title>[^<]*Powered by Comersus ASP Shopping Cart Open Source[^<]*<\\/title>)"
+        },
+        {
+            "regexp": "(?i-mx:<a href=\"[^\"]*comersus_showCart.asp\">)"
+        },
+        {
+            "regexp": "(?i-mx:Powered by <[^>]*>Comersus<\\/a>)"
+        }
+    ]
+}

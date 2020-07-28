@@ -1,0 +1,11 @@
+{
+    "name": "Yaws",
+    "website": "http://yaws.hyber.org",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "Yaws(?: ([\\d.]+))?",
+            "offset": 1
+        }
+    ]
+}

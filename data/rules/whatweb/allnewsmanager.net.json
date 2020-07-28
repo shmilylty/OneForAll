@@ -1,0 +1,12 @@
+{
+    "name": "AllNewsManager_NET",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "AllNewsManager.NET is a free news/article management system for ASP.NET sites.",
+    "website": "http://www.allnewsmanager.net/allnewsmanager/homepage.aspx",
+    "matches": [
+        {
+            "regexp": "(?-mix:(kujeme|Powered by) <a id=\"[^\"]+\" href=\"http:\\/\\/www.allnewsmanager.net\">AllNewsManager.NET<\\/a>)"
+        }
+    ]
+}

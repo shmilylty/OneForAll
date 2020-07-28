@@ -1,0 +1,11 @@
+{
+    "name": "Electro-Industries-GaugeTech",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "EIG Embedded Web Server"
+        }
+    ]
+}

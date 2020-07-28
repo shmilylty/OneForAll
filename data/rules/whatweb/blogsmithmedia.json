@@ -1,0 +1,13 @@
+{
+    "name": "BlogSmithMedia",
+    "author": "Andrew Horton",
+    "version": "0.2",
+    "description": "Pro bloggers - www.blogsmithmedia.com",
+    "website": null,
+    "matches": [
+        {
+            "certainty": 75,
+            "regexp": "(?-mix:<script [^>]*\\\"http:\\/\\/www.blogsmithmedia.com)"
+        }
+    ]
+}

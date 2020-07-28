@@ -1,0 +1,19 @@
+{
+    "name": "SourceBans",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "SourceBans is a free global administration and banning system for Source engine based servers.",
+    "website": "http://www.sourcebans.net/",
+    "matches": [
+        {
+            "regexp": "(?-mix:\t\t<a href=\"http:\\/\\/www.sourcebans.net\" target=\"_blank\"><img src=\"images\\/sb.png\" alt=\"SourceBans\" border=\"0\" \\/><\\/a><br\\/>\\n\t\t<div id=\"footqversion\">Version ([\\d\\.]+) <\\/div>)",
+            "offset": 1
+        },
+        {
+            "text": "\t\t<a href=\"http://www.sourcebans.net\" target=\"_blank\"><img src=\"images/sb.png\" alt=\"SourceBans\" border=\"0\" /></a><br/>"
+        },
+        {
+            "regexp": "(?-mix:<div class='dbg' id='[0-9a-f]{7}'><span style='font-weight:bold'>Table '[a-z]+\\.sb_settings' doesn't exist<\\/span> <br \\/><br \\/><span>SQL Query type: <\\/span><span style='font-weight:bold'>EXECUTE<\\/span><span><br \\/><span>)"
+        }
+    ]
+}

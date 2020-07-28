@@ -1,0 +1,11 @@
+{
+    "name": "Wimax_CPE",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "Wimax CPE Configuration"
+        }
+    ]
+}

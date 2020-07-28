@@ -1,0 +1,33 @@
+{
+    "name": "CrushFTP",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "A full-scale FTP server by Ben Spink written in Java using the SWING user interface libraries. [Mac OS/Windows/Linux]",
+    "website": "http://www.crushftp.com/",
+    "matches": [
+        {
+            "certainty": 25,
+            "text": "<script type=\"text/javascript\" src=\"crushftp_functions.js\"></script>"
+        },
+        {
+            "regexp": "(?-mix:^CrushFTP )",
+            "search": "headers[server]"
+        },
+        {
+            "offset": 1,
+            "search": "headers[server]",
+            "regexp": "(?-mix:^CrushFTP (HTTP[\\d]? Server )?Version ([\\d\\.]+)$)"
+        },
+        {
+            "name": "CrushAuth Cookie",
+            "regexp": "(?-mix:^CrushAuth=)",
+            "search": "headers[set-cookie]"
+        },
+        {
+            "name": "WWW-Authenticate",
+            "search": "headers[www-authenticate]",
+            "regexp": "(?-mix:^Basic realm=\"CrushFTP Server Version ([\\d\\.]+)\"$)",
+            "offset": 1
+        }
+    ]
+}

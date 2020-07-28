@@ -1,0 +1,15 @@
+{
+    "name": "Axway-SecureTransport",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "SecureTransport"
+        },
+        {
+            "search": "title",
+            "regexp": "Welcome to SecureTransport"
+        }
+    ]
+}

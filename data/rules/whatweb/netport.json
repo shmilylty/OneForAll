@@ -1,0 +1,23 @@
+{
+    "name": "NetPort",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "NetPort server - used by several routers.",
+    "website": null,
+    "matches": [
+        {
+            "regexp": "(?-mix:^NetPort Software)",
+            "search": "headers[server]"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^NetPort Software ([^\\s]+)$)",
+            "offset": 1
+        },
+        {
+            "name": "Netport HTTP Header",
+            "regexp": "(?-mix:^Power by NetPort$)",
+            "search": "headers[netport]"
+        }
+    ]
+}

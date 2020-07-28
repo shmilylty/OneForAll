@@ -1,0 +1,15 @@
+{
+    "name": "Caudium",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "Caudium"
+        },
+        {
+            "search": "headers",
+            "text": "X-Got-Fish: Pike"
+        }
+    ]
+}

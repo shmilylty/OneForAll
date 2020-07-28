@@ -1,0 +1,13 @@
+{
+    "name": "Veoxa",
+    "website": "http://veoxa.com",
+    "matches": [
+        {
+            "regexp": "<img [^>]*src=\"[^\"]+tracking\\.veoxa\\.com"
+        },
+        {
+            "search": "script",
+            "regexp": "tracking\\.veoxa\\.com"
+        }
+    ]
+}

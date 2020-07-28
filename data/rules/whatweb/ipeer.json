@@ -1,0 +1,24 @@
+{
+    "name": "iPeer",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "iPeer - a web-based platform/database independent application to develop and deliver peer evaluations - Requires PHP",
+    "website": "http://ipeer.ctlt.ubc.ca/trac",
+    "matches": [
+        {
+            "regexp": "(?-mix:<title>iPeer V(\\d) with TeamMaker<\\/title>)",
+            "offset": 1
+        },
+        {
+            "text": "<h1 align=\"center\"><span class=\"footer\">Powered by iPeer and TeamMaker - Created by UBC and Rose-Hulman</span></h1>"
+        },
+        {
+            "regexp": "(?-mix:<span class=\"bannerText\"><span style='font-size: 120%;'>([^<]+)<\\/span>&nbsp;&nbsp;with TeamMaker<\\/span><\\/td>)",
+            "offset": 1
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:IPEER=[^;]+;)"
+        }
+    ]
+}

@@ -1,0 +1,18 @@
+{
+    "name": "OpenNMS",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "OpenNMS - Enterprise-Grade Network Management Application Platform",
+    "website": "http://www.opennms.com/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<h1 id=\"headerlogo\"><a href=\"[^\"]*index\\.jsp\"><img src=\"[^\"]*images\\/logo\\.png\" alt=\"OpenNMS Web Console Home\"\\/><\\/a><\\/h1>)"
+        },
+        {
+            "regexp": "(?-mix:<p>\\s+OpenNMS <a href=\"(support|help)\\/about\\.jsp\">Copyright<\\/a> &copy; 2002-(20[\\d]{2})\\s+)"
+        },
+        {
+            "regexp": "(?-mix:<p><input type=\"checkbox\" name=\"_(spring|acegi)_security_remember_me\"> Don't ask for my password for two weeks<\\/p>)"
+        }
+    ]
+}

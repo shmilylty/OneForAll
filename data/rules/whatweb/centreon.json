@@ -1,0 +1,22 @@
+{
+    "name": "Centreon",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "Centreon is a network, system, applicative supervision and monitoring tool, it is based upon Nagios.",
+    "website": "http://www.centreon.com/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<meta name=\"Generator\" content=\"Centreon - Copyright \\(C\\) 2005 - (20[\\d]{2}) Open Source Matters\\. All rights reserved\\.\" \\/>)"
+        },
+        {
+            "regexp": "(?-mix:<td id=\"LoginInvitcpy\" colspan=\"2\"><br \\/>&copy; 2005-(20[\\d]{2}) <a href=\"mailto:infos@centreon\\.com\">Centreon<\\/a><\\/td>)"
+        },
+        {
+            "text": "<td class=\"LoginInvitLogo\" colspan=\"2\"><img src=\"img/centreon.gif\" alt=\"Centreon Logo\" title=\"Centreon Logo\" style=\"\" /></td>"
+        },
+        {
+            "regexp": "(?-mix:<tr>[\\s]+<td class=\"LoginInvitVersion\"><br \\/>[\\s]+([^\\s^<]+)[\\s]+<\\/td>[\\s]+<td class=\"LoginInvitDate\"><br \\/>)",
+            "offset": 1
+        }
+    ]
+}

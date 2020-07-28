@@ -1,0 +1,13 @@
+{
+    "name": "Pure CSS",
+    "website": "http://purecss.io",
+    "matches": [
+        {
+            "regexp": "<link[^>]+(?:([\\d.])+/)?pure(?:-min)?\\.css",
+            "offset": 1
+        },
+        {
+            "regexp": "<div[^>]+class=\"[^\"]*pure-u-(?:sm-|md-|lg-|xl-)?\\d-\\d"
+        }
+    ]
+}

@@ -1,0 +1,19 @@
+{
+    "name": "zabbix",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "images/general/zabbix.ico"
+        },
+        {
+            "search": "headers",
+            "text": "zbx_sessionid"
+        },
+        {
+            "search": "body",
+            "text": "meta name=\"Author\" content=\"Zabbix SIA\""
+        }
+    ]
+}

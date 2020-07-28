@@ -1,0 +1,11 @@
+{
+    "name": "iWeb",
+    "website": "http://apple.com/ilife/iweb",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "^iWeb( [\\d.]+)?",
+            "offset": 1
+        }
+    ]
+}

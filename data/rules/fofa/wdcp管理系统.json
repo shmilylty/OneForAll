@@ -1,0 +1,15 @@
+{
+    "name": "wdcp\u7ba1\u7406\u7cfb\u7edf",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "wdcp\u670d\u52a1\u5668"
+        },
+        {
+            "search": "title",
+            "regexp": "lanmp_wdcp \u5b89\u88c5\u6210\u529f"
+        }
+    ]
+}

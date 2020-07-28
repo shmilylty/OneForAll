@@ -1,0 +1,23 @@
+{
+    "name": "ClipBucket",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "content=\"ClipBucket"
+        },
+        {
+            "search": "body",
+            "text": "<!-- ClipBucket"
+        },
+        {
+            "search": "body",
+            "text": "<!-- Forged by ClipBucket"
+        },
+        {
+            "search": "body",
+            "text": "href=\"http://clip-bucket.com/\">ClipBucket"
+        }
+    ]
+}

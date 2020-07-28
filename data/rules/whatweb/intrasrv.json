@@ -1,0 +1,14 @@
+{
+    "name": "Intrasrv",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "IntraSrv - Simple Web Server",
+    "website": "http://www.leighb.com/intrasrv.htm",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^intrasrv ([\\d\\.]+)$)",
+            "offset": 1
+        }
+    ]
+}

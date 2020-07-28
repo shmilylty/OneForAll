@@ -1,0 +1,11 @@
+{
+    "name": "\u5929\u878d\u4fe1TopFlow",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "\u5929\u878d\u4fe1TopFlow"
+        }
+    ]
+}

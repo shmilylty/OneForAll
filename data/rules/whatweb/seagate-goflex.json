@@ -1,0 +1,16 @@
+{
+    "name": "Seagate-GoFlex",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Seagate-GoFlex - centralized file storage with remote access via seagateshare.com",
+    "website": "http://www.seagate.com/home-entertainment/media-sharing-devices/goflex-home/",
+    "matches": [
+        {
+            "search": "headers[location]",
+            "regexp": "(?-mix:^https:\\/\\/www\\.seagateshare\\.com\\/\\?hipname=([^\\s^&]+))"
+        },
+        {
+            "regexp": "(?-mix:<input id=\"inSubdomain\" name=\"inSubdomain\" type=\"text\" maxlength=\"30\" size=\"23\" value=\"([^\\s^\"^>]*)\"><br><br>)"
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "name": "91App",
+    "website": "https://www.91app.com/",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "https\\:\\/\\/track\\.91app\\.io\\/track\\.js\\?"
+        }
+    ]
+}

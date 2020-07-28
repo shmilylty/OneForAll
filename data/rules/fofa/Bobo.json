@@ -1,0 +1,15 @@
+{
+    "name": "Bobo",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "Bobo-Exception-Line"
+        },
+        {
+            "search": "headers",
+            "text": "x-ksscommands"
+        }
+    ]
+}

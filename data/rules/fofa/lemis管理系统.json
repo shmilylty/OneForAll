@@ -1,0 +1,11 @@
+{
+    "name": "lemis\u7ba1\u7406\u7cfb\u7edf",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "lemis.WEB_APP_NAME"
+        }
+    ]
+}

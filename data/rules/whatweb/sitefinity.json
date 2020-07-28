@@ -1,0 +1,23 @@
+{
+    "name": "Sitefinity",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "sitefinity ASP.NET CMS",
+    "website": "http://www.sitefinity.com/",
+    "matches": [
+        {
+            "text": "href=\"http://www.sitefinity.com\" class=\"poweredBySitefinity\" title=\"Sitefinity ASP.NET CMS\">Powered by Sitefinity ASP.NET CMS</a></p>"
+        },
+        {
+            "text": "title=\"Sitefinity ASP.NET CMS\" class=\"poweredBySitefinity\" href=\"http://www.sitefinity.com\">Powered by Sitefinity ASP.NET CMS</a></p>"
+        },
+        {
+            "regexp": "(?-mix:<meta name=\"Generator\" content=\"Sitefinity ([\\d\\.:]{1,20}( [A-Z]+)?)\" \\/>)",
+            "offset": 1
+        },
+        {
+            "certainty": 75,
+            "regexp": "(?-mix:<link href=\"\\/[Ss]ite[Ff]inity\\/WebsiteTemplates\\/)"
+        }
+    ]
+}

@@ -1,0 +1,19 @@
+{
+    "name": "mymps",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "/css/mymps.css"
+        },
+        {
+            "search": "title",
+            "regexp": "mymps"
+        },
+        {
+            "search": "body",
+            "text": "content=\"mymps"
+        }
+    ]
+}

@@ -1,0 +1,23 @@
+{
+    "name": "bacula-web",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "Webacula"
+        },
+        {
+            "search": "title",
+            "regexp": "Bacula Web"
+        },
+        {
+            "search": "title",
+            "regexp": "Bacula-Web"
+        },
+        {
+            "search": "title",
+            "regexp": "bacula-web"
+        }
+    ]
+}

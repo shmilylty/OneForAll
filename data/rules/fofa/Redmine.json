@@ -1,0 +1,16 @@
+{
+    "name": "Redmine",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "Redmine"
+        },
+        {
+            "search": "body",
+            "text": "authenticity_token"
+        }
+    ],
+    "condition": "0 and 1"
+}

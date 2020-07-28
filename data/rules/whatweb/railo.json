@@ -1,0 +1,12 @@
+{
+    "name": "Railo",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Railo is an Open Source ColdFusion Markup Language (CFML) server.",
+    "website": "http://getrailo.com/",
+    "matches": [
+        {
+            "text": "<script language = \"JavaScript\" type=\"text/javascript\" src=\"/railo-context/form.cfm\"></script><script language = \"JavaScript\" type=\"text/javascript\">"
+        }
+    ]
+}

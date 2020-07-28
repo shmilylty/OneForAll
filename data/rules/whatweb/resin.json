@@ -1,0 +1,25 @@
+{
+    "name": "Resin",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.3",
+    "description": "Resin provides a reliable, fast Web server which can also be used as a load balancer. Resin can operate as a standalone server or as a fast servlet runner for IIS or Apache",
+    "website": "http://www.caucho.com/resin/admin/http-server.xtp",
+    "matches": [
+        {
+            "regexp": "(?-mix:^Resin)",
+            "search": "headers[server]"
+        },
+        {
+            "string": "Standalone",
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Resin\\/([^\\s]+))",
+            "offset": 1
+        },
+        {
+            "string": "Plugin",
+            "search": "headers[server]",
+            "regexp": "(?-mix:[\\s]+Resin\\/([^\\s]+))",
+            "offset": 1
+        }
+    ]
+}

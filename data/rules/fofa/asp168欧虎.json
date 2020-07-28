@@ -1,0 +1,15 @@
+{
+    "name": "asp168\u6b27\u864e",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "upload/moban/images/style.css"
+        },
+        {
+            "search": "body",
+            "text": "default.php?mod=article&do=detail&tid"
+        }
+    ]
+}

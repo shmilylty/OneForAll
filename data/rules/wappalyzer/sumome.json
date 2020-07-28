@@ -1,0 +1,10 @@
+{
+    "name": "SumoMe",
+    "website": "http://sumome.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "load\\.sumome\\.com"
+        }
+    ]
+}

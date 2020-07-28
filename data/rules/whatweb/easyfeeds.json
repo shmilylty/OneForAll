@@ -1,0 +1,23 @@
+{
+    "name": "EasyFeeds",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "EasyFeeds is a powerful PHP based RSS reader and news aggregator.",
+    "website": "http://www.ktools.net/easyfeeds/",
+    "matches": [
+        {
+            "text": "<div id=\"feedslist\" align=\"left\" class=\"divTableCell\">"
+        },
+        {
+            "text": "<div style=\"float: left; height: 35px; width: 300px; margin: 45px 0px 0px 40px;\"></div>"
+        },
+        {
+            "regexp": "(?-mix:<td colspan=\"3\" style=\"font-size: 10px; text-align: left;\"><CENTER>Powered By:<br>EasyFeeds-([^<]+)<br \\/>Ktools.net LLC-<a href=\"http:\\/\\/www.ktools.net\" target=\"_blank\">http:\\/\\/www.ktools.net<\\/a><\\/CENTER><\\/td>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<CENTER>Powered By:<br>EasyFeeds-([^<]+)<br \\/>Ktools.net LLC-<a href=\"http:\\/\\/www.ktools.net\" target=\"_blank\">http:\\/\\/www.ktools.net<\\/a><\\/CENTER><\\/div>)",
+            "offset": 1
+        }
+    ]
+}

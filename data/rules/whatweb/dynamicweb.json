@@ -1,0 +1,22 @@
+{
+    "name": "DynamicWeb",
+    "author": "Guillaume Delacour <gui@iroqwa.org>",
+    "version": "0.1",
+    "description": "Dynamicweb is the All-In-One Platform for Content Management, Ecommerce, Digital Marketing and Integration.",
+    "website": "https://dynamicweb.com/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<meta name=\"generator\" content=\"Dynamicweb ([^\\s]+)\")",
+            "offset": 1
+        },
+        {
+            "certainty": 100,
+            "regexp": "(?-mix:\\(c\\) 1999-(20[\\d]{2}) Dynamicweb Software A\\/S)"
+        },
+        {
+            "certainty": 75,
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:Dynamicweb)"
+        }
+    ]
+}

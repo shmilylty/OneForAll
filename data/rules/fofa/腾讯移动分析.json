@@ -1,0 +1,11 @@
+{
+    "name": "\u817e\u8baf\u79fb\u52a8\u5206\u6790",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "tajs.qq.com"
+        }
+    ]
+}

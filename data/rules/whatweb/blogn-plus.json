@@ -1,0 +1,16 @@
+{
+    "name": "BlognPlus",
+    "author": "Brendan Coles <bcoles at gmail dot com>",
+    "version": "0.2",
+    "description": "BlognPlus",
+    "website": "http://www.blogn.org/",
+    "matches": [
+        {
+            "regexp": "(?i-mx:Powered by[\\s]*<a href=\"http:\\/\\/www.blogn.org[^>]*>BlognPlus)"
+        },
+        {
+            "regexp": "(?-mix:<meta name=\"generator\"[^>]*content=\"BlognPlus ([0-9\\.]+))",
+            "offset": 1
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+{
+    "name": "phpAlbum",
+    "website": "http://phpalbum.net",
+    "matches": [
+        {
+            "regexp": "<!--phpalbum ([.\\d\\s]+)-->",
+            "offset": 1
+        }
+    ],
+    "implies": "PHP"
+}

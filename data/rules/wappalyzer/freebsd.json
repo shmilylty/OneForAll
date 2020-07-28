@@ -1,0 +1,11 @@
+{
+    "name": "FreeBSD",
+    "website": "http://freebsd.org",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "FreeBSD(?: ([\\d.]+))?",
+            "offset": 1
+        }
+    ]
+}

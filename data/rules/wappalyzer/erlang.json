@@ -1,0 +1,11 @@
+{
+    "name": "Erlang",
+    "website": "http://www.erlang.org",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "Erlang( OTP/(?:[\\d.ABR-]+))?",
+            "offset": 1
+        }
+    ]
+}

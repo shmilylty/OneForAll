@@ -1,0 +1,15 @@
+{
+    "name": "\u51e1\u79d1",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "\u51e1\u79d1\u4e92\u8054\u7f51\u79d1\u6280\u80a1\u4efd\u6709\u9650\u516c\u53f8"
+        },
+        {
+            "search": "body",
+            "text": "content=\"\u51e1\u79d1"
+        }
+    ]
+}

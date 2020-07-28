@@ -1,0 +1,10 @@
+{
+    "name": "Kendo UI",
+    "website": "https://www.telerik.com/kendo-ui",
+    "matches": [
+        {
+            "regexp": "<link[^>]*\\s+href=[^>]*styles/kendo\\.common(?:\\.min)?\\.css[^>]*/>"
+        }
+    ],
+    "implies": "jQuery"
+}

@@ -1,0 +1,10 @@
+{
+    "name": "Silva",
+    "website": "http://silvacms.org",
+    "matches": [
+        {
+            "search": "headers[x-powered-by]",
+            "regexp": "SilvaCMS"
+        }
+    ]
+}

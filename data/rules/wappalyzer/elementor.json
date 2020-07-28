@@ -1,0 +1,24 @@
+{
+    "name": "Elementor",
+    "website": "https://elementor.com",
+    "matches": [
+        {
+            "regexp": "<div class=(?:\"|')[^\"']*elementor"
+        },
+        {
+            "regexp": "<section class=(?:\"|')[^\"']*elementor"
+        },
+        {
+            "regexp": "<link [^>]*href=(?:\"|')[^\"']*elementor/assets"
+        },
+        {
+            "regexp": "<link [^>]*href=(?:\"|')[^\"']*uploads/elementor/css"
+        },
+        {
+            "search": "script",
+            "regexp": "elementor/assets/js/[^/]+\\.js\\?ver=([\\d.]+)$",
+            "offset": 1
+        }
+    ],
+    "implies": "WordPress"
+}

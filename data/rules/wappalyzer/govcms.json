@@ -1,0 +1,12 @@
+{
+    "name": "govCMS",
+    "website": "https://www.govcms.gov.au",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "Drupal ([\\d]+) \\(http:\\/\\/drupal\\.org\\) \\+ govCMS",
+            "offset": 1
+        }
+    ],
+    "implies": "Drupal"
+}

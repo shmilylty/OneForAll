@@ -1,0 +1,36 @@
+{
+    "name": "Asterisk",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Asterisk - communications server software. Asterisk powers IP PBXs, VoIP gateways, call center ACDs and IVR systems.",
+    "website": "https://www.asterisk.org/asterisk",
+    "matches": [
+        {
+            "url": "/static/index.html",
+            "regexp": "(?-mix:Your browser should automatically go to the configuration page\\.[\\s]+<br>[\\s]+Or you can <a href=\"config\\/cfgbasic\\.html\">click here<\\/a>[\\s]+<br>)"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Asterisk\\/)"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Asterisk\\/(.+)$)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<!--[\\s]+\\* Asterisk-GUI -[\\s]+an Asterisk configuration interface)"
+        },
+        {
+            "text": "<link href=\"stylesheets/cfgbasic.css\" media=\"all\" rel=\"Stylesheet\" type=\"text/css\" />"
+        },
+        {
+            "url": "/static/config/index.html",
+            "text": "<div id=\"ACTIVE_CONTENT\"><noscript>You need to enable Javascript in your browser !!</noscript></div>"
+        },
+        {
+            "url": "/static/config/js/astman.js",
+            "regexp": "(?-mix:\t\tversion : '([^']+)' \\/\\/ gui version)"
+        }
+    ]
+}

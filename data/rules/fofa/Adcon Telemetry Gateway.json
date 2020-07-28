@@ -1,0 +1,15 @@
+{
+    "name": "Adcon Telemetry Gateway",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "addUPI"
+        },
+        {
+            "search": "body",
+            "text": "Adcon Telemetry GmbH;"
+        }
+    ]
+}

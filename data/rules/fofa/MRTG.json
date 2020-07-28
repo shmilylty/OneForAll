@@ -1,0 +1,19 @@
+{
+    "name": "MRTG",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "Command line is easier to read using \"View Page Properties\" of your browser"
+        },
+        {
+            "search": "title",
+            "regexp": "MRTG Index Page"
+        },
+        {
+            "search": "body",
+            "text": "commandline was: indexmaker"
+        }
+    ]
+}

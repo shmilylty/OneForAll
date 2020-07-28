@@ -1,0 +1,44 @@
+{
+    "name": "xt-Commerce",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "xt-Commerce is a powerfull Opensource e-Commerce Solution, written in php/SQL, with a smarty Template engine, and lots of features for a successfull e-commerce site.",
+    "website": "http://www.xt-commerce.com/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<!--\\n\tThis OnlineStore is brought to you by XT-Commerce, Community made shopping\\n\tXTC is a free open source e-Commerce System\\n\tcreated by Mario Zanier & Guido Winger and licensed under GNU\\/GPL.\\n\tInformation and contribution at http:\\/\\/www.xt-commerce.com\\n-->)"
+        },
+        {
+            "regexp": "(?-mix:<meta name=\"generator\" content=\"\\(c\\) by xt:Commerce v([^,]{1,15}) , http:\\/\\/www.xt-commerce.com\" \\/>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<meta name=\"generator\" content=\"\\(c\\) by (eComBASE V[\\d\\.]{1,15}), http:\\/\\/www.ecombase.de\\/\" \\/>)"
+        },
+        {
+            "regexp": "(?-mix:<meta name=\"generator\" content=\"\\(c\\) by (xtcModified v[\\d\\.]{1,15}) dated: [\\d]{4}-[\\d]{2}-[\\d]{2} , http:\\/\\/www.xtc-modified.org\" \\/>)"
+        },
+        {
+            "text": "<meta name=\"generator\" content=\"(c) by xtcModified , http://www.xtc-modified.org\" />",
+            "module": "xtcModified"
+        },
+        {
+            "text": "<meta name=\"generator\" content=\"(c) by xtcModified ----- http://www.xtc-modified.org\" />",
+            "module": "xtcModified"
+        },
+        {
+            "regexp": "(?-mix:<div class=\"copyright\">eCommerce Engine &copy; [\\d]{4} <a href=\"http:\\/\\/www.xt-commerce.com[\\/]?\" target=\"_blank\">xt:Commerce Shopsoftware<\\/a>)"
+        },
+        {
+            "regexp": "(?-mix:<div class=\"copyright\"><a rel=\"follow\" href=\"http:\\/\\/[^>^\"]*\\/ecombase.php\" title=\"eComBASE licence\">eComBASE<\\/a> &copy; [\\d]{4} based on )",
+            "module": "eComBASE"
+        },
+        {
+            "regexp": "(?-mix:<div class=\"copyright\"><a href=\"http:\\/\\/www.xtc-modified.org\" target=\"_blank\">(xtcModified v[\\d\\.]{1,15}) dated: [\\d]{4}-[\\d]{2}-[\\d]{2}<\\/a>)"
+        },
+        {
+            "text": "<div class=\"copyright\"><a href=\"http://www.xtc-modified.org\" target=\"_blank\">xtcModified</a>",
+            "module": "xtcModified"
+        }
+    ]
+}

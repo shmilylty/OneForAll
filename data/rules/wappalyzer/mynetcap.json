@@ -1,0 +1,10 @@
+{
+    "name": "Mynetcap",
+    "website": "http://www.netcap-creation.fr",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "Mynetcap"
+        }
+    ]
+}

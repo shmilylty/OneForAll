@@ -1,0 +1,10 @@
+{
+    "name": "PANSITE",
+    "website": "http://panvision.de/Produkte/Content_Management/index.asp",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "PANSITE"
+        }
+    ]
+}

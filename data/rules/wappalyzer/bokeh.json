@@ -1,0 +1,11 @@
+{
+    "name": "Bokeh",
+    "website": "https://bokeh.org",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "bokeh.*\\.js"
+        }
+    ],
+    "implies": "Python"
+}

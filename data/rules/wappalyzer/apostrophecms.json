@@ -1,0 +1,10 @@
+{
+    "name": "ApostropheCMS",
+    "website": "http://apostrophecms.org",
+    "matches": [
+        {
+            "regexp": "<[^>]+data-apos-refreshable[^>]"
+        }
+    ],
+    "implies": "Node.js"
+}

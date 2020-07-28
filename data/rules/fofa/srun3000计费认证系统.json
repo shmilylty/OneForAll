@@ -1,0 +1,11 @@
+{
+    "name": "srun3000\u8ba1\u8d39\u8ba4\u8bc1\u7cfb\u7edf",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "srun3000"
+        }
+    ]
+}

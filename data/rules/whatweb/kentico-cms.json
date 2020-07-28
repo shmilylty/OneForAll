@@ -1,0 +1,38 @@
+{
+    "name": "Kentico-CMS",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "Kentico CMS for ASP.NET - flexible, all-in-one solution for web developers",
+    "website": "http://www.kentico.com/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<\\/title><meta name=\"generator\" content=\"Kentico CMS [^\\(^>]{1,5} \\(build ([\\d\\.]{1,10})\\) [^\"^>]*\" \\/>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:2fCMSAdministration.aspx\" id=\"form1\" class=\"logon-page\")",
+            "name": "Admin-Login-Page",
+            "certainty": 100
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:CMSCsrfCookie)",
+            "name": "CMSCsrfCookie cookie"
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:CMSCurrentTheme)",
+            "name": "CMSCurrentTheme cookie"
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:CMSPreferredCulture)",
+            "name": "CMSPreferredCulture cookie"
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:CMSCsrfCookie)",
+            "name": "CMSCsrfCookie cookie"
+        }
+    ]
+}

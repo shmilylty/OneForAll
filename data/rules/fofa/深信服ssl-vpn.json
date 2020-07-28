@@ -1,0 +1,15 @@
+{
+    "name": "\u6df1\u4fe1\u670dssl-vpn",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "login_psw.csp"
+        },
+        {
+            "search": "headers",
+            "text": "TWFID"
+        }
+    ]
+}

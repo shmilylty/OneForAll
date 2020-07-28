@@ -1,0 +1,10 @@
+{
+    "name": "Mozard Suite",
+    "website": "http://mozard.nl",
+    "matches": [
+        {
+            "search": "meta[author]",
+            "regexp": "Mozard"
+        }
+    ]
+}

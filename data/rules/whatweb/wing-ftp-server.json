@@ -1,0 +1,26 @@
+{
+    "name": "Wing-FTP-Server",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Wing FTP server is a secure multi-protocol file server(FTP, HTTP, FTPS, HTTPS, SFTP) for Windows, Linux, Mac OSX and Solaris.",
+    "website": "http://www.wftpserver.com/",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Wing FTP Server\\/([\\d\\.]+)\\(([^\\)]*)\\)$)"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Wing FTP Server\\(([^\\)]*)\\)$)"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Wing FTP Server\\/([\\d\\.]+)\\(([^\\)]*)\\)$)",
+            "offset": 1
+        },
+        {
+            "url": "/help_javascript.htm",
+            "text": "<p>JavaScript is a scripting language that works with your browser to create interactive elements in web pages. The web client depend on JavaScript to function properly. </p>"
+        }
+    ]
+}

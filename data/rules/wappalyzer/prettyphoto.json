@@ -1,0 +1,14 @@
+{
+    "name": "prettyPhoto",
+    "website": "http://no-margin-for-errors.com/projects/prettyphoto-jquery-lightbox-clone/",
+    "matches": [
+        {
+            "regexp": "(?:<link [^>]*href=\"[^\"]*prettyPhoto(?:\\.min)?\\.css|<a [^>]*rel=\"prettyPhoto)"
+        },
+        {
+            "search": "script",
+            "regexp": "jquery\\.prettyPhoto\\.js"
+        }
+    ],
+    "implies": "jQuery"
+}

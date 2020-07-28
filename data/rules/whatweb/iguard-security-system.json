@@ -1,0 +1,23 @@
+{
+    "name": "iGuard-Security-System",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.3",
+    "description": "Lucky Technology iGuard security system, based on smart card and biometric fingerprint technology.",
+    "website": "http://www.lucky-tech.com/p1.php",
+    "matches": [
+        {
+            "text": "\t<TITLE>iGuard Fingerprint Security System</TITLE>"
+        },
+        {
+            "regexp": "(?-mix:\t<meta content=\"Lucky-Tech iGuard ([\\d\\.]{1,5})\" name=\"GENERATOR\">)"
+        },
+        {
+            "url": "/Admins/Content.vtml",
+            "regexp": "(?-mix:iGuard Security[^<]+<\\/td><\\/tr><tr><td>Firmware Version<\\/td><td>([^<]+)<\\/td>)"
+        },
+        {
+            "url": "/Admins/Content.vtml",
+            "regexp": "(?-mix:<tr><td>Registered Automatch<\\/td><td>([^<]+)<\\/td><\\/tr>)"
+        }
+    ]
+}

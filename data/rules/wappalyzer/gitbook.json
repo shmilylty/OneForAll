@@ -1,0 +1,11 @@
+{
+    "name": "GitBook",
+    "website": "https://www.gitbook.com",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "GitBook ([\\d.]+)?",
+            "offset": 1
+        }
+    ]
+}

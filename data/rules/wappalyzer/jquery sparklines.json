@@ -1,0 +1,11 @@
+{
+    "name": "jQuery Sparklines",
+    "website": "http://omnipotent.net/jquery.sparkline/",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "jquery\\.sparkline.*\\.js"
+        }
+    ],
+    "implies": "jQuery"
+}

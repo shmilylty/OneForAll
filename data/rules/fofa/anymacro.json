@@ -1,0 +1,19 @@
+{
+    "name": "anymacro",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "LOGIN_KEY"
+        },
+        {
+            "search": "body",
+            "text": "document.aa.F_email"
+        },
+        {
+            "search": "body",
+            "text": "AnyWebApp"
+        }
+    ]
+}

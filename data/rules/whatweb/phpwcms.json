@@ -1,0 +1,15 @@
+{
+    "name": "phpwcms",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": " is a robust and simple but yet powerful web based content management system running under PHP and MySQL.",
+    "website": "http://www.phpwcms.de/",
+    "matches": [
+        {
+            "text": "\tphpwcms is copyright 2003-2010 of Oliver Georgi. Extensions are copyright of"
+        },
+        {
+            "text": "\tcreated by Oliver Georgi (oliver at phpwcms dot de) and licensed under GNU/GPL."
+        }
+    ]
+}

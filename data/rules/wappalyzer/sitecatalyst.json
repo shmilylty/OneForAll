@@ -1,0 +1,10 @@
+{
+    "name": "SiteCatalyst",
+    "website": "http://www.adobe.com/solutions/digital-marketing.html",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "/s[_-]code.*\\.js"
+        }
+    ]
+}

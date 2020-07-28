@@ -1,0 +1,19 @@
+{
+    "name": "Sophos Web Appliance",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "Sophos Web Appliance"
+        },
+        {
+            "search": "body",
+            "text": "resources/images/sophos_web.ico"
+        },
+        {
+            "search": "body",
+            "text": "url(resources/images/en/login_swa.jpg)"
+        }
+    ]
+}

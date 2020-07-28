@@ -1,0 +1,16 @@
+{
+    "name": "\u521b\u661f\u4f1f\u4e1a\u6821\u56ed\u7f51\u7fa4",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "javascripts/float.js"
+        },
+        {
+            "search": "body",
+            "text": "vcxvcxv"
+        }
+    ],
+    "condition": "0 and 1"
+}

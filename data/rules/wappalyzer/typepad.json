@@ -1,0 +1,10 @@
+{
+    "name": "TypePad",
+    "website": "http://www.typepad.com",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "typepad"
+        }
+    ]
+}

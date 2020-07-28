@@ -1,0 +1,11 @@
+{
+    "name": "NETGEAR CG3700EMR-1CMNDS",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "NETGEAR CG3700EMR-1CMNDS"
+        }
+    ]
+}

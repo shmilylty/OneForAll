@@ -1,0 +1,11 @@
+{
+    "name": "Catberry.js",
+    "website": "https://catberry.github.io/",
+    "matches": [
+        {
+            "search": "headers[x-powered-by]",
+            "regexp": "Catberry"
+        }
+    ],
+    "implies": "Node.js"
+}

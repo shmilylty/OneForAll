@@ -1,0 +1,10 @@
+{
+    "name": "Fedora",
+    "website": "http://fedoraproject.org",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "Fedora"
+        }
+    ]
+}

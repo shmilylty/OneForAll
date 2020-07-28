@@ -1,0 +1,10 @@
+{
+    "name": "XpressEngine",
+    "website": "http://www.xpressengine.com/",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "XpressEngine"
+        }
+    ]
+}

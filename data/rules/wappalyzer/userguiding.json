@@ -1,0 +1,15 @@
+{
+    "name": "UserGuiding",
+    "website": "https://userguiding.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "static\\.userguiding*\\.js"
+        }
+    ],
+    "implies": [
+        "React",
+        "webpack",
+        "Node.js"
+    ]
+}

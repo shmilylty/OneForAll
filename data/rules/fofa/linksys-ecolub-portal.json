@@ -1,0 +1,11 @@
+{
+    "name": "linksys-ecolub-portal",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "linksys-ecolub-portal"
+        }
+    ]
+}

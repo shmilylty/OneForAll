@@ -1,0 +1,13 @@
+{
+    "name": "CoinHive Captcha",
+    "website": "https://coinhive.com",
+    "matches": [
+        {
+            "regexp": "(?:<div[^>]+class=\"coinhive-captcha[^>]+data-key|<div[^>]+data-key[^>]+class=\"coinhive-captcha)"
+        },
+        {
+            "search": "script",
+            "regexp": "https?://authedmine\\.com/(?:lib/captcha|captcha)"
+        }
+    ]
+}

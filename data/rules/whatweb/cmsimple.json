@@ -1,0 +1,20 @@
+{
+    "name": "CMSimple",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.3",
+    "description": "CMSimple is a simple content management system for smart maintainance of small commercial or private sites.",
+    "website": "http://www.cmsimple.org/",
+    "matches": [
+        {
+            "ghdb": "\"Powered by CMSimple.dk\" welcome",
+            "certainty": 75
+        },
+        {
+            "text": "<meta name=\"generator\" content=\"CMSimple"
+        },
+        {
+            "regexp": "(?-mix:<meta name=\"generator\" content=\"CMSimple ([\\d\\.]+)[^>]*>)",
+            "offset": 1
+        }
+    ]
+}

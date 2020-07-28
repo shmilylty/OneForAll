@@ -1,0 +1,11 @@
+{
+    "name": "Prototype",
+    "website": "http://www.prototypejs.org",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "(?:prototype|protoaculous)(?:-([\\d.]*[\\d]))?.*\\.js",
+            "offset": 1
+        }
+    ]
+}

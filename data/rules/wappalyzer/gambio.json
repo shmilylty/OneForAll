@@ -1,0 +1,14 @@
+{
+    "name": "Gambio",
+    "website": "http://gambio.de",
+    "matches": [
+        {
+            "regexp": "(?:<link[^>]* href=\"templates/gambio/|<a[^>]content\\.php\\?coID=\\d|<!-- gambio eof -->|<!--[\\s=]+Shopsoftware by Gambio GmbH \\(c\\))"
+        },
+        {
+            "search": "script",
+            "regexp": "gm_javascript\\.js\\.php"
+        }
+    ],
+    "implies": "PHP"
+}

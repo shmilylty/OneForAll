@@ -1,0 +1,13 @@
+{
+    "name": "ShinyStat",
+    "website": "http://shinystat.com",
+    "matches": [
+        {
+            "regexp": "<img[^>]*\\s+src=['\"]?https?://www\\.shinystat\\.com/cgi-bin/shinystat\\.cgi\\?[^'\"\\s>]*['\"\\s/>]"
+        },
+        {
+            "search": "script",
+            "regexp": "^https?://codice(?:business|ssl|pro|isp)?\\.shinystat\\.com/cgi-bin/getcod\\.cgi"
+        }
+    ]
+}

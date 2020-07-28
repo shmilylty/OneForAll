@@ -1,0 +1,23 @@
+{
+    "name": "Crypto-Loot",
+    "website": "https://crypto-loot.com/",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "^/crypto-loot\\.com/lib/"
+        },
+        {
+            "search": "script",
+            "regexp": "^/webmine\\.pro/"
+        },
+        {
+            "search": "script",
+            "regexp": "^/cryptoloot\\.pro/"
+        },
+        {
+            "search": "script",
+            "regexp": "/crlt\\.js",
+            "certainty": 75
+        }
+    ]
+}

@@ -1,0 +1,6 @@
+{
+    "name": "Blessing Skin",
+    "website": "https://github.com/bs-community/blessing-skin-server",
+    "matches": [],
+    "implies": "Laravel"
+}

@@ -1,0 +1,19 @@
+{
+    "name": "activeWeb-Content-Server",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "AWNOCACHEBEGIN__AWNOCACHEBEGIN__AWNOCACHEBEGIN__AWNOCACHEBEGIN__AWNOCACHEBEGIN"
+        },
+        {
+            "search": "headers",
+            "text": "x-awcache"
+        },
+        {
+            "search": "body",
+            "text": "activeWeb cache extension"
+        }
+    ]
+}

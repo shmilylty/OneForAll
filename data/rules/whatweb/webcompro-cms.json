@@ -1,0 +1,25 @@
+{
+    "name": "WEBCOMpro-CMS",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "WEBCOMpro CMS",
+    "website": "http://www.webcompro-cms.com/",
+    "matches": [
+        {
+            "search": "headers[x-powered-by]",
+            "regexp": "(?-mix:WEBCOMpro CMS (.+)$)",
+            "offset": 1
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:wcp_userid=[\\d]{10};)"
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:wcp_userid_temporary=[\\d]{10};)"
+        },
+        {
+            "regexp": "(?-mix:<meta name=\"generator\" content=\"WEBCOMpro CMS ([^\\s]+) . Patrick Heyer, www\\.webcompro-cms\\.com\">)"
+        }
+    ]
+}

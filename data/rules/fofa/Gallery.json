@@ -1,0 +1,15 @@
+{
+    "name": "Gallery",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "Gallery 3 Installer"
+        },
+        {
+            "search": "body",
+            "text": "/gallery/images/gallery.png"
+        }
+    ]
+}

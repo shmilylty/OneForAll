@@ -1,0 +1,11 @@
+{
+    "name": "\u534e\u5929\u52a8\u529bOA(OA8000)",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "/OAapp/WebObjects/OAapp.woa"
+        }
+    ]
+}

@@ -1,0 +1,26 @@
+{
+    "name": "PRTG-Network-Monitor",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "PRTG Network Monitor - Availability and Bandwidth Monitoring",
+    "website": "http://www.paessler.com/prtg",
+    "matches": [
+        {
+            "regexp": "(?-mix:<title>PRTG Network Monitor \\(([^\\)]+)\\)&nbsp;\\|&nbsp;Welcome<\\/title>)"
+        },
+        {
+            "regexp": "(?-mix:<link rel=\"stylesheet\" type=\"text\\/css\" href=\"\\/css\\/prtgmini\\.css\\?prtgversion=([^\"]+)\" media=\"print,screen,projection\" \\/>)",
+            "offset": 1
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^PRTG)",
+            "offset": 1
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^PRTG\\/([^\\s]+)$)",
+            "offset": 1
+        }
+    ]
+}

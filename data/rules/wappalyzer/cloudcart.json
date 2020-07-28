@@ -1,0 +1,14 @@
+{
+    "name": "CloudCart",
+    "website": "http://cloudcart.com",
+    "matches": [
+        {
+            "search": "meta[author]",
+            "regexp": "^CloudCart LLC$"
+        },
+        {
+            "search": "script",
+            "regexp": "/cloudcart-(?:assets|storage)/"
+        }
+    ]
+}

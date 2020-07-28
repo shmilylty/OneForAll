@@ -1,0 +1,27 @@
+{
+    "name": "SugarCRM",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Commercial open source customer relationship management (CRM). CRM software for sales force automation and customer support deployed on demand or on site.",
+    "website": "http://www.sugarcrm.com/crm/",
+    "matches": [
+        {
+            "text": "<h3 style='color:red'>Possible Cross Site Request Forgery (XSRF) Attack Detected</h3>"
+        },
+        {
+            "text": "<span>|</span>    <a href=\" javascript:void window.open('http://support.sugarcrm.com')\">Support</a>"
+        },
+        {
+            "text": "<script>var module_sugar_grp1 = 'Users';</script><script>var action_sugar_grp1 = 'Login';</script><script>jscal_today"
+        },
+        {
+            "regexp": "(?-mix:<script type=\"text\\/javascript\">[\\s]+<!--[\\s]+SUGAR\\.themes\\.theme_name      = '([^']+)';[\\s]+SUGAR\\.themes\\.theme_ie6compat = )"
+        },
+        {
+            "text": "<img style='margin-top: 2px' border='0' width='106' height='23' src='include/images/poweredby_sugarcrm.png' alt='Powered By SugarCRM'>"
+        },
+        {
+            "regexp": "(?-mix:\\* SugarCRM is a customer relationship management program developed by[\\s]+ \\* SugarCRM, Inc\\. Copyright \\(C\\) 2004-([\\d]{4}) SugarCRM Inc\\.)"
+        }
+    ]
+}

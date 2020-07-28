@@ -1,0 +1,28 @@
+{
+    "name": "CitusCMS",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "CitusCMS - Open Source Content Management System",
+    "website": "http://www.citus-cms.org/",
+    "matches": [
+        {
+            "text": "<title>Administration &#149; Webseitenname</title>"
+        },
+        {
+            "text": "<!-- Powered by CitusCMS - http://www.citus-cms.org -->"
+        },
+        {
+            "text": "Powered by <a href=\"http://www.citus-cms.org\" target=\"_blank\" title=\"Powered by CitusCMS\"><strong>CitusCMS</strong></a>"
+        },
+        {
+            "text": "<meta name=\"generator\" content=\"CitusCMS - http://www.citus-cms.org\" />"
+        },
+        {
+            "text": "<meta name=\"generator\" content=\"CitusCMS [http://www.citus-cms.org]\" />"
+        },
+        {
+            "regexp": "(?-mix:<!-- CitusCMS Core Version: ([^\\s]+) -->)",
+            "offset": 1
+        }
+    ]
+}

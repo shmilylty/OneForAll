@@ -1,0 +1,11 @@
+{
+    "name": "ApexPages",
+    "website": "https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_intro.htm",
+    "matches": [
+        {
+            "search": "headers[x-powered-by]",
+            "regexp": "Salesforce\\.com ApexPages"
+        }
+    ],
+    "implies": "Salesforce"
+}

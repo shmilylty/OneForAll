@@ -1,0 +1,19 @@
+{
+    "name": "DVWA",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "Damn Vulnerable Web App (DVWA) - Login"
+        },
+        {
+            "search": "body",
+            "text": "dvwa/css/login.css"
+        },
+        {
+            "search": "body",
+            "text": "dvwa/images/login_logo.png"
+        }
+    ]
+}

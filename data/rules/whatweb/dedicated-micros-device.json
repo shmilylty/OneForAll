@@ -1,0 +1,26 @@
+{
+    "name": "Dedicated-Micros-Device",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Dedicated Micros is the world's leading manufacturer of CCTV solutions from megapixel IP cameras to high performance high definition recording, transmission and decoding systems.",
+    "website": "http://www.dedicatedmicros.com/",
+    "matches": [
+        {
+            "url": "/gui/title.shtml",
+            "regexp": "(?-mix:^\t\t\t\tvar product = '([^']+)';[\\s]*$)"
+        },
+        {
+            "url": "/common/script_variables.js.shtml",
+            "regexp": "(?-mix:^var SYSTEM_LOGO = \"([^\"]+)\";[\\s]*$)"
+        },
+        {
+            "url": "/webpages/index.shtml",
+            "text": "\t<title>DVIP</title>",
+            "model": "DVIP"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^ADH-Web$)"
+        }
+    ]
+}

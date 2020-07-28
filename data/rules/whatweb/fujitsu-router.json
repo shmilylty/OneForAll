@@ -1,0 +1,13 @@
+{
+    "name": "Fujitsu-Router",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "Fujitsu-Router",
+    "website": "http://fujitsu.com/",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^(Si-[A-Za-z\\d]{4,10})$)"
+        }
+    ]
+}

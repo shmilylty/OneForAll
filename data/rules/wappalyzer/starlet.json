@@ -1,0 +1,11 @@
+{
+    "name": "Starlet",
+    "website": "http://metacpan.org/pod/Starlet",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "^Plack::Handler::Starlet"
+        }
+    ],
+    "implies": "Perl"
+}

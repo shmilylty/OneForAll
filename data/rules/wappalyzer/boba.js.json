@@ -1,0 +1,11 @@
+{
+    "name": "Boba.js",
+    "website": "http://boba.space150.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "boba(?:\\.min)?\\.js"
+        }
+    ],
+    "implies": "Google Analytics"
+}

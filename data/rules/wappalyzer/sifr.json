@@ -1,0 +1,10 @@
+{
+    "name": "sIFR",
+    "website": "https://www.mikeindustries.com/blog/sifr",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "sifr\\.js"
+        }
+    ]
+}

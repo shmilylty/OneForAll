@@ -1,0 +1,21 @@
+{
+    "name": "uClinux-httpd",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "The Linux/Microcontroller project (uClinux) is a port of Linux to systems without a Memory Management Unit (MMU). This plugin identifies the version of the uClinux HTTP server",
+    "website": "http://www.uclinux.org/",
+    "matches": [
+        {
+            "os": "uClinux",
+            "search": "headers[server]",
+            "regexp": "(?-mix:^uClinux)",
+            "offset": 1
+        },
+        {
+            "os": "uClinux",
+            "search": "headers[server]",
+            "regexp": "(?-mix:^uClinux-httpd ([\\d\\.]+)$)",
+            "offset": 1
+        }
+    ]
+}

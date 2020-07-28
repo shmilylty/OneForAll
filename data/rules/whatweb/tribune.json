@@ -1,0 +1,12 @@
+{
+    "name": "TribuneNews",
+    "author": "Shuai Lin",
+    "version": "0.1",
+    "description": "TribuneNews is a news website engine for sites of Tribune Newspaper.",
+    "website": null,
+    "matches": [
+        {
+            "text": "<a href=\"http://www.tribune.com/\" target=\"_parent\">A Tribune Newspaper website</a>"
+        }
+    ]
+}

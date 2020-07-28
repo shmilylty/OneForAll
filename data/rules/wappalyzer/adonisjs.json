@@ -1,0 +1,11 @@
+{
+    "name": "AdonisJS",
+    "website": "https://adonisjs.com",
+    "matches": [
+        {
+            "search": "cookies[cookie_name]",
+            "regexp": "adonis-session"
+        }
+    ],
+    "implies": "Node.js"
+}

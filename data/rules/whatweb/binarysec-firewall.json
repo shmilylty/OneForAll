@@ -1,0 +1,25 @@
+{
+    "name": "BinarySec-Firewall",
+    "author": "Aung Khant <http://yehg.net/>, Andrew Horton",
+    "version": "0.3",
+    "description": "BinarySec Web Application Firewall - http://www.binarysec.com",
+    "website": null,
+    "matches": [
+        {
+            "name": "X-BinarySEC-Via header",
+            "text": "",
+            "search": "headers[x-binarysec-via]"
+        },
+        {
+            "name": "X-BinarySEC-NoCache header",
+            "text": "",
+            "search": "headers[x-binarysec-nocache]"
+        },
+        {
+            "name": "X-BinarySEC-NoCache header",
+            "search": "headers[server]",
+            "regexp": "(?-mix:BinarySEC\\/(\\d{1,3}\\.\\d{1,4}\\.\\d{1,4}))",
+            "offset": 1
+        }
+    ]
+}

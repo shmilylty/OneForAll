@@ -1,0 +1,14 @@
+{
+    "name": "OpenX",
+    "website": "http://openx.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "https?://[^/]*\\.openx\\.net"
+        },
+        {
+            "search": "script",
+            "regexp": "https?://[^/]*\\.servedbyopenx\\.com"
+        }
+    ]
+}

@@ -1,0 +1,19 @@
+{
+    "name": "Astaro-Security-Gateway",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "wfe/asg/js/app_selector.js?t="
+        },
+        {
+            "search": "body",
+            "text": "/doc/astaro-license.txt"
+        },
+        {
+            "search": "body",
+            "text": "/js/_variables_from_backend.js?t="
+        }
+    ]
+}

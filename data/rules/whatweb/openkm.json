@@ -1,0 +1,15 @@
+{
+    "name": "OpenKM",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "OpenKM - Open Source Electronic Document Management System",
+    "website": "http://www.openkm.com/en/",
+    "matches": [
+        {
+            "text": "<form name=\"login\" method=\"post\" action=\"j_security_check\" onsubmit=\"setCookie()\">"
+        },
+        {
+            "regexp": "(?-mix:<title>OpenKM Login<\\/title>[\\s]+<\\/head>[\\s]+<body onload=\"document\\.forms\\[0\\]\\.elements\\[0\\]\\.focus\\(\\)\">)"
+        }
+    ]
+}

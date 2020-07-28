@@ -1,0 +1,15 @@
+{
+    "name": "Zotonic",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "powered by: Zotonic"
+        },
+        {
+            "search": "body",
+            "text": "/lib/js/apps/zotonic-1.0"
+        }
+    ]
+}

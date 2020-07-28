@@ -1,0 +1,30 @@
+{
+    "name": "phpDocumentor",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "phpDocumentor, sometimes referred to as phpdoc or phpdocu, is the current standard auto-documentation tool for the php language. Similar to Javadoc, and written in php, phpDocumentor can be used from the command line or a web interface to create professional documentation from php source code.",
+    "website": null,
+    "matches": [
+        {
+            "certainty": 75,
+            "text": "<title>docBuilder - phpDocumentor web interface</title>"
+        },
+        {
+            "text": "<meta name=\"Description\" content=\"Frameset for phpDcoumentor docBuilder web interface\">"
+        },
+        {
+            "text": "<meta name=\"Description\" content=\"Frameset for phpDocumentor docBuilder web interface\">"
+        },
+        {
+            "regexp": "(?-mix:<input type=\"text\" name=\"fileName\" value=\"([^\"]+)\" size=\"60\" class=\"text\" \\/>)"
+        },
+        {
+            "regexp": "(?-mix:\t<title>\\n\t\tForm to submit to phpDocumentor v([^\\s]+)\t<\\/title>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<span class=\"title\"><strong>docBuilder<\\/strong> :: phpDocumentor v([^\\s]+) Web Interface<\\/span>)",
+            "offset": 1
+        }
+    ]
+}

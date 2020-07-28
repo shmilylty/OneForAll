@@ -1,0 +1,13 @@
+{
+    "name": "Visual Website Optimizer",
+    "website": "https://vwo.com/",
+    "matches": [
+        {
+            "regexp": "<!-- (?:Start|End) Visual Website Optimizer A?Synchronous Code -->"
+        },
+        {
+            "search": "script",
+            "regexp": "dev\\.visualwebsiteoptimizer\\.com"
+        }
+    ]
+}

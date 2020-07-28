@@ -1,0 +1,10 @@
+{
+    "name": "Xanario",
+    "website": "http://xanario.de",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "xanario shopsoftware"
+        }
+    ]
+}

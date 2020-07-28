@@ -1,0 +1,15 @@
+{
+    "name": "Mojolicious",
+    "website": "http://mojolicio.us",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "^mojolicious"
+        },
+        {
+            "search": "headers[x-powered-by]",
+            "regexp": "mojolicious"
+        }
+    ],
+    "implies": "Perl"
+}

@@ -1,0 +1,23 @@
+{
+    "name": "MKPortal",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "MKPortal blog and forum software - Homepage [offline] : http://www.mkportal.it/",
+    "website": null,
+    "matches": [
+        {
+            "text": "<meta name=\"generator\" content=\"MKPortal\" />"
+        },
+        {
+            "text": "|   Cascading Style Sheet for MKportal \"Forum\" Portal Template"
+        },
+        {
+            "certainty": 25,
+            "text": "<!-- end close portal body -->"
+        },
+        {
+            "regexp": "(?-mix:<a style=\"text-decoration: none;\" href=\"http:\\/\\/www.mkportal.it\\/\" target=\"_blank\">MKPortal<\\/a> ([^&^<]+)(<\\/b>)? &copy;2003-20[\\d]{2})",
+            "offset": 1
+        }
+    ]
+}

@@ -1,0 +1,24 @@
+{
+    "name": "ESPCMS",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "Powered by ESPCMS"
+        },
+        {
+            "search": "body",
+            "text": "Powered by ESPCMS"
+        },
+        {
+            "search": "body",
+            "text": "infolist_fff"
+        },
+        {
+            "search": "body",
+            "text": "/templates/default/style/tempates_div.css"
+        }
+    ],
+    "condition": "0 or 1 or (2 and 3)"
+}

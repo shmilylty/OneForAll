@@ -1,0 +1,10 @@
+{
+    "name": "EdgeCast",
+    "website": "http://www.edgecast.com",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "^ECD\\s\\(\\S+\\)"
+        }
+    ]
+}

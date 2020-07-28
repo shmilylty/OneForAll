@@ -1,0 +1,10 @@
+{
+    "name": "BuySellAds",
+    "website": "http://buysellads.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "^https?://s\\d\\.buysellads\\.com/"
+        }
+    ]
+}

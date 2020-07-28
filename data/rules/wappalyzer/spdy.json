@@ -1,0 +1,11 @@
+{
+    "name": "SPDY",
+    "website": "http://chromium.org/spdy",
+    "matches": [
+        {
+            "search": "headers[x-firefox-spdy]",
+            "regexp": "\\d\\.\\d"
+        }
+    ],
+    "excludes": "HTTP/2"
+}

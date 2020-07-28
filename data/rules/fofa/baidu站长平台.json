@@ -1,0 +1,11 @@
+{
+    "name": "baidu\u7ad9\u957f\u5e73\u53f0",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "baidu-site-verification"
+        }
+    ]
+}

@@ -1,0 +1,13 @@
+{
+    "name": "WooFramework",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "WooFramework - theme framework - http://www.woothemes.com/wooframework/",
+    "website": null,
+    "matches": [
+        {
+            "regexp": "(?-mix:<meta name=\"generator\" content=\"WooFramework ([\\d\\.]+)\")",
+            "offset": 1
+        }
+    ]
+}

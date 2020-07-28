@@ -1,0 +1,19 @@
+{
+    "name": "Acidcat CMS",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "Powered by Acidcat CMS"
+        },
+        {
+            "search": "body",
+            "text": "Start Acidcat CMS footer information"
+        },
+        {
+            "search": "body",
+            "text": "/css/admin_import.css"
+        }
+    ]
+}

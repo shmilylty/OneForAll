@@ -1,0 +1,20 @@
+{
+    "name": "Open-Source-Ticket-Request-System",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "OTRS is an Open source Ticket Request System (also well known as trouble ticket system) with many features to manage customer telephone calls and e-mails.",
+    "website": "http://otrs.org/",
+    "matches": [
+        {
+            "ghdb": "\"Powered by OTRS\" inurl:customer.pl",
+            "certainty": 75
+        },
+        {
+            "text": "<title>OTRS  :: Login</title>"
+        },
+        {
+            "regexp": "(?-mix:Powered by <a href=\"http:\\/\\/otrs.org[\\/]*\" class=\"small\">OTRS ([^<]+)<\\/a>)",
+            "offset": 1
+        }
+    ]
+}

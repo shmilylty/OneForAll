@@ -1,0 +1,10 @@
+{
+    "name": "Exhibit",
+    "website": "http://simile-widgets.org/exhibit/",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "exhibit.*\\.js"
+        }
+    ]
+}

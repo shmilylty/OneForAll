@@ -1,0 +1,11 @@
+{
+    "name": "NETGEAR DM111",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "NETGEAR DM111"
+        }
+    ]
+}

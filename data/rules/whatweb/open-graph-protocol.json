@@ -1,0 +1,22 @@
+{
+    "name": "Open-Graph-Protocol",
+    "author": "Caleb Anderson, Brendan Coles <bcoles@gmail.com> #",
+    "version": "0.3",
+    "description": "The Open Graph protocol enables you to integrate your Web pages into the social graph. It is currently designed for Web pages representing profiles of real-world things . things like movies, sports teams, celebrities, and restaurants. Including Open Graph tags on your Web page, makes your page equivalent to a Facebook Page.",
+    "website": null,
+    "matches": [
+        {
+            "regexp": "(?i-mx:<meta[^>]+property=\"og:title\"[^>]*>)"
+        },
+        {
+            "regexp": "(?-mix:<meta[^>]+property=\"og:type\"[^>]+content=\"([^\"^>]+)\")",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<meta[^>]+property=\"fb:admins\"[^>]+content=\"([^\"^>]+)\")"
+        },
+        {
+            "regexp": "(?-mix:<meta[^>]+property=\"fb:app_id\"[^>]+content=\"([^\"^>]+)\")"
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    "name": "JTBC(CMS)",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "/js/jtbc.js"
+        },
+        {
+            "search": "body",
+            "text": "content=\"JTBC"
+        }
+    ]
+}

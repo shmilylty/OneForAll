@@ -1,0 +1,15 @@
+{
+    "name": "DSpace",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "content=\"DSpace"
+        },
+        {
+            "search": "body",
+            "text": "<a href=\"http://www.dspace.org\">DSpace Software"
+        }
+    ]
+}

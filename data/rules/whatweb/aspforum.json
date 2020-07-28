@@ -1,0 +1,14 @@
+{
+    "name": "ASPForum",
+    "author": "Mateusz Golewski",
+    "version": "0.1",
+    "description": "Kind of ASP forum.",
+    "website": null,
+    "matches": [
+        {
+            "name": "version",
+            "regexp": "(?-mix:<div[^>]+id=\"FORUMS_FORUM_GROUP_V([\\d_]+))",
+            "offset": 1
+        }
+    ]
+}

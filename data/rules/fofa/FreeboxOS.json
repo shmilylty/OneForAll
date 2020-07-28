@@ -1,0 +1,15 @@
+{
+    "name": "FreeboxOS",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "Freebox OS"
+        },
+        {
+            "search": "body",
+            "text": "logo_freeboxos"
+        }
+    ]
+}

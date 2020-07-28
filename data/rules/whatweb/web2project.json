@@ -1,0 +1,24 @@
+{
+    "name": "web2Project",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "web2Project is a Free Open Source business-oriented Project Management System (PMS)",
+    "website": "http://web2project.net/",
+    "matches": [
+        {
+            "text": "<title>web2Project Development :: web2Project Login</title>"
+        },
+        {
+            "text": "</head><body>Fatal Error. You haven't created a config file yet.<br/><a href="
+        },
+        {
+            "certainty": 25,
+            "regexp": "(?-mix:<meta name=\"Version\" content=\"([^\"^\\s]+)\" \\/>)",
+            "offset": 1
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:web2project=[^;]+;)"
+        }
+    ]
+}

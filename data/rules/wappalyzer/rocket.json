@@ -1,0 +1,16 @@
+{
+    "name": "Rocket",
+    "website": "https://rocketcms.io",
+    "matches": [
+        {
+            "search": "headers[x-powered-by]",
+            "regexp": "^Rocket=https://rocketcms.io/"
+        }
+    ],
+    "implies": [
+        "webpack",
+        "Node.js",
+        "MySQL",
+        "Less"
+    ]
+}

@@ -1,0 +1,12 @@
+{
+    "name": "CherryPy",
+    "website": "http://www.cherrypy.org",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "CherryPy\\/?([\\d\\.]+)?",
+            "offset": 1
+        }
+    ],
+    "implies": "Python"
+}

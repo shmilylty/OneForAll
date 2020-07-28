@@ -1,0 +1,11 @@
+{
+    "name": "Deluge-web",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "Deluge: Web UI"
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+{
+    "name": "Knopflerfish-HTTP-Server",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "The Knopflerfish HTTP Server"
+        }
+    ]
+}

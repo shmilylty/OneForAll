@@ -1,0 +1,11 @@
+{
+    "name": "windows 64bit",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "win64"
+        }
+    ]
+}

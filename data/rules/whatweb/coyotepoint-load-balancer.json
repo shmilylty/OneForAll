@@ -1,0 +1,17 @@
+{
+    "name": "CoyotePoint-Load-Balancer",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "CoyotePoint load balancing device",
+    "website": "http://www.coyotepoint.com/products/",
+    "matches": [
+        {
+            "regexp": "(?-mix:^CoyotePoint)",
+            "search": "headers[server]"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^CoyotePoint (L[\\d]) Load Balancer$)"
+        }
+    ]
+}

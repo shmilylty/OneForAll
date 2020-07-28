@@ -1,0 +1,14 @@
+{
+    "name": "Trac",
+    "website": "http://trac.edgewall.org",
+    "matches": [
+        {
+            "regexp": "<a id=\"tracpowered"
+        },
+        {
+            "regexp": "Powered by <a href=\"[^\"]*\"><strong>Trac(?:[ /]([\\d.]+))?",
+            "offset": 1
+        }
+    ],
+    "implies": "Python"
+}

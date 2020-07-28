@@ -1,0 +1,17 @@
+{
+    "name": "JGS-Portal",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "CMS",
+    "website": "http://www.jgs-xa.de",
+    "matches": [
+        {
+            "certainty": 75,
+            "ghdb": "\"Powered by JGS-Portal Version\""
+        },
+        {
+            "regexp": "(?-mix:Powered by <b>JGS-Portal Version ([\\d\\.]+)<\\/b> &copy; )",
+            "offset": 1
+        }
+    ]
+}

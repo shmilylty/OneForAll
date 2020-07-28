@@ -1,0 +1,18 @@
+{
+    "name": "Tengine-Web-Server",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Tengine is a web server originated by Taobao, the largest e-commerce website in Asia. It is based on the popular Nginx HTTP server.",
+    "website": "http://tengine.taobao.org/",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Tengine$)"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Tengine\\/([^\\s]+))",
+            "offset": 1
+        }
+    ]
+}

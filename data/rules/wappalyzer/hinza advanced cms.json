@@ -1,0 +1,11 @@
+{
+    "name": "Hinza Advanced CMS",
+    "website": "http://hinzaco.com",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "hinzacms"
+        }
+    ],
+    "implies": "Laravel"
+}

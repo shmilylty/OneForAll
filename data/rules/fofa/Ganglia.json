@@ -1,0 +1,23 @@
+{
+    "name": "Ganglia",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "Ganglia:: Cluster Report"
+        },
+        {
+            "search": "body",
+            "text": "OnChange=\"ganglia_form.submit();"
+        },
+        {
+            "search": "body",
+            "text": "NAME=\"ganglia_form"
+        },
+        {
+            "search": "headers",
+            "text": "gs=unspecified"
+        }
+    ]
+}

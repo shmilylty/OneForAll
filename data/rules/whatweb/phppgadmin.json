@@ -1,0 +1,21 @@
+{
+    "name": "phpPgAdmin",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "phpPgAdmin is a web-based administration tool for PostgreSQL. It is perfect for PostgreSQL DBAs, newbies and hosting services",
+    "website": "http://phppgadmin.sourceforge.net/",
+    "matches": [
+        {
+            "name": "PPA_ID Cookie",
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:^PPA_ID=[a-z0-9]+)"
+        },
+        {
+            "text": "<td><span class=\"appname\">phpPgAdmin</span></td>"
+        },
+        {
+            "regexp": "(?-mix:<span class=\"appname\">phpPgAdmin<\\/span> <span class=\"version\">([\\d\\.]+)<\\/span>)",
+            "offset": 1
+        }
+    ]
+}

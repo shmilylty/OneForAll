@@ -1,0 +1,14 @@
+{
+    "name": "Atlassian FishEye",
+    "website": "http://www.atlassian.com/software/fisheye/overview/",
+    "matches": [
+        {
+            "search": "cookies[FESESSIONID]",
+            "regexp": ".*"
+        },
+        {
+            "regexp": "<title>(?:Log in to )?FishEye (?:and Crucible )?([\\d.]+)?</title>",
+            "offset": 1
+        }
+    ]
+}

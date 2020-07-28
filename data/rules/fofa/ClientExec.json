@@ -1,0 +1,15 @@
+{
+    "name": "ClientExec",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "Powered By ClientExec"
+        },
+        {
+            "search": "headers",
+            "text": "CLIENTEXEC="
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+{
+    "name": "mod_fastcgi",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "mod_fastcgi"
+        }
+    ]
+}

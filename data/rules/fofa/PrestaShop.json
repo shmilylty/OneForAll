@@ -1,0 +1,15 @@
+{
+    "name": "PrestaShop",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "PrestaShop"
+        },
+        {
+            "search": "body",
+            "text": "Shop powered by PrestaShop"
+        }
+    ]
+}

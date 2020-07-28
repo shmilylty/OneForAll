@@ -1,0 +1,15 @@
+{
+    "name": "\u7231\u601d\u534e\u5b9d\u4fe1\u606f\u670d\u52a1\u5668",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "IceWarp"
+        },
+        {
+            "search": "body",
+            "text": "Powered by <a href=\"http://www.icewarp.com"
+        }
+    ]
+}

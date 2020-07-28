@@ -1,0 +1,23 @@
+{
+    "name": "BugFree",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "id=\"logo\" alt=BugFree"
+        },
+        {
+            "search": "body",
+            "text": "class=\"loginBgImage\" alt=\"BugFree"
+        },
+        {
+            "search": "title",
+            "regexp": "BugFree"
+        },
+        {
+            "search": "body",
+            "text": "name=\"BugUserPWD"
+        }
+    ]
+}

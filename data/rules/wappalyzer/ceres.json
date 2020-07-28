@@ -1,0 +1,10 @@
+{
+    "name": "Ceres",
+    "website": "https://www.plentymarkets.com/",
+    "matches": [
+        {
+            "search": "headers[x-plenty-shop]",
+            "regexp": "Ceres"
+        }
+    ]
+}

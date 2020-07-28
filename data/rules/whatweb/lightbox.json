@@ -1,0 +1,12 @@
+{
+    "name": "Lightbox",
+    "author": "Andrew Horton",
+    "version": "0.2",
+    "description": "Javascript for nice image popups",
+    "website": null,
+    "matches": [
+        {
+            "regexp": "(?-mix:<script [^>]*(lightbox[^>]*.js)[^>]*)"
+        }
+    ]
+}

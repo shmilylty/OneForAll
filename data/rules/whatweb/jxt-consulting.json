@@ -1,0 +1,24 @@
+{
+    "name": "JXT-Consulting",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "JXT Consulting specialises in building and designing recruitment websites and implementing social recruiting strategies for recruitment companies, utilising the benefits of facebook, twitter and LinkedIn.",
+    "website": "http://www.jxt.com.au/",
+    "matches": [
+        {
+            "text": "<div id=\"jxt-popup-wrapper\">"
+        },
+        {
+            "text": "<!-- Dynamic white label meta content -->"
+        },
+        {
+            "regexp": "(?-mix:Powered by <a href=\"http:\\/\\/(www\\.)?jxt\\.com\\.au\" target=\"_blank\">JXT Consulting<\\/a>)"
+        },
+        {
+            "text": "<a href=\"http://www.jxt.com.au\" target=\"_blank\">Powered by JXT Consulting</a>"
+        },
+        {
+            "regexp": "(?-mix:<link rel=\"shortcut icon\" href=\"\\/GetWhitelabelFile\\.aspx\\?whiteLabelFileID=(\\d+)\"\\s?\\/>)"
+        }
+    ]
+}

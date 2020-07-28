@@ -1,0 +1,14 @@
+{
+    "name": "Chameleon",
+    "website": "http://chameleon-system.de",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "chameleon-cms"
+        }
+    ],
+    "implies": [
+        "Apache",
+        "PHP"
+    ]
+}

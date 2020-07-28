@@ -1,0 +1,12 @@
+{
+    "name": "PoweredBy",
+    "author": "Andrew Horton, Brendan Coles < bcoles@gmail.com>",
+    "version": "0.3",
+    "description": "This plugin identifies instances of 'Powered by x' text and attempts to extract the value for x.",
+    "website": null,
+    "matches": [
+        {
+            "regexp": "(?i-mx:powered[ -]?by[ ]?([^\\s<>'\".]+))"
+        }
+    ]
+}

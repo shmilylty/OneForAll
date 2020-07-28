@@ -1,0 +1,18 @@
+{
+    "name": "NCSA-HTTPd",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "NCSA HTTPd",
+    "website": "http://web.archive.org/web/20071020024535/hoohoo.ncsa.uiuc.edu/docs/Overview.html",
+    "matches": [
+        {
+            "regexp": "(?-mix:^NCSA)",
+            "search": "headers[server]"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^NCSA\\/([\\d\\.]+)$)",
+            "offset": 1
+        }
+    ]
+}

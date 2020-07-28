@@ -1,0 +1,12 @@
+{
+    "name": "NetworX",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "NetworX is PHP-based open source interactive social networking platform - Hompage: http://www.socialabc.com/",
+    "website": null,
+    "matches": [
+        {
+            "text": "Powered by <a href=\"http://www.socialabc.com\">NetworX</a>"
+        }
+    ]
+}

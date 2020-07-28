@@ -1,0 +1,10 @@
+{
+    "name": "Mithril",
+    "website": "https://mithril.js.org",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "mithril/\\?js"
+        }
+    ]
+}

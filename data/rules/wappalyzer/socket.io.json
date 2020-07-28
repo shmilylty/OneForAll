@@ -1,0 +1,11 @@
+{
+    "name": "Socket.io",
+    "website": "https://socket.io",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "socket\\.io.*\\.js"
+        }
+    ],
+    "implies": "Node.js"
+}

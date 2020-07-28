@@ -1,0 +1,15 @@
+{
+    "name": "Evo-Cam",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "value=\"evocam.jar"
+        },
+        {
+            "search": "body",
+            "text": "<applet archive=\"evocam.jar"
+        }
+    ]
+}

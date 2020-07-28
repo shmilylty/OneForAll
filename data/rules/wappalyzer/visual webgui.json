@@ -1,0 +1,15 @@
+{
+    "name": "Visual WebGUI",
+    "website": "http://www.gizmox.com/products/visual-web-gui/",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "^Visual WebGUI"
+        },
+        {
+            "search": "script",
+            "regexp": "\\.js\\.wgx$"
+        }
+    ],
+    "implies": "Microsoft ASP.NET"
+}

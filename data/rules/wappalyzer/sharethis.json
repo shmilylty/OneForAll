@@ -1,0 +1,10 @@
+{
+    "name": "ShareThis",
+    "website": "http://sharethis.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "w\\.sharethis\\.com/"
+        }
+    ]
+}

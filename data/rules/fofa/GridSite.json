@@ -1,0 +1,15 @@
+{
+    "name": "GridSite",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "<a href=\"http://www.gridsite.org/\">GridSite"
+        },
+        {
+            "search": "body",
+            "text": "gridsite-admin.cgi?cmd"
+        }
+    ]
+}

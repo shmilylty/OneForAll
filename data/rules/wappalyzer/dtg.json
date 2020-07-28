@@ -1,0 +1,10 @@
+{
+    "name": "DTG",
+    "website": "https://www.dtg.nl",
+    "matches": [
+        {
+            "regexp": "<a[^>]+Site Powered by DTG"
+        }
+    ],
+    "implies": "Mono.net"
+}

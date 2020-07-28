@@ -1,0 +1,10 @@
+{
+    "name": "Quantcast",
+    "website": "http://www.quantcast.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "\\.quantserve\\.com/quant\\.js"
+        }
+    ]
+}

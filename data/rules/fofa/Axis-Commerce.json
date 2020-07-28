@@ -1,0 +1,19 @@
+{
+    "name": "Axis-Commerce",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "axisid"
+        },
+        {
+            "search": "body",
+            "text": "Powered by Axis"
+        },
+        {
+            "search": "title",
+            "regexp": "Login to Axis administrator"
+        }
+    ]
+}

@@ -1,0 +1,14 @@
+{
+    "name": "Kinja",
+    "author": "Sigit Dewanto",
+    "version": "0.1",
+    "description": "Kinja is Gawker Media's discussion platform.",
+    "website": null,
+    "matches": [
+        {
+            "name": "X-Kinja Header",
+            "regexp": "(?-mix:^$)",
+            "search": "headers[x-kinja]"
+        }
+    ]
+}

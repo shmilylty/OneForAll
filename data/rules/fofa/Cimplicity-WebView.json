@@ -1,0 +1,15 @@
+{
+    "name": "Cimplicity-WebView",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "CIMPLICITY-HttpSvr"
+        },
+        {
+            "search": "body",
+            "text": "<APPLET NAME=\"ProwlerClientAppletObject\" ARCHIVE=\"/ProwlerClient.jar"
+        }
+    ]
+}

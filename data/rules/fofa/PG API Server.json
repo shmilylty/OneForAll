@@ -1,0 +1,15 @@
+{
+    "name": "PG API Server",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "PG API Server"
+        },
+        {
+            "search": "headers",
+            "text": "PGAPIServ"
+        }
+    ]
+}

@@ -1,0 +1,12 @@
+{
+    "name": "Warcraft-3-Frozen-Throne-Mod-Config-File",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "The Warcraft 3 mod for AMX-Mod-X for Half-Life uses a config file which contains mySQL username, password, server, database name, table name. This plugin grabs the mySQL username, password and server.",
+    "website": null,
+    "matches": [
+        {
+            "text": "// Radius to give XP to teammates near where the special objective is completed (rescued hosties, bomb planted, killed vip, vip escaped, default is 750)"
+        }
+    ]
+}

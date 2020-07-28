@@ -1,0 +1,48 @@
+{
+    "name": "XAMPP",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.4",
+    "description": "XAMPP is an easy to install Apache distribution containing MySQL, PHP and Perl. XAMPP is really very easy to install and to use - just download, extract and start.",
+    "website": "http://www.apachefriends.org/en/xampp.html",
+    "matches": [
+        {
+            "text": "<meta name=\"author\" content=\"Kai Oswald Seidler\">",
+            "certainty": 75
+        },
+        {
+            "regexp": "(?-mix:<title>XAMPP Version ([^\\r\\n<]+)[\\s]*<\\/title>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<title>XAMPP for ([^\\r\\n<]{5,8}) [\\d\\.a-z]{3,6}[\\s]*<\\/title>)"
+        },
+        {
+            "url": "img/head-windows.gif",
+            "md5": "567ebe64625942cbb8244eca918b06a0",
+            "os": "Windows"
+        },
+        {
+            "url": "img/head-linux.jpg",
+            "md5": "bca095ec432fe08f90866d2e6c149590",
+            "os": "Linux"
+        },
+        {
+            "url": "img/head-macosx.gif",
+            "md5": "1fbd850a328026104cd7caa9e3bdaf4e",
+            "os": "Mac OSX"
+        },
+        {
+            "url": "img/head-macosx.gif",
+            "md5": "df859a3c31b7ed2b75d78f78889107b2",
+            "os": "Mac OSX"
+        },
+        {
+            "url": "img/head-solaris.gif",
+            "md5": "b18490e1a42d7293cbca353100d6d787",
+            "os": "Solaris"
+        },
+        {
+            "text": "<p style=\"margin-left: 2.6em; font-size: 1.2em; color: red;\">New XAMPP security concept:</p>"
+        }
+    ]
+}

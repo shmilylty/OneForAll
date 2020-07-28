@@ -1,0 +1,19 @@
+{
+    "name": "TBDev-YSE",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "TBDev Yuna Scatari Edition - Torrent tracker",
+    "website": "http://bit-torrent.kiev.ua/",
+    "matches": [
+        {
+            "text": "<!-- /////// Top Navigation Menu for unregistered-->"
+        },
+        {
+            "text": "<!-- /////////// here we go, with the menu //////////// -->"
+        },
+        {
+            "offset": 2,
+            "regexp": "(?-mix:Powered by <a href=\"(http:\\/\\/)?(www\\.tbdev\\.net|bit-torrent\\.kiev\\.ua\\/)\" target=\"_blank\" style=\"cursor: help;\" title=\"[^\"]*\" class=\"copyright\">TBDev<\\/a> v([\\d\\.]+) )"
+        }
+    ]
+}

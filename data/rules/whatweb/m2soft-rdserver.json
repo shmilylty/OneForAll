@@ -1,0 +1,26 @@
+{
+    "name": "M2Soft-RDServer",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "M2Soft Report Designer Server - reporting tool",
+    "website": "http://www.m2soft.co.kr/english/reporting-tool.asp",
+    "matches": [
+        {
+            "text": "<title>M2Soft Report Designer Server</title>"
+        },
+        {
+            "url": "/RDServer/rdagent.jsp",
+            "regexp": "(?-mix:<font face=\"Verdana\" size=2>\\s+<li>Server version : ([^\\s]+))",
+            "offset": 1
+        },
+        {
+            "search": "headers[writereportlog]",
+            "regexp": "(?-mix:^FALSE$)"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^RDServer\\/([^\\s]+)$)",
+            "offset": 1
+        }
+    ]
+}

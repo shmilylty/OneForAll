@@ -1,0 +1,19 @@
+{
+    "name": "exchange",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "owa"
+        },
+        {
+            "search": "body",
+            "text": "owaLgnBdy"
+        },
+        {
+            "search": "headers",
+            "text": "OutlookSession"
+        }
+    ]
+}

@@ -1,0 +1,20 @@
+{
+    "name": "Symantec-Endpoint-Protection-Manager",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Antivirus and personal firewall",
+    "website": "http://www.symantec.com/business/endpoint-protection",
+    "matches": [
+        {
+            "text": "<tr><td align=\"left\" style=\"font-family:Arial; font-size:18pt\"><b>Symantec Endpoint Protection Manager<br>Web Access</b></td></tr>"
+        },
+        {
+            "text": "<!-- Now, if it is IE on Windows platform, we check to see which version of JWS is installed -->"
+        },
+        {
+            "url": "/portal/About.jsp",
+            "regexp": "(?-mix:<div style=\"font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif; font-size:11px;\">Version ([^\\s^<]+)<\\/div>)",
+            "offset": 1
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+{
+    "name": "Adobe Muse",
+    "website": "http://muse.adobe.com",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "^Muse(?:$| ?/?(\\d[\\d.]+))",
+            "offset": 1
+        }
+    ]
+}

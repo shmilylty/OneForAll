@@ -1,0 +1,9 @@
+{
+    "name": "Apache Hadoop",
+    "website": "http://hadoop.apache.org",
+    "matches": [
+        {
+            "regexp": "<style[^>]+static/hadoop"
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "name": "Cross Pixel",
+    "website": "http://datadesk.crsspxl.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "tag\\.crsspxl\\.com/s1\\.js"
+        }
+    ]
+}

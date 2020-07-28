@@ -1,0 +1,15 @@
+{
+    "name": "dayrui\u7cfb\u5217\u4ea7\u54c1",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "dr_ci_session"
+        },
+        {
+            "search": "body",
+            "text": "dayrui/statics"
+        }
+    ]
+}

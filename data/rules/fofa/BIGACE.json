@@ -1,0 +1,15 @@
+{
+    "name": "BIGACE",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "content=\"BIGACE"
+        },
+        {
+            "search": "body",
+            "text": "Site is running BIGACE"
+        }
+    ]
+}

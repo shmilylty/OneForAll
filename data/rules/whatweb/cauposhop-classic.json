@@ -1,0 +1,27 @@
+{
+    "name": "CaupoShop-Classic",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.3",
+    "description": "German eCommerce and Content management system",
+    "website": "http://www.caupo.net/",
+    "matches": [
+        {
+            "ghdb": "inurl:csc_articles.php",
+            "certainty": 25
+        },
+        {
+            "regexp": "(?-mix:<td align=\"center\"><small>&copy; 1998\\-?[0-9]{0,4} <a href=\"http:\\/\\/www.caupo.net\" target=\"_blank\">CaupoNet<\\/a>)"
+        },
+        {
+            "regexp": "(?-mix:<td align=\"center\"><small>Powered by CaupoShop Classic[\\s]?<\\/small><\\/td>)"
+        },
+        {
+            "regexp": "(?-mix:<td align=\"center\"><small>Powered by CaupoShop Classic Ver\\. ([\\d\\.]+)<\\/small><\\/td>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<!-- CaupoShop Classic Ver\\. ([\\d\\.]+) \\([\\d]{4}-[\\d]{2}-[\\d]{2}\\))",
+            "offset": 1
+        }
+    ]
+}

@@ -1,0 +1,27 @@
+{
+    "name": "Oracle-iPlanet",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "Oracle-iPlanet Web Server and Proxy Server.",
+    "website": "http://www.oracle.com/technetwork/middleware/iplanetwebserver-098726.html",
+    "matches": [
+        {
+            "search": "headers[proxy-agent]",
+            "module": "Proxy",
+            "regexp": "(?-mix:iPlanet-Web-Proxy-Server\\/([\\d\\.]+))",
+            "offset": 1
+        },
+        {
+            "search": "headers[server]",
+            "module": "Web",
+            "regexp": "(?-mix:iPlanet-WebServer-Enterprise\\/([\\d\\.]+))",
+            "offset": 1
+        },
+        {
+            "search": "headers[server]",
+            "module": "Web",
+            "regexp": "(?-mix:Oracle-iPlanet-Web-Server\\/([\\d\\.]+))",
+            "offset": 1
+        }
+    ]
+}

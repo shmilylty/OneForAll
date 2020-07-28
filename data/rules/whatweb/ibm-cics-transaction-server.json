@@ -1,0 +1,20 @@
+{
+    "name": "IBM-CICS-Transaction-Server",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "IBM Customer Information Control System is the new face of CICS Integration point for CICS tooling with rich CICS views, data, and methods. CICS Transaction Server for z/OS is a modern, dependable, and cost effective application platform. z/OS is a 64-bit operating system for mainframe computers, produced by IBM.",
+    "website": " http://www-01.ibm.com/software/htp/cics/tserver/v41/",
+    "matches": [
+        {
+            "os": "z/OS",
+            "search": "headers[server]",
+            "regexp": "(?-mix:^IBM_CICS_Transaction_Server\\/([^\\(]+)\\(zOS\\)$)",
+            "offset": 1
+        },
+        {
+            "os": "z/OS",
+            "regexp": "(?-mix:^IBM_CICS_Transaction_Server)",
+            "search": "headers[server]"
+        }
+    ]
+}

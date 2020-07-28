@@ -1,0 +1,13 @@
+{
+    "name": "TeamSpeak-Server-Log",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "This plugin extracts the username and password from TeamSpeak server.log files.",
+    "website": null,
+    "matches": [
+        {
+            "regexp": "(?-mix:^[0-9]{2}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2},ALL,Info,server,[\\s]+Server version: ([^\\r^\\n]+))",
+            "offset": 1
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    "name": "AvantFAX",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "content=\"Web 2.0 HylaFAX"
+        },
+        {
+            "search": "body",
+            "text": "images/avantfax-big.png"
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+{
+    "name": "experiencedCMS",
+    "website": "https://experiencedcms.berkearas.de",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "^experiencedCMS$"
+        }
+    ],
+    "implies": "PHP"
+}

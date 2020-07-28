@@ -1,0 +1,22 @@
+{
+    "name": "PunBB",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "PunBB is a fast and lightweight PHP-powered discussion board. It is released under the GNU General Public License.",
+    "website": "http://punbb.informer.com/",
+    "matches": [
+        {
+            "certainty": 25,
+            "text": "<!-- forum_debug -->"
+        },
+        {
+            "text": "<div id=\"brd-index\" class=\"brd-page basic-page\">"
+        },
+        {
+            "text": "<p id=\"copyright\">Powered by <strong><a href=\"http://punbb.informer.com/\">PunBB</a></strong>, supported by <strong><a href=\"http://www.informer.com/\">Informer Technologies, Inc</a></strong>.</p>"
+        },
+        {
+            "regexp": "(?-mix:<p style=\"clear: both; \">Currently installed <span id=\"extensions-used\" title=\"([^\"]+)\\.\">[\\d]+ official extensions<\\/span>\\. Copyright &copy; 2003&ndash;)"
+        }
+    ]
+}

@@ -1,0 +1,24 @@
+{
+    "name": "CushyCMS",
+    "author": "Andrew Horton",
+    "version": "0.2",
+    "description": "Simple, closed-source CMS. Free and paid versions. Built with Ruby on Rails",
+    "website": "http://www.cushycms.com/",
+    "matches": [
+        {
+            "text": "Content Management Powered by <a href=\"http://www.cushycms.com\">CushyCMS</a>"
+        },
+        {
+            "text": "<li id=\"poweredBy\"><img alt=\"Powered by CushyCMS\" src=\"/images/cushy_badge.gif"
+        },
+        {
+            "text": "<span id=\"cushycms-footer\">Powered by CushyCMS</span>"
+        },
+        {
+            "regexp": "(?-mix:<a href=\"http:\\/\\/www.cushycms.com\\/[^>]+>(<font[^>]+>)?Powered by CushyCMS)"
+        },
+        {
+            "regexp": "(?-mix:<[^>]+class=\"cushycms\")"
+        }
+    ]
+}

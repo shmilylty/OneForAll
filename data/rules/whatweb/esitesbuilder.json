@@ -1,0 +1,27 @@
+{
+    "name": "eSitesBuilder",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Professional online website builder is complete website creation tool that offers everything you need to build a website: ad-free hosting, free domain names, website templates and website design, CMS, eCommerce and Real Estate solutions. Make your own website today, create a website in minutes: turnkey solutions from a Personal Website to a big Online Store. Try it now for Free!",
+    "website": "http://www.esitesbuilder.com",
+    "matches": [
+        {
+            "text": "<!-- created by XTLabs, Inc. http://www.xt-labs.com -->"
+        },
+        {
+            "regexp": "(?-mix:<a [^href]+href=\"http:\\/\\/[www\\.]*esitesbuilder.com\">Powered by eSitesBuilder<\\/a>)"
+        },
+        {
+            "text": "Powered by <a href=\"http://www.esitesbuilder.com/\" target=\"_blank\" alt=\"website builder\">eSitesBuilder</a>"
+        },
+        {
+            "text": "All rights reserved. Powered by eSitesBuilder"
+        },
+        {
+            "regexp": "(?-mix:Powered by[&nbsp;]*[\\s]*<a [^href]+href=\"http:\\/\\/[www\\.]*esitesbuilder.com\">eSitesBuilder<\\/a>)"
+        },
+        {
+            "text": "Powered by <a href=\"http://www.esitesbuilder.com/\" target=\"_blank\" alt=\"website builder\">eSitesBuilder</a>"
+        }
+    ]
+}

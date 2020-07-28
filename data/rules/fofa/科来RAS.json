@@ -1,0 +1,19 @@
+{
+    "name": "\u79d1\u6765RAS",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "\u79d1\u6765\u7f51\u7edc\u56de\u6eaf"
+        },
+        {
+            "search": "body",
+            "text": "\u79d1\u6765\u8f6f\u4ef6 \u7248\u6743\u6240\u6709"
+        },
+        {
+            "search": "body",
+            "text": "i18ninit.min.js"
+        }
+    ]
+}

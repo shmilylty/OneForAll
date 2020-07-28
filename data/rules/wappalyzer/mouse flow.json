@@ -1,0 +1,10 @@
+{
+    "name": "Mouse Flow",
+    "website": "https://mouseflow.com/",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "cdn\\.mouseflow\\.com"
+        }
+    ]
+}

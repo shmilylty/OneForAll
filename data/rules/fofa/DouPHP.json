@@ -1,0 +1,24 @@
+{
+    "name": "DouPHP",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "Powered by DouPHP"
+        },
+        {
+            "search": "body",
+            "text": "controlBase"
+        },
+        {
+            "search": "body",
+            "text": "indexLeft"
+        },
+        {
+            "search": "body",
+            "text": "recommendProduct"
+        }
+    ],
+    "condition": "0 or (1 and 2 and 3)"
+}

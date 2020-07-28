@@ -1,0 +1,11 @@
+{
+    "name": "mongodb",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "<a href=\"/_replSet\">Replica set status</a></p>"
+        }
+    ]
+}

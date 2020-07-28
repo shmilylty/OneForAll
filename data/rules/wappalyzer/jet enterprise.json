@@ -1,0 +1,10 @@
+{
+    "name": "JET Enterprise",
+    "website": "http://www.jetecommerce.com.br/",
+    "matches": [
+        {
+            "search": "headers[powered]",
+            "regexp": "jet-enterprise"
+        }
+    ]
+}

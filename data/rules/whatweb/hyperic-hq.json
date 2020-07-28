@@ -1,0 +1,21 @@
+{
+    "name": "Hyperic-HQ",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "Hyperic HQ - platform for custom web application monitoring and performance management in physical, virtual, and cloud environments.",
+    "website": "http://www.vmware.com/products/application-platform/vfabric-hyperic.html",
+    "matches": [
+        {
+            "url": "/ui_docs/DOC/index.html",
+            "regexp": "(?-mix:<title>DOCS\\d+ \\(vFabric Hyperic ([^\\)]+)\\))",
+            "offset": 1
+        },
+        {
+            "text": "<a id=\"screencastLink\" href=\"http://www.hyperic.com/demo/screencasts.html\" target=\"_blank\" title=\"Screencasts\">"
+        },
+        {
+            "search": "headers[location]",
+            "regexp": "(?-mix:\\/app\\/login;jsessionid=)"
+        }
+    ]
+}

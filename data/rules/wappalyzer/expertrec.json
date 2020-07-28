@@ -1,0 +1,10 @@
+{
+    "name": "ExpertRec",
+    "website": "https://expertrec.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "cse\\.expertrec\\.com/api/js/ci_common\\.js\\?id=.*$"
+        }
+    ]
+}

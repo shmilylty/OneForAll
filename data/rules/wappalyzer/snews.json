@@ -1,0 +1,10 @@
+{
+    "name": "sNews",
+    "website": "https://snewscms.com",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "sNews"
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    "name": "Infinet-Wireless-WANFleX-Router",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "content=\"InfiNet"
+        },
+        {
+            "search": "headers",
+            "text": "WANFlex HTTP Daemon"
+        }
+    ]
+}

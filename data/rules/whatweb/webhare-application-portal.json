@@ -1,0 +1,18 @@
+{
+    "name": "WebHare-Application-Portal",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "WebHare Application Portal - Enterprise Content Management - The flexible design of WebHare AP allows for complex web applications completely tailored to build support for an intranet or website as well as a separate product line.",
+    "website": "http://www.b-lex.nl/",
+    "matches": [
+        {
+            "regexp": "(?-mix:^WebHare Application Portal)",
+            "search": "headers[server]"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^WebHare Application Portal v([\\d\\.]+) Webserver$)",
+            "offset": 1
+        }
+    ]
+}

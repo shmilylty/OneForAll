@@ -1,0 +1,25 @@
+{
+    "name": "SilverStripe",
+    "author": "Andrew Horton, Brendan Coles <bcoles@gmail.com>, Pedro Worcel (Security-Assessment.com) <pedro@worcel.com>",
+    "version": "0.3",
+    "description": "SilverStripe is an opensource CMS written in PHP. It can run on Apache, IIS or lighthttpd.",
+    "website": "http://www.silverstripe.com",
+    "matches": [
+        {
+            "regexp": "(?-mix:<meta name=\"generator\"[^>]*content=\"SilverStripe)"
+        },
+        {
+            "name": "layout, typography, form css files",
+            "certainty": 75,
+            "regexp": "(?-mix:<link[^>]*stylesheet[^>]*layout.css[^>]*>[^<]*<link[^>]*stylesheet[^>]*typography.css[^>]*>[^<]*<link[^>]*stylesheet[^>]*form.css[^>]*>)"
+        },
+        {
+            "certainty": 75,
+            "regexp": "(?-mix:<img src=\"\\/assets\\/[^\\/]+\\/_resampled\\/[^\"]+.jpg\")"
+        },
+        {
+            "regexp": "(?-mix:<meta name=\"generator\"[^>]*content=\"SilverStripe ([0-9\\.]+))",
+            "offset": 1
+        }
+    ]
+}

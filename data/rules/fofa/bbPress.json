@@ -1,0 +1,15 @@
+{
+    "name": "bbPress",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "<!-- If you like showing off the fact that your server rocks -->"
+        },
+        {
+            "search": "body",
+            "text": "is proudly powered by <a href=\"http://bbpress.org"
+        }
+    ]
+}

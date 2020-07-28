@@ -1,0 +1,16 @@
+{
+    "name": "Polycom",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "Polycom"
+        },
+        {
+            "search": "body",
+            "text": "kAllowDirectHTMLFileAccess"
+        }
+    ],
+    "condition": "0 and 1"
+}

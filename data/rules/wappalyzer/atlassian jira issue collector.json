@@ -1,0 +1,14 @@
+{
+    "name": "Atlassian Jira Issue Collector",
+    "website": "http://www.atlassian.com/software/jira/overview/",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "jira-issue-collector-plugin"
+        },
+        {
+            "search": "script",
+            "regexp": "atlassian\\.jira\\.collector\\.plugin"
+        }
+    ]
+}

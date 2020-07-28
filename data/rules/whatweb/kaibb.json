@@ -1,0 +1,23 @@
+{
+    "name": "KaiBB",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "KaiBB Free and Open Bulletin Board Software - Requires: PHP and MySQL",
+    "website": "http://www.kaibb.co.uk/",
+    "matches": [
+        {
+            "text": "<!-- THIS MUST REMAIN INTACT AND SHOWN ON ALL PAGES -->"
+        },
+        {
+            "regexp": "(?-mix:Powered by <a href=\"http:\\/\\/www\\.kaibb\\.co\\.uk\" class=\"normfont\">KaiBB ([^\\s^<]+)<\\/a>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:Powered by <a href=\"http:\\/\\/\\www\\.mi-dia\\.co\\.uk\" class=\"normfont\">KaiBB ([^\\s^<]+)<\\/a>)",
+            "offset": 1
+        },
+        {
+            "text": "<meta name=\"Description\" http-equiv=\"Description\" content=\"Forum powered by KaiBB - Powered by KaiBB\" />"
+        }
+    ]
+}

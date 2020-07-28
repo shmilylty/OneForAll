@@ -1,0 +1,11 @@
+{
+    "name": "ewebeditor",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "/ewebeditor.htm?"
+        }
+    ]
+}

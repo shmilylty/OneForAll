@@ -1,0 +1,42 @@
+{
+    "name": "LightNEasy",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "LightNEasy is a simple and light Content Management System and Website Builder",
+    "website": "http://www.lightneasy.org/",
+    "matches": [
+        {
+            "offset": 1,
+            "regexp": "(?-mix:<meta name='generator' content='LightNEasy( Mini)? ([^'^>]+)' \\/>)"
+        },
+        {
+            "regexp": "(?-mix:<!-- \\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+[\\s]+\\| LightNEasy ([^\\s]+) Content Management System[\\s]+\\| )",
+            "offset": 1
+        },
+        {
+            "offset": 1,
+            "regexp": "(?-mix:<!-- \\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+[\\s]+\\| LightNEasy Content Management System[\\s]+\\| Copyright 2007-20[\\d]{2} Fernando Baptista[\\s]+\\| http:\\/\\/(www\\.)?lightneasy\\.org[\\s]+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+[\\s]+\\| [^\\|]+ version ([^\\s]+))"
+        },
+        {
+            "regexp": "(?-mix:<!-- \\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+[\\s]+\\| LightNEasy [^\\s^\\|]* Content Management System[\\s]+\\| ([^\\|]+) version[\\s]+)"
+        },
+        {
+            "regexp": "(?-mix:<!-- \\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+[\\s]+\\| LightNEasy [^\\s^\\|]* Content Management System[\\s]+\\| Copyright 2007-20[\\d]{2} Fernando Baptista[\\s]+\\| http:\\/\\/(www\\.)?lightneasy\\.org[\\s]+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+\\+[\\s]+\\| ([^\\|]+) version [^\\s]+)"
+        },
+        {
+            "text": "<link rel='stylesheet' type='text/css' href='css/lightneasy.css' />"
+        },
+        {
+            "regexp": "(?-mix:Powered by <a href=\"http:\\/\\/lightneasy\\.org\">LightNEasy ([^<]+)<\\/a>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<h1>LightNEasy ([^<^\\s]+) index page<\\/h1><p>If you are seeing this, that means <strong>LightNEasy<\\/strong> installation worked!<\\/p>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<h2 class=\"LNE_title\">LightNEasy ([^<^\\s]+) index page<\\/h2><p>If you are seeing this, that means <strong>LightNEasy<\\/strong> installation worked!<\\/p>)",
+            "offset": 1
+        }
+    ]
+}

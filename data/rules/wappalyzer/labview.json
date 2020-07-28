@@ -1,0 +1,11 @@
+{
+    "name": "LabVIEW",
+    "website": "http://ni.com/labview",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "LabVIEW(?:/([\\d\\.]+))?",
+            "offset": 1
+        }
+    ]
+}

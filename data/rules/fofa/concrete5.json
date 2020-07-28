@@ -1,0 +1,19 @@
+{
+    "name": "concrete5",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "generator\" content=\"ezCMS"
+        },
+        {
+            "search": "headers",
+            "text": "CONCRETE5"
+        },
+        {
+            "search": "body",
+            "text": "CCM_DISPATCHER_FILENAME"
+        }
+    ]
+}

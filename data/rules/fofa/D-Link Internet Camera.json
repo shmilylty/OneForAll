@@ -1,0 +1,15 @@
+{
+    "name": "D-Link Internet Camera",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "D-Link Internet Camera"
+        },
+        {
+            "search": "title",
+            "regexp": "D-Link Internet Camera"
+        }
+    ]
+}

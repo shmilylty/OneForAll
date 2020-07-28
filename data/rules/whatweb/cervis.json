@@ -1,0 +1,15 @@
+{
+    "name": "CERVIS",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Community Event Registration and Volunteer Information System (CERVIS) is the most complete and customizable web-based volunteer management software available.",
+    "website": "https://www.cervistech.com/",
+    "matches": [
+        {
+            "text": "<a href=\"http://www.cervistech.com\" target=\"_blank\"><img src=\"/acts/images/cervis_logo_sm.png\" align='absmiddle' border=\"0\" />Powered by CERVIS</a>"
+        },
+        {
+            "regexp": "(?-mix:<meta name=\"title\" content=\"(Volunteer)? Opportunities and Event Registration ([^\"]+)\" \\/>)"
+        }
+    ]
+}

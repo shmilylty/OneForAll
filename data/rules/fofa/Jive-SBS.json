@@ -1,0 +1,23 @@
+{
+    "name": "Jive-SBS",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "/jive-icons.css"
+        },
+        {
+            "search": "body",
+            "text": "class=\"jive-body-formpage"
+        },
+        {
+            "search": "headers",
+            "text": "X-Jsl: "
+        },
+        {
+            "search": "body",
+            "text": "jive.rte.defaultStyles"
+        }
+    ]
+}

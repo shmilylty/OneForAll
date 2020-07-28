@@ -1,0 +1,18 @@
+{
+    "name": "MJNioHttpDaemon",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "MJNioHttpDaemon",
+    "website": null,
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^MJNioHttpDaemon\\/([^\\s]+))",
+            "offset": 1
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:MJNIOHTTPDSESSIONID=)"
+        }
+    ]
+}

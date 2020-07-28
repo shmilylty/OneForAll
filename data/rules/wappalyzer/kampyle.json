@@ -1,0 +1,14 @@
+{
+    "name": "Kampyle",
+    "website": "http://www.kampyle.com",
+    "matches": [
+        {
+            "search": "cookies[k_visit]",
+            "regexp": ".*"
+        },
+        {
+            "search": "script",
+            "regexp": "cf\\.kampyle\\.com/k_button\\.js"
+        }
+    ]
+}

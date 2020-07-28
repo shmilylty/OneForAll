@@ -1,0 +1,29 @@
+{
+    "name": "MySQL-dump",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "Extracts MySQL host, database and server version from MySQL-dump .sql files.",
+    "website": null,
+    "matches": [
+        {
+            "regexp": "(?-mix:------------------------------------------------------[\\r]?\\n-- Server version[\\s]+([^\\r^\\n]+))",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:^# phpMyAdmin MySQL-Dump[\\s]+# version [^\\s]+[\\s]+# http:\\/\\/www.phpmyadmin.net\\/ \\(download page\\)[\\s#]+# Host: [^\\s]+[\\s]+# Generation Time: [^\\n]+[\\s]+# Server version: ([\\d\\.]+))",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:^-- MySQL dump [\\d\\.]+[\\r]?\\n--[\\r]?\\n-- Host: ([^\\s]+)[\\s]+Database:[\\s]+([^\\r^\\n]+))"
+        },
+        {
+            "regexp": "(?-mix:^-- MySQL dump [\\d\\.]+[\\r]?\\n--[\\r]?\\n-- Host: ([^\\s]+)[\\s]+Database:[\\s]+([^\\r^\\n]+))"
+        },
+        {
+            "regexp": "(?-mix:^# phpMyAdmin MySQL-Dump[\\s]+# version [^\\s]+[\\s]+# http:\\/\\/www.phpmyadmin.net\\/ \\(download page\\)[\\s#]+# Host: ([^\\s]+)[\\s]+# Generation Time: [^\\#]+# Server version:[^\\#]+# PHP Version:[^\\#]+# Database : `([^\\`]+)`)"
+        },
+        {
+            "regexp": "(?-mix:^# phpMyAdmin MySQL-Dump[\\s]+# version [^\\s]+[\\s]+# http:\\/\\/www.phpmyadmin.net\\/ \\(download page\\)[\\s#]+# Host: ([^\\s]+)[\\s]+# Generation Time: [^\\#]+# Server version:[^\\#]+# PHP Version:[^\\#]+# Database : `([^\\`]+)`)"
+        }
+    ]
+}

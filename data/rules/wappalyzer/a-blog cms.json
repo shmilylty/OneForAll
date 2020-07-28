@@ -1,0 +1,11 @@
+{
+    "name": "a-blog cms",
+    "website": "http://www.a-blogcms.jp",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "a-blog cms"
+        }
+    ],
+    "implies": "PHP"
+}

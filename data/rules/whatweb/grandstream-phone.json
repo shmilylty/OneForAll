@@ -1,0 +1,34 @@
+{
+    "name": "Grandstream-Phone",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.3",
+    "description": "Grandstream Networks is the leading manufacturer of IP voice/video telephony and video surveillance solutions.",
+    "website": "http://www.grandstream.com/",
+    "matches": [
+        {
+            "text": "<title>Grandstream Device Configuration</title>"
+        },
+        {
+            "text": "All Rights Reserved Grandstream Networks, Inc.",
+            "url": "/"
+        },
+        {
+            "regexp": "(?-mix:^Grandstream)",
+            "search": "headers[server]"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Grandstream ([^\\s]+) [\\d\\.]+$)"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Grandstream [^\\s]+ ([\\d\\.]+)$)",
+            "offset": 1
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Grandstream\\/([\\d\\.]+)$)",
+            "offset": 1
+        }
+    ]
+}

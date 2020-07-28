@@ -1,0 +1,14 @@
+{
+    "name": "UserLike",
+    "website": "http://userlike.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "userlike\\.min\\.js"
+        },
+        {
+            "search": "script",
+            "regexp": "userlikelib\\.min\\.js"
+        }
+    ]
+}

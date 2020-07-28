@@ -1,0 +1,25 @@
+{
+    "name": "Joomla",
+    "author": "Andrew Horton, Brendan Coles <bcoles@gmail.com>, @anozoozian",
+    "version": "0.9",
+    "description": "Opensource CMS written in PHP. Aggressive version detection compares just 5 files, checks for version 1.0.0 up to 3.6.4",
+    "website": "http://joomla.org",
+    "matches": [
+        {
+            "version": "1.0",
+            "regexp": "(?-mix:<meta name=\"Generator\" content=\"Joomla! - Copyright \\(C\\) 200[0-9] - 200[0-9] Open Source Matters. All rights reserved.\" \\/>)"
+        },
+        {
+            "regexp": "(?-mix:<meta name=\"generator\" content=\"Joomla! (\\d\\.\\d) - Open Source Content Management\" \\/>)",
+            "offset": 1
+        },
+        {
+            "text": "Powered by <a href=\"http://www.joomla.org\">Joomla!</a>."
+        },
+        {
+            "url": "/administrator/",
+            "regexp": "(?-mix:<div id=\"joomla\"><img src=\"[^\"]*\\/images\\/header_text.png\" alt=\"Joomla! Logo\")",
+            "name": "admin page"
+        }
+    ]
+}

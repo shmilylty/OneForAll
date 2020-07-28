@@ -1,0 +1,15 @@
+{
+    "name": "TangoCMS",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "TangoCMS is an open source (GNU/GPL 2.1) PHP Content Management System (CMS).",
+    "website": "http://tangocms.org/",
+    "matches": [
+        {
+            "regexp": "(?-mix:Powered by <a href=\"http:\\/\\/(www\\.)?tangocms\\.org\" title=\"(Open Source CMS|TangoCMS)\">TangoCMS<\\/a>\\.)"
+        },
+        {
+            "text": "<input type=\"checkbox\" id=\"sessionRemember\" name=\"session[remember]\" value=\"1\" checked=\"checked\"> <label class=\"horizontal\" for=\"sessionRemember\">Remember me?</label>"
+        }
+    ]
+}

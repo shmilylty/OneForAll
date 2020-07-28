@@ -1,0 +1,15 @@
+{
+    "name": "JGS-Portal",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "Powered by <b>JGS-Portal Version"
+        },
+        {
+            "search": "body",
+            "text": "href=\"jgs_portal_box.php?id="
+        }
+    ]
+}

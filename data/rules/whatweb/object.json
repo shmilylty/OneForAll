@@ -1,0 +1,26 @@
+{
+    "name": "Object",
+    "author": "Andrew Horton",
+    "version": "0.1",
+    "description": "HTML object tag. This can be audio, video, Flash, ActiveX, Python, etc. More info: http://www.w3schools.com/tags/tag_object.asp",
+    "website": null,
+    "matches": [
+        {
+            "regexp": "(?i-mx:<object)"
+        },
+        {
+            "name": "classid",
+            "regexp": "(?i-mx:<object [^>]*classid\\s*=\\s*['\"]([^\"']+)['\"])"
+        },
+        {
+            "name": "classid",
+            "regexp": "(?i-mx:<object [^>]*classid\\s*=\\s*([^\\s>'\"]+))"
+        },
+        {
+            "regexp": "(?i-mx:<object [^>]*(codebase|codetype|type)\\s*=\\s*['\"]([^\"']+)['\"])"
+        },
+        {
+            "regexp": "(?i-mx:<object [^>]*(codebase|codetype|type)\\s*=\\s*([^\\s>'\"]+))"
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+{
+    "name": "JBoss_AS",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "Manage this JBoss AS Instance"
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+{
+    "name": "MyWebsite 9",
+    "website": "https://www.ionos.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "\\/\\/integration.mywebsite-editor.com.*\\.js",
+            "certainty": 100
+        }
+    ]
+}

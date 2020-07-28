@@ -1,0 +1,10 @@
+{
+    "name": "Amplitude",
+    "website": "https://amplitude.com/",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "cdn\\.amplitude\\.com"
+        }
+    ]
+}

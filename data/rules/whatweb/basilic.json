@@ -1,0 +1,23 @@
+{
+    "name": "Basilic",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "Basilic is a bibliography server for research laboratories. It automates and facilitates the diffusion of research publications over the internet, automatically generating web pages from a publication database.",
+    "website": "http://artis.imag.fr/Software/Basilic",
+    "matches": [
+        {
+            "text": "Powered by <a href='http://artis.imag.fr/Software/Basilic/'>Basilic</a></p>"
+        },
+        {
+            "text": "<a href='http://artis.imag.fr/Software/Basilic'>Powered by Basilic</a></span>"
+        },
+        {
+            "regexp": "(?-mix:<span>Powered by <a href='http:\\/\\/artis.imag.fr\\/Software\\/Basilic'>Basilic ([\\d\\.]+)<\\/a><\\/span>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<a href='http:\\/\\/artis.imag.fr\\/Software\\/Basilic'[^>]+>&copy; Powered by Basilic ([\\d\\.]+))",
+            "offset": 1
+        }
+    ]
+}

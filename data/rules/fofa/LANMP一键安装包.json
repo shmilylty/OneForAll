@@ -1,0 +1,11 @@
+{
+    "name": "LANMP\u4e00\u952e\u5b89\u88c5\u5305",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "LANMP\u4e00\u952e\u5b89\u88c5\u5305"
+        }
+    ]
+}

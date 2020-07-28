@@ -1,0 +1,10 @@
+{
+    "name": "List.js",
+    "website": "http://listjs.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "^list\\.(?:min\\.)?js$"
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+{
+    "name": "Fujitsu-InfoProvider-Pro",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "Fujitsu-InfoProvider-Pro"
+        }
+    ]
+}

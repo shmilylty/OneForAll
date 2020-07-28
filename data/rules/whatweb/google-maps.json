@@ -1,0 +1,12 @@
+{
+    "name": "Google-Maps",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Google Maps",
+    "website": "http://maps.google.com/",
+    "matches": [
+        {
+            "regexp": "(?i-mx:<script [^>]*src=[\"'][^>]*maps\\.google\\.com\\/maps(\\?file=api|\\/api\\/staticmap))"
+        }
+    ]
+}

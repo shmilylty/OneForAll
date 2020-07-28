@@ -1,0 +1,11 @@
+{
+    "name": "ZTE_MiFi_UNE",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "MiFi UNE 4G LTE"
+        }
+    ]
+}

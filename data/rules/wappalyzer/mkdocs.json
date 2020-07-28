@@ -1,0 +1,11 @@
+{
+    "name": "MkDocs",
+    "website": "http://www.mkdocs.org/",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "^mkdocs-([\\d.]+)",
+            "offset": 1
+        }
+    ]
+}

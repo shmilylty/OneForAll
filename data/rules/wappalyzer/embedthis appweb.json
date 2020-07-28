@@ -1,0 +1,11 @@
+{
+    "name": "EmbedThis Appweb",
+    "website": "http://embedthis.com/appweb",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "Mbedthis-Appweb(?:/([\\d.]+))?",
+            "offset": 1
+        }
+    ]
+}

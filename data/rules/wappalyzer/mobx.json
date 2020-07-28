@@ -1,0 +1,11 @@
+{
+    "name": "MobX",
+    "website": "https://mobx.js.org",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "(?:/([\\d\\.]+))?/mobx(?:\\.[a-z]+){0,2}\\.js(?:$|\\?)",
+            "offset": 1
+        }
+    ]
+}

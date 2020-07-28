@@ -1,0 +1,23 @@
+{
+    "name": "Gitweb",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Gitweb is a Git web interface, the one working on http://www.kernel.org/git/. It is written in Perl, and can be used as a CGI script, or as a mod_perl legacy script (run by ModPerl::Registry handler). It allows browsing a git repository (or a set of git repositories) using a web browser.",
+    "website": "http://git.or.cz/gitwiki/Gitweb",
+    "matches": [
+        {
+            "regexp": "(?-mix:<meta name=\"generator\" content=\"gitweb\\/([\\d\\.a-z]{1,25}) git\\/[\\d\\.a-z]{1,25}\"\\/>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<!\\-\\- git web interface version ([\\d\\.a-z]{1,25}), \\(C\\) 2005-2006, Kay Sievers <kay.sievers@vrfy.org>, Christian Gierke \\-\\->)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<!\\-\\- git core binaries version ([\\d\\.a-z]{1,25}) \\-\\->)"
+        },
+        {
+            "regexp": "(?-mix:<meta name=\"generator\" content=\"gitweb\\/[\\d\\.a-z]{1,25} git\\/([\\d\\.a-z]{1,25})\"\\/>)"
+        }
+    ]
+}

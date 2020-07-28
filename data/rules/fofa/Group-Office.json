@@ -1,0 +1,19 @@
+{
+    "name": "Group-Office",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "groupoffice="
+        },
+        {
+            "search": "body",
+            "text": "powered by Group-Office"
+        },
+        {
+            "search": "body",
+            "text": "\"theme\":\"Group-Office\","
+        }
+    ]
+}

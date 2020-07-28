@@ -1,0 +1,9 @@
+{
+    "name": "Chorus",
+    "website": "https://getchorus.voxmedia.com/",
+    "matches": [
+        {
+            "regexp": "<meta data-chorus-version="
+        }
+    ]
+}

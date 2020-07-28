@@ -1,0 +1,27 @@
+{
+    "name": "vBulletin",
+    "website": "https://www.vbulletin.com",
+    "matches": [
+        {
+            "search": "cookies[bblastactivity]",
+            "regexp": ".*"
+        },
+        {
+            "search": "cookies[bblastvisit]",
+            "regexp": ".*"
+        },
+        {
+            "search": "cookies[bbsessionhash]",
+            "regexp": ".*"
+        },
+        {
+            "regexp": "<div id=\"copyright\">Powered by vBulletin"
+        },
+        {
+            "search": "meta[generator]",
+            "regexp": "vBulletin ?([\\d.]+)?",
+            "offset": 1
+        }
+    ],
+    "implies": "PHP"
+}

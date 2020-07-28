@@ -1,0 +1,15 @@
+{
+    "name": "React.js",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "/react.js"
+        },
+        {
+            "search": "body",
+            "text": "React.createClass"
+        }
+    ]
+}

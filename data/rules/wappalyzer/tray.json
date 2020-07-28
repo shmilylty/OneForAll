@@ -1,0 +1,10 @@
+{
+    "name": "Tray",
+    "website": "https://www.tray.com.br",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "tcdn\\.com\\.br"
+        }
+    ]
+}

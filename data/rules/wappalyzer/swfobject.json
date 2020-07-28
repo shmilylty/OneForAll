@@ -1,0 +1,10 @@
+{
+    "name": "SWFObject",
+    "website": "https://github.com/swfobject/swfobject",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "swfobject.*\\.js"
+        }
+    ]
+}

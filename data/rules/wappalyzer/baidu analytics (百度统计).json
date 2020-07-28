@@ -1,0 +1,10 @@
+{
+    "name": "Baidu Analytics (\u767e\u5ea6\u7edf\u8ba1)",
+    "website": "https://tongji.baidu.com/",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "hm\\.baidu\\.com/hm\\.js"
+        }
+    ]
+}

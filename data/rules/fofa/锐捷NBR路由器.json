@@ -1,0 +1,11 @@
+{
+    "name": "\u9510\u6377NBR\u8def\u7531\u5668",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "free_nbr_login_form.png"
+        }
+    ]
+}

@@ -1,0 +1,23 @@
+{
+    "name": "TVersity",
+    "author": "Andrew Horton",
+    "version": "0.2",
+    "description": "The TVersity Media Server lets you manage your Internet and home media",
+    "website": "tversity.com",
+    "matches": [
+        {
+            "md5": "300b5c3f134d7ec0bca862cf113149d8",
+            "url": "/favicon.ico"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:TVersity Media Server)",
+            "offset": 1
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:TVersity Media Server\\/([\\d\\.]+))",
+            "offset": 1
+        }
+    ]
+}

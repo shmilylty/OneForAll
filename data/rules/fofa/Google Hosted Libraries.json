@@ -1,0 +1,15 @@
+{
+    "name": "Google Hosted Libraries",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "ajax.googleapis.com/ajax/libs"
+        },
+        {
+            "search": "body",
+            "text": "ajax.googleapis.com/ajax/libs"
+        }
+    ]
+}

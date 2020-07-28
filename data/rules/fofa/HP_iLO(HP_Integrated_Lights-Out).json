@@ -1,0 +1,11 @@
+{
+    "name": "HP_iLO(HP_Integrated_Lights-Out)",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "js/iLO.js"
+        }
+    ]
+}

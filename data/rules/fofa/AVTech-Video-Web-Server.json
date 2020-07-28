@@ -1,0 +1,19 @@
+{
+    "name": "AVTech-Video-Web-Server",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "--- VIDEO WEB SERVER ---"
+        },
+        {
+            "search": "body",
+            "text": "/AV732E/setup.exe"
+        },
+        {
+            "search": "headers",
+            "text": "Server: AV-TECH"
+        }
+    ]
+}

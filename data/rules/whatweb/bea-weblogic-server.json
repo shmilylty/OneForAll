@@ -1,0 +1,34 @@
+{
+    "name": "BEA-WebLogic-Server",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "BEA WebLogic Server is an enterprise-ready Java EE application server that supports the deployment of mission-critical applications in a robust, secure, highly available, and scalable environment.",
+    "website": "http://download.oracle.com/docs/cd/E13222_01/wls/docs100/index.html",
+    "matches": [
+        {
+            "text": "<title>Default BEA WebLogic Server Web Server Index Page</title>"
+        },
+        {
+            "text": "<TITLE>Default BEA WebLogic Server Web Server Index Page</TITLE>"
+        },
+        {
+            "regexp": "(?-mix:<h1>BEA WebLogic Server ([^\\s]+)&#153;<\\/h1>)",
+            "offset": 1
+        },
+        {
+            "search": "headers[server]",
+            "offset": 2,
+            "regexp": "(?-mix:^WebLogic( WebLogic)?( Server)? (.+)  [\\d]{2}\\/[\\d]{2}\\/[\\d]{4})"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^WebLogic WebLogic (Temporary .+) [\\d]{2}\\/[\\d]{2}\\/[\\d]{4})",
+            "offset": 1
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^WebLogic Server (.+) [A-Z][a-z]{2} [A-Z][a-z]{2} [\\d]{1,2} [\\d]{2}:[\\d]{2}:[\\d]{2})",
+            "offset": 1
+        }
+    ]
+}

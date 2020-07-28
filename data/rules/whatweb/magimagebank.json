@@ -1,0 +1,18 @@
+{
+    "name": "MagImageBank",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "The MagImageBank is a easy to use and flexible web-based DAM (digital asset management) for managing images, videos and documents",
+    "website": "http://www.magimagebank.com/",
+    "matches": [
+        {
+            "text": "</div></div><div id=\"SiteBottom\" class=\"fun\"></div><div id='SiteFooter'>"
+        },
+        {
+            "regexp": "(?-mix:<link href=\"\\/imagebank\\/stylesheets\\/fancybox\\.css\\?[\\d]+\" media=\"screen\" rel=\"Stylesheet\" type=\"text\\/css\" \\/>)"
+        },
+        {
+            "text": "Powered by MagImageBank | <a href=\"http://magimagebank.com/\">magimagebank.com</a> | <a href=\"mailto:info@magimagebank.com\">info@magimagebank.com</a>"
+        }
+    ]
+}

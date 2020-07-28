@@ -1,0 +1,10 @@
+{
+    "name": "Google Cloud",
+    "website": "https://cloud.google.com",
+    "matches": [
+        {
+            "search": "headers[via]",
+            "regexp": "^1\\.1 google$"
+        }
+    ]
+}

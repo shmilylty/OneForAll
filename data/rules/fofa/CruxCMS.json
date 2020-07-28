@@ -1,0 +1,15 @@
+{
+    "name": "CruxCMS",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "Created by CruxCMS"
+        },
+        {
+            "search": "body",
+            "text": "title=\"CruxCMS\" class=\"blank"
+        }
+    ]
+}

@@ -1,0 +1,14 @@
+{
+    "name": "Webzi",
+    "website": "https://webzi.ir",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "^Webzi"
+        },
+        {
+            "search": "script",
+            "regexp": "cdn\\.6th\\.ir"
+        }
+    ]
+}

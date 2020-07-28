@@ -1,0 +1,11 @@
+{
+    "name": "seeyoo\u5e7f\u544a\u673a",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "AC_Config.js"
+        }
+    ]
+}

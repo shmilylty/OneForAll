@@ -1,0 +1,10 @@
+{
+    "name": "TagCommander",
+    "website": "https://www.commandersact.com/en/solutions/tagcommander/",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "\\.tagcommander\\.com"
+        }
+    ]
+}

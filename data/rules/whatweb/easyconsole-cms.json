@@ -1,0 +1,16 @@
+{
+    "name": "EasyConsole-CMS",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "EasyConsole CMS allows you to manage the content and usage across your Intranet, Extranet or Portal.\nText, documents, media and virtually any type of information can be securely shared across your organization, your partners or clients through a web-based environment that consistently reflects your branding DNA.",
+    "website": "http://www.easyconsole.com/web-content-management.html",
+    "matches": [
+        {
+            "certainty": 75,
+            "ghdb": "\"Powered by EasyConsole CMS\" inurl:\"easyconsole.cfm\" ext:cfm"
+        },
+        {
+            "regexp": "(?-mix:<!-- Powered by EasyConsole CMS, Copyright DW Dynamic Works LTD 2003 - 20[\\d]{2} - http:\\/\\/www.easyconsole.com -->)"
+        }
+    ]
+}

@@ -1,0 +1,19 @@
+{
+    "name": "\u6d6a\u6f6e\u653f\u52a1\u7cfb\u7edf",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "OnlineQuery/QueryList.aspx"
+        },
+        {
+            "search": "title",
+            "regexp": "\u6d6a\u6f6e\u653f\u52a1"
+        },
+        {
+            "search": "body",
+            "text": "LangChao.ECGAP.OutPortal"
+        }
+    ]
+}

@@ -1,0 +1,17 @@
+{
+    "name": "Sockso",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Sockso is a free, open-source, personal music host server",
+    "website": "http://sockso.pu-gh.com/",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Sockso$)"
+        },
+        {
+            "regexp": "(?-mix:<p id=\"legal\">[\\s]+<strong>Sockso<\\/strong>[\\s]+v([^<]+)<br \\/>[\\s]+&copy; 20[\\d]{2})",
+            "offset": 1
+        }
+    ]
+}

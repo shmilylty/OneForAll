@@ -1,0 +1,27 @@
+{
+    "name": "Advanced-Image-Hosting-Script",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "AIHS is a highly-flexible advanced image hosting solution for anyone who wants to offer an image hosting services of any kind.",
+    "website": "http://yabsoft.com/aihs-feature.php",
+    "matches": [
+        {
+            "text": "  .title                          { font-size: 10px; font-weight: bold; line-height: 150%; color: #FFFFFF; height: 26px; background-image: url(./tile_back.gif) }"
+        },
+        {
+            "text": "    <td colspan=2 align=center><h3>Advanced Image Host Script</h3></td>"
+        },
+        {
+            "regexp": "(?-mix:Powered by: <B><a href=\"http:\\/\\/yabsoft.com\">AIH v([\\d\\.]+)<\\/a><\\/B>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<center><b>Welcome to install AIHS Script ([\\d\\.]+)<\\/b><\\/center>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<tr><td class=info width=100%>Welcome to install Advanced Image Hosting Script Pro ([\\d\\.]+) on your server<\\/td><\\/tr>)",
+            "offset": 1
+        }
+    ]
+}

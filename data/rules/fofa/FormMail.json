@@ -1,0 +1,15 @@
+{
+    "name": "FormMail",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "/FormMail.pl"
+        },
+        {
+            "search": "body",
+            "text": "href=\"http://www.worldwidemart.com/scripts/formmail.shtml"
+        }
+    ]
+}

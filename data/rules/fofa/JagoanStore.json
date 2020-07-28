@@ -1,0 +1,11 @@
+{
+    "name": "JagoanStore",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "href=\"http://www.jagoanstore.com/\" target=\"_blank\">Toko Online"
+        }
+    ]
+}

@@ -1,0 +1,19 @@
+{
+    "name": "Kerio-WebSTAR",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "Kerio_WebSTAR"
+        },
+        {
+            "search": "headers",
+            "text": "WebSTAR"
+        },
+        {
+            "search": "headers",
+            "text": "4D_WebStar"
+        }
+    ]
+}

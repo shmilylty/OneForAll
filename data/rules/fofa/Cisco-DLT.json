@@ -1,0 +1,15 @@
+{
+    "name": "Cisco-DLT",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "Cisco-DLT"
+        },
+        {
+            "search": "body",
+            "text": "System name: Cisco DLT"
+        }
+    ]
+}

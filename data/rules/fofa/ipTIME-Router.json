@@ -1,0 +1,15 @@
+{
+    "name": "ipTIME-Router",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "networks - ipTIME"
+        },
+        {
+            "search": "body",
+            "text": "href=iptime.css"
+        }
+    ]
+}

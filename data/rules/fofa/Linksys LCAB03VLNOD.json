@@ -1,0 +1,11 @@
+{
+    "name": "Linksys LCAB03VLNOD",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "Linksys LCAB03VLNOD"
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+{
+    "name": "php\u4e91",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "<div class=\"index_link_list_name\">"
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+{
+    "name": "GetSimple CMS",
+    "website": "http://get-simple.info",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "GetSimple"
+        }
+    ],
+    "implies": "PHP"
+}

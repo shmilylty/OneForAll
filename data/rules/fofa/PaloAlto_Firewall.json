@@ -1,0 +1,11 @@
+{
+    "name": "PaloAlto_Firewall",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "Access to the web page you were trying to visit has been blocked in accordance with company policy"
+        }
+    ]
+}

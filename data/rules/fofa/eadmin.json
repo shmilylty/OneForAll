@@ -1,0 +1,15 @@
+{
+    "name": "eadmin",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "content=\"eAdmin"
+        },
+        {
+            "search": "title",
+            "regexp": "eadmin"
+        }
+    ]
+}

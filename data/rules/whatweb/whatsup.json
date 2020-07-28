@@ -1,0 +1,27 @@
+{
+    "name": "WhatsUp",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "WhatsUp - Network and Server Management Software",
+    "website": "http://www.whatsupgold.com/",
+    "matches": [
+        {
+            "name": "HTTP Server Header",
+            "regexp": "(?-mix:^WhatsUp)",
+            "search": "headers[server]"
+        },
+        {
+            "string": "Gold",
+            "search": "headers[server]",
+            "regexp": "(?-mix:^WhatsUp_Gold\\/([\\d\\.]+))",
+            "offset": 1
+        },
+        {
+            "string": "Gold",
+            "certainty": 75,
+            "name": "WWW-Authenticate",
+            "regexp": "(?-mix:^Basic realm=\"WhatsUp[\\s]?Gold\")",
+            "search": "headers[www-authenticate]"
+        }
+    ]
+}

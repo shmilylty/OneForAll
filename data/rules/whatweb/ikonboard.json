@@ -1,0 +1,31 @@
+{
+    "name": "Ikonboard",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "PHP powered forum - Homepage [offline] : http://www.ikonboard.com",
+    "website": null,
+    "matches": [
+        {
+            "text": "<!-- iB Copyright Information -->"
+        },
+        {
+            "regexp": "(?-mix:Powered by <a href=\"http:\\/\\/www.ikonboard.com\" class=\"copyright\" target='_blank'>Ikonboard<\\/a> ([^\\s]+) &copy; 20[\\d]{2} <a href='http:\\/\\/www.ikonboard.com' target='_blank'>Ikonboard<\\/a>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:Powered by <a href=\"http:\\/\\/www.ikonboard.com\">Ikonboard v([^<]+)<\\/a><br>&copy; 20[\\d]{2} Ikonboard.com)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<\\/td><\\/tr><\\/table><center><hr><p>[^<]+ [P|p]owered by Ikonboard<br>http:\\/\\/www.ikonboard.com<br>)"
+        },
+        {
+            "regexp": "(?-mix:<meta name=\"GENERATOR\" content=\"Ikonboard ([^\"]+)\">)",
+            "offset": 1
+        },
+        {
+            "certainty": 75,
+            "tagpattern": "h1,/h1,pre,/pre,p,a,/a,/p"
+        }
+    ]
+}

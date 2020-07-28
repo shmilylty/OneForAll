@@ -1,0 +1,23 @@
+{
+    "name": "TestLink",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "TestLink - open source test management tool",
+    "website": "http://www.teamst.org/",
+    "matches": [
+        {
+            "certainty": 75,
+            "text": "<meta name=\"author\" content=\"Martin Havlat\" />"
+        },
+        {
+            "regexp": "(?-mix:\\.png\" \\/>[\\s]*<br \\/>TestLink ([^\\s^<]+))",
+            "offset": 1
+        },
+        {
+            "text": "TestLink project <a href=\"http://testlink.sourceforge.net/docs/testLink.php\">Home</a><br />"
+        },
+        {
+            "regexp": "(?-mix:<html><head><\\/head><body><script type='text\\/javascript'>location\\.href='https?:\\/\\/[^\\'^\\?]+\\/login\\.php\\?note=expired';<\\/script><\\/body><\\/html>)"
+        }
+    ]
+}

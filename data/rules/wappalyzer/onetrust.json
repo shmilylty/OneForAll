@@ -1,0 +1,18 @@
+{
+    "name": "OneTrust",
+    "website": "http://www.onetrust.com",
+    "matches": [
+        {
+            "search": "cookies[OptanonConsent]",
+            "regexp": ".*"
+        },
+        {
+            "search": "script",
+            "regexp": "cdn\\.cookielaw\\.org"
+        },
+        {
+            "search": "script",
+            "regexp": "optanon\\.blob\\.core\\.windows\\.net"
+        }
+    ]
+}

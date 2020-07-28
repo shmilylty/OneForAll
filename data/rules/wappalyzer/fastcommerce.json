@@ -1,0 +1,10 @@
+{
+    "name": "Fastcommerce",
+    "website": "https://www.fastcommerce.com.br",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "^Fastcommerce"
+        }
+    ]
+}

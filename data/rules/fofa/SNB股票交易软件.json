@@ -1,0 +1,11 @@
+{
+    "name": "SNB\u80a1\u7968\u4ea4\u6613\u8f6f\u4ef6",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "Copyright 2005\u20132009 <a href=\"http://www.s-mo.com\">"
+        }
+    ]
+}

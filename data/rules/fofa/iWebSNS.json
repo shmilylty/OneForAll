@@ -1,0 +1,15 @@
+{
+    "name": "iWebSNS",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "/jooyea/images/sns_idea1.jpg"
+        },
+        {
+            "search": "body",
+            "text": "/jooyea/images/snslogo.gif"
+        }
+    ]
+}

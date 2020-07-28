@@ -1,0 +1,11 @@
+{
+    "name": "NETGEAR WN2000RPT",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "NETGEAR WN2000RPT"
+        }
+    ]
+}

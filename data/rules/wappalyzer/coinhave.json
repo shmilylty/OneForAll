@@ -1,0 +1,10 @@
+{
+    "name": "Coinhave",
+    "website": "https://coin-have.com/",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "https?://coin-have\\.com/c/[0-9a-zA-Z]{4}\\.js"
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    "name": "Zoph",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "Zoph (Zoph Organizes Photos) is a web based digital image presentation and management system. In other words, a photo album. It is built with PHP, MySQL and Perl.",
+    "website": "http://www.zoph.org/",
+    "matches": [
+        {
+            "text": "<li class=\"selected\"><a href=\"zoph.php\">home</a></li><li ><a href=\"albums.php\">albums</a></li><li ><a href=\"categories.php\">categories</a></li><li >"
+        },
+        {
+            "text": "<title>Zoph - Home</title>"
+        }
+    ]
+}

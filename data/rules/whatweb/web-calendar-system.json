@@ -1,0 +1,17 @@
+{
+    "name": "Web-Calendar-System",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "web calendar system",
+    "website": null,
+    "matches": [
+        {
+            "certainty": 25,
+            "ghdb": "+intitle:\"Web Calendar system v\" inurl:.asp"
+        },
+        {
+            "regexp": "(?-mix:<TITLE>Web Calendar system v ([\\.\\d]+)<\\/TITLE>)",
+            "offset": 1
+        }
+    ]
+}

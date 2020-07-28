@@ -1,0 +1,11 @@
+{
+    "name": "\u82f9\u679cCMS",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "maccms:voddaycount"
+        }
+    ]
+}

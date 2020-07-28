@@ -1,0 +1,16 @@
+{
+    "name": "Onshop",
+    "website": "https://onshop.asia",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "Onshop Ecommerce"
+        },
+        {
+            "search": "script",
+            "regexp": "/opencart_custom\\.js"
+        }
+    ],
+    "implies": "PHP",
+    "excludes": "OpenCart"
+}

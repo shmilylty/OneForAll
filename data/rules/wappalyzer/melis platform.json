@@ -1,0 +1,28 @@
+{
+    "name": "Melis Platform",
+    "website": "https://www.melistechnology.com/",
+    "matches": [
+        {
+            "regexp": "<!-- Rendered with Melis CMS V2"
+        },
+        {
+            "regexp": "<!-- Rendered with Melis Platform"
+        },
+        {
+            "search": "meta[generator]",
+            "regexp": "^Melis Platform\\."
+        },
+        {
+            "search": "meta[powered-by]",
+            "regexp": "^Melis CMS\\."
+        }
+    ],
+    "implies": [
+        "Apache",
+        "PHP",
+        "MySQL",
+        "Symfony",
+        "Laravel",
+        "Zend"
+    ]
+}

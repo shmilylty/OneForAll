@@ -1,0 +1,14 @@
+{
+    "name": "Prebid",
+    "website": "http://prebid.org",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "/prebid\\.js"
+        },
+        {
+            "search": "script",
+            "regexp": "adnxs\\.com/[^\"]*(?:prebid|/pb\\.js)"
+        }
+    ]
+}
