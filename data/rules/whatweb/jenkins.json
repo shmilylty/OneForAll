@@ -1,0 +1,45 @@
+{
+    "name": "Jenkins",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Jenkins is an application that monitors executions of repeated jobs, such as building a software project or jobs run by cron.",
+    "website": "http://jenkins-ci.org/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<script>var isRunAsTest=false; var rootURL=\"[^\"]*\";<\\/script>)"
+        },
+        {
+            "regexp": "(?-mix:<\\/span><a href=\"http:\\/\\/jenkins\\-ci\\.org\\/\">Jenkins ver\\. ([^<]+)<\\/a>)",
+            "offset": 1
+        },
+        {
+            "search": "headers[x-hudson-theme]",
+            "regexp": "(?-mix:^.*$)"
+        },
+        {
+            "search": "headers[x-instance-identity]",
+            "regexp": "(?-mix:^.*$)"
+        },
+        {
+            "search": "headers[x-hudson-cli-port]",
+            "regexp": "(?-mix:^.*$)"
+        },
+        {
+            "search": "headers[x-jenkins]",
+            "regexp": "(?-mix:^(.+)$)",
+            "offset": 1
+        },
+        {
+            "search": "headers[x-hudson]",
+            "regexp": "(?-mix:^.*$)"
+        },
+        {
+            "search": "headers[x-jenkins-cli-port]",
+            "regexp": "(?-mix:^.*$)"
+        },
+        {
+            "search": "headers[x-ssh-endpoint]",
+            "regexp": "(?-mix:^.*$)"
+        }
+    ]
+}

@@ -1,0 +1,25 @@
+{
+    "name": "webSPELL",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "webSPELL is a free Content Management System which was especially developed for the needs of esport related communities.",
+    "website": "http://www.webspell.org/",
+    "matches": [
+        {
+            "text": "<meta name=\"generator\" content=\"webSPELL\" />"
+        },
+        {
+            "offset": 1,
+            "regexp": "(?-mix:This site is using the <a href=\"http:\\/\\/www.webspell.org\" target=\"[^\"]+\">webSPELL (Free Content Management System|script) \\(version: ([^\\)]+)\\)[\\s]*<\\/a>)"
+        },
+        {
+            "regexp": "(?-mix:Diese Seite benutzt das <a href=\"http:\\/\\/www.webspell.org\" target=\"[^\"]+\">webSPELL Script \\(Version: ([^\\)]+)\\)[\\s]*<\\/a>)",
+            "offset": 1
+        },
+        {
+            "certainty": 75,
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:ws_session=[a-z\\d]+;)"
+        }
+    ]
+}

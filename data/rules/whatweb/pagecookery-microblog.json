@@ -1,0 +1,13 @@
+{
+    "name": "PageCookery-Microblog",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Blog [Chinese]",
+    "website": "http://www.pagecookery.com/",
+    "matches": [
+        {
+            "regexp": "(?-mix:Powered by <a href=\"http:\\/\\/pagecookery.com\\/\" target=\"_blank\">PageCookery<\\/a> Microblog ([\\d\\.]{1,5}))",
+            "offset": 1
+        }
+    ]
+}

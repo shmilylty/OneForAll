@@ -1,0 +1,10 @@
+{
+    "name": "Aircall",
+    "website": "http://aircall.io",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "^https?://cdn\\.aircall\\.io/"
+        }
+    ]
+}

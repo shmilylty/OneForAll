@@ -1,0 +1,15 @@
+{
+    "name": "\u4fe1\u8fbeOA",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "http://www.xdoa.cn</a>"
+        },
+        {
+            "search": "body",
+            "text": "\u5317\u4eac\u521b\u4fe1\u8fbe\u79d1\u6280\u6709\u9650\u516c\u53f8"
+        }
+    ]
+}

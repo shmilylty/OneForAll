@@ -1,0 +1,11 @@
+{
+    "name": "HP Compact Server",
+    "website": "http://hp.com",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "HP_Compact_Server(?:/([\\d.]+))?",
+            "offset": 1
+        }
+    ]
+}

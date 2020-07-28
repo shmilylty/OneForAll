@@ -1,0 +1,24 @@
+{
+    "name": "Burning-Board-Lite",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "Burning Board 3 is the modern, secure and user friendly solution for your discussion board!",
+    "website": "http://www.woltlab.com/products/burning_board/index_en.php",
+    "matches": [
+        {
+            "regexp": "(?-mix:Powered by <a href=\"http:\\/\\/www.woltlab.de[^>]*>Burning Board[\\s]*<\\/a>)"
+        },
+        {
+            "regexp": "(?-mix:Powered by <b><a href=\"http:\\/\\/www.woltlab.de\" target=\"_blank\">Burning Board ([^<]+)<\\/a><\\/b>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:Powered by <b>Burning Board ([\\d\\.]+)<\\/b>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<p class=\"copyright\"><a href=\"http:\\/\\/www.woltlab.com\">Forum Software: <strong>Burning Board&reg; ([\\d\\.]*)<\\/strong>, developed by <strong>WoltLab&reg; GmbH<\\/strong><\\/a><\\/p>)",
+            "offset": 1
+        }
+    ]
+}

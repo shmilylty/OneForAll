@@ -1,0 +1,10 @@
+{
+    "name": "KeyCDN",
+    "website": "http://www.keycdn.com",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "^keycdn-engine$"
+        }
+    ]
+}

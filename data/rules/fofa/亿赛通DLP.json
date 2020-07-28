@@ -1,0 +1,11 @@
+{
+    "name": "\u4ebf\u8d5b\u901aDLP",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "CDGServer3"
+        }
+    ]
+}

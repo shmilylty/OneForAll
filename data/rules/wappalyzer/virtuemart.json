@@ -1,0 +1,10 @@
+{
+    "name": "VirtueMart",
+    "website": "http://virtuemart.net",
+    "matches": [
+        {
+            "regexp": "<div id=\"vmMainPage"
+        }
+    ],
+    "implies": "Joomla"
+}

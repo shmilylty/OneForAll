@@ -1,0 +1,15 @@
+{
+    "name": "cm3-cms",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "cm3session"
+        },
+        {
+            "search": "body",
+            "text": "content=\"cm3 content manager"
+        }
+    ]
+}

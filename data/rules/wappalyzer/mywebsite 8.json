@@ -1,0 +1,11 @@
+{
+    "name": "MyWebsite 8",
+    "website": "https://www.ionos.com",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "^.*MyWebsite.*$",
+            "certainty": 100
+        }
+    ]
+}

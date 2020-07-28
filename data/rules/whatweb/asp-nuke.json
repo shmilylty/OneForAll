@@ -1,0 +1,62 @@
+{
+    "name": "ASP-Nuke",
+    "author": "Andrew Horton",
+    "version": "0.5",
+    "description": "ASP Nuke is an open-source software application for running a community-based web site on a web server. The requirements for the ASP Nuke content management system are: 1. Microsoft SQL Server 2000 and 2. Microsoft Internet Information Server (IIS) 5.0",
+    "website": "http://www.aspnuke.com/",
+    "matches": [
+        {
+            "text": "<meta name=\"Generator\" CONTENT=\"ASP-Nuke"
+        },
+        {
+            "text": "<meta name=\"Generator\" content=\"ASPNuke"
+        },
+        {
+            "version": "2",
+            "text": "<meta name=\"Generator\" content=\"ASPNUKE v2.0 - distributed under GPL license\">"
+        },
+        {
+            "regexp": "(?-mix:<a href=\"\\/gotoURL.asp\\?url=)"
+        },
+        {
+            "text": "<a href=\"http://www.rot.dk\" target=\"_blank\">Asp-Nuke</a> community"
+        },
+        {
+            "regexp": "(?-mix:<link rel=\"Shortcut Icon\" href=\"[^>]*aspnuke.ico\">)"
+        },
+        {
+            "regexp": "(?-mix:<a href=\"http:\\/\\/www.aspnuke.it\" target=\"_blank\">ASP-Nuke [0-9\\.]*<\\/a>)"
+        },
+        {
+            "regexp": "(?-mix:<form name='Authentication' method='post' action='[^']*\\/authent.asp'>)"
+        },
+        {
+            "text": "Designed with <a href=\"http://www.asp-nuke.net\" target=\"_blank\">ASP-Nuke</a>"
+        },
+        {
+            "version": "v1.1+",
+            "text": "<br>Designed with ASP-Nuke v1.1+"
+        },
+        {
+            "offset": 2,
+            "name": "meta generator tag",
+            "regexp": "(?-mix:<meta name=\"Generator\" (content|CONTENT)=\"(ASPNUKE|ASP-Nuke) ([^->\"]+))"
+        },
+        {
+            "name": "desgined by",
+            "regexp": "(?-mix:Designed with <a href=\"http:\\/\\/www.asp-nuke.net\" target=\"_blank\">ASP-Nuke<\\/a> ([^<]+)<br>)",
+            "offset": 1
+        },
+        {
+            "name": "aspnuke.it",
+            "regexp": "(?-mix:<a href=\"http:\\/\\/www.aspnuke.it\" target=\"_blank\">Asp-Nuke ([\\d\\.]+)<\\/a>)",
+            "offset": 1
+        },
+        {
+            "name": "P3P Privacy Headers",
+            "certainty": 25,
+            "search": "headers[p3p]",
+            "text": "CP=\"NOI CUR OUR IND UNI COM NAV INT\""
+        }
+    ]
+}

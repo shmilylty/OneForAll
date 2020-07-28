@@ -1,0 +1,18 @@
+{
+    "name": "RiOS",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Riverbed Optimization System (RiOS)",
+    "website": "http://www.riverbed.com/",
+    "matches": [
+        {
+            "search": "headers[x-rbt-optimized-by]",
+            "regexp": "(?-mix:\\(RiOS ([^\\s]+)\\))",
+            "offset": 1
+        },
+        {
+            "search": "headers[x-rbt-optimized-by]",
+            "regexp": "(?-mix:(.+) \\(RiOS)"
+        }
+    ]
+}

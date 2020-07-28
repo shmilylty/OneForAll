@@ -1,0 +1,15 @@
+{
+    "name": "\u6613\u745e\u6388\u6743\u8bbf\u95ee\u7cfb\u7edf",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "/authjsp/login.jsp"
+        },
+        {
+            "search": "body",
+            "text": "FE0174BB-F093-42AF-AB20-7EC621D10488"
+        }
+    ]
+}

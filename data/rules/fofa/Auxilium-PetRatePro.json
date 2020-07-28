@@ -1,0 +1,11 @@
+{
+    "name": "Auxilium-PetRatePro",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "index.php?cmd=11"
+        }
+    ]
+}

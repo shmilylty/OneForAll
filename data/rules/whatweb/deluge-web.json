@@ -1,0 +1,13 @@
+{
+    "name": "Deluge-web",
+    "author": "Andrew Horton",
+    "version": "0.1",
+    "description": "Deluge-web is a web interface to deluge, an open source, cross-platform BitTorrent client. Homepage - http://deluge-torrent.org/",
+    "website": null,
+    "matches": [
+        {
+            "regexp": "(?-mix:<title>Deluge: Web UI ([^<]+)<\\/title>)",
+            "offset": 1
+        }
+    ]
+}

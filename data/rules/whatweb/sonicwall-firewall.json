@@ -1,0 +1,21 @@
+{
+    "name": "SonicWALL-Firewall",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "SonicWALL Firewall device",
+    "website": "http://www.sonicwall.com/us/products/Network_Security.html",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^SonicWALL$)"
+        },
+        {
+            "url": "/auth1.html",
+            "regexp": "(?-mix:<div align=\"right\">Click <a href=\"sslvpn\" onClick=\"top\\.location\\.href='sslvpn'\";>here<\\/a> for (sslvpn) login)"
+        },
+        {
+            "url": "/auth1.html",
+            "regexp": "(?-mix:<link href=\"swl_login-([^\"]+)\\.css\" rel=\"stylesheet\" type=\"text\\/css\">)"
+        }
+    ]
+}

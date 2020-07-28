@@ -1,0 +1,21 @@
+{
+    "name": "Symfony",
+    "author": "Brendan Coles <bcoles@gmail.com>, Bhavin Senjaliya <bhavin.senjaliya@gmail.com>",
+    "version": "0.2",
+    "description": "Symfony - open-source PHP web framework",
+    "website": "https://symfony.com/",
+    "matches": [
+        {
+            "ghdb": "\"powered by symfony\"",
+            "certainty": 25
+        },
+        {
+            "text": "Powered by <a href=\"http://www.symfony-project.org/\">"
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:^symfony)",
+            "name": "symfony cookie"
+        }
+    ]
+}

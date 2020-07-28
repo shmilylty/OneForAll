@@ -1,0 +1,11 @@
+{
+    "name": "Amiro.CMS",
+    "website": "http://amirocms.com",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "Amiro"
+        }
+    ],
+    "implies": "PHP"
+}

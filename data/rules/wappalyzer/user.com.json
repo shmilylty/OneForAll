@@ -1,0 +1,9 @@
+{
+    "name": "user.com",
+    "website": "https://user.com",
+    "matches": [
+        {
+            "regexp": "<div[^>]+/id=\"ue_widget\""
+        }
+    ]
+}

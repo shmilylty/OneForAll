@@ -1,0 +1,20 @@
+{
+    "name": "Cisco-Adaptive-Security-Appliance",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "The Cisco Adaptive Security Appliance (ASA) family of security devices protects corporate networks. It provides users with highly secure access to data - anytime, anywhere, using any device.",
+    "website": "http://www.cisco.com/web/ANZ/products/security/asa_software.html",
+    "matches": [
+        {
+            "text": "<title>Cisco Systems, Inc. Network Access</title>",
+            "certainty": 75
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Adaptive Security Appliance HTTP\\/1\\.1$)"
+        },
+        {
+            "regexp": "(?-mix:<FORM ACTION=\"\\/netaccess\\/redirect\\.html\">\\s+<INPUT type=hidden name=sid VALUE=)"
+        }
+    ]
+}

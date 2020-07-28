@@ -1,0 +1,15 @@
+{
+    "name": "wosign_ssl_cert",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "https://seal.wosign.com/tws.js"
+        },
+        {
+            "search": "body",
+            "text": "https://seal.wosign.com/Signature"
+        }
+    ]
+}

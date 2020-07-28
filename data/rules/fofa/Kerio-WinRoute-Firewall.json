@@ -1,0 +1,19 @@
+{
+    "name": "Kerio-WinRoute-Firewall",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "Kerio WinRoute Firewall Embedded Web Server"
+        },
+        {
+            "search": "body",
+            "text": "/gfx/kerio_logo.gif"
+        },
+        {
+            "search": "title",
+            "regexp": "Kerio WinRoute Firewall"
+        }
+    ]
+}

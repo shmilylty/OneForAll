@@ -1,0 +1,15 @@
+{
+    "name": "FEX",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "fexsrv"
+        },
+        {
+            "search": "body",
+            "text": "HREF=\"mailto:fexmaster@ostc.de"
+        }
+    ]
+}

@@ -1,0 +1,19 @@
+{
+    "name": "ZCMS",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "_ZCMS_ShowNewMessage"
+        },
+        {
+            "search": "body",
+            "text": "zcms_skin"
+        },
+        {
+            "search": "title",
+            "regexp": "ZCMS\u6cfd\u5143\u5185\u5bb9\u7ba1\u7406"
+        }
+    ]
+}

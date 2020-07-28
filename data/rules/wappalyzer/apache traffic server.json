@@ -1,0 +1,11 @@
+{
+    "name": "Apache Traffic Server",
+    "website": "http://trafficserver.apache.org/",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "ATS/?([\\d.]+)?",
+            "offset": 1
+        }
+    ]
+}

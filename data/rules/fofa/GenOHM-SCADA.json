@@ -1,0 +1,15 @@
+{
+    "name": "GenOHM-SCADA",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "GenOHM Scada Launcher"
+        },
+        {
+            "search": "body",
+            "text": "/cgi-bin/scada-vis/"
+        }
+    ]
+}

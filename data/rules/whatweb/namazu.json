@@ -1,0 +1,26 @@
+{
+    "name": "Namazu",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Namazu is a full-text search engine intended for easy use. Not only does it work as a small or medium scale Web search engine, but also as a personal search system for email or other files.",
+    "website": "http://www.namazu.org/",
+    "matches": [
+        {
+            "regexp": "(?-mix:This search system is powered by[\\s]+<strong><a href=\"http:\\/\\/www\\.namazu\\.org\\/\">Namazu<\\/a><\\/strong>)"
+        },
+        {
+            "regexp": "(?-mix:Powered by <a href=\"http:\\/\\/www\\.namazu\\.(org|cc)\\/[^\"]*\" target=\"_blank\">(N|n)amazu<\\/a>)"
+        },
+        {
+            "regexp": "(?-mix:<p><strong> Total <!-- HIT -->[\\d]+<!-- HIT --> documents matching your query.<\\/strong><\\/p>)"
+        },
+        {
+            "regexp": "(?i-mx:<strong><a href=\"http:\\/\\/www\\.namazu\\.org\\/\">Namazu<\\/a> <!-- VERSION --> v([\\d\\.]+) <!-- VERSION --><\\/strong>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?i-mx:This search system is powered by <a href=\"http:\\/\\/www\\.namazu\\.org\\/\">Namazu<\\/a> <!-- VERSION --> v([\\d\\.]+) <!-- VERSION --><\\/p>)",
+            "offset": 1
+        }
+    ]
+}

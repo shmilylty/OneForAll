@@ -1,0 +1,11 @@
+{
+    "name": "TP-LINK Wireless WR740N/WR741ND",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "TP-LINK Wireless WR740N/WR741ND"
+        }
+    ]
+}

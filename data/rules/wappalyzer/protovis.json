@@ -1,0 +1,10 @@
+{
+    "name": "Protovis",
+    "website": "http://mbostock.github.io/protovis",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "protovis.*\\.js"
+        }
+    ]
+}

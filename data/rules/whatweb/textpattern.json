@@ -1,0 +1,27 @@
+{
+    "name": "Textpattern",
+    "author": "Tonmoy Saikia, Andrew Horton",
+    "version": "0.3",
+    "description": "A flexible, elegant and easy-to-use CMS.",
+    "website": "http://textpattern.com/",
+    "matches": [
+        {
+            "name": "generator",
+            "certainty": 50,
+            "regexp": "(?i-mx:<meta name=\\\"generator\\\"[^>]+content=\\\"textpattern\" \\/>)"
+        },
+        {
+            "name": "jquery.js",
+            "regexp": "(?-mix:<script[^>]+src=\"[^\"]+textpattern\\/jquery.js[^\"]*\">)"
+        },
+        {
+            "name": "css.php",
+            "regexp": "(?-mix:<link[^>]+href=\\\"[^\"]+textpattern\\/css.php[^\"]*\" \\/>)"
+        },
+        {
+            "name": "/textpattern",
+            "text": "<td id=\"view-site\" class=\"tabdown\">",
+            "url": "/textpattern"
+        }
+    ]
+}

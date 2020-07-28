@@ -1,0 +1,19 @@
+{
+    "name": "phpok",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "phpok"
+        },
+        {
+            "search": "body",
+            "text": "Powered By phpok.com"
+        },
+        {
+            "search": "body",
+            "text": "content=\"phpok"
+        }
+    ]
+}

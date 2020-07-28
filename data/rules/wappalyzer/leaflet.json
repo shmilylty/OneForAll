@@ -1,0 +1,10 @@
+{
+    "name": "Leaflet",
+    "website": "http://leafletjs.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "leaflet.{0,32}\\.js"
+        }
+    ]
+}

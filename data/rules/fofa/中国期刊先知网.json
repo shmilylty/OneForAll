@@ -1,0 +1,15 @@
+{
+    "name": "\u4e2d\u56fd\u671f\u520a\u5148\u77e5\u7f51",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "\u672c\u7cfb\u7edf\u7531<span class=\"STYLE1\" ><a href=\"http://www.firstknow.cn"
+        },
+        {
+            "search": "body",
+            "text": "<img src=\"images/logoknow.png\""
+        }
+    ]
+}

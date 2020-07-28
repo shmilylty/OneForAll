@@ -1,0 +1,20 @@
+{
+    "name": "boastMachine",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "boastMachine blog",
+    "website": "http://boastology.com/",
+    "matches": [
+        {
+            "ghdb": "\"powered by boastMachine\" +\"Recent posts\"",
+            "certainty": 75
+        },
+        {
+            "regexp": "(?-mix:Powered by <a href=\"http:\\/\\/boastology.com\">boastMachine v([\\d\\.]+)<\\/a>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<a href=\"http:\\/\\/boastology.com\"><img src=\"http:\\/\\/[^>]*alt=\"Powered by boastMachine\" \\/><\\/a>)"
+        }
+    ]
+}

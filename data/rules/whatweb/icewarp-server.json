@@ -1,0 +1,23 @@
+{
+    "name": "IceWarp-Server",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "IceWarp Unified Communications Server is a fully integrated email server, webmail server, groupware, instant messaging, VoIP / SIP, text messaging.",
+    "website": "http://www.icewarp.com/",
+    "matches": [
+        {
+            "regexp": "(?-mix:^IceWarp)",
+            "search": "headers[server]"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^IceWarp\\/(.+)$)",
+            "offset": 1
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^IceWarp WebSrv\\/(.+)$)",
+            "offset": 1
+        }
+    ]
+}

@@ -1,0 +1,19 @@
+{
+    "name": "\u4e45\u5176\u901a\u7528\u8d22\u8868\u7cfb\u7edf",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "<nobr>\u5317\u4eac\u4e45\u5176\u8f6f\u4ef6\u80a1\u4efd\u6709\u9650\u516c\u53f8"
+        },
+        {
+            "search": "body",
+            "text": "/netrep/intf"
+        },
+        {
+            "search": "body",
+            "text": "/netrep/message2/"
+        }
+    ]
+}

@@ -1,0 +1,13 @@
+{
+    "name": "PHPFM",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.3",
+    "description": "PHP-Fusion is a lightweight open source content management system (CMS). It uses PHP and MySQL.",
+    "website": "http://www.php-fusion.co.uk/",
+    "matches": [
+        {
+            "regexp": "(?-mix:Powered by <a href='http:\\/\\/phpfm.zalon.dk\\/' target='_new' class='bottom'>PHPFM<\\/a> ([\\d\\.]+)<\\/td>)",
+            "offset": 1
+        }
+    ]
+}

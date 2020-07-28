@@ -1,0 +1,26 @@
+{
+    "name": "OpenCart",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "OpenCart - Open Source Shopping Cart Solution",
+    "website": "http://www.opencart.com/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<!--\\s+OpenCart is open source software and you are free to remove the powered by OpenCart if you want, but its generally accepted practise to make a small donation\\.)"
+        },
+        {
+            "regexp": "(?-mix:<div id=\"powered\">Powered By <a href=\"http:\\/\\/www\\.opencart\\.com\"( title=\"OpenCart\")?>OpenCart<\\/a>)"
+        },
+        {
+            "offset": 1,
+            "regexp": "(?-mix:<div id=\"footer\">\\s*<a href=\"http:\\/\\/www\\.opencart\\.com\">OpenCart<\\/a> &copy; 2009(-20[\\d]{2})? All Rights Reserved\\.<br \\/>Version ([^<]+)<\\/div>)"
+        },
+        {
+            "regexp": "(?-mix:All Rights Reserved\\.<br \\/>OpenCart Version ([^<]+)\\<\\/div>)",
+            "offset": 1
+        },
+        {
+            "text": "/admin/index.php?route=common/login\" method=\"post\" enctype=\"multipart/form-data\" id=\"form\">"
+        }
+    ]
+}

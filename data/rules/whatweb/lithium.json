@@ -1,0 +1,13 @@
+{
+    "name": "Lithium",
+    "author": "Mateusz Golewski",
+    "version": "0.1",
+    "description": "A Lithium forum engine.",
+    "website": null,
+    "matches": [
+        {
+            "name": "BODY id element",
+            "regexp": "(?-mix:<body[^>]+id=\"lia-body\")"
+        }
+    ]
+}

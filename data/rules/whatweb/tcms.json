@@ -1,0 +1,13 @@
+{
+    "name": "TCMS",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "Content management system by Tanzarine Technology Ltd",
+    "website": "http://www.tanzarine.co.uk/Articles/cms.html",
+    "matches": [
+        {
+            "ghdb": "\"powered by TCMS\"",
+            "certainty": 75
+        }
+    ]
+}

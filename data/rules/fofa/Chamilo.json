@@ -1,0 +1,19 @@
+{
+    "name": "Chamilo",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "X-Powered-By: Chamilo"
+        },
+        {
+            "search": "body",
+            "text": "<link href=\"http://www.chamilo.org/documentation.php"
+        },
+        {
+            "search": "body",
+            "text": "content=\"Chamilo"
+        }
+    ]
+}

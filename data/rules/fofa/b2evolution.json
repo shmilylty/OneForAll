@@ -1,0 +1,19 @@
+{
+    "name": "b2evolution",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "/powered-by-b2evolution-150t.gif"
+        },
+        {
+            "search": "body",
+            "text": "Powered by b2evolution"
+        },
+        {
+            "search": "body",
+            "text": "content=\"b2evolution"
+        }
+    ]
+}

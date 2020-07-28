@@ -1,0 +1,14 @@
+{
+    "name": "Cybozu-Garoon",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "Cybozu Garoon is a web-based groupware suite integrating key collaboration applications that provide a ready-to-run intranet solution.",
+    "website": "http://cybozu.com/en/grn/product/",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Cybozu-WS\\/([^\\s]+)$)",
+            "offset": 1
+        }
+    ]
+}

@@ -1,0 +1,16 @@
+{
+    "name": "SDCMS",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "SDCMS - CMS - Requires ASP and Access/MsSql",
+    "website": "http://www.sdcms.cn/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<br>Powered By <a href=['\"]http:\\/\\/www\\.sdcms\\.cn['\"] target=['\"]_blank['\"]>SDCMS ([^<]+)<\\/a>)",
+            "offset": 1
+        },
+        {
+            "text": "<dl id=\"con_three_1\" class=\"index_photo\">"
+        }
+    ]
+}

@@ -1,0 +1,46 @@
+{
+    "name": "X10media-MP3-Search-Engine",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "X10media MP3 search engine",
+    "website": "http://www.x10media.com/mp3-script.php",
+    "matches": [
+        {
+            "text": "\t<meta name=\"copyright\" content=\"X10Media\"/>",
+            "certainty": 75
+        },
+        {
+            "text": "\t<meta name=\"contributor\" content=\"X10Media\"/>",
+            "certainty": 75
+        },
+        {
+            "text": "<title>x10media Mp3 Search Engine</title>"
+        },
+        {
+            "text": "Powered by <a href=\"http://www.x10media.com\">x10media.com</a> a <a href=\"http://www.x10media.com/mp3-script.php\">MP3 Search Script</a>"
+        },
+        {
+            "text": "Cannot connect to the database. Possibly, the X10Media Mp3 Search engine is not installed. Click <a href=\"install/\">here</a>, to install it."
+        },
+        {
+            "regexp": "(?-mix:<meta name=\"publisher\" content=\"x10media`s Mp3 Search Engine V\\.([\\d\\.]+)\"\\/>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<meta name=\"dc\\.rights\" content=\"x10media`s Mp3 Search Engine V\\.([\\d\\.]+)\"\\/>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<meta name=\"dc\\.publisher\" content=\"x10media`s Mp3 Search Engine V\\.([\\d\\.]+)\"\\/>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<meta name=\"owner\" content=\"x10media`s Mp3 Search Engine V\\.([\\d\\.]+)\"\\/>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<title>x10media`s Mp3 Search Engine V\\.([\\d\\.]+)[\\ Installer]*<\\/title>)",
+            "offset": 1
+        }
+    ]
+}

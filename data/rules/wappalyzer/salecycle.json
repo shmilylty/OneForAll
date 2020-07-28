@@ -1,0 +1,9 @@
+{
+    "name": "SaleCycle",
+    "website": "https://www.salecycle.com/",
+    "matches": [
+        {
+            "regexp": "<iframe[^>]+title=\"SaleCycle\"[^>]+src=\"[^>]+salecycle\\.com"
+        }
+    ]
+}

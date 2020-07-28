@@ -1,0 +1,23 @@
+{
+    "name": "ipTIME-Router",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "ipTIME Rrouter [Korean] - developed by EFM Networks",
+    "website": "http://www.iptime.co.kr/~iptime/prd.php?pf=3",
+    "matches": [
+        {
+            "regexp": "(?-mix:<head><title>EFM Networks ipTIME ([A-Z0-9]+)<\\/title>)"
+        },
+        {
+            "regexp": "(?-mix:<head><title>EFM networks - ipTIME ([A-Z0-9]+)<\\/title>)"
+        },
+        {
+            "url": "/login/login.cgi",
+            "regexp": "(?-mix:([\\d]{1,3}\\.[\\d]{1,3}\\.[\\d]{1,3}\\.[\\d]{1,3})<\\/span><br>[\\s]*<span class=item_text><b>Version [\\d\\.]+<\\/b><\\/span>)"
+        },
+        {
+            "url": "/login/login.cgi",
+            "regexp": "(?-mix:(No IP|[\\d]{1,3}\\.[\\d]{1,3}\\.[\\d]{1,3}\\.[\\d]{1,3})<\\/span><br>[\\s]*<span class=item_text><b>(F\\/W )?Version ([\\d\\.]+)<\\/b><\\/span>)"
+        }
+    ]
+}

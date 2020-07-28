@@ -1,0 +1,15 @@
+{
+    "name": "iTop",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "iTop Login"
+        },
+        {
+            "search": "body",
+            "text": "href=\"http://www.combodo.com/itop"
+        }
+    ]
+}

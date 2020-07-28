@@ -1,0 +1,10 @@
+{
+    "name": "Site Meter",
+    "website": "http://www.sitemeter.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "sitemeter\\.com/js/counter\\.js\\?site="
+        }
+    ]
+}

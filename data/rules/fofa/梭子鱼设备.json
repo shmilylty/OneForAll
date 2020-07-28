@@ -1,0 +1,11 @@
+{
+    "name": "\u68ad\u5b50\u9c7c\u8bbe\u5907",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "BarracudaHTTP"
+        }
+    ]
+}

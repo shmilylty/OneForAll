@@ -1,0 +1,14 @@
+{
+    "name": "Netlify",
+    "website": "https://www.netlify.com/",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "^Netlify"
+        },
+        {
+            "search": "headers[x-nf-request-id]",
+            "regexp": ".*"
+        }
+    ]
+}

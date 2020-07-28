@@ -1,0 +1,19 @@
+{
+    "name": "\u7f51\u52a8\u4e91\u89c6\u8baf\u5e73\u53f0",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "Acenter"
+        },
+        {
+            "search": "body",
+            "text": "/js/roomHeight.js"
+        },
+        {
+            "search": "body",
+            "text": "meetingShow!show.action"
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+{
+    "name": "ISPConfig",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "powered by <a HREF=\"http://www.ispconfig.org"
+        }
+    ]
+}

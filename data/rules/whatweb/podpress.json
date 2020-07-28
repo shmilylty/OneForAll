@@ -1,0 +1,17 @@
+{
+    "name": "podPress",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "podPress - A dream plugin for Podcastrs using WordPress.",
+    "website": "http://www.mightyseek.com/podpress",
+    "matches": [
+        {
+            "regexp": "(?-mix:<cite>Podcast Powered by <a href=\"http:\\/\\/www.mightyseek.com\\/podpress\\/\" title=\"podPress, the dream plugin for podcasting with WordPress\"><strong>podPress \\(v([\\d\\.]+)\\)<\\/strong><\\/a><\\/cite>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<div id=\"podPress_footer\">Podcast powered by <a href=\"http:\\/\\/wordpress.org\\/extend\\/plugins\\/podpress\\/\" title=\"podPress, a plugin for podcasting with WordPress\"><strong>podPress v([\\d\\.]+)<\\/strong><\\/a><\\/div>)",
+            "offset": 1
+        }
+    ]
+}

@@ -1,0 +1,24 @@
+{
+    "name": "DUgallery",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "DUgallery - PHP powered photo gallery.",
+    "website": "http://www.duware.com/",
+    "matches": [
+        {
+            "ghdb": "ext:asp inurl:DUgallery intitle:\"3.0\"",
+            "version": "3.0",
+            "certainty": 75
+        },
+        {
+            "regexp": "(?-mix:<title>DUgallery[^<]*<\\/title>)"
+        },
+        {
+            "text": "<img src=\"assets/title.gif\" alt=\"Powered by DUportal\" width=\"269\" height=\"62\" border=\"0\">"
+        },
+        {
+            "regexp": "(?-mix:<title>DUgallery ([\\d\\.]+)<\\/title>)",
+            "offset": 1
+        }
+    ]
+}

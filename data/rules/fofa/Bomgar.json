@@ -1,0 +1,15 @@
+{
+    "name": "Bomgar",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "alt=\"Remote Support by BOMGAR"
+        },
+        {
+            "search": "body",
+            "text": "<a href=\"http://www.bomgar.com/products\" class=\"inverse"
+        }
+    ]
+}

@@ -1,0 +1,19 @@
+{
+    "name": "\u534e\u4e3a MCU",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "McuR5-min.js"
+        },
+        {
+            "search": "body",
+            "text": "MCUType.js"
+        },
+        {
+            "search": "title",
+            "regexp": "huawei MCU"
+        }
+    ]
+}

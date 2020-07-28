@@ -1,0 +1,11 @@
+{
+    "name": "NETGEAR MBR624GU",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "NETGEAR MBR624GU"
+        }
+    ]
+}

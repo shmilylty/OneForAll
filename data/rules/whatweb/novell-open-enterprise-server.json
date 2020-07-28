@@ -1,0 +1,25 @@
+{
+    "name": "Novell-Open-Enterprise-Server",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Novell Open Enterprise Server",
+    "website": "http://www.novell.com/products/openenterpriseserver/",
+    "matches": [
+        {
+            "text": "<!-- This is all just a super-duper redirect to the Welcome page"
+        },
+        {
+            "text": "<title>Home - Novell Open Enterprise Server 2</title>"
+        },
+        {
+            "regexp": "(?-mix:<p id=\"ftr-copy\">&nbsp;&nbsp;&nbsp;&nbsp;&copy; (20[\\d]{2}) Novell, Inc\\. All Rights Reserved\\.<\\/p>)"
+        },
+        {
+            "text": "<script type=\"text/javascript\" src=\"/welcome/inc/flashobj.js\"></script> <!-- required for javascript banners from Novell.com -->"
+        },
+        {
+            "regexp": "(?-mix:<h1>Novell Open Enterprise Server ([^<]+)<\\/h1>\\s+<p class=\"link\"><a href=\"http:\\/\\/www\\.novell\\.com\\/products\\/openenterpriseserver\\/\">)",
+            "offset": 1
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "name": "Gentoo",
+    "website": "http://www.gentoo.org",
+    "matches": [
+        {
+            "search": "headers[x-powered-by]",
+            "regexp": "gentoo"
+        }
+    ]
+}

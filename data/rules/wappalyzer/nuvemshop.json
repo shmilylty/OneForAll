@@ -1,0 +1,13 @@
+{
+    "name": "Nuvemshop",
+    "website": "https://www.nuvemshop.com.br/",
+    "matches": [
+        {
+            "regexp": "<a target=\"_blank\" title=\"Nuvemshop\""
+        },
+        {
+            "search": "script",
+            "regexp": "Nuvem"
+        }
+    ]
+}

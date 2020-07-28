@@ -1,0 +1,15 @@
+{
+    "name": "Etano",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Etano - Dating and social networking script",
+    "website": "https://code.google.com/p/etano/",
+    "matches": [
+        {
+            "text": "All Rights Reserved.<br />Powered by <a href=\"http://www.datemill.com\" title=\"Etano community builder\">Etano</a>.</p>"
+        },
+        {
+            "text": "Etano</a>. All Rights Reserved.<br />"
+        }
+    ]
+}

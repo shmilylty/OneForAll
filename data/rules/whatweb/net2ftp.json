@@ -1,0 +1,20 @@
+{
+    "name": "net2ftp",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "net2ftp is a web based FTP client",
+    "website": "http://www.net2ftp.com/",
+    "matches": [
+        {
+            "certainty": 25,
+            "text": "<title>net2ftp - a web based FTP client</title>"
+        },
+        {
+            "regexp": "(?-mix:<!-- net2ftp version ([^\\s]+) -->)",
+            "offset": 1
+        },
+        {
+            "text": "<!-- End of net2ftp login form -->"
+        }
+    ]
+}

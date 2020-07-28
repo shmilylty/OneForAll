@@ -1,0 +1,10 @@
+{
+    "name": "MooTools",
+    "website": "https://mootools.net",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "mootools.*\\.js"
+        }
+    ]
+}

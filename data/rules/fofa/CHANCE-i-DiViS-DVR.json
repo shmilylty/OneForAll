@@ -1,0 +1,11 @@
+{
+    "name": "CHANCE-i-DiViS-DVR",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "Techno Vision Security System Ver"
+        }
+    ]
+}

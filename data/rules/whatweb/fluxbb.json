@@ -1,0 +1,29 @@
+{
+    "name": "FluxBB",
+    "author": "Andrew Horton, Brendan Coles <bcoles at gmail dot com>",
+    "version": "0.5",
+    "description": "Open Source forum written in PHP",
+    "website": "http://fluxbb.org/ - Aggressive matches can identify 1.2.x, 1.3.x and 1.4.x",
+    "matches": [
+        {
+            "name": "Powered by",
+            "regexp": "(?-mix:>P(owered by|ropuls&#233; par) (<strong>)?<a href=\"http:\\/\\/fluxbb\\.org\\/\">FluxBB<\\/a>)"
+        },
+        {
+            "offset": 1,
+            "regexp": "(?-mix:>P(owered by|ropuls&#233; par) <a href=\"http:\\/\\/fluxbb\\.org\\/\">FluxBB<\\/a> ([\\d\\.]+)<)"
+        },
+        {
+            "certainty": 25,
+            "regexp": "(?-mix:<link rel=\"stylesheet\" type=\"text\\/css\" href=\"style\\/(Cobalt|Lithium|Mercury|Oxygen|Radium|Sulfur)\\.css\" \\/>)"
+        },
+        {
+            "certainty": 75,
+            "text": "<li id=\"navlogin\"><a href=\"login.php\">"
+        },
+        {
+            "certainty": 75,
+            "regexp": "(?-mix:<div id=\"brdwelcome\" class=\"inbox\">[\\s]+<p>[^<]+<\\/p>[\\s]+<\\/div>)"
+        }
+    ]
+}

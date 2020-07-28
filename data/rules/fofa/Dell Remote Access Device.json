@@ -1,0 +1,11 @@
+{
+    "name": "Dell Remote Access Device",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "RAC_ONE_HTTP "
+        }
+    ]
+}

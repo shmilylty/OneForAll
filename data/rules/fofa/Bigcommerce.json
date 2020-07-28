@@ -1,0 +1,11 @@
+{
+    "name": "Bigcommerce",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "SHOP_SESSION_TOKEN"
+        }
+    ]
+}

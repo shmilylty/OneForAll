@@ -1,0 +1,19 @@
+{
+    "name": "IBM-BladeCenter",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "/shared/ibmbch.png"
+        },
+        {
+            "search": "body",
+            "text": "/shared/ibmbcs.png"
+        },
+        {
+            "search": "body",
+            "text": "alt=\"IBM BladeCenter"
+        }
+    ]
+}

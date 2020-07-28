@@ -1,0 +1,15 @@
+{
+    "name": "Vmware_vFabric",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "vFabric"
+        },
+        {
+            "search": "headers",
+            "text": "TS01efd1fa"
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    "name": "Apache-Wicket",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "xmlns:wicket="
+        },
+        {
+            "search": "body",
+            "text": "/org.apache.wicket."
+        }
+    ]
+}

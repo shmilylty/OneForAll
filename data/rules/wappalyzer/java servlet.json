@@ -1,0 +1,12 @@
+{
+    "name": "Java Servlet",
+    "website": "http://www.oracle.com/technetwork/java/index-jsp-135475.html",
+    "matches": [
+        {
+            "search": "headers[x-powered-by]",
+            "regexp": "Servlet(?:\\/([\\d.]+))?",
+            "offset": 1
+        }
+    ],
+    "implies": "Java"
+}

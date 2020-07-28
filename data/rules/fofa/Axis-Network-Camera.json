@@ -1,0 +1,15 @@
+{
+    "name": "Axis-Network-Camera",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "AXIS Video Server"
+        },
+        {
+            "search": "body",
+            "text": "/incl/trash.shtml"
+        }
+    ]
+}

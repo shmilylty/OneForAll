@@ -1,0 +1,23 @@
+{
+    "name": "\u767e\u5ea6CDN",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "apps.bdimg.com"
+        },
+        {
+            "search": "body",
+            "text": "apps.bdimg.com"
+        },
+        {
+            "search": "headers",
+            "text": "libs.baidu.com"
+        },
+        {
+            "search": "body",
+            "text": "libs.baidu.com"
+        }
+    ]
+}

@@ -1,0 +1,24 @@
+{
+    "name": "\u5929\u67cf\u5728\u7ebf\u57f9\u8bad/\u8003\u8bd5\u7cfb\u7edf",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "\u8fde\u63a5\u4e2d\uff0c\u8bf7\u7a0d\u5019"
+        },
+        {
+            "search": "headers",
+            "text": "index.html"
+        },
+        {
+            "search": "body",
+            "text": "App_Image/PXSystem"
+        },
+        {
+            "search": "body",
+            "text": "App_Image/System"
+        }
+    ],
+    "condition": "(0 and 1) or 2 or 3"
+}

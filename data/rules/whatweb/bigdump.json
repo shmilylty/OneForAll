@@ -1,0 +1,17 @@
+{
+    "name": "BigDump",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "BigDump: Staggered MySQL Dump Importer ",
+    "website": "http://www.ozerov.de/bigdump.php",
+    "matches": [
+        {
+            "regexp": "(?-mix:<h1>BigDump: Staggered MySQL Dump Importer ver\\. ([^\\s^<]{2,6})<\\/h1>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<title>BigDump ver\\. ([^\\s^<]{2,6})<\\/title>)",
+            "offset": 1
+        }
+    ]
+}

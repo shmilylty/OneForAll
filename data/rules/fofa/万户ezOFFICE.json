@@ -1,0 +1,11 @@
+{
+    "name": "\u4e07\u6237ezOFFICE",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "LocLan"
+        }
+    ]
+}

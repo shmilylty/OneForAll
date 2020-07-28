@@ -1,0 +1,16 @@
+{
+    "name": "Web2py",
+    "author": "Napz <napzs@rocketmail.com>",
+    "version": "0.1",
+    "description": "Web2py - Free open source full-stack framework written in Pytho",
+    "website": "http://www.web2py.com/",
+    "matches": [
+        {
+            "search": "headers[x-powered-by]",
+            "regexp": "(?-mix:web2py)"
+        },
+        {
+            "text": "<div id=\"serendipityLeftSideBar\">"
+        }
+    ]
+}

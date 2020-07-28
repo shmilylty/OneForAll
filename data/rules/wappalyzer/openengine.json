@@ -1,0 +1,10 @@
+{
+    "name": "openEngine",
+    "website": "http://openengine.de/html/pages/de/",
+    "matches": [
+        {
+            "search": "meta[openEngine]",
+            "regexp": ".*"
+        }
+    ]
+}

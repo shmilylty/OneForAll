@@ -1,0 +1,11 @@
+{
+    "name": "\u5e0c\u5c14OA",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "/heeroa/login.do"
+        }
+    ]
+}

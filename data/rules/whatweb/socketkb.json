@@ -1,0 +1,13 @@
+{
+    "name": "SocketKB",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "Deploy your own professional knowledge base or knowledge repository. Provide your customers the answers to their questions with SocketKB. Increase customer satisfaction and confidence. Easy and fast to install.",
+    "website": "http://socketkb.com/site/home/",
+    "matches": [
+        {
+            "regexp": "(?-mix:>Powered by SocketKB version ([\\d\\.]+)<\\/a>)",
+            "offset": 1
+        }
+    ]
+}

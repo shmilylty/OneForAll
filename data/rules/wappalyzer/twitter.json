@@ -1,0 +1,10 @@
+{
+    "name": "Twitter",
+    "website": "http://twitter.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "//platform\\.twitter\\.com/widgets\\.js"
+        }
+    ]
+}

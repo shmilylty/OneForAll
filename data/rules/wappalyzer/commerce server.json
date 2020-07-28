@@ -1,0 +1,11 @@
+{
+    "name": "Commerce Server",
+    "website": "http://commerceserver.net",
+    "matches": [
+        {
+            "search": "headers[commerce-server-software]",
+            "regexp": ".*"
+        }
+    ],
+    "implies": "Microsoft ASP.NET"
+}

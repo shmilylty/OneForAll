@@ -1,0 +1,10 @@
+{
+    "name": "Neto",
+    "website": "https://www.neto.com.au",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "jquery\\.neto.*\\.js"
+        }
+    ]
+}

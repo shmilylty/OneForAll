@@ -1,0 +1,22 @@
+{
+    "name": "WANem",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "WANem is a Wide Area Network emulator designed by Performance Engineering Research Centre, TATA Consultancy Services, Mumbai.",
+    "website": "http://wanem.sourceforge.net/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<html><body><h1>WANem v([^\\s^:]+): It works\\!<\\/h1><\\/body><\\/html>)",
+            "offset": 1
+        },
+        {
+            "url": "/WANem/about.html",
+            "regexp": "(?-mix:<b>WANem v([^\\s^<]+)<\\/b><br>)",
+            "offset": 1
+        },
+        {
+            "url": "/WANem/title.html",
+            "text": "<TITLE>Welcome to WANem</TITLE>"
+        }
+    ]
+}

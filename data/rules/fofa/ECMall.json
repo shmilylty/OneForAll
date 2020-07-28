@@ -1,0 +1,15 @@
+{
+    "name": "ECMall",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "ECM_ID"
+        },
+        {
+            "search": "body",
+            "text": "generator\" content=\"ECMall"
+        }
+    ]
+}

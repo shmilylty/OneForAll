@@ -1,0 +1,23 @@
+{
+    "name": "vbPortal",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "Portal and CMS for vBulletin",
+    "website": "http://www.vbportal.com/",
+    "matches": [
+        {
+            "text": "<meta name=\"generator\" content=\"vbPortal - Copyright 2010\" />"
+        },
+        {
+            "text": "\t<!-- Do not remove  or your scheduled tasks will cease to function -->"
+        },
+        {
+            "regexp": "(?-mix:<meta name=\"generator\" content=\"vbPortal ([\\d\\.]+)\" \\/>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:Portal By vbPortal Version ([\\d\\.]+)<br \\/>)",
+            "offset": 1
+        }
+    ]
+}

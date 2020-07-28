@@ -1,0 +1,15 @@
+{
+    "name": "ASP-Nuke",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "CONTENT=\"ASP-Nuke"
+        },
+        {
+            "search": "body",
+            "text": "content=\"ASPNUKE"
+        }
+    ]
+}

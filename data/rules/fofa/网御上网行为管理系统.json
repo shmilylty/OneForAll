@@ -1,0 +1,11 @@
+{
+    "name": "\u7f51\u5fa1\u4e0a\u7f51\u884c\u4e3a\u7ba1\u7406\u7cfb\u7edf",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "Leadsec ACM"
+        }
+    ]
+}

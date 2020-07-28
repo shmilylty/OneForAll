@@ -1,0 +1,10 @@
+{
+    "name": "Oracle Recommendations On Demand",
+    "website": "http://www.oracle.com/us/products/applications/commerce/recommendations-on-demand/index.html",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "atgsvcs.+atgsvcs\\.js"
+        }
+    ]
+}

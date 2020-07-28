@@ -1,0 +1,21 @@
+{
+    "name": "Astaro-Security-Gateway",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Astaro Security Gateway - Unified Threat Management (UTF) Firewall device",
+    "website": "http://www.astaro.com/products/hardware-appliances",
+    "matches": [
+        {
+            "text": "<script src=\"wfe/asg/js/app_selector.js?t="
+        },
+        {
+            "certainty": 75,
+            "text": "<script src=\"wfe/asg/js/_variables_from_backend.js?t="
+        },
+        {
+            "url": "/core/img/topbar/topbar_center.png",
+            "md5": "2e6cdce49c669ec305b2d73eead50e4c",
+            "version": "8.x"
+        }
+    ]
+}

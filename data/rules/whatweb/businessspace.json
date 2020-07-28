@@ -1,0 +1,18 @@
+{
+    "name": "BusinessSpace",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "BusinessSpace community",
+    "website": null,
+    "matches": [
+        {
+            "text": "  <title>Login to our community network!</title>"
+        },
+        {
+            "text": "\t\t\t\t&copy; BusinessSpace\t\t\t</div>"
+        },
+        {
+            "text": "This is a place for people building a circle of professional contacts, open to sharing new business opportunities, and looking to fully promote and showcase their capabilities.\" />"
+        }
+    ]
+}

@@ -1,0 +1,19 @@
+{
+    "name": "EduSoho\u5f00\u6e90\u7f51\u7edc\u8bfe\u5802",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "edusoho"
+        },
+        {
+            "search": "body",
+            "text": "Powered by <a href=\"http://www.edusoho.com"
+        },
+        {
+            "search": "body",
+            "text": "Powered By EduSoho"
+        }
+    ]
+}

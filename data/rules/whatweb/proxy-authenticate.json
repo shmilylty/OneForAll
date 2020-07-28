@@ -1,0 +1,13 @@
+{
+    "name": "Proxy-Authenticate",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "This plugin extracts the realm from the proxy-authenticate HTTP header.",
+    "website": null,
+    "matches": [
+        {
+            "search": "headers[proxy-authenticate]",
+            "regexp": "(?-mix:realm=\"([^\"]+)\")"
+        }
+    ]
+}

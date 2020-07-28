@@ -1,0 +1,15 @@
+{
+    "name": "Dell-Printer",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "Dell printer web frontend - http://www.dell.com/",
+    "website": null,
+    "matches": [
+        {
+            "regexp": "(?i-mx:<title>Dell Laser Printer ([A-Z]?[\\d]{4}[a-z]{0,2})<\\/title>)"
+        },
+        {
+            "regexp": "(?-mix:<TITLE>Dell ([\\d]{4}[a-z]+) Laser Printer<\\/TITLE>)"
+        }
+    ]
+}

@@ -1,0 +1,19 @@
+{
+    "name": "Orenosv",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "Orenosv is a stable, reliable and high performance HTTP/FTP/FTPS file server that can operate in 24H/365D. Orenosv runs on Windows platforms (NT, 2000, XP and 2003) and Linux x86. ",
+    "website": "http://www.orenosv.com/orenosv_en.html",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^orenosv)",
+            "offset": 1
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^orenosv\\/([^\\s]+)$)",
+            "offset": 1
+        }
+    ]
+}

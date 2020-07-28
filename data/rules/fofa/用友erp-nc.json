@@ -1,0 +1,15 @@
+{
+    "name": "\u7528\u53cberp-nc",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "/nc/servlet/nc.ui.iufo.login.Index"
+        },
+        {
+            "search": "title",
+            "regexp": "\u7528\u53cb\u65b0\u4e16\u7eaa"
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "name": "Marked",
+    "website": "https://marked.js.org",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "/marked(?:\\.min)?\\.js"
+        }
+    ]
+}

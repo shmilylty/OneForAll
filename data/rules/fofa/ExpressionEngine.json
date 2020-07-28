@@ -1,0 +1,19 @@
+{
+    "name": "ExpressionEngine",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "exp_last_visit"
+        },
+        {
+            "search": "headers",
+            "text": "exp_last_activity"
+        },
+        {
+            "search": "body",
+            "text": "exp_tracker"
+        }
+    ]
+}

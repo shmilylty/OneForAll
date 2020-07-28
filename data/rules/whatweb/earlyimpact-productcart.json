@@ -1,0 +1,19 @@
+{
+    "name": "EarlyImpact-ProductCart",
+    "author": "Andrew Horton",
+    "version": "0.3",
+    "description": "EarlyImpact ProductCart is an ASP commercial ecommerce system ",
+    "website": "http://www.earlyimpact.com. Version < 2.53 is vulnerable http://www.securityfocus.com/bid/9669",
+    "matches": [
+        {
+            "certainty": 75,
+            "ghdb": "inurl:custva.asp"
+        },
+        {
+            "text": "<a href=\"fpassword.asp?redirectUrl=&frURL=Custva.asp\""
+        },
+        {
+            "text": "<!-- end of password request -->"
+        }
+    ]
+}

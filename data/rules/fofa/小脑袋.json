@@ -1,0 +1,11 @@
+{
+    "name": "\u5c0f\u8111\u888b",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "http://stat.xiaonaodai.com/stat.php"
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "name": "Java",
+    "website": "http://java.com",
+    "matches": [
+        {
+            "search": "cookies[JSESSIONID]",
+            "regexp": ".*"
+        }
+    ]
+}

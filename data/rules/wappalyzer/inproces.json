@@ -1,0 +1,13 @@
+{
+    "name": "InProces",
+    "website": "http://www.brein.nl/oplossing/product/website",
+    "matches": [
+        {
+            "regexp": "<!-- CSS InProces Portaal default -->"
+        },
+        {
+            "search": "script",
+            "regexp": "brein/inproces/website/websitefuncties\\.js"
+        }
+    ]
+}

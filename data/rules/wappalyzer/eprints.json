@@ -1,0 +1,12 @@
+{
+    "name": "EPrints",
+    "website": "http://www.eprints.org",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "EPrints ([\\d.]+)",
+            "offset": 1
+        }
+    ],
+    "implies": "Perl"
+}

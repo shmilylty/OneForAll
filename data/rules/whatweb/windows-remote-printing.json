@@ -1,0 +1,15 @@
+{
+    "name": "Windows-Remote-Printing",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "The Windows remote printing interface displays networked printers, print job owner usernames and internal IP addresses.",
+    "website": null,
+    "matches": [
+        {
+            "ghdb": "inurl:\"Printers/ipp_0001.asp\" intitle:\"All Printers on\""
+        },
+        {
+            "regexp": "(?-mix:<frame src=\"ipp_000[\\d]\\.asp\\?eprinter=)"
+        }
+    ]
+}

@@ -1,0 +1,16 @@
+{
+    "name": "Indico",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Indico - Integrated Digital Conference - allows you to manage complex conferences, workshops and meetings.",
+    "website": "http://indico.cern.ch/",
+    "matches": [
+        {
+            "text": "<td class=\"menuConfTopCell\" align=\"left\" valign=\"bottom\">"
+        },
+        {
+            "offset": 1,
+            "regexp": "(?-mix:<\\/span>&nbsp;Powered by(\\ CERN)? <a href=\"http:\\/\\/cern\\.ch\\/indico\">Indico ([^<]+)<\\/a>&nbsp;<span class=\"separator\">)"
+        }
+    ]
+}

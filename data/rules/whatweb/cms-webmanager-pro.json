@@ -1,0 +1,16 @@
+{
+    "name": "CMS-WebManager-Pro",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "CMS WebManager-Pro - is a software product for creating and maintaining websites of any complexity.",
+    "website": "http://webmanager-pro.com/",
+    "matches": [
+        {
+            "text": "Powered by <a style=\"color:#555555;\" href=\"http://webmanager-pro.com/\">CMS Webmanager-pro</a>"
+        },
+        {
+            "regexp": "(?-mix:<meta name=\"generator\" content=\"Webmanager-pro v([\\d\\.]+)\" \\/>)",
+            "offset": 1
+        }
+    ]
+}

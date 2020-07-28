@@ -1,0 +1,10 @@
+{
+    "name": "uCoz",
+    "website": "https://ucoz.ru",
+    "matches": [
+        {
+            "search": "cookies[uCoz]",
+            "regexp": ".*"
+        }
+    ]
+}

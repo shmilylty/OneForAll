@@ -1,0 +1,9 @@
+{
+    "name": "Open Web Analytics",
+    "website": "http://www.openwebanalytics.com",
+    "matches": [
+        {
+            "regexp": "<!-- (?:Start|End) Open Web Analytics Tracker -->"
+        }
+    ]
+}

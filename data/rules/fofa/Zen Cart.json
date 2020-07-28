@@ -1,0 +1,15 @@
+{
+    "name": "Zen Cart",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "shopping cart program by Zen Cart"
+        },
+        {
+            "search": "headers",
+            "text": "Set-Cookie: zenid="
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "name": "Coinlab",
+    "website": "https://coinlab.biz/en",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "https?://coinlab\\.biz/lib/coinlab\\.js\\?id="
+        }
+    ]
+}

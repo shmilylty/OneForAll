@@ -1,0 +1,10 @@
+{
+    "name": "Eloqua",
+    "website": "http://eloqua.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "elqCfg\\.js"
+        }
+    ]
+}

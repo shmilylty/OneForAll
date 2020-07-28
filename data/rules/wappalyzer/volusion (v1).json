@@ -1,0 +1,15 @@
+{
+    "name": "Volusion (V1)",
+    "website": "https://www.volusion.com",
+    "matches": [
+        {
+            "regexp": "<link [^>]*href=\"[^\"]*/vspfiles/"
+        },
+        {
+            "search": "script",
+            "regexp": "/volusion\\.js(?:\\?([\\d.]*))?",
+            "offset": 1
+        }
+    ],
+    "implies": "Microsoft ASP.NET"
+}

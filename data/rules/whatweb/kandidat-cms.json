@@ -1,0 +1,12 @@
+{
+    "name": "Kandidat-CMS",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Kandidat-CMS [Russian] - Homepage http://www.kan-studio.ru/",
+    "website": null,
+    "matches": [
+        {
+            "regexp": "(?-mix:Powered by[\\ ]?[:]? <a href=\"http:\\/\\/www.kan-studio.ru[\\/]?\">Kandidat CMS<\\/a>)"
+        }
+    ]
+}

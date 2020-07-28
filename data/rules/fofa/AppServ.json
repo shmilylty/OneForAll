@@ -1,0 +1,15 @@
+{
+    "name": "AppServ",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "appserv/softicon.gif"
+        },
+        {
+            "search": "body",
+            "text": "index.php?appservlang=th"
+        }
+    ]
+}

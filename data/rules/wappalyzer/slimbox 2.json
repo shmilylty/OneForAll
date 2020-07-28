@@ -1,0 +1,14 @@
+{
+    "name": "Slimbox 2",
+    "website": "http://www.digitalia.be/software/slimbox2",
+    "matches": [
+        {
+            "regexp": "<link [^>]*href=\"[^/]*slimbox2(?:-rtl)?\\.css"
+        },
+        {
+            "search": "script",
+            "regexp": "slimbox2\\.js"
+        }
+    ],
+    "implies": "jQuery"
+}

@@ -1,0 +1,13 @@
+{
+    "name": "Swiper Slider",
+    "website": "https://swiperjs.com",
+    "matches": [
+        {
+            "regexp": "<[^>]+=swiper-container"
+        },
+        {
+            "search": "script",
+            "regexp": "swiper(?:\\.min)?\\.js"
+        }
+    ]
+}

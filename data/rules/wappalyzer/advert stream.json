@@ -1,0 +1,10 @@
+{
+    "name": "Advert Stream",
+    "website": "http://www.advertstream.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "(?:ad\\.advertstream\\.com|adxcore\\.com)"
+        }
+    ]
+}

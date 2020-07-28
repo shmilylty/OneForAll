@@ -1,0 +1,22 @@
+{
+    "name": "Winconnection",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "The Winconnection 6 is a gateway to access the Internet developed within the UTM (Unified Threat Management) philosophy.",
+    "website": "http://www.winco.com.br/",
+    "matches": [
+        {
+            "regexp": "(?-mix:^Winconnection )",
+            "search": "headers[server]"
+        },
+        {
+            "offset": 0,
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Winconnection V([^\\s]+) \\(server ([A-Z\\d]{6})\\)$)"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Winconnection V([^\\s]+) \\(server ([A-Z\\d]{6})\\)$)"
+        }
+    ]
+}

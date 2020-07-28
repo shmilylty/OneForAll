@@ -1,0 +1,33 @@
+{
+    "name": "Piwik",
+    "author": "Brendan Coles <bcoles@gmail.com>, Bhavin Senjaliya <bhavin.senjaliya@gmail.com>",
+    "version": "0.3",
+    "description": "Piwik is a downloadable, open source (GPL licensed) real time web analytics software program.",
+    "website": "http://piwik.org/",
+    "matches": [
+        {
+            "certainty": 75,
+            "ghdb": "+intitle:Piwik \"JavaScript must be enabled in order for you to use Piwik in standard view\""
+        },
+        {
+            "text": "<title>Piwik &rsaquo; Web Analytics Reports</title>"
+        },
+        {
+            "text": "<img src=\"themes/default/images/loading-blue.gif\" alt=\"\" /> Loading data"
+        },
+        {
+            "regexp": "(?-mix:<meta name=\\\"generator\\\"[^>]*content=\\\"Piwik ([0-9\\.]+))",
+            "offset": 1
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:^_pk_)",
+            "name": "_pk_ cookie"
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:^PIWIK_SESSID)",
+            "name": "PIWIK_SESSID cookie"
+        }
+    ]
+}

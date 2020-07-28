@@ -1,0 +1,10 @@
+{
+    "name": "Ticimax",
+    "website": "https://www.ticimax.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "cdn\\.ticimax\\.com/"
+        }
+    ]
+}

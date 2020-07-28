@@ -1,0 +1,13 @@
+{
+    "name": "MikroTik-RouterOS",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "RouterOS is the operating system used on the MikroTik RouterBOARD series of routers. It can also be installed on a PC and will turn it into a router with all the necessary features - routing, firewall, bandwidth management, wireless access point, backhaul link, hotspot gateway, VPN server and more.",
+    "website": "http://www.mikrotik.com/software.html & http://www.routerboard.com/",
+    "matches": [
+        {
+            "url": "/webfig/iframe.html",
+            "text": "<body onload=\"parent.generateContent(parent.location.hash.substr(1));\">"
+        }
+    ]
+}

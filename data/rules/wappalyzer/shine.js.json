@@ -1,0 +1,10 @@
+{
+    "name": "shine.js",
+    "website": "https://bigspaceship.github.io/shine.js/",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "shine(?:\\.min)?\\.js"
+        }
+    ]
+}

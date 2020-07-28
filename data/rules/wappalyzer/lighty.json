@@ -1,0 +1,11 @@
+{
+    "name": "Lighty",
+    "website": "https://gitlab.com/lighty/framework",
+    "matches": [
+        {
+            "search": "cookies[lighty_version]",
+            "regexp": ".*"
+        }
+    ],
+    "implies": "PHP"
+}

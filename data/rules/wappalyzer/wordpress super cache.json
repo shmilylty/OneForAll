@@ -1,0 +1,14 @@
+{
+    "name": "WordPress Super Cache",
+    "website": "http://z9.io/wp-super-cache/",
+    "matches": [
+        {
+            "search": "headers[wp-super-cache]",
+            "regexp": ".*"
+        },
+        {
+            "regexp": "<!--[^>]+WP-Super-Cache"
+        }
+    ],
+    "implies": "WordPress"
+}

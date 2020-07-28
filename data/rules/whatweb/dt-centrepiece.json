@@ -1,0 +1,15 @@
+{
+    "name": "DT-Centrepiece",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "DT Centrepiece is a free open-source content management system (CMS) for commercial or personal use.",
+    "website": "www.dt.net.nz/centrepiece/",
+    "matches": [
+        {
+            "text": "\t<meta name=\"generator\" content=\"DT Centrepiece - www.dt.net.nz/centrepiece/\" />"
+        },
+        {
+            "text": "<a href=\"http://www.dt.net.nz/centrepiece/\" target=\"_blank\">Powered By DT Centrepiece</a>"
+        }
+    ]
+}

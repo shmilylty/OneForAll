@@ -1,0 +1,28 @@
+{
+    "name": "Siemens-SpeedStream-Router",
+    "author": "Andrew Horton, Brendan Coles <bcoles@gmail.com>",
+    "version": "0.3",
+    "description": "Siemens SpeedStream 4200 and 6520 modems are only sold in Australia through selected internet providers, which include them in their internet access packs. - More Info: http://bc.whirlpool.net.au/bc/hardware/?action=h_view&model_id=279",
+    "website": null,
+    "matches": [
+        {
+            "text": "<TITLE>SpeedStream Router Management Interface</TITLE>"
+        },
+        {
+            "certainty": 50,
+            "regexp": "(?-mix:<!-- Copyright(C) [0-9]+ Siemens Subscriber Networks -->)"
+        },
+        {
+            "certainty": 75,
+            "text": "<FRAME SRC=\"pflogin.htm\" NAME=\"rightFrame\""
+        },
+        {
+            "url": "/summary.htm",
+            "regexp": "(?-mix:<B>System Type:<\\/B><\\/TD><TD>SpeedStream ([^\\-]+-Series)<\\/TD>)"
+        },
+        {
+            "url": "/summary.htm",
+            "regexp": "(?-mix:<TD ALIGN=\"right\" WIDTH=\"150\"><B>MAC Address:<\\/B><\\/TD><TD>([\\dA-F]{2}:[\\dA-F]{2}:[\\dA-F]{2}:[\\dA-F]{2}:[\\dA-F]{2}:[\\dA-F]{2})<\\/TD><\\/TR><\\/TABLE>)"
+        }
+    ]
+}

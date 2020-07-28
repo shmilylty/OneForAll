@@ -1,0 +1,23 @@
+{
+    "name": "ECShop",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "Powered by ECShop"
+        },
+        {
+            "search": "headers",
+            "text": "ECS_ID"
+        },
+        {
+            "search": "body",
+            "text": "content=\"ECSHOP"
+        },
+        {
+            "search": "body",
+            "text": "/api/cron.php"
+        }
+    ]
+}

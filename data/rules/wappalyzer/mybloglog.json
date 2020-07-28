@@ -1,0 +1,10 @@
+{
+    "name": "MyBlogLog",
+    "website": "http://www.mybloglog.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "pub\\.mybloglog\\.com"
+        }
+    ]
+}

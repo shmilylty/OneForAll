@@ -1,0 +1,48 @@
+{
+    "name": "mySQL-Error",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "This plugin detects mySQL errors and grabs the username, server and database details.",
+    "website": null,
+    "matches": [
+        {
+            "regexp": "(?-mix:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '|You have an error in your SQL syntax near ')",
+            "certainty": 25
+        },
+        {
+            "text": "Connessione non riuscita: Can't connect to local MySQL server through socket ",
+            "certainty": 25
+        },
+        {
+            "text": "<b>Warning</b>:  mysql_connect() [<a href='function.mysql-connect'>function.mysql-connect</a>]: Can't connect to local MySQL server through socket"
+        },
+        {
+            "text": "Warning: mysql_connect() [function.mysql-connect]: Lost connection to MySQL server at 'reading initial communication packet', ",
+            "certainty": 25
+        },
+        {
+            "text": "<b>Warning</b>:  mysql_connect() [<a href='function.mysql-connect'>function.mysql-connect</a>]: Lost connection to MySQL server at 'reading initial communication packet', "
+        },
+        {
+            "regexp": "(?-mix:<b>Warning<\\/b>:  mysql_connect\\(\\) \\[<a href='function.mysql-connect'>function.mysql-connect<\\/a>\\]: Access denied for user ([^\\ ]+))"
+        },
+        {
+            "regexp": "(?-mix:<b>Warning<\\/b>:  mysql_query\\(\\) \\[<a href='function.mysql-query'>function.mysql-query<\\/a>\\]: Access denied for user ([^\\ ]+))"
+        },
+        {
+            "regexp": "(?-mix:Error: Access denied for user ([^\\ ]+) to database ([^\\s]+))"
+        },
+        {
+            "regexp": "(?-mix:Error: Access denied for user ([^\\ ]+) to database ([^\\s]+))"
+        },
+        {
+            "regexp": "(?-mix:Error: Connection to mySQL-database at ([^\\ ]+) failed!)"
+        },
+        {
+            "regexp": "(?-mix:Errore: Non riesco a connettermi al server MySql ([a-z0-9\\.\\-\\_]+))"
+        },
+        {
+            "regexp": "(?-mix:Errore: Non riesco a selezionare il database ([a-z0-9\\.\\-\\_]+))"
+        }
+    ]
+}

@@ -1,0 +1,21 @@
+{
+    "name": "HighWire-Press",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "HighWire Press hosting",
+    "website": "http://highwire.stanford.edu/about/",
+    "matches": [
+        {
+            "search": "headers[x-firenze-processing-time]",
+            "regexp": "(?-mix:^[\\d\\.]+$)"
+        },
+        {
+            "search": "headers[x-firenze-processing-tims]",
+            "regexp": "(?-mix:^detect-robot:)"
+        },
+        {
+            "search": "headers[x-highwire-sessionid]",
+            "regexp": "(?-mix:^.+$)"
+        }
+    ]
+}

@@ -1,0 +1,19 @@
+{
+    "name": "MediaWiki",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "generator\" content=\"MediaWiki"
+        },
+        {
+            "search": "body",
+            "text": "/wiki/images/6/64/Favicon.ico"
+        },
+        {
+            "search": "body",
+            "text": "Powered by MediaWiki"
+        }
+    ]
+}

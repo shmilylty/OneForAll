@@ -1,0 +1,10 @@
+{
+    "name": "Proximis Web to Store",
+    "website": "https://www.proximis.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "widget-commerce(?:\\.min)?\\.js"
+        }
+    ]
+}

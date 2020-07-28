@@ -1,0 +1,10 @@
+{
+    "name": "YUI",
+    "website": "http://yuilibrary.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "(?:/yui/|yui\\.yahooapis\\.com)"
+        }
+    ]
+}

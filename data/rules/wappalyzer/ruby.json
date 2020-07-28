@@ -1,0 +1,10 @@
+{
+    "name": "Ruby",
+    "website": "http://ruby-lang.org",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "(?:Mongrel|WEBrick|Ruby)"
+        }
+    ]
+}

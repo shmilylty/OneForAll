@@ -1,0 +1,14 @@
+{
+    "name": "FusionBB",
+    "author": "Claudio Salazar",
+    "version": "0.1",
+    "description": "FusionBB is a PHP forum.",
+    "website": null,
+    "matches": [
+        {
+            "name": "version",
+            "regexp": "(?-mix:FusionBB&trade; Version (\\d+\\.?\\d+?))",
+            "offset": 1
+        }
+    ]
+}

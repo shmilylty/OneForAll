@@ -1,0 +1,15 @@
+{
+    "name": "GetSimple",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "content=\"GetSimple"
+        },
+        {
+            "search": "body",
+            "text": "Powered by GetSimple"
+        }
+    ]
+}

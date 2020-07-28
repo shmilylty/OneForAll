@@ -1,0 +1,11 @@
+{
+    "name": "MathJax",
+    "website": "https://www.mathjax.org",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "([\\d.]+)?/mathjax\\.js",
+            "offset": 1
+        }
+    ]
+}

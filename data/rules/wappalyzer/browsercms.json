@@ -1,0 +1,12 @@
+{
+    "name": "BrowserCMS",
+    "website": "http://browsercms.org",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "BrowserCMS ([\\d.]+)",
+            "offset": 1
+        }
+    ],
+    "implies": "Ruby"
+}

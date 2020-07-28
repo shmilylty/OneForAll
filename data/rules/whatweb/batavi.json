@@ -1,0 +1,28 @@
+{
+    "name": "Batavi",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Batavi open source e-commerce",
+    "website": "http://www.batavi.org/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<p align=\"center\"><a href=\"http:\\/\\/www\\.batavi\\.org\" target=\"_blank\" class=\"poweredByButton\"><span class=\"poweredBy\">Powered By<\\/span><span class=\"Batavi\">Batavi ([^<]+)<\\/span><\\/a><\\/p>)",
+            "offset": 1
+        },
+        {
+            "text": "<meta name=\"generator\" content=\"Batavi.org - Open Source E-Commerce\" />"
+        },
+        {
+            "regexp": "(?-mix:<meta name=\"Generator\" content=\"Batavi ([^\\}^>]+)\" \\/>)",
+            "offset": 1
+        },
+        {
+            "search": "headers[x-powered-by]",
+            "regexp": "(?-mix:Batavi e\\-commerce)"
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:frontsid=[^;]+;)"
+        }
+    ]
+}

@@ -1,0 +1,22 @@
+{
+    "name": "eZ-Publish",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "eZ Publish is an Open Source Content Management System chosen by thousands of enterprises and organizations world wide.",
+    "website": "http://ez.no/",
+    "matches": [
+        {
+            "text": "<title>eZ publish administration</title>"
+        },
+        {
+            "text": "<link rel=\"stylesheet\" type=\"text/css\" href=\"/admin/templates/ezpublish/style.css\" />"
+        },
+        {
+            "text": "topmargin=\"6\" marginheight=\"6\" leftmargin=\"6\" marginwidth=\"6\" onload=\"MM_preloadImages('/admin/images/ezpublish/redigerminimrk.gif','/admin/images/ezpublish/slettminimrk.gif','/admin/images/ezpublish/downloadminimrk.gif')\">"
+        },
+        {
+            "search": "headers[x-powered-by]",
+            "regexp": "(?-mix:^eZ [p|P]ublish)"
+        }
+    ]
+}

@@ -1,0 +1,13 @@
+{
+    "name": "Gannett",
+    "author": "Eugene Amirov",
+    "version": "0.1",
+    "description": "Gannett websites",
+    "website": null,
+    "matches": [
+        {
+            "name": "Favicon",
+            "regexp": "(?-mix:<link rel=\"shortcut icon\" href=\"http:\\/\\/www.gannett-cdn.com\\/sites\\/[A-Za-z0-9_-]+\\/images\\/favicon.png\">)"
+        }
+    ]
+}

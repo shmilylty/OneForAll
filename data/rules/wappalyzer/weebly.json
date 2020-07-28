@@ -1,0 +1,14 @@
+{
+    "name": "Weebly",
+    "website": "https://www.weebly.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "cdn\\d+\\.editmysite\\.com"
+        }
+    ],
+    "implies": [
+        "PHP",
+        "MySQL"
+    ]
+}

@@ -1,0 +1,16 @@
+{
+    "name": "TerraMaster",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "TerraMaster"
+        },
+        {
+            "search": "body",
+            "text": "/js/common.js"
+        }
+    ],
+    "condition": "0 and 1"
+}

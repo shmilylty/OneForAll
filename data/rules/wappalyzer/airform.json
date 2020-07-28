@@ -1,0 +1,9 @@
+{
+    "name": "Airform",
+    "website": "https://airform.io",
+    "matches": [
+        {
+            "regexp": "<form[^>]+?action=\"[^\"]*airform\\.io[^>]+?>"
+        }
+    ]
+}

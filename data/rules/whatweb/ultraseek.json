@@ -1,0 +1,18 @@
+{
+    "name": "Ultraseek",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "Ultraseek - web site search engine product information - Homepage [Offline] : http://www.ultraseek.com/",
+    "website": null,
+    "matches": [
+        {
+            "regexp": "(?-mix:^Ultraseek)",
+            "search": "headers[server]"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Ultraseek\\/([^\\s]+)$)",
+            "offset": 1
+        }
+    ]
+}

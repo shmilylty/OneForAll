@@ -1,0 +1,10 @@
+{
+    "name": "Flickity",
+    "website": "https://flickity.metafizzy.co/",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "/flickity(?:\\.pkgd)?(?:\\.min)?\\.js"
+        }
+    ]
+}

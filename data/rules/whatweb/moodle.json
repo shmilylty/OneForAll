@@ -1,0 +1,31 @@
+{
+    "name": "Moodle",
+    "author": "Andrew Horton",
+    "version": "0.2",
+    "description": "Opensource educational software written in PHP.",
+    "website": "http://www.moodle.org/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<a title=\"Moodle[^\"]+\" href=\"http:\\/\\/moodle\\.org\\/\">)"
+        },
+        {
+            "regexp": "(?-mix:<a title=\"Moodle ([\\d\\.]+[^\"]+)\" href=\"http:\\/\\/moodle\\.org\\/\">)",
+            "offset": 1
+        },
+        {
+            "name": "moodle logo.gif",
+            "certainty": 75,
+            "regexp": "(?-mix:<img style=\"width:100px;height:30px\" src=\"[^\"]+\\/moodlelogo\\.gif\" alt=\"moodlelogo\" \\/>)"
+        },
+        {
+            "name": "MoodleSession Cookie",
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:MoodleSession=)"
+        },
+        {
+            "name": "MOODLEID_ Cookie",
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:MOODLEID_[^\\s^=]*=)"
+        }
+    ]
+}

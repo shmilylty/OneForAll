@@ -1,0 +1,10 @@
+{
+    "name": "CloudSuite",
+    "website": "https://cloudsuite.com",
+    "matches": [
+        {
+            "search": "cookies[cs_secure_session]",
+            "regexp": ".*"
+        }
+    ]
+}

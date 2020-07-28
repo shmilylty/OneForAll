@@ -1,0 +1,36 @@
+{
+    "name": "SiteServer",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "Powered by"
+        },
+        {
+            "search": "body",
+            "text": "http://www.siteserver.cn"
+        },
+        {
+            "search": "body",
+            "text": "SiteServer CMS"
+        },
+        {
+            "search": "title",
+            "regexp": "Powered by SiteServer CMS"
+        },
+        {
+            "search": "body",
+            "text": "T_\u7cfb\u7edf\u9996\u9875\u6a21\u677f"
+        },
+        {
+            "search": "body",
+            "text": "siteserver"
+        },
+        {
+            "search": "body",
+            "text": "sitefiles"
+        }
+    ],
+    "condition": "(0 and 1 and 2) or 3 or 4 or (5 and 6)"
+}

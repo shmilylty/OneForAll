@@ -1,0 +1,12 @@
+{
+    "name": "IQeye-Netcam",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.3",
+    "description": "IQeye netcam web interface",
+    "website": null,
+    "matches": [
+        {
+            "regexp": "(?i-mx:<title>IQeye([^:]+): Live Images[^<]*<\\/title>)"
+        }
+    ]
+}

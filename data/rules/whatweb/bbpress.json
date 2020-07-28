@@ -1,0 +1,22 @@
+{
+    "name": "bbPress",
+    "author": "Brendan Coles <bcoles@gmail.com>, @lins05",
+    "version": "0.2",
+    "description": "bbPress is forum software with a twist from the creators of WordPress.",
+    "website": "http://bbpress.org/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<meta name=\"generator\" content=\"bbPress ([\\d\\.]+)\" \\/>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix: is proudly powered by <a[^>]+href=\"http:\\/\\/bbpress\\.org\">bbPress<\\/a>)"
+        },
+        {
+            "text": "<!-- If you like showing off the fact that your server rocks -->"
+        },
+        {
+            "text": "<div id=\"bbpress-forums\">"
+        }
+    ]
+}

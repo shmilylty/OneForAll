@@ -1,0 +1,15 @@
+{
+    "name": "CreateLive-Cms",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "<!--By CreateLiveCms"
+        },
+        {
+            "search": "headers",
+            "text": "AspooKill=kill="
+        }
+    ]
+}

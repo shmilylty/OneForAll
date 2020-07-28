@@ -1,0 +1,19 @@
+{
+    "name": "Diaspora",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "_diaspora_session"
+        },
+        {
+            "search": "headers",
+            "text": "x-git-update"
+        },
+        {
+            "search": "headers",
+            "text": "x-git-revision"
+        }
+    ]
+}

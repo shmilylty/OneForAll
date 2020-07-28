@@ -18,7 +18,7 @@ from common import utils, resolve, request
 from common.database import Database
 from modules.collect import Collect
 from modules.finder import Finder
-from modules import iscdn
+from modules import iscdn, webanalyzer
 from config import setting
 from config.log import logger
 from takeover import Takeover
@@ -219,6 +219,11 @@ class OneForAll(object):
         # check cdn
         self.data = iscdn.check_cdn(self.data)
         iscdn.save_db(self.domain, self.data)
+
+        # webanalyzer
+        analyzer = webanalyzer.Webanalyzer()
+        self.data = analyzer.run(self.data)
+        analyzer.save_db(self.domain,self.data)
 
         # Add the final result list to the total data list
         self.datas.extend(self.data)

@@ -1,0 +1,11 @@
+{
+    "name": "Fusion Ads",
+    "website": "http://fusionads.net",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "^[^\\/]*//[ac]dn\\.fusionads\\.net/(?:api/([\\d.]+)/)?",
+            "offset": 1
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+{
+    "name": "git",
+    "website": "http://git-scm.com",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "\\bgit/([\\d.]+\\d)",
+            "offset": 1
+        }
+    ]
+}

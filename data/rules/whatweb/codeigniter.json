@@ -1,0 +1,43 @@
+{
+    "name": "CodeIgniter-PHP-Framework",
+    "author": "Aung Khant <YGN Ethical Hacker Group, Myanmar, http://yehg.net>, Andrew Horton",
+    "version": "0.3",
+    "description": "CodeIgniter PHP Framework",
+    "website": "http://codeigniter.com/",
+    "matches": [
+        {
+            "string": "404 Signature",
+            "url": "e6fqv8av",
+            "md5": "e087ab5729efdfa939ba620e4593bd99"
+        },
+        {
+            "string": "404 Signature",
+            "url": "index.php/e6fqv8av",
+            "md5": "e087ab5729efdfa939ba620e4593bd99"
+        },
+        {
+            "string": "Database Error Signature",
+            "url": "index.php/e6fqv8av",
+            "md5": "951c845488483135e52252609a1d99b2"
+        },
+        {
+            "string": "Database Error Signature",
+            "md5": "951c845488483135e52252609a1d99b2"
+        },
+        {
+            "string": "Invalid Character Filter",
+            "url": "e6fqv8av!!!",
+            "md5": "c9b724012ab64481a034f9a453143ece"
+        },
+        {
+            "string": "Invalid Character Filter",
+            "url": "e6fqv8av!!!",
+            "text": "The URI you submitted has disallowed characters."
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:ci_session)",
+            "name": "ci_session cookie"
+        }
+    ]
+}

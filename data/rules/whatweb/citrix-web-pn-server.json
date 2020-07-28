@@ -1,0 +1,13 @@
+{
+    "name": "Citrix-Web-PN-Server",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Citrix Web PN Server - http://www.citrix.com",
+    "website": null,
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Citrix Web PN Server$)"
+        }
+    ]
+}

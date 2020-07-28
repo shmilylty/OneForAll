@@ -1,0 +1,15 @@
+{
+    "name": "Aurion",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "<!-- Aurion Teal will be used as the login-time default"
+        },
+        {
+            "search": "body",
+            "text": "/aurion.js"
+        }
+    ]
+}

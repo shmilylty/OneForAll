@@ -1,0 +1,13 @@
+{
+    "name": "NewBayMediaWebsite",
+    "author": "Elias Dorneles",
+    "version": "0.1",
+    "description": "Identifies a news website by New Bay Media",
+    "website": null,
+    "matches": [
+        {
+            "name": "CSS class used for the menus",
+            "regexp": "(?-mix:nice-menu-menu-newbay-media-websites)"
+        }
+    ]
+}

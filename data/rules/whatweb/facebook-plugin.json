@@ -1,0 +1,12 @@
+{
+    "name": "Facebook-Plugin",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "This plugin identifies Facebook plugins",
+    "website": "http://apps.facebook.com/widgets/",
+    "matches": [
+        {
+            "regexp": "(?i-mx:<i?frame[^>]+src[\\s]*=\"http:\\/\\/(www|apps)\\.facebook.com\\/plugins\\/([^\\.^\\/^\\?]+)\\.php\\?)"
+        }
+    ]
+}

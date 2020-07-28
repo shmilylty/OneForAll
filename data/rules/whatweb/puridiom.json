@@ -1,0 +1,33 @@
+{
+    "name": "Puridiom",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Puridiom - eProcurement software",
+    "website": "http://www.puridiom.com/",
+    "matches": [
+        {
+            "text": "<TITLE>Puridiom, Enabling Self-Service Procurement</TITLE>"
+        },
+        {
+            "string": "Xpress",
+            "text": "<TITLE>Puridiom Xpress, Enabling Self-Service Procurement</TITLE>"
+        },
+        {
+            "text": "<iframe id=\"getInfoFrame\" name=\"getInfoFrame\" src=\"/puridiom/system/processing.jsp\""
+        },
+        {
+            "text": "<tr><td width=100% align=center valign=top><br><b>Loading Page... Please wait.</b><br><br><br><img src=\"/puridiom"
+        },
+        {
+            "regexp": "(?-mix:<TITLE>Puridiom ([\\d\\.]+), Enabling Self-Service Procurement<\\/TITLE>)",
+            "offset": 1
+        },
+        {
+            "text": "<META NAME=\"Description\" Content=\"/puridiom/system/header.jsp\">"
+        },
+        {
+            "string": "Xpress",
+            "text": "<META NAME=\"Description\" Content=\"/puridiomx/system/header.jsp\">"
+        }
+    ]
+}

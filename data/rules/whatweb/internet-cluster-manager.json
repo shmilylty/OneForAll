@@ -1,0 +1,18 @@
+{
+    "name": "Internet-Cluster-Manager",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "The Internet Cluster Manager (ICM) lets you use Domino clusters to provide failover and workload balancing to HTTP clients.",
+    "website": "http://www-12.lotus.com/ldd/doc/domino_notes/rnext/help6_admin.nsf/f4b82fbb75e942a6852566ac0037f284/36fd13678096637585256c1d0039a59b?OpenDocument",
+    "matches": [
+        {
+            "regexp": "(?-mix:^Internet Cluster Manager)",
+            "search": "headers[server]"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Internet Cluster Manager Ver\\. ([^\\s]+)$)",
+            "offset": 1
+        }
+    ]
+}

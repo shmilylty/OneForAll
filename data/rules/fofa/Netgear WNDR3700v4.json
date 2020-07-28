@@ -1,0 +1,11 @@
+{
+    "name": "Netgear WNDR3700v4",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "Netgear WNDR3700v4"
+        }
+    ]
+}

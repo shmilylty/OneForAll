@@ -1,0 +1,20 @@
+{
+    "name": "PHP-Link-Directory",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "phpLD is the most widely used directory script on the internet, installed on over 100,000 websites. phpLD is a great addition to any site, and is easy to install.",
+    "website": "http://www.phplinkdirectory.com/",
+    "matches": [
+        {
+            "ghdb": "\"powered by phpLinkDirectory\"",
+            "certainty": 25
+        },
+        {
+            "regexp": "(?i-mx:<a href=\"http:\\/\\/www.phplinkdirectory.com[^>]*Phplinkdirectory)"
+        },
+        {
+            "regexp": "(?-mix:<meta name=\"generator\"[^>]*content=\"PHP Link Directory ([0-9\\.]+)\")",
+            "offset": 1
+        }
+    ]
+}

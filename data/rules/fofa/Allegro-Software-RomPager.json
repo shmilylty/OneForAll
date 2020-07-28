@@ -1,0 +1,11 @@
+{
+    "name": "Allegro-Software-RomPager",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "Allegro-Software-RomPager"
+        }
+    ]
+}

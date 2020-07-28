@@ -1,0 +1,11 @@
+{
+    "name": "Plone",
+    "website": "http://plone.org",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "Plone"
+        }
+    ],
+    "implies": "Python"
+}

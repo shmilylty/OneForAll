@@ -1,0 +1,11 @@
+{
+    "name": "Linksys WCG200",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "Linksys WCG200"
+        }
+    ]
+}

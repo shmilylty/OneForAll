@@ -1,0 +1,11 @@
+{
+    "name": "Express",
+    "website": "http://expressjs.com",
+    "matches": [
+        {
+            "search": "headers[x-powered-by]",
+            "regexp": "^Express$"
+        }
+    ],
+    "implies": "Node.js"
+}

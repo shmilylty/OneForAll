@@ -1,0 +1,11 @@
+{
+    "name": "Axel-Device",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "Axel Admin Server"
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "name": "Navegg",
+    "website": "https://www.navegg.com/",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "tag\\.navdmp\\.com"
+        }
+    ]
+}

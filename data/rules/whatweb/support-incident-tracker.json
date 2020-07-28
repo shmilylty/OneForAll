@@ -1,0 +1,19 @@
+{
+    "name": "Support-Incident-Tracker",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Support Incident Tracker (or SiT!) is a Free Software/Open Source (GPL) web based application which uses PHP and MySQL for tracking technical support calls/emails (also commonly known as a 'Help Desk' or 'Support Ticket System')",
+    "website": "http://sitracker.org/",
+    "matches": [
+        {
+            "text": "<div id='masthead'><h1 id='apptitle'><span>SiT! Support Incident Tracker</span></h1></div>"
+        },
+        {
+            "regexp": "(?-mix:<meta name=\"GENERATOR\" content=\"SiT! Support Incident Tracker v([^\"]+)\" \\/>)",
+            "offset": 1
+        },
+        {
+            "text": "<div class='windowtitle'>SiT! - Login</div>"
+        }
+    ]
+}

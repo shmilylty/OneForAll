@@ -1,0 +1,11 @@
+{
+    "name": "Websecurity_WAF",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "Websecurity: WAF 1.0"
+        }
+    ]
+}

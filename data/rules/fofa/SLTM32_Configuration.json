@@ -1,0 +1,11 @@
+{
+    "name": "SLTM32_Configuration",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "SLTM32 Web Configuration Pages "
+        }
+    ]
+}

@@ -1,0 +1,12 @@
+{
+    "name": "Flask",
+    "website": "http://flask.pocoo.org",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "Werkzeug/?([\\d\\.]+)?",
+            "offset": 1
+        }
+    ],
+    "implies": "Python"
+}

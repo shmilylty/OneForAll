@@ -1,0 +1,15 @@
+{
+    "name": "Clearwell-E-Discovery",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "Clearwell E-Discovery Platform log in"
+        },
+        {
+            "search": "headers",
+            "text": "Clearwell"
+        }
+    ]
+}

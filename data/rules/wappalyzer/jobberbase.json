@@ -1,0 +1,11 @@
+{
+    "name": "JobberBase",
+    "website": "http://www.jobberbase.com",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "Jobberbase"
+        }
+    ],
+    "implies": "PHP"
+}

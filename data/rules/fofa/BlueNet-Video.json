@@ -1,0 +1,15 @@
+{
+    "name": "BlueNet-Video",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "/cgi-bin/client_execute.cgi?tUD=0"
+        },
+        {
+            "search": "title",
+            "regexp": "BlueNet Video Viewer Version"
+        }
+    ]
+}

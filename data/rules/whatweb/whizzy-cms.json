@@ -1,0 +1,13 @@
+{
+    "name": "Whizzy-CMS",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "Whizzy-CMS",
+    "website": "http://unverse.net/",
+    "matches": [
+        {
+            "regexp": "(?-mix:Powered by Whizzy CMS <big>&spades;<\\/big> <\\/a><\\/div><!-- \\[Whizzy CMS:Whizzy CMS ([^\\]]+))",
+            "offset": 1
+        }
+    ]
+}

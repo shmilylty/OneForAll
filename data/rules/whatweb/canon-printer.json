@@ -1,0 +1,51 @@
+{
+    "name": "Canon-Printer",
+    "author": "Andrew Horton, Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "Remote UI for Canon Printers",
+    "website": "http://www.canon.com/",
+    "matches": [
+        {
+            "regexp": "(?i-mx:<title>Remote UI<Top Page>: (\\w+))"
+        },
+        {
+            "url": "/frame.cgi",
+            "regexp": "(?i-mx:<title>Remote UI&lt;Top page&gt;: ([^:]+))"
+        },
+        {
+            "url": "/frame.cgi?PageFlag=t_frame.tpl",
+            "regexp": "(?i-mx:<title>Remote UI&lt;Top page&gt;: ([^:]+))"
+        },
+        {
+            "regexp": "(?-mix:<link rel=\"shortcut icon\" type=\"image\\/x-icon\" href=\"G24_favicon\\.ico\" \\/><title>Remote UI \\(Top Page\\) : [^:^<]* : Canon ([^\\s^<]+)<\\/title>)"
+        },
+        {
+            "regexp": "(?-mix:<title>Canon ([^\\s]+) series Network Configuration \\| )"
+        },
+        {
+            "url": "/_top.htm",
+            "text": "<img src=\"top_canon.gif\" width=\"123\" height=\"33\""
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?i-mx:^Canon Http Server)"
+        },
+        {
+            "search": "headers[server]",
+            "offset": 1,
+            "regexp": "(?i-mx:^Canon Http Server (Ver)?(.*))"
+        },
+        {
+            "certainty": 75,
+            "search": "headers[server]",
+            "regexp": "(?-mix:^KS_HTTP\\/([^\\s]+))",
+            "offset": 1
+        },
+        {
+            "certainty": 25,
+            "search": "headers[server]",
+            "regexp": "(?-mix:^LPC Http Server\\/V([^\\s]+))",
+            "offset": 1
+        }
+    ]
+}

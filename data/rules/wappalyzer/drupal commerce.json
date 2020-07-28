@@ -1,0 +1,10 @@
+{
+    "name": "Drupal Commerce",
+    "website": "http://drupalcommerce.org",
+    "matches": [
+        {
+            "regexp": "<[^>]+(?:id=\"block[_-]commerce[_-]cart[_-]cart|class=\"commerce[_-]product[_-]field)"
+        }
+    ],
+    "implies": "Drupal"
+}

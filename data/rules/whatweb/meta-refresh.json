@@ -1,0 +1,10 @@
+{
+    "name": "Meta-Refresh-Redirect",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.4",
+    "description": "Meta refresh tag is a deprecated URL element that can be\nused to optionally wait x seconds before reloading the current page or loading a\nnew page. More info: https://secure.wikimedia.org/wikipedia/en/wiki/Meta_refresh",
+    "website": null,
+    "matches": [
+
+    ]
+}

@@ -1,0 +1,9 @@
+{
+    "name": "T-Soft",
+    "website": "https://www.tsoft.com.tr/",
+    "matches": [
+        {
+            "regexp": "<a href=\"http://www\\.tsoft\\.com\\.tr\" target=\"_blank\" title=\"T-Soft E-ticaret Sistemleri\">"
+        }
+    ]
+}

@@ -1,0 +1,23 @@
+{
+    "name": "DigiOz-Guestbook",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "DigiOz Guestbook",
+    "website": "http://www.digioz.com/",
+    "matches": [
+        {
+            "text": "<!-- NOTE: PLEASE DO NOT REMOVE THE BELLOW 3 LINES FROM YOUR HEADER FILE -->"
+        },
+        {
+            "text": "<!-- NOTE: PLEASE DO NOT REMOVE THE ABOVE 3 LINES FROM YOUR HEADER FILE -->"
+        },
+        {
+            "regexp": "(?-mix:<title>Powered by DigiOz Guestbook Version ([\\d\\.]+)<\\/title>)",
+            "offset": 1
+        },
+        {
+            "offset": 1,
+            "regexp": "(?-mix:<a href=\"http:\\/\\/www\\.digioz\\.com\"[^>]*>DigiOz (\\.NET )?Guestbook Version ([\\d\\.]+)<br( \\/)?>&copy; 20[\\d]{2} DigiOz Multimedia\\.)"
+        }
+    ]
+}

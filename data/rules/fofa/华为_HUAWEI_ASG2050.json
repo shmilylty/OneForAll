@@ -1,0 +1,11 @@
+{
+    "name": "\u534e\u4e3a_HUAWEI_ASG2050",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "HUAWEI ASG2050"
+        }
+    ]
+}

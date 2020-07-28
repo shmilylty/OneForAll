@@ -1,0 +1,19 @@
+{
+    "name": "NinkoBB",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "NinkoBB",
+    "website": "http://ninkobb.com/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<link href=\"[^\"]*\\/assets\\/css\\/ninko.css\" rel=\"stylesheet\" type=\"text\\/css\" \\/>)"
+        },
+        {
+            "text": "Powered by <a href=\"http://ninkobb.com\">NinkoBB</a>"
+        },
+        {
+            "regexp": "(?-mix:Powered by <a href=\"http:\\/\\/ninkobb.com\\/\">NinkoBB<\\/a> v. ([\\d\\.]{1,5}) t.)",
+            "offset": 1
+        }
+    ]
+}

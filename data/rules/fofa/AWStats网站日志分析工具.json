@@ -1,0 +1,15 @@
+{
+    "name": "AWStats\u7f51\u7ad9\u65e5\u5fd7\u5206\u6790\u5de5\u5177",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "content=\"AWStats"
+        },
+        {
+            "search": "body",
+            "text": "Created by awstats"
+        }
+    ]
+}

@@ -1,0 +1,24 @@
+{
+    "name": "JQuery",
+    "author": "Andrew Horton, Eric Sesterhenn, Janosch Maier @Phylu",
+    "version": "0.5",
+    "description": "A fast, concise, JavaScript that simplifies how to traverse HTML documents, handle events, perform animations, and add AJAX.",
+    "website": "http://jquery.com/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<script [^>]*jquery)"
+        },
+        {
+            "offset": 1,
+            "regexp": "(?-mix:jquery(\\.min)?\\.js\\?ver=([0-9\\.]+)['\"])"
+        },
+        {
+            "offset": 0,
+            "regexp": "(?-mix:jquery\\/([0-9\\.]+)\\/jquery(\\.min)?\\.js)"
+        },
+        {
+            "offset": 0,
+            "regexp": "(?-mix:jquery-([0-9\\.]+)(\\.min)?\\.js)"
+        }
+    ]
+}

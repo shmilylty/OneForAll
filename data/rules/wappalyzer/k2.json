@@ -1,0 +1,10 @@
+{
+    "name": "K2",
+    "website": "https://getk2.org",
+    "matches": [
+        {
+            "regexp": "<!--(?: JoomlaWorks \"K2\"| Start K2)"
+        }
+    ],
+    "implies": "Joomla"
+}

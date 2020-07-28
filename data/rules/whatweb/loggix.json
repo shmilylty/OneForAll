@@ -1,0 +1,16 @@
+{
+    "name": "Loggix",
+    "author": "Brendan Coles <bcoles at gmail dot com>",
+    "version": "0.2",
+    "description": "Loggix is a really simple, lightweight PHP and SQlite driven weblog/cms engine.",
+    "website": "http://loggix.gotdns.org/",
+    "matches": [
+        {
+            "text": "<meta name=\"generator\" content=\"Loggix\" />"
+        },
+        {
+            "regexp": "(?-mix:Powered by <a href=\"http:\\/\\/loggix.gotdns.org\">Loggix<\\/a> ver.([\\d\\.]+)<\\/address>)",
+            "offset": 1
+        }
+    ]
+}

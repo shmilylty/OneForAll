@@ -1,0 +1,20 @@
+{
+    "name": "ARRIS-Touchstone-Router",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "Copyright"
+        },
+        {
+            "search": "body",
+            "text": "ARRIS Group"
+        },
+        {
+            "search": "body",
+            "text": "/arris_style.css"
+        }
+    ],
+    "condition": "(0 and 1) or 2"
+}

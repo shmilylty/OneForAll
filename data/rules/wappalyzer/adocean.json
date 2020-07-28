@@ -1,0 +1,16 @@
+{
+    "name": "AdOcean",
+    "website": "https://adocean-global.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "adocean\\.pl/files/js/ado\\.js"
+        },
+        {
+            "search": "script",
+            "regexp": "adocean\\.pl",
+            "certainty": 80
+        }
+    ],
+    "implies": "Gemius"
+}

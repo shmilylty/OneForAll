@@ -1,0 +1,16 @@
+{
+    "name": "68-Classifieds-Script",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "68 Classifieds Script - Requires PHP",
+    "website": "http://www.68classifieds.com/",
+    "matches": [
+        {
+            "text": "Powered by <a href=\"http://www.68classifieds.com\">68 Classifieds Script</a>"
+        },
+        {
+            "regexp": "(?-mix:<meta name=\"author\" content=\"68 Classifieds - v([^\"]+)\" \\/>)",
+            "offset": 1
+        }
+    ]
+}

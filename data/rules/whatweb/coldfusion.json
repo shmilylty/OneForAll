@@ -1,0 +1,49 @@
+{
+    "name": "ColdFusion",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.3",
+    "description": "Adobe ColdFusion application server and software enables developers to rapidly build, deploy, and maintain robust Internet applications for the enterprise.",
+    "website": "http://www.adobe.com/products/coldfusion/",
+    "matches": [
+        {
+            "text": "\t<title>ColdFusion Administrator Login</title>"
+        },
+        {
+            "regexp": "(?-mix:<meta name=\"Author\" content=\"Copyright (\\(c\\)\\ )?[0-9]{4}-[0-9]{4} Macromedia( Corp|, Inc)\\. All rights reserved\\.\">)"
+        },
+        {
+            "text": "\t{   document.write(\"<link rel='STYLESHEET' type='text/css' href='./cfadmin_ns.css'>\");}"
+        },
+        {
+            "text": "<form name=\"loginform\" action=\"./enter.cfm\" method=\"POST\" onSubmit=\"cfadminPassword.value = hex_hmac_sha1(salt.value, hex_sha1(cfadminPassword.value));\" >"
+        },
+        {
+            "text": "<input name=\"cfadminPassword\" type=\"Password\" size=\"15\" style=\"width:15em;\" class=\"label\" maxlength=\"100\" id=\"admin_login\">"
+        },
+        {
+            "text": "\tMacromedia, the Macromedia logo, Macromedia ColdFusion and ColdFusion are<br />"
+        },
+        {
+            "text": "\t<tr><td><img src=\"./images/mx_copyrframe.gif\" width=\"2\" height=\"57\" border=\"0\" alt=\"ColdFusion MX\" hspace=\"10\"></td>"
+        },
+        {
+            "url": "/CFIDE/administrator/images/loginbackground.jpg",
+            "md5": "596b3fc4f1a0b818979db1cf94a82220",
+            "version": "9.x"
+        },
+        {
+            "url": "/CFIDE/administrator/images/AdminColdFusionLogo.gif",
+            "md5": "620b2523e4680bf031ee4b1538733349",
+            "version": "7.x"
+        },
+        {
+            "search": "headers[page-completion-status]",
+            "certainty": 75,
+            "regexp": "(?-mix:(Abnormal|Normal))"
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:CFAUTHORIZATION_cfadmin=)"
+        }
+    ]
+}

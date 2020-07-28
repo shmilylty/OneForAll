@@ -1,0 +1,15 @@
+{
+    "name": "Oracle_OPERA",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "MICROS Systems Inc., OPERA"
+        },
+        {
+            "search": "body",
+            "text": "OperaLogin/Welcome.do"
+        }
+    ]
+}

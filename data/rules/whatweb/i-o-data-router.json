@@ -1,0 +1,13 @@
+{
+    "name": "I-O-DATA-Router",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "I-O DATA router [Japanese] - http://www.iodata.jp/product/",
+    "website": null,
+    "matches": [
+        {
+            "url": "/",
+            "regexp": "(?-mix:<title>I-O DATA Wireless Broadband Router (WN-[^\\s^<]+)<\\/title>)"
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+{
+    "name": "NETGEAR WGT624v4",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "NETGEAR WGT624v4"
+        }
+    ]
+}

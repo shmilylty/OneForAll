@@ -1,0 +1,15 @@
+{
+    "name": "CDR-Stats",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "CDR-Stats | Customer Interface"
+        },
+        {
+            "search": "body",
+            "text": "/static/cdr-stats/js/jquery"
+        }
+    ]
+}

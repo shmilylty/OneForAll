@@ -1,0 +1,15 @@
+{
+    "name": "Shopery",
+    "website": "http://shopery.com",
+    "matches": [
+        {
+            "search": "headers[x-shopery]",
+            "regexp": ".*"
+        }
+    ],
+    "implies": [
+        "PHP",
+        "Symfony",
+        "Elcodi"
+    ]
+}

@@ -1,0 +1,11 @@
+{
+    "name": "Homeland",
+    "website": "https://gethomeland.com",
+    "matches": [
+        {
+            "search": "cookies[_homeland_]",
+            "regexp": ".*"
+        }
+    ],
+    "implies": "Ruby on Rails"
+}

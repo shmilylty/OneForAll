@@ -1,0 +1,10 @@
+{
+    "name": "MochiKit",
+    "website": "https://mochi.github.io/mochikit/",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "MochiKit(?:\\.min)?\\.js"
+        }
+    ]
+}

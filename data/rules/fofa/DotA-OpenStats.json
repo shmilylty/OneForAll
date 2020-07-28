@@ -1,0 +1,15 @@
+{
+    "name": "DotA-OpenStats",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "content=\"dota OpenStats"
+        },
+        {
+            "search": "body",
+            "text": "content=\"openstats.iz.rs"
+        }
+    ]
+}

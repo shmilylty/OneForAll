@@ -1,0 +1,15 @@
+{
+    "name": "TPshop",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "/index.php/Mobile/Index/index.html"
+        },
+        {
+            "search": "body",
+            "text": ">TPshop\u5f00\u6e90\u5546\u57ce<"
+        }
+    ]
+}

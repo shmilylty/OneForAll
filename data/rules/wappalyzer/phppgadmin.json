@@ -1,0 +1,10 @@
+{
+    "name": "phpPgAdmin",
+    "website": "http://phppgadmin.sourceforge.net",
+    "matches": [
+        {
+            "regexp": "(?:<title>phpPgAdmin</title>|<span class=\"appname\">phpPgAdmin)"
+        }
+    ],
+    "implies": "PHP"
+}

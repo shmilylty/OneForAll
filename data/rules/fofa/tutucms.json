@@ -1,0 +1,19 @@
+{
+    "name": "tutucms",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "content=\"TUTUCMS"
+        },
+        {
+            "search": "body",
+            "text": "Powered by TUTUCMS"
+        },
+        {
+            "search": "body",
+            "text": "TUTUCMS\""
+        }
+    ]
+}

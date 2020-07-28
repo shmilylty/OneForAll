@@ -1,0 +1,18 @@
+{
+    "name": "Microsoft-WinCE",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton, Andrew Horton",
+    "version": "0.3",
+    "description": "Microsoft Windows CE HTTP Server",
+    "website": "http://msdn.microsoft.com/en-us/library/ms834461.aspx",
+    "matches": [
+        {
+            "regexp": "(?-mix:^Microsoft-WinCE)",
+            "search": "headers[server]"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Microsoft-WinCE\\/([\\S]+))",
+            "offset": 1
+        }
+    ]
+}

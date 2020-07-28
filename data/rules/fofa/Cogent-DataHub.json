@@ -1,0 +1,15 @@
+{
+    "name": "Cogent-DataHub",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "/images/Cogent.gif"
+        },
+        {
+            "search": "title",
+            "regexp": "Cogent DataHub WebView"
+        }
+    ]
+}

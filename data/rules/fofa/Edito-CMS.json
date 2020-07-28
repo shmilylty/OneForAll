@@ -1,0 +1,15 @@
+{
+    "name": "Edito-CMS",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "content=\"edito"
+        },
+        {
+            "search": "body",
+            "text": "title=\"CMS\" href=\"http://www.edito.pl/"
+        }
+    ]
+}

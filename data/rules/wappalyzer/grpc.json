@@ -1,0 +1,10 @@
+{
+    "name": "gRPC",
+    "website": "https://grpc.io",
+    "matches": [
+        {
+            "search": "headers[content-type]",
+            "regexp": "^application\\/grpc"
+        }
+    ]
+}

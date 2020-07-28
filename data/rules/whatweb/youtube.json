@@ -1,0 +1,15 @@
+{
+    "name": "YouTube",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Embedded YouTube video",
+    "website": "http://youtube.com/",
+    "matches": [
+        {
+            "regexp": "(?i-mx:<(param|embed) [^>]*youtube\\.com\\/v)"
+        },
+        {
+            "regexp": "(?-mix:<iframe [^>]*src=['\"]https?:\\/\\/(www\\.)?youtube\\.com\\/embed\\/)"
+        }
+    ]
+}

@@ -1,0 +1,12 @@
+{
+    "name": "Empire-CMS",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Open source CMS",
+    "website": "http://www.phome.net/",
+    "matches": [
+        {
+            "text": " - Powered by EmpireCMS</title>"
+        }
+    ]
+}

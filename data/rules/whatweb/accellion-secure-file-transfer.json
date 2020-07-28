@@ -1,0 +1,28 @@
+{
+    "name": "Accellion-Secure-File-Transfer",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Accellion Secure File Transfer (SFT)",
+    "website": "http://www.accellion.com/",
+    "matches": [
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:sfcurl=deleted;)",
+            "certainty": 25
+        },
+        {
+            "search": "headers[location]",
+            "regexp": "(?-mix:\\/courier\\/[\\d]+@\\/mail_user_login\\.html\\?$)"
+        },
+        {
+            "url": "/favicon.ico",
+            "md5": "9423d9e9ce004c29dd5bc622f0112123"
+        },
+        {
+            "text": "<form name=\"form1\" method=\"post\" action=\"mail_user_login_exec.html\" onsubmit=\"document.form1.submit.disabled=true;\">"
+        },
+        {
+            "regexp": "(?i-mx:<link href=\"custom_template\\/[\\d]+\\/wcStyle\\.css\" type=\"?text\\/css\"? rel=\"?stylesheet\"?>)"
+        }
+    ]
+}

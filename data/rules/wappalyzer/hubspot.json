@@ -1,0 +1,9 @@
+{
+    "name": "HubSpot",
+    "website": "https://www.hubspot.com",
+    "matches": [
+        {
+            "regexp": "<!-- Start of Async HubSpot"
+        }
+    ]
+}

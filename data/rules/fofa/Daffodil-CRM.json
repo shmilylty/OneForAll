@@ -1,0 +1,15 @@
+{
+    "name": "Daffodil-CRM",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "Powered by Daffodil"
+        },
+        {
+            "search": "body",
+            "text": "Design & Development by Daffodil Software Ltd"
+        }
+    ]
+}

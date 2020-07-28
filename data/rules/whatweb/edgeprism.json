@@ -1,0 +1,18 @@
+{
+    "name": "EdgePrism",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Edge Prism Content Delivery Network (CDN)",
+    "website": null,
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^EdgePrism\\/([^\\s]+)$)",
+            "offset": 1
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^EdgePrismSSL)"
+        }
+    ]
+}

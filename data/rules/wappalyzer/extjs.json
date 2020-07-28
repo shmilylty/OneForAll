@@ -1,0 +1,10 @@
+{
+    "name": "ExtJS",
+    "website": "https://www.sencha.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "ext-base\\.js"
+        }
+    ]
+}

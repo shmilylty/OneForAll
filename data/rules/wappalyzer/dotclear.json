@@ -1,0 +1,11 @@
+{
+    "name": "Dotclear",
+    "website": "http://dotclear.org",
+    "matches": [
+        {
+            "search": "headers[x-dotclear-static-cache]",
+            "regexp": ".*"
+        }
+    ],
+    "implies": "PHP"
+}

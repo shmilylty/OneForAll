@@ -1,0 +1,15 @@
+{
+    "name": "Conexant-EmWeb",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "Conexant-EmWeb"
+        },
+        {
+            "search": "headers",
+            "text": "Virata-EmWeb"
+        }
+    ]
+}

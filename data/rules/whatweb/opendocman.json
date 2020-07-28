@@ -1,0 +1,19 @@
+{
+    "name": "OpenDocMan",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "OpenDocMan - Open Source Document Management System - Requires PHP",
+    "website": "http://www.opendocman.com/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<a href=\"http:\\/\\/www\\.opendocman\\.com\\/\" target=\"_new\">OpenDocMan v([^\"^\\s]+)<\\/a>)",
+            "offset": 1
+        },
+        {
+            "text": "<td align=\"left\"><img src=\"images/logo.gif\" alt=\"Site Logo\" border=0></td>"
+        },
+        {
+            "regexp": "(?-mix:<td valign=\"top\">\\s+Welcome to OpenDocMan\\.?\\s+<p>)"
+        }
+    ]
+}

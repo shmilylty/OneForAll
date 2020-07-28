@@ -1,0 +1,10 @@
+{
+    "name": "Lazy.js",
+    "website": "http://danieltao.com/lazy.js",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "lazy(?:\\.browser)?(?:\\.min)?\\.js"
+        }
+    ]
+}

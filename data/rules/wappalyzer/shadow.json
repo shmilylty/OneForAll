@@ -1,0 +1,11 @@
+{
+    "name": "Shadow",
+    "website": "http://shadow-technologies.co.uk",
+    "matches": [
+        {
+            "search": "headers[x-powered-by]",
+            "regexp": "ShadowFramework"
+        }
+    ],
+    "implies": "PHP"
+}

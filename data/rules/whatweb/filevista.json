@@ -1,0 +1,16 @@
+{
+    "name": "FileVista",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "FileVista is a web file manager for storing, managing and sharing files online through your web browser.",
+    "website": "http://www.gleamtech.com/products/filevista/web-file-manager",
+    "matches": [
+        {
+            "regexp": "(?-mix:<!--\\r?\\n\\tFileVista v([\\d\\.]+)\\r?\\n\\tCopyright )",
+            "offset": 1
+        },
+        {
+            "text": "<td>Welcome to FileVista<br />Please enter your credentials:</td>"
+        }
+    ]
+}

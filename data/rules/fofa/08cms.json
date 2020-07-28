@@ -1,0 +1,15 @@
+{
+    "name": "08cms",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "content=\"08CMS"
+        },
+        {
+            "search": "body",
+            "text": "typeof(_08cms)"
+        }
+    ]
+}

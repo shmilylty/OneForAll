@@ -1,0 +1,19 @@
+{
+    "name": "KSearch",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "KSearch is the easiest website search engine to integrate, implement and use. KSearch is fully customizable - you can add or remove any features you want, without permission. KSearch is Open Source Software.",
+    "website": "http://www.kscripts.com/",
+    "matches": [
+        {
+            "ghdb": "\"Powered by KSearch\" inurl:ksearch.cgi filetype:cgi"
+        },
+        {
+            "offset": 1,
+            "regexp": "(?-mix:Powered by[\\s]+<a[^>]+href=\"http:\\/\\/www\\.kscripts\\.com\\/(scripts\\.html#ksearch)?\"[^>]*>KSearch[\\s]+([\\d\\.]+[a-z]?)[\\s]*<\\/a>)"
+        },
+        {
+            "regexp": "(?-mix:Powered by[\\s]+<a[^>]+href=\"http:\\/\\/www\\.kscripts\\.com\\/(scripts\\.html#ksearch)?\"[^>]*>KSearch<\\/a>)"
+        }
+    ]
+}

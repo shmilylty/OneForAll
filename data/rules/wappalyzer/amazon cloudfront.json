@@ -1,0 +1,15 @@
+{
+    "name": "Amazon Cloudfront",
+    "website": "http://aws.amazon.com/cloudfront/",
+    "matches": [
+        {
+            "search": "headers[via]",
+            "regexp": "\\(CloudFront\\)$"
+        },
+        {
+            "search": "headers[x-amz-cf-id]",
+            "regexp": ".*"
+        }
+    ],
+    "implies": "Amazon Web Services"
+}

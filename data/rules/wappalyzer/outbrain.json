@@ -1,0 +1,10 @@
+{
+    "name": "Outbrain",
+    "website": "https://www.outbrain.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "widgets\\.outbrain\\.com/outbrain\\.js"
+        }
+    ]
+}

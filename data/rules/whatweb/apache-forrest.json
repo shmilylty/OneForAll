@@ -1,0 +1,32 @@
+{
+    "name": "Apache-Forrest",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Apache Forrest software is a publishing framework that transforms input from various sources into a unified presentation in one or more output formats.",
+    "website": "https://forrest.apache.org/",
+    "matches": [
+        {
+            "text": "<meta content=\"Apache Forrest\" name=\"Generator\""
+        },
+        {
+            "regexp": "(?-mix:<meta content=\"([^\"^>]+)\" name=\"Forrest-version\")",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<meta name=\"Forrest-version\" content=\"([^\"^>]+)\")",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<meta content=\"([^\"^>]+)\" name=\"Forrest-theme-name\")"
+        },
+        {
+            "regexp": "(?-mix:<meta name=\"Forrest-theme-name\" content=\"([^\"^>]+)\")"
+        },
+        {
+            "regexp": "(?-mix:<meta name=\"Forrest-skin-name\" content=\"([^\"^>]+)\")"
+        },
+        {
+            "regexp": "(?-mix:<meta content=\"([^\"^>]+)\" name=\"Forrest-skin-name\")"
+        }
+    ]
+}

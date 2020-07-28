@@ -1,0 +1,13 @@
+{
+    "name": "Pelican",
+    "website": "https://blog.getpelican.com/",
+    "matches": [
+        {
+            "regexp": "powered by <a href=\"[^>]+getpelican\\.com"
+        },
+        {
+            "regexp": "powered by <a href=\"https?://pelican\\.notmyidea\\.org"
+        }
+    ],
+    "implies": "Python"
+}

@@ -1,0 +1,15 @@
+{
+    "name": "Buddy-Zone",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "Powered By <a href=\"http://www.vastal.com"
+        },
+        {
+            "search": "body",
+            "text": ">Buddy Zone</a>"
+        }
+    ]
+}

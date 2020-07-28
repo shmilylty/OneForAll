@@ -1,0 +1,15 @@
+{
+    "name": "jsdelivr",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "cdn.jsdelivr.net"
+        },
+        {
+            "search": "body",
+            "text": "cdn.jsdelivr.net"
+        }
+    ]
+}

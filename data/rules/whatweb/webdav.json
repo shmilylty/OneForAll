@@ -1,0 +1,33 @@
+{
+    "name": "WebDAV",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.3",
+    "description": "Web-based Distributed Authoring and Versioning (WebDAV) is a set of methods based on the Hypertext Transfer Protocol (HTTP) that facilitates collaboration between users in editing and managing documents and files stored on World Wide Web servers. - More Info: http://en.wikipedia.org/wiki/WebDAV",
+    "website": null,
+    "matches": [
+        {
+            "regexp": "(?-mix:[^\\r^\\n]*DAV\\/)",
+            "search": "headers[server]"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:[^\\r^\\n]*DAV\\/([^\\s^\\r^\\n]*))",
+            "offset": 1
+        },
+        {
+            "name": "MS-Author-Via HTTP Header",
+            "regexp": "(?-mix:^[\\s]*DAV)",
+            "search": "headers[MS-Author-Via]"
+        },
+        {
+            "search": "headers[dav]",
+            "regexp": "(?-mix:[\\s]*1,2,<http:\\/\\/([^>]+)>)",
+            "offset": 1
+        },
+        {
+            "name": "x-webdav-status HTTP Header",
+            "regexp": "(?-mix:)",
+            "search": "headers[x-webdav-status]"
+        }
+    ]
+}

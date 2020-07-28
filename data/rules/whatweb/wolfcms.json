@@ -1,0 +1,16 @@
+{
+    "name": "WolfCMS",
+    "author": "Andrew Horton",
+    "version": "1.0",
+    "description": "WolfCMS is an open-source content management system built with PHP.",
+    "website": "https://www.wolfcms.org/",
+    "matches": [
+        {
+            "regexp": "(?-mix:png\" \\/> Wolf CMS ([^<]+)<\\/div>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:href=\"http:\\/\\/www.wolfcms.org\\/\" title=\"Wolf CMS\" rel=\"noreferrer\">Wolf CMS<\\/a>[\\s]+Inside.)"
+        }
+    ]
+}

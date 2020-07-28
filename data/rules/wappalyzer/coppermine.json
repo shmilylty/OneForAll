@@ -1,0 +1,11 @@
+{
+    "name": "Coppermine",
+    "website": "http://coppermine-gallery.net",
+    "matches": [
+        {
+            "regexp": "<!--Coppermine Photo Gallery ([\\d.]+)",
+            "offset": 1
+        }
+    ],
+    "implies": "PHP"
+}

@@ -1,0 +1,19 @@
+{
+    "name": "YABB",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "Y2User"
+        },
+        {
+            "search": "body",
+            "text": "YaBBTime.getTime()"
+        },
+        {
+            "search": "body",
+            "text": "/YaBB.js"
+        }
+    ]
+}

@@ -1,0 +1,38 @@
+{
+    "name": "Shopify",
+    "author": "Bhavin Senjaliya <bhavin.senjaliya@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "Shopify CMS and ecommerce platform.",
+    "website": "http://shopify.com/",
+    "matches": [
+        {
+            "text": "<a target=\"_blank\" class=\"ico ico-shopify-bag\" href=\"//www.shopify.com\">\n        <span class=\"helper--visually-hidden\">Shopify.com</span>\n</a>",
+            "name": "Admin-Login-Page"
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:_secure_session_id)",
+            "name": "_secure_session_id cookie"
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:_session_id)",
+            "name": "_session_id cookie"
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:cart_sig)",
+            "name": "cart_sig cookie"
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:customer_sig)",
+            "name": "customer_sig cookie"
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:secure_customer_sig)",
+            "name": "secure_customer_sig cookie"
+        }
+    ]
+}

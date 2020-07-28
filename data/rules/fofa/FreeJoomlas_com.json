@@ -1,0 +1,11 @@
+{
+    "name": "FreeJoomlas_com",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "<a title=\"free joomla hosting\" href=\"http://freejoomlas.com"
+        }
+    ]
+}

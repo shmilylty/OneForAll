@@ -1,0 +1,11 @@
+{
+    "name": "TQ\u4e91\u547c\u53eb\u4e2d\u5fc3",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "tq.cn/floatcard?"
+        }
+    ]
+}

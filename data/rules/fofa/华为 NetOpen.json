@@ -1,0 +1,15 @@
+{
+    "name": "\u534e\u4e3a NetOpen",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "/netopen/theme/css/inFrame.css"
+        },
+        {
+            "search": "title",
+            "regexp": "Huawei NetOpen System"
+        }
+    ]
+}

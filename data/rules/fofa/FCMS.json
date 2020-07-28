@@ -1,0 +1,15 @@
+{
+    "name": "FCMS",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "content=\"Ryan Haudenschilt"
+        },
+        {
+            "search": "body",
+            "text": "Powered by Family Connections"
+        }
+    ]
+}

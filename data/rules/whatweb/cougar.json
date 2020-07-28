@@ -1,0 +1,14 @@
+{
+    "name": "Cougar",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "Cougar video conferencing server",
+    "website": "http://www.cougarconference.com/",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Cougar\\/([\\d\\.]+)$)",
+            "offset": 1
+        }
+    ]
+}

@@ -1,0 +1,35 @@
+{
+    "name": "Coppermine",
+    "author": "Andrew Horton",
+    "version": "0.4",
+    "description": "Open-source Photo Gallery powered by PHP & MySQL",
+    "website": "http://www.coppermine-gallery.net/",
+    "matches": [
+        {
+            "text": "<title>Coppermine Photo Gallery - Home</title>"
+        },
+        {
+            "regexp": "(?-mix:Coppermine version: ([0-9\\.]+)[ \\n]*\\$Revision)"
+        },
+        {
+            "text": "<!-- BEGIN album_list -->"
+        },
+        {
+            "name": "powered by link",
+            "regexp": "(?-mix:Powered by <a href=\"http:\\/\\/(coppermine-gallery.net|coppermine.sf.net|coppermine.sourceforge.net)\\/\" [^>]+>Coppermine Photo Gallery<\\/a>)"
+        },
+        {
+            "regexp": "(?-mix:<!--Coppermine Photo Gallery ([\\d\\.]+)[^>]+-->)"
+        },
+        {
+            "name": "displayimage.php url",
+            "certainty": 50,
+            "regexp": "(?-mix:<a href=\"[^\"]*\\/displayimage.php\\?album=[a-z0-9]+&pos=\">)"
+        },
+        {
+            "name": "<!--Coppermine Photo Gallery",
+            "regexp": "(?-mix:<!--Coppermine Photo Gallery ([\\d\\.]+[^>]+)-->)",
+            "offset": 1
+        }
+    ]
+}

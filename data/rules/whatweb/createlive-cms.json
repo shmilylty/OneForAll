@@ -1,0 +1,21 @@
+{
+    "name": "CreateLive-Cms",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "CreateLive Cms",
+    "website": "http://www.aspoo.cn/",
+    "matches": [
+        {
+            "regexp": "(?i-mx:Powered by:(<a href=\"http:\\/\\/www.aspoo.cn\\/\" target=\"_blank\">)?CreateLive CMS Version ([\\d\\.]+))",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<!--By CreateLiveCms (\\d)\\.00-->)",
+            "offset": 1
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:Kill=kill=(Yes|No))"
+        }
+    ]
+}

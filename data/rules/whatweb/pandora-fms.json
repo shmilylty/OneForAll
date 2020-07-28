@@ -1,0 +1,19 @@
+{
+    "name": "Pandora-FMS",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Pandora Flexible Monitoring System (FMS) is a performance & availability monitoring system, ready for big environments. It uses agents for local monitoring and can do several kinds of remote network monitoring. Agents works on Linux, Windows, AIX, HP-UX, Solaris and BSD systems.",
+    "website": "http://pandorafms.org/",
+    "matches": [
+        {
+            "text": "<title>Pandora FMS - the Flexible Monitoring System</title>"
+        },
+        {
+            "text": "<link rel=\"alternate\" href=\"operation/events/events_rss.php\" title=\"Pandora RSS Feed\" type=\"application/rss+xml\" />"
+        },
+        {
+            "regexp": "(?-mix:<img src=\"images\\/pandora_logo\\.png\" style=\"border:0px;\" alt=\"logo\" \\/><\\/a><br \\/>v([^<]+)<\\/td><td class=\"f9b\">)",
+            "offset": 1
+        }
+    ]
+}

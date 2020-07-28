@@ -1,0 +1,25 @@
+{
+    "name": "MapServer",
+    "author": "Aung Khant, http://yehg.net, Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.3",
+    "description": "Detect MapServer CGI application (http://www.mapserver.org/)",
+    "website": null,
+    "matches": [
+        {
+            "name": "Version",
+            "url": "?map=*",
+            "regexp": "(?-mix:<\\/HEAD>\\s*<!\\-\\- MapServer version (.*?)\\s)",
+            "offset": 1
+        },
+        {
+            "name": "Invalid Map Parameter",
+            "url": "/cgi-bin/mapserv/?map=*",
+            "regexp": "(?-mix:<BODY BGCOLOR=\"#FFFFFF\">\\s*msLoadMap(): Regular expression error)"
+        },
+        {
+            "name": "Invalid Map Parameter",
+            "url": "/cgi-bin/mapserv/?map=*",
+            "regexp": "(?-mix:<HEAD><TITLE>MapServer Message<\\/TITLE><\\/HEAD>\\s*<!\\-\\- MapServer version)"
+        }
+    ]
+}

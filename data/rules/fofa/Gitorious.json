@@ -1,0 +1,15 @@
+{
+    "name": "Gitorious",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "_gitorious_sess"
+        },
+        {
+            "search": "body",
+            "text": "Powered by Gitorious"
+        }
+    ]
+}

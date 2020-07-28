@@ -1,0 +1,14 @@
+{
+    "name": "Dynatrace",
+    "website": "http://dynatrace.com",
+    "matches": [
+        {
+            "search": "headers[x-dynatrace-js-agent]",
+            "regexp": ".*"
+        },
+        {
+            "search": "script",
+            "regexp": "dtagent.*\\.js"
+        }
+    ]
+}

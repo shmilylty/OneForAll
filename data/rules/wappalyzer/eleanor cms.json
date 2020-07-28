@@ -1,0 +1,11 @@
+{
+    "name": "Eleanor CMS",
+    "website": "http://eleanor-cms.ru",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "Eleanor"
+        }
+    ],
+    "implies": "PHP"
+}

@@ -1,0 +1,19 @@
+{
+    "name": "SCADA PLC",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "/images/rockcolor.gif"
+        },
+        {
+            "search": "body",
+            "text": "/ralogo.gif"
+        },
+        {
+            "search": "body",
+            "text": "Ethernet Processor"
+        }
+    ]
+}

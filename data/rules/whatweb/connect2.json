@@ -1,0 +1,17 @@
+{
+    "name": "Connect2",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.1",
+    "description": "Message Handling System (MHS) is an important early email protocol developed by Novell. A compatible family of products from Infinite Technologies ( now Captaris - http://www.captaris.com ) and marketed under the name Connect2 were also very widely used as part of MHS-based email networks. - More info: http://en.wikipedia.org/wiki/Message_Handling_System",
+    "website": null,
+    "matches": [
+        {
+            "regexp": "(?-mix:for Connect2-SMTP)",
+            "search": "headers[server]"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^(Web Services Module [^\\s]+ \\([\\d]+\\)) for Connect2-SMTP$)"
+        }
+    ]
+}

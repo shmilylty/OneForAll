@@ -1,0 +1,14 @@
+{
+    "name": "Azure CDN",
+    "website": "https://azure.microsoft.com/en-us/services/cdn/",
+    "matches": [
+        {
+            "search": "headers[x-ec-debug]",
+            "regexp": ".*"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "^(?:ECAcc|ECS|ECD)"
+        }
+    ]
+}

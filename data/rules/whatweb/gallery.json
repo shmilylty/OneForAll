@@ -1,0 +1,23 @@
+{
+    "name": "Gallery",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Photo gallery - Requires PHP and MySQL",
+    "website": "http://gallery.menalto.com/",
+    "matches": [
+        {
+            "text": "<a href=\"#\" id=\"g-password-reset\" class=\"g-right g-text-small\">Forgot your password?</a>"
+        },
+        {
+            "offset": 2,
+            "regexp": "(?-mix:<li class=\"(g-)?first\">Powered by <a href=\"http:\\/\\/gallery\\.menalto\\.com\">(<bdo dir=\"ltr\">)?Gallery ([^<]+)(<\\/bdo>)?<\\/a><\\/li>)"
+        },
+        {
+            "regexp": "(?-mix:We've found a place to store your photos:\\s+<code class=\"location\">([^<]+)<\\/code>)"
+        },
+        {
+            "certainty": 75,
+            "text": "<title>Gallery 3 Installer</title>"
+        }
+    ]
+}

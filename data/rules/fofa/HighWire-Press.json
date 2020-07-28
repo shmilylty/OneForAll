@@ -1,0 +1,15 @@
+{
+    "name": "HighWire-Press",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "x-firenze-processing"
+        },
+        {
+            "search": "headers",
+            "text": "x-highwire-sessionid"
+        }
+    ]
+}

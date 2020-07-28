@@ -1,0 +1,6 @@
+{
+    "name": "Django CMS",
+    "website": "https://django-cms.org",
+    "matches": [],
+    "implies": "Django"
+}

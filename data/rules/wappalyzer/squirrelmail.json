@@ -1,0 +1,11 @@
+{
+    "name": "SquirrelMail",
+    "website": "http://squirrelmail.org",
+    "matches": [
+        {
+            "regexp": "<small>SquirrelMail version ([.\\d]+)[^<]*<br ",
+            "offset": 1
+        }
+    ],
+    "implies": "PHP"
+}

@@ -1,0 +1,23 @@
+{
+    "name": "Shapecss",
+    "website": "https://shapecss.com",
+    "matches": [
+        {
+            "regexp": "<link[^>]* href=\"[^\"]*shapecss(?:\\.min)?\\.css"
+        },
+        {
+            "search": "script",
+            "regexp": "shapecss[-.]([\\d.]*\\d)[^/]*\\.js",
+            "offset": 1
+        },
+        {
+            "search": "script",
+            "regexp": "/([\\d.]+)/shapecss(?:\\.min)?\\.js",
+            "offset": 1
+        },
+        {
+            "search": "script",
+            "regexp": "shapecss.*\\.js"
+        }
+    ]
+}

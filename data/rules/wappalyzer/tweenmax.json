@@ -1,0 +1,10 @@
+{
+    "name": "TweenMax",
+    "website": "http://greensock.com/tweenmax",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "TweenMax(?:\\.min)?\\.js"
+        }
+    ]
+}

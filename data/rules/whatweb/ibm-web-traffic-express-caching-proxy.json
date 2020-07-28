@@ -1,0 +1,23 @@
+{
+    "name": "IBM-Web-Traffic-Express-Caching-Proxy",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "IBM Web Traffic Express - proxy, caching and filtering",
+    "website": "http://www.software.ibm.com/webservers/wte/",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^IBM-PROXY-WTE\\/([^\\s]+))",
+            "offset": 1
+        },
+        {
+            "url": "/admin-bin/webexec/wte.html",
+            "regexp": "(?-mix:<a href=\"https?:\\/\\/([^\\/^\"]+)(:\\d+)?\\/\"><img src=\"https?:\\/\\/([^\\/^\"]+)(:\\d+)?\\/Docs\\/docmast\\.gif\" alt=\"Caching Proxy Version ([^\"]+)\"><\\/a>)"
+        },
+        {
+            "url": "/admin-bin/webexec/wte.html",
+            "offset": 4,
+            "regexp": "(?-mix:<a href=\"https?:\\/\\/([^\\/^\"]+)(:\\d+)?\\/\"><img src=\"https?:\\/\\/([^\\/^\"]+)(:\\d+)?\\/Docs\\/docmast\\.gif\" alt=\"Caching Proxy Version ([^\"]+)\"><\\/a>)"
+        }
+    ]
+}

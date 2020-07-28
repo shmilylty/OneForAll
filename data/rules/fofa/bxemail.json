@@ -1,0 +1,19 @@
+{
+    "name": "bxemail",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "\u767e\u8baf\u5b89\u5168\u90ae\u4ef6\u7cfb\u7edf"
+        },
+        {
+            "search": "title",
+            "regexp": "\u767e\u59d3\u90ae\u5c40"
+        },
+        {
+            "search": "body",
+            "text": "\u8bf7\u8f93\u5165\u6b63\u786e\u7684\u7535\u5b50\u90ae\u4ef6\u5730\u5740\uff0c\u5982\uff1aabc@bxemail.com"
+        }
+    ]
+}

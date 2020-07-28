@@ -1,0 +1,16 @@
+{
+    "name": "unknown_cms_rcms",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "r/cms/www"
+        },
+        {
+            "search": "headers",
+            "text": "clientlanguage"
+        }
+    ],
+    "condition": "0 and 1"
+}

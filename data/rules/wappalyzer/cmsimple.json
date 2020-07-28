@@ -1,0 +1,12 @@
+{
+    "name": "CMSimple",
+    "website": "http://www.cmsimple.org/en",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "CMSimple( [\\d.]+)?",
+            "offset": 1
+        }
+    ],
+    "implies": "PHP"
+}

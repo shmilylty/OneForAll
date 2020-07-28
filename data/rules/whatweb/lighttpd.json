@@ -1,0 +1,22 @@
+{
+    "name": "lighttpd",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton, Andrew Horton",
+    "version": "0.5",
+    "description": "Lightweight open-source web server.",
+    "website": "http://www.lighttpd.net/",
+    "matches": [
+        {
+            "regexp": "(?-mix:lighttpd)",
+            "search": "headers[server]"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^[\\s]*lighttpd\\/([^\\s]+))",
+            "offset": 1
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^[\\s]*lighttpd \\(([^\\)]+)\\))"
+        }
+    ]
+}

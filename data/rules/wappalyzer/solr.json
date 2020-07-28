@@ -1,0 +1,6 @@
+{
+    "name": "Solr",
+    "website": "http://lucene.apache.org/solr/",
+    "matches": [],
+    "implies": "Lucene"
+}

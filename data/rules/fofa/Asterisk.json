@@ -1,0 +1,15 @@
+{
+    "name": "Asterisk",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "Asterisk"
+        },
+        {
+            "search": "body",
+            "text": "asterisk_rawmanPath"
+        }
+    ]
+}

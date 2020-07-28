@@ -1,0 +1,19 @@
+{
+    "name": "ntop",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "Global Traffic Statistics"
+        },
+        {
+            "search": "headers",
+            "text": "Server: ntop"
+        },
+        {
+            "search": "body",
+            "text": "ntopMenuID"
+        }
+    ]
+}

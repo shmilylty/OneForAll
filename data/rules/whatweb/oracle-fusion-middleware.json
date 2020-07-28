@@ -1,0 +1,28 @@
+{
+    "name": "Oracle-Fusion-Middleware",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Oracle Fusion Middleware (OFM)",
+    "website": "http://www.oracle.com/au/products/middleware/index.html",
+    "matches": [
+        {
+            "text": "<title>Welcome to Oracle Fusion Middleware</title>"
+        },
+        {
+            "text": "<link href=\"css/fmw_bottom_area.css\" rel=\"stylesheet\" type=\"text/css\">"
+        },
+        {
+            "regexp": "(?-mix:<div id=\"welcome_text\">TO ORACLE<strong> FUSION MIDDLEWARE ([^\\s^<]+)<\\/strong> <\\/div>)",
+            "offset": 1
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Oracle-Fusion-Middleware)"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Oracle-Fusion-Middleware\\/([^\\s]+ \\([^\\)]+\\)))",
+            "offset": 1
+        }
+    ]
+}

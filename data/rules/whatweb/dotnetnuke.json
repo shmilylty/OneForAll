@@ -1,0 +1,60 @@
+{
+    "name": "DotNetNuke",
+    "author": "Andrew Horton, Brendan Coles <bcoles@gmail.com>, Pedro Worcel <pedro.worcel@security-Assessment.com>, Bhavin Senjaliya",
+    "version": "0.7",
+    "description": "DotNetNuke is an opensource CMS for Microsoft .Net. Passively detects modules and the copyright year.",
+    "website": "www.dotnetnuke.com",
+    "matches": [
+        {
+            "regexp": "(?i-mx:src=\"[^\"]*\\/portals\\/_default\\/(containers|skins))"
+        },
+        {
+            "name": "copyright",
+            "regexp": "(?-mix:<\\!\\-\\- DotNetNuke.{3} \\- http:\\/\\/www.dotnetnuke.com)"
+        },
+        {
+            "regexp": "(?-mix:<META NAME=\"COPYRIGHT\" CONTENT=\"Copyright 2002-[0-9]{4} DotNetNuke\">)"
+        },
+        {
+            "text": "<meta id=\"MetaGenerator\" name=\"GENERATOR\" content=\"DotNetNuke \" />"
+        },
+        {
+            "name": "VIEWSTATE contains DotNetNuke",
+            "regexp": "(?-mix:__VIEWSTATE\" value=\"[^\"]*RG90TmV0TnVrZ|RvdE5ldE51a2|3ROZXROdWtl)"
+        },
+        {
+            "text": "<div id=\"dnn_ctr"
+        },
+        {
+            "certainty": 75,
+            "text": "<div id=\"dnn_"
+        },
+        {
+            "text": "<input name=\"__dnnVariable\" type=\"hidden\" id=\"__dnnVariable\""
+        },
+        {
+            "regexp": "(?i-mx:<META[^>]+NAME=\"GENERATOR\" CONTENT=\"DotNetNuke ([\\d\\.]{1,10})\">)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:(href|src)=\"\\/DesktopModules\\/([^\\/]+)\\/)"
+        },
+        {
+            "regexp": "(?-mix:<!-- DotNetNuke[^<]*<!-- Copyright \\(c\\) 2002-([0-9]{4}))"
+        },
+        {
+            "search": "headers[set-cookie]",
+            "name": "DotNetNukeAnonymous Cookie",
+            "regexp": "(?-mix:DotNetNukeAnonymous=)"
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:dnn_IsMobile)",
+            "name": "dnn_IsMobile cookie"
+        },
+        {
+            "url": "/logo.gif",
+            "md5": "6eef6123d31c45ace6b9003edb34772e"
+        }
+    ]
+}

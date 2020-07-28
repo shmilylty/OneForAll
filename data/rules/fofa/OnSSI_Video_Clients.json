@@ -1,0 +1,15 @@
+{
+    "name": "OnSSI_Video_Clients",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "OnSSI Video Clients"
+        },
+        {
+            "search": "body",
+            "text": "x-value=\"On-Net Surveillance Systems Inc.\""
+        }
+    ]
+}

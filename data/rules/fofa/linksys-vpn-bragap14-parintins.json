@@ -1,0 +1,11 @@
+{
+    "name": "linksys-vpn-bragap14-parintins",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "linksys-vpn-bragap14-parintins"
+        }
+    ]
+}

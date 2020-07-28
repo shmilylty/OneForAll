@@ -1,0 +1,24 @@
+{
+    "name": "VisionWEB",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "VisionWEB - video server web interface - Homepage [offline]: http://www.cieffe.com/",
+    "website": null,
+    "matches": [
+        {
+            "certainty": 75,
+            "search": "headers[server]",
+            "regexp": "(?-mix:^IWeb\\/([^\\s]+))"
+        },
+        {
+            "regexp": "(?-mix:VarPageTitle=\"Proxima\\d? DVMS VisionWEB v([^\\s^\"]+)\";)",
+            "offset": 1
+        },
+        {
+            "text": "<b>CIEFFE srl</b> - \"We power Your eyes\"<br"
+        },
+        {
+            "regexp": "(?-mix:<meta name=\"COPYRIGHT\" content=\"&copy; 2001-(2[\\d]{3}) Insignis Technologies\")"
+        }
+    ]
+}

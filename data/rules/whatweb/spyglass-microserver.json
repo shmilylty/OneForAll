@@ -1,0 +1,18 @@
+{
+    "name": "Spyglass-MicroServer",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "Spyglass MicroServer is a small footprint, scalable, embedded Web server that is standards-based, customizable and features dynamic content generation with multi-platform support.",
+    "website": null,
+    "matches": [
+        {
+            "regexp": "(?-mix:^Spyglass_MicroServer)",
+            "search": "headers[server]"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Spyglass_MicroServer\\/(.+)$)",
+            "offset": 1
+        }
+    ]
+}

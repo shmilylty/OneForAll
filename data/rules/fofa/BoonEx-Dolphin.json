@@ -1,0 +1,11 @@
+{
+    "name": "BoonEx-Dolphin",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "Powered by                    Dolphin - <a href=\"http://www.boonex.com/products/dolphin"
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "name": "Google Web Server",
+    "website": "http://en.wikipedia.org/wiki/Google_Web_Server",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "gws"
+        }
+    ]
+}

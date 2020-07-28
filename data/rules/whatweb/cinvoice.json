@@ -1,0 +1,16 @@
+{
+    "name": "cInvoice",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Forperfect cInvoice system - web-based invoice system. Requires PHP and MySQL.",
+    "website": "http://www.forperfect.com/seo/cinvoice.php",
+    "matches": [
+        {
+            "regexp": "(?-mix:<small>Powered by <a href=\"http:\\/\\/www\\.forperfect\\.com\\/\" class=\"footerlink\">cInvoice system ([\\d\\.]+)<\\/a><\\/small>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:\\/images\\/footer_bg\\.gif\" width=\"[\\d]{2}%\" align=\"center\" cellspacing=\"1\" cellpadding=\"1\"><td class=copyright align=\"center\">)"
+        }
+    ]
+}

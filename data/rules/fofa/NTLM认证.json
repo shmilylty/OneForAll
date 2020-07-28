@@ -1,0 +1,11 @@
+{
+    "name": "NTLM\u8ba4\u8bc1",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "NTLM"
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+{
+    "name": "Moxa Nport\u4e32\u53e3\u670d\u52a1\u5668",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "MoxaHttp"
+        }
+    ]
+}

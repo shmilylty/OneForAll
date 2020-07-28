@@ -1,0 +1,11 @@
+{
+    "name": "\u5929\u878d\u4fe1\u7f51\u7edc\u5ba1\u8ba1\u7cfb\u7edf",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "onclick=\"dlg_download()"
+        }
+    ]
+}

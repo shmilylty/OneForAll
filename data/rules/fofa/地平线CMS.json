@@ -1,0 +1,24 @@
+{
+    "name": "\u5730\u5e73\u7ebfCMS",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "labelOppInforStyle"
+        },
+        {
+            "search": "title",
+            "regexp": "Powered by deep soon"
+        },
+        {
+            "search": "body",
+            "text": "search_result.aspx"
+        },
+        {
+            "search": "body",
+            "text": "frmsearch"
+        }
+    ],
+    "condition": "0 or 1 or (2 and 3)"
+}

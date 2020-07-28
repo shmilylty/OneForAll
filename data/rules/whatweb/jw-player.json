@@ -1,0 +1,14 @@
+{
+    "name": "JW-Player",
+    "author": "Bhavin Senjaliya <bhavin.senjaliya@gmail.com>",
+    "version": "0.1",
+    "description": "JW Player provides video and audio streaming",
+    "website": "https://www.jwplayer.com/",
+    "matches": [
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:^SEOT)",
+            "name": "SEOT cookie"
+        }
+    ]
+}

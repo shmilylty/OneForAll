@@ -1,0 +1,19 @@
+{
+    "name": "Atlassian Confluence",
+    "website": "http://www.atlassian.com/software/confluence/overview/team-collaboration-software",
+    "matches": [
+        {
+            "search": "headers[x-confluence-request-time]",
+            "regexp": ".*"
+        },
+        {
+            "regexp": "Powered by <a href=[^>]+atlassian\\.com/software/confluence(?:[^>]+>Atlassian Confluence</a> ([\\d.]+))?",
+            "offset": 1
+        },
+        {
+            "search": "meta[confluence-request-time]",
+            "regexp": ".*"
+        }
+    ],
+    "implies": "Java"
+}

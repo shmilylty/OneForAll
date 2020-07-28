@@ -1,0 +1,16 @@
+{
+    "name": "OCS-Inventory-NG",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Open Computers and Software Inventory Next Generation - computer hardware management - http://www.ocsinventory-ng.org/en/",
+    "website": null,
+    "matches": [
+        {
+            "text": "<LINK REL='StyleSheet' TYPE='text/css' HREF='css/ocsreports.css'>"
+        },
+        {
+            "regexp": "(?-mix:<img src=image\\/banner-ocs\\.png><\\/a><\\/td><td width='33%' align='right'>[\\s]+<b>Ver\\. ([^&]+)&nbsp&nbsp&nbsp;<\\/b>)",
+            "offset": 1
+        }
+    ]
+}

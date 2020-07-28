@@ -1,0 +1,21 @@
+{
+    "name": "RoundCube",
+    "author": "Andrew Horton",
+    "version": "0.2",
+    "description": "Opensource Webmail written in PHP",
+    "website": "http://roundcube.net/",
+    "matches": [
+        {
+            "text": "<title>RoundCube Webmail :: Welcome to RoundCube Webmail</title>"
+        },
+        {
+            "text": "var rcmail = new rcube_webmail();"
+        },
+        {
+            "text": "<input name=\"_user\" id=\"rcmloginuser\""
+        },
+        {
+            "text": "$(document).ready(function(){ rcmail.init(); });"
+        }
+    ]
+}

@@ -1,0 +1,23 @@
+{
+    "name": "ColdFusion",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "/cfajax/"
+        },
+        {
+            "search": "headers",
+            "text": "CFTOKEN"
+        },
+        {
+            "search": "body",
+            "text": "ColdFusion.Ajax"
+        },
+        {
+            "search": "body",
+            "text": "cdm"
+        }
+    ]
+}

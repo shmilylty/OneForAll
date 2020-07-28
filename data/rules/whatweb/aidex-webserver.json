@@ -1,0 +1,17 @@
+{
+    "name": "AIDeX-Webserver",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "AIDeX Webserver - does not support CGI or PHP",
+    "website": "http://www.aidex.de/software/webserver/",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^aidex\\/([^\\s]+))",
+            "offset": 1
+        },
+        {
+            "text": "<br><small>Powered by <a href=\"http://www.aidex.de/software/webserver/\" target=\"_blank\">AIDeX Webserver</a></small></div></div><br><br><br>"
+        }
+    ]
+}

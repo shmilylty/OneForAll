@@ -1,0 +1,9 @@
+{
+    "name": "Burning Board",
+    "website": "http://www.woltlab.com",
+    "matches": [],
+    "implies": [
+        "PHP",
+        "Woltlab Community Framework"
+    ]
+}

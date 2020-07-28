@@ -1,0 +1,14 @@
+{
+    "name": "NVD3",
+    "website": "http://nvd3.org",
+    "matches": [
+        {
+            "regexp": "<link[^>]* href=[^>]+nv\\.d3(?:\\.min)?\\.css"
+        },
+        {
+            "search": "script",
+            "regexp": "nv\\.d3(?:\\.min)?\\.js"
+        }
+    ],
+    "implies": "D3"
+}

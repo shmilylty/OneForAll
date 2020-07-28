@@ -1,0 +1,16 @@
+{
+    "name": "Schneider_Quantum_140NOE77101",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "indexLanguage"
+        },
+        {
+            "search": "body",
+            "text": "html/config.js"
+        }
+    ],
+    "condition": "0 and 1"
+}

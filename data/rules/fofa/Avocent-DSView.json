@@ -1,0 +1,19 @@
+{
+    "name": "Avocent-DSView",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "Avocent DSView"
+        },
+        {
+            "search": "body",
+            "text": "/dsview/images/favicon.ico"
+        },
+        {
+            "search": "body",
+            "text": "/dsview/protected/login.do"
+        }
+    ]
+}

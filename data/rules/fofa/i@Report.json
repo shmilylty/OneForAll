@@ -1,0 +1,23 @@
+{
+    "name": "i@Report",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "ESENSOFT_IREPORT_SERVER"
+        },
+        {
+            "search": "body",
+            "text": "com.sanlink.server.Login"
+        },
+        {
+            "search": "body",
+            "text": "ireportclient"
+        },
+        {
+            "search": "body",
+            "text": "css/ireport.css"
+        }
+    ]
+}

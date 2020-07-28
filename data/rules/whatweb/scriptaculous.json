@@ -1,0 +1,12 @@
+{
+    "name": "Scriptaculous",
+    "author": "Andrew Horton",
+    "version": "0.2",
+    "description": "Javascript library",
+    "website": null,
+    "matches": [
+        {
+            "regexp": "(?-mix:<script [^>]*(scriptaculous[^>]*.js)[^>]*)"
+        }
+    ]
+}

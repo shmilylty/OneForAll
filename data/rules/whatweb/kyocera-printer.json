@@ -1,0 +1,34 @@
+{
+    "name": "Kyocera-Printer",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "Web interface for Kyocera printers. Some models have built in fax and scanner capabilities.",
+    "website": "http://global.kyocera.com/",
+    "matches": [
+        {
+            "regexp": "(?-mix:^KM-MFP-http)",
+            "search": "headers[server]"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^KM-MFP-http\\/V([\\d\\.]+)$)",
+            "offset": 1
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^KM-httpd\\/([\\d\\.]+)$)",
+            "offset": 1
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^JC-HTTPD\\/([\\d\\.]+)$)",
+            "offset": 1
+        },
+        {
+            "string": "Scanner",
+            "search": "headers[server]",
+            "regexp": "(?-mix:^NetworkScanner WebServer Ver([\\d\\.]+)$)",
+            "offset": 1
+        }
+    ]
+}

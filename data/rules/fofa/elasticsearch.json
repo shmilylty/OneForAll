@@ -1,0 +1,20 @@
+{
+    "name": "elasticsearch",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "application/json"
+        },
+        {
+            "search": "body",
+            "text": "build_hash"
+        },
+        {
+            "search": "body",
+            "text": "You Know, for Search"
+        }
+    ],
+    "condition": "(0 and 1) or 2"
+}

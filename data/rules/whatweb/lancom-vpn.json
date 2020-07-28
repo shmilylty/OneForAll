@@ -1,0 +1,26 @@
+{
+    "name": "LANCOM-VPN",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "Administration of dynamic IP addresses by LANCOM Dynamic VPN devices. Revolutionary in the LANCOM Dynamic VPN technology is that fixed IP addresses are no longer needed: The IP addresses of the respective IPSec gateways are exchanged over ISDN before the connection is established. Internet-based VPN connections thereby escape the restriction of fixed and thus expensive IP addresses.",
+    "website": "http://www.lancom.es/LANCOM-VPN.279.0.html",
+    "matches": [
+        {
+            "regexp": "(?-mix:^LANCOM.*VPN)",
+            "search": "headers[server]"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^LANCOM ([\\d]{4}[\\+]?) VPN( \\([^\\)]+\\))? ([\\d\\.]+) \\/ ([\\d]{2}.[\\d]{2}.[\\d]{4})$)"
+        },
+        {
+            "offset": 2,
+            "search": "headers[server]",
+            "regexp": "(?-mix:^LANCOM ([\\d]{4}[\\+]?) VPN( \\([^\\)]+\\))? ([\\d\\.]+) \\/ ([\\d]{2}.[\\d]{2}.[\\d]{4})$)"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^LANCOM ([\\d]{4}[\\+]?) VPN( \\([^\\)]+\\))? ([\\d\\.]+) \\/ ([\\d]{2}.[\\d]{2}.[\\d]{4})$)"
+        }
+    ]
+}

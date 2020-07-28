@@ -1,0 +1,15 @@
+{
+    "name": "\u6cdb\u5fae\u534f\u540c\u529e\u516cOA",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "testBanCookie"
+        },
+        {
+            "search": "body",
+            "text": "/wui/common/css/w7OVFont.css"
+        }
+    ]
+}

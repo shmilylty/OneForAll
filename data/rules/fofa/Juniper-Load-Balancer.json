@@ -1,0 +1,15 @@
+{
+    "name": "Juniper-Load-Balancer",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "rl-sticky-key"
+        },
+        {
+            "search": "headers",
+            "text": "Juniper Networks Application Acceleration Platform"
+        }
+    ]
+}

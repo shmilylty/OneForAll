@@ -1,0 +1,27 @@
+{
+    "name": "Advantech-WebAccess",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Advantech WebAccess HMI/SCADA software",
+    "website": "http://webaccess.advantech.com/",
+    "matches": [
+        {
+            "text": "<html><!-- #BeginTemplate \"/Templates/bw_templete1.dwt\" -->"
+        },
+        {
+            "text": "<a href=\"/broadweb/WebAccessClientSetup.exe\">"
+        },
+        {
+            "search": "headers[location]",
+            "regexp": "(?-mix:\\.\\/broadWeb\\/bwviewpg\\.asp\\?proj=)"
+        },
+        {
+            "search": "headers[location]",
+            "regexp": "(?-mix:\\.\\/broadWeb\\/bwRoot\\.asp\\?username=([^\\s]+))"
+        },
+        {
+            "regexp": "(?-mix:<div style=\"position:relative;top:15;width:870px; height:15px\">\\s+<font class=e5>[^:^<]+ : ([^\\s]+)<\\/font>)",
+            "offset": 1
+        }
+    ]
+}

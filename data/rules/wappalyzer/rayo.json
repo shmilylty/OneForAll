@@ -1,0 +1,14 @@
+{
+    "name": "Rayo",
+    "website": "http://www.rayo.ir",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "^Rayo"
+        }
+    ],
+    "implies": [
+        "AngularJS",
+        "Microsoft ASP.NET"
+    ]
+}

@@ -1,0 +1,21 @@
+{
+    "name": "WhiteBoard",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "WhiteBoard is a fast, powerful, and free open source discussion board solution.",
+    "website": "http://sarosoftware.com/",
+    "matches": [
+        {
+            "text": "\t\t\t&copy; <a href=\"http://www.powerwd.com\">SaroSoftware</a><br />",
+            "certainty": 75
+        },
+        {
+            "regexp": "(?-mix:Powered By WhiteBoard ([\\d\\.]+)<br \\/>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:Powered By WhiteBoard <span id=\"version\">([\\d\\.]+)<\\/span><br \\/>)",
+            "offset": 1
+        }
+    ]
+}

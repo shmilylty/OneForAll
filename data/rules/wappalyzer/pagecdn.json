@@ -1,0 +1,10 @@
+{
+    "name": "PageCDN",
+    "website": "https://pagecdn.com",
+    "matches": [
+        {
+            "search": "headers[x-cdn]",
+            "regexp": "PageCDN"
+        }
+    ]
+}

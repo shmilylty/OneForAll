@@ -1,0 +1,19 @@
+{
+    "name": "\u9752\u679c\u8f6f\u4ef6",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "KINGOSOFT"
+        },
+        {
+            "search": "body",
+            "text": "SetKingoEncypt.jsp"
+        },
+        {
+            "search": "body",
+            "text": "/jkingo.js"
+        }
+    ]
+}

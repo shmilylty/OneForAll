@@ -1,0 +1,23 @@
+{
+    "name": "Passenger",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "Phusion Passenger - a.k.a. mod_rails or mod_rack - makes deployment of Ruby web applications, such as those built on the revolutionary Ruby on Rails web framework, a breeze. It follows the usual Ruby on Rails conventions, such as \"Dont-Repeat-Yourself\"\"\nwebsite \"http://www.modrails.com/",
+    "website": null,
+    "matches": [
+        {
+            "regexp": "(?-mix:.*Phusion_Passenger)",
+            "search": "headers[server]"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:[\\s]+Phusion_Passenger\\/([\\d\\.]+))",
+            "offset": 1
+        },
+        {
+            "search": "headers[x-powered-by]",
+            "regexp": "(?-mix:Phusion Passenger \\(mod_rails\\/mod_rack\\) ([\\d\\.]+))",
+            "offset": 1
+        }
+    ]
+}

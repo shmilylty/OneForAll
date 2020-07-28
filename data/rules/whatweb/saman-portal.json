@@ -1,0 +1,27 @@
+{
+    "name": "Saman-Portal",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Saman Portal",
+    "website": "http://www.sis-eg.com/",
+    "matches": [
+        {
+            "text": "<meta name=\"Generator\" content=\"Saman Information Structure\" />"
+        },
+        {
+            "regexp": "(?-mix:<script  type=\"text\\/javascript\" language=\"JavaScript\" src=\"\\/portlets\\/sisRapid\\/dream\\/libs\\/(V[\\d\\.]+)\\/core\\/sisValidationAPI\\.js\">)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<script  type=\"text\\/javascript\" language=\"JavaScript\">[\\s]+var sisTHEMEPATH_HTTP = \")"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:sisRapid Framework)"
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:SAMANPORTALSID=[^;]+;)"
+        }
+    ]
+}

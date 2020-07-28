@@ -1,0 +1,11 @@
+{
+    "name": "P3p",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "P3p"
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    "name": "\u524d\u7aef\u516c\u5171\u5e93CDN",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "libs.cdnjs.net"
+        },
+        {
+            "search": "body",
+            "text": "libs.cdnjs.net"
+        }
+    ]
+}

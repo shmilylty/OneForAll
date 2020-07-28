@@ -1,0 +1,14 @@
+{
+    "name": "Woosa",
+    "website": "https://woosa.nl",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "^Woosa$"
+        }
+    ],
+    "excludes": [
+        "WordPress",
+        "WooCommerce"
+    ]
+}

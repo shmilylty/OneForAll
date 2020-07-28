@@ -1,0 +1,10 @@
+{
+    "name": "Sotel",
+    "website": "https://www.soteledu.com/en/",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "sotel"
+        }
+    ]
+}

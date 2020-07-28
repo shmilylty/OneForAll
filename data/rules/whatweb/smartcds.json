@@ -1,0 +1,30 @@
+{
+    "name": "SmartCDS",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "SmartCDS (Content Delivery Server) hardware [Japanese]",
+    "website": "http://www.globaldawin.com/product/smartcds.php3",
+    "matches": [
+        {
+            "text": "<img border=0 src=\"http://www.globaldawin.com/capcds/refresh.gif\" width=\"13\" height=\"16\""
+        },
+        {
+            "regexp": "(?-mix:^smartcds)",
+            "search": "headers[server]"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^smartcds\\/([^\\s]+))",
+            "offset": 1
+        },
+        {
+            "search": "headers[smartcds]",
+            "regexp": "(?-mix:^Version:([^\\s]+)$)",
+            "offset": 1
+        },
+        {
+            "search": "headers[x-smartcds-error]",
+            "regexp": "(?-mix:^(.*)$)"
+        }
+    ]
+}

@@ -1,0 +1,12 @@
+{
+    "name": "Contenido",
+    "website": "http://contenido.org/en",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "Contenido ([\\d.]+)",
+            "offset": 1
+        }
+    ],
+    "implies": "PHP"
+}

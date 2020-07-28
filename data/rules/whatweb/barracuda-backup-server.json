@@ -1,0 +1,24 @@
+{
+    "name": "Barracuda-Backup-Server",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Local inline Deduplication Backup Systems with available offsite Cloud Storage or site to site replication.",
+    "website": "https://www.barracudanetworks.com/ns/products/backup_overview.php",
+    "matches": [
+        {
+            "text": "<div id=\"logo-wrapper\"><a id=\"logo\" href=\"http://www.barracudanetworks.com/ns/?a=backup_localui\">Barracuda Networks</a></div>"
+        },
+        {
+            "url": "/auth/signin/",
+            "regexp": "(?-mix:<div id=\"label\">Backup Server ([^\\s^<]+)<\\/div>)"
+        },
+        {
+            "url": "/include/cui/images/favicon.ico",
+            "md5": "de2b6edbf7930f5dd0ffe0528b2bbcf4"
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:BACKUP_LOCAL_LOCALE=)"
+        }
+    ]
+}

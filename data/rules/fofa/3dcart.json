@@ -1,0 +1,23 @@
+{
+    "name": "3dcart",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "powered by 3dcart"
+        },
+        {
+            "search": "headers",
+            "text": "3dvisit"
+        },
+        {
+            "search": "body",
+            "text": "<!--START: 3dcart stats-->"
+        },
+        {
+            "search": "headers",
+            "text": "X-Powered-By: 3DCART"
+        }
+    ]
+}

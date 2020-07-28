@@ -1,0 +1,15 @@
+{
+    "name": "Debian",
+    "website": "https://debian.org",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "Debian"
+        },
+        {
+            "search": "headers[x-powered-by]",
+            "regexp": "(?:Debian|dotdeb|(potato|woody|sarge|etch|lenny|squeeze|wheezy|jessie|stretch|buster|sid))",
+            "offset": 1
+        }
+    ]
+}

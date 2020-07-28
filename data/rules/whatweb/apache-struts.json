@@ -1,0 +1,38 @@
+{
+    "name": "Apache-Struts",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "The Apache Struts web framework is a free open-source solution for creating Java web applications.",
+    "website": "https://struts.apache.org/",
+    "matches": [
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:org\\.apache\\.struts\\.action\\.LOCALE=[^\\s]+;)"
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:org\\.apache\\.struts\\.[^\\s]+=[^\\s]+;)",
+            "certainty": 75
+        },
+        {
+            "search": "body",
+            "regexp": "(?-mix:<a\\s+href=[^>]+org.apache.struts)"
+        },
+        {
+            "search": "all",
+            "version": 2,
+            "text": "org.apache.struts2",
+            "certainty": 25
+        },
+        {
+            "search": "all",
+            "version": 1,
+            "text": "org.apache.struts.",
+            "certainty": 25
+        },
+        {
+            "regexp": "(?-mix:Development mode, or devMode, enables extra\\s+debugging behaviors and reports to assist developers.  To disable this mode, set:\\s+<pre>\\s+  struts.devMode=false)",
+            "string": "Development Mode"
+        }
+    ]
+}

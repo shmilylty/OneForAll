@@ -1,0 +1,16 @@
+{
+    "name": "DHT_802.11N_Router",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "DHT 802.11n QoS Router"
+        },
+        {
+            "search": "headers",
+            "text": "mini_httpd"
+        }
+    ],
+    "condition": "0 and 1"
+}

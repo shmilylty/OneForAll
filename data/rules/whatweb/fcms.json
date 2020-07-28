@@ -1,0 +1,19 @@
+{
+    "name": "FCMS",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Family Connections CMS (FCMS)",
+    "website": "https://www.familycms.com/index.php",
+    "matches": [
+        {
+            "text": "<meta name=\"author\" content=\"Ryan Haudenschilt\"/>"
+        },
+        {
+            "regexp": "(?-mix:- [pP]owered by Family Connections<\\/title>)"
+        },
+        {
+            "regexp": "(?-mix:- [pP]owered by Family Connections ([^\\s^<]+)[\\s]*<\\/title>[\\s]*(<meta|<link))",
+            "offset": 1
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+{
+    "name": "\u5168\u56fd\u70df\u8349\u7cfb\u7edf",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "ycportal/webpublish"
+        }
+    ]
+}

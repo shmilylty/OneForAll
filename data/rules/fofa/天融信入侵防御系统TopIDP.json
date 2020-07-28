@@ -1,0 +1,11 @@
+{
+    "name": "\u5929\u878d\u4fe1\u5165\u4fb5\u9632\u5fa1\u7cfb\u7edfTopIDP",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "\u5929\u878d\u4fe1\u5165\u4fb5\u9632\u5fa1\u7cfb\u7edfTopIDP"
+        }
+    ]
+}

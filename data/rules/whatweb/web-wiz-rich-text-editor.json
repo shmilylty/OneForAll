@@ -1,0 +1,20 @@
+{
+    "name": "Web-Wiz-Rich-Text-Editor",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Web Wiz Rich Text Editor",
+    "website": "http://www.richtexteditor.org/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<a href=\"http:\\/\\/www\\.richtexteditor\\.org\" target=\"_blank\" style=\"font-size:10px\">Web Wiz Rich Text Editor<\\/a> version ([^<]+)<\\/span><\\/td>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<\\!\\-\\-\\/\\/\\s+\\/\\* [^\\s]+\\s+Software: Web Wiz Rich Text Editor\\(TM\\) ver\\. ([^\\s]+))",
+            "offset": 1
+        },
+        {
+            "text": "<form method=\"post\" action=\"RTE_popup_file_atch.asp\" name=\"frmImageInsrt\">"
+        }
+    ]
+}

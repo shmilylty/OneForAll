@@ -1,0 +1,11 @@
+{
+    "name": "Linksys E1000",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "Linksys E1000"
+        }
+    ]
+}

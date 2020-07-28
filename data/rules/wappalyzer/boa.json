@@ -1,0 +1,11 @@
+{
+    "name": "Boa",
+    "website": "http://www.boa.org",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "Boa\\/?([\\d\\.a-z]+)?",
+            "offset": 1
+        }
+    ]
+}

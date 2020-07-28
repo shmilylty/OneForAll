@@ -1,0 +1,9 @@
+{
+    "name": "Taiga",
+    "website": "http://taiga.io",
+    "matches": [],
+    "implies": [
+        "Django",
+        "AngularJS"
+    ]
+}

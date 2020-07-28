@@ -1,0 +1,18 @@
+{
+    "name": "Citrix-Metaframe",
+    "author": "Andrew Horton",
+    "version": "0.2",
+    "description": "Citrix-Metaframe. Thin clients.",
+    "website": null,
+    "matches": [
+        {
+            "regexp": "(?-mix:Copyright \\(c\\) [\\d]+ - [\\d]+ Citrix Systems, Inc. All Rights Reserved.)"
+        },
+        {
+            "text": "window.location=\"/Citrix/MetaFrame\";"
+        },
+        {
+            "text": "<title>MetaFrame Presentation Server Log In</title>"
+        }
+    ]
+}

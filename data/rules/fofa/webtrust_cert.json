@@ -1,0 +1,11 @@
+{
+    "name": "webtrust_cert",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "https://cert.webtrust.org/ViewSeal"
+        }
+    ]
+}

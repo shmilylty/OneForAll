@@ -1,0 +1,22 @@
+{
+    "name": "PJIRC",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "PJIRC is the best free java irc client available. It can be run as an applet or stand alone and it is fully opensource.",
+    "website": "http://www.pjirc.it/",
+    "matches": [
+        {
+            "text": "<body onload=\"document.login.nick.focus();\" style=\"margin: 5px;\">"
+        },
+        {
+            "text": "\t\t\t\t\tdocument.writeln('<input name=\"jsenabled\" type=\"hidden\" value=\"1\" \\/>');"
+        },
+        {
+            "regexp": "(?-mix:\t\t\t\t<form name=\"login\" action=\"[^\"]*index\\.php\" method=\"post\" onsubmit=\"return CheckForm\\('[^']*index\\.php\\?page=advanced'\\)\">)"
+        },
+        {
+            "regexp": "(?-mix:\t<td align=\"left\">PJIRC Login Page Version ([\\d\\.]{1,5})<\\/td>)",
+            "offset": 1
+        }
+    ]
+}

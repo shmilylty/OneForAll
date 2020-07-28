@@ -1,0 +1,10 @@
+{
+    "name": "Sivuviidakko",
+    "website": "http://sivuviidakko.fi",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "Sivuviidakko"
+        }
+    ]
+}

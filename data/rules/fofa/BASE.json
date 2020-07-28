@@ -1,0 +1,15 @@
+{
+    "name": "BASE",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "<!-- Basic Analysis and Security Engine (BASE) -->"
+        },
+        {
+            "search": "body",
+            "text": "mailto:base@secureideas.net"
+        }
+    ]
+}

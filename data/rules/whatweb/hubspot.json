@@ -1,0 +1,14 @@
+{
+    "name": "HubSpot",
+    "author": "Bhavin Senjaliya <bhavin.senjaliya@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "HubSpot Websites",
+    "website": "https://www.hubspot.com/",
+    "matches": [
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:hsPagesViewedThisSession)",
+            "name": "hsPagesViewedThisSession cookie"
+        }
+    ]
+}

@@ -1,0 +1,13 @@
+{
+    "name": "Meteor",
+    "website": "https://www.meteor.com",
+    "matches": [
+        {
+            "regexp": "<link[^>]+__meteor-css__"
+        }
+    ],
+    "implies": [
+        "MongoDB",
+        "Node.js"
+    ]
+}

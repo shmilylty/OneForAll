@@ -1,0 +1,24 @@
+{
+    "name": "TMSoft-MyAuth-Gateway",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "MyAuth Gateway 3 is a software for the administration of users to providers of advanced networks, enabling full management of customers, access users, groups, bandwidth control, with administrative access level and access logs of actions of technical support for complete control and ticket, statistics and central billing system via bank transfer of the major national banks. [Translated from Portuguese]",
+    "website": "http://www.myauth.com.br/?console=myauth3_info&site=myauth3",
+    "matches": [
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:MyAuth([0-9]{1})=[a-z0-9]{26})",
+            "offset": 1
+        },
+        {
+            "search": "headers[x-powered-by]",
+            "regexp": "(?-mix:TMSoft MyAuth Gateway ([^\\s^\\r^\\n]+))",
+            "offset": 1
+        },
+        {
+            "search": "headers[x-manager-by]",
+            "regexp": "(?-mix:MyAuth Gateway ([^\\s]+))",
+            "offset": 1
+        }
+    ]
+}

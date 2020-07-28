@@ -1,0 +1,13 @@
+{
+    "name": "Strict-Transport-Security",
+    "author": "Andrew Horton",
+    "version": "0.1",
+    "description": "Strict-Transport-Security is an HTTP header that restricts a web browser from accessing a website without the security of the HTTPS protocol.",
+    "website": null,
+    "matches": [
+        {
+            "search": "headers[Strict-Transport-Security]",
+            "regexp": "(?-mix:^(.*)$)"
+        }
+    ]
+}

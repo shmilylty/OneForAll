@@ -1,0 +1,11 @@
+{
+    "name": "WordPress VIP",
+    "website": "https://wpvip.com",
+    "matches": [
+        {
+            "search": "headers[x-powered-by]",
+            "regexp": "^WordPress\\.com VIP"
+        }
+    ],
+    "implies": "WordPress"
+}

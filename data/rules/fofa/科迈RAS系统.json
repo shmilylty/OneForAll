@@ -1,0 +1,19 @@
+{
+    "name": "\u79d1\u8fc8RAS\u7cfb\u7edf",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "\u79d1\u8fc8RAS"
+        },
+        {
+            "search": "body",
+            "text": "type=\"application/npRas"
+        },
+        {
+            "search": "body",
+            "text": "\u8fdc\u7a0b\u6280\u672f\u652f\u6301\u8bf7\u6c42\uff1a<a href=\"http://www.comexe.cn"
+        }
+    ]
+}

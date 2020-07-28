@@ -1,0 +1,29 @@
+{
+    "name": "Cimplicity-WebView",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "CIMPLICITY is a client/server based visualization and control solution that helps you visualize your operations, perform supervisory automation and deliver reliable information to higher-level analytic applications.",
+    "website": "http://www.ge-ip.com/products/2819",
+    "matches": [
+        {
+            "url": "/index.html",
+            "text": "<TITLE>CIMPLICITY WebView</TITLE>"
+        },
+        {
+            "text": "<APPLET NAME=\"ProwlerClientAppletObject\" ARCHIVE=\"/ProwlerClient.jar\" "
+        },
+        {
+            "md5": "be47085f5ac23b78c5b6a952ea0947b3",
+            "url": "/ProwlerClient.jar"
+        },
+        {
+            "regexp": "(?-mix:^CIMPLICITY-HttpSvr)",
+            "search": "headers[server]"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^CIMPLICITY-HttpSvr\\/([\\d\\.]+))",
+            "offset": 1
+        }
+    ]
+}

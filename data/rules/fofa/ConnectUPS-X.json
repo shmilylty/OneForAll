@@ -1,0 +1,15 @@
+{
+    "name": "ConnectUPS-X",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "UPS_Server/"
+        },
+        {
+            "search": "body",
+            "text": "UPS Firmware version"
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+{
+    "name": "BM-Classifieds",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "<!-- START HEADER TABLE - HOLDS GRAPHIC AND SITE NAME -->"
+        }
+    ]
+}

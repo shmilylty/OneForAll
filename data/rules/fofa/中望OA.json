@@ -1,0 +1,15 @@
+{
+    "name": "\u4e2d\u671bOA",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "/app_qjuserinfo/qjuserinfoadd.jsp"
+        },
+        {
+            "search": "body",
+            "text": "/IMAGES/default/first/xtoa_logo.png"
+        }
+    ]
+}

@@ -1,0 +1,13 @@
+{
+    "name": "pirobase CMS",
+    "website": "https://www.pirobase-imperia.com/de/produkte/produktuebersicht/pirobase-cms",
+    "matches": [
+        {
+            "regexp": "<(?:script|link)[^>]/site/[a-z0-9/._-]+/resourceCached/[a-z0-9/._-]+"
+        },
+        {
+            "regexp": "<input[^>]+cbi:///cms/"
+        }
+    ],
+    "implies": "Java"
+}

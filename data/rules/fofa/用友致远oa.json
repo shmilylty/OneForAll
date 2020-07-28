@@ -1,0 +1,19 @@
+{
+    "name": "\u7528\u53cb\u81f4\u8fdcoa",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "/seeyon/USER-DATA/IMAGES/LOGIN/login.gif"
+        },
+        {
+            "search": "title",
+            "regexp": "\u7528\u53cb\u81f4\u8fdcA"
+        },
+        {
+            "search": "body",
+            "text": "/yyoa/"
+        }
+    ]
+}

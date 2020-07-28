@@ -1,0 +1,13 @@
+{
+    "name": "TheHostingTool",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.3",
+    "description": "Free Open-Source hosting tool similar to cPanel",
+    "website": "http://thehostingtool.com/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<div id=\"footer\">Powered by <a href=\"http:\\/\\/thehostingtool.com\" target=\"_blank\">TheHostingTool<\\/a> ([\\d\\.]*)<\\/div>)",
+            "offset": 1
+        }
+    ]
+}

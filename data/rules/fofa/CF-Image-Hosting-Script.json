@@ -1,0 +1,11 @@
+{
+    "name": "CF-Image-Hosting-Script",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "Powered By <a href=\"http://codefuture.co.uk/projects/imagehost/"
+        }
+    ]
+}

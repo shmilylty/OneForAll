@@ -1,0 +1,14 @@
+{
+    "name": "IBM DataPower",
+    "website": "https://www.ibm.com/products/datapower-gateway",
+    "matches": [
+        {
+            "search": "headers[x-backside-transport]",
+            "regexp": ".*"
+        },
+        {
+            "search": "headers[x-global-transaction-id]",
+            "regexp": ".*"
+        }
+    ]
+}

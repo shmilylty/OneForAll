@@ -1,0 +1,11 @@
+{
+    "name": "debut",
+    "website": "http://www.brother.com",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "debut\\/?([\\d\\.]+)?",
+            "offset": 1
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "name": "Jirafe",
+    "website": "https://docs.jirafe.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "/jirafe\\.js"
+        }
+    ]
+}

@@ -1,0 +1,12 @@
+{
+    "name": "GOV.UK Frontend",
+    "website": "https://design-system.service.gov.uk/",
+    "matches": [
+        {
+            "regexp": "<body[^>]+govuk-template__body"
+        },
+        {
+            "regexp": "<a[^>]+govuk-link"
+        }
+    ]
+}

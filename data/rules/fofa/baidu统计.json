@@ -1,0 +1,11 @@
+{
+    "name": "baidu\u7edf\u8ba1",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "hm.baidu.com/h.js"
+        }
+    ]
+}

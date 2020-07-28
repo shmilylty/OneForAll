@@ -1,0 +1,11 @@
+{
+    "name": "UcSTAR",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "UcSTAR \u7ba1\u7406\u63a7\u5236\u53f0"
+        }
+    ]
+}

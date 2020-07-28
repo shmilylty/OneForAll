@@ -1,0 +1,16 @@
+{
+    "name": "Google-Analytics",
+    "author": "Peter van der Laan",
+    "version": "0.1",
+    "description": "This plugin identifies the Google Analytics account.",
+    "website": "http://www.google.com/analytics/",
+    "matches": [
+        {
+            "regexp": "(?-mix:_gaq.push\\(\\['_setAccount',[\\s]*'(\\w{2}-\\d{1,}-\\d{1,})'\\])"
+        },
+        {
+            "version": "Universal",
+            "regexp": "(?-mix:ga\\([\\s]*'create',[\\s]*'(\\w{2}-\\d{1,}-\\d{1,})',)"
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+{
+    "name": "\u7545\u6377\u901a",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "\u7545\u6377\u901a"
+        }
+    ]
+}

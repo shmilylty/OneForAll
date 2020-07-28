@@ -1,0 +1,15 @@
+{
+    "name": "Content-Security-Policy",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "x-content-security-policy"
+        },
+        {
+            "search": "headers",
+            "text": "x-webkit-csp"
+        }
+    ]
+}

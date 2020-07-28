@@ -1,0 +1,9 @@
+{
+    "name": "American Express",
+    "website": "https://www.americanexpress.com",
+    "matches": [
+        {
+            "regexp": "<[^>]+aria-labelledby=\"pi-american_express"
+        }
+    ]
+}

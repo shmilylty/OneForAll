@@ -1,0 +1,19 @@
+{
+    "name": "ATutor elearning",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "content=\"ATutor"
+        },
+        {
+            "search": "headers",
+            "text": "ATutorID"
+        },
+        {
+            "search": "body",
+            "text": "ATutor.course"
+        }
+    ]
+}

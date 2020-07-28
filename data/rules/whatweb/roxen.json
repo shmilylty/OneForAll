@@ -1,0 +1,18 @@
+{
+    "name": "Roxen",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Roxen WebServer is a full-featured open-source web server distributed under the GPL license.",
+    "website": "http://www.roxen.com/products/webserver/",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Roxen$)"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Roxen\\/([^\\s]+)$)",
+            "offset": 1
+        }
+    ]
+}

@@ -1,0 +1,19 @@
+{
+    "name": "CUPS",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Common UNIX Printing System (CUPS)",
+    "website": "http://www.cups.org/",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^CUPS\\/([^\\s]+)$)",
+            "offset": 1
+        },
+        {
+            "search": "headers[upgrade]",
+            "regexp": "(?-mix:^TLS\\/1\\.0,HTTP\\/1\\.1$)",
+            "certainty": 25
+        }
+    ]
+}

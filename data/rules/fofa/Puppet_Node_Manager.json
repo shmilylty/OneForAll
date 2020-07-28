@@ -1,0 +1,11 @@
+{
+    "name": "Puppet_Node_Manager",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "Puppet Node Manager"
+        }
+    ]
+}

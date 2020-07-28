@@ -1,0 +1,12 @@
+{
+    "name": "JavaServer Faces",
+    "website": "http://javaserverfaces.java.net",
+    "matches": [
+        {
+            "search": "headers[x-powered-by]",
+            "regexp": "JSF(?:/([\\d.]+))?",
+            "offset": 1
+        }
+    ],
+    "implies": "Java"
+}

@@ -1,0 +1,16 @@
+{
+    "name": "SLAED-CMS",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "",
+    "website": "http://slaed.net/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<meta name=\"generator\" content=\"SLAED CMS ([^\"^>]+)\">)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<br \\/>Powered by <a href=\"http:\\/\\/www\\.slaed\\.net\" target=\"_blank\" title=\"SLAED CMS\">SLAED CMS<\\/a> &copy; 2005-(20[\\d]{2}) SLAED)"
+        }
+    ]
+}

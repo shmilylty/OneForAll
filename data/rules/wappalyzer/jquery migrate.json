@@ -1,0 +1,12 @@
+{
+    "name": "jQuery Migrate",
+    "website": "https://github.com/jquery/jquery-migrate",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "jquery[.-]migrate(?:-([\\d.]+))?(?:\\.min)?\\.js(?:\\?ver=([\\d.]+))?",
+            "offset": 1
+        }
+    ],
+    "implies": "jQuery"
+}

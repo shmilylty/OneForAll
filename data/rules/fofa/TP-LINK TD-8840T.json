@@ -1,0 +1,11 @@
+{
+    "name": "TP-LINK TD-8840T",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "TP-LINK TD-8840T"
+        }
+    ]
+}

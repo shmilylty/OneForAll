@@ -1,0 +1,16 @@
+{
+    "name": "Acquia Cloud",
+    "website": "https://www.acquia.com/",
+    "matches": [
+        {
+            "search": "headers[x-ah-environment]",
+            "regexp": "^\\w+$"
+        }
+    ],
+    "implies": [
+        "Drupal",
+        "Apache",
+        "Percona",
+        "Amazon EC2"
+    ]
+}

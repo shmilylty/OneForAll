@@ -1,0 +1,16 @@
+{
+    "name": "h3c\u8def\u7531\u5668",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "Web user login"
+        },
+        {
+            "search": "body",
+            "text": "nLanguageSupported"
+        }
+    ],
+    "condition": "0 and 1"
+}

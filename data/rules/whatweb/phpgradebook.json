@@ -1,0 +1,24 @@
+{
+    "name": "PHPGradeBook",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "PHP_GradeBook is a program for teachers to input students points for assignments and keep a running online tally for the students to view online.",
+    "website": "http://sourceforge.net/projects/php-gradebook/",
+    "matches": [
+        {
+            "certainty": 75,
+            "text": "<title>phpGradeBook</title> "
+        },
+        {
+            "regexp": "(?-mix:<a href='http:\\/\\/phpGradeBook\\.com'>PHP_GradeBook<\\/a> ([^C^\\n]+) Created by Robert)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<small>PHP_GradeBook ([^C^\\n]+) Created by Robert)",
+            "offset": 1
+        },
+        {
+            "md5": "9761e989848ed31a7d7a5a5411197281"
+        }
+    ]
+}

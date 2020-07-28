@@ -1,0 +1,15 @@
+{
+    "name": "ISC-SCADA-Service",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "ISC SCADA Service"
+        },
+        {
+            "search": "title",
+            "regexp": "ISC SCADA"
+        }
+    ]
+}

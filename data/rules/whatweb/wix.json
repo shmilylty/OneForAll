@@ -1,0 +1,24 @@
+{
+    "name": "Wix",
+    "author": "Bhavin Senjaliya <bhavin.senjaliya@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "Wix is a cloud based website builder.",
+    "website": "http://www.wix.com/",
+    "matches": [
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:_wixAB3)",
+            "name": "_wixAB3 cookie"
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:^hs\\s)",
+            "name": "hs cookie"
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:svSession)",
+            "name": "svSession cookie"
+        }
+    ]
+}

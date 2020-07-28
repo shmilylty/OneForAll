@@ -1,0 +1,18 @@
+{
+    "name": "CL-HTTP",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Common Lisp Hypermedia Server (CL-HTTP) - HTTP server",
+    "website": "http://www.cl-http.org:8001/cl-http/",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^CL-HTTP\\/([^\\s]+))",
+            "offset": 1
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^CL-HTTP\\/[^\\s]+ \\(([^\\)]+)\\))"
+        }
+    ]
+}

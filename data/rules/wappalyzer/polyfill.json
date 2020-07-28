@@ -1,0 +1,14 @@
+{
+    "name": "Polyfill",
+    "website": "https://polyfill.io",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "^https?://cdn\\.polyfill\\.io/"
+        },
+        {
+            "search": "script",
+            "regexp": "/polyfill\\.min\\.js"
+        }
+    ]
+}

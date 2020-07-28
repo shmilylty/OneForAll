@@ -1,0 +1,19 @@
+{
+    "name": "CactuShop",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "<select name=\"numCurrencyID"
+        },
+        {
+            "search": "body",
+            "text": "<!-- CactuShop"
+        },
+        {
+            "search": "headers",
+            "text": "CactuShop"
+        }
+    ]
+}

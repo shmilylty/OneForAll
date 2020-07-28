@@ -1,0 +1,16 @@
+{
+    "name": "\u60e0\u5c14\u987f\u4e0a\u7f51\u884c\u4e3a\u7ba1\u7406\u7cfb\u7edf",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "updateLoginPswd.php"
+        },
+        {
+            "search": "body",
+            "text": "PassroedEle"
+        }
+    ],
+    "condition": "0 and 1"
+}

@@ -1,0 +1,10 @@
+{
+    "name": "Sqreen",
+    "website": "https://sqreen.io",
+    "matches": [
+        {
+            "search": "headers[x-protected-by]",
+            "regexp": "^Sqreen$"
+        }
+    ]
+}

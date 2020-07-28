@@ -1,0 +1,18 @@
+{
+    "name": "Tumblr",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "A feature rich and free blog hosting platform offering professional and fully customizable templates, bookmarklets, photos, mobile apps, and social network",
+    "website": "http://www.tumblr.com/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<link rel=\"(shortcut )?icon\" href=\"http:\\/\\/[\\d]{1,2}\\.media\\.tumblr\\.com\\/avatar_[a-f\\d]{12}_16\\.gif\"[\\s]?\\/>)"
+        },
+        {
+            "regexp": "(?-mix:<meta name=\"tumblr-theme\" content=\"[\\d]+\"[\\s]?\\/>)"
+        },
+        {
+            "text": "<!-- BEGIN TUMBLR CODE --><iframe src=\"http://assets.tumblr.com/iframe.html"
+        }
+    ]
+}

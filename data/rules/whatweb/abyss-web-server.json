@@ -1,0 +1,14 @@
+{
+    "name": "Abyss-Web-Server",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "Abyss Web Server is a compact web server available for Windows, Mac OS X, Linux, and FreeBSD operating systems.",
+    "website": "http://www.aprelium.com/abyssws/",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Abyss\\/([^\\s]+))",
+            "offset": 1
+        }
+    ]
+}

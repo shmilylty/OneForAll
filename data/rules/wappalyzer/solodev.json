@@ -1,0 +1,14 @@
+{
+    "name": "Solodev",
+    "website": "http://www.solodev.com",
+    "matches": [
+        {
+            "search": "headers[solodev_session]",
+            "regexp": ".*"
+        },
+        {
+            "regexp": "<div class=[\"']dynamicDiv[\"'] id=[\"']dd\\.\\d\\.\\d(?:\\.\\d)?[\"']>"
+        }
+    ],
+    "implies": "PHP"
+}

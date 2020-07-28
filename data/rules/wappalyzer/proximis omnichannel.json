@@ -1,0 +1,17 @@
+{
+    "name": "Proximis Omnichannel",
+    "website": "https://www.proximis.com",
+    "matches": [
+        {
+            "regexp": "<html[^>]+data-ng-app=\"RbsChangeApp\""
+        },
+        {
+            "search": "meta[generator]",
+            "regexp": "Proximis Omnichannel"
+        }
+    ],
+    "implies": [
+        "PHP",
+        "AngularJS"
+    ]
+}

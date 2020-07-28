@@ -1,0 +1,17 @@
+{
+    "name": "LEAP",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "LEAP is a Content Management System (LEAP CMS), yet so much more than this. Because of its wide range of features that go beyond content management, it is also referred to as a Website Operating System.",
+    "website": "http://www.leapcms.com/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<meta name=\"Generator\" content=\"LEAP ([\\d\\.]+)\"( \\/)?>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<meta name=\"Formatter\" content=\"LEAP ([\\d\\.]+)\"( \\/)?>)",
+            "offset": 1
+        }
+    ]
+}

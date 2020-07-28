@@ -1,0 +1,15 @@
+{
+    "name": "wspx",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "X-Copyright: wspx"
+        },
+        {
+            "search": "headers",
+            "text": "X-Powered-By: ANSI C"
+        }
+    ]
+}

@@ -1,0 +1,17 @@
+{
+    "name": "Mibew-Messenger",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Mibew Messenger (also known as Open Web Messenger) is an open-source live support application written in PHP and MySQL.",
+    "website": "http://mibew.org/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<p id=\"legal\"><a href=\"http:\\/\\/mibew\\.org\\/\" class=\"flink\">Mibew Messenger<\\/a> ([^\\s]+) \\| \\(c\\) 20[\\d]{2} mibew\\.org<\\/p>)",
+            "offset": 1
+        },
+        {
+            "certainty": 75,
+            "text": "<div class=\"empty_inner\" style=\"\">&#160;</div>"
+        }
+    ]
+}

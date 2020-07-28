@@ -1,0 +1,15 @@
+{
+    "name": "OpenMas",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "OpenMas"
+        },
+        {
+            "search": "body",
+            "text": "loginHead\"><link href=\"App_Themes"
+        }
+    ]
+}

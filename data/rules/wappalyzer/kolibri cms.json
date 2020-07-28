@@ -1,0 +1,14 @@
+{
+    "name": "Kolibri CMS",
+    "website": "http://alias.io",
+    "matches": [
+        {
+            "search": "headers[x-powered-by]",
+            "regexp": "Kolibri"
+        },
+        {
+            "search": "meta[generator]",
+            "regexp": "Kolibri"
+        }
+    ]
+}

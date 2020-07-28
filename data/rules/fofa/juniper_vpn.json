@@ -1,0 +1,11 @@
+{
+    "name": "juniper_vpn",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "welcome.cgi?p=logo"
+        }
+    ]
+}

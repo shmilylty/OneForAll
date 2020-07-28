@@ -1,0 +1,15 @@
+{
+    "name": "baidu\u5e7f\u544a\u8054\u76df",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "http://cpro.baidu.com/cpro/ui/c.js"
+        },
+        {
+            "search": "body",
+            "text": "http://cbjs.baidu.com/js/m.js"
+        }
+    ]
+}

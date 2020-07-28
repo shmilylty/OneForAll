@@ -1,0 +1,10 @@
+{
+    "name": "Twilight CMS",
+    "website": "http://www.twilightcms.com",
+    "matches": [
+        {
+            "search": "headers[x-powered-cms]",
+            "regexp": "Twilight CMS"
+        }
+    ]
+}

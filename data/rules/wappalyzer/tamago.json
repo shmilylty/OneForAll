@@ -1,0 +1,9 @@
+{
+    "name": "Tamago",
+    "website": "http://tamago.temonalab.com",
+    "matches": [
+        {
+            "regexp": "<link [^>]*href=\"http://tamago\\.temonalab\\.com"
+        }
+    ]
+}

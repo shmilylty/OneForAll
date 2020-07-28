@@ -1,0 +1,19 @@
+{
+    "name": "Scrutinizer",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Scrutinizer NetFlow - monitoring solution",
+    "website": "http://www.plixer.com/products/netflow-sflow/scrutinizer-netflow-sflow.php",
+    "matches": [
+        {
+            "regexp": "(?-mix:<div id='testAlertDivTitle'>Scrutinizer ([^<]+)<\\/div>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<link id='scrutStyle' rel=\"stylesheet\" href=\"\\/css\\/classic\\.css)"
+        },
+        {
+            "regexp": "(?-mix:<div id='testAlertHdrMsg'>For the best Scrutinizer experience possible, please address the issues below:<\\/div>)"
+        }
+    ]
+}

@@ -1,0 +1,18 @@
+{
+    "name": "ClipShare",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "With a huge variety of features and options, at an extremely affordable price, ClipShare is the ultimate video script for starting your highly profitable video sharing community website just like the big boys: Youtube, DailyMotion, Metacafe, or Google Video.",
+    "website": "http://www.clip-share.com/",
+    "matches": [
+        {
+            "text": "<!--!!!!!!!!!!!!!!!!!!!!!!!!! Processing SCRIPT !!!!!!!!!!!!!!!!!!!-->"
+        },
+        {
+            "text": "<!--!!!!!!!!!!!!!!!!!!!!!!!! LIBRARY !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->"
+        },
+        {
+            "text": "Powered By <a href=\"http://www.clip-share.com\">ClipShare</a>"
+        }
+    ]
+}

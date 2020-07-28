@@ -1,0 +1,11 @@
+{
+    "name": "Oracle HTTP Server",
+    "website": "http://oracle.com",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "Oracle-HTTP-Server(?:/([\\d.]+))?",
+            "offset": 1
+        }
+    ]
+}

@@ -1,0 +1,19 @@
+{
+    "name": "Advantech-WebAccess",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "/bw_templete1.dwt"
+        },
+        {
+            "search": "body",
+            "text": "/broadweb/WebAccessClientSetup.exe"
+        },
+        {
+            "search": "body",
+            "text": "/broadWeb/bwuconfig.asp"
+        }
+    ]
+}

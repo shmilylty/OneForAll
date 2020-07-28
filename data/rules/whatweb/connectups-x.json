@@ -1,0 +1,31 @@
+{
+    "name": "ConnectUPS-X",
+    "author": "Andrew Horton",
+    "version": "0.1",
+    "description": "The ConnectUPS-X Web/SNMP device allows you to connect various types of UPS directly to the Ethernet network and the Internet. It provides telnet, SSH, SNMP and a web interface",
+    "website": "http://powerquality.eaton.com/Products-services/Power-Management/Connectivity/connectups.asp",
+    "matches": [
+        {
+            "text": "UPS_Server/1.0",
+            "search": "headers[server]"
+        },
+        {
+            "regexp": "(?-mix:<TITLE>ConnectUPS (Web\\/SNMP Card|SNMP\\/WEB Adapter)<\\/TITLE>)"
+        },
+        {
+            "url": "/PSummary.html",
+            "name": "UPS Model",
+            "regexp": "(?-mix:<b>UPS Model<\\/b><\\/td>\\s+<td><table><tr><td><b>([^<]+))"
+        },
+        {
+            "url": "/PSummary.html",
+            "name": "UPS Firmware version",
+            "regexp": "(?-mix:<b>UPS Firmware version<\\/b><\\/td>\\s+<td><table><tr><td><b>([^<]+))"
+        },
+        {
+            "url": "/PSummary.html",
+            "name": "Firmware Revision",
+            "regexp": "(?-mix:<b>Firmware Revision<\\/b><\\/td>\\s+<td><table><tr><td><b>\\s+([^<]+))"
+        }
+    ]
+}

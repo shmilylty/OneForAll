@@ -1,0 +1,32 @@
+{
+    "name": "ExpressionEngine",
+    "author": "Andrew Horton, Bhavin Senjaliya <bhavin.senjaliya@gmail.com>",
+    "version": "0.2",
+    "description": "ExpressionEngine is CMS written in PHP. Free and commercial versions.",
+    "website": "http://expressionengine.com",
+    "matches": [
+        {
+            "regexp": "(?-mix:owered by <a href=\"http:\\/\\/expressionengine.com\\/\">ExpressionEngine<\\/a>)"
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:^exp_last_visit)",
+            "name": "exp_last_visit cookie"
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:^exp_last_activity)",
+            "name": "exp_last_activity cookie"
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:^exp_tracker)",
+            "name": "exp_tracker cookie"
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:^exp_csrf_token)",
+            "name": "exp_csrf_token cookie"
+        }
+    ]
+}

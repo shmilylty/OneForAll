@@ -1,0 +1,14 @@
+{
+    "name": "Ben-SSL",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "Apache-SSL was developed by Ben Laurie and is often referred to as Ben-SSL",
+    "website": "http://apache-ssl.org/",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:Ben-SSL\\/([\\d\\.]+))",
+            "offset": 1
+        }
+    ]
+}

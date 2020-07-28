@@ -1,0 +1,9 @@
+{
+    "name": "Bloomreach",
+    "website": "https://developers.bloomreach.com",
+    "matches": [
+        {
+            "regexp": "<[^>]+/binaries/(?:[^/]+/)*content/gallery/"
+        }
+    ]
+}

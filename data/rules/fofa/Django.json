@@ -1,0 +1,15 @@
+{
+    "name": "Django",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "__admin_media_prefix__"
+        },
+        {
+            "search": "body",
+            "text": "csrfmiddlewaretoken"
+        }
+    ]
+}

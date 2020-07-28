@@ -1,0 +1,24 @@
+{
+    "name": "SAP-NetWeaver",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "SAP NetWeaver provides the technical foundation for SAP applications. In addition, it delivers a portfolio of enterprise technology that allows you to extend your applications to reach more people and to adopt new processes, devices, and consumption models.",
+    "website": "http://www.sap.com/platform/netweaver/index.epx",
+    "matches": [
+        {
+            "name": "HTTP Server Header",
+            "regexp": "(?-mix:^SAP (Web|NetWeaver))",
+            "search": "headers[server]"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^SAP (Web|NetWeaver) Application Server [\\/]?[\\ ]?[\\(]?([^\\)^\\r^\\n]+)[\\)]?)"
+        },
+        {
+            "module": "J2EE",
+            "search": "headers[server]",
+            "regexp": "(?-mix:^SAP J2EE Engine\\/([\\d\\.]{1,4}))",
+            "offset": 1
+        }
+    ]
+}

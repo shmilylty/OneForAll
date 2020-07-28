@@ -1,0 +1,20 @@
+{
+    "name": "NetShelter-VPN",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Fujitsu NetShelter/VPN [Japanese] - an IPSec-compliant VPN device with 56-bit DES encryption. - Manual: http://fenics.fujitsu.com/products/downloads/products/material/lan0104/lc0104_netshelter.pdf",
+    "website": null,
+    "matches": [
+        {
+            "text": "<HEAD><TITLE>Welcome to NetShelter</TITLE></HEAD>"
+        },
+        {
+            "url": "/images/sb_logo.gif",
+            "md5": "ffacfeae7e203bd8de5c9da889d217ec"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^NetShelter\\/VPN$)"
+        }
+    ]
+}

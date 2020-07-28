@@ -1,0 +1,15 @@
+{
+    "name": "Avaya-IP-Office",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "IPOffice"
+        },
+        {
+            "search": "title",
+            "regexp": "About IP Office"
+        }
+    ]
+}

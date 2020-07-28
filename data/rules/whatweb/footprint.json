@@ -1,0 +1,18 @@
+{
+    "name": "Footprint",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "Caching server",
+    "website": null,
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Footprint ([\\d\\.]+)\\/FPMCP$)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:^Footprint)",
+            "search": "headers[server]"
+        }
+    ]
+}

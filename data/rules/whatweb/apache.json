@@ -1,0 +1,71 @@
+{
+    "name": "Apache",
+    "author": "Andrew Horton, Brendan Coles <bcoles@gmail.com>",
+    "version": "0.8",
+    "description": "The Apache HTTP Server Project is an effort to develop and maintain an open-source HTTP server for modern operating systems including UNIX and Windows NT. The goal of this project is to provide a secure, efficient and extensible server that provides HTTP services in sync with the current HTTP standards.",
+    "website": "http://httpd.apache.org/",
+    "matches": [
+        {
+            "text": "<title>Test Page for Apache Installation</title>",
+            "string": "Default"
+        },
+        {
+            "text": "<TITLE>Test Page for the SSL/TLS-aware Apache Installation on Web Site</TITLE>",
+            "string": "Default"
+        },
+        {
+            "text": "<html><body><h1>It works!</h1></body></html>",
+            "string": "Default"
+        },
+        {
+            "text": "<html>Apache is functioning normally</html>",
+            "string": "Default"
+        },
+        {
+            "name": "This IP is being shared among many domains.",
+            "text": "<body><center>This IP is being shared among many domains.<br>\nTo view the domain you are looking for, simply enter the domain name in the location bar of your web browser.<br>",
+            "string": "Default"
+        },
+        {
+            "text": "Apache is working on your cPanel<sup>&reg;</sup> and WHM&#8482; Server",
+            "string": "Default"
+        },
+        {
+            "url": "/icons/apache_pb.gif",
+            "md5": "48bc8b181b36c9289866a2e30f6afedd"
+        },
+        {
+            "url": "/icons/apache_pb2.gif",
+            "md5": "36ccabeb1ad841c6af37660c3865a9c9",
+            "version": "2.x"
+        },
+        {
+            "url": "/icons/apache_pb2.gif",
+            "md5": "726dac78d3a989a360fc405452a798ee",
+            "version": "2.2"
+        },
+        {
+            "regexp": "(?i-mx:^Apache)",
+            "search": "headers[server]",
+            "name": "HTTP Server Header"
+        },
+        {
+            "search": "headers[server]",
+            "name": "HTTP Server Header",
+            "regexp": "(?i-mx:^Apache\\/([\\d\\.]+))",
+            "offset": 1
+        },
+        {
+            "certainty": 75,
+            "module": "mod_security",
+            "regexp": "(?-mix:^NOYB$)",
+            "search": "headers[server]"
+        },
+        {
+            "certainty": 75,
+            "name": "htacess WWW-Authenticate realm",
+            "search": "headers[www-authenticate]",
+            "regexp": "(?-mix:Basic realm=\"htaccess password prompt\")"
+        }
+    ]
+}

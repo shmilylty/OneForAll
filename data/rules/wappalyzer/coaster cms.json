@@ -1,0 +1,12 @@
+{
+    "name": "Coaster CMS",
+    "website": "https://www.coastercms.org",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "^Coaster CMS v([\\d.]+)$",
+            "offset": 1
+        }
+    ],
+    "implies": "Laravel"
+}

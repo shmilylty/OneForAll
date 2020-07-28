@@ -1,0 +1,15 @@
+{
+    "name": "LiteSpeed_Web_Admin_Console",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "LiteSpeed Web Admin Console"
+        },
+        {
+            "search": "headers",
+            "text": "LSWSWEBUI"
+        }
+    ]
+}

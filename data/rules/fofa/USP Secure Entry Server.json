@@ -1,0 +1,11 @@
+{
+    "name": "USP Secure Entry Server",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "Secure Entry Server"
+        }
+    ]
+}

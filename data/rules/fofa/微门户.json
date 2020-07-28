@@ -1,0 +1,11 @@
+{
+    "name": "\u5fae\u95e8\u6237",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "/tpl/Home/weimeng/common/css/"
+        }
+    ]
+}

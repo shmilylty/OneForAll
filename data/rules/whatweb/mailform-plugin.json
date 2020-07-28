@@ -1,0 +1,17 @@
+{
+    "name": "MailForm-Plugin",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "PHP contact form",
+    "website": "http://www.h-fj.com/blog/mtplgdoc/",
+    "matches": [
+        {
+            "regexp": "(?i-mx:<a href=\"http:\\/\\/www.h-fj.com\\/blog\\/mtplgdoc\\/mailformv[\\d\\.\\_]+.php\"[^>]*>Powered by Mailform plugin[s]? V([\\d\\.]+)<\\/a>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?i-mx:<a href=\"http:\\/\\/www.h-fj.com\\/blog\\/mtplgdoc\\/mailformv[\\d\\.\\_]+.php\"[^>]*>Powered by Mailform V([\\d\\.]+)<\\/a>)",
+            "offset": 1
+        }
+    ]
+}

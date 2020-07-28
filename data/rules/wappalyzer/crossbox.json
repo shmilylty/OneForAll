@@ -1,0 +1,10 @@
+{
+    "name": "CrossBox",
+    "website": "https://crossbox.io",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "CBX-WS"
+        }
+    ]
+}

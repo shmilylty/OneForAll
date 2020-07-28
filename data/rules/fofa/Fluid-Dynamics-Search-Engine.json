@@ -1,0 +1,11 @@
+{
+    "name": "Fluid-Dynamics-Search-Engine",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "content=\"fluid dynamics"
+        }
+    ]
+}

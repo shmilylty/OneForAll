@@ -1,0 +1,13 @@
+{
+    "name": "Atomic-Photo-Album",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "Photo album software",
+    "website": "http://atomicpa.sourceforge.net/",
+    "matches": [
+        {
+            "regexp": "(?-mix:Powered by <a href=\"http:\\/\\/atomicpa.sourceforge.net\\/\" target=\"_blank\">Atomic Photo Album ([\\d\\.a-z]+)<\\/a>)",
+            "offset": 1
+        }
+    ]
+}

@@ -1,0 +1,19 @@
+{
+    "name": "anyInventory",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "anyInventory, the most flexible and powerful web-based inventory system",
+    "website": "http://anyinventory.sourceforge.net/",
+    "matches": [
+        {
+            "text": "\t\t<title>anyInventory: Top</title>"
+        },
+        {
+            "regexp": "(?-mix:\t\t\t\t\t you have inventoried <b>[0-9]*<\\/b>  items with <a href=\"http:\\/\\/anyinventory.sourceforge.net\\/\">anyInventory, the most flexible and powerful web-based inventory system<\\/a>)"
+        },
+        {
+            "regexp": "(?-mix:\t\t\t\t\t\t\t\tanyInventory ([\\d\\.]+))",
+            "offset": 1
+        }
+    ]
+}

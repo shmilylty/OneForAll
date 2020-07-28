@@ -1,0 +1,15 @@
+{
+    "name": "Auxilium-PetRatePro",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Auxilium PetRatePro",
+    "website": "http://www.auxiliumsoftware.com/PetRatePro/",
+    "matches": [
+        {
+            "text": "<form method=\"post\" name=\"myform2\" action=\"index.php?cmd=11\">"
+        },
+        {
+            "text": "<p class=\"text\"><b>Leader Of The Pack (Top 10 Pets)</b><br><br>"
+        }
+    ]
+}

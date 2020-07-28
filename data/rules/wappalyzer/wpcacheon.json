@@ -1,0 +1,13 @@
+{
+    "name": "WPCacheOn",
+    "website": "https://wpcacheon.io",
+    "matches": [
+        {
+            "search": "headers[x-powered-by]",
+            "regexp": "^Optimized by WPCacheOn"
+        }
+    ],
+    "implies": [
+        "WordPress"
+    ]
+}

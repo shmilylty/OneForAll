@@ -1,0 +1,15 @@
+{
+    "name": "Adobe Connect",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "/common/scripts/showContent.js"
+        },
+        {
+            "search": "headers",
+            "text": "BREEZESESSION="
+        }
+    ]
+}

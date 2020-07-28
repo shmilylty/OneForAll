@@ -1,0 +1,18 @@
+{
+    "name": "Trend-Micro",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Trend Micro server - http://www.trendmicro.com/",
+    "website": null,
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Trend Micro$)"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Trend Micro ([^\\s]+)$)",
+            "offset": 1
+        }
+    ]
+}

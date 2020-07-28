@@ -1,0 +1,22 @@
+{
+    "name": "Zeus-Cart",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "Control every facet of your store, from merchandising to promotions and more. There are no limits to creativity with ZeusCart.",
+    "website": "http://www.ajsquare.com/AJE-Commerce/product-home.php",
+    "matches": [
+        {
+            "text": "<img src=\"images/warning.gif\">Warning: Installation directory exists ZEUSCART ROOT DIRECTORY/install. Please remove/rename this directory for security reasons."
+        },
+        {
+            "text": "Powered by <a href=\"http://www.ajsquare.com/products/ecom/\" style=\"color:#716f6f;\" target=\"_blank\">ZeusCart</a>"
+        },
+        {
+            "text": "<title>:: Zeuscart Admin Panel</title>"
+        },
+        {
+            "regexp": "(?-mix:<title>[\\s]+ZeusCart V([\\d\\.]+)[\\s]+<\\/title>)",
+            "offset": 1
+        }
+    ]
+}

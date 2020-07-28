@@ -1,0 +1,46 @@
+{
+    "name": "Movable-Type",
+    "author": "Andrew Horton, Brendan Coles <bcoles@gmail.com>",
+    "version": "0.4",
+    "description": "Blogging platform",
+    "website": "http://www.movabletype.org/",
+    "matches": [
+        {
+            "name": "javascript with 'mt' in the name",
+            "certainty": 50,
+            "regexp": "(?-mix:<script type=\"text\\/javascript\" src=\"[^\"]+mt(-site)?\\.js\"><\\/script>)"
+        },
+        {
+            "name": "mt-tags|mt-tb|mt-cp|mt-search|mt-user-login|mt-recommend cgi",
+            "certainty": 75,
+            "regexp": "(?-mix:\"[^\"]+\\/mt-(tags|tb|cp|search|user-login|recommend)\\.[f]?cgi[^\"]*\")"
+        },
+        {
+            "name": "meta generator tag",
+            "regexp": "(?-mix:<meta name=\"generator\" content=\"http:\\/\\/www\\.movabletype\\.org\\/\" \\/>)"
+        },
+        {
+            "text": "<title>Movable Type System Check [mt-check.cgi]</title>"
+        },
+        {
+            "regexp": "(?-mix:<li><strong>Movable Type version:<\\/strong> <code>([^<]+)<\\/code><\\/li>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<li><strong>Current working directory:<\\/strong> <code>([^<]+)<\\/code><\\/li>)"
+        },
+        {
+            "name": "Powered by link",
+            "regexp": "(?-mix:<a href=\"http:\\/\\/sixapart\\.com\">Powered by Movable Type<\\/a>)"
+        },
+        {
+            "name": "Powered by link",
+            "regexp": "(?-mix:Powered by <a href=\"http:\\/\\/www\\.movabletype\\.com\\/\"[^>]*>Movable Type<\\/a>)"
+        },
+        {
+            "name": "meta generator tag",
+            "regexp": "(?-mix:<meta name=\"generator\" content=\"Movable Type ([^\"]*))",
+            "offset": 1
+        }
+    ]
+}

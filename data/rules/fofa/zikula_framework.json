@@ -1,0 +1,19 @@
+{
+    "name": "zikula_framework",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "ZIKULASID1"
+        },
+        {
+            "search": "headers",
+            "text": "ZIKULASID2"
+        },
+        {
+            "search": "headers",
+            "text": "ZIKULASID3"
+        }
+    ]
+}

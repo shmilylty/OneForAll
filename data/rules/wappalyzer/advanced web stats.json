@@ -1,0 +1,10 @@
+{
+    "name": "Advanced Web Stats",
+    "website": "http://www.advancedwebstats.com",
+    "matches": [
+        {
+            "regexp": "aws\\.src = [^<]+caphyon-analytics"
+        }
+    ],
+    "implies": "Java"
+}

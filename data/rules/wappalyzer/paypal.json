@@ -1,0 +1,13 @@
+{
+    "name": "PayPal",
+    "website": "https://paypal.com",
+    "matches": [
+        {
+            "regexp": "<input[^>]+_s-xclick"
+        },
+        {
+            "search": "script",
+            "regexp": "paypalobjects\\.com/js"
+        }
+    ]
+}

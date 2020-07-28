@@ -1,0 +1,11 @@
+{
+    "name": "Netgear-WNR3500l",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "Netgear-WNR3500l"
+        }
+    ]
+}

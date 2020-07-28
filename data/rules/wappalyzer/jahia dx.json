@@ -1,0 +1,9 @@
+{
+    "name": "Jahia DX",
+    "website": "http://www.jahia.com/dx",
+    "matches": [
+        {
+            "regexp": "<script id=\"staticAssetAggregatedJavascrip"
+        }
+    ]
+}

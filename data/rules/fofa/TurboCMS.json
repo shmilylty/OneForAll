@@ -1,0 +1,19 @@
+{
+    "name": "TurboCMS",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "Powered by TurboCMS"
+        },
+        {
+            "search": "body",
+            "text": "/cmsapp/zxdcADD.jsp"
+        },
+        {
+            "search": "body",
+            "text": "/cmsapp/count/newstop_index.jsp?siteid="
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    "name": "STAR CMS",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "content=\"STARCMS"
+        },
+        {
+            "search": "body",
+            "text": "<img alt=\"STAR CMS"
+        }
+    ]
+}

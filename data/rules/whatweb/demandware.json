@@ -1,0 +1,33 @@
+{
+    "name": "DemandWare eCommerce System",
+    "author": "Claudio Salazar <csalazar at spect dot cl>",
+    "version": "0.2",
+    "description": "Digital commerce for the changing face of retail.",
+    "website": "https://www.demandware.com/",
+    "matches": [
+        {
+            "regexp": "(?-mix:\\/demandware.store\\/)",
+            "certainty": 25
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:cqcid)",
+            "name": "cqcid cookie"
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:dwac_)",
+            "name": "dwac_ cookie"
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:dwac_)",
+            "name": "dwac_ cookie"
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:dwsid)",
+            "name": "dwsid cookie"
+        }
+    ]
+}

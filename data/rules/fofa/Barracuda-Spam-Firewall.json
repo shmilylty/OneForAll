@@ -1,0 +1,19 @@
+{
+    "name": "Barracuda-Spam-Firewall",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "Barracuda Spam & Virus Firewall: Welcome"
+        },
+        {
+            "search": "body",
+            "text": "/barracuda.css"
+        },
+        {
+            "search": "body",
+            "text": "http://www.barracudanetworks.com?a=bsf_product"
+        }
+    ]
+}

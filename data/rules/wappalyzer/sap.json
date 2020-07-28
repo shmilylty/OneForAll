@@ -1,0 +1,10 @@
+{
+    "name": "SAP",
+    "website": "http://sap.com",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "SAP NetWeaver Application Server"
+        }
+    ]
+}

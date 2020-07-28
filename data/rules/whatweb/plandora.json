@@ -1,0 +1,12 @@
+{
+    "name": "Plandora",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Web-based project management suite including time track, dashboard gadgets, requests, BSC (KPI), knowledge base, risks, agile board, resource capacity, surveys, SVN integration and gantt chart.",
+    "website": "http://www.plandora.org/",
+    "matches": [
+        {
+            "text": "<area shape=\"rect\" coords=\"180,1,215,30\" href=\"javascript:void(0);\" onClick=\"closeFloatPanel();\" />"
+        }
+    ]
+}

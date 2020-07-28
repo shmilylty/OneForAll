@@ -1,0 +1,17 @@
+{
+    "name": "CuteFlow",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "CuteFlow - web-based workflow management",
+    "website": "http://sourceforge.net/projects/cuteflow/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<a href=\"http:\\/\\/cuteflow\\.org\" target=\"_blank\"><img src=\"images\\/cuteflow_logo_small\\.png\" border=\"0\"\\s?\\/><\\/a><br>\\s+<strong style=\"font-size:8pt;font-weight:normal\">Version ([^\\s^<]+)<\\/strong><br>)",
+            "offset": 1
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:^strMyLanguage=)"
+        }
+    ]
+}

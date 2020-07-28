@@ -1,0 +1,15 @@
+{
+    "name": "Centreon",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "Generator\" content=\"Centreon - Copyright"
+        },
+        {
+            "search": "title",
+            "regexp": "Centreon - IT & Network Monitoring"
+        }
+    ]
+}

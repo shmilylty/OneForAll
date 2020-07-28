@@ -1,0 +1,15 @@
+{
+    "name": "Accellion Secure File Transfer",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "sfcurl=deleted;"
+        },
+        {
+            "search": "body",
+            "text": "Secured by Accellion"
+        }
+    ]
+}

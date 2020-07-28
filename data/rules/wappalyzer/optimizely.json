@@ -1,0 +1,10 @@
+{
+    "name": "Optimizely",
+    "website": "https://www.optimizely.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "optimizely\\.com.*\\.js"
+        }
+    ]
+}

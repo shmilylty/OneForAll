@@ -1,0 +1,15 @@
+{
+    "name": "ispCP-Omega",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "ispCP Omega a Virtual Hosting Control System"
+        },
+        {
+            "search": "headers",
+            "text": " ispCP="
+        }
+    ]
+}

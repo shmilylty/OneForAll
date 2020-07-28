@@ -1,0 +1,19 @@
+{
+    "name": "Pantheon",
+    "website": "https://pantheon.io/",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "^Pantheon"
+        },
+        {
+            "search": "headers[x-pantheon-styx-hostname]",
+            "regexp": ".*"
+        }
+    ],
+    "implies": [
+        "PHP",
+        "Nginx",
+        "MariaDB"
+    ]
+}

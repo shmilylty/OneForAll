@@ -1,0 +1,17 @@
+{
+    "name": "Ad-Network-Script",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "The ad network script is a comprehensive solution to let you start your own professional ad network website. The script comes with bells and whistles to make you start and run your ad network website and to monitor the daily sales and delivery of ads on regular basis.",
+    "website": "http://www.kaonsoftwares.com/ad-network-script.html",
+    "matches": [
+        {
+            "regexp": "(?-mix:<td width=\"100%\" height=\"33\" bgcolor=\"#ED7900\" class=\"copyright\">&copy; Web Administration Panel .v([\\d\\.]+) by <a href=\"http:\\/\\/www.kaonsoftwares.com\\/\" class=\"copyright\" target=\"_blank\">Kaon Softwares<\\/a>. All Rights Reserved.<\\/td>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<td height=\"70%\" valign=\"bottom\" align=\"right\"><font face=\"verdana\" size=\"1\" color=\"gray\">&copy; Web Administration Panel .v([\\d\\.]+) by <a href=\"http:\\/\\/www.kaonsoftwares.com\\/\" class=\"\" target=\"_blank\">Kaon Softwares<\\/a>. All Rights Reserved.<\\/font><\\/td>)",
+            "offset": 1
+        }
+    ]
+}

@@ -1,0 +1,30 @@
+{
+    "name": "eXtreme-Message-Board",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "XMB is a lightweight PHP forum software with all the features you need to support a growing community.",
+    "website": "http://www.xmbforum.com/",
+    "matches": [
+        {
+            "text": "<!-- Powered by XMB "
+        },
+        {
+            "text": "<!-- The XMB Group -->"
+        },
+        {
+            "name": "Powered by footer",
+            "regexp": "(?-mix:^Powered by XMB ([\\d\\.]+)<br \\/>)",
+            "offset": 1
+        },
+        {
+            "name": "Title",
+            "regexp": "(?-mix:<title>[^<]+- Powered by XMB ([\\d\\.]+) )",
+            "offset": 1
+        },
+        {
+            "name": "HTML comment",
+            "regexp": "(?-mix:^<!-- Powered by XMB ([\\d\\.]+) )",
+            "offset": 1
+        }
+    ]
+}

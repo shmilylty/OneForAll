@@ -1,0 +1,43 @@
+{
+    "name": "ClipBucket",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "ClipBucket is an OpenSource Multimedia Management Script",
+    "website": "http://clip-bucket.com",
+    "matches": [
+        {
+            "regexp": "(?-mix:<meta name=\"copyright\" content=\"ClipBucket - PHPBucket ClipBucket 2007 - (20[\\d]{2})\" \\/>)"
+        },
+        {
+            "text": "<meta name=\"author\" content=\"Arslan Hassan - http://clip-bucket.com/arslan-hassan\" />"
+        },
+        {
+            "text": "<!-- ClipBucket v2 -->",
+            "version": "2.x"
+        },
+        {
+            "regexp": "(?-mix:<!-- ClipBucket version ([\\d\\.]+) -->)",
+            "offset": 1
+        },
+        {
+            "text": "<!-- Setting Template Variables -->"
+        },
+        {
+            "text": "<!-- Forged by ClipBucket -->"
+        },
+        {
+            "text": "<!-- Forged by ClipBucket ends -->"
+        },
+        {
+            "text": "<!-- Please do not remove this unless you have license -->"
+        },
+        {
+            "text": "Forged by <a href=\"http://clip-bucket.com/\">ClipBucket</a>"
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:pageredir=https?%3A%2F%2F)",
+            "certainty": 25
+        }
+    ]
+}

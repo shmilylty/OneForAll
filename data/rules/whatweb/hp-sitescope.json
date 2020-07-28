@@ -1,0 +1,17 @@
+{
+    "name": "HP-SiteScope",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "HP SiteScope is an agentless monitoring software focused on monitoring the availability and performance of distributed IT infrastructures, including servers, operating systems, network and Internet services, applications and application components. Originally written by Freshwater Software in 1996, a company acquired by Mercury Interactive in 2001. Mercury Interactive was subsequently acquired by Hewlett Packard (HP) in 2006.",
+    "website": "More Info: http://en.wikipedia.org/wiki/HP_SiteScope",
+    "matches": [
+        {
+            "text": "<center><H2>SiteScope Login</H2></center><hr>"
+        },
+        {
+            "url": "/",
+            "regexp": "(?-mix:<p class=fine align=center><small>SiteScope ([\\d\\.]+))",
+            "offset": 1
+        }
+    ]
+}

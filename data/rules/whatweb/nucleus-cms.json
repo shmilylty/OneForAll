@@ -1,0 +1,23 @@
+{
+    "name": "Nucleus-CMS",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Nucleus CMS",
+    "website": "http://nucleuscms.org/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<meta name=\"generator\" content=\"Nucleus CMS v([^\"^>]+)\" \\/>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<td>Admin-area <strong>path<\\/strong>:<\\/td>[\\s]+<td><input name=\"AdminPath\" size=\"60\" value=\"([^\"]+)\" \\/>)"
+        },
+        {
+            "text": "<meta name=\"name\" content=\"My Nucleus CMS\" />"
+        },
+        {
+            "regexp": "(?-mix:<small>Copyright \\| <a href=\"http:\\/\\/nucleuscms\\.org\">Nucleus CMS v([^\\s^>]+)<\\/a> \\|)",
+            "offset": 1
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+{
+    "name": "Binatone WR1505N3",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "WR1505N3"
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+{
+    "name": "Huawei B683V",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "Huawei B683V"
+        }
+    ]
+}

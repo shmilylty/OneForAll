@@ -1,0 +1,14 @@
+{
+    "name": "Haddock",
+    "website": "http://www.haskell.org/haddock/",
+    "matches": [
+        {
+            "regexp": "<p>Produced by <a href=\"http://www\\.haskell\\.org/haddock/\">Haddock</a> version ([0-9.]+)</p>",
+            "offset": 1
+        },
+        {
+            "search": "script",
+            "regexp": "haddock-util\\.js"
+        }
+    ]
+}

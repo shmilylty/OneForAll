@@ -1,0 +1,11 @@
+{
+    "name": "ACSNO\u7f51\u7edc\u63a2\u9488",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "\u63a2\u9488\u7ba1\u7406\u4e0e\u6d4b\u8bd5\u7cfb\u7edf-\u767b\u5f55\u754c\u9762"
+        }
+    ]
+}

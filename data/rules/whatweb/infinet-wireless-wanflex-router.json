@@ -1,0 +1,17 @@
+{
+    "name": "Infinet-Wireless-WANFleX-Router",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Infinet Wireless WANFleX Router",
+    "website": "http://www.infinetwireless.com/products",
+    "matches": [
+        {
+            "text": "<meta name=\"generator\" content=\"InfiNet Wireless Company\" />"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^WANFlex HTTP Daemon v([^\\s]+)$)",
+            "offset": 1
+        }
+    ]
+}

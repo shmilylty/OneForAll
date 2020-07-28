@@ -1,0 +1,19 @@
+{
+    "name": "RealTime Web ACARS",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "acarsd"
+        },
+        {
+            "search": "body",
+            "text": "content=\"KjM <acarsd@acarsd.org>"
+        },
+        {
+            "search": "body",
+            "text": "content=\"Realtime Web ACARS"
+        }
+    ]
+}

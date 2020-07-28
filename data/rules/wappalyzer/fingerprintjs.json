@@ -1,0 +1,11 @@
+{
+    "name": "Fingerprintjs",
+    "website": "https://valve.github.io/fingerprintjs2/",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "fingerprint(\\d)?(?:\\.min)?\\.js",
+            "offset": 1
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    "name": "BroadWin-WebAccess",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "<!-- #BeginTemplate \"/Templates/bw_templete1.dwt\" -->"
+        },
+        {
+            "search": "headers",
+            "text": "/broadWeb/bwRoot.asp?username="
+        }
+    ]
+}

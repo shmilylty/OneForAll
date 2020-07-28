@@ -1,0 +1,13 @@
+{
+    "name": "Livefyre",
+    "website": "http://livefyre.com",
+    "matches": [
+        {
+            "regexp": "<[^>]+(?:id|class)=\"livefyre"
+        },
+        {
+            "search": "script",
+            "regexp": "livefyre_init\\.js"
+        }
+    ]
+}

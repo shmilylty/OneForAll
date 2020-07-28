@@ -1,0 +1,27 @@
+{
+    "name": "Cype-MSCMS",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Cype MSCMS - a CMS for managing MapleStory server stats - http://cypedev.com/",
+    "website": null,
+    "matches": [
+        {
+            "certainty": 25,
+            "regexp": "(?-mix:<title>[^\\(^<]+ \\(Powered by Cype\\)<\\/title>)"
+        },
+        {
+            "text": "<meta name=\"author\" content=\"cypedev.com\" />"
+        },
+        {
+            "text": "<li><i>All images and other contents related to <a href='http://maplestory.com/' target='_blank'>MapleStory</a>&trade; are owned by <a href='http://nexon.net/' target='_blank'>Nexon Corporation</a></i><br /></li>"
+        },
+        {
+            "regexp": "(?-mix:<li>Powered By Cype MSCMS ([\\d\\.]+) &copy; 20[\\d]{2} <a href=\"http:\\/\\/www.imurad.net\" target=\"_blank\">CypeDEV\\/iMurad.net<\\/a><br \\/><\\/li>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<li>Powered By Cype MSCMS ([\\d\\.]+) &copy; 20[\\d]{2} <a href=\"http:\\/\\/www.cypedev.com\" target=\"_blank\">Cype Developments<\\/a><br \\/><\\/li>)",
+            "offset": 1
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    "name": "Bulletlink-Newspaper-Template",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "/ModalPopup/core-modalpopup.css"
+        },
+        {
+            "search": "body",
+            "text": "powered by bulletlink"
+        }
+    ]
+}

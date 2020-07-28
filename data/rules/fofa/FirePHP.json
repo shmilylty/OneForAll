@@ -1,0 +1,15 @@
+{
+    "name": "FirePHP",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "x-wf-"
+        },
+        {
+            "search": "headers",
+            "text": "meta.wildfirehq.org"
+        }
+    ]
+}

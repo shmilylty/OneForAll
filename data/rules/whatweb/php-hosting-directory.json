@@ -1,0 +1,21 @@
+{
+    "name": "PHP-Hosting-Directory",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "PHP Hosting Directory",
+    "website": "http://www.jnshosts.com/php-hosting-directory.html",
+    "matches": [
+        {
+            "regexp": "(?-mix:<title>PHP Hosting Directory ([\\d\\.]+) Powered by JnSHosts\\.com<\\/title>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<a href=\"http:\\/\\/www.jnshosts.com\\/php-hosting-directory-([\\d\\.]+).php\"[^>]+>PHP Hosting Directory<\\/a>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<font size=\"6\"><b>PHP Hosting Directory ([\\d\\.]+)<\\/b><\\/font>)",
+            "offset": 1
+        }
+    ]
+}

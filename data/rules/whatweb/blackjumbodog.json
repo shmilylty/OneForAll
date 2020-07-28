@@ -1,0 +1,18 @@
+{
+    "name": "BlackJumboDog",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "SapporoWorks BlackJumboDog provides server functions (HTTP, FTP, etc)",
+    "website": "http://www.spw02.sakura.ne.jp/spw/",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^BlackJumboDog$)"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^BlackJumboDog Version (.+)$)",
+            "offset": 1
+        }
+    ]
+}

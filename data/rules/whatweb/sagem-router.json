@@ -1,0 +1,13 @@
+{
+    "name": "Sagem-Router",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Sagem Router - Distributed by Wanadoo, Maroc Telecom, Sky and others.",
+    "website": null,
+    "matches": [
+        {
+            "search": "headers[www-authenticate]",
+            "regexp": "(?-mix:^Basic realm=\"?Sagem\"?$)"
+        }
+    ]
+}

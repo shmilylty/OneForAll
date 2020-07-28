@@ -1,0 +1,11 @@
+{
+    "name": "\u767e\u5ea6\u5206\u4eab",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "share.baidu.com/static/api/js/share.js"
+        }
+    ]
+}

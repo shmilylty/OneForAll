@@ -1,0 +1,12 @@
+{
+    "name": "iScripts-CyberMatch",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "iScripts CyberMatch is an open source online dating software with features like background check ,chat alerts, integrated payment system etc.",
+    "website": "http://www.iscripts.com/cybermatch/",
+    "matches": [
+        {
+            "regexp": "(?-mix:    <td width=\"[\\d]+%\" align=\"left\" class=\"footer\">Powered by <a href=\"http:\\/\\/www.iscripts.com\\/cybermatch\\/\" target=\"_blank\">iScripts Cybermatch<\\/a> . A premium product from <a href=\"http:\\/\\/www.iscripts.com\" target=\"_blank\">iScripts.com<\\/a><\\/td>)"
+        }
+    ]
+}

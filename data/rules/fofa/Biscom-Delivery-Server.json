@@ -1,0 +1,15 @@
+{
+    "name": "Biscom-Delivery-Server",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "/bds/stylesheets/fds.css"
+        },
+        {
+            "search": "body",
+            "text": "/bds/includes/fdsJavascript.do"
+        }
+    ]
+}

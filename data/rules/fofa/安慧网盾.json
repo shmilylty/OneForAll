@@ -1,0 +1,11 @@
+{
+    "name": "\u5b89\u6167\u7f51\u76fe",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "Protected-By: AnHui Web Firewall"
+        }
+    ]
+}

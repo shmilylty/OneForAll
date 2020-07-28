@@ -1,0 +1,12 @@
+{
+    "name": "IB-Lite",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "ComAp IB-Lite - Internet / Ethernet Module including Web Server - Plug-in communication module for IL-NT, IC-NT, IA-NT and ID-Lite controllers and their clones.",
+    "website": "http://www.comap.cz/products/detail/ib-lite/",
+    "matches": [
+        {
+            "text": "<tr class=\"w_r\"><td class=\"w_n\">Access code</td><td width=\"140\" class=\"w_v\"><input id=\"psw_id\" type=\"password\" maxLength=\"15\" size=\"20\" name=\"q\" value=\"\"></td></tr>"
+        }
+    ]
+}

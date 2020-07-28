@@ -1,0 +1,15 @@
+{
+    "name": "Motorito",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Motorito",
+    "website": "http://www.motorito.com/",
+    "matches": [
+        {
+            "text": "<!-- end META_TAGS subst -->"
+        },
+        {
+            "text": "<!-- CAL POSAR UN DISCRIMINADOR DE NAVEGADORS PER CARREGAR ELS ESTILS ADEQUATS -->"
+        }
+    ]
+}

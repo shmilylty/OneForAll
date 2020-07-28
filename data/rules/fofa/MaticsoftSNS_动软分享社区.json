@@ -1,0 +1,20 @@
+{
+    "name": "MaticsoftSNS_\u52a8\u8f6f\u5206\u4eab\u793e\u533a",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "MaticsoftSNS"
+        },
+        {
+            "search": "body",
+            "text": "maticsoft"
+        },
+        {
+            "search": "body",
+            "text": "/Areas/SNS/"
+        }
+    ],
+    "condition": "0 or (1 and 2)"
+}

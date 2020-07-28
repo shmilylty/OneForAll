@@ -1,0 +1,11 @@
+{
+    "name": "Saia PCD",
+    "website": "http://saia-pcd.com",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "Saia PCD(?:([/a-z\\d.]+))?",
+            "offset": 1
+        }
+    ]
+}

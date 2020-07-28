@@ -1,0 +1,47 @@
+{
+    "name": "Vivotek-Network-Camera",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Vivotek Network Camera web interface",
+    "website": "http://www.vivotek.com/",
+    "matches": [
+        {
+            "url": "/main.html",
+            "text": "<div id=\"logo_icon\"><a href=\"http://www.vivotek.com/\" target=\"_blank\"><img alt=\"logo\" src=\"pic/logo.gif\"></a></div>"
+        },
+        {
+            "certainty": 25,
+            "regexp": "(?-mix:<frameset rows=\"2000,0\" border=\"0\" frameborder=\"no\" framespacing=\"0\">[\\s]+<frame name=\"mainframe\" src=\"main\\.html\" marginheight=\"0\" marginwidth=\"0\">)"
+        },
+        {
+            "certainty": 25,
+            "search": "headers[server]",
+            "regexp": "(?-mix:^(Network Camera|Network Dome Camera|Network Camera with Pan\\/Tilt|Wireless Network Camera)$)"
+        },
+        {
+            "url": "/cgi-bin/admin/getparamjs.cgi",
+            "regexp": "(?-mix:system_modelname=\"([^\"]+)\")"
+        },
+        {
+            "url": "/cgi-bin/admin/getparamjs.cgi",
+            "regexp": "(?-mix:system_supportscriptversion=\"([^\"]+)\")",
+            "offset": 1
+        },
+        {
+            "url": "/cgi-bin/admin/getparamjs.cgi",
+            "regexp": "(?-mix:system_firmwareversion=\"([^\"]+)\")"
+        },
+        {
+            "url": "/cgi-bin/admin/getparamjs.cgi",
+            "regexp": "(?-mix:system_hostname=\"([^\"]+)\")"
+        },
+        {
+            "url": "/cgi-bin/admin/getparamjs.cgi",
+            "regexp": "(?-mix:security_user(pass|name)\\.[\\d]{1,2}=\"([^\"]+)\")"
+        },
+        {
+            "url": "/setup/system.html",
+            "text": "<script type=\"text/javascript\" \tsrc=\"/cgi-bin/admin/getparamjs.cgi?system\">"
+        }
+    ]
+}

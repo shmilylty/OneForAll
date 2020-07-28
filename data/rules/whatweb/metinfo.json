@@ -1,0 +1,19 @@
+{
+    "name": "MetInfo",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "MetInfo",
+    "website": "http://www.metinfo.cn/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<meta name=\"copyright\" content=\"Copyright 2008-20[\\d]{2} MetInfo\">)"
+        },
+        {
+            "regexp": "(?-mix:<meta name=\"author\" content=\"[^\"]+--Powered by MetInfo\">)"
+        },
+        {
+            "regexp": "(?-mix:Powered by <a href=\"http:\\/\\/www.MetInfo.cn\" target=\"_blank\" title=\"MetInfo enterprise website manager system\"><b>[^<]+<\\/b><\\/a> ([\\d\\.]+))",
+            "offset": 1
+        }
+    ]
+}

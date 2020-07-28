@@ -1,0 +1,12 @@
+{
+    "name": "Clicky",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Clicky - Real Time Web Analytics",
+    "website": "https://www.getclicky.com/",
+    "matches": [
+        {
+            "regexp": "(?i-mx:<script[^>]+src=[\"'](https?:)?\\/\\/static\\.getclicky\\.com)"
+        }
+    ]
+}

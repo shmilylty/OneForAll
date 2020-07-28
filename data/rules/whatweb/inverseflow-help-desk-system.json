@@ -1,0 +1,31 @@
+{
+    "name": "InverseFlow-Help-Desk-System",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "InverseFlow Help Desk System",
+    "website": "http://www.inverseflow.com/products/helpdesk/index.php",
+    "matches": [
+        {
+            "certainty": 25,
+            "text": "<table width=\"100%\" bgcolor=\"#FFAD4D\" border=\"0\"><tr><td><div class=\"infobar_01\">"
+        },
+        {
+            "regexp": "(?-mix:<table width=\"100%\" bgcolor=\"#FFAD4D\" border=\"0\"><tr><td><div class=\"infobar_01\">InverseFlow Help Desk ([^<]+)<\\/td><\\/tr><\\/table>)",
+            "offset": 1
+        },
+        {
+            "text": "<div class=\"normal\">To view a ticket, please enter your email address and ticket ID.  If you forgot your ticket ID, you can use the <a href=\"ticket.php?cmd=lost\">ticket lookup</a>.</div>"
+        },
+        {
+            "certainty": 25,
+            "regexp": "(?-mix:<div class=\"normal\">[^<]+<a href=\"ticket\\.php\\?cmd=lost\">)"
+        },
+        {
+            "certainty": 25,
+            "text": "<form action=\"ticketview.php\" method=\"get\">"
+        },
+        {
+            "regexp": "(?-mix:<form action=\"ticket\\.php\" method=\"get\">[\\s]+<input type=\"hidden\" name=\"cmd\" value=\"lost\" \\/>)"
+        }
+    ]
+}

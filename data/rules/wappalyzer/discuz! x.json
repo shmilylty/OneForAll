@@ -1,0 +1,12 @@
+{
+    "name": "Discuz! X",
+    "website": "http://www.discuz.net",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "Discuz! X([\\d\\.]+)?",
+            "offset": 1
+        }
+    ],
+    "implies": "PHP"
+}

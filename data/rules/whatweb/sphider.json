@@ -1,0 +1,15 @@
+{
+    "name": "Sphider",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Sphider is a lightweight web spider and search engine written in PHP, using MySQL as its back end database.",
+    "website": "http://www.sphider.eu/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<html>[\\s]+<head>[\\s]+<title>[\\s]+Sphider installation script\\.[\\s]+<\\/title>[\\s]+<LINK REL=STYLESHEET HREF=\"admin\\.css\" TYPE=\"text\\/css\">[\\s]+<\\/head>[\\s]+<body>)"
+        },
+        {
+            "regexp": "(?-mix:<title>Sphider Admin Login<\\/title>[\\s]+<LINK REL=STYLESHEET HREF=\"admin\\.css\" TYPE=\"text\\/css\">[\\s]+<\\/head>)"
+        }
+    ]
+}

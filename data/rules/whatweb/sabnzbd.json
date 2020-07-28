@@ -1,0 +1,12 @@
+{
+    "name": "SABnzbd",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "SABnzbd is an Open Source Binary Newsreader written in Python.",
+    "website": "http://sabnzbd.org/",
+    "matches": [
+        {
+            "regexp": "(?-mix:    <form action=\"\\/sabnzbd\\/[^\"]*\" method=\"POST\">)"
+        }
+    ]
+}

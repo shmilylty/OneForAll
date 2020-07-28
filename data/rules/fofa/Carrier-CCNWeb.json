@@ -1,0 +1,15 @@
+{
+    "name": "Carrier-CCNWeb",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "/images/CCNWeb.gif"
+        },
+        {
+            "search": "body",
+            "text": "<APPLET CODE=\"JLogin.class\" ARCHIVE=\"JLogin.jar"
+        }
+    ]
+}

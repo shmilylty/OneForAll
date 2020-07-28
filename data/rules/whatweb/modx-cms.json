@@ -1,0 +1,15 @@
+{
+    "name": "ModxCMS",
+    "author": "Andrew Horton",
+    "version": "0.2",
+    "description": "OpenSource CMS written in PHP.",
+    "website": "http://modxcms.com/",
+    "matches": [
+        {
+            "text": "<meta name=\"generator\" content=\"ModX"
+        },
+        {
+            "text": "<script type=\"text/javascript\">var MODX_MEDIA_PATH"
+        }
+    ]
+}

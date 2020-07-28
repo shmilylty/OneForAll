@@ -1,0 +1,15 @@
+{
+    "name": "\u777f\u535a\u58eb\u4e91\u529e\u516c\u7cfb\u7edf",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "/studentSign/toLogin.di"
+        },
+        {
+            "search": "body",
+            "text": "/user/toUpdatePasswordPage.di"
+        }
+    ]
+}

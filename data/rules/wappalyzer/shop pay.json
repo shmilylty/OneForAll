@@ -1,0 +1,10 @@
+{
+    "name": "Shop Pay",
+    "website": "https://pay.google.com",
+    "matches": [
+        {
+            "regexp": "<[^>]+aria-labelledby=\"pi-shopify_pay"
+        }
+    ],
+    "implies": "Shopify"
+}

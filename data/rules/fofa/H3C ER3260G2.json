@@ -1,0 +1,11 @@
+{
+    "name": "H3C ER3260G2",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "ER3260G2\u7cfb\u7edf\u7ba1\u7406"
+        }
+    ]
+}

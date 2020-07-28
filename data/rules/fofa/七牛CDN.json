@@ -1,0 +1,31 @@
+{
+    "name": "\u4e03\u725bCDN",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "glb.clouddn.com"
+        },
+        {
+            "search": "body",
+            "text": "glb.clouddn.com"
+        },
+        {
+            "search": "headers",
+            "text": "glb.qiniucdn.com"
+        },
+        {
+            "search": "body",
+            "text": "glb.qiniucdn.com"
+        },
+        {
+            "search": "headers",
+            "text": "cdn.staticfile.org"
+        },
+        {
+            "search": "body",
+            "text": "cdn.staticfile.org"
+        }
+    ]
+}

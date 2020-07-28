@@ -1,0 +1,15 @@
+{
+    "name": "Coremail",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "/coremail/common/assets"
+        },
+        {
+            "search": "title",
+            "regexp": "Coremail\u90ae\u4ef6\u7cfb\u7edf"
+        }
+    ]
+}

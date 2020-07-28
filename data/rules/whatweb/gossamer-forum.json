@@ -1,0 +1,23 @@
+{
+    "name": "Gossamer-Forum",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Gossamer Forum is the ideal software solution to create, or enhance, any online community. Great features including a WYSIWYG Editor and powerful search makes Gossamer Forum one of the most fully featured forum scripts out there.",
+    "website": "http://www.gossamer-threads.com/products/gossamer-forum/",
+    "matches": [
+        {
+            "ghdb": "Powered by Gossamer Forum filetype:cgi inurl:gforum.cgi"
+        },
+        {
+            "certainty": 75,
+            "text": "<title>Gossamer Forum: An error occured!</title>"
+        },
+        {
+            "regexp": "(?-mix:Powered by <a href=\"http:\\/\\/www.gossamer-threads.com\">Gossamer Forum v.([\\d\\.]+)<\\/a>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<a href=\"gforum\\.cgi\\?username=([^;^>^\"]+);guest=[\\d]+\">)"
+        }
+    ]
+}

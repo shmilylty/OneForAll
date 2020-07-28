@@ -1,0 +1,10 @@
+{
+    "name": "OpenText Web Solutions",
+    "website": "http://websolutions.opentext.com",
+    "matches": [
+        {
+            "regexp": "<!--[^>]+published by Open Text Web Solutions"
+        }
+    ],
+    "implies": "Microsoft ASP.NET"
+}

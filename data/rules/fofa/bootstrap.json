@@ -1,0 +1,15 @@
+{
+    "name": "bootstrap",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "bootstrap.css"
+        },
+        {
+            "search": "body",
+            "text": "bootstrap.min.css"
+        }
+    ]
+}

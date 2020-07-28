@@ -1,0 +1,23 @@
+{
+    "name": "MooTools",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "MooTools is a compact, modular, Object-Oriented JavaScript framework designed for the intermediate to advanced JavaScript developer. It allows you to write powerful, flexible, and cross-browser code with its elegant, well documented, and coherent API.",
+    "website": "http://mootools.net/",
+    "matches": [
+        {
+            "regexp": "(?-mix:^\\/\\/ Load your build at: http:\\/\\/mootools.net\\/core\\/)"
+        },
+        {
+            "regexp": "(?-mix:^MooTools.More[\\s]*=[\\s]*\\{[\\s]*version:[\\s]*[\"']?([^\\\"^\\']+)[\"']?)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:^var MooTools[\\s]*=[\\s]*\\{[\\s]*version:[\\s]*[\"']?([^\\\"^\\']+))",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:^\\/\\/MooTools More, <http:\\/\\/mootools.net\\/more>. Copyright \\(c\\) 2006-2008 Valerio Proietti, <http:\\/\\/mad4milk.net>, MIT Style License.)"
+        }
+    ]
+}

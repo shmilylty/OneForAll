@@ -1,0 +1,19 @@
+{
+    "name": "CGI:IRC",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "CGI:IRC Login"
+        },
+        {
+            "search": "body",
+            "text": "<!-- This is part of CGI:IRC"
+        },
+        {
+            "search": "body",
+            "text": "<small id=\"ietest\"><a href=\"http://cgiirc.org/"
+        }
+    ]
+}

@@ -1,0 +1,9 @@
+{
+    "name": "MiniBB",
+    "website": "http://www.minibb.com",
+    "matches": [
+        {
+            "regexp": "<a href=\"[^\"]+minibb[^<]+</a>[^<]+\\n<!--End of copyright link"
+        }
+    ]
+}

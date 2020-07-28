@@ -1,0 +1,15 @@
+{
+    "name": "BigDump",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "BigDump"
+        },
+        {
+            "search": "body",
+            "text": "BigDump: Staggered MySQL Dump Importer"
+        }
+    ]
+}

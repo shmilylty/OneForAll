@@ -1,0 +1,15 @@
+{
+    "name": "SMA_Sunny_Webbox",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "SMA Sunny Webbox"
+        },
+        {
+            "search": "headers",
+            "text": "Server: WebBox-20"
+        }
+    ]
+}

@@ -1,0 +1,22 @@
+{
+    "name": "ANECMS",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "ANECMS",
+    "website": "http://anecms.com/",
+    "matches": [
+        {
+            "text": "<meta name=\"Author\" content=\"Erwin Aligam - ealigam@gmail.com\" />"
+        },
+        {
+            "ghdb": "\"powered by anecms\"",
+            "certainty": 75
+        },
+        {
+            "regexp": "(?-mix:&copy; [\\d]{4} <strong><a href=\"http:\\/\\/anecms.com[^\\>]*>anecms.com<\\/a><\\/strong>)"
+        },
+        {
+            "regexp": "(?-mix:<title>[^<^\\-]+- Powered By ANECMS<\\/title>)"
+        }
+    ]
+}

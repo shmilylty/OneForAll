@@ -1,0 +1,18 @@
+{
+    "name": "Koala-Web-Server",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Koala is an HTTP server written in Dylan programming language.",
+    "website": "http://wiki.opendylan.org/wiki/view.dsp?title=Koala",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Koala Web Server)"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Koala Web Server\\/([^\\s]+))",
+            "offset": 1
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    "name": "\u53c8\u62cd\u4e91JS\u5e93",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "b0.upaiyun.com"
+        },
+        {
+            "search": "body",
+            "text": "b0.upaiyun.com"
+        }
+    ]
+}

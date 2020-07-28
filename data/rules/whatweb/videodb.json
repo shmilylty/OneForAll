@@ -1,0 +1,32 @@
+{
+    "name": "VideoDB",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "VideoDB is a web application to manage a personal video collection - Requires: PHP and MySQL",
+    "website": "http://www.videodb.net/",
+    "matches": [
+        {
+            "text": "<a href=\"index.php?export=pdf&amp;ext=.pdf\"><img src=\"images/pdfexport.png\" /></a>"
+        },
+        {
+            "text": "<!-- /content --><!-- footer.tpl -->"
+        },
+        {
+            "text": "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"VideoDB RSS\" href=\"index.php?export=rss\" />"
+        },
+        {
+            "text": "<meta name='description' content='VideoDB' />"
+        },
+        {
+            "text": "<meta name=\"description\" content=\"VideoDB\" />"
+        },
+        {
+            "regexp": "(?-mix:<a href=\"http:\\/\\/www\\.splitbrain\\.org\\/go\\/videodb\" class=\"splitbrain\">v\\.([^<]+)<\\/a>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<div id=\"footerversion\">[\\s]*<a href=\"http:\\/\\/www\\.videodb\\.net\">v([^<]+)<\\/a>[\\s]*<\\/div>)",
+            "offset": 1
+        }
+    ]
+}

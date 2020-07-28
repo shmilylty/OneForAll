@@ -1,0 +1,13 @@
+{
+    "name": "Webbler",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "The Webbler is a powerful tool to build new websites or add additional areas or functionality to your existing website. It is a Content Management System (CMS) and an Application Toolkit that we customise to suit your needs.",
+    "website": "http://www.tincan.co.uk/Webbler",
+    "matches": [
+        {
+            "regexp": "(?-mix:<meta name=\"generator\" content=\"webbler ([^\\s]+) - http:\\/\\/tincan\\.co\\.uk\\/webbler\"  \\/?>)",
+            "offset": 1
+        }
+    ]
+}

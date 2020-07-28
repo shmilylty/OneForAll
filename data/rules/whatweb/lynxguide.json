@@ -1,0 +1,19 @@
+{
+    "name": "LynxGuide",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "The Lynx System is a Facility-wide, Network based, Duress and Emergency Notification System. ",
+    "website": "http://www.lynxguide.com/",
+    "matches": [
+        {
+            "text": "<title>Login to LynxGuide Server</title>"
+        },
+        {
+            "text": "Use subject to <a href=\"/cgi/help/license.htm\">license agreement</a></span>"
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:Access_Num=[^;]+;)"
+        }
+    ]
+}

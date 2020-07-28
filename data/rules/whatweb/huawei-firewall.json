@@ -1,0 +1,30 @@
+{
+    "name": "Huawei-Firewall",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Huawei Firewall",
+    "website": "http://www.huawei.com/en/products/data-communication/network-security/firewall/index.htm",
+    "matches": [
+        {
+            "text": "<!--Modify by wangxiangguang 2006-9-29 for BYDD15857 Begin -->"
+        },
+        {
+            "text": "<!--Modify by wangxiangguang 2006-9-29 for BYDD15857 End -->"
+        },
+        {
+            "text": "<input type=\"text\" onpaste=\"checkPaste(this,'012')\" name=\"username\" id=\"username\" maxlength="
+        },
+        {
+            "regexp": "(?-mix:<div align=\"center\">Copyright \\(c\\) Huawei Technologies Co\\., Ltd\\. 2005-(20[\\d]{2})\\. All rights reserved\\. <\\/div>)"
+        },
+        {
+            "regexp": "(?-mix:<div align=\"center\">Copyright \\(c\\) 2005-(20[\\d]{2}) Huawei Technologies Co\\., Ltd\\.<\\/div><\\/td>)"
+        },
+        {
+            "search": "headers[server]",
+            "model": "Eudemon",
+            "regexp": "(?-mix:^Eudemon Server ([^\\s]+)$)",
+            "offset": 1
+        }
+    ]
+}

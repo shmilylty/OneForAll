@@ -1,0 +1,18 @@
+{
+    "name": "Microsoft Word",
+    "website": "https://office.microsoft.com/word",
+    "matches": [
+        {
+            "regexp": "(?:<html [^>]*xmlns:w=\"urn:schemas-microsoft-com:office:word\"|<w:WordDocument>|<div [^>]*class=\"?WordSection1[\" >]|<style[^>]*>[^>]*@page WordSection1)"
+        },
+        {
+            "search": "meta[ProgId]",
+            "regexp": "^Word\\."
+        },
+        {
+            "search": "meta[generator]",
+            "regexp": "Microsoft Word( [\\d.]+)?",
+            "offset": 1
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "name": "JSEcoin",
+    "website": "https://jsecoin.com/",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "^(?:https):?//load\\.jsecoin\\.com/load/"
+        }
+    ]
+}

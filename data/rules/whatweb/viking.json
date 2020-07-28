@@ -1,0 +1,18 @@
+{
+    "name": "Viking",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "Viking is an all-in-one server that provides everything from HTTP and FTP to Gopher, IRC, and NTP; with firewalling, proxying and more",
+    "website": "http://www.robtex.com/viking.html",
+    "matches": [
+        {
+            "regexp": "(?-mix:^Viking)",
+            "search": "headers[server]"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Viking\\/([^\\s]{1,15}))",
+            "offset": 1
+        }
+    ]
+}

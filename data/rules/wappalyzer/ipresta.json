@@ -1,0 +1,14 @@
+{
+    "name": "iPresta",
+    "website": "http://ipresta.ir",
+    "matches": [
+        {
+            "search": "meta[designer]",
+            "regexp": "iPresta"
+        }
+    ],
+    "implies": [
+        "PHP",
+        "PrestaShop"
+    ]
+}

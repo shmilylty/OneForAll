@@ -1,0 +1,15 @@
+{
+    "name": "DT-Centrepiece",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "content=\"DT Centrepiece"
+        },
+        {
+            "search": "body",
+            "text": "Powered By DT Centrepiece"
+        }
+    ]
+}

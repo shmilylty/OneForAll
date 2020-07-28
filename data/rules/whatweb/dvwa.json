@@ -1,0 +1,18 @@
+{
+    "name": "DVWA",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Damn Vulnerable Web App (DVWA) is a PHP/MySQL web application that is damn vulnerable.",
+    "website": "http://www.dvwa.co.uk/",
+    "matches": [
+        {
+            "text": "\t\t<title>Damn Vulnerable Web App (DVWA) - Login</title>"
+        },
+        {
+            "regexp": "(?-mix:\t\t<link rel=\"stylesheet\" type=\"text\\/css\" href=\"[^\"]*dvwa\\/css\\/login.css\" \\/>)"
+        },
+        {
+            "text": "\t\t\t<p><label for=\"pass\">Password</label><input type=\"password\" AUTOCOMPLETE=\"off\" size=\"20\" name=\"password\"></p><br />"
+        }
+    ]
+}

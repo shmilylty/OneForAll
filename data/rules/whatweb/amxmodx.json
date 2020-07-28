@@ -1,0 +1,12 @@
+{
+    "name": "AMX-Mod-X",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "AMX Mod X is a versatile Half-Life metamod plugin which is targetted toward server administration.",
+    "website": "http://www.amxmodx.org/",
+    "matches": [
+        {
+            "text": "// *NOTE* amx_sql_type specifies the DEFAULT database type which admin.sma will use."
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+{
+    "name": "TP-LINK WR741ND",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "TP-LINK WR741ND"
+        }
+    ]
+}

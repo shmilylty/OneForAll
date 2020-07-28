@@ -1,0 +1,20 @@
+{
+    "name": "GuppY",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "An easy, free web portal, GuppY will allow you to generate very easily a complete and interactive web site. It requires no database.",
+    "website": "http://www.freeguppy.org/?lng=en",
+    "matches": [
+        {
+            "text": "<meta name=\"Generator\" content=\"GuppY\">"
+        },
+        {
+            "regexp": "(?-mix:<div class=\"foot\"><span class='copyright'>&nbsp; <a class='copyright' href='http:\\/\\/www.freeguppy.org\\/' title='GuppY site' target='_blank'> Site powered by GuppY v([\\d\\.]+) <\\/a>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:  <!--\\[  GuppY v([\\d\\.]+) CeCILL Copyright \\(C\\) [\\d]{4}\\-[\\d]{4} by Laurent Duveau \\- http:\\/\\/www.freeguppy.org\\/  \\]-->)",
+            "offset": 1
+        }
+    ]
+}

@@ -1,0 +1,19 @@
+{
+    "name": "Cacti",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "Set-Cookie: Cacti="
+        },
+        {
+            "search": "title",
+            "regexp": "Login to Cacti"
+        },
+        {
+            "search": "body",
+            "text": "/plugins/jqueryskin/include/login.css"
+        }
+    ]
+}

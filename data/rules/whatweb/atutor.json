@@ -1,0 +1,22 @@
+{
+    "name": "ATutor",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "ATutor is a free Open Source Web-based elearning environment designed with accessibility and adaptability in mind.",
+    "website": "http://www.atutor.ca/",
+    "matches": [
+        {
+            "name": "Meta Generator",
+            "regexp": "(?-mix:<meta name=\"Generator\" content=\"ATutor - Copyright ([0-9]{4}) by http:\\/\\/atutor.ca\" \\/>)"
+        },
+        {
+            "name": "JavaScript",
+            "certainty": 75,
+            "text": "ATutor.course = ATutor.course || {};"
+        },
+        {
+            "name": "Documentation link",
+            "text": "<span id=\"howto\">For guidance on using ATutor see the official"
+        }
+    ]
+}

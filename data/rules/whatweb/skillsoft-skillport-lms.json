@@ -1,0 +1,33 @@
+{
+    "name": "Skillsoft-Skillport-LMS",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Skillsoft Skillport - learning management system (LMS)",
+    "website": "http://www.skillsoft.com/products/skillport/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<table id=\"loginwrapper\">\\s*<tr><td width=\"10%\"><\\/td>\\s*<td width=\"80%\"  align=\"left\" class=\"v\">v ([^\\s]+)<\\/td>)",
+            "offset": 1
+        },
+        {
+            "text": "<a href=\"javascript:void(0);showContextSpecificHelp('/skillportfe/help/en_US/learnerHelp/23386.htm');\""
+        },
+        {
+            "regexp": "(?-mix:<table border=\"0\" width=\"100%\" id=\"logobanner\">\\s+<tr width=\"100%\">\\s+<td  width=\"82%\">\\s+<img src=\"https?:\\/\\/customer\\.skillport\\.com\\/spcustom\\/([^\\/]+)\\/[^\"]+\" alt=\"([^\"]+) ?Logo\")"
+        },
+        {
+            "regexp": "(?-mix:<table border=\"0\" width=\"100%\" id=\"logobanner\">\\s+<tr width=\"100%\">\\s+<td  width=\"82%\">\\s+<img src=\"https?:\\/\\/customer\\.skillport\\.com\\/spcustom\\/([^\\/]+)\\/[^\"]+\" alt=\"([^\"]+) ?Logo\")"
+        },
+        {
+            "regexp": "(?-mix:<div id=\"poweredbylogo\">\\s+<img src =\"\\/skillportfe\\/resources\\/default\\/images\\/poweredby\\.gif\" \\/>)"
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:SP[5-7]\\dFE=\\d+\\.\\d+\\.\\d+)"
+        },
+        {
+            "search": "headers[x-sp-fe]",
+            "regexp": "(?-mix:^(.+)$)"
+        }
+    ]
+}

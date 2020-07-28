@@ -1,0 +1,22 @@
+{
+    "name": "Alpha-Five",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "The Alpha Five Application Server allows you to deploy the web applications you build with Alpha Five Developer. Each license allows you to install the server on one PC.",
+    "website": "https://www.alphasoftware.com/",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "offset": 1,
+            "regexp": "(?-mix:^Alpha Five( Application Server)?\\/([\\d\\.]+ Build\\/[\\d\\-]+))"
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:A5wSessionId=[a-f\\d]{32};)"
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:A5wBrowserId=[a-f\\d]{32};)"
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+{
+    "name": "Connect",
+    "website": "http://www.senchalabs.org/connect",
+    "matches": [
+        {
+            "search": "headers[x-powered-by]",
+            "regexp": "^Connect$"
+        }
+    ],
+    "implies": "Node.js"
+}

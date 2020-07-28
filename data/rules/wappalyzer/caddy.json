@@ -1,0 +1,11 @@
+{
+    "name": "Caddy",
+    "website": "http://caddyserver.com",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "^Caddy$"
+        }
+    ],
+    "implies": "Go"
+}

@@ -1,0 +1,16 @@
+{
+    "name": "UBNT_UniFi\u7cfb\u5217\u8def\u7531",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "UniFi"
+        },
+        {
+            "search": "body",
+            "text": "<div class=\"appGlobalHeader\">"
+        }
+    ],
+    "condition": "0 and 1"
+}

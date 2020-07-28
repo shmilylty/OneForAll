@@ -1,0 +1,24 @@
+{
+    "name": "Axentra-HipServ",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "Axentra-HipServ - Digital Home/SOHO Software Platform for Internet Gateway and NAS Devices",
+    "website": "http://www.axentra.com/en/",
+    "matches": [
+        {
+            "text": "<meta name=\"author\" content=\"Axentra\">"
+        },
+        {
+            "text": "<title id=\"document_title\">Axentra :: Digital Home/SOHO Software Platform for Internet Gateway and NAS Devices</title>"
+        },
+        {
+            "regexp": "(?-mix:)",
+            "search": "headers[x-axentra-version]"
+        },
+        {
+            "name": "HOMEBASEID Cookie",
+            "regexp": "(?-mix:HOMEBASEID=)",
+            "search": "headers[set-cookie]"
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    "name": "Indico",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "MAKACSESSION"
+        },
+        {
+            "search": "body",
+            "text": "href=\"http://cern.ch/indico"
+        }
+    ]
+}

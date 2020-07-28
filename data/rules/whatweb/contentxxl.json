@@ -1,0 +1,16 @@
+{
+    "name": "ContentXXL",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "ContentXXL - CMS [German] - Requires: .NET",
+    "website": "http://www.contentxxl.de/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<meta name=\"generator\" content=\"contentXXL Business Content Management System  ([^\\(]+)\\([^\\)]+\\) \\/ contentXXL International GmbH \\/ www.contentxxl.de\" [\\/]?>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<meta name=\"generator\" content=\"contentXXL Business Content Management System  [^\\(]+\\(([^\\)]+), [^,^>]+, (Release|Debug)\\) \\/ contentXXL International GmbH \\/ www.contentxxl.de\" [\\/]?>)"
+        }
+    ]
+}

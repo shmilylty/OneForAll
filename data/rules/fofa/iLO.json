@@ -1,0 +1,15 @@
+{
+    "name": "iLO",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "href=\"http://www.hp.com/go/ilo"
+        },
+        {
+            "search": "title",
+            "regexp": "HP Integrated Lights-Out"
+        }
+    ]
+}

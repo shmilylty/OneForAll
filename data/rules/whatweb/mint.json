@@ -1,0 +1,12 @@
+{
+    "name": "Mint",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Mint is an extensible, self-hosted web site analytics program",
+    "website": "http://www.haveamint.com/",
+    "matches": [
+        {
+            "regexp": "(?i-mx:<script [^>]*src=[\"'][^>]*mint\\/\\?js)"
+        }
+    ]
+}

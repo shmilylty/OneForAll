@@ -1,0 +1,10 @@
+{
+    "name": "Kemal",
+    "website": "http://kemalcr.com",
+    "matches": [
+        {
+            "search": "headers[x-powered-by]",
+            "regexp": "Kemal"
+        }
+    ]
+}

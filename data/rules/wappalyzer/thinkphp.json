@@ -1,0 +1,11 @@
+{
+    "name": "ThinkPHP",
+    "website": "http://www.thinkphp.cn",
+    "matches": [
+        {
+            "search": "headers[x-powered-by]",
+            "regexp": "ThinkPHP"
+        }
+    ],
+    "implies": "PHP"
+}

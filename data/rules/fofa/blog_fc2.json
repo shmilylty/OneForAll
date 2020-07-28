@@ -1,0 +1,16 @@
+{
+    "name": "blog_fc2",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "bloguid"
+        },
+        {
+            "search": "headers",
+            "text": "cookietest=test"
+        }
+    ],
+    "condition": "0 and 1"
+}

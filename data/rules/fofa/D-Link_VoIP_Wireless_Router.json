@@ -1,0 +1,11 @@
+{
+    "name": "D-Link_VoIP_Wireless_Router",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "D-Link VoIP Wireless Router"
+        }
+    ]
+}

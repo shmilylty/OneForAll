@@ -1,0 +1,13 @@
+{
+    "name": "Hotaru-CMS",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Hotaru CMS is an open source, plugin-powered PHP content management system (CMS)",
+    "website": "http://hotarucms.org/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<meta name=\"generator\" content=\"Hotaru CMS ([^\\s^\"^>]+)\" \\/>)",
+            "offset": 1
+        }
+    ]
+}

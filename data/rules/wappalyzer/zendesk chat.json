@@ -1,0 +1,10 @@
+{
+    "name": "Zendesk Chat",
+    "website": "http://zopim.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "v2\\.zopim\\.com"
+        }
+    ]
+}

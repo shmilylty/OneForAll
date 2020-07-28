@@ -1,0 +1,10 @@
+{
+    "name": "EKM",
+    "website": "https://www.ekm.com",
+    "matches": [
+        {
+            "search": "cookies[ekmpowershop]",
+            "regexp": ".*"
+        }
+    ]
+}

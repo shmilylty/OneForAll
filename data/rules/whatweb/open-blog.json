@@ -1,0 +1,22 @@
+{
+    "name": "Open-Blog",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "Open blog is a free and open source blogging platform built using the CodeIgniter PHP framework and released under the GPL v3 license.",
+    "website": "http://www.open-blog.info/",
+    "matches": [
+        {
+            "regexp": "(?-mix:Powered by <a href=\"http:\\/\\/www.open-blog.info[\\/]*\" target=\"_blank\">Open Blog<\\/a>)"
+        },
+        {
+            "text": "Powered by <a href=\"http://www.open-blog.info\""
+        },
+        {
+            "text": "    \tPowered by <a href=\"http://www.open-blog.info\" target=\"_blank\">Open Blog</a>"
+        },
+        {
+            "regexp": "(?-mix:\t\t\t<a href=\"install.php\">Install Open Blog<\\/a> - choose this option, if you would like to install Open Blog ([\\d\\.]+)<br \\/>)",
+            "offset": 1
+        }
+    ]
+}

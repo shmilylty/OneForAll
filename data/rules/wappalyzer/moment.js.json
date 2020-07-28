@@ -1,0 +1,10 @@
+{
+    "name": "Moment.js",
+    "website": "https://momentjs.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "moment(?:\\.min)?\\.js"
+        }
+    ]
+}

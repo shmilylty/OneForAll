@@ -1,0 +1,9 @@
+{
+    "name": "Accelerated Mobile Pages",
+    "website": "https://www.ampproject.org",
+    "matches": [
+        {
+            "regexp": "<html[^>]* (?:amp|\u26a1)"
+        }
+    ]
+}

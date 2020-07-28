@@ -1,0 +1,14 @@
+{
+    "name": "Flyspray",
+    "website": "http://flyspray.org",
+    "matches": [
+        {
+            "search": "cookies[flyspray_project]",
+            "regexp": ".*"
+        },
+        {
+            "regexp": "(?:<a[^>]+>Powered by Flyspray|<map id=\"projectsearchform)"
+        }
+    ],
+    "implies": "PHP"
+}

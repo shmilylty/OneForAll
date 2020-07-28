@@ -1,0 +1,11 @@
+{
+    "name": "axis2-web",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "axis2-web/css/axis-style.css"
+        }
+    ]
+}

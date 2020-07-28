@@ -1,0 +1,11 @@
+{
+    "name": "Netgear DG834G",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "Netgear DG834G"
+        }
+    ]
+}

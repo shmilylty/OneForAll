@@ -1,0 +1,15 @@
+{
+    "name": "SEMcms",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "semcms PHP"
+        },
+        {
+            "search": "body",
+            "text": "sc_mid_c_left_c sc_mid_left_bt"
+        }
+    ]
+}

@@ -1,0 +1,33 @@
+{
+    "name": "Tiger-IP-Connect",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Tiger IP Connect - is a Windows based software solution to manage a single Nomadix powered Hot-Spot.",
+    "website": "http://www.tigercomms.com/tiger-ip-connect-lite",
+    "matches": [
+        {
+            "certainty": 75,
+            "search": "headers[location]",
+            "regexp": "(?-mix:^network\\/index\\.php$)"
+        },
+        {
+            "regexp": "(?-mix:<title>Tiger IP Connect ([^\\s]+) -  Login<\\/title>)",
+            "offset": 1
+        },
+        {
+            "text": "<td align=\"center\" bgcolor=\"#FFCC00\"><b>Login is disabled from this IP address.</b></td>"
+        },
+        {
+            "url": "/include/tiger.css",
+            "text": "background-image:url(../images/tiger/subTabmidden.gif);"
+        },
+        {
+            "text": "<link rel=\"stylesheet\" href=\"/include/tms.css\">",
+            "string": "TigerTMS"
+        },
+        {
+            "text": "<link rel=\"stylesheet\" href=\"/include/firedigit.css\">",
+            "string": "Firedigit"
+        }
+    ]
+}

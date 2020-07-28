@@ -1,0 +1,6 @@
+{
+    "name": "Ember.js",
+    "website": "http://emberjs.com",
+    "matches": [],
+    "implies": "Handlebars"
+}

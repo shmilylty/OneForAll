@@ -1,0 +1,24 @@
+{
+    "name": "\u901a\u8fbeOA",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "<link rel=\"shortcut icon\" href=\"/images/tongda.ico\" />"
+        },
+        {
+            "search": "body",
+            "text": "OA\u63d0\u793a\uff1a\u4e0d\u80fd\u767b\u5f55OA"
+        },
+        {
+            "search": "body",
+            "text": "\u7d27\u6025\u901a\u77e5\uff1a\u4eca\u65e510\u70b9\u505c\u7535"
+        },
+        {
+            "search": "body",
+            "text": "Office Anywhere 2013"
+        }
+    ],
+    "condition": "0 or (1 and 2) or 3"
+}

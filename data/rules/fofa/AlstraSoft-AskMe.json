@@ -1,0 +1,20 @@
+{
+    "name": "AlstraSoft-AskMe",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "<a href=\"pass_recover.php\">"
+        },
+        {
+            "search": "body",
+            "text": "Powered by"
+        },
+        {
+            "search": "body",
+            "text": "http://www.alstrasoft.com"
+        }
+    ],
+    "condition": "0 or (1 and 2)"
+}

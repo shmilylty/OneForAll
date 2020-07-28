@@ -1,0 +1,11 @@
+{
+    "name": "Xitami",
+    "website": "http://xitami.com",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "Xitami(?:/([\\d.]+))?",
+            "offset": 1
+        }
+    ]
+}

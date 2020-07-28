@@ -1,0 +1,32 @@
+{
+    "name": "Drupal",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "X-Generator: Drupal"
+        },
+        {
+            "search": "body",
+            "text": "content=\"Drupal"
+        },
+        {
+            "search": "body",
+            "text": "jQuery.extend(Drupal.settings"
+        },
+        {
+            "search": "body",
+            "text": "/sites/default/files/"
+        },
+        {
+            "search": "body",
+            "text": "/sites/all/modules/"
+        },
+        {
+            "search": "body",
+            "text": "/sites/all/themes/"
+        }
+    ],
+    "condition": "0 or 1 or 2 or (3 and 4 and 5)"
+}

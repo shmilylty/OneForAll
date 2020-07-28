@@ -1,0 +1,16 @@
+{
+    "name": "\u65bd\u8010\u5fb7_Schneider_PowerLogic_PM800",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "PowerLogic"
+        },
+        {
+            "search": "headers",
+            "text": "PM800"
+        }
+    ],
+    "condition": "0 and 1"
+}

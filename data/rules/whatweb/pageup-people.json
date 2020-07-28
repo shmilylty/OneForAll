@@ -1,0 +1,16 @@
+{
+    "name": "PageUp-People",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "PageUpPeople is a commercial SaaS platform to recruit, onboard, train, develop, manage and retain employees.",
+    "website": "http://www.pageuppeople.com/",
+    "matches": [
+        {
+            "ghdb": "\"Powered by PageUp People\"",
+            "certainty": 75
+        },
+        {
+            "text": "<a class=\"pageupLink\" href=\"http://www.pageuppeople.com\" target=\"self\">Powered by PageUp People</a>"
+        }
+    ]
+}

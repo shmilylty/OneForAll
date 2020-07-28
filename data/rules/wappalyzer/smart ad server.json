@@ -1,0 +1,9 @@
+{
+    "name": "Smart Ad Server",
+    "website": "http://smartadserver.com",
+    "matches": [
+        {
+            "regexp": "<img[^>]+smartadserver\\.com\\/call"
+        }
+    ]
+}

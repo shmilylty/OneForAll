@@ -1,0 +1,17 @@
+{
+    "name": "MyPHP-Forum",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "MyPHP-Forum",
+    "website": "http://www.myphp.ws/",
+    "matches": [
+        {
+            "regexp": "(?-mix:    <td width=\"50%\" class=\"copy\" height=\"24\">Powered by: MyPHP Forum v([\\d\\.]+))",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:    <td width=\"50%\" class=\"copy\" height=\"24\">Powered by: <a href=\"http:\\/\\/www.myphp.ws\">MyPHP Forum v([\\d\\.]+))",
+            "offset": 1
+        }
+    ]
+}

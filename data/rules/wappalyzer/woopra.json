@@ -1,0 +1,10 @@
+{
+    "name": "Woopra",
+    "website": "http://www.woopra.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "static\\.woopra\\.com"
+        }
+    ]
+}

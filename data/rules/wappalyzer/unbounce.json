@@ -1,0 +1,14 @@
+{
+    "name": "Unbounce",
+    "website": "http://unbounce.com",
+    "matches": [
+        {
+            "search": "headers[x-unbounce-pageid]",
+            "regexp": ".*"
+        },
+        {
+            "search": "script",
+            "regexp": "ubembed\\.com"
+        }
+    ]
+}

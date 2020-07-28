@@ -1,0 +1,25 @@
+{
+    "name": "Visualware-MyConnection-Server",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "MyConnection Server (MCS) delivers a broad range of support managed automated and user initiated self-help connection testing and monitoring services directly via the browser to any online customer/location anywhere in the world. MCS incorporates testing solutions for critical time dependent applications such as VoIP, Video, IPTV, video conferencing.",
+    "website": "http://www.myconnectionserver.com/",
+    "matches": [
+        {
+            "text": "<!-- Begin MyConnection Server applet -->"
+        },
+        {
+            "regexp": "(?-mix:^Visualware MyConnection Server)",
+            "search": "headers[server]"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Visualware MyConnection Server [^\\d]+ (\\d\\.[^\\s]+)$)",
+            "offset": 1
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Visualware MyConnection Server ([^\\d]+) \\d\\.[^\\s]+$)"
+        }
+    ]
+}

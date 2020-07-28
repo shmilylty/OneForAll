@@ -1,0 +1,11 @@
+{
+    "name": "TwistedWeb",
+    "website": "http://twistedmatrix.com/trac/wiki/TwistedWeb",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "TwistedWeb(?:/([\\d.]+))?",
+            "offset": 1
+        }
+    ]
+}

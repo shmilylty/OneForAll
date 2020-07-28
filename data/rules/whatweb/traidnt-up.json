@@ -1,0 +1,30 @@
+{
+    "name": "Traidnt-UP",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "Traidnt UP",
+    "website": "http://www.traidnt.net",
+    "matches": [
+        {
+            "text": "<!-- # START HEDARE -->"
+        },
+        {
+            "text": "<font color='#000080'><a href='http://traidnt.net' target='_blank'>"
+        },
+        {
+            "text": "\t\t\t<span style='text-decoration: none'><font color='#000000'>Traidnt&nbsp;UP</font></span></a></font></span></b>"
+        },
+        {
+            "regexp": "(?-mix:<p align='center' dir='ltr'>Powered by Traidnt UP Version ([\\d\\.]+)<\\/p>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<div class=\"footer\">Powered by <a href=\"http:\\/\\/traidnt.net\" target=\"_blank\">TRAIDNT UP<\\/a> Version ([\\d\\.]+)[\\s]*<\\/div>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:\t\t\t<span style='text-decoration: none'><font color='#000000'>Traidnt&nbsp;UP<\\/font><\\/span><\\/a><\\/font><\\/span><\\/b>[\\r\\n]{2}\t\t\tVersion ([\\d\\.]+)<\\/p>)",
+            "offset": 1
+        }
+    ]
+}

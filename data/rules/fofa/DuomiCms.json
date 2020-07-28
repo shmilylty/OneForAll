@@ -1,0 +1,15 @@
+{
+    "name": "DuomiCms",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "DuomiCms"
+        },
+        {
+            "search": "title",
+            "regexp": "Power by DuomiCms"
+        }
+    ]
+}

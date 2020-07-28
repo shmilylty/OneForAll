@@ -1,0 +1,11 @@
+{
+    "name": "Backbone.js",
+    "website": "http://backbonejs.org",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "backbone.*\\.js"
+        }
+    ],
+    "implies": "Underscore.js"
+}

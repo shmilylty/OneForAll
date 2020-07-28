@@ -1,0 +1,16 @@
+{
+    "name": "PHP-Pro-Bid",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "PHP Pro Bid - Auction software",
+    "website": "http://www.phpprobid.com/",
+    "matches": [
+        {
+            "regexp": "(?-mix:            <div class=\"version\">Current Version:[\\r\\n]+               ([\\d\\.]{1,5})            <\\/div>[\\r\\n]+)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<td colspan=\"2\" bgcolor=\"#[^\"]{3,6}\" style=\"color: #ffffff; font-weight: bold;\">PLEASE LOGIN TO THE ADMIN AREA<\\/td>)"
+        }
+    ]
+}

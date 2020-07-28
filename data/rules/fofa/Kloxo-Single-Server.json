@@ -1,0 +1,19 @@
+{
+    "name": "Kloxo-Single-Server",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "src=\"/img/hypervm-logo.gif"
+        },
+        {
+            "search": "body",
+            "text": "/htmllib/js/preop.js"
+        },
+        {
+            "search": "title",
+            "regexp": "HyperVM"
+        }
+    ]
+}

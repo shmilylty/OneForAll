@@ -1,0 +1,10 @@
+{
+    "name": "ProjectPoi",
+    "website": "https://ppoi.org/",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "^(?:https):?//ppoi\\.org/lib/"
+        }
+    ]
+}

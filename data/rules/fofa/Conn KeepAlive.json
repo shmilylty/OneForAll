@@ -1,0 +1,11 @@
+{
+    "name": "Conn KeepAlive",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "Connection: keep-alive"
+        }
+    ]
+}

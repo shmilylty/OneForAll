@@ -1,0 +1,11 @@
+{
+    "name": "\u5317\u521b\u56fe\u4e66\u68c0\u7d22\u7cfb\u7edf",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "opac_two"
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+{
+    "name": "\u5929\u878d\u4fe1\u5165\u4fb5\u68c0\u6d4b\u7cfb\u7edfTopSentry",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "\u5929\u878d\u4fe1\u5165\u4fb5\u68c0\u6d4b\u7cfb\u7edfTopSentry"
+        }
+    ]
+}

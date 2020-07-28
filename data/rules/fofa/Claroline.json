@@ -1,0 +1,15 @@
+{
+    "name": "Claroline",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "target=\"_blank\">Claroline</a>"
+        },
+        {
+            "search": "body",
+            "text": "http://www.claroline.net\" rel=\"Copyright"
+        }
+    ]
+}

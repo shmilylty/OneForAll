@@ -1,0 +1,11 @@
+{
+    "name": "Cisco-VPN-3000-Concentrator",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "Cisco Systems, Inc. VPN 3000 Concentrator"
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+{
+    "name": "pinoox",
+    "website": "https://pinoox.com",
+    "matches": [
+        {
+            "search": "cookies[pinoox_session]",
+            "regexp": ".*"
+        }
+    ],
+    "implies": "PHP"
+}

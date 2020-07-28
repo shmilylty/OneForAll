@@ -1,0 +1,13 @@
+{
+    "name": "Awesomplete",
+    "website": "https://leaverou.github.io/awesomplete/",
+    "matches": [
+        {
+            "regexp": "<link[^>]+href=\"[^>]*awesomplete(?:\\.min)?\\.css"
+        },
+        {
+            "search": "script",
+            "regexp": "/awesomplete\\.js(?:$|\\?)"
+        }
+    ]
+}

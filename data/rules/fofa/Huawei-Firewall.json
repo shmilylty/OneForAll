@@ -1,0 +1,15 @@
+{
+    "name": "Huawei-Firewall",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "Eudemon Server"
+        },
+        {
+            "search": "body",
+            "text": "Modify by wangxiangguang"
+        }
+    ]
+}

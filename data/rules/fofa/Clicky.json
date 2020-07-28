@@ -1,0 +1,11 @@
+{
+    "name": "Clicky",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "<script src=\"//static.getclicky.com/js"
+        }
+    ]
+}

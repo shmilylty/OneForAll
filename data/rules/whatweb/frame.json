@@ -1,0 +1,12 @@
+{
+    "name": "Frame",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "This plugin detects instances of frame and iframe HTML elements.",
+    "website": null,
+    "matches": [
+        {
+            "regexp": "(?i-mx:<i?frame\\s+)"
+        }
+    ]
+}

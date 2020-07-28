@@ -1,0 +1,15 @@
+{
+    "name": "Hughes-Satellite-Router",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "<frame src=/fs/dynaform/dw_logo.html"
+        },
+        {
+            "search": "headers",
+            "text": "HUGHES Terminal"
+        }
+    ]
+}

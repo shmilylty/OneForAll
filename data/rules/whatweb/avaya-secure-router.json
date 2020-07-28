@@ -1,0 +1,28 @@
+{
+    "name": "Avaya-Secure-Router",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Avaya Secure Router - Hompage: http://www.avaya.com/usa/products/category--branch-routers",
+    "website": null,
+    "matches": [
+        {
+            "certainty": 25,
+            "regexp": "(?-mix:<td class=\"headtext\" nowrap>Router Model: (<font size=2>)?<b>([^\\s^<]+)[\\s]*(&nbsp;)?<\\/b><\\/)"
+        },
+        {
+            "text": "<td class=\"greytitle\" nowrap><b>About Avaya Secure Router</b></td>"
+        },
+        {
+            "certainty": 25,
+            "text": "<td class=\"headtext\" nowrap><font class=\"yellowbullet\">&#149;</font> <a href=\"javascript:telnetToBox();\">Telnet</a></td>"
+        },
+        {
+            "text": "<font color=\"white\" style=\"font-size:30px;\"><span id=\"guiname\">Avaya Secure Router</span></font>"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Avaya Http Server v([^\\s]+)$)",
+            "offset": 1
+        }
+    ]
+}

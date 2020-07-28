@@ -1,0 +1,17 @@
+{
+    "name": "ECShop",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Ecshop is an Open Source Ecommerce Platform",
+    "website": "http://www.ecshop.org/",
+    "matches": [
+        {
+            "certainty": 25,
+            "regexp": "(?-mix:<title>[^<]+ - Powered by ECShop<\\/title>)"
+        },
+        {
+            "regexp": "(?-mix:<meta name=\"Generator\" content=\"ECSHOP v([\\d\\.]+)\" \\/>)",
+            "offset": 1
+        }
+    ]
+}

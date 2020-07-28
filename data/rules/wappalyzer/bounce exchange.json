@@ -1,0 +1,10 @@
+{
+    "name": "Bounce Exchange",
+    "website": "http://www.bounceexchange.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "^https?://tag\\.bounceexchange\\.com/"
+        }
+    ]
+}

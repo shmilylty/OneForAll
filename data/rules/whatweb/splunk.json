@@ -1,0 +1,34 @@
+{
+    "name": "Splunk",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Splunk indexes and makes searchable data from any app, server or network device in real time including logs, config files, messages, alerts, scripts and metrics.",
+    "website": "http://www.splunk.com",
+    "matches": [
+        {
+            "regexp": "(?-mix:<p class=\"footer\">&copy; 2005-20[\\d]{2} Splunk Inc\\. Splunk ([^<]+)\\.<\\/p>)",
+            "offset": 1
+        },
+        {
+            "text": "<p><span>First time logging in?</span> Splunk's default credentials are </p><p>username: <span>admin</span><br />password: <span>changeme</span></p><p>If you've forgotten your username or password, please contact your Splunk administrator.</p>"
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:session_id_8000=[a-f\\d]{32};)"
+        },
+        {
+            "certainty": 75,
+            "text": "<meta name=\"author\" content=\"Splunk Inc.\" />"
+        },
+        {
+            "url": "/en-US/favicon.ico",
+            "md5": "f7728520c81b7a303d8e54d282e13a16"
+        },
+        {
+            "regexp": "(?-mix:var CONFIG = \\{\"licenseType\": \"[^\\\"]+\", \"os_name\": \"[^\"]+\", \"locale\":[^\\}]+\"installType\": \"([^\"]+)\")"
+        },
+        {
+            "regexp": "(?-mix:var CONFIG = \\{\"licenseType\": \"[^\\\"]+\", \"os_name\": \"([^\"]+)\", \"locale\":)"
+        }
+    ]
+}

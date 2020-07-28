@@ -1,0 +1,11 @@
+{
+    "name": "iCongo",
+    "website": "http://hybris.com/icongo",
+    "matches": [
+        {
+            "search": "meta[iCongo]",
+            "regexp": ".*"
+        }
+    ],
+    "implies": "Adobe ColdFusion"
+}

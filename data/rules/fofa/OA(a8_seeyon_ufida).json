@@ -1,0 +1,11 @@
+{
+    "name": "OA(a8/seeyon/ufida)",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "/seeyon/USER-DATA/IMAGES/LOGIN/login.gif"
+        }
+    ]
+}

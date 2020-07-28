@@ -1,0 +1,11 @@
+{
+    "name": "NETGEAR DGN2200MB",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "NETGEAR DGN2200MB"
+        }
+    ]
+}

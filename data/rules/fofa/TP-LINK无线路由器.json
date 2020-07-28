@@ -1,0 +1,11 @@
+{
+    "name": "TP-LINK\u65e0\u7ebf\u8def\u7531\u5668",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "TP-LINK Wireless"
+        }
+    ]
+}

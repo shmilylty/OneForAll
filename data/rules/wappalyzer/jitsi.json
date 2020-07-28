@@ -1,0 +1,10 @@
+{
+    "name": "Jitsi",
+    "website": "https://jitsi.org",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "lib-jitsi-meet.*\\.js"
+        }
+    ]
+}

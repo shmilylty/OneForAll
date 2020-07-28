@@ -1,0 +1,16 @@
+{
+    "name": "CISCO_EPC3925",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "Docsis_system"
+        },
+        {
+            "search": "body",
+            "text": "EPC3925"
+        }
+    ],
+    "condition": "0 and 1"
+}

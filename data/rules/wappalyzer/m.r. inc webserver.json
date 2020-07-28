@@ -1,0 +1,13 @@
+{
+    "name": "M.R. Inc Webserver",
+    "website": "http://mrincworld.com",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "M\\.R\\. Inc Webserver"
+        }
+    ],
+    "implies": [
+        "M.R. Inc BoxyOS"
+    ]
+}

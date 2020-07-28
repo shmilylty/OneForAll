@@ -1,0 +1,32 @@
+{
+    "name": "Hughes-Satellite-Router",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Hughes IPoS (IP over Satellite) router",
+    "website": "http://www.hughes.com/ProductsAndTechnology/BroadbandSatelliteSystems/Pages/default.aspx",
+    "matches": [
+        {
+            "text": "<frame src=/fs/dynaform/dw_logo.html scrolling=no marginheight=0 marginwidth=0 NORESIZE>"
+        },
+        {
+            "regexp": "(?-mix:<title>([A-Z]{0,2}[\\d]{1,5}[A-Z]?) System Control Center<\\/title>)"
+        },
+        {
+            "url": "/fs/dynaform/welcome.html",
+            "regexp": "(?-mix:<ctrlCenter style=\"font-size: 14pt; color: #000000; font-weight: bold\">([^\\s]+) <\\/ctrlCenter>)"
+        },
+        {
+            "url": "/sys_info/",
+            "regexp": "(?-mix:<\\/td><\\/tr><tr><td><div class=text>Software Release:<\\/td><td><div class=text>([^<^\\s]+)<\\/td><\\/tr>)",
+            "offset": 1
+        },
+        {
+            "url": "/sys_info/",
+            "regexp": "(?-mix:<\\/td><\\/tr><tr><td><div class=text>LAN[\\d]{1,2} MAC Address:<\\/td><td><div class=text>([A-F\\d:]{17})<\\/td><\\/tr>)"
+        },
+        {
+            "search": "headers[www-authenticate]",
+            "regexp": "(?-mix:^Basic realm=\"HUGHES Terminal\"$)"
+        }
+    ]
+}

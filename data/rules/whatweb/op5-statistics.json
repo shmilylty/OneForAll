@@ -1,0 +1,15 @@
+{
+    "name": "Op5-Statistics",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Op5 Statistics",
+    "website": "http://op5.com/",
+    "matches": [
+        {
+            "text": "<td colspan=\"2\"><center><img src=\"/statistics/plugins/op5gui/op5_statistics.gif\" border=\"0\" alt=\"\"></center></td>"
+        },
+        {
+            "text": "<title>Login to op5 Statistics</title>"
+        }
+    ]
+}

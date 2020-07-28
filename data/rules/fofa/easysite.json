@@ -1,0 +1,23 @@
+{
+    "name": "easysite",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "GENERATOR\" content=\"EasySite"
+        },
+        {
+            "search": "body",
+            "text": "Copyright 2009 by Huilan"
+        },
+        {
+            "search": "body",
+            "text": "_DesktopModules_PictureNews"
+        },
+        {
+            "search": "headers",
+            "text": "EasySite-Compression"
+        }
+    ]
+}

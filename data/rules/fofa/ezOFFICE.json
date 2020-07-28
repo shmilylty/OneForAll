@@ -1,0 +1,27 @@
+{
+    "name": "ezOFFICE",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "Wanhu ezOFFICE"
+        },
+        {
+            "search": "body",
+            "text": "EZOFFICEUSERNAME"
+        },
+        {
+            "search": "title",
+            "regexp": "\u4e07\u6237OA"
+        },
+        {
+            "search": "body",
+            "text": "whirRootPath"
+        },
+        {
+            "search": "body",
+            "text": "/defaultroot/js/cookie.js"
+        }
+    ]
+}

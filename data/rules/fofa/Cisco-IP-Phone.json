@@ -1,0 +1,11 @@
+{
+    "name": "Cisco-IP-Phone",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "Cisco Unified Wireless IP Phone"
+        }
+    ]
+}

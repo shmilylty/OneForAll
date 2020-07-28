@@ -1,0 +1,19 @@
+{
+    "name": "javashop",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "\u6613\u65cf\u667a\u6c47javashop"
+        },
+        {
+            "search": "body",
+            "text": "javashop\u5fae\u4fe1\u516c\u4f17\u53f7"
+        },
+        {
+            "search": "body",
+            "text": "content=\"JavaShop"
+        }
+    ]
+}

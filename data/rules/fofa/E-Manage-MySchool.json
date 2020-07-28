@@ -1,0 +1,11 @@
+{
+    "name": "E-Manage-MySchool",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "E-Manage All Rights Reserved MySchool Version"
+        }
+    ]
+}

@@ -1,0 +1,16 @@
+{
+    "name": "OpenI",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "OpenI is a Business Intelligence web application for on-demand or SaaS deployments. OpenI enables simple and clean data visualization from OLAP and RDBMS, so users can intuitively build and publish interactive reports, analyses, and dashboards.",
+    "website": "http://openi.org/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<span class=\"big-title\">Openi ([^\\s^<]+)<\\/span><br)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<span class=\"big-title\">Openi-(Jasper)<\\/span><br)"
+        }
+    ]
+}

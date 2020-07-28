@@ -1,0 +1,12 @@
+{
+    "name": "Echo",
+    "author": "Andrew Horton",
+    "version": "0.2",
+    "description": "CMS",
+    "website": "http://www.helloecho.com/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<a href=\"http:\\/\\/www\\.helloecho\\.com\\/go\\/\\?[^\"]*\" target=\"_blank\">powered by echo<\\/a>)"
+        }
+    ]
+}

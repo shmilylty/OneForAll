@@ -1,0 +1,63 @@
+{
+    "name": "WordPress",
+    "author": "Andrew Horton, @SlivTaMere, @anoroozian, @ajgon",
+    "version": "0.9",
+    "description": "WordPress is an opensource blogging system commonly used as a CMS.",
+    "website": "http://www.wordpress.org/",
+    "matches": [
+        {
+            "text": "<meta name=\"generator\" content=\"WordPress.com\" />"
+        },
+        {
+            "text": "<a href=\"http://www.wordpress.com\">Powered by WordPress</a>",
+            "name": "powered by link"
+        },
+        {
+            "text": "<link rel='https://api.w.org/'",
+            "name": "REST API link"
+        },
+        {
+            "regexp": "(?-mix:\"[^\"]+\\/wp-content\\/[^\"]+\")",
+            "name": "wp-content",
+            "certainty": 75
+        },
+        {
+            "regexp": "(?-mix:<meta name=\"generator\" content=\"WordPress ([0-9\\.]+)\")",
+            "offset": 1
+        },
+        {
+            "url": "/wp-cron.php"
+        },
+        {
+            "url": "/wp-login.php",
+            "text": "<a title=\"Powered by WordPress\" href=\"http://wordpress.org/\">"
+        },
+        {
+            "url": "/wp-login.php",
+            "text": "<a href=\"http://wordpress.org/\" title=\"Powered by WordPress\">",
+            "name": "wp3 login page"
+        },
+        {
+            "url": "/wp-login.php",
+            "text": "action=lostpassword"
+        },
+        {
+            "url": "/wp-login.php",
+            "tagpattern": "!doctype,html,head,title,/title,meta,link,link,script,/script,meta,/head,body,div,h1,a,/a,/h1,form,p,label,br,input,/label,/p,p,label,br,input,/label,/p,p,label,input,/label,/p,p,input,input,input,/p,/form,p,a,/a,/p,p,a,/a,/p,/div,script,/script,/body,/html"
+        },
+        {
+            "url": "favicon.ico",
+            "md5": "f420dc2c7d90d7873a90d82cd7fde315"
+        },
+        {
+            "url": "favicon.ico",
+            "md5": "fa54dbf2f61bd2e0188e47f5f578f736",
+            "name": "WordPress.com favicon"
+        },
+        {
+            "url": "/readme.html",
+            "regexp": "(?m-ix:<h1.*WordPress.*Version ([0-9a-z\\.]+).*<\\/h1>)",
+            "offset": 1
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+{
+    "name": "MiniServ",
+    "website": "http://sourceforge.net/projects/miniserv",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "MiniServ\\/?([\\d\\.]+)?",
+            "offset": 1
+        }
+    ]
+}

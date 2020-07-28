@@ -1,0 +1,11 @@
+{
+    "name": "NETGEAR JR6150",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "NETGEAR JR6150"
+        }
+    ]
+}

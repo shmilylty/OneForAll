@@ -1,0 +1,11 @@
+{
+    "name": "HERE",
+    "website": "http://developer.here.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "https?://js\\.cit\\.api\\.here\\.com/se/([\\d.]+)\\/",
+            "offset": 1
+        }
+    ]
+}

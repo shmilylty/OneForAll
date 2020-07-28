@@ -1,0 +1,11 @@
+{
+    "name": "IBM Tivoli Storage Manager",
+    "website": "http://ibm.com",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "TSM_HTTP(?:/([\\d.]+))?",
+            "offset": 1
+        }
+    ]
+}

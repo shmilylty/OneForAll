@@ -1,0 +1,20 @@
+{
+    "name": "Shopify",
+    "website": "http://shopify.com",
+    "matches": [
+        {
+            "search": "headers[x-shopid]",
+            "regexp": ".*",
+            "certainty": 50
+        },
+        {
+            "search": "headers[x-shopify-stage]",
+            "regexp": ".*",
+            "certainty": 50
+        },
+        {
+            "regexp": "<link[^>]+=['\"]//cdn\\.shopify\\.com",
+            "certainty": 25
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    "name": "BlueQuartz",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "VALUE=\"Copyright (C) 2000, Cobalt Networks"
+        },
+        {
+            "search": "title",
+            "regexp": "Login - BlueQuartz"
+        }
+    ]
+}

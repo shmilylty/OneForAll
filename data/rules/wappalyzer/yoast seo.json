@@ -1,0 +1,11 @@
+{
+    "name": "Yoast SEO",
+    "website": "http://yoast.com",
+    "matches": [
+        {
+            "regexp": "<!-- This site is optimized with the Yoast (?:WordPress )?SEO plugin v([\\d.]+) -",
+            "offset": 1
+        }
+    ],
+    "implies": "WordPress"
+}

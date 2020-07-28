@@ -1,0 +1,20 @@
+{
+    "name": "phpliteadmin",
+    "website": "https://www.phpliteadmin.org/",
+    "matches": [
+        {
+            "regexp": "<span id='logo'>phpLiteAdmin</span> <span id='version'>v([0-9.]+)<",
+            "offset": 1
+        },
+        {
+            "regexp": "<!-- Copyright [0-9]+ phpLiteAdmin (?:https?://www\\.phpliteadmin\\.org/) -->"
+        },
+        {
+            "regexp": "Powered by <a href='https?://www\\.phpliteadmin\\.org/'"
+        }
+    ],
+    "implies": [
+        "PHP",
+        "SQLite"
+    ]
+}

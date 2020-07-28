@@ -1,0 +1,10 @@
+{
+    "name": "shoperfa",
+    "website": "https://shoperfa.com",
+    "matches": [
+        {
+            "search": "headers[x-powered-by]",
+            "regexp": "^Shoperfa$"
+        }
+    ]
+}

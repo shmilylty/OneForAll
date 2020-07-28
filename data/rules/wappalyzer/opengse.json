@@ -1,0 +1,11 @@
+{
+    "name": "OpenGSE",
+    "website": "http://code.google.com/p/opengse",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "GSE"
+        }
+    ],
+    "implies": "Java"
+}

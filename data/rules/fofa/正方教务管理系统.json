@@ -1,0 +1,11 @@
+{
+    "name": "\u6b63\u65b9\u6559\u52a1\u7ba1\u7406\u7cfb\u7edf",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "style/base/jw.css"
+        }
+    ]
+}

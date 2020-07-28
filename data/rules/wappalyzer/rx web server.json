@@ -1,0 +1,10 @@
+{
+    "name": "RX Web Server",
+    "website": "http://developers.rokitax.co.uk/projects/rxweb",
+    "matches": [
+        {
+            "search": "headers[x-powered-by]",
+            "regexp": "RX-WEB"
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+{
+    "name": "\u8fc8\u6377\u90ae\u4ef6\u7cfb\u7edf(MagicMail)",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "/aboutus/magicmail.gif"
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "name": "Pinterest",
+    "website": "http://pinterest.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "//assets\\.pinterest\\.com/js/pinit\\.js"
+        }
+    ]
+}

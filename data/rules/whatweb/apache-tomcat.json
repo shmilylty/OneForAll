@@ -1,0 +1,42 @@
+{
+    "name": "Apache-Tomcat",
+    "author": "Louis Nyffenegger, Andrew Horton, Code0x58",
+    "version": "0.5",
+    "description": "Apache Tomcat Web Server",
+    "website": "http://tomcat.apache.org/",
+    "matches": [
+        {
+            "name": "tomcat in title",
+            "regexp": "(?-mix:<title>Apache Tomcat<\\/title>)"
+        },
+        {
+            "name": "catalina home",
+            "regexp": "(?-mix:CATALINA_HOME\\/webapps\\/ROOT\\/index\\.html)"
+        },
+        {
+            "name": "/RELEASE-NOTES.txt",
+            "url": "/RELEASE-NOTES.txt",
+            "regexp": "(?-mix:Apache Tomcat Version ([0-9\\.]+))",
+            "offset": 1
+        },
+        {
+            "name": "/RELEASE-NOTES.txt",
+            "url": "/RELEASE-NOTES.txt",
+            "regexp": "(?-mix:(\\$Id: RELEASE-NOTES[^\\$]+))"
+        },
+        {
+            "name": "Java Stack Trace Error",
+            "regexp": "(?-mix:org\\.apache\\.tomcat\\..*java\\.lang\\.Thread\\.run)"
+        },
+        {
+            "name": "Tomcat admin /manager/status",
+            "url": "/manager/status",
+            "text": "tomcat"
+        },
+        {
+            "name": "Footer",
+            "regexp": "(?-mix:Apache Tomcat\\/([0-9\\.]+)<\\/h3><\\/body><\\/html>)",
+            "offset": 1
+        }
+    ]
+}

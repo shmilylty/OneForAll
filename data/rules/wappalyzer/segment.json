@@ -1,0 +1,10 @@
+{
+    "name": "Segment",
+    "website": "https://segment.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "cdn\\.segment\\.com/analytics\\.js"
+        }
+    ]
+}

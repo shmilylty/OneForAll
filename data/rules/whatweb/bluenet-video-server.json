@@ -1,0 +1,16 @@
+{
+    "name": "BlueNet-Video-Server",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "BlueNet Video Server - video camera web interface",
+    "website": null,
+    "matches": [
+        {
+            "text": "window.location.href='/cgi-bin/client_execute.cgi?tUD=0';"
+        },
+        {
+            "regexp": "(?-mix:<title>BlueNet Video Viewer Version ([\\d\\.a-z]+)<\\/title>)",
+            "offset": 1
+        }
+    ]
+}

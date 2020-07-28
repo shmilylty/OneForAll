@@ -1,0 +1,19 @@
+{
+    "name": "ActiveHTML",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "seliSoft ActiveHTML provides Active-Server-Pages (ASP) to nearly every web server supporting CGI.",
+    "website": "http://www.selisoft.com/en/ahtml/",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:ActiveHTML\\/([^\\s]+))",
+            "offset": 1
+        },
+        {
+            "search": "headers[x-powered-by]",
+            "regexp": "(?-mix:seliSoft ActiveHTML\\/([^\\s]+))",
+            "offset": 1
+        }
+    ]
+}

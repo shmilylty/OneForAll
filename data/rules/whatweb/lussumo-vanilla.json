@@ -1,0 +1,19 @@
+{
+    "name": "Lussumo-Vanilla",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "A free, open-source, standards-compliant discussion forum for the web. ",
+    "website": "http://code.google.com/p/lussumo-vanilla/",
+    "matches": [
+        {
+            "search": "headers[x-powered-by]",
+            "regexp": "(?-mix:Lussumo Vanilla)",
+            "offset": 1
+        },
+        {
+            "search": "headers[x-powered-by]",
+            "regexp": "(?-mix:Lussumo Vanilla ([^\\s]+))",
+            "offset": 1
+        }
+    ]
+}

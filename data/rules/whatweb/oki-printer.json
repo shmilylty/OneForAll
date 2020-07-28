@@ -1,0 +1,18 @@
+{
+    "name": "OKI-Printer",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "OKI printer",
+    "website": "http://www.okiprintingsolutions.com/",
+    "matches": [
+        {
+            "regexp": "(?-mix:^OKIDATA-HTTPD)",
+            "search": "headers[server]"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^OKIDATA-HTTPD\\/([^\\s]+)$)",
+            "offset": 1
+        }
+    ]
+}

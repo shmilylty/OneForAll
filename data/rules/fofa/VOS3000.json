@@ -1,0 +1,23 @@
+{
+    "name": "VOS3000",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "VOS3000"
+        },
+        {
+            "search": "body",
+            "text": "<meta name=\"keywords\" content=\"VOS3000"
+        },
+        {
+            "search": "body",
+            "text": "<meta name=\"description\" content=\"VOS3000"
+        },
+        {
+            "search": "body",
+            "text": "images/vos3000.ico"
+        }
+    ]
+}

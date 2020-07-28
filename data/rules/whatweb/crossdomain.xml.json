@@ -1,0 +1,24 @@
+{
+    "name": "crossdomain_xml",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "This plugin extracts allowed domain from crossdomain.xml",
+    "website": null,
+    "matches": [
+        {
+            "text": "<cross-domain-policy>",
+            "url": "crossdomain.xml"
+        },
+        {
+            "text": "<site-control permitted-cross-domain-policies=\"none\"/>",
+            "string": "none",
+            "module": "Permit",
+            "url": "crossdomain.xml"
+        },
+        {
+            "module": "Allow",
+            "url": "crossdomain.xml",
+            "regexp": "(?-mix:<allow-access-from domain=\"([^\"]+)\")"
+        }
+    ]
+}

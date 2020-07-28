@@ -1,0 +1,11 @@
+{
+    "name": "360\u4e3b\u673a\u536b\u58eb",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "X-Safe-Firewall"
+        }
+    ]
+}

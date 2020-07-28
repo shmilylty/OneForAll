@@ -1,0 +1,11 @@
+{
+    "name": "Juniper-NetScreen-Secure-Access",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "/dana-na/auth/welcome.cgi"
+        }
+    ]
+}

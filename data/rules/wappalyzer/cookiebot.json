@@ -1,0 +1,10 @@
+{
+    "name": "Cookiebot",
+    "website": "http://www.cookiebot.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "consent\\.cookiebot\\.com"
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    "name": "AlumniServer",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "AlumniServerProject.php"
+        },
+        {
+            "search": "body",
+            "text": "content=\"Alumni"
+        }
+    ]
+}

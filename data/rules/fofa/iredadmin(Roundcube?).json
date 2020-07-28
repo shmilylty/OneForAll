@@ -1,0 +1,15 @@
+{
+    "name": "iredadmin(Roundcube?)",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "iredadmin"
+        },
+        {
+            "search": "body",
+            "text": "iredadmin"
+        }
+    ]
+}

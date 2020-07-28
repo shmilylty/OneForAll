@@ -1,0 +1,11 @@
+{
+    "name": "LINKSYS-E3000",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "LINKSYS-E3000"
+        }
+    ]
+}

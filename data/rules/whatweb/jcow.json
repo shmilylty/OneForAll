@@ -1,0 +1,29 @@
+{
+    "name": "Jcow",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Jcow - social networking",
+    "website": "http://www.jcow.net/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<meta name=\"Generator\" content=\"Jcow Social Networking Software\\. ([\\d\\.]+)\" \\/>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:Powered by <a href=\"http:\\/\\/www\\.jcow\\.net\" title=\"Social Networking Software, Community Software\" target=\"_blank\"><strong>Jcow<\\/strong> ([\\d\\.]+)<\\/a>)",
+            "offset": 1
+        },
+        {
+            "text": "<meta name=\"Generator\" content=\"Powered by Jcow\" />"
+        },
+        {
+            "text": "<!-- do NOT remove the Jcow Attribution Information -->"
+        },
+        {
+            "text": "<!-- jcow branding -->"
+        },
+        {
+            "text": "<!-- end jcow_application_box -->"
+        }
+    ]
+}

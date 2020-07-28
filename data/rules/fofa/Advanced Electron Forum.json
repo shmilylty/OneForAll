@@ -1,0 +1,19 @@
+{
+    "name": "Advanced Electron Forum",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "Powered By AEF"
+        },
+        {
+            "search": "headers",
+            "text": "aefsid"
+        },
+        {
+            "search": "body",
+            "text": "content=\"aef"
+        }
+    ]
+}

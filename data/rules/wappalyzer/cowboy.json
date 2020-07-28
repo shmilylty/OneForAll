@@ -1,0 +1,10 @@
+{
+    "name": "Cowboy",
+    "website": "http://ninenines.eu",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "^Cowboy$"
+        }
+    ]
+}

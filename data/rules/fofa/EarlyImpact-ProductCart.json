@@ -1,0 +1,11 @@
+{
+    "name": "EarlyImpact-ProductCart",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "fpassword.asp?redirectUrl=&frURL=Custva.asp"
+        }
+    ]
+}

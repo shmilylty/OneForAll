@@ -1,0 +1,15 @@
+{
+    "name": "W3 Total Cache",
+    "website": "http://www.w3-edge.com/wordpress-plugins/w3-total-cache",
+    "matches": [
+        {
+            "search": "headers[x-powered-by]",
+            "regexp": "W3 Total Cache(?:/([\\d.]+))?",
+            "offset": 1
+        },
+        {
+            "regexp": "<!--[^>]+W3 Total Cache"
+        }
+    ],
+    "implies": "WordPress"
+}

@@ -1,0 +1,10 @@
+{
+    "name": "Loja Integrada",
+    "website": "https://lojaintegrada.com.br/",
+    "matches": [
+        {
+            "search": "headers[x-powered-by]",
+            "regexp": "vtex-integrated-store"
+        }
+    ]
+}

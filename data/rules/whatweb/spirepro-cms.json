@@ -1,0 +1,30 @@
+{
+    "name": "SpirePRO-CMS",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "Custom CMS from Boston web design and hosting company 1stOmni - http://www.1stomni.com/",
+    "website": null,
+    "matches": [
+        {
+            "text": "<script xmlns:a=\"http://www.1stomni.com/spire/aml\" type=\"text/javascript\""
+        },
+        {
+            "text": "<meta name=\"Spire-Last-Modified\" content=\""
+        },
+        {
+            "regexp": "(?-mix:<meta name=\"Spire-Editor\" content=\"([^\"]+)\">)"
+        },
+        {
+            "search": "headers[x-generator]",
+            "regexp": "(?-mix:^SpirePRO CMS v([\\d\\.]+ \\(Microkernel v[\\d]+; CMS Server v[\\d]+\\)) )"
+        },
+        {
+            "search": "headers[generator]",
+            "regexp": "(?-mix:^SpirePRO CMS v([\\d\\.]+ \\(Microkernel v[\\d]+; CMS Server v[\\d]+\\)) )"
+        },
+        {
+            "regexp": "(?-mix:^SpirePRO CMS)",
+            "search": "headers"
+        }
+    ]
+}

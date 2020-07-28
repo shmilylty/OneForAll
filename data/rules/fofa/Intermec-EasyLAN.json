@@ -1,0 +1,15 @@
+{
+    "name": "Intermec-EasyLAN",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "XCD WebAdmin"
+        },
+        {
+            "search": "body",
+            "text": "COLOR=\"BLACK\" SIZE=\"5\">Intermec EasyLAN"
+        }
+    ]
+}

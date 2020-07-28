@@ -1,0 +1,9 @@
+{
+    "name": "Arc Publishing",
+    "website": "https://www.arcpublishing.com/",
+    "matches": [
+        {
+            "regexp": "<div [^>]*id=\"pb-root\""
+        }
+    ]
+}

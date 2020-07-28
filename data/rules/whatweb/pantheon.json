@@ -1,0 +1,17 @@
+{
+    "name": "Pantheon",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Pantheon",
+    "website": "https://www.getpantheon.com/",
+    "matches": [
+        {
+            "search": "headers[x-pantheon-edge-server]",
+            "regexp": "(?-mix:^(.*)$)"
+        },
+        {
+            "search": "headers",
+            "regexp": "(?-mix:HTTP\\/1\\.[01] 404 Unknown site\\!)"
+        }
+    ]
+}

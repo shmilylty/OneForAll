@@ -1,0 +1,23 @@
+{
+    "name": "d3",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "/d3.min.js"
+        },
+        {
+            "search": "body",
+            "text": "/d3.v2.min.js"
+        },
+        {
+            "search": "body",
+            "text": "/d3.js"
+        },
+        {
+            "search": "body",
+            "text": "/d3.v2.js"
+        }
+    ]
+}

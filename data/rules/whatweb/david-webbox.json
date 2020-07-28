@@ -1,0 +1,14 @@
+{
+    "name": "David-WebBox",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "David WebBox is a remote data storage center.",
+    "website": "http://www.tobit.com/davidfx/access/",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^David-WebBox\\/([^\\s]+ \\([^\\)]+\\))$)",
+            "offset": 1
+        }
+    ]
+}

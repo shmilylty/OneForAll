@@ -1,0 +1,11 @@
+{
+    "name": "\u91d1\u5c71KingGate",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "/src/system/login.php"
+        }
+    ]
+}

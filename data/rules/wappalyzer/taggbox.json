@@ -1,0 +1,10 @@
+{
+    "name": "Taggbox",
+    "website": "https://taggbox.com/",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "web\\.taggbox\\.com"
+        }
+    ]
+}

@@ -1,0 +1,20 @@
+{
+    "name": "Salesforce Commerce Cloud",
+    "website": "http://demandware.com",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "Demandware eCommerce Server"
+        },
+        {
+            "regexp": "<[^>]+demandware\\.edgesuite"
+        },
+        {
+            "regexp": "/demandware\\.static/"
+        },
+        {
+            "search": "script",
+            "regexp": "/demandware\\.static/"
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+{
+    "name": "TP-LINK 3G MR12U",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "TP-LINK 3G MR12U"
+        }
+    ]
+}

@@ -1,0 +1,26 @@
+{
+    "name": "ViewVC",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.3",
+    "description": "ViewVC (formerly known as ViewCVS) is a browser interface for CVS and Subversion version control repositories. It generates templatized HTML to present navigable directory, revision, and change log listings. It can display specific versions of files as well as diffs between those versions.",
+    "website": "http://viewvc.org/",
+    "matches": [
+        {
+            "text": "<title>ViewVC Repository Listing</title>"
+        },
+        {
+            "text": "<!-- ViewVC :: http://www.viewvc.org/ -->"
+        },
+        {
+            "text": "<!-- ViewCVS -- http://viewcvs.sourceforge.net/"
+        },
+        {
+            "offset": 2,
+            "regexp": "(?-mix:Powered by <a href=\"http:\\/\\/(viewcvs.sourceforge.net|viewvc.tigris.org)\\/\">(ViewCVS|ViewVC) ([^<]+)<\\/a><\\/td>)"
+        },
+        {
+            "offset": 1,
+            "regexp": "(?-mix:<meta name=\"generator\" content=\"View(VC|CVS) ([^\"]+)\")"
+        }
+    ]
+}

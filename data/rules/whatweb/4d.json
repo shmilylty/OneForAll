@@ -1,0 +1,14 @@
+{
+    "name": "4D",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "4D web application deployment server",
+    "website": "http://www.4d.com/products.html",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "offset": 1,
+            "regexp": "(?-mix:^4D_v[\\d]{1,2}(_SQL)?\\/([\\d\\.]+)$)"
+        }
+    ]
+}

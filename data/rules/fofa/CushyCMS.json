@@ -1,0 +1,15 @@
+{
+    "name": "CushyCMS",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "_cushy_session"
+        },
+        {
+            "search": "body",
+            "text": "Powered by CushyCMS"
+        }
+    ]
+}

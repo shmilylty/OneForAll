@@ -1,0 +1,11 @@
+{
+    "name": "LUM\u670d\u52a1\u5668\u7ba1\u7406",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "LUM_SESSION"
+        }
+    ]
+}

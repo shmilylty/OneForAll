@@ -1,0 +1,11 @@
+{
+    "name": "Linksys BEFSR81v3",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "Linksys BEFSR81v3"
+        }
+    ]
+}

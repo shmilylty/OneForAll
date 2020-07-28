@@ -1,0 +1,11 @@
+{
+    "name": "WebsiteBaker-CMS",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "wb_session_id"
+        }
+    ]
+}

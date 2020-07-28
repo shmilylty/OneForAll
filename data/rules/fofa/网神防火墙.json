@@ -1,0 +1,15 @@
+{
+    "name": "\u7f51\u795e\u9632\u706b\u5899",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "secgate 3600"
+        },
+        {
+            "search": "body",
+            "text": "css/lsec/login.css"
+        }
+    ]
+}

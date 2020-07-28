@@ -1,0 +1,11 @@
+{
+    "name": "MediaTomb",
+    "website": "http://mediatomb.cc",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "MediaTomb(?:/([\\d.]+))?",
+            "offset": 1
+        }
+    ]
+}

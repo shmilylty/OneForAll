@@ -1,0 +1,11 @@
+{
+    "name": "Adobe_RoboHelp",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "generator\" content=\"Adobe RoboHelp"
+        }
+    ]
+}

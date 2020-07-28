@@ -1,0 +1,13 @@
+{
+    "name": "Thelia",
+    "website": "http://thelia.net",
+    "matches": [
+        {
+            "regexp": "<(?:link|style|script)[^>]+/assets/frontOffice/"
+        }
+    ],
+    "implies": [
+        "PHP",
+        "Symfony"
+    ]
+}

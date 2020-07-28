@@ -1,0 +1,18 @@
+{
+    "name": "CraftCMS",
+    "author": "Bhavin Senjaliya <bhavin.senjaliya@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "Craft CMS",
+    "website": "http://craftcms.com/",
+    "matches": [
+        {
+            "text": "<a id=\"poweredby\" href=\"http://craftcms.com/\" title=\"Powered by Craft CMS\">",
+            "name": "Admin-Login-Page"
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:CraftSessionId)",
+            "name": "CraftSessionId cookie"
+        }
+    ]
+}

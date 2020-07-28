@@ -1,0 +1,15 @@
+{
+    "name": "Hotaru CMS",
+    "website": "http://hotarucms.org",
+    "matches": [
+        {
+            "search": "cookies[hotaru_mobile]",
+            "regexp": ".*"
+        },
+        {
+            "search": "meta[generator]",
+            "regexp": "Hotaru CMS"
+        }
+    ],
+    "implies": "PHP"
+}

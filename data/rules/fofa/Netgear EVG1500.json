@@ -1,0 +1,11 @@
+{
+    "name": "Netgear EVG1500",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "Netgear EVG1500"
+        }
+    ]
+}

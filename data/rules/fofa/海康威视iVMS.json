@@ -1,0 +1,16 @@
+{
+    "name": "\u6d77\u5eb7\u5a01\u89c6iVMS",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "g_szCacheTime"
+        },
+        {
+            "search": "body",
+            "text": "iVMS"
+        }
+    ],
+    "condition": "0 and 1"
+}

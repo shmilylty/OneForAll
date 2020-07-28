@@ -1,0 +1,15 @@
+{
+    "name": "Contrexx-CMS",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "powered by Contrexx"
+        },
+        {
+            "search": "body",
+            "text": "content=\"Contrexx"
+        }
+    ]
+}

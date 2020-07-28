@@ -1,0 +1,11 @@
+{
+    "name": "\u52a0\u901f\u4e50",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "__jsluid"
+        }
+    ]
+}

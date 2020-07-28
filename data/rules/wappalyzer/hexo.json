@@ -1,0 +1,14 @@
+{
+    "name": "Hexo",
+    "website": "https://hexo.io",
+    "matches": [
+        {
+            "regexp": "Powered by <a href=\"https?://hexo\\.io/?\"[^>]*>Hexo</"
+        },
+        {
+            "search": "meta[generator]",
+            "regexp": "Hexo(?: v?([\\d.]+))?",
+            "offset": 1
+        }
+    ]
+}

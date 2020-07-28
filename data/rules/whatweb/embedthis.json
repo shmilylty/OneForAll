@@ -1,0 +1,18 @@
+{
+    "name": "Embedthis-AppWeb",
+    "author": "Andrew Horton",
+    "version": "0.2",
+    "description": "Web server for embedded devices",
+    "website": "http://embedthis.com/products/appweb/embedded-web-server.html",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:Mbedthis-Appweb\\/(.*))",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:^Mbedthis-Appweb)",
+            "search": "headers[server]"
+        }
+    ]
+}

@@ -1,0 +1,12 @@
+{
+    "name": "Angular Material",
+    "website": "https://material.angularjs.org",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "/([\\d.rc-]+)?/angular-material(?:\\.min)?\\.js",
+            "offset": 1
+        }
+    ],
+    "implies": "AngularJS"
+}

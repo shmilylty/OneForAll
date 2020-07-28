@@ -1,0 +1,19 @@
+{
+    "name": "F5_BIGIP",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "BIGipServer"
+        },
+        {
+            "search": "headers",
+            "text": "X-WA-Info"
+        },
+        {
+            "search": "headers",
+            "text": "X-PvInfo"
+        }
+    ]
+}

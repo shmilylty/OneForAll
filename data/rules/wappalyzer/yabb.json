@@ -1,0 +1,9 @@
+{
+    "name": "YaBB",
+    "website": "http://www.yabbforum.com",
+    "matches": [
+        {
+            "regexp": "Powered by <a href=\"[^>]+yabbforum"
+        }
+    ]
+}

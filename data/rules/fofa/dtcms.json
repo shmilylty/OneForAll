@@ -1,0 +1,15 @@
+{
+    "name": "dtcms",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "dtcms"
+        },
+        {
+            "search": "body",
+            "text": "content=\"\u52a8\u529b\u542f\u822a,DTCMS"
+        }
+    ]
+}

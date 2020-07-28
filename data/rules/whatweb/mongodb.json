@@ -1,0 +1,25 @@
+{
+    "name": "MongoDB",
+    "author": "Steve 'Ashcrow' Milner",
+    "version": "0.1",
+    "description": "Identifies the admnistration console of MondoDB. http://www.mongodb.org/",
+    "website": null,
+    "matches": [
+        {
+            "name": "Title",
+            "certainty": 75,
+            "regexp": "(?-mix:<title>mongod [^<]+<\\/title>)"
+        },
+        {
+            "name": "Commands",
+            "certainty": 75,
+            "text": "<a href=\"/buildInfo?text=1\" title=\"get version #, etc.\n{ buildinfo:1 }\">buildInfo</a> <a href=\"/cursorInfo?text=1\" title=\" example: { cursorInfo : 1 }\">cursorInfo</a>"
+        },
+        {
+            "name": "Info",
+            "certainty": 100,
+            "regexp": "(?-mix:<pre>db version v([\\d\\.]+){1})",
+            "offset": 1
+        }
+    ]
+}

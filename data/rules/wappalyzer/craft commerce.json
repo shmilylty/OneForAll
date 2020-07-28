@@ -1,0 +1,11 @@
+{
+    "name": "Craft Commerce",
+    "website": "https://craftcommerce.com",
+    "matches": [
+        {
+            "search": "headers[x-powered-by]",
+            "regexp": "\\bCraft Commerce\\b"
+        }
+    ],
+    "implies": "Craft CMS"
+}

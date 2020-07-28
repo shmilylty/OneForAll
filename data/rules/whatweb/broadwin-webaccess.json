@@ -1,0 +1,30 @@
+{
+    "name": "BroadWin-WebAccess",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "BroadWin WebAccess is a web browser-based software package for human-machine interfaces (HMI), and supervisory control and data acquisition (SCADA).",
+    "website": "http://broadwin.com/Client.htm",
+    "matches": [
+        {
+            "url": "/favicon.ico",
+            "md5": "e852c819348eb49dcc549cd594e776ee"
+        },
+        {
+            "text": "<frame marginheight=\"0\" marginwidth=\"0\" name=\"rightRunFrame\" noresize src=\"bwRunRight.asp\">"
+        },
+        {
+            "text": "<html><!-- #BeginTemplate \"/Templates/bw_templete1.dwt\" -->"
+        },
+        {
+            "text": "<form name=\"login\" action=\"/broadweb/user/signin.asp\" method=\"post\" onSubmit=\"return validateUserName()\">"
+        },
+        {
+            "regexp": "(?-mix:<div style=\"position:relative;top:15;width:870px; height:15px\">[\\s]+<font class=e5>[^:^<]+ : ([\\d\\.]+-[\\d]{4}\\.[\\d]{2}\\.[\\d]{2})<\\/font>[\\s]+<\\/div>)",
+            "offset": 1
+        },
+        {
+            "search": "headers[location]",
+            "regexp": "(?-mix:^\\.\\/broadWeb\\/bwRoot\\.asp\\?username=([^\\s^&]+)$)"
+        }
+    ]
+}

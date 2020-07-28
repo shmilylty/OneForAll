@@ -1,0 +1,13 @@
+{
+    "name": "Yandex.Direct",
+    "website": "http://partner.yandex.com",
+    "matches": [
+        {
+            "regexp": "<yatag class=\"ya-partner__ads\">"
+        },
+        {
+            "search": "script",
+            "regexp": "https?://an\\.yandex\\.ru/"
+        }
+    ]
+}

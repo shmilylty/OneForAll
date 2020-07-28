@@ -1,0 +1,19 @@
+{
+    "name": "Font Awesome",
+    "website": "https://fontawesome.com/",
+    "matches": [
+        {
+            "regexp": "<link[^>]* href=[^>]+(?:([\\d.]+)/)?(?:css/)?font-awesome(?:\\.min)?\\.css",
+            "offset": 1
+        },
+        {
+            "regexp": "<link[^>]* href=[^>]*?(?:F|f)o(?:n|r)t-?(?:A|a)wesome(?:[^>]*?([0-9a-fA-F]{7,40}|[\\d]+(?:.[\\d]+(?:.[\\d]+)?)?)|)",
+            "offset": 1
+        },
+        {
+            "search": "script",
+            "regexp": "(?:F|f)o(?:n|r)t-?(?:A|a)wesome(?:.*?([0-9a-fA-F]{7,40}|[\\d]+(?:.[\\d]+(?:.[\\d]+)?)?)|)",
+            "offset": 1
+        }
+    ]
+}

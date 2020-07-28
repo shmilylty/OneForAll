@@ -1,0 +1,35 @@
+{
+    "name": "Pc4Uploader",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "File upload web app",
+    "website": "http://www.pc4arb.com/",
+    "matches": [
+        {
+            "text": "eval(\"page\" + id + \" = window.open(URL, '\" + id + \"', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=650,height=400,left = 199.5,top = 196.5');\");",
+            "version": "10.x"
+        },
+        {
+            "regexp": "(?-mix:Pc4Uploader <font color=\"#000080\"> <b>v([\\d\\.]+)<\\/b><\\/font>)",
+            "offset": 1
+        },
+        {
+            "string": "Pro",
+            "regexp": "(?-mix:Pc4Uploader <font color=\"#000080\"> <b>v([\\d\\.]+) Pro<\\/b><\\/font>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<p id=\"legal\" style=\"text-align: center\">Powered by Pc4Uploader v<span lang=\"en-us\">([\\d\\.]+)<\\/span><\\/p>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:Powered by Pc4Uploader <b>v([\\d\\.]+)<\\/b>&nbsp; Copyright <b>)",
+            "offset": 1
+        },
+        {
+            "string": "Pro",
+            "regexp": "(?-mix:Powered by Pc4Uploader <b>v([\\d\\.]+) Pro<\\/b>&nbsp; Copyright <b>)",
+            "offset": 1
+        }
+    ]
+}

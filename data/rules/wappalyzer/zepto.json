@@ -1,0 +1,10 @@
+{
+    "name": "Zepto",
+    "website": "http://zeptojs.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "zepto.*\\.js"
+        }
+    ]
+}

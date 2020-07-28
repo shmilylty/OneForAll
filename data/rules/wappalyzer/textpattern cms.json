@@ -1,0 +1,14 @@
+{
+    "name": "Textpattern CMS",
+    "website": "http://textpattern.com",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "Textpattern"
+        }
+    ],
+    "implies": [
+        "PHP",
+        "MySQL"
+    ]
+}

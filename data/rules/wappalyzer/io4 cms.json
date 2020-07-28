@@ -1,0 +1,10 @@
+{
+    "name": "io4 CMS",
+    "website": "http://notenbomer.nl/Producten/Content_management/io4_|_cms",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "GO[ |]+CMS Enterprise"
+        }
+    ]
+}

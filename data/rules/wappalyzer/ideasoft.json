@@ -1,0 +1,10 @@
+{
+    "name": "Ideasoft",
+    "website": "https://www.ideasoft.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "\\.myideasoft\\.com/"
+        }
+    ]
+}

@@ -1,0 +1,12 @@
+{
+    "name": "Sitefinity",
+    "website": "http://www.sitefinity.com",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "^Sitefinity (.+)$",
+            "offset": 1
+        }
+    ],
+    "implies": "Microsoft ASP.NET"
+}

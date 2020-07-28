@@ -1,0 +1,47 @@
+{
+    "name": "Axis-Network-Camera",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "Axis network camera",
+    "website": "http://www.axis.com/",
+    "matches": [
+        {
+            "text": "<TITLE>AXIS Video Server</TITLE>"
+        },
+        {
+            "text": "<FRAME NAME=\"WhatEver\" SRC=\"/incl/whatever.shtml\" SCROLLING=NO MARGINGHEIGHT=0 MARGINWIDTH=0>"
+        },
+        {
+            "text": "\t<FRAME NAME=\"Trash\" SRC=\"/view/trash.shtml\" SCROLLING=NO MARGINGHEIGHT=0 MARGINWIDTH=0>"
+        },
+        {
+            "text": "      <FRAME NAME=\"Temp\" SRC=\"/view/temp.shtml\" SCROLLING=NO MARGINGHEIGHT=0 MARGINWIDTH=0>"
+        },
+        {
+            "text": "Your browser has JavaScript turned off.<br>For the user interface to work effectively, you must enable JavaScript in your browser and reload/refresh this page."
+        },
+        {
+            "text": "<img SRC=\"/pics/AxisLogo.gif\" WIDTH=\"95\" HEIGHT=\"40\" BORDER=\"0\" ALIGN=\"right\" ALT=\""
+        },
+        {
+            "module": "Live View",
+            "regexp": "(?i-mx:<TITLE>Live View \\/? - AXIS ([^<]*) Video Server<\\/TITLE>)"
+        },
+        {
+            "regexp": "(?i-mx:<TITLE>Axis ([0-9]+)[^<]*Network Camera[^<]*<\\/TITLE>)"
+        },
+        {
+            "regexp": "(?i-mx:<TITLE>Axis [0-9]+[^<]*Network Camera ([\\d\\.]+)<\\/TITLE>)",
+            "offset": 1
+        },
+        {
+            "module": "Live View",
+            "regexp": "(?i-mx:<TITLE>Live View \\/? - AXIS [\\da-z]+ [^<]*version ([\\d\\.]+)<\\/TITLE>)",
+            "offset": 1
+        },
+        {
+            "module": "Live View",
+            "regexp": "(?i-mx:<TITLE>Live View \\/? - AXIS ([\\da-z]+) [^<]*<\\/TITLE>)"
+        }
+    ]
+}

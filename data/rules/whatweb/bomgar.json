@@ -1,0 +1,16 @@
+{
+    "name": "Bomgar",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Bomgar simplifies support by letting technicians control remote computers, servers, smartphones and network devices over the internet or network. With Bomgar, a support rep can see what customers see or control their computers for support.",
+    "website": "http://www.bomgar.com/remotedesktopaccess/",
+    "matches": [
+        {
+            "text": "<img src=\"/content/poweredby.jpg\" alt=\"Remote Support by BOMGAR\"/>"
+        },
+        {
+            "url": "/content/poweredby.jpg",
+            "md5": "11a7db4d9e6f72253c60a3f649c5a157"
+        }
+    ]
+}

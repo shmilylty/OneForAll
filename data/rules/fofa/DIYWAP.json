@@ -1,0 +1,16 @@
+{
+    "name": "DIYWAP",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "web980"
+        },
+        {
+            "search": "body",
+            "text": "bannerNum"
+        }
+    ],
+    "condition": "0 and 1"
+}

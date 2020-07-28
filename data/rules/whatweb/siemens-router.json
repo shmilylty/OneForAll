@@ -1,0 +1,14 @@
+{
+    "name": "Siemens-Router",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Siemens Router",
+    "website": "https://www.siemens.com/",
+    "matches": [
+        {
+            "search": "headers[www-authenticate]",
+            "certainty": 75,
+            "regexp": "(?-mix:Basic realm=\"Siemens ADSL ([^\"^\\s]+)\")"
+        }
+    ]
+}

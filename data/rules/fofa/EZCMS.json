@@ -1,0 +1,15 @@
+{
+    "name": "EZCMS",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "Powered by EZCMS"
+        },
+        {
+            "search": "body",
+            "text": "EZCMS Content Management System"
+        }
+    ]
+}

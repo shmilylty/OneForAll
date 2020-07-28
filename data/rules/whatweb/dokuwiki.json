@@ -1,0 +1,22 @@
+{
+    "name": "DokuWiki",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "DokuWiki is a standards compliant, simple to use Wiki, mainly aimed at creating documentation of any kind.",
+    "website": "http://dokuwiki.org/",
+    "matches": [
+        {
+            "ghdb": "\"powered by DokuWiki\" inurl:doku.php filetype:php"
+        },
+        {
+            "regexp": "(?-mix:<div class=\"dokuwiki\"[\\s]?>)"
+        },
+        {
+            "text": "<meta name=\"generator\" content=\"DokuWiki\" />"
+        },
+        {
+            "regexp": "(?-mix:<meta name=\"generator\" content=\"DokuWiki Release ([^\"]+)\" \\/>)",
+            "offset": 1
+        }
+    ]
+}

@@ -1,0 +1,19 @@
+{
+    "name": "Blazor",
+    "website": "https://dotnet.microsoft.com/apps/aspnet/web-apps/blazor",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "blazor\\.server\\.js"
+        },
+        {
+            "search": "script",
+            "regexp": "blazor\\.host\\.min\\.js"
+        },
+        {
+            "search": "script",
+            "regexp": "blazor\\.webassembly\\.js"
+        }
+    ],
+    "implies": "Microsoft ASP.NET"
+}

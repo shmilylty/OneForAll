@@ -1,0 +1,19 @@
+{
+    "name": "trac",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "<h1>Available Projects</h1>"
+        },
+        {
+            "search": "body",
+            "text": "wiki/TracGuide"
+        },
+        {
+            "search": "headers",
+            "text": "trac_session"
+        }
+    ]
+}

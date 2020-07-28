@@ -1,0 +1,15 @@
+{
+    "name": "kesionCMS",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "/ks_inc/common.js"
+        },
+        {
+            "search": "body",
+            "text": "publish by KesionCMS"
+        }
+    ]
+}

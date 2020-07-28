@@ -1,0 +1,10 @@
+{
+    "name": "CDN77",
+    "website": "https://www.cdn77.com",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "^CDN77-Turbo$"
+        }
+    ]
+}

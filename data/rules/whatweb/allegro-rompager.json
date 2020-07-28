@@ -1,0 +1,23 @@
+{
+    "name": "Allegro-RomPager",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.4",
+    "description": "The RomPager suite of products enable your engineering team to leverage proven Web-based technologies in your networked embedded device.",
+    "website": "http://www.allegrosoft.com/embedded-web-server",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^[\\s]*RomPager\\/([^\\s]+))",
+            "offset": 1
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^[\\s]*Allegro-Software-RomPager\\/([^\\s]+))",
+            "offset": 1
+        },
+        {
+            "text": "",
+            "search": "headers[ext]"
+        }
+    ]
+}

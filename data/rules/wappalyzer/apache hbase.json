@@ -1,0 +1,10 @@
+{
+    "name": "Apache HBase",
+    "website": "http://hbase.apache.org",
+    "matches": [
+        {
+            "regexp": "<style[^>]+static/hbase"
+        }
+    ],
+    "implies": "Java"
+}

@@ -1,0 +1,15 @@
+{
+    "name": "Osclass",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "generator\" content=\"Osclass"
+        },
+        {
+            "search": "headers",
+            "text": "osclass"
+        }
+    ]
+}

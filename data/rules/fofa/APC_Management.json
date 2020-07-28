@@ -1,0 +1,15 @@
+{
+    "name": "APC_Management",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "APC Management Card"
+        },
+        {
+            "search": "body",
+            "text": "This object on the APC Management Web Server is protected"
+        }
+    ]
+}

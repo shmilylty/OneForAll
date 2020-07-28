@@ -1,0 +1,18 @@
+{
+    "name": "Pi3Web",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "Pi3Web is a free, multithreaded, highly configurable and extensible HTTP server and development environment for cross platform internet server development and deployment.",
+    "website": "http://pi3web.sourceforge.net/pi3web/",
+    "matches": [
+        {
+            "regexp": "(?-mix:^Pi3Web)",
+            "search": "headers[server]"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Pi3Web\\/([^\\s]+)$)",
+            "offset": 1
+        }
+    ]
+}

@@ -1,0 +1,16 @@
+{
+    "name": "mikrotik",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "RouterOS"
+        },
+        {
+            "search": "body",
+            "text": "mikrotik"
+        }
+    ],
+    "condition": "0 and 1"
+}

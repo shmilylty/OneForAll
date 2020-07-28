@@ -1,0 +1,11 @@
+{
+    "name": "\u67d0\u901a\u7528\u578b\u653f\u5e9ccms",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "/deptWebsiteAction.do"
+        }
+    ]
+}

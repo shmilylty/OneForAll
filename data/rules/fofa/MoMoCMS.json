@@ -1,0 +1,15 @@
+{
+    "name": "MoMoCMS",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "content=\"MoMoCMS"
+        },
+        {
+            "search": "body",
+            "text": "Powered BY MoMoCMS"
+        }
+    ]
+}

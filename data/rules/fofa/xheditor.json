@@ -1,0 +1,19 @@
+{
+    "name": "xheditor",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "xheditor_lang/zh-cn.js"
+        },
+        {
+            "search": "body",
+            "text": "class=\"xheditor"
+        },
+        {
+            "search": "body",
+            "text": ".xheditor("
+        }
+    ]
+}

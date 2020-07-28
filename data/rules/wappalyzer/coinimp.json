@@ -1,0 +1,10 @@
+{
+    "name": "Coinimp",
+    "website": "https://www.coinimp.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "https?://www\\.hashing\\.win/scripts/min\\.js"
+        }
+    ]
+}

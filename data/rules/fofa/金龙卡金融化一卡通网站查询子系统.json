@@ -1,0 +1,15 @@
+{
+    "name": "\u91d1\u9f99\u5361\u91d1\u878d\u5316\u4e00\u5361\u901a\u7f51\u7ad9\u67e5\u8be2\u5b50\u7cfb\u7edf",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "\u91d1\u9f99\u5361\u91d1\u878d\u5316\u4e00\u5361\u901a\u7f51\u7ad9\u67e5\u8be2\u5b50\u7cfb\u7edf"
+        },
+        {
+            "search": "body",
+            "text": "location.href=\"homeLogin.action"
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "name": "math.js",
+    "website": "http://mathjs.org",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "math(?:\\.min)?\\.js"
+        }
+    ]
+}

@@ -1,0 +1,31 @@
+{
+    "name": "phpMyAdmin",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.5",
+    "description": "phpMyAdmin is a free software tool written in PHP intended to handle the administration of MySQL over the World Wide Web.",
+    "website": "http://www.phpmyadmin.net/home_page/index.php",
+    "matches": [
+        {
+            "certainty": 75,
+            "ghdb": "intitle:phpMyAdmin \"Language: Afrikaans\" \"Welcome to phpMyAdmin\""
+        },
+        {
+            "regexp": "(?-mix:<title>phpMyAdmin ([^\\s^<]+)[^<]*<\\/title>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<h2>Welcome to  phpMyAdmin ([^<]+)<\\/h2>)",
+            "offset": 1
+        },
+        {
+            "text": "<img src=\"./themes/original/img/logo_right.png\" id=\"imLogo\" name=\"imLogo\" alt=\"phpMyAdmin\" border=\"0\" /></a>"
+        },
+        {
+            "md5": "d037ef2f629a22ddadcf438e6be7a325",
+            "url": "favicon.ico"
+        },
+        {
+            "regexp": "(?-mix:<form method=\"post\" action=\"index\\.php\" target=\"_(top|parent)\"><input type=\"hidden\" name=\"phpMyAdmin\" value=\")"
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+{
+    "name": "NETGEAR DGND3700",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "NETGEAR DGND3700"
+        }
+    ]
+}

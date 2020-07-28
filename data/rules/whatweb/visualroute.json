@@ -1,0 +1,27 @@
+{
+    "name": "VisualRoute",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "Traceroute and network diagnostic tool",
+    "website": "http://www.visualroute.com/",
+    "matches": [
+        {
+            "regexp": "(?-mix:^VisualRoute )",
+            "search": "headers[server]"
+        },
+        {
+            "offset": 1,
+            "search": "headers[server]",
+            "regexp": "(?-mix:^VisualRoute \\((tm|R)\\) ([^\\s]+)$)"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^VisualRoute \\((tm|R)\\) ([\\d]{4} .+ Edition) \\(v([^\\)]+)\\)$)"
+        },
+        {
+            "offset": 2,
+            "search": "headers[server]",
+            "regexp": "(?-mix:^VisualRoute \\((tm|R)\\) ([\\d]{4} .+ Edition) \\(v([^\\)]+)\\)$)"
+        }
+    ]
+}

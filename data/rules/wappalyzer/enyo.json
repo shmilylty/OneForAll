@@ -1,0 +1,10 @@
+{
+    "name": "Enyo",
+    "website": "http://enyojs.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "enyo\\.js"
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    "name": "Escenic",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "content=\"Escenic"
+        },
+        {
+            "search": "body",
+            "text": "<!-- Start Escenic Analysis Engine client script -->"
+        }
+    ]
+}

@@ -1,0 +1,19 @@
+{
+    "name": "\u6d77\u6d0bCMS",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "seacms"
+        },
+        {
+            "search": "body",
+            "text": "Powered by SeaCms"
+        },
+        {
+            "search": "body",
+            "text": "content=\"seacms"
+        }
+    ]
+}

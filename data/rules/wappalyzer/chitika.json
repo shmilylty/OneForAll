@@ -1,0 +1,10 @@
+{
+    "name": "Chitika",
+    "website": "http://chitika.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "scripts\\.chitika\\.net/"
+        }
+    ]
+}

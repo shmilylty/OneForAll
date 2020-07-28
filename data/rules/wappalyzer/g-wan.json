@@ -1,0 +1,10 @@
+{
+    "name": "G-WAN",
+    "website": "http://gwan.com",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "G-WAN"
+        }
+    ]
+}

@@ -1,0 +1,18 @@
+{
+    "name": "Zeus-Web-Server",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Zeus Web Server is the most scalable, high-performance web server software available, underpinning business-critical solutions for the world's leading web hosting, content provider and secure e-commerce companies.",
+    "website": "http://www.zeus.com/products/web-server/",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Zeus$)"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Zeus\\/(([\\d]+)(\\.|_)([\\d]+))$)",
+            "offset": 1
+        }
+    ]
+}

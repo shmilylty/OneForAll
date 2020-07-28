@@ -1,0 +1,14 @@
+{
+    "name": "Ecwid",
+    "website": "https://www.ecwid.com/",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "https://app\\.multiscreenstore\\.com/script\\.js"
+        },
+        {
+            "search": "script",
+            "regexp": "https://app\\.ecwid\\.com/script\\.js"
+        }
+    ]
+}

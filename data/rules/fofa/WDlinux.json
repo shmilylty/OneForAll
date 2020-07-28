@@ -1,0 +1,11 @@
+{
+    "name": "WDlinux",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "wdOS"
+        }
+    ]
+}

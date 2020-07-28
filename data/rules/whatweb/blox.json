@@ -1,0 +1,17 @@
+{
+    "name": "BLOX",
+    "author": "Shuai Lin, Bhavin Senjaliya, Andrew Horton",
+    "version": "0.2",
+    "description": "BLOX is a cloud based CMS",
+    "website": "https://www.townnews365.com./",
+    "matches": [
+        {
+            "regexp": "(?-mix:BLOX CMS version: [\\d.]+)"
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:^TNNoMobile)",
+            "name": "TNNoMobile cookie"
+        }
+    ]
+}

@@ -1,0 +1,16 @@
+{
+    "name": "OpenLookup",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "OpenLookup is a public, administratively decentralized key-value datastore. It offers an XML-RPC interface compatible with OpenDHT, but it is not a DHT. Instead, it fully replicates the datastore among service providers.",
+    "website": "http://openlookup.googlecode.com/",
+    "matches": [
+        {
+            "text": "<h2>OpenLookup Node Status</h2>"
+        },
+        {
+            "regexp": "(?-mix:<p><a href=\"http:\\/\\/openlookup\\.googlecode\\.com\\/\">Source code and\\n\tfurther information<\\/a> are available\\.  This is OpenLookup V([^<]+)\\.<\\/p>)",
+            "offset": 1
+        }
+    ]
+}

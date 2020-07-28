@@ -1,0 +1,30 @@
+{
+    "name": "WebSocket",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "WebSocket is a technology providing for bi-directional, full-duplex communications channels, over a single Transmission Control Protocol (TCP) socket. - More info: https://secure.wikimedia.org/wikipedia/en/wiki/WebSocket - Protocol: https://tools.ietf.org/html/draft-ietf-hybi-thewebsocketprotocol-12",
+    "website": null,
+    "matches": [
+        {
+            "search": "headers[upgrade]",
+            "regexp": "(?i-mx:^WebSocket$)"
+        },
+        {
+            "search": "headers[websocket-location]",
+            "regexp": "(?-mix:^(wss?:\\/\\/.+))"
+        },
+        {
+            "search": "headers[sec-websocket-location]",
+            "regexp": "(?-mix:^(wss?:\\/\\/.+))"
+        },
+        {
+            "search": "headers[sec-websocket-version-server]",
+            "regexp": "(?-mix:(.+))",
+            "offset": 1
+        },
+        {
+            "search": "headers[sec-websocket-protocol]",
+            "regexp": "(?-mix:(.+))"
+        }
+    ]
+}

@@ -1,0 +1,41 @@
+{
+    "name": "BAB_Stats",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "BAB.Stats is a statistics system for the Delta Force series of games by Novalogic.",
+    "website": "http://www.babstats.com/progress.php",
+    "matches": [
+        {
+            "text": "<meta NAME=\"Author\" CONTENT=\"Bab.Stats Team\">"
+        },
+        {
+            "certainty": 25,
+            "regexp": "(?-mix:<title>[^:]+ :: [^:]+ :: Powered by BAB.stats<\\/title>)"
+        },
+        {
+            "regexp": "(?-mix:Powered by BAB.Stats :: <a href=\"index.php\\?action=about&bms=\" onmouseover=\"doTooltip\\(event, 'About BaB.Stats'\\)\" onmouseout=\"hideTip\\(\\)\">BabStats v([\\d\\.]+)<\\/a>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:Powered by <a href=\"index.php\\?action=about&bms=\">BAB.stats<\\/a> version ([\\d\\.]+))",
+            "offset": 1
+        },
+        {
+            "text": "<meta NAME=\"Author\" CONTENT=\"Tomas Stucinskas a.k.a Baboon\">",
+            "string": "Chronos"
+        },
+        {
+            "text": " - Powered by BAB.stats Chronos</title>",
+            "string": "Chronos"
+        },
+        {
+            "text": "<!-- AUTHOR : Tomas Stucinskas a.k.a Baboon -->",
+            "string": "Chronos"
+        },
+        {
+            "offset": 1,
+            "string": "Chronos",
+            "regexp": "(?-mix:Powered by Bab.stats ::[\\r\\n\\s]*<a[^>]+href=\"(http:\\/\\/www.babstats.com\\/|\\/Neos_Chronos\\/index.php\\?action=about)\">Neos.Chronos<\\/a> ::[\\s\\r\\n]*Version ([^\\(]+) \\(Standalone\\))"
+        }
+    ]
+}

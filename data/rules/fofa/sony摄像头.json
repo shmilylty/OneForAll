@@ -1,0 +1,15 @@
+{
+    "name": "sony\u6444\u50cf\u5934",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "Sony Network Camera"
+        },
+        {
+            "search": "body",
+            "text": "inquiry.cgi?inqjs=system&inqjs=camera"
+        }
+    ]
+}

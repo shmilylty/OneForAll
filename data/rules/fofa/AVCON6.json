@@ -1,0 +1,19 @@
+{
+    "name": "AVCON6",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "filename=AVCON6Setup.exe"
+        },
+        {
+            "search": "title",
+            "regexp": "AVCON6\u7cfb\u7edf\u7ba1\u7406\u5e73\u53f0"
+        },
+        {
+            "search": "body",
+            "text": "language_dispose.action"
+        }
+    ]
+}

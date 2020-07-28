@@ -1,0 +1,15 @@
+{
+    "name": "Kentico-CMS",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "CMSPreferredCulture"
+        },
+        {
+            "search": "body",
+            "text": "content=\"Kentico CMS"
+        }
+    ]
+}

@@ -1,0 +1,21 @@
+{
+    "name": "NexusPHP",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "BitTorrent private tracker scripts written in PHP",
+    "website": "http://sourceforge.net/projects/nexusphp/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<meta name=\"generator\" content=\"NexusPHP\"[\\s]?\\/>)"
+        },
+        {
+            "text": "<p><b>Note</b>: You need cookies enabled to log in or switch language.<br /> [<b>"
+        },
+        {
+            "text": "<tr><td class=\"rowhead\">SSL (HTTPS):</td><td class=\"rowfollow\" align=\"left\"><input class=\"checkbox\" type=\"checkbox\" name=\"ssl\" value=\"yes\""
+        },
+        {
+            "regexp": "(?-mix:<\\/a> (20[\\d]{2})-20[\\d]{2} Powered by <a href=\"aboutnexus\\.php\">NexusPHP<\\/a>)"
+        }
+    ]
+}

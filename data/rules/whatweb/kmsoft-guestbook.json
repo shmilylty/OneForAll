@@ -1,0 +1,17 @@
+{
+    "name": "KMSoft-Guestbook",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Guestbook",
+    "website": "http://www.kmsoft.org/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<div id=\"footer\">KMSoft Guestbook v ([\\d\\.]+) Powered by <a href=\"http:\\/\\/www.kmsoft.org[\\/]*\">KMSoft<\\/a><\\/div>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<title>KMSoft Guestbook v([\\d\\.]+)[^<]+<\\/title>)",
+            "offset": 1
+        }
+    ]
+}

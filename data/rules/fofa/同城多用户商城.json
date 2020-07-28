@@ -1,0 +1,11 @@
+{
+    "name": "\u540c\u57ce\u591a\u7528\u6237\u5546\u57ce",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "style_chaoshi"
+        }
+    ]
+}

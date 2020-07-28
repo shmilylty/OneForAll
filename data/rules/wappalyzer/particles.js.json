@@ -1,0 +1,13 @@
+{
+    "name": "particles.js",
+    "website": "https://vincentgarreau.com/particles.js/",
+    "matches": [
+        {
+            "regexp": "<div id=\"particles-js\">"
+        },
+        {
+            "search": "script",
+            "regexp": "/particles(?:\\.min)?\\.js"
+        }
+    ]
+}

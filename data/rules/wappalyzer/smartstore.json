@@ -1,0 +1,10 @@
+{
+    "name": "Smartstore",
+    "website": "http://smartstore.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "smjslib\\.js"
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    "name": "mantis",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "browser_search_plugin.php?type=id"
+        },
+        {
+            "search": "body",
+            "text": "MantisBT Team"
+        }
+    ]
+}

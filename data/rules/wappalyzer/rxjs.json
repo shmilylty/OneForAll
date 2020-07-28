@@ -1,0 +1,10 @@
+{
+    "name": "RxJS",
+    "website": "http://reactivex.io",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "rx(?:\\.\\w+)?(?:\\.compat|\\.global)?(?:\\.min)?\\.js"
+        }
+    ]
+}

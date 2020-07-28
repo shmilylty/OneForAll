@@ -1,0 +1,15 @@
+{
+    "name": "Datum-TymServe",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "<H2 ALIGN=CENTER>Datum TymServe"
+        },
+        {
+            "search": "headers",
+            "text": "DATM"
+        }
+    ]
+}

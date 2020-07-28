@@ -1,0 +1,10 @@
+{
+    "name": "UNIX",
+    "website": "http://unix.org",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "Unix"
+        }
+    ]
+}

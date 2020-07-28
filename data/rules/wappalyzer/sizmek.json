@@ -1,0 +1,13 @@
+{
+    "name": "Sizmek",
+    "website": "http://sizmek.com",
+    "matches": [
+        {
+            "regexp": "(?:<a [^>]*href=\"[^/]*//[^/]*serving-sys\\.com/|<img [^>]*src=\"[^/]*//[^/]*serving-sys\\.com/)"
+        },
+        {
+            "search": "script",
+            "regexp": "serving-sys\\.com/"
+        }
+    ]
+}

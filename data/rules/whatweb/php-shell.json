@@ -1,0 +1,17 @@
+{
+    "name": "PHP-Shell",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "php remote shell and file explorer",
+    "website": null,
+    "matches": [
+        {
+            "ghdb": "+filetype:php +HAXPLORER +\"Server Files Browser\" +Browsing +\"Script Location\"",
+            "certainty": 75
+        },
+        {
+            "regexp": "(?-mix:PHPShell by [a-zA-Z0-9]+ - Version ([0-9a-z\\.]+))",
+            "offset": 1
+        }
+    ]
+}

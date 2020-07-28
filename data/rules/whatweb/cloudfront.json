@@ -1,0 +1,21 @@
+{
+    "name": "CloudFront",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "CloudFront Server",
+    "website": null,
+    "matches": [
+        {
+            "status": 403,
+            "text": "<html><body>Sorry, invalid request</body></html>"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^CloudFront)"
+        },
+        {
+            "search": "headers[x-cache]",
+            "regexp": "(?-mix:^Error from cloudfront)"
+        }
+    ]
+}

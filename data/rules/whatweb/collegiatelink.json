@@ -1,0 +1,16 @@
+{
+    "name": "CollegiateLink",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "CollegiateLink",
+    "website": "http://www.collegiatelink.net/",
+    "matches": [
+        {
+            "regexp": "(?-mix:Powered by <a href=\"http:\\/\\/www\\.collegiatelink\\.net\">CollegiateLink<\\/a> Version ([\\d\\.]+)<\\/p><div id=\"links\">CollegiateLink uses )",
+            "offset": 1
+        },
+        {
+            "text": "</div></div></div><div class=\"salink\"><span class=\"shadow\"><!----></span></div></div><span class=\"clearDiv\"><!----></span></div></div><span class=\"clearDiv\"><!----></span><script type=\"text/javascript\">"
+        }
+    ]
+}

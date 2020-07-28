@@ -1,0 +1,10 @@
+{
+    "name": "LimeSurvey",
+    "website": "http://limesurvey.org/",
+    "matches": [
+        {
+            "search": "headers[generator]",
+            "regexp": "LimeSurvey"
+        }
+    ]
+}

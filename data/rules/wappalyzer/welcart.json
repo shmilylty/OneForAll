@@ -1,0 +1,25 @@
+{
+    "name": "Welcart",
+    "website": "https://www.welcart.com",
+    "matches": [
+        {
+            "search": "cookies[usces_cookie]",
+            "regexp": ".*"
+        },
+        {
+            "regexp": "<link[^>]+?href=\"[^\"]+usces_default(?:\\.min)?\\.css"
+        },
+        {
+            "regexp": "<!-- Welcart version : v([\\d.]+)",
+            "offset": 1
+        },
+        {
+            "search": "script",
+            "regexp": "uscesL10n"
+        }
+    ],
+    "implies": [
+        "PHP",
+        "WordPress"
+    ]
+}

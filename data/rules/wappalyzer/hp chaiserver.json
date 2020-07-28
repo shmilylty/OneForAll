@@ -1,0 +1,11 @@
+{
+    "name": "HP ChaiServer",
+    "website": "http://hp.com",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "HP-Chai(?:Server|SOE)(?:/([\\d.]+))?",
+            "offset": 1
+        }
+    ]
+}

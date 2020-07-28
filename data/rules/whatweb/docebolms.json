@@ -1,0 +1,31 @@
+{
+    "name": "DoceboLMS",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "DoceboLMS is a SCORM compliant Open Source e-Learning platform used in corporate, government and education markets.",
+    "website": "http://www.docebo.org/doceboCms/index.php",
+    "matches": [
+        {
+            "text": "Powered by <a href=\"http://www.docebo.com/?versions\" onclick=\"window.open(this.href); return false;\">Docebo <sup>&reg;</sup></a>"
+        },
+        {
+            "regexp": "(?-mix:<div class=\"powered\"><a href=\"http:\\/\\/www.docebo.com\\/\\?[a-z]+\" target=\"_blank\" alt=\"Powered by Docebo .\" title=\"Powered by Docebo .\">Powered by Docebo .<\\/a><\\/div>)"
+        },
+        {
+            "certainty": 25,
+            "regexp": "(?-mix:<title>DoceboCore ([\\d\\.]+)<\\/title>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:Powered by Docebo <sup>&reg;<\\/sup> (Community|Enterprise) Edition)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:Powered by <a href=\"http:\\/\\/www\\.docebo\\.com\\/\\?versions\" onclick=\"window\\.open\\(this\\.href\\); return false;\">Docebo <sup>&reg;<\\/sup> (Community|Enterprise) Edition<\\/a>)",
+            "offset": 1
+        },
+        {
+            "text": "lang_setup.setBody(\"<ul class=\\\"link_list_inline\\\" id=\\\"language_selection\\\"><li><a class=\\\"lang-sprite lang_"
+        }
+    ]
+}

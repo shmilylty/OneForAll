@@ -1,0 +1,14 @@
+{
+    "name": "ABO_CMS",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "ABO.CMS",
+    "website": "http://www.abocms.com/",
+    "matches": [
+        {
+            "offset": 1,
+            "search": "headers[a-powered-by]",
+            "regexp": "(?-mix:^ABO\\.CMS( E-commerce| Corporative)? ([\\d\\.]+))"
+        }
+    ]
+}

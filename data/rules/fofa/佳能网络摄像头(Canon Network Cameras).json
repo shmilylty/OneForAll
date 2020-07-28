@@ -1,0 +1,11 @@
+{
+    "name": "\u4f73\u80fd\u7f51\u7edc\u6444\u50cf\u5934(Canon Network Cameras)",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "/viewer/live/en/live.html"
+        }
+    ]
+}

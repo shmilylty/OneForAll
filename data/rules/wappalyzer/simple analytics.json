@@ -1,0 +1,10 @@
+{
+    "name": "Simple Analytics",
+    "website": "https://simpleanalytics.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "^https:\\/\\/cdn\\.simpleanalytics\\.io\\/hello\\.js"
+        }
+    ]
+}

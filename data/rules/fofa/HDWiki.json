@@ -1,0 +1,23 @@
+{
+    "name": "HDWiki",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "powered by hdwiki!"
+        },
+        {
+            "search": "body",
+            "text": "content=\"HDWiki"
+        },
+        {
+            "search": "body",
+            "text": "http://kaiyuan.hudong.com?hf=hdwiki_copyright_kaiyuan"
+        },
+        {
+            "search": "headers",
+            "text": "hd_sid="
+        }
+    ]
+}

@@ -1,0 +1,43 @@
+{
+    "name": "PHPNuke",
+    "author": "Andrew Horton, Brendan Coles <bcoles@gmail.com>",
+    "version": "0.4",
+    "description": "PHP-Nuke is a free CMS",
+    "website": "phpnuke.org. The plugin passively recognises modules. An obvious improvement would be to aggresively discover modules and discover the phpnuke version",
+    "matches": [
+        {
+            "name": "meta generator tag with PHP-Nuke",
+            "regexp": "(?i-mx:<meta name=\"generator\" content=\"[^\"]+(PHP-Nuke|http:\\/\\/phpnuke.org))"
+        },
+        {
+            "certainty": 75,
+            "text": "<a href=\"modules.php?name=Your_Account\">"
+        },
+        {
+            "certainty": 25,
+            "text": "<META NAME=\"RATING\" CONTENT=\"GENERAL\">"
+        },
+        {
+            "certainty": 75,
+            "text": "<a href=\"http://phpnuke.org/files/gpl.txt\">"
+        },
+        {
+            "name": "Feedback link",
+            "certainty": 75,
+            "text": "<a href=\"modules.php?name=Feedback\">Feedback</a>"
+        },
+        {
+            "name": "modules.php?name links",
+            "certainty": 25,
+            "regexp": "(?-mix:<a href=\"[^\"]*modules.php\\?name=[a-zA-Z0-9_]+[^\"]*\">)"
+        },
+        {
+            "name": "engine code is copyright of PHP-Nuke",
+            "text": "<a href='http://www.phpnuke.org'><img src='images/powered/phpnuke.gif' title=\"The engine code is copyright of PHP-Nuke.\" border='0'></a>"
+        },
+        {
+            "certainty": 75,
+            "regexp": "(?-mix:<a href=\"[^\"]*modules.php\\?name=([a-zA-Z0-9_]+)[^\"]*\">)"
+        }
+    ]
+}

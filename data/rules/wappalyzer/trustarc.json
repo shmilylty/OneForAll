@@ -1,0 +1,10 @@
+{
+    "name": "TrustArc",
+    "website": "http://trustarc.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "consent\\.trustarc\\.com"
+        }
+    ]
+}

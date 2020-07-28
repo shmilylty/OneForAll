@@ -1,0 +1,13 @@
+{
+    "name": "Heroku",
+    "website": "https://www.heroku.com/",
+    "matches": [
+        {
+            "search": "headers[via]",
+            "regexp": "/[\\d.-]+ vegur$"
+        }
+    ],
+    "implies": [
+        "Amazon Web Services"
+    ]
+}

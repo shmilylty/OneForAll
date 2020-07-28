@@ -1,0 +1,12 @@
+{
+    "name": "Vaadin",
+    "website": "https://vaadin.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "vaadinBootstrap\\.js(?:\\?v=([\\d.]+))?",
+            "offset": 1
+        }
+    ],
+    "implies": "Java"
+}

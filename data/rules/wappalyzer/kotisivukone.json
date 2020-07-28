@@ -1,0 +1,10 @@
+{
+    "name": "Kotisivukone",
+    "website": "http://www.kotisivukone.fi",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "kotisivukone(?:\\.min)?\\.js"
+        }
+    ]
+}

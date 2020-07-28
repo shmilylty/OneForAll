@@ -1,0 +1,19 @@
+{
+    "name": "eTicket",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "Powered by eTicket"
+        },
+        {
+            "search": "body",
+            "text": "<a href=\"http://www.eticketsupport.com\" target=\"_blank\">"
+        },
+        {
+            "search": "body",
+            "text": "/eticket/eticket.css"
+        }
+    ]
+}

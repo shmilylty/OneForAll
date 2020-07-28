@@ -1,0 +1,16 @@
+{
+    "name": "AppServ",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "AppServ is an Apache, MySQL, PHP, phpMyAdmin installer package for Windows and Linux.",
+    "website": "http://www.appservnetwork.com/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<span class=\"headd\"><strong><big>&nbsp; The AppServ Open Project - ([^\\s]+) for (Windows|Linux) <\\/big><\\/strong><\\/span><\\/font><\\/td>)",
+            "offset": 1
+        },
+        {
+            "text": "<font color=\"#000080\" class=\"headd\">&nbsp;&nbsp;&nbsp;<img src=\"appserv/softicon.gif\""
+        }
+    ]
+}

@@ -1,0 +1,25 @@
+{
+    "name": "Muster-Render-Farm",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Muster is a render farm management system for film production, game development, and visual effect industry.",
+    "website": "http://www.vvertex.com/products.php",
+    "matches": [
+        {
+            "text": "<body onLoad=\"init_page()\" name=\"muster_login\" >"
+        },
+        {
+            "url": "/dologin.html",
+            "regexp": "(?-mix:<title>Muster ([\\d]+) Integrated Web server login<\\/title>)",
+            "offset": 1
+        },
+        {
+            "text": "<applet code=\"FileFolderSelector.class\" archive=\"FileFolderSelector.jar\" CODEBASE=\"js\" id=\"FileSelector\" name=\"FileSelector\" width=\"1\" height=\"1\">"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^cias-muster([\\d])$)",
+            "offset": 1
+        }
+    ]
+}

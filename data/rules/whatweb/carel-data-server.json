@@ -1,0 +1,24 @@
+{
+    "name": "Carel-Data-Server",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "Pl@ntVisor is a communication data server distributed by CAREL Italy. It is now obsolete and replaced by Pl@ntVisorPRO",
+    "website": null,
+    "matches": [
+        {
+            "text": "<script type=\"text/javascript\" language=\"JavaScript\" src=\"/MPwebCoreFn.js\"></script>"
+        },
+        {
+            "text": "<img style=\"position:absolute;left:0;top:0;\" src=plv_primoLW.jpg zwidth=\"100%\" zheight=\"100%\">"
+        },
+        {
+            "url": "/plv_primoLW.jpg",
+            "md5": "df1e885e87f6ab393a90b908b6ce5dc4"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^CarelDataServer\\/([\\d\\.]{1,10}))",
+            "offset": 1
+        }
+    ]
+}

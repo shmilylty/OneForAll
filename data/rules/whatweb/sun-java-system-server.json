@@ -1,0 +1,25 @@
+{
+    "name": "Sun-Java-System-Server",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.3",
+    "description": "Sun Java System Web/Proxy Server.",
+    "website": "http://developers.sun.com/appserver/",
+    "matches": [
+        {
+            "regexp": "(?-mix:^[\\s]*Sun[\\-\\ ]{1}Java[\\-\\ ]{1}System[\\/\\ ]{1}Application[\\-\\ ]{1}Server)",
+            "search": "headers[server]"
+        },
+        {
+            "search": "headers[proxy-agent]",
+            "module": "Proxy Server",
+            "regexp": "(?-mix:^[\\s]*Sun-Java-System-Web-[Proxy-]*Server\\/([\\d\\.]+))",
+            "offset": 1
+        },
+        {
+            "search": "headers[server]",
+            "module": "Web Server",
+            "regexp": "(?-mix:^[\\s]*Sun-Java-System-Web-Server\\/([\\d\\.]+))",
+            "offset": 1
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+{
+    "name": "\u534e\u4e3a\uff08HUAWEI\uff09Secoway\u8bbe\u5907",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "Secoway"
+        }
+    ]
+}

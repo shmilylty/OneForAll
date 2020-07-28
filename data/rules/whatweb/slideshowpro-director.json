@@ -1,0 +1,16 @@
+{
+    "name": "SlideShowPro-Director",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Content management and universal slideshow publishing for desktops, Apple iOS and Android.",
+    "website": "http://slideshowpro.net/products/slideshowpro_director/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<div id=\"simple-footer\">\\s+<span>SlideShowPro Director ([^<]+)<\\/span>)",
+            "offset": 1
+        },
+        {
+            "text": "</div> <!--close login-container-->\t</body>"
+        }
+    ]
+}

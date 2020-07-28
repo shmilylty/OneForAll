@@ -1,0 +1,15 @@
+{
+    "name": "IBM-Web-Traffic-Express-Caching-Proxy",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "IBM-PROXY-WTE"
+        },
+        {
+            "search": "body",
+            "text": "/admin-bin/webexec/wte.html"
+        }
+    ]
+}

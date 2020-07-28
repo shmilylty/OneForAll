@@ -1,0 +1,18 @@
+{
+    "name": "Brother-Fax",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "Brother fax web interface",
+    "website": "http://www.brother.com/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<TITLE>\\nBrother (MFC-[\\dA-Z]+)\\n<\\/TITLE>)"
+        },
+        {
+            "certainty": 25,
+            "search": "headers[server]",
+            "regexp": "(?-mix:^[Dd]ebut\\/([\\d\\.]+)$)",
+            "offset": 1
+        }
+    ]
+}

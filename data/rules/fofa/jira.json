@@ -1,0 +1,23 @@
+{
+    "name": "jira",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "jira.webresources"
+        },
+        {
+            "search": "headers",
+            "text": "atlassian.xsrf.token"
+        },
+        {
+            "search": "body",
+            "text": "ams-build-number"
+        },
+        {
+            "search": "body",
+            "text": "com.atlassian.plugins"
+        }
+    ]
+}

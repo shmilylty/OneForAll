@@ -1,0 +1,10 @@
+{
+    "name": "VisualPath",
+    "website": "http://www.trackset.com/web-analytics-software/visualpath",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "visualpath[^/]*\\.trackset\\.it/[^/]+/track/include\\.js"
+        }
+    ]
+}

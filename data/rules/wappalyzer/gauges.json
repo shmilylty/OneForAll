@@ -1,0 +1,10 @@
+{
+    "name": "Gauges",
+    "website": "https://get.gaug.es",
+    "matches": [
+        {
+            "search": "cookies[_gauges_]",
+            "regexp": ".*"
+        }
+    ]
+}

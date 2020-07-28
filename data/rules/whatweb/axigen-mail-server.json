@@ -1,0 +1,25 @@
+{
+    "name": "Axigen-Mail-Server",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "Axigen is an integrated email, calendaring & collaboration platform, masterfully built on our unique Linux mail server technology, for increased speed & security.",
+    "website": "http://www.axigen.com/",
+    "matches": [
+        {
+            "text": "            top.opener.location.href=\"/?login=\";"
+        },
+        {
+            "text": "<div>Powered by <a href=\"http://www.axigen.com\" target=\"_blank\" class=\"gray\">Axigen Mail Server</a></div>"
+        },
+        {
+            "text": "Powered by <a href=\"http://www.axigen.com/\" target=\"_blank\">Axigen Mail Server</a>"
+        },
+        {
+            "text": "<div class=\"nojsContainer\"><h1>In order to access AXIGEN Webmail, <br />you must enable Javascript in your browser!</h1></div>"
+        },
+        {
+            "regexp": "(?-mix:<title>AXIGEN Webmail - v([\\d\\.]+)<\\/title>)",
+            "offset": 1
+        }
+    ]
+}

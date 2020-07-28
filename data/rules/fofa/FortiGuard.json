@@ -1,0 +1,19 @@
+{
+    "name": "FortiGuard",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "FortiGuard Web Filtering"
+        },
+        {
+            "search": "title",
+            "regexp": "Web Filter Block Override"
+        },
+        {
+            "search": "body",
+            "text": "/XX/YY/ZZ/CI/MGPGHGPGPFGHCDPFGGOGFGEH"
+        }
+    ]
+}

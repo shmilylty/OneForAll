@@ -1,0 +1,10 @@
+{
+    "name": "Pushnami",
+    "website": "https://pushnami.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "api\\.pushnami\\.com"
+        }
+    ]
+}

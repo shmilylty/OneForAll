@@ -1,0 +1,15 @@
+{
+    "name": "ClipShare",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "<!--!!!!!!!!!!!!!!!!!!!!!!!!! Processing SCRIPT"
+        },
+        {
+            "search": "body",
+            "text": "Powered By <a href=\"http://www.clip-share.com"
+        }
+    ]
+}

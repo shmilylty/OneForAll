@@ -1,0 +1,16 @@
+{
+    "name": "Verizon_Wireless_Router",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "Wireless Broadband Router Management Console"
+        },
+        {
+            "search": "body",
+            "text": "verizon_logo_blk.gif"
+        }
+    ],
+    "condition": "0 and 1"
+}

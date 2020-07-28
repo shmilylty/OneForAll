@@ -1,0 +1,11 @@
+{
+    "name": "Firebase",
+    "website": "https://firebase.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "/(?:([\\d.]+)/)?firebase(?:\\.min)?\\.js",
+            "offset": 1
+        }
+    ]
+}

@@ -1,0 +1,16 @@
+{
+    "name": "\u80b2\u53cb\u8f6f\u4ef6",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "http://www.yuysoft.com/"
+        },
+        {
+            "search": "body",
+            "text": "\u6280\u672f\u652f\u6301"
+        }
+    ],
+    "condition": "0 and 1"
+}

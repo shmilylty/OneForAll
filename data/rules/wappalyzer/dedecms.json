@@ -1,0 +1,11 @@
+{
+    "name": "DedeCMS",
+    "website": "http://dedecms.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "dedeajax"
+        }
+    ],
+    "implies": "PHP"
+}

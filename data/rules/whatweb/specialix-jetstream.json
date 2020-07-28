@@ -1,0 +1,14 @@
+{
+    "name": "Specialix-JETSTREAM",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Specialix JETSTREAM Network Access Server allows authorized remote users to dial into a network to access email; share documents; connect to the Internet; and print documents on the network's printers.",
+    "website": null,
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Specialix JETSTREAM ([\\d\\.]+)$)",
+            "offset": 1
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    "name": "GeoNode",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "Powered by <a href=\"http://geonode.org"
+        },
+        {
+            "search": "body",
+            "text": "href=\"/catalogue/opensearch\" title=\"GeoNode Search"
+        }
+    ]
+}

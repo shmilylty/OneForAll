@@ -1,0 +1,15 @@
+{
+    "name": "pagespeed",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "X-Page-Speed"
+        },
+        {
+            "search": "headers",
+            "text": "X-Mod-Pagespeed"
+        }
+    ]
+}

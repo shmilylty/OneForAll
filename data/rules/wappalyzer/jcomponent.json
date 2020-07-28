@@ -1,0 +1,6 @@
+{
+    "name": "jComponent",
+    "website": "https://componentator.com",
+    "matches": [],
+    "implies": "jQuery"
+}

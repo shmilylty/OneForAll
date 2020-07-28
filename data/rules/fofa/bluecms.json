@@ -1,0 +1,15 @@
+{
+    "name": "bluecms",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "power by bcms"
+        },
+        {
+            "search": "body",
+            "text": "bcms_plugin"
+        }
+    ]
+}

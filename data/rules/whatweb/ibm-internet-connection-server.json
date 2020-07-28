@@ -1,0 +1,14 @@
+{
+    "name": "IBM-Internet-Connection-Server",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "IBM Internet Connection Server - Homepage [offline] : http://www.ics.raleigh.ibm.com",
+    "website": null,
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^IBM Internet Connection Server\\/([^\\s]+)$)",
+            "offset": 1
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    "name": "Ruckus",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "mon.  Tell me your username"
+        },
+        {
+            "search": "title",
+            "regexp": "Ruckus Wireless Admin"
+        }
+    ]
+}

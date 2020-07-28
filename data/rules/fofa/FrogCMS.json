@@ -1,0 +1,15 @@
+{
+    "name": "FrogCMS",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "target=\"_blank\">Frog CMS"
+        },
+        {
+            "search": "body",
+            "text": "href=\"http://www.madebyfrog.com\">Frog CMS"
+        }
+    ]
+}

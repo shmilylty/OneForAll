@@ -1,0 +1,11 @@
+{
+    "name": "Privoxy\u4ee3\u7406",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "Privoxy"
+        }
+    ]
+}

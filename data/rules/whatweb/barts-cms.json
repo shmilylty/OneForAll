@@ -1,0 +1,21 @@
+{
+    "name": "Barts-CMS",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Bart's CMS is a website Content Management System that is build with Codecharge Studio.",
+    "website": "http://trinityhome.org/",
+    "matches": [
+        {
+            "offset": 1,
+            "regexp": "(?-mix:Powered by <a style=\"color:#ccc;\" href=\"http:\\/\\/trinityhome.org(\\/|\\/barts_cms\\/)\"  title=\"Bart's CMS \\[Business Edition\\] Version ([\\d\\.]{1,10}) \\[(Stable|Beta)\\]\" >Bart's CMS<\\/a>)"
+        },
+        {
+            "regexp": "(?-mix:<meta name=\"generator\" content=\"Bart's CMS \\[Business Edition\\] ([\\d\\.]{1,10}) [Stable][^>]*\">)",
+            "offset": 1
+        },
+        {
+            "certainty": 75,
+            "text": "<meta name=\"author\" content=\"Bart Verstricht\" />"
+        }
+    ]
+}

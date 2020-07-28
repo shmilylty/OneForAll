@@ -1,0 +1,10 @@
+{
+    "name": "Hotjar",
+    "website": "https://www.hotjar.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "//static\\.hotjar\\.com/c/hotjar-"
+        }
+    ]
+}

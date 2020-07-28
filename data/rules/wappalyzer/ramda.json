@@ -1,0 +1,10 @@
+{
+    "name": "Ramda",
+    "website": "http://ramdajs.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "ramda.*\\.js"
+        }
+    ]
+}

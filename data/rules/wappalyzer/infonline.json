@@ -1,0 +1,10 @@
+{
+    "name": "INFOnline",
+    "website": "https://www.infonline.de",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "^https?://(?:[^/]+\\.)?i(?:oam|v)wbox\\.de/"
+        }
+    ]
+}

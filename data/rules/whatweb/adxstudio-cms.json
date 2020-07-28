@@ -1,0 +1,23 @@
+{
+    "name": "adxstudio-cms",
+    "author": "Aung Khant <http://yehg.net/>, Andrew Horton",
+    "version": "0.2",
+    "description": "ADXStudio CMS",
+    "website": "http://www.adxstudio.com",
+    "matches": [
+        {
+            "name": "Set-cookie Header",
+            "search": "headers[set-cookie]",
+            "regexp": "(?i-mx:anonprofile)"
+        },
+        {
+            "text": "/PoweredByADX.gif"
+        },
+        {
+            "text": "alt=\"Powered by Adxstudio\""
+        },
+        {
+            "text": "/poweredbyadx.png"
+        }
+    ]
+}

@@ -1,0 +1,42 @@
+{
+    "name": "cm3-cms",
+    "author": "Aung Khant <http://yehg.net/>",
+    "version": "0.1",
+    "description": "CM3/CM2 CMS - http://www.cm3cms.com/ , CM2 was based on ASP, CM3 was based on ASP.NET.",
+    "website": null,
+    "matches": [
+        {
+            "name": "JavaScript Object (CM2)",
+            "text": "top.cm2_home.location.href"
+        },
+        {
+            "name": "HTML Body (CM2)",
+            "text": "name=\"cm2_top\" id=\"cm2_top\""
+        },
+        {
+            "name": "HTML Body (CM2)",
+            "text": "name=\"cm25_main\""
+        },
+        {
+            "name": "HTML Body (CM3)",
+            "text": "name=\"id=\"cm3top\" name=\"cm3top\""
+        },
+        {
+            "name": "HTML Body (CM3)",
+            "text": "logo_cm3_top.gif\" border=\"0\""
+        },
+        {
+            "name": "HTML Body (CM3)",
+            "text": "alt=\"Content management system: cm3 built and powered\""
+        },
+        {
+            "name": "HTML Body (CM3)",
+            "text": "cm3powered_green.gif\""
+        },
+        {
+            "name": "Set-Cookie Header (CM3)",
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:cm3session)"
+        }
+    ]
+}

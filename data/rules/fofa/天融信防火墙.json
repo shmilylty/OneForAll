@@ -1,0 +1,16 @@
+{
+    "name": "\u5929\u878d\u4fe1\u9632\u706b\u5899",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "TopWebServer"
+        },
+        {
+            "search": "body",
+            "text": "WEB User Interface"
+        }
+    ],
+    "condition": "0 and 1"
+}

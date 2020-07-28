@@ -1,0 +1,11 @@
+{
+    "name": "Amazon S3",
+    "website": "http://aws.amazon.com/s3/",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "^AmazonS3$"
+        }
+    ],
+    "implies": "Amazon Web Services"
+}

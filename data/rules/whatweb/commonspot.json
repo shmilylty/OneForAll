@@ -1,0 +1,22 @@
+{
+    "name": "CommonSpot",
+    "author": "Tonmoy Saikia, Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "The CommonSpot Web content management solution (Web CMS) increases the value of content by creating engaging Web experiences that generate high impact results.",
+    "website": "http://www.paperthin.com/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<meta[^>]+name=\"Generator\"[^>]+content=\"CommonSpot[^\"]+\"[^>]*\\/>)"
+        },
+        {
+            "regexp": "(?-mix:<img[^>]+src=\"[^\"]+commonspot[^\"]+\"[^>]*\\/>)"
+        },
+        {
+            "regexp": "(?-mix:<link[^>]+href=\"[^\"]commonspot\\/commonspot\\.css\"[^>]+\\/>)"
+        },
+        {
+            "regexp": "(?-mix:<meta[^>]+name=\"Generator\"[^>]+content=\"CommonSpot[^\\d^\"]+([\\d\\.]+)\"[^>]*\\/>)",
+            "offset": 1
+        }
+    ]
+}

@@ -1,0 +1,9 @@
+{
+    "name": "Webmine",
+    "website": "https://webmine.cz/",
+    "matches": [
+        {
+            "regexp": "<iframe[^>]+src=[\\'\"]https://webmine\\.cz/miner\\?key="
+        }
+    ]
+}

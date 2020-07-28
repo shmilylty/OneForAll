@@ -1,0 +1,11 @@
+{
+    "name": "TP-Link 3600 DD-WRT",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "TP-Link 3600 DD-WRT"
+        }
+    ]
+}

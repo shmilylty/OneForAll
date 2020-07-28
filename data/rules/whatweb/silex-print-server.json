@@ -1,0 +1,17 @@
+{
+    "name": "Silex-Print-Server",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Silex Print Server - Print servers connect printers directly to the network so that multiple PCs can share them.",
+    "website": "http://www.silexamerica.com/",
+    "matches": [
+        {
+            "url": "/troy_large_bw.gif",
+            "md5": "ba4feb9ffb5d77f9c72269549d07b78e"
+        },
+        {
+            "url": "/silex_logo.gif",
+            "md5": "ba4feb9ffb5d77f9c72269549d07b78e"
+        }
+    ]
+}

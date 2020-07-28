@@ -1,0 +1,14 @@
+{
+    "name": "Strapdown.js",
+    "website": "http://strapdownjs.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "strapdown\\.js"
+        }
+    ],
+    "implies": [
+        "Bootstrap",
+        "Google Code Prettify"
+    ]
+}

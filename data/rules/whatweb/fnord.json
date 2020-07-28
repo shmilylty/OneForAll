@@ -1,0 +1,18 @@
+{
+    "name": "fnord",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "fnord - yet another small httpd",
+    "website": "http://www.fefe.de/fnord/",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^fnord\\/([^\\s]+)$)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:^fnord)",
+            "search": "headers[server]"
+        }
+    ]
+}

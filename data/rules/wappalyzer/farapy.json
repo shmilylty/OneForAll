@@ -1,0 +1,10 @@
+{
+    "name": "FaraPy",
+    "website": "https://faral.tech",
+    "matches": [
+        {
+            "regexp": "<!-- Powered by FaraPy."
+        }
+    ],
+    "implies": "Python"
+}

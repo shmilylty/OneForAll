@@ -1,0 +1,15 @@
+{
+    "name": "activeCollab",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "powered by activeCollab"
+        },
+        {
+            "search": "body",
+            "text": "<p id=\"powered_by\"><a href=\"http://www.activecollab.com/\""
+        }
+    ]
+}

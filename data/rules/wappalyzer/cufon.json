@@ -1,0 +1,10 @@
+{
+    "name": "Cufon",
+    "website": "http://cufon.shoqolate.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "cufon-yui\\.js"
+        }
+    ]
+}

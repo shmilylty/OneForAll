@@ -1,0 +1,32 @@
+{
+    "name": "Ruby",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.3",
+    "description": "Ruby is a dynamic, open source programming language with a focus on simplicity and productivity. It has an elegant syntax that is natural to read and easy to write.",
+    "website": "http://www.ruby-lang.org/",
+    "matches": [
+        {
+            "regexp": "(?-mix:Ruby)",
+            "search": "headers[server]"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:Ruby\\/([^\\s^\\/^\\(]+))",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:^WEBrick)",
+            "search": "headers[server]"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^(WEBrick\\/[\\d\\.]+) \\(Ruby\\/[\\d\\.]+\\/[\\d]{4}-[\\d]{2}-[\\d]{2}\\))",
+            "offset": 1
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^WEBrick\\/[\\d\\.]+ \\(Ruby\\/([\\d\\.]+)\\/[\\d]{4}-[\\d]{2}-[\\d]{2}\\))",
+            "offset": 1
+        }
+    ]
+}

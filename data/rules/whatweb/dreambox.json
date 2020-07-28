@@ -1,0 +1,27 @@
+{
+    "name": "Dreambox",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "The Dreambox is a series of Linux-powered DVB satellite, terrestrial and cable digital television receivers (set-top box), produced by German multimedia vendor Dream Multimedia. Enigma2 WebInterface - Control a DreamBox using a Browser. The Dreambox Webinterface (short WebIf) is included in all newer Images. - More info: http://en.wikipedia.org/wiki/Dreambox",
+    "website": null,
+    "matches": [
+        {
+            "url": "/web-data/img/favicon.ico",
+            "md5": "d9aa63661d742d5f7c7300d02ac18d69"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Enigma2 WebInterface Server ([\\d\\.]+)$)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:^TwistedWeb)",
+            "search": "headers[server]"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^TwistedWeb\\/([\\d\\.]+))",
+            "offset": 1
+        }
+    ]
+}

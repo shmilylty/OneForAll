@@ -1,0 +1,15 @@
+{
+    "name": "shopex",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "content=\"ShopEx"
+        },
+        {
+            "search": "body",
+            "text": "@author litie[aita]shopex.cn"
+        }
+    ]
+}

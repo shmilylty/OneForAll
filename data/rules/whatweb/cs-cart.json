@@ -1,0 +1,18 @@
+{
+    "name": "CS-Cart",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "CS-Cart is a full e-commerce solution for small to medium sized businesses. The software uses PHP4 and MySQL to provide an easy, quick and flexible interface, allowing you to produce a high functionality on-line store in minutes. It is all 100% template driven!",
+    "website": "http://www.cs-cart.com/",
+    "matches": [
+        {
+            "text": "\ttext_required_group_product: 'Please select a product for the required group [group_name]',"
+        },
+        {
+            "regexp": "(?-mix:Powered by <a href=\"http:\\/\\/www.cs-cart.com\" target=\"_blank\"[^>]+>CS-Cart - Shopping Cart Software<\\/a>)"
+        },
+        {
+            "text": "<title>CS-Cart. Powerful PHP shopping cart software</title>"
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "name": "LiveChat",
+    "website": "http://livechatinc.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "cdn\\.livechatinc\\.com/.*tracking\\.js"
+        }
+    ]
+}

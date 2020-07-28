@@ -1,0 +1,15 @@
+{
+    "name": "Brother-Fax",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "debut"
+        },
+        {
+            "search": "title",
+            "regexp": "Brother MFC"
+        }
+    ]
+}

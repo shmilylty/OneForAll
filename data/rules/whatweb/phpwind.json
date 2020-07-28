@@ -1,0 +1,24 @@
+{
+    "name": "PHPWind",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "BBS [Chinese]",
+    "website": "http://www.phpwind.net/",
+    "matches": [
+        {
+            "certainty": 25,
+            "regexp": "(?-mix:<title>[^<]+ - (powered by phpwind.net|Powered by PHPWind)<\\/title>)"
+        },
+        {
+            "regexp": "(?i-mx:<meta name=\"generator\" content=\"PHPWind [v]?([^\"^\\(]+)(\\([\\d]+\\))?\" \\/>)",
+            "offset": 1
+        },
+        {
+            "text": "Powered by <a href=\"http://www.phpwind.net/\" target=\"_blank\"><b>PHPWind</b></a>"
+        },
+        {
+            "regexp": "(?-mix:Powered by <a href=\"http:\\/\\/www.phpwind.net\\/\" target=\"_blank\"><b>PHPWind<\\/b><\\/a>[\\s]*<a href=\"http:\\/\\/www.phpwind.net\\/\" target=\"_blank\"><b style=\"color:#FF9900\">v([\\d\\.]+)<\\/b><\\/a>)",
+            "offset": 1
+        }
+    ]
+}

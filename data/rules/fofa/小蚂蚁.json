@@ -1,0 +1,19 @@
+{
+    "name": "\u5c0f\u8682\u8681",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "Powered by \u5c0f\u8682\u8681\u5730\u65b9\u95e8\u6237\u7f51\u7ad9\u7cfb\u7edf"
+        },
+        {
+            "search": "headers",
+            "text": "AntXiaouserslogin"
+        },
+        {
+            "search": "body",
+            "text": "/Template/Ant/Css/AntHomeComm.css"
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    "name": "weebly",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "intern.weebly.net"
+        },
+        {
+            "search": "body",
+            "text": "wsite-page-index"
+        }
+    ]
+}

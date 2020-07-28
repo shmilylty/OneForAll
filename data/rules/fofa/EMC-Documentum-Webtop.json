@@ -1,0 +1,15 @@
+{
+    "name": "EMC-Documentum-Webtop",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "/webtop/index.js"
+        },
+        {
+            "search": "body",
+            "text": "/webtop/webtop/theme/documentum/css/webtop.css"
+        }
+    ]
+}

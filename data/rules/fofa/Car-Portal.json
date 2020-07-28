@@ -1,0 +1,15 @@
+{
+    "name": "Car-Portal",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "Powered by <a href=\"http://www.netartmedia.net/carsportal"
+        },
+        {
+            "search": "body",
+            "text": "class=\"bodyfontwhite\"><strong>&nbsp;Car Script"
+        }
+    ]
+}

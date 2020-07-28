@@ -1,0 +1,15 @@
+{
+    "name": "Funkwerk-Gateway",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "Funkwerk BOSS"
+        },
+        {
+            "search": "title",
+            "regexp": "Welcome to your Funkwerk Gateway"
+        }
+    ]
+}

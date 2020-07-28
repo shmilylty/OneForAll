@@ -1,0 +1,17 @@
+{
+    "name": "phpCollab",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "phpCollab is an open source internet-enabled system for use in projects that require collaboration over the internet.",
+    "website": "http://www.php-collab.org/",
+    "matches": [
+        {
+            "regexp": "(?-mix:^<!-- Powered by PhpCollab v([\\d\\.]+) \\/\\/-->$)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:^<p id=\"footer\">PhpCollab v([\\d\\.]+)[\\s]*<\\/p>$)",
+            "offset": 1
+        }
+    ]
+}

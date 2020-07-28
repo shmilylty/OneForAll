@@ -1,0 +1,15 @@
+{
+    "name": "CoDeSys-Web-Visualization",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "CoDeSys WebVisualization"
+        },
+        {
+            "search": "headers",
+            "text": "WAGO_Webs"
+        }
+    ]
+}

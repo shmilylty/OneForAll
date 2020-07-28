@@ -1,0 +1,24 @@
+{
+    "name": "MediaWiki",
+    "author": "Tonmoy Saikia, Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "MediaWiki is a free software wiki  package written in PHP, originally for use on Wikipedia http://www.mediawiki.org/wiki/MediaWiki",
+    "website": null,
+    "matches": [
+        {
+            "text": "alt=\"Powered by MediaWiki\""
+        },
+        {
+            "certainty": 75,
+            "ghdb": "inurl:wiki MediaWiki"
+        },
+        {
+            "regexp": "(?-mix:<meta name=\"generator\" content=\"MediaWiki ([^\\s^\"]+)\" \\/>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<td><a href=\"http:\\/\\/www\\.mediawiki\\.org\\/\" class=\"external text\" rel=\"nofollow\">MediaWiki<\\/a><\\/td>[\\s]+<td>([^<]+)<\\/td>)",
+            "offset": 1
+        }
+    ]
+}

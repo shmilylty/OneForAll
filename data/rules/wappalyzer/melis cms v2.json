@@ -1,0 +1,13 @@
+{
+    "name": "Melis CMS V2",
+    "website": "http://www.melistechnology.com/",
+    "matches": [
+        {
+            "regexp": "<!-- Rendered with Melis CMS V2"
+        },
+        {
+            "search": "meta[powered-by]",
+            "regexp": "^Melis CMS"
+        }
+    ]
+}

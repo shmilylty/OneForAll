@@ -1,0 +1,14 @@
+{
+    "name": "LaserWash",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "PDQ - LaserWash - touchless car wash equipment.",
+    "website": "http://www.pdqinc.com/car-wash-equipment/laserwash-360.asp",
+    "matches": [
+        {
+            "status": 401,
+            "search": "headers[www-authenticate]",
+            "regexp": "(?-mix:^Basic realm=\"PDQ Laserwash\"$)"
+        }
+    ]
+}

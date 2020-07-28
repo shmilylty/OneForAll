@@ -1,0 +1,11 @@
+{
+    "name": "Logitech Media Server",
+    "website": "http://www.mysqueezebox.com",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "Logitech Media Server(?: \\(([\\d\\.]+))?",
+            "offset": 1
+        }
+    ]
+}

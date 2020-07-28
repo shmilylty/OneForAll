@@ -1,0 +1,27 @@
+{
+    "name": "eSyndiCat",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "eSyndiCat is a professional, affordable directory software solution.",
+    "website": "http://www.esyndicat.com/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<div class=\"copyright\">&copy; [0-9]{4}[\\-0-9]{0,5} Powered by <a href=\"http:\\/\\/www.esyndicat.com\\/\">eSyndiCat[^<]{0,5} Directory [^<]{5,8}<\\/a><\\/div>)"
+        },
+        {
+            "text": "<title>Login To eSyndiCat Admin Panel</title>"
+        },
+        {
+            "regexp": "(?-mix:<meta name=\"generator\" content=\"eSyndiCat Web Directory Software ([\\d\\.]+)\" \\/>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:Powered by <a href=\"http:\\/\\/www.esyndicat.com\\/\">eSyndiCat Pro v([\\d\\.]+)<\\/a><br \\/>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:Powered by <a href=\"http:\\/\\/www.esyndicat.com\\/\">eSyndiCat<\\/a> Version ([\\d\\.]+)<br \\/>)",
+            "offset": 1
+        }
+    ]
+}

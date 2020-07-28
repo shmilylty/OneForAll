@@ -1,0 +1,10 @@
+{
+    "name": "DreamWeaver",
+    "website": "https://www.adobe.com/products/dreamweaver.html",
+    "matches": [
+        {
+            "regexp": "<!--[^>]*(?:InstanceBeginEditable|Dreamweaver([^>]+)target|DWLayoutDefaultTable)",
+            "offset": 1
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+{
+    "name": "Kestrel",
+    "website": "https://docs.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "^Kestrel"
+        }
+    ],
+    "implies": "Microsoft ASP.NET"
+}

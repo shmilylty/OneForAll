@@ -1,0 +1,18 @@
+{
+    "name": "EulerianWS",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "Eulerian Technologies Web Server (EulerianWS) [French]",
+    "website": "http://www.eulerian.com/fr/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<td align=\"right\"><address>EulerianWS\\/([\\d\\.]+)<\\/address><\\/td><\\/tr>)",
+            "offset": 1
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^[\\s]*EulerianWS\\/([^\\s^\\r^\\n]+))",
+            "offset": 1
+        }
+    ]
+}

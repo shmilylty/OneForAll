@@ -1,0 +1,23 @@
+{
+    "name": "MetInfo",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "Powered by MetInfo"
+        },
+        {
+            "search": "body",
+            "text": "content=\"MetInfo"
+        },
+        {
+            "search": "body",
+            "text": "powered_by_metinfo"
+        },
+        {
+            "search": "body",
+            "text": "/images/css/metinfo.css"
+        }
+    ]
+}

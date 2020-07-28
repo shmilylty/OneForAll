@@ -1,0 +1,13 @@
+{
+    "name": "MyioSoft-Ajax-Portal",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "AjaxPortal is based on Sajax technology - an open source tool to make programming websites using the Ajax framework known as XMLHTTPRequest or remote scripting as easy as possible.",
+    "website": "http://myiosoft.com/",
+    "matches": [
+        {
+            "regexp": "(?-mix:      <td align=\"right\"  style=\"padding:5px; background-color: #EDF2FB;\" nowrap> Powered by <a href=\"http:\\/\\/myiosoft.com\\/\\?[\\d\\.]+\">Ajax Portal ([\\d\\.]+)<\\/a><\\/td>)",
+            "offset": 1
+        }
+    ]
+}

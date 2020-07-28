@@ -1,0 +1,26 @@
+{
+    "name": "JBoss",
+    "author": "Louis Nyffenegger, Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "JBoss Application Server is the #1 most widely used Java application server on the market. A Java EE certified platform for developing and deploying enterprise Java applications, Web applications, and Portals, JBoss Application Server provides the full range of Java EE 5 features as well as extended enterprise services including clustering, caching, and persistence. - Homepaeg: http://www.jboss.org/jbossas/",
+    "website": null,
+    "matches": [
+        {
+            "name": "Jboss default title",
+            "regexp": "(?-mix:<title>Welcome to JBoss AS<\\/title>)"
+        },
+        {
+            "name": "link to Administration Console",
+            "certainty": 50,
+            "regexp": "(?-mix:<a href=\\\"\\/admin-console\\/\\\">Administration Console<\\/a>)"
+        },
+        {
+            "name": "link to Web Console",
+            "regexp": "(?-mix:<a href=\\\"\\/web-console\\/\\\">Jboss Web Console<\\/a>)"
+        },
+        {
+            "name": "link to JMX Console",
+            "regexp": "(?-mix:<a href=\\\"\\/jmx-console\\/\\\">JMX Console<\\/a>)"
+        }
+    ]
+}

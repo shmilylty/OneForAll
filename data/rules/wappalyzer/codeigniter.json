@@ -1,0 +1,27 @@
+{
+    "name": "CodeIgniter",
+    "website": "http://codeigniter.com",
+    "matches": [
+        {
+            "search": "cookies[ci_csrf_token]",
+            "regexp": "^(.+)$",
+            "offset": 1
+        },
+        {
+            "search": "cookies[ci_session]",
+            "regexp": ".*"
+        },
+        {
+            "search": "cookies[exp_last_activity]",
+            "regexp": ".*"
+        },
+        {
+            "search": "cookies[exp_tracker]",
+            "regexp": ".*"
+        },
+        {
+            "regexp": "<input[^>]+name=\"ci_csrf_token\""
+        }
+    ],
+    "implies": "PHP"
+}

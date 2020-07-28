@@ -1,0 +1,10 @@
+{
+    "name": "Tencent Analytics (\u817e\u8baf\u5206\u6790)",
+    "website": "https://ta.qq.com/",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "tajs\\.qq\\.com/stats"
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+{
+    "name": "\u91d1\u8776\u653f\u52a1GSiS",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "/kdgs/script/kdgs.js"
+        }
+    ]
+}

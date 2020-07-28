@@ -1,0 +1,26 @@
+{
+    "name": "ChiliProject",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "ChiliProject is a web based project management system.",
+    "website": "https://www.chiliproject.org/",
+    "matches": [
+        {
+            "text": "Powered by <a href=\"https://www.chiliproject.org/\">ChiliProject</a>"
+        },
+        {
+            "text": "<meta name=\"description\" content=\"ChiliProject\" />"
+        },
+        {
+            "text": "<!-- page specific tags -->"
+        },
+        {
+            "regexp": "(?-mix:<li><a href=\"https:\\/\\/www\\.chiliproject\\.org\\/help\\/v([^\\s^\"]+)\" class=\"help\">)",
+            "offset": 1
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:_chiliproject_session=)"
+        }
+    ]
+}

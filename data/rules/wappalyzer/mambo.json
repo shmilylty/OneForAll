@@ -1,0 +1,11 @@
+{
+    "name": "Mambo",
+    "website": "http://mambo-foundation.org",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "Mambo"
+        }
+    ],
+    "excludes": "Joomla"
+}

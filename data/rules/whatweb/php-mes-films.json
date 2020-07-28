@@ -1,0 +1,21 @@
+{
+    "name": "PhpMesFilms",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "Film database powered by PHP. Website used to be http://phpmesfilms.dyndns.org/",
+    "website": null,
+    "matches": [
+        {
+            "text": "\t\t<title>PhpMesFilms - Administration</title>"
+        },
+        {
+            "text": "\t\t<title>PhpMesFilms - Liste</title>"
+        },
+        {
+            "text": "\t\t<title>PhpMesFilms - Fiche film</title>"
+        },
+        {
+            "text": "\t\t\t\tpowered by <a href=\"http://phpmesfilms.dyndns.org/\">PhpMesFilms</a>"
+        }
+    ]
+}

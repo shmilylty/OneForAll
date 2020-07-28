@@ -1,0 +1,15 @@
+{
+    "name": "DMXReady-Portfolio-Manager",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "/css/PortfolioManager/styles_display_page.css"
+        },
+        {
+            "search": "body",
+            "text": "rememberme_portfoliomanager"
+        }
+    ]
+}

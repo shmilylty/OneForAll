@@ -1,0 +1,10 @@
+{
+    "name": "RightJS",
+    "website": "http://rightjs.org",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "right\\.js"
+        }
+    ]
+}

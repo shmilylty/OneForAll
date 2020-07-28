@@ -1,0 +1,12 @@
+{
+    "name": "Typekit",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "JavaScript font manager",
+    "website": "http://typekit.com/",
+    "matches": [
+        {
+            "regexp": "(?i-mx:<script [^>]*src=[\"'][^>]*use\\.typekit\\.com)"
+        }
+    ]
+}

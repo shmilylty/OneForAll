@@ -1,0 +1,11 @@
+{
+    "name": "\u62a4\u536b\u795e\u4e3b\u673a\u7ba1\u7406",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "\u62a4\u536b\u795e\u00b7\u4e3b\u673a\u7ba1\u7406\u7cfb\u7edf"
+        }
+    ]
+}

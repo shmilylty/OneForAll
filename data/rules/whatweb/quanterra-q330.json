@@ -1,0 +1,21 @@
+{
+    "name": "Quanterra-Q330",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "Quanterra Q330 series - seismic data acquisition systems",
+    "website": "http://kmi.com/p-163-Home.aspx",
+    "matches": [
+        {
+            "text": "<form action=\"BALEPWR.HTM\" method=\"POST\"><input type=\"SUBMIT\" name=\"PWR\" value=\"Turn on Baler Power\"><br>"
+        },
+        {
+            "regexp": "(?-mix:^Q330)",
+            "search": "headers[server]"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Q330 V([^\\s]+)$)",
+            "offset": 1
+        }
+    ]
+}

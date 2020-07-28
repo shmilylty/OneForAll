@@ -1,0 +1,27 @@
+{
+    "name": "HiveMail",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "HiveMail - PHP Webmail Portal Script - Hompage: http://www.hivemail.com/",
+    "website": null,
+    "matches": [
+        {
+            "text": "<title>Database Error in HiveMail&trade;</title>"
+        },
+        {
+            "regexp": "(?-mix:\\/\\/ myaccounts holds the userpics\\s+myaccounts = '[^']*';\\s+recaptcha_global = \"[^\"]+\";\\s+hiveversion = \"v([^\"]+)\";)",
+            "offset": 1
+        },
+        {
+            "text": "<input type=\"text\" class=\"validate[ajax[ajaxUserCall]] input\" name=\"answer\" id=\"answer\" />"
+        },
+        {
+            "regexp": "(?-mix:<meta name=\"product\" content=\"Hivemail v([^\"]+)\">)",
+            "offset": 1
+        },
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:hivesession=)"
+        }
+    ]
+}

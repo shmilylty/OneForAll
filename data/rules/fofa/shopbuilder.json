@@ -1,0 +1,19 @@
+{
+    "name": "shopbuilder",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "content=\"ShopBuilder"
+        },
+        {
+            "search": "body",
+            "text": "Powered by ShopBuilder"
+        },
+        {
+            "search": "body",
+            "text": "ShopBuilder\u7248\u6743\u6240\u6709"
+        }
+    ]
+}

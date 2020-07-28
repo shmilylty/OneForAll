@@ -1,0 +1,20 @@
+{
+    "name": "Moxa_NPort_5150A",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "MoxaHttp"
+        },
+        {
+            "search": "title",
+            "regexp": "NPort Web Console"
+        },
+        {
+            "search": "body",
+            "text": "5150A"
+        }
+    ],
+    "condition": "0 and 1 and 2"
+}

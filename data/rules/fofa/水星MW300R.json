@@ -1,0 +1,11 @@
+{
+    "name": "\u6c34\u661fMW300R",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "MW300R"
+        }
+    ]
+}

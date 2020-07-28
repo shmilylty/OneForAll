@@ -1,0 +1,11 @@
+{
+    "name": "o2security_vpn",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "client_param=install_active"
+        }
+    ]
+}

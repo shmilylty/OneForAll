@@ -1,0 +1,18 @@
+{
+    "name": "SysMaster",
+    "author": "Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "SysMaster is a leading vendor of voice, video and wireless products and solutions, serving telecoms and service providers worldwide.",
+    "website": "http://www.sysmaster.com/",
+    "matches": [
+        {
+            "regexp": "(?-mix:^SysMaster Web Server)",
+            "search": "headers[server]"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^SysMaster Web Server\\/([^\\s]+)$)",
+            "offset": 1
+        }
+    ]
+}

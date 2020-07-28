@@ -1,0 +1,10 @@
+{
+    "name": "Hammer.js",
+    "website": "https://hammerjs.github.io",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "hammer(?:\\.min)?\\.js"
+        }
+    ]
+}

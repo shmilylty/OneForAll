@@ -1,0 +1,11 @@
+{
+    "name": "Supersized",
+    "website": "http://buildinternet.com/project/supersized",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "supersized(?:\\.([\\d.]*[\\d]))?.*\\.js",
+            "offset": 1
+        }
+    ]
+}

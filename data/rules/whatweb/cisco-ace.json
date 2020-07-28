@@ -1,0 +1,24 @@
+{
+    "name": "Cisco-ACE",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Cisco Application Control Engine (ACE) Device Manager",
+    "website": "http://www.cisco.com/en/US/products/ps6906/index.html",
+    "matches": [
+        {
+            "certainty": 75,
+            "url": "/favicon.ico",
+            "md5": "5ee29688a968d3912880b3780cdde42e"
+        },
+        {
+            "text": "<link href=\"/utility/cuesStylesLogo.css\" rel=\"stylesheet\" type=\"text/css\" />"
+        },
+        {
+            "regexp": "(?-mix:<div class=\"cuesLoginVersionInfo\">Version ([^\\s]+)<\\/div>)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<div class=\"cuesLoginProductName\">ACE ([^\\s]+) Device Manager<\\/div>)"
+        }
+    ]
+}

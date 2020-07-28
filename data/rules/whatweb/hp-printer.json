@@ -1,0 +1,13 @@
+{
+    "name": "HP-Printer",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "HP Printer",
+    "website": "http://www.hp.com/",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^HP HTTP Server; HP (.+) series - )"
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+{
+    "name": "\u5929\u878d\u4fe1 TopAD",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "\u5929\u878d\u4fe1 TopAD"
+        }
+    ]
+}

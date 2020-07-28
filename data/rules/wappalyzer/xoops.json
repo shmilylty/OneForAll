@@ -1,0 +1,11 @@
+{
+    "name": "XOOPS",
+    "website": "http://xoops.org",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "XOOPS"
+        }
+    ],
+    "implies": "PHP"
+}

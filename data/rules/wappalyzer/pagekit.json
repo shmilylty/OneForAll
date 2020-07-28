@@ -1,0 +1,10 @@
+{
+    "name": "Pagekit",
+    "website": "http://pagekit.com",
+    "matches": [
+        {
+            "search": "meta[generator]",
+            "regexp": "Pagekit"
+        }
+    ]
+}

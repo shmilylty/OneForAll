@@ -1,0 +1,9 @@
+{
+    "name": "DatoCMS",
+    "website": "https://www.datocms.com",
+    "matches": [
+        {
+            "regexp": "<[^>]+https://www\\.datocms-assets\\.com"
+        }
+    ]
+}

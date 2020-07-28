@@ -1,0 +1,9 @@
+{
+    "name": "Monerominer",
+    "website": "https://monerominer.rocks/",
+    "matches": [
+        {
+            "regexp": "<iframe[^>]+src=[\\'\"]https?://monerominer\\.rocks/miner\\.php\\?siteid="
+        }
+    ]
+}

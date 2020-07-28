@@ -1,0 +1,20 @@
+{
+    "name": "Concrete5",
+    "website": "https://concrete5.org",
+    "matches": [
+        {
+            "search": "cookies[CONCRETE5]",
+            "regexp": ".*"
+        },
+        {
+            "search": "meta[generator]",
+            "regexp": "^concrete5 - ([\\d.]+)$",
+            "offset": 1
+        },
+        {
+            "search": "script",
+            "regexp": "/concrete/js/"
+        }
+    ],
+    "implies": "PHP"
+}

@@ -1,0 +1,19 @@
+{
+    "name": "Enhydra-Application-Server",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Enhydra Application Server",
+    "website": "http://enhydra.org/",
+    "matches": [
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Enhydra-MultiServer\\/([^\\s]+))",
+            "offset": 1
+        },
+        {
+            "search": "headers[servlet-engine]",
+            "regexp": "(?-mix:Enhydra Application Server\\/([^\\s]+))",
+            "offset": 1
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    "name": "e-office",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "general/login/index.php"
+        },
+        {
+            "search": "body",
+            "text": "/general/login/view//images/updateLoad.gif"
+        }
+    ]
+}

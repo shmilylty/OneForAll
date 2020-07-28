@@ -1,0 +1,17 @@
+{
+    "name": "Content-Security-Policy",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Content Security Policy (CSP) - More Info: https://en.wikipedia.org/wiki/Content_Security_Policy",
+    "website": null,
+    "matches": [
+        {
+            "search": "headers[x-content-security-policy]",
+            "regexp": "(?-mix:^(.*)$)"
+        },
+        {
+            "search": "headers[x-webkit-csp]",
+            "regexp": "(?-mix:^(.*)$)"
+        }
+    ]
+}

@@ -1,0 +1,16 @@
+{
+    "name": "\u7231\u5feb\u6d41\u63a7\u8def\u7531",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "\u7231\u5feb"
+        },
+        {
+            "search": "body",
+            "text": "/resources/images/land_prompt_ico01.gif"
+        }
+    ],
+    "condition": "0 and 1"
+}

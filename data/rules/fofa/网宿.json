@@ -1,0 +1,15 @@
+{
+    "name": "\u7f51\u5bbf",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "Cdn Cache Server"
+        },
+        {
+            "search": "headers",
+            "text": "WS CDN Server"
+        }
+    ]
+}

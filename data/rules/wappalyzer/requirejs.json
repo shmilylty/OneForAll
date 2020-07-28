@@ -1,0 +1,10 @@
+{
+    "name": "RequireJS",
+    "website": "http://requirejs.org",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "require.*\\.js"
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    "name": "EverFocus-CCTV",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "EverFoxus CCTV router web interface",
+    "website": "http://www.everfocus.com/products.cfm",
+    "matches": [
+        {
+            "regexp": "(?-mix:^\tIf the page is not redirected, please click <a href=\"\\/login\\.html\\?[\\d]{4}&1\">here<\\/a><br>$)"
+        },
+        {
+            "text": "<!--mei20071101 input type=\"image\" name=\"recMode\" style=\"visibility:hidden\" src=\"stoprec.gif\" onclick=\"changeRecordMode()\"-->"
+        }
+    ]
+}

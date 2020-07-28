@@ -1,0 +1,10 @@
+{
+    "name": "OpenLayers",
+    "website": "https://openlayers.org",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "openlayers"
+        }
+    ]
+}

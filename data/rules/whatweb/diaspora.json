@@ -1,0 +1,24 @@
+{
+    "name": "Diaspora",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Diaspora - social networking service",
+    "website": "https://joindiaspora.com/",
+    "matches": [
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:_diaspora_session=)"
+        },
+        {
+            "search": "headers[x-git-update]",
+            "regexp": "(?-mix:^([\\d]{4}-[\\d]{2}-[\\d]{2} [\\d]{2}:[\\d]{2}:[\\d]{2} .+)$)"
+        },
+        {
+            "search": "headers[x-git-revision]",
+            "regexp": "(?-mix:^[a-f\\d]{32}$)"
+        },
+        {
+            "text": "<input name=\"user[remember_me]\" type=\"hidden\" value=\"0\" /><input id=\"user_remember_me\" name=\"user[remember_me]\" type=\"checkbox\" value=\"1\" />"
+        }
+    ]
+}

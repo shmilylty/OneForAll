@@ -1,0 +1,13 @@
+{
+    "name": "SillySmart",
+    "author": "Guillaume Delacour <gui@iroqwa.org>",
+    "version": "0.1",
+    "description": "SillySmart is a lightweight and flexible MVC Framework written in PHP5 based on XML/XSL's parsing.",
+    "website": null,
+    "matches": [
+        {
+            "certainty": 85,
+            "text": "var slsBuild"
+        }
+    ]
+}

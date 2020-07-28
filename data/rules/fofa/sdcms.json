@@ -1,0 +1,20 @@
+{
+    "name": "sdcms",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "powered by sdcms"
+        },
+        {
+            "search": "body",
+            "text": "var webroot="
+        },
+        {
+            "search": "body",
+            "text": "/js/sdcms.js"
+        }
+    ],
+    "condition": "0 or (1 and 2)"
+}

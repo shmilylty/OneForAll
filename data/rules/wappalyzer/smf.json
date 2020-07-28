@@ -1,0 +1,11 @@
+{
+    "name": "SMF",
+    "website": "http://www.simplemachines.org",
+    "matches": [
+        {
+            "regexp": "credits/?\" title=\"Simple Machines Forum\" target=\"_blank\" class=\"new_win\">SMF ([0-9.]+)</a>",
+            "offset": 1
+        }
+    ],
+    "implies": "PHP"
+}

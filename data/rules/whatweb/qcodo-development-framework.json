@@ -1,0 +1,14 @@
+{
+    "name": "Qcodo-Development-Framework",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "The Qcodo Development Framework is an open-source PHP framework that focuses on freeing developers from unnecessary tedious, mundane coding.",
+    "website": "http://www.qcodo.com/",
+    "matches": [
+        {
+            "string": "Error",
+            "regexp": "(?-mix:<b>PHP Version:<\\/b> [^;]+;&nbsp;&nbsp;<b>Zend Engine Version:<\\/b> [^;]+;&nbsp;&nbsp;<b>Qcodo Version:<\\/b> ([^\\(]+) \\([^\\(]+\\)<br \\/>)",
+            "offset": 1
+        }
+    ]
+}

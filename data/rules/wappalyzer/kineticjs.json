@@ -1,0 +1,11 @@
+{
+    "name": "KineticJS",
+    "website": "https://github.com/ericdrowell/KineticJS/",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "kinetic(?:-v?([\\d.]+))?(?:\\.min)?\\.js",
+            "offset": 1
+        }
+    ]
+}

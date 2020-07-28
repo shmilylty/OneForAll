@@ -1,0 +1,11 @@
+{
+    "name": "TRSMAS",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "X-Mas-Server"
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+{
+    "name": "Rickshaw",
+    "website": "http://code.shutterstock.com/rickshaw/",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "rickshaw(?:\\.min)?\\.js"
+        }
+    ],
+    "implies": "D3"
+}

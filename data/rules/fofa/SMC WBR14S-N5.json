@@ -1,0 +1,11 @@
+{
+    "name": "SMC WBR14S-N5",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "SMCWBR14S-N5"
+        }
+    ]
+}

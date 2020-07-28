@@ -1,0 +1,15 @@
+{
+    "name": "google-analytics",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "google-analytics.com/ga.js"
+        },
+        {
+            "search": "body",
+            "text": "google-analytics.com/analytics.js"
+        }
+    ]
+}

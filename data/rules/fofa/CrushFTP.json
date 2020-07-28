@@ -1,0 +1,15 @@
+{
+    "name": "CrushFTP",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "Server: CrushFTP HTTP Server"
+        },
+        {
+            "search": "title",
+            "regexp": "CrushFTP WebInterface"
+        }
+    ]
+}

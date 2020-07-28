@@ -1,0 +1,20 @@
+{
+    "name": "PowerLogic_ION",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "PowerLogic"
+        },
+        {
+            "search": "title",
+            "regexp": "ION"
+        },
+        {
+            "search": "headers",
+            "text": "Allegro-Software-RomPager"
+        }
+    ],
+    "condition": "0 and 1 and 2"
+}

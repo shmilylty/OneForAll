@@ -1,0 +1,24 @@
+{
+    "name": "Adobe-Flash",
+    "author": "Caleb Anderson, Brendan Coles <bcoles@gmail.com>, Andrew Horton",
+    "version": "0.3",
+    "description": "This plugin identifies instances of embedded adobe flash files.",
+    "website": "https://get.adobe.com/flashplayer/",
+    "matches": [
+        {
+            "regexp": "(?i-mx:<object[^>]+application\\/x-shockwave-flash[^>]+>)"
+        },
+        {
+            "regexp": "(?i-mx:<embed[^>]+src[\\s]*=[\\s]*[\"']?[^\\s^'^\"^>]+)"
+        },
+        {
+            "regexp": "(?-mix:new[\\s]+FlashObject[\\s]*\\([\\s]*['\"]?[^'^\"]+)"
+        },
+        {
+            "regexp": "(?-mix:new[\\s]+SWFObject[\\s]*\\([\\s]*['\"]?[^'^\"]+)"
+        },
+        {
+            "regexp": "(?-mix:\\.embedSWF[\\s]*\\([\\s]*[\"']?[^'^\"]+)"
+        }
+    ]
+}

@@ -1,0 +1,9 @@
+{
+    "name": "Less",
+    "website": "http://lesscss.org",
+    "matches": [
+        {
+            "regexp": "<link[^>]+ rel=\"stylesheet/less\""
+        }
+    ]
+}

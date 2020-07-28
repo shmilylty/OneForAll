@@ -1,0 +1,18 @@
+{
+    "name": "SmodCMS",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "SmodCMS",
+    "website": "http://www.smod.pl/",
+    "matches": [
+        {
+            "text": "<meta name=\"Generator\" content=\"SmodCMS\" />"
+        },
+        {
+            "text": "<meta name=\"Authoring_Tool\" content=\"SmodCMS // www.smod.pl\" />"
+        },
+        {
+            "regexp": "(?-mix:[P|p]+owered by <a href=\"http:\\/\\/www.smod.pl[\\/]+\"[^>]+>SmodCMS[\\s]*<\\/a>)"
+        }
+    ]
+}

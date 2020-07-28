@@ -1,0 +1,19 @@
+{
+    "name": "mylittleforum",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "powered by my little forum"
+        },
+        {
+            "search": "body",
+            "text": "index.php?mode=js_defaults"
+        },
+        {
+            "search": "headers",
+            "text": "mlf2_general_forum_usersettings"
+        }
+    ]
+}

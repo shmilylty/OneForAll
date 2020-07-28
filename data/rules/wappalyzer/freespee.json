@@ -1,0 +1,10 @@
+{
+    "name": "Freespee",
+    "website": "https://www.freespee.com",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "analytics\\.freespee\\.com/js/external/fs\\.(?:min\\.)?js"
+        }
+    ]
+}

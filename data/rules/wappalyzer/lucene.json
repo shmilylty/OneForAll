@@ -1,0 +1,6 @@
+{
+    "name": "Lucene",
+    "website": "http://lucene.apache.org/core/",
+    "matches": [],
+    "implies": "Java"
+}

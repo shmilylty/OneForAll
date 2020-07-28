@@ -1,0 +1,14 @@
+{
+    "name": "WebTrends",
+    "author": "Bhavin Senjaliya <bhavin.senjaliya@gmail.com>, Andrew Horton",
+    "version": "0.2",
+    "description": "WebTrends Analytics",
+    "website": "https://www.webtrends.com/",
+    "matches": [
+        {
+            "search": "headers[set-cookie]",
+            "regexp": "(?-mix:^WEBTRENDS_ID)",
+            "name": "WEBTRENDS_ID cookie"
+        }
+    ]
+}

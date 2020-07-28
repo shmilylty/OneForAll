@@ -1,0 +1,15 @@
+{
+    "name": "PHPMyWind",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "phpMyWind.com All Rights Reserved"
+        },
+        {
+            "search": "body",
+            "text": "content=\"PHPMyWind"
+        }
+    ]
+}

@@ -1,0 +1,14 @@
+{
+    "name": "Jimdo",
+    "website": "https://www.jimdo.com",
+    "matches": [
+        {
+            "search": "headers[x-jimdo-instance]",
+            "regexp": ".*"
+        },
+        {
+            "search": "headers[x-jimdo-wid]",
+            "regexp": ".*"
+        }
+    ]
+}

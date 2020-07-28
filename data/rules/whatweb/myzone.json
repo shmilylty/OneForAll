@@ -1,0 +1,12 @@
+{
+    "name": "MyZone",
+    "author": "Andrew Horton",
+    "version": "0.1",
+    "description": "Mobile 3G WiFi Rrouter",
+    "website": "www.netcomm.com.au",
+    "matches": [
+        {
+            "regexp": "(?m-ix:<title>MyZone<\\/title>.*www\\.netcomm\\.com\\.au)"
+        }
+    ]
+}

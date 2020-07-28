@@ -1,0 +1,15 @@
+{
+    "name": "Google-Results",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "This plugin identifies Google search results pages and extracts the result URLs, query and number of results from the results.",
+    "website": "http://www.google.com/",
+    "matches": [
+        {
+            "regexp": "(?-mix:<title>([^<]{1,256}) \\- Google Search<\\/title>)"
+        },
+        {
+            "regexp": "(?-mix:Advanced search<\\/a><\\/div><div><div id=resultStats>([^<]{1,40}) results<nobr>)"
+        }
+    ]
+}

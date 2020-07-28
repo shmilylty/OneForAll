@@ -1,0 +1,10 @@
+{
+    "name": "Yieldlab",
+    "website": "http://yieldlab.de",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "^https?://(?:[^/]+\\.)?yieldlab\\.net/"
+        }
+    ]
+}

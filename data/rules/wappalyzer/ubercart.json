@@ -1,0 +1,11 @@
+{
+    "name": "Ubercart",
+    "website": "http://www.ubercart.org",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "uc_cart/uc_cart_block\\.js"
+        }
+    ],
+    "implies": "Drupal"
+}

@@ -1,0 +1,27 @@
+{
+    "name": "X-Cart",
+    "website": "http://x-cart.com",
+    "matches": [
+        {
+            "search": "cookies[xid]",
+            "regexp": "[a-z\\d]{32}(?:;|$)"
+        },
+        {
+            "regexp": "Powered by X-Cart(?: (\\d+))? <a[^>]+href=\"http://www\\.x-cart\\.com/\"[^>]*>",
+            "offset": 1
+        },
+        {
+            "regexp": "<a[^>]+href=\"[^\"]*(?:\\?|&)xcart_form_id=[a-z\\d]{32}(?:&|$)"
+        },
+        {
+            "search": "meta[generator]",
+            "regexp": "X-Cart(?: (\\d+))?",
+            "offset": 1
+        },
+        {
+            "search": "script",
+            "regexp": "/skin/common_files/modules/Product_Options/func\\.js"
+        }
+    ],
+    "implies": "PHP"
+}

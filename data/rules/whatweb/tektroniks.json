@@ -1,0 +1,31 @@
+{
+    "name": "Tektroniks",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Tektroniks monitoring Solutions, Wireless monitoring Systems, Wireless data loggers & data loggers. Products include Wireless Monitoring System, Gas Leak Detection, Refrigeration Control Systems, DataLogger, Temperature sensors and Hand Held Thermometers.",
+    "website": "http://www.tek-troniks.com/site/products/",
+    "matches": [
+        {
+            "text": "<p>Transfering you to login page in 2 seconds...</p>"
+        },
+        {
+            "text": "<td width=\"100\"><label id=\"AU_LOGIN_ID_label\" for=\"AU_LOGIN_ID\" dataType=\"\" required=\"true\">User Name:</label></td>"
+        },
+        {
+            "url": "/login.htm",
+            "regexp": "(?-mix:<meta name=\"Classification\" content=\"(Tektroniks|DATAcentre) - ([^\"]+)\" \\/>)"
+        },
+        {
+            "regexp": "(?-mix:<meta name=\"Copyright\" content=\"&copy;(20[\\d\\-]+) (Tektroniks|DATAcentre)\" \\/>)"
+        },
+        {
+            "search": "headers[server]",
+            "regexp": "(?-mix:^Tektroniks\\/([^\\s]+)$)",
+            "offset": 1
+        },
+        {
+            "search": "headers[www-authenticate]",
+            "text": "Basic realm=\"Tektroniks\""
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    "name": "Synology_NAS",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "webman/index.cgi"
+        },
+        {
+            "search": "body",
+            "text": "modules/BackupReplicationApp"
+        }
+    ]
+}

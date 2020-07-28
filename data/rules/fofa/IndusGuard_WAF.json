@@ -1,0 +1,16 @@
+{
+    "name": "IndusGuard_WAF",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "IndusGuard WAF"
+        },
+        {
+            "search": "body",
+            "text": "wafportal/wafportal.nocache.js"
+        }
+    ],
+    "condition": "0 and 1"
+}

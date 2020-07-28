@@ -1,0 +1,15 @@
+{
+    "name": "Microsoft Ajax Content Delivery Network",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "ajax.aspnetcdn.com/ajax"
+        },
+        {
+            "search": "body",
+            "text": "ajax.aspnetcdn.com/ajax"
+        }
+    ]
+}

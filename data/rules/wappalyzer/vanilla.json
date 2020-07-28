@@ -1,0 +1,14 @@
+{
+    "name": "Vanilla",
+    "website": "http://vanillaforums.org",
+    "matches": [
+        {
+            "search": "headers[x-powered-by]",
+            "regexp": "Vanilla"
+        },
+        {
+            "regexp": "<body id=\"(?:DiscussionsPage|vanilla)"
+        }
+    ],
+    "implies": "PHP"
+}

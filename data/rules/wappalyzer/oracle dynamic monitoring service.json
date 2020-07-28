@@ -1,0 +1,10 @@
+{
+    "name": "Oracle Dynamic Monitoring Service",
+    "website": "http://oracle.com",
+    "matches": [
+        {
+            "search": "headers[x-oracle-dms-ecid]",
+            "regexp": ".*"
+        }
+    ]
+}

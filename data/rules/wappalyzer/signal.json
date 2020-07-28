@@ -1,0 +1,14 @@
+{
+    "name": "Signal",
+    "website": "https://www.signal.co/",
+    "matches": [
+        {
+            "search": "script",
+            "regexp": "//s\\.btstatic\\.com/tag\\.js"
+        },
+        {
+            "search": "script",
+            "regexp": "//s\\.thebrighttag\\.com/iframe\\?"
+        }
+    ]
+}

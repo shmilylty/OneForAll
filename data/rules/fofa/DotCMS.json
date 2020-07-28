@@ -1,0 +1,15 @@
+{
+    "name": "DotCMS",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "/dotAsset/"
+        },
+        {
+            "search": "body",
+            "text": "/index.dot"
+        }
+    ]
+}

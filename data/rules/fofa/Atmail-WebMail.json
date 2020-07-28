@@ -1,0 +1,19 @@
+{
+    "name": "Atmail-WebMail",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "Powered by Atmail"
+        },
+        {
+            "search": "body",
+            "text": "/index.php/mail/auth/processlogin"
+        },
+        {
+            "search": "body",
+            "text": "<input id=\"Mailserverinput"
+        }
+    ]
+}

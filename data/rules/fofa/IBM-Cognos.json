@@ -1,0 +1,15 @@
+{
+    "name": "IBM-Cognos",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "/cgi-bin/cognos.cgi"
+        },
+        {
+            "search": "body",
+            "text": "Cognos &#26159; International Business Machines Corp"
+        }
+    ]
+}

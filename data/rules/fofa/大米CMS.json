@@ -1,0 +1,19 @@
+{
+    "name": "\u5927\u7c73CMS",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "\u5927\u7c73CMS-"
+        },
+        {
+            "search": "body",
+            "text": "content=\"damicms"
+        },
+        {
+            "search": "body",
+            "text": "content=\"\u5927\u7c73CMS"
+        }
+    ]
+}

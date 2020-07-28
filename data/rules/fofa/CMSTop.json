@@ -1,0 +1,23 @@
+{
+    "name": "CMSTop",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "/css/cmstop-common.css"
+        },
+        {
+            "search": "body",
+            "text": "/js/cmstop-common.js"
+        },
+        {
+            "search": "body",
+            "text": "cmstop-list-text.css"
+        },
+        {
+            "search": "body",
+            "text": "<a class=\"poweredby\" href=\"http://www.cmstop.com\""
+        }
+    ]
+}

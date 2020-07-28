@@ -1,0 +1,15 @@
+{
+    "name": "Axis-PrintServer",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "psb_printjobs.gif"
+        },
+        {
+            "search": "body",
+            "text": "/cgi-bin/prodhelp?prod="
+        }
+    ]
+}

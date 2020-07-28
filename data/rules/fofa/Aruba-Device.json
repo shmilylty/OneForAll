@@ -1,0 +1,20 @@
+{
+    "name": "Aruba-Device",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "body",
+            "text": "/images/arubalogo.gif"
+        },
+        {
+            "search": "body",
+            "text": "Copyright"
+        },
+        {
+            "search": "body",
+            "text": "Aruba Networks"
+        }
+    ],
+    "condition": "0 or (1 and 2)"
+}

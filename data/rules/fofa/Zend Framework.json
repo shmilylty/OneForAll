@@ -1,0 +1,15 @@
+{
+    "name": "Zend Framework",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "Zend Framework"
+        },
+        {
+            "search": "headers",
+            "text": "ZEND="
+        }
+    ]
+}

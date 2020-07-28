@@ -1,0 +1,18 @@
+{
+    "name": "Sensors Data",
+    "website": "https://www.sensorsdata.cn",
+    "matches": [
+        {
+            "search": "cookies[sensorsdata2015jssdkcross]",
+            "regexp": ".*"
+        },
+        {
+            "search": "cookies[sensorsdata2015session]",
+            "regexp": ".*"
+        },
+        {
+            "search": "script",
+            "regexp": "sensorsdata"
+        }
+    ]
+}

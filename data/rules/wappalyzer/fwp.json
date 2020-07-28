@@ -1,0 +1,13 @@
+{
+    "name": "FWP",
+    "website": "http://fwpshop.org",
+    "matches": [
+        {
+            "regexp": "<!--\\s+FwP Systems"
+        },
+        {
+            "search": "meta[generator]",
+            "regexp": "FWP Shop"
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+{
+    "name": "Linksys_SPA_Configuration",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "title",
+            "regexp": "Linksys SPA Configuration"
+        }
+    ]
+}

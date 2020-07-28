@@ -1,0 +1,16 @@
+{
+    "name": "BXR",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.2",
+    "description": "BXR is an interface to manage a Blosxom-Based blog through the web or XML-RPC. Current it supports blogger, and metaWeblog APIs.",
+    "website": "http://sourceforge.net/projects/bxr/",
+    "matches": [
+        {
+            "text": "<meta name=\"generator\" content=\"BXR::Web\" />"
+        },
+        {
+            "regexp": "(?-mix:<div class=\"bxrlogo\">Powered by <a href=\"http:\\/\\/sourceforge.net\\/projects\\/bxr\\/\">BXR<\\/a> ([\\d\\.]+)<\\/div>)",
+            "offset": 1
+        }
+    ]
+}

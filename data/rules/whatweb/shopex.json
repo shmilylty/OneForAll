@@ -1,0 +1,23 @@
+{
+    "name": "ShopEx",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "eCommerce [Chinese]",
+    "website": "http://www.shopex.cn/",
+    "matches": [
+        {
+            "certainty": 75,
+            "regexp": "(?-mix:<title>[^<]* -- Powered by Shop(e|E)x<\\/title>)"
+        },
+        {
+            "text": "<p align=center><font color=black style='font-size:9pt;font-family:Arial'>Powered by </font><a href='http://www.shopex.cn' target='_blank'><font color=navy style='font-size:9pt;font-family:Arial;text-decoration:under-line'>Shop<font><font color=orange style='font-size:9pt;font-family:Arial;text-decoration:under-line'>Ex<font></a>"
+        },
+        {
+            "regexp": "(?-mix:<link href=\"syssite\\/home\\/shop\\/[\\d]+\\/images\\/[\\d]+\\/css\\.css\" rel=\"stylesheet\" type=\"text\\/css\">)"
+        },
+        {
+            "regexp": "(?-mix:<meta name=\"generator\" content=\"ShopEx ([\\d\\.]+)\" \\/>)",
+            "offset": 1
+        }
+    ]
+}

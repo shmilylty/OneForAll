@@ -1,0 +1,15 @@
+{
+    "name": "360\u7f51\u7ad9\u536b\u58eb\u5e38\u7528\u524d\u7aef\u516c\u5171\u5e93",
+    "author": "fofa",
+    "version": "0.1.0",
+    "matches": [
+        {
+            "search": "headers",
+            "text": "libs.useso.com"
+        },
+        {
+            "search": "body",
+            "text": "libs.useso.com"
+        }
+    ]
+}

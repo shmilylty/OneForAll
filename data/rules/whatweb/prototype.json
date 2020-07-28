@@ -1,0 +1,13 @@
+{
+    "name": "Prototype",
+    "author": "Andrew Horton",
+    "version": "0.2",
+    "description": "Javascript library",
+    "website": null,
+    "matches": [
+        {
+            "name": "js tag",
+            "regexp": "(?-mix:<script [^>]*(prototype[^>]*.js)[^>]*)"
+        }
+    ]
+}

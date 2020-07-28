@@ -1,0 +1,20 @@
+{
+    "name": "Zoom-Search-Engine",
+    "author": "Brendan Coles <bcoles@gmail.com>",
+    "version": "0.1",
+    "description": "Zoom is a software package that creates a search engine for your website, intranet, CD, or DVD",
+    "website": "http://www.wrensoft.com/zoom/",
+    "matches": [
+        {
+            "text": "<center><p><small>Search powered by <a href=\"http://www.wrensoft.com/zoom/\" target=\"_blank\"><b>Zoom Search Engine</b></a></small></p></center>"
+        },
+        {
+            "regexp": "(?-mix:<!--Zoom Search Engine Version ([\\d\\.]+ \\([\\d]+\\) [A-Z]{3})-->)",
+            "offset": 1
+        },
+        {
+            "regexp": "(?-mix:<!--Zoom Search Engine Version ([\\d\\.]+ \\([\\d]+\\))-->)",
+            "offset": 1
+        }
+    ]
+}
