@@ -3,7 +3,6 @@
 """
 
 from common.module import Module
-from common import utils
 
 
 class CheckCDX(Module):

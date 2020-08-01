@@ -6,7 +6,6 @@
 import socket
 import ssl
 
-from common import utils
 from common.module import Module
 from config.log import logger
 
