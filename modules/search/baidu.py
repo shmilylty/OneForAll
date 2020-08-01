@@ -26,7 +26,7 @@ class Baidu(Search):
         # 获取搜索结果中所有的跳转URL地址
         for find_res in bs.find_all('a', {'class': 'c-showurl'}):
             url = find_res.get('href')
-            subdomains = self.match_location(domain, url)
+            subdomains = self.match_location(url)
             subdomains_all = subdomains_all.union(subdomains)
         return subdomains_all
 
