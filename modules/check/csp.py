@@ -45,7 +45,7 @@ class CheckCSP(Module):
         """
         if not self.csp_header:
             self.csp_header = self.grab_header()
-        csp = self.header.get('Content-Security-Policy')
+        csp = self.csp_header.get('Content-Security-Policy')
         if not self.csp_header:
             logger.log('DEBUG', f'Failed to get header of {self.domain} domain')
             return
