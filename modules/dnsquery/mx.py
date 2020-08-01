@@ -4,7 +4,7 @@ from common.lookup import Lookup
 class QueryMX(Lookup):
     def __init__(self, domain):
         Lookup.__init__(self)
-        self.domain = self.get_maindomain(domain)
+        self.domain = domain
         self.module = 'dnsquery'
         self.source = "QueryMX"
         self.type = 'MX'  # 利用的DNS记录的MX记录收集子域

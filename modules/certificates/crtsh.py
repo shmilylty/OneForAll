@@ -4,7 +4,7 @@ from common.query import Query
 class Crtsh(Query):
     def __init__(self, domain):
         Query.__init__(self)
-        self.domain = self.get_maindomain(domain)
+        self.domain = domain
         self.module = 'Certificate'
         self.source = 'CrtshQuery'
         self.addr = 'https://crt.sh/'

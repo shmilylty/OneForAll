@@ -4,7 +4,7 @@ from common.query import Query
 class ThreatMiner(Query):
     def __init__(self, domain):
         Query.__init__(self)
-        self.domain = self.get_maindomain(domain)
+        self.domain = domain
         self.module = 'Intelligence'
         self.source = 'ThreatMinerQuery'
         self.addr = 'https://www.threatminer.org/getData.php'

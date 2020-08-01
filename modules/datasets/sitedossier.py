@@ -5,7 +5,7 @@ from common.query import Query
 class SiteDossier(Query):
     def __init__(self, domain):
         Query.__init__(self)
-        self.domain = self.get_maindomain(domain)
+        self.domain = domain
         self.module = 'Dataset'
         self.source = 'SiteDossierQuery'
         self.addr = 'http://www.sitedossier.com/parentdomain/'

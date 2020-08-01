@@ -5,7 +5,7 @@ from common.query import Query
 class DNSdbAPI(Query):
     def __init__(self, domain):
         Query.__init__(self)
-        self.domain = self.get_maindomain(domain)
+        self.domain = domain
         self.module = 'Dataset'
         self.source = 'DNSdbAPIQuery'
         self.addr = 'https://api.dnsdb.info/lookup/rrset/name/'

@@ -157,7 +157,7 @@ def query_domain_ns_a(ns_list):
 
 def query_domain_ns(domain):
     logger.log('INFOR', f'Querying NS records of {domain}')
-    domain = utils.get_maindomain(domain)
+    domain = utils.get_main_domain(domain)
     resolver = utils.dns_resolver()
     try:
         answer = resolver.query(domain, 'NS')
@@ -508,7 +508,7 @@ class Brute(Module):
         if self.place is None:
             self.place = '*.' + domain
         wordlist = self.wordlist
-        main_domain = self.get_maindomain(domain)
+        main_domain = utils.get_main_domain(domain)
         if domain != main_domain:
             wordlist = self.recursive_nextlist
         if self.word:

@@ -6,7 +6,7 @@ from config.log import logger
 class IPv4InfoAPI(Query):
     def __init__(self, domain):
         Query.__init__(self)
-        self.domain = self.get_maindomain(domain)
+        self.domain = domain
         self.module = 'Dataset'
         self.source = 'IPv4InfoAPIQuery'
         self.addr = ' http://ipv4info.com/api_v1/'

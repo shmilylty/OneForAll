@@ -4,7 +4,7 @@ from common.query import Query
 class CeBaidu(Query):
     def __init__(self, domain):
         Query.__init__(self)
-        self.domain = self.get_maindomain(domain)
+        self.domain = domain
         self.module = 'Dataset'
         self.source = 'CeBaiduQuery'
         self.addr = 'https://ce.baidu.com/index/getRelatedSites'
