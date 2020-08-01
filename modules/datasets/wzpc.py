@@ -6,7 +6,7 @@ from common.query import Query
 class WZPCQuery(Query):
     def __init__(self, domain):
         Query.__init__(self)
-        self.domain = self.get_maindomain(domain)
+        self.domain = domain
         self.module = 'Dataset'
         self.source = 'WZPCQuery'
 

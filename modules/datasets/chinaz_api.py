@@ -5,7 +5,7 @@ from common.query import Query
 class ChinazAPI(Query):
     def __init__(self, domain):
         Query.__init__(self)
-        self.domain = self.get_maindomain(domain)
+        self.domain = domain
         self.module = 'Dataset'
         self.source = 'ChinazAPIQuery'
         self.addr = 'https://apidata.chinaz.com/CallAPI/Alexa'

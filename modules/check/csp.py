@@ -13,7 +13,7 @@ class CheckCSP(Module):
     """
     def __init__(self, domain, header):
         Module.__init__(self)
-        self.domain = self.get_maindomain(domain)
+        self.domain = domain
         self.module = 'Check'
         self.source = 'ContentSecurityPolicy'
         self.csp_header = header

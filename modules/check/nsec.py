@@ -8,7 +8,7 @@ from common import utils
 class CheckNSEC(Module):
     def __init__(self, domain):
         Module.__init__(self)
-        self.domain = self.get_maindomain(domain)
+        self.domain = domain
         self.module = 'check'
         self.source = "CheckNSEC"
 

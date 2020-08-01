@@ -4,7 +4,7 @@ from common.query import Query
 class HackerTarget(Query):
     def __init__(self, domain):
         Query.__init__(self)
-        self.domain = self.get_maindomain(domain)
+        self.domain = domain
         self.module = 'Dataset'
         self.source = "HackerTargetQuery"
         self.addr = 'https://api.hackertarget.com/hostsearch/'

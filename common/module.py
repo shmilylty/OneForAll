@@ -213,16 +213,6 @@ class Module(object):
     def match_subdomains(self, html, distinct=True, fuzzy=True):
         return utils.match_subdomains(self.domain, html, distinct, fuzzy)
 
-    @staticmethod
-    def get_maindomain(domain):
-        """
-        Get main domain
-
-        :param str domain: domain
-        :return: main domain
-        """
-        return Domain(domain).registered()
-
     def save_json(self):
         """
         Save the results of each module as a json file

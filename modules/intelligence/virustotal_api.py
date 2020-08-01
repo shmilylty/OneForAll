@@ -5,7 +5,7 @@ from common.query import Query
 class VirusTotalAPI(Query):
     def __init__(self, domain):
         Query.__init__(self)
-        self.domain = self.get_maindomain(domain)
+        self.domain = domain
         self.module = 'Intelligence'
         self.source = 'VirusTotalAPIQuery'
         self.addr = 'https://www.virustotal.com/vtapi/v2/domain/report'

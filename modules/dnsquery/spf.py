@@ -4,7 +4,7 @@ from common.lookup import Lookup
 class QuerySPF(Lookup):
     def __init__(self, domain):
         Lookup.__init__(self)
-        self.domain = self.get_maindomain(domain)
+        self.domain = domain
         self.module = 'dnsquery'
         self.source = "QuerySPF"
         self.type = 'SPF'  # 利用的DNS记录的SPF记录收集子域

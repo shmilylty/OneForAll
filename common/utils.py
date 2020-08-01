@@ -622,7 +622,7 @@ def check_version(local):
         logger.log('INFOR', f'The current version {local} is already the latest version')
 
 
-def get_maindomain(domain):
+def get_main_domain(domain):
     return Domain(domain).registered()
 
 

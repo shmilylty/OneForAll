@@ -13,7 +13,7 @@ from config.log import logger
 class CheckCert(Module):
     def __init__(self, domain):
         Module.__init__(self)
-        self.domain = self.get_maindomain(domain)
+        self.domain = domain
         self.port = 443  # ssl port
         self.module = 'Check'
         self.source = 'CertInfo'

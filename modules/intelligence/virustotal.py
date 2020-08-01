@@ -11,7 +11,7 @@ class VirusTotal(Query):
         self.source = 'VirusTotalQuery'
         self.module = 'Intelligence'
         self.addr = 'https://www.virustotal.com/ui/domains/{}/subdomains'
-        self.domain = self.get_maindomain(domain)
+        self.domain = domain
 
     def query(self):
         """
