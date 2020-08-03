@@ -1,38 +1,42 @@
 ---
-name: Bug report
-about: Create a report to help us improve
-title: ''
-labels: ''
-assignees: ''
+name: Please use this English template to submit Bug
+about: "Be sure to submit the Bug according to the template\U0001F64F"
+title: Please fill in the BUG title
+labels: bug
+assignees: shmilylty
 
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+**Whether the latest code is used**
+Yes or no (if not, try to clone the latest code and run again!)
 
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+**Bug description**
+Clear and concise Bug description(required)
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+**Operation environment**
+ - System information: [e.g. Windows 10 x64] (required)
+ - Python version: [e.g. 3.7.1] (required)
+ - OneForAll version: [e.g. 0.3.0] (required)
+ 
+**How to reproduce**
+1. Step (optional)
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+2. Command (required)
 
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
+**Error text**
+Copy the complete error text (required)
 
-**Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
+**Expected results**
+A clear and concise description of the expected results (optional, such as what a normal situation should look like)
 
-**Additional context**
-Add any other context about the problem here.
+**Actual results**
+A clear and concise description of the actual results (optional, such as any errors)
+
+**Screenshot**
+Screenshot of complete OneForAll execution process (recommended upload)
+
+**Log upload**
+Upload oneforall.log log files (it is recommended to upload logs in case of complex problems)
+
+**Supplementary information**
+Some other supplementary notes about bug

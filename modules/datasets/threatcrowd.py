@@ -7,7 +7,7 @@ from config.log import logger
 class ThreatCrowd(Query):
     def __init__(self, domain):
         Query.__init__(self)
-        self.domain = self.get_maindomain(domain)
+        self.domain = domain
         self.module = 'Dataset'
         self.source = 'ThreatCrowdQuery'
         self.addr = 'https://www.threatcrowd.org/searchApi' \

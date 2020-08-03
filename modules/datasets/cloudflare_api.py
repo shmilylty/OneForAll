@@ -42,8 +42,6 @@ class CloudFlareAPI(Query):
                     else:
                         return
                 elif zones_resp.json()['success']:
-                    zone_id = zones_resp.json()['result'][0]['id']
-                    delete_zone_resp = self.delete(self.addr + f'zones/{zone_id}', check=False)
                     zone_id = self.create_zone(account_id)
                     if zone_id:
                         self.list_dns(zone_id)
