@@ -5,6 +5,9 @@ import json
 import string
 import hashlib
 
+from multiprocessing import Process, freeze_support
+from multiprocessing import Manager
+
 from bs4 import BeautifulSoup
 from http.cookies import SimpleCookie
 
@@ -14,29 +17,60 @@ from config import setting
 from config.log import logger
 
 
-class Identify(Module):
+class MultiProcess(Module):
     def __init__(self):
         Module.__init__(self)
         self.module = 'Identify'
         self.source = 'Identify'
         self.start = time.time()  # 模块开始执行时间
+
+    def run(self, data: list):
+        logger.log('INFOR', f'Start Identify module')
+        freeze_support()
+        task_queue = Manager().Queue()
+        done_queue = Manager().Queue()
+        for d in data:
+            task_queue.put(d)
+        PROCESSES_NUM = os.cpu_count()
+        logger.log('INFOR', f'Creating {PROCESSES_NUM} processes to identify')
+        result_data = []
+        _p = []
+        for i in range(PROCESSES_NUM):
+            _identify = Identify()
+            p = Process(target=_identify.run, args=(task_queue, done_queue))
+            _p.append(p)
+        for p in _p:
+            p.start()
+        for p in _p:
+            p.join()
+        while not done_queue.empty():
+            result_data.append(done_queue.get())
+        self.end = time.time()
+        self.elapse = round(self.end - self.start, 1)
+        logger.log('INFOR', f'The Identify module took {self.elapse} seconds')
+        return result_data
+
+
+class Identify(object):
+    def __init__(self):
+        self.start = time.time()  # 模块开始执行时间
         self.rule_dir = setting.data_storage_dir.joinpath('rules')
         self._targets = {}
-        self.load_rules()
+        self.rules_num, self.RULES, self.RULE_TYPES = self.load_rules()
         self._cond_parser = Condition()
         self.url = ''
 
-    def run(self, data):
-        logger.log('INFOR', f'Start Identify module')
-        for index, item in enumerate(data):
+    def run(self, task_queue, done_queue):
+        while not task_queue.empty():
+            item = task_queue.get()
             if not item.get('request'):
                 continue
             self.url = item.get('url')
             implies = set()
             excludes = set()
-            self.parse(index, item)
+            self.parse(item)
             banners = []
-            for name, rule in RULES.items():
+            for name, rule in self.RULES.items():
                 # print(name)
                 r = self._check_rule(rule)
                 if r:
@@ -61,9 +95,9 @@ class Identify(Module):
                     'name': imply,
                     "origin": 'implies'
                 }
-                for rule_type in RULE_TYPES:
+                for rule_type in self.RULE_TYPES:
                     rule_name = '%s_%s' % (rule_type, imply)
-                    rule = RULES.get(rule_name)
+                    rule = self.RULES.get(rule_name)
                     if not rule:
                         continue
                     if 'excludes' in rule:
@@ -74,14 +108,23 @@ class Identify(Module):
                 if _result['name'] in excludes:
                     continue
                 banners.append(_result)
-            item['banner'] = json.dumps(banners, ensure_ascii=False)
-        self.end = time.time()
-        self.elapse = self.end - self.start
+            item['banner'] = self.deal_output(banners)
+            # print(item['banner'])
+            done_queue.put(item)
+        return
 
-        return data
+    def deal_output(self, banners):
+        result = []
+        for banner in banners:
+            if 'version' in banner:
+                version = 'v' + banner['version']
+                result.append(banner['name'] + ' ' + version)
+            else:
+                result.append(banner['name'])
+        result = ','.join(result)
+        return result
 
-    def load_rules(self) -> int:
-        global RULES, RULE_TYPES
+    def load_rules(self):
         new_rules = {}
         new_rule_types = set()
         for rule_type in os.listdir(self.rule_dir):
@@ -97,9 +140,9 @@ class Identify(Module):
                     try:
                         data = json.load(fd)
                         for match in data['matches']:
-                            if 'regexp' in match:
-                                match['regexp'] = re.compile(match['regexp'], re.I)
-
+                            if 'regexp' in match:  # 默认 大小写不敏感 可信度100%
+                                match['regexp'] = re.compile(
+                                    match['regexp'], re.I)
                             if 'certainty' not in match:
                                 match['certainty'] = 100
 
@@ -111,9 +154,9 @@ class Identify(Module):
 
         RULES = new_rules
         RULE_TYPES = new_rule_types
-        return len(RULES)
+        return len(RULES), RULES, RULE_TYPES
 
-    def parse(self, index, item) -> hash:
+    def parse(self, item):
         script = []
         meta = {}
         if item.get('response'):
@@ -131,7 +174,7 @@ class Identify(Module):
 
         title = item.get("title")
         if 'Set-Cookie' in json.loads(item.get('header')):
-            cookies = json.loads(item.get('header'))['Set-Cookie']
+            cookies = json.loads(item.get('header'))['Set-Cookie'].lower()
         else:
             cookies = None
         self._targets[self.url] = {
@@ -150,8 +193,13 @@ class Identify(Module):
         }
 
     def _check_match(self, match: hash) -> (bool, str):
-        s = {'regexp', 'text', 'md5', 'status'}  # 如果增加新的检测方式，需要修改这里
-        if not s.intersection(list(match.keys())):
+        s = {
+            'regexp',
+            'text',
+            # 'md5',  # 因为删除了主动式识别 所以md5 status方式失效
+            # 'status'
+        }  # 如果增加新的检测方式，需要修改这里
+        if not s.intersection(list(match.keys())):  # 判断 传进的规则类型 和s里规定的类型是否符合
             return False, None
 
         target = self._targets[self.url]
@@ -173,27 +221,15 @@ class Identify(Module):
                 for i in ('headers', 'meta', 'cookies'):
                     if not match['search'].startswith('%s[' % i):
                         continue
-
                     key = match['search'][len('%s[' % i):-1]
+                    if i == 'headers':  # header首字母大写
+                        key = key.title()
                     if key not in target[i]:
                         return False, None
-                    # print(target)
-                    # print(target[i])
-                    # print(target[i][key])
                     search_context = target[i][key]
-
             match.pop('search')
-
         version = match.get('version', None)
         for key in list(match.keys()):
-            if key == 'status':
-                if match[key] != target[key]:
-                    return False, None
-
-            if key == 'md5':
-                if target['md5'] != match['md5']:
-                    return False, None
-
             if key == 'text':
                 search_contexts = search_context
                 if isinstance(search_context, str):
@@ -240,7 +276,6 @@ class Identify(Module):
         }
 
         for index, match in enumerate(matches):
-
             is_match, version = self._check_match(match)
             if is_match:
                 cond_map[str(index)] = True
@@ -341,7 +376,8 @@ class Condition(object):
 
             else:
                 name = []
-                while self.index < len(self.condstr) and self.condstr[self.index] in self.allow_character:
+                while self.index < len(
+                        self.condstr) and self.condstr[self.index] in self.allow_character:
                     name.append(self.condstr[self.index])
                     self.index += 1
 
@@ -349,7 +385,10 @@ class Condition(object):
                 if name not in self.symbol_table:
                     raise ParseException('{} does not exists'.format(name))
 
-                return Token(TOKEN_TYPE['variable'], name, self.symbol_table[name])
+                return Token(
+                    TOKEN_TYPE['variable'],
+                    name,
+                    self.symbol_table[name])
 
         return Token(TOKEN_TYPE['eof'])
 
@@ -434,7 +473,11 @@ class Condition(object):
             if not r2.name and not r2.value:
                 raise ParseException('invalid condition "%s"', self.condstr)
 
-            r1 = Result('({} and {})'.format(r1.name, r2.name), r1.value and r2.value)
+            r1 = Result(
+                '({} and {})'.format(
+                    r1.name,
+                    r2.name),
+                r1.value and r2.value)
             logger.debug('[*] {}'.format(r1))
 
         return r1
@@ -460,7 +503,11 @@ class Condition(object):
             if not r2.name and not r2.value:
                 raise ParseException('invalid condition "%s"', self.condstr)
 
-            r1 = Result('({} or {})'.format(r1.name, r2.name), r1.value or r2.value)
+            r1 = Result(
+                '({} or {})'.format(
+                    r1.name,
+                    r2.name),
+                r1.value or r2.value)
             logger.debug('[*] {}'.format(r1))
 
         return r1
@@ -483,7 +530,3 @@ class Condition(object):
             raise ParseException('invalid condition "%s"', self.condstr)
 
         return result.value
-
-
-if __name__ == '__main__':
-    print('demo')
