@@ -13,11 +13,10 @@ class Baidu(Search):
         self.domain = domain
         self.limit_num = 750  # 限制搜索条数
 
-    def redirect_match(self, domain, html):
+    def redirect_match(self, html):
         """
         获取跳转地址并传递地址进行跳转head请求
 
-        :param domain: 域名
         :param html: 响应体
         :return: 子域
         """
@@ -26,7 +25,7 @@ class Baidu(Search):
         # 获取搜索结果中所有的跳转URL地址
         for find_res in bs.find_all('a', {'class': 'c-showurl'}):
             url = find_res.get('href')
-            subdomains = self.match_location(domain, url)
+            subdomains = self.match_location(url)
             subdomains_all = subdomains_all.union(subdomains)
         return subdomains_all
 
@@ -52,7 +51,7 @@ class Baidu(Search):
                 return
             if len(domain) > 12:  # 解决百度搜索结果中域名过长会显示不全的问题
                 # 获取百度跳转URL响应头的Location字段获取直链
-                subdomains = self.redirect_match(domain, resp.text)
+                subdomains = self.redirect_match(resp.text)
             else:
                 subdomains = self.match_subdomains(resp.text, fuzzy=False)
             if not subdomains:  # 搜索没有发现子域名则停止搜索
@@ -106,4 +105,4 @@ def do(domain):  # 统一入口名字 方便多线程调用
 
 
 if __name__ == '__main__':
-    do('huayunshuzi.com')
+    do('mi.com')

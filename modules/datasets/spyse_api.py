@@ -1,5 +1,4 @@
 from config import api
-from common import utils
 from common.query import Query
 
 
@@ -21,7 +20,7 @@ class SpyseAPI(Query):
             self.header = self.get_header()
             self.header.update({'Authorization': 'Bearer ' + self.token})
             self.proxy = self.get_proxy(self.source)
-            addr = 'https://api.spyse.com/v2/data/domain/subdomain'
+            addr = 'https://api.spyse.com/v3/data/domain/subdomain'
             params = {'domain': self.domain, 'offset': offset, 'limit': limit}
             resp = self.get(addr, params)
             if not resp:

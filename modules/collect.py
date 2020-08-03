@@ -5,6 +5,7 @@ import importlib
 import dbexport
 from config.log import logger
 from config import setting
+from common import utils
 
 
 class Collect(object):
@@ -13,7 +14,7 @@ class Collect(object):
     """
 
     def __init__(self, domain, export=True):
-        self.domain = domain
+        self.domain = utils.get_main_domain(domain)
         self.elapse = 0.0
         self.modules = []
         self.collect_funcs = []

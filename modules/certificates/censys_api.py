@@ -6,7 +6,7 @@ from config.log import logger
 class CensysAPI(Query):
     def __init__(self, domain):
         Query.__init__(self)
-        self.domain = self.get_maindomain(domain)
+        self.domain = domain
         self.module = 'Certificate'
         self.source = "CensysAPIQuery"
         self.addr = 'https://www.censys.io/api/v1/search/certificates'

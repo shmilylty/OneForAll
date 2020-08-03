@@ -1,4 +1,3 @@
-from common import utils
 from common.query import Query
 
 

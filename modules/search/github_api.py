@@ -10,7 +10,7 @@ class GithubAPI(Search):
         self.source = 'GithubAPISearch'
         self.module = 'Search'
         self.addr = 'https://api.github.com/search/code'
-        self.domain = self.get_maindomain(domain)
+        self.domain = domain
         self.session = requests.Session()
         self.auth_url = 'https://api.github.com'
         self.token = api.github_api_token

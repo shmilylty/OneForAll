@@ -6,7 +6,7 @@ from config.log import logger
 class BufferOver(Query):
     def __init__(self, domain):
         Query.__init__(self)
-        self.domain = self.get_maindomain(domain)
+        self.domain = domain
         self.module = 'Dataset'
         self.source = 'BufferOverQuery'
         self.addr = 'https://dns.bufferover.run/dns?q='

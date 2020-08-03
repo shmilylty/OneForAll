@@ -5,7 +5,7 @@ from common.query import Query
 class ThreatBookAPI(Query):
     def __init__(self, domain):
         Query.__init__(self)
-        self.domain = self.get_maindomain(domain)
+        self.domain = domain
         self.module = 'Intelligence'
         self.source = 'ThreatBookAPIQuery'
         self.addr = 'https://api.threatbook.cn/v3/domain/sub_domains'

@@ -5,7 +5,7 @@ from common.search import Search
 class ShodanAPI(Search):
     def __init__(self, domain):
         Search.__init__(self)
-        self.domain = self.get_maindomain(domain)
+        self.domain = domain
         self.module = 'Search'
         self.source = 'ShodanAPISearch'
         self.addr = 'https://api.shodan.io/shodan/host/search'

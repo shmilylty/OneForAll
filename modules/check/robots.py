@@ -2,7 +2,6 @@
 检查内容安全策略收集子域名收集子域名
 """
 from common.module import Module
-from common import utils
 
 
 class CheckRobots(Module):
@@ -11,7 +10,7 @@ class CheckRobots(Module):
     """
     def __init__(self, domain):
         Module.__init__(self)
-        self.domain = self.get_maindomain(domain)
+        self.domain = domain
         self.module = 'Check'
         self.source = 'Robots'
 

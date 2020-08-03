@@ -5,7 +5,7 @@ from common.query import Query
 class RiskIQ(Query):
     def __init__(self, domain):
         Query.__init__(self)
-        self.domain = self.get_maindomain(domain)
+        self.domain = domain
         self.module = 'Intelligence'
         self.source = 'RiskIQAPIQuery'
         self.addr = 'https://api.passivetotal.org/v2/enrichment/subdomains'
