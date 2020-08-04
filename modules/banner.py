@@ -17,25 +17,25 @@ from config import setting
 from config.log import logger
 
 
-class MultiProcess(Module):
+class MultiIdentify(Module):
     def __init__(self):
         Module.__init__(self)
         self.module = 'Identify'
         self.source = 'Identify'
         self.start = time.time()  # 模块开始执行时间
 
-    def run(self, data: list):
+    def run(self, data):
         logger.log('INFOR', f'Start Identify module')
         freeze_support()
         task_queue = Manager().Queue()
         done_queue = Manager().Queue()
         for d in data:
             task_queue.put(d)
-        PROCESSES_NUM = os.cpu_count()
-        logger.log('INFOR', f'Creating {PROCESSES_NUM} processes to identify')
+        processes_num = min(setting.banner_process_number, os.cpu_count())
+        logger.log('INFOR', f'Creating {processes_num} processes to identify')
         result_data = []
         _p = []
-        for i in range(PROCESSES_NUM):
+        for i in range(processes_num):
             _identify = Identify()
             p = Process(target=_identify.run, args=(task_queue, done_queue))
             _p.append(p)
@@ -266,7 +266,7 @@ class Identify(object):
 
         return True, version
 
-    def _check_rule(self, rule: hash) -> hash:
+    def _check_rule(self, rule):
         matches = rule['matches']
 
         cond_map = {}
@@ -351,7 +351,7 @@ class Condition(object):
         self.allow_character = string.ascii_lowercase + string.digits + '_'
         self.ignore_character = ' \t'
 
-    def _get_token(self) -> Token:
+    def _get_token(self):
         while self.index < len(self.condstr):
             if self.condstr[self.index] in self.ignore_character:
                 self.index += 1
@@ -392,7 +392,7 @@ class Condition(object):
 
         return Token(TOKEN_TYPE['eof'])
 
-    def pop_token(self) -> Token:
+    def pop_token(self):
         if self.back_tokens:
             return self.back_tokens.pop(0)
         try:
@@ -400,10 +400,10 @@ class Condition(object):
         except IndexError:
             raise ParseException('invalid condition "%s"', self.condstr)
 
-    def push_token(self, token: Token):
+    def push_token(self, token):
         self.back_tokens.append(token)
 
-    def parse_var_expression(self) -> Result:
+    def parse_var_expression(self):
         """
         v_exp := VARIABLE
         """
@@ -416,7 +416,7 @@ class Condition(object):
 
         return Result(name=token.name, value=token.value)
 
-    def parse_primary_expression(self) -> Result:
+    def parse_primary_expression(self):
         """
         p_exp := (exp)
         """
@@ -435,7 +435,7 @@ class Condition(object):
 
         return r
 
-    def parse_not_expression(self) -> Result:
+    def parse_not_expression(self):
         """
         n_exp := NOT n_exp | NOT p_exp
         """
@@ -452,7 +452,7 @@ class Condition(object):
         logger.debug('[*] {}'.format(r))
         return r
 
-    def parse_and_expression(self) -> Result:
+    def parse_and_expression(self):
         """
         and_exp := and_exp AND n_exp
         """
@@ -482,7 +482,7 @@ class Condition(object):
 
         return r1
 
-    def parse_or_expression(self) -> Result:
+    def parse_or_expression(self):
         """
         or_exp := or_exp OR and_exp
         """
@@ -512,13 +512,13 @@ class Condition(object):
 
         return r1
 
-    def parse_expression(self) -> Result:
+    def parse_expression(self):
         """
         exp := or_exp
         """
         return self.parse_or_expression()
 
-    def parse(self, condstr: str, symbol_table: hash) -> bool:
+    def parse(self, condstr, symbol_table):
         self.condstr = condstr.lower()
         self.symbol_table = symbol_table
         self.index = 0

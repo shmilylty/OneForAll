@@ -77,6 +77,9 @@ fuzz_rule = None  # fuzz域名的正则 示例：'[a-z][0-9]' 表示第一位是
 brute_ip_blacklist = {'0.0.0.0', '0.0.0.1'}  # IP黑名单 子域解析到IP黑名单则标记为非法子域
 ip_appear_maximum = 100  # 多个子域解析到同一IP次数超过100次则标记为非法(泛解析)子域
 
+# banner识别模块设置
+banner_process_number = 4  # 识别进程数量(默认4)
+
 # 代理设置
 enable_proxy = False  # 是否使用代理(全局开关)
 proxy_all_module = False  # 代理所有模块
