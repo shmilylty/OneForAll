@@ -223,7 +223,7 @@ class OneForAll(object):
 
         # Identify banner module
         if setting.enable_banner_identify:
-            identifier = banner.Identify()
+            identifier = banner.MultiIdentify()
             self.data = identifier.run(self.data)
             banner.save_db(self.domain, self.data)
 
