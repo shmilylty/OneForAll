@@ -17,14 +17,14 @@ from tablib import Dataset
 from tqdm import tqdm
 
 from config.log import logger
-from config import setting
+from config import settings
 from common import utils
 from common.module import Module
 from common.domain import Domain
 
 
 def get_fingerprint():
-    path = setting.data_storage_dir.joinpath('fingerprints.json')
+    path = settings.data_storage_dir.joinpath('fingerprints.json')
     with open(path, encoding='utf-8', errors='ignore') as file:
         fingerprints = json.load(file)
     return fingerprints

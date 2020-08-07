@@ -1,11 +1,11 @@
 import json
 import ipaddress
 
-from config import setting
+from config import settings
 from common import utils
 from config.log import logger
 
-data_dir = setting.data_storage_dir
+data_dir = settings.data_storage_dir
 
 # from https://github.com/al0ne/Vxscan/blob/master/lib/iscdn.py
 cdn_ip_cidr = utils.load_json(data_dir.joinpath('cdn_ip_cidr.json'))

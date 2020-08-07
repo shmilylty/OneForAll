@@ -9,7 +9,7 @@ import records
 
 from records import Connection
 from config.log import logger
-from config import setting
+from config import settings
 
 
 class Database(object):
@@ -29,7 +29,7 @@ class Database(object):
             return db_path
         protocol = 'sqlite:///'
         if not db_path:  # 数据库路径为空连接默认数据库
-            db_path = f'{protocol}{setting.result_save_dir}/result.sqlite3'
+            db_path = f'{protocol}{settings.result_save_dir}/result.sqlite3'
         else:
             db_path = protocol + db_path
         db = records.Database(db_path)  # 不存在数据库时会新建一个数据库

@@ -9,11 +9,11 @@ from bs4 import BeautifulSoup
 
 from common import utils
 from config.log import logger
-from config import setting
+from config import settings
 
 
 def get_limit_conn():
-    limit_open_conn = setting.limit_open_conn
+    limit_open_conn = settings.limit_open_conn
     if limit_open_conn is None:  # 默认情况
         limit_open_conn = utils.get_semaphore()
     elif not isinstance(limit_open_conn, int):  # 如果传入不是数字的情况
@@ -31,7 +31,7 @@ def get_ports(port):
             ports = {port}
     elif port in {'small', 'medium', 'large'}:
         logger.log('DEBUG', f'{port} port range')
-        ports = setting.ports.get(port)
+        ports = settings.ports.get(port)
     if not ports:  # 意外情况
         logger.log('ERROR', 'The specified request port range is incorrect')
         ports = {80}
@@ -81,22 +81,22 @@ async def fetch(session, method, url):
     """
     timeout = aiohttp.ClientTimeout(total=None,
                                     connect=None,
-                                    sock_read=setting.sockread_timeout,
-                                    sock_connect=setting.sockconn_timeout)
+                                    sock_read=settings.sockread_timeout,
+                                    sock_connect=settings.sockconn_timeout)
     try:
         if method == 'HEAD':
             async with session.head(url,
-                                    ssl=setting.verify_ssl,
-                                    allow_redirects=setting.allow_redirects,
+                                    ssl=settings.verify_ssl,
+                                    allow_redirects=settings.allow_redirects,
                                     timeout=timeout,
-                                    proxy=setting.aiohttp_proxy) as resp:
+                                    proxy=settings.aiohttp_proxy) as resp:
                 text = await resp.text()
         else:
             async with session.get(url,
-                                   ssl=setting.verify_ssl,
-                                   allow_redirects=setting.allow_redirects,
+                                   ssl=settings.verify_ssl,
+                                   allow_redirects=settings.allow_redirects,
                                    timeout=timeout,
-                                   proxy=setting.aiohttp_proxy) as resp:
+                                   proxy=settings.aiohttp_proxy) as resp:
 
                 try:
                     # 先尝试用utf-8解码
@@ -182,9 +182,9 @@ def request_callback(future, index, datas):
 def get_connector():
     limit_open_conn = get_limit_conn()
     return aiohttp.TCPConnector(ttl_dns_cache=300,
-                                ssl=setting.verify_ssl,
+                                ssl=settings.verify_ssl,
                                 limit=limit_open_conn,
-                                limit_per_host=setting.limit_per_host)
+                                limit_per_host=settings.limit_per_host)
 
 
 async def async_request(urls):
@@ -211,7 +211,7 @@ async def bulk_request(data, port):
     ports = get_ports(port)
     no_req_data = utils.get_filtered_data(data)
     to_req_data = gen_req_data(data, ports)
-    method = setting.request_method.upper()
+    method = settings.request_method.upper()
     logger.log('INFOR', f'Use {method} method to request')
     logger.log('INFOR', 'Async subdomains request in progress')
     connector = get_connector()

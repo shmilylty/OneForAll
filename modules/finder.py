@@ -7,7 +7,7 @@ from common import utils
 from common import resolve
 from common import request
 from common.module import Module
-from config import setting
+from config import settings
 from config.log import logger
 
 
@@ -137,7 +137,7 @@ def filter_url(domain, url, black_name):
 
 
 def get_black_name():
-    path = setting.data_storage_dir.joinpath('common_js_library.json')
+    path = settings.data_storage_dir.joinpath('common_js_library.json')
     with open(path) as fp:
         return json.load(fp)
 
