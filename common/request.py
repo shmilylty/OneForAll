@@ -29,8 +29,8 @@ def get_ports(port):
     elif isinstance(port, int):
         if 0 <= port <= 65535:
             ports = {port}
-    elif port in {'default', 'small', 'large'}:
-        logger.log('DEBUG', '{port} port range')
+    elif port in {'small', 'medium', 'large'}:
+        logger.log('DEBUG', f'{port} port range')
         ports = setting.ports.get(port)
     if not ports:  # 意外情况
         logger.log('ERROR', 'The specified request port range is incorrect')

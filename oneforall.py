@@ -66,7 +66,7 @@ class OneForAll(object):
 
     Note:
         --alive  True/False           Only export alive subdomains or not (default False)
-        --port   default/small/large  See details in ./config/setting.py(default port 80)
+        --port   small/medium/large  See details in ./config/setting.py(default small)
         --format rst/csv/tsv/json/yaml/html/jira/xls/xlsx/dbf/latex/ods (result format)
         --path   Result directory (default directory is ./results)
 
@@ -74,7 +74,7 @@ class OneForAll(object):
     :param bool brute:     Use brute module (default False)
     :param bool dns:       Use DNS resolution (default True)
     :param bool req:       HTTP request subdomains (default True)
-    :param str port:       The port range request to the subdomains (default port 80)
+    :param str port:       The port range to request (default small port is 80,443)
     :param bool alive:     Only export alive subdomains (default False)
     :param str format:     Result format (default csv)
     :param str path:       Result directory (default None)
