@@ -1,6 +1,6 @@
 import re
 import tldextract
-from config import setting
+from config import settings
 
 
 class Domain(object):
@@ -38,7 +38,7 @@ class Domain(object):
 
         :return: extracted domain results
         """
-        data_storage_dir = setting.data_storage_dir
+        data_storage_dir = settings.data_storage_dir
         extract_cache_file = data_storage_dir.joinpath('public_suffix_list.dat')
         tldext = tldextract.TLDExtract(extract_cache_file, None)
         result = self.match()

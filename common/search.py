@@ -1,6 +1,6 @@
 import re
 
-from config import setting
+from config import settings
 from config.log import logger
 from common.module import Module
 
@@ -13,8 +13,8 @@ class Search(Module):
         Module.__init__(self)
         self.page_num = 0  # 要显示搜索起始条数
         self.per_page_num = 50  # 每页显示搜索条数
-        self.recursive_search = setting.enable_recursive_search
-        self.recursive_times = setting.search_recursive_times
+        self.recursive_search = settings.enable_recursive_search
+        self.recursive_times = settings.search_recursive_times
 
     @staticmethod
     def filter(domain, subdomain):
@@ -29,7 +29,7 @@ class Search(Module):
         """
         statements_list = []
         subdomains_temp = set(map(lambda x: x + '.' + domain,
-                                  setting.subdomains_common))
+                                  settings.subdomains_common))
         subdomains_temp = list(subdomain.intersection(subdomains_temp))
         for i in range(0, len(subdomains_temp), 2):  # 同时排除2个子域
             statements_list.append(''.join(set(map(lambda s: ' -site:' + s,

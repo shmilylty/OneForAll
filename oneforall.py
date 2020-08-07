@@ -19,7 +19,7 @@ from common.database import Database
 from modules.collect import Collect
 from modules.finder import Finder
 from modules import iscdn, banner
-from config import setting
+from config import settings
 from config.log import logger
 from takeover import Takeover
 
@@ -106,21 +106,21 @@ class OneForAll(object):
         Configuration parameter
         """
         if self.brute is None:
-            self.brute = bool(setting.enable_brute_module)
+            self.brute = bool(settings.enable_brute_module)
         if self.dns is None:
-            self.dns = bool(setting.enable_dns_resolve)
+            self.dns = bool(settings.enable_dns_resolve)
         if self.req is None:
-            self.req = bool(setting.enable_http_request)
+            self.req = bool(settings.enable_http_request)
         if self.takeover is None:
-            self.takeover = bool(setting.enable_takeover_check)
+            self.takeover = bool(settings.enable_takeover_check)
         if self.port is None:
-            self.port = setting.http_request_port
+            self.port = settings.http_request_port
         if self.alive is None:
-            self.alive = bool(setting.result_export_alive)
+            self.alive = bool(settings.result_export_alive)
         if self.format is None:
-            self.format = setting.result_save_format
+            self.format = settings.result_save_format
         if self.path is None:
-            self.path = setting.result_save_path
+            self.path = settings.result_save_path
 
     def export(self, table):
         """
@@ -212,17 +212,17 @@ class OneForAll(object):
         request.save_db(self.domain, self.data)
 
         # Finder module
-        if setting.enable_finder_module:
+        if settings.enable_finder_module:
             finder = Finder()
             self.data = finder.run(self.domain, self.data, self.port)
 
         # check cdn module
-        if setting.enable_cdn_check:
+        if settings.enable_cdn_check:
             self.data = iscdn.check_cdn(self.data)
             iscdn.save_db(self.domain, self.data)
 
         # Identify banner module
-        if setting.enable_banner_identify:
+        if settings.enable_banner_identify:
             identifier = banner.MultiIdentify()
             self.data = identifier.run(self.data)
             banner.save_db(self.domain, self.data)
@@ -251,7 +251,7 @@ class OneForAll(object):
         dt = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         print(f'[*] Starting OneForAll @ {dt}\n')
         utils.check_env()
-        if setting.enable_check_version:
+        if settings.enable_check_version:
             utils.check_version(version)
         logger.log('DEBUG', 'Python ' + utils.python_version())
         logger.log('DEBUG', 'OneForAll ' + version)

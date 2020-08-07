@@ -21,7 +21,7 @@ from dns.resolver import NXDOMAIN, YXDOMAIN, NoAnswer, NoNameservers
 
 import dbexport
 from common import utils
-from config import setting
+from config import settings
 from common.module import Module
 from config.log import logger
 
@@ -241,21 +241,21 @@ def collect_wildcard_record(domain, authoritative_ns):
 
 
 def get_nameservers_path(enable_wildcard, ns_ip_list):
-    path = setting.brute_nameservers_path
+    path = settings.brute_nameservers_path
     if not enable_wildcard:
         return path
     if not ns_ip_list:
         return path
-    path = setting.authoritative_dns_path
+    path = settings.authoritative_dns_path
     ns_data = '\n'.join(ns_ip_list)
     utils.save_data(path, ns_data)
     return path
 
 
 def check_dict():
-    if not setting.enable_check_dict:
+    if not settings.enable_check_dict:
         return
-    sec = setting.check_time
+    sec = settings.check_time
     logger.log('ALERT', f'You have {sec} seconds to check '
                         f'whether the configuration is correct or not')
     logger.log('ALERT', f'If you want to exit, please use `Ctrl + C`')
@@ -401,13 +401,13 @@ def check_ip_times(times):
     :param  times: IP address times
     :return bool:  result
     """
-    if times > setting.ip_appear_maximum:
+    if times > settings.ip_appear_maximum:
         return True
     return False
 
 
 def is_valid_subdomain(ip, ttl, times, wc_ips, wc_ttl):
-    ip_blacklist = setting.brute_ip_blacklist
+    ip_blacklist = settings.brute_ip_blacklist
     if ip in ip_blacklist:  # 解析ip在黑名单ip则为非法子域
         return 0, 'IP blacklist'
     if all([wc_ips, wc_ttl]):  # 有泛解析记录才进行对比
@@ -426,9 +426,9 @@ def save_brute_dict(dict_path, dict_set):
 
 
 def delete_file(dict_path, output_paths):
-    if setting.delete_generated_dict:
+    if settings.delete_generated_dict:
         dict_path.unlink()
-    if setting.delete_massdns_result:
+    if settings.delete_massdns_result:
         for output_path in output_paths:
             output_path.unlink()
 
@@ -478,15 +478,15 @@ class Brute(Module):
         self.source = 'Brute'
         self.target = target
         self.process_num = process or utils.get_process_num()
-        self.concurrent_num = concurrent or setting.brute_concurrent_num
+        self.concurrent_num = concurrent or settings.brute_concurrent_num
         self.word = word
-        self.wordlist = wordlist or setting.brute_wordlist_path
-        self.recursive_brute = recursive or setting.enable_recursive_brute
-        self.recursive_depth = depth or setting.brute_recursive_depth
-        self.recursive_nextlist = nextlist or setting.recursive_nextlist_path
-        self.fuzz = fuzz or setting.enable_fuzz
-        self.place = place or setting.fuzz_place
-        self.rule = rule or setting.fuzz_rule
+        self.wordlist = wordlist or settings.brute_wordlist_path
+        self.recursive_brute = recursive or settings.enable_recursive_brute
+        self.recursive_depth = depth or settings.brute_recursive_depth
+        self.recursive_nextlist = nextlist or settings.recursive_nextlist_path
+        self.fuzz = fuzz or settings.enable_fuzz
+        self.place = place or settings.fuzz_place
+        self.rule = rule or settings.fuzz_rule
         self.export = export
         self.alive = alive
         self.format = format
@@ -496,8 +496,8 @@ class Brute(Module):
         self.domain = str()  # 当前正在进行爆破的域名
         self.ips_times = dict()  # IP集合出现次数
         self.enable_wildcard = False  # 当前域名是否使用泛解析
-        self.wildcard_check = setting.brute_wildcard_check
-        self.wildcard_deal = setting.brute_wildcard_deal
+        self.wildcard_check = settings.brute_wildcard_check
+        self.wildcard_deal = settings.brute_wildcard_deal
         self.check_env = True
         self.quite = False
 
@@ -557,8 +557,8 @@ class Brute(Module):
     def main(self, domain):
         start = time.time()
         logger.log('INFOR', f'Blasting {domain} ')
-        massdns_dir = setting.third_party_dir.joinpath('massdns')
-        result_dir = setting.result_save_dir
+        massdns_dir = settings.third_party_dir.joinpath('massdns')
+        result_dir = settings.result_save_dir
         temp_dir = result_dir.joinpath('temp')
         utils.check_dir(temp_dir)
         massdns_path = utils.get_massdns_path(massdns_dir)
@@ -646,7 +646,7 @@ class Brute(Module):
             logger.log('INFOR', f'Finished {self.source} module\'s brute {self.domain}')
             if not self.path:
                 name = f'{self.domain}_brute_result.{self.format}'
-                self.path = setting.result_save_dir.joinpath(name)
+                self.path = settings.result_save_dir.joinpath(name)
             # 数据库导出
             if self.export:
                 dbexport.export(self.domain,

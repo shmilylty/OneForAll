@@ -9,7 +9,7 @@ import time
 
 import requests
 from config.log import logger
-from config import setting
+from config import settings
 from common import utils
 from common.domain import Domain
 from common.database import Database
@@ -24,9 +24,9 @@ class Module(object):
         self.cookie = None
         self.header = dict()
         self.proxy = None
-        self.delay = setting.request_delay  # 请求睡眠时延
-        self.timeout = setting.request_timeout  # 请求超时时间
-        self.verify = setting.request_verify  # 请求SSL验证
+        self.delay = settings.request_delay  # 请求睡眠时延
+        self.timeout = settings.request_timeout  # 请求超时时间
+        self.verify = settings.request_verify  # 请求SSL验证
         self.domain = str()  # 当前进行子域名收集的主域
         self.type = 'A'  # 对主域进行子域收集时利用的DNS记录查询类型(默认利用A记录)
         self.subdomains = set()  # 存放发现的子域
@@ -185,7 +185,7 @@ class Module(object):
         :return: header
         """
         # logger.log('DEBUG', f'Get request header')
-        if setting.enable_fake_header:
+        if settings.enable_fake_header:
             return utils.gen_fake_header()
         else:
             return self.header
@@ -197,13 +197,13 @@ class Module(object):
         :param str module: module name
         :return: proxy
         """
-        if not setting.enable_proxy:
+        if not settings.enable_proxy:
             logger.log('TRACE', f'All modules do not use proxy')
             return self.proxy
-        if setting.proxy_all_module:
+        if settings.proxy_all_module:
             logger.log('TRACE', f'{module} module uses proxy')
             return utils.get_random_proxy()
-        if module in setting.proxy_partial_module:
+        if module in settings.proxy_partial_module:
             logger.log('TRACE', f'{module} module uses proxy')
             return utils.get_random_proxy()
         else:
@@ -219,11 +219,11 @@ class Module(object):
 
         :return bool: whether saved successfully
         """
-        if not setting.save_module_result:
+        if not settings.save_module_result:
             return False
         logger.log('TRACE', f'Save the subdomain results found by '
                             f'{self.source} module as a json file')
-        path = setting.result_save_dir.joinpath(self.domain, self.module)
+        path = settings.result_save_dir.joinpath(self.domain, self.module)
         path.mkdir(parents=True, exist_ok=True)
         name = self.source + '.json'
         path = path.joinpath(name)

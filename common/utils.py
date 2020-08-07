@@ -19,7 +19,7 @@ from dns.resolver import Resolver
 
 from common.domain import Domain
 from common.database import Database
-from config import setting
+from config import settings
 from config.log import logger
 
 user_agents = [
@@ -70,7 +70,7 @@ def get_random_header():
     Get random proxy
     """
     header = None
-    if setting.fake_header:
+    if settings.fake_header:
         header = gen_fake_header()
     return header
 
@@ -80,7 +80,7 @@ def get_random_proxy():
     Get random proxy
     """
     try:
-        return random.choice(setting.proxy_pool)
+        return random.choice(settings.proxy_pool)
     except IndexError:
         return None
 
@@ -89,7 +89,7 @@ def get_proxy():
     """
     Get proxy
     """
-    if setting.enable_proxy:
+    if settings.enable_proxy:
         return get_random_proxy()
     return None
 
@@ -176,7 +176,7 @@ def check_path(path, name, format):
     :return: 保存路径
     """
     filename = f'{name}.{format}'
-    default_path = setting.result_save_dir.joinpath(filename)
+    default_path = settings.result_save_dir.joinpath(filename)
     if isinstance(path, str):
         path = repr(path).replace('\\', '/')  # 将路径中的反斜杠替换为正斜杠
         path = path.replace('\'', '')  # 去除多余的转义
@@ -396,9 +396,9 @@ def dns_resolver():
     dns解析器
     """
     resolver = Resolver()
-    resolver.nameservers = setting.resolver_nameservers
-    resolver.timeout = setting.resolver_timeout
-    resolver.lifetime = setting.resolver_lifetime
+    resolver.nameservers = settings.resolver_nameservers
+    resolver.timeout = settings.resolver_timeout
+    resolver.lifetime = settings.resolver_lifetime
     return resolver
 
 
@@ -495,7 +495,7 @@ def ip_is_public(ip_str):
 
 
 def get_process_num():
-    process_num = setting.brute_process_num
+    process_num = settings.brute_process_num
     if isinstance(process_num, int):
         return min(os.cpu_count(), process_num)
     else:
@@ -503,7 +503,7 @@ def get_process_num():
 
 
 def get_coroutine_num():
-    coroutine_num = setting.resolve_coroutine_num
+    coroutine_num = settings.resolve_coroutine_num
     if isinstance(coroutine_num, int):
         return max(64, coroutine_num)
     elif coroutine_num is None:
@@ -601,8 +601,8 @@ def check_version(local):
     api = 'https://api.github.com/repos/shmilylty/OneForAll/releases/latest'
     header = get_random_header()
     proxy = get_proxy()
-    timeout = setting.request_timeout
-    verify = setting.request_verify
+    timeout = settings.request_timeout
+    verify = settings.request_verify
     try:
         resp = requests.get(url=api, headers=header, proxies=proxy,
                             timeout=timeout, verify=verify)
@@ -633,9 +633,9 @@ def call_massdns(massdns_path, dict_path, ns_path, output_path, log_path,
     quiet = ''
     if quiet_mode:
         quiet = '--quiet'
-    status_format = setting.brute_status_format
-    socket_num = setting.brute_socket_num
-    resolve_num = setting.brute_resolve_num
+    status_format = settings.brute_status_format
+    socket_num = settings.brute_socket_num
+    resolve_num = settings.brute_resolve_num
     cmd = f'{massdns_path} {quiet} --status-format {status_format} ' \
           f'--processes {process_num} --socket-count {socket_num} ' \
           f'--hashmap-size {concurrent_num} --resolvers {ns_path} ' \
@@ -648,7 +648,7 @@ def call_massdns(massdns_path, dict_path, ns_path, output_path, log_path,
 
 
 def get_massdns_path(massdns_dir):
-    path = setting.brute_massdns_path
+    path = settings.brute_massdns_path
     if path:
         return path
     system = platform.system().lower()

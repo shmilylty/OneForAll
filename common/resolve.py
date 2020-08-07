@@ -2,7 +2,7 @@ import gc
 import json
 
 from config.log import logger
-from config import setting
+from config import settings
 from common import utils
 from common.database import Database
 from common.ipasn import IPAsnInfo
@@ -72,7 +72,7 @@ def deal_output(output_path):
     records = dict()  # 用来记录所有域名解析数据
     ip_asn = IPAsnInfo()
     ip_geo = IpGeoInfo
-    db_path = setting.data_storage_dir.joinpath('ip2region.db')
+    db_path = settings.data_storage_dir.joinpath('ip2region.db')
     ip_reg = IpRegInfo(db_path)
     with open(output_path) as fd:
         for line in fd:
@@ -165,8 +165,8 @@ def run_resolve(domain, data):
     if not subdomains:
         return data
 
-    massdns_dir = setting.third_party_dir.joinpath('massdns')
-    result_dir = setting.result_save_dir
+    massdns_dir = settings.third_party_dir.joinpath('massdns')
+    result_dir = settings.result_save_dir
     temp_dir = result_dir.joinpath('temp')
     utils.check_dir(temp_dir)
     massdns_path = utils.get_massdns_path(massdns_dir)
@@ -182,7 +182,7 @@ def run_resolve(domain, data):
     output_path = temp_dir.joinpath(output_name)
     log_path = result_dir.joinpath('massdns.log')
 
-    ns_path = setting.brute_nameservers_path
+    ns_path = settings.brute_nameservers_path
 
     logger.log('INFOR', f'Running massdns to resolve subdomains')
     utils.call_massdns(massdns_path, save_path, ns_path,

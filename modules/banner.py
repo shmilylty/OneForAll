@@ -13,7 +13,7 @@ from http.cookies import SimpleCookie
 
 from common import utils
 from common.module import Module
-from config import setting
+from config import settings
 from config.log import logger
 
 
@@ -31,7 +31,7 @@ class MultiIdentify(Module):
         done_queue = Manager().Queue()
         for d in data:
             task_queue.put(d)
-        processes_num = min(setting.banner_process_number, os.cpu_count())
+        processes_num = min(settings.banner_process_number, os.cpu_count())
         logger.log('INFOR', f'Creating {processes_num} processes to identify')
         result_data = []
         _p = []
@@ -54,7 +54,7 @@ class MultiIdentify(Module):
 class Identify(object):
     def __init__(self):
         self.start = time.time()  # 模块开始执行时间
-        self.rule_dir = setting.data_storage_dir.joinpath('rules')
+        self.rule_dir = settings.data_storage_dir.joinpath('rules')
         self._targets = {}
         self.rules_num, self.RULES, self.RULE_TYPES = self.load_rules()
         self._cond_parser = Condition()
