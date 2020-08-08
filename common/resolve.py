@@ -4,7 +4,6 @@ import json
 from config.log import logger
 from config import settings
 from common import utils
-from common.database import Database
 from common.ipasn import IPAsnInfo
 from common.ipgeo import IpGeoInfo
 from common.ipreg import IpRegInfo

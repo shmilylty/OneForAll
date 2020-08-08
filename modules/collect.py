@@ -48,7 +48,7 @@ class Collect(object):
         """
         for package, name in self.modules:
             import_object = importlib.import_module('.' + name, package)
-            func = getattr(import_object, 'do')
+            func = getattr(import_object, 'run')
             self.collect_funcs.append([func, name])
 
     def run(self):

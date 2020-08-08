@@ -1,7 +1,4 @@
-import re
-
 from config import settings
-from config.log import logger
 from common.module import Module
 
 

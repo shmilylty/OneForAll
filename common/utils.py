@@ -572,11 +572,10 @@ def check_pre():
     if version < '3.6':
         logger.log('FATAL', 'OneForAll requires Python 3.6 or higher')
         exit(1)
-    if system == 'Windows' and implementation == 'CPython':
-        if version < '3.8':
-            logger.log('FATAL', 'OneForAll requires Python 3.8 '
-                                'or higher when running on Windows')
-            exit(1)
+    if system == 'Windows' and implementation == 'CPython' and version < '3.8':
+        logger.log('FATAL', 'OneForAll requires Python 3.8 '
+                            'or higher when running on Windows')
+        exit(1)
     if system in {"Linux", "Darwin"}:
         try:
             import uvloop

@@ -39,10 +39,9 @@ class IPv4InfoAPI(Query):
             self.subdomains = self.subdomains.union(subdomains)
             # 不直接使用subdomains是因为可能里面会出现不符合标准的子域名
             subdomains = json.get('Subdomains')
-            if subdomains:
+            if subdomains and len(subdomains) < 300:
                 # ipv4info子域查询接口每次最多返回300个 用来判断是否还有下一页
-                if len(subdomains) < 300:
-                    break
+                break
             page += 1
             if page >= 50:  # ipv4info子域查询接口最多允许查询50页
                 break
@@ -61,7 +60,7 @@ class IPv4InfoAPI(Query):
         self.save_db()
 
 
-def do(domain):  # 统一入口名字 方便多线程调用
+def run(domain):
     """
     类统一调用入口
 
@@ -72,4 +71,4 @@ def do(domain):  # 统一入口名字 方便多线程调用
 
 
 if __name__ == '__main__':
-    do('example.com')
+    run('example.com')

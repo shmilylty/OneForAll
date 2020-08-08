@@ -9,8 +9,7 @@ class BingAPI(Search):
         self.domain = domain
         self.module = 'Search'
         self.source = 'BingAPISearch'
-        self.addr = 'https://api.cognitive.microsoft.com/' \
-                    'bing/v7.0/search'
+        self.addr = 'https://api.cognitive.microsoft.com/bing/v7.0/search'
         self.id = api.bing_api_id
         self.key = api.bing_api_key
         self.limit_num = 1000  # 必应同一个搜索关键词限制搜索条数
@@ -40,10 +39,9 @@ class BingAPI(Search):
             subdomains = self.match_subdomains(resp.text)
             if not subdomains:  # 搜索没有发现子域名则停止搜索
                 break
-            if not full_search:
-                # 搜索中发现搜索出的结果有完全重复的结果就停止搜索
-                if subdomains.issubset(self.subdomains):
-                    break
+            if not full_search and subdomains.issubset(self.subdomains):
+                # 在全搜索过程中发现搜索出的结果有完全重复的结果就停止搜索
+                break
             # 合并搜索子域名搜索结果
             self.subdomains = self.subdomains.union(subdomains)
             self.page_num += self.per_page_num
@@ -78,7 +76,7 @@ class BingAPI(Search):
         self.save_db()
 
 
-def do(domain):  # 统一入口名字 方便多线程调用
+def run(domain):
     """
     类统一调用入口
 
@@ -89,4 +87,4 @@ def do(domain):  # 统一入口名字 方便多线程调用
 
 
 if __name__ == '__main__':
-    do('example.com')
+    run('example.com')

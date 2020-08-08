@@ -21,7 +21,7 @@ class QueryTXT(Lookup):
         self.save_db()
 
 
-def do(domain):  # 统一入口名字 方便多线程调用
+def run(domain):
     """
     类统一调用入口
 
@@ -32,4 +32,4 @@ def do(domain):  # 统一入口名字 方便多线程调用
 
 
 if __name__ == '__main__':
-    do('cuit.edu.cn')
+    run('cuit.edu.cn')

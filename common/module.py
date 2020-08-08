@@ -1,4 +1,3 @@
-# coding=utf-8
 """
 Module base class
 """
@@ -11,7 +10,6 @@ import requests
 from config.log import logger
 from config import settings
 from common import utils
-from common.domain import Domain
 from common.database import Database
 
 lock = threading.Lock()
