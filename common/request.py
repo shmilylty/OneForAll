@@ -16,8 +16,6 @@ def get_limit_conn():
     limit_open_conn = settings.limit_open_conn
     if limit_open_conn is None:  # 默认情况
         limit_open_conn = utils.get_semaphore()
-    elif not isinstance(limit_open_conn, int):  # 如果传入不是数字的情况
-        limit_open_conn = utils.get_semaphore()
     return limit_open_conn
 
 

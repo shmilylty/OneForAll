@@ -166,6 +166,4 @@ class Takeover(Module):
 
 if __name__ == '__main__':
     fire.Fire(Takeover)
-    # takeover = Takeover('www.example.com')
-    # takeover = Takeover('./subdomains.txt')
-    # takeover.run()
+

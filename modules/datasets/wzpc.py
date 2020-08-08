@@ -51,7 +51,7 @@ class WZPCQuery(Query):
         self.save_db()
 
 
-def do(domain):
+def run(domain):
     """
     类统一调用入口
 
@@ -62,5 +62,5 @@ def do(domain):
 
 
 if __name__ == '__main__':
-    do('sc.gov.cn')
-    do('bkzy.org')
+    run('sc.gov.cn')
+    run('bkzy.org')

@@ -518,8 +518,6 @@ class Brute(Module):
         if self.fuzz:
             fuzz_subdomains = gen_fuzz_subdomains(self.place, self.rule)
             dict_set = dict_set.union(fuzz_subdomains)
-        # logger.log('INFOR', f'正在去重爆破字典')
-        # dict_set = utils.uniq_dict_list(dict_set)
         count = len(dict_set)
         logger.log('INFOR', f'Dictionary size: {count}')
         if count > 10000000:

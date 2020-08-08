@@ -65,7 +65,7 @@ class CheckCSP(Module):
         self.save_db()
 
 
-def do(domain, header=None):  # 统一入口名字 方便多线程调用
+def run(domain, header=None):
     """
     类统一调用入口
 
@@ -78,4 +78,4 @@ def do(domain, header=None):  # 统一入口名字 方便多线程调用
 
 if __name__ == '__main__':
     resp = requests.get('https://content-security-policy.com/')
-    do('google-analytics.com', dict(resp.headers))
+    run('google-analytics.com', dict(resp.headers))
