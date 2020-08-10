@@ -24,7 +24,7 @@ enable_cdn_check = True  # 开启cdn检查模块(默认True)
 enable_banner_identify = False  # 开启WEB指纹识别模块(默认True)
 enable_takeover_check = False  # 开启子域接管风险检查(默认False)
 # 参数可选值有'small', 'medium', 'large'
-http_request_port = 'default'  # HTTP请求子域(默认'default'，探测80,443端口)
+http_request_port = 'small'  # HTTP请求子域(默认'small'，探测80,443端口)
 # 参数可选值True，False分别表示导出存活，全部子域结果
 result_export_alive = False  # 只导出存活的子域结果(默认False)
 # 参数可选格式有'rst', 'csv', 'tsv', 'json', 'yaml', 'html',
