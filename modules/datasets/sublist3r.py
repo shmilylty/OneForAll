@@ -17,10 +17,7 @@ class Sublist3r(Query):
         addr = 'https://api.sublist3r.com/search.php'
         param = {'domain': self.domain}
         resp = self.get(addr, param)
-        if not resp:
-            return
-        subdomains = self.match_subdomains(resp.text)
-        self.subdomains = self.subdomains.union(subdomains)
+        self.subdomains = self.collect_subdomains(resp)
 
     def run(self):
         """

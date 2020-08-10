@@ -42,7 +42,6 @@ class Yahoo(Search):
             if not full_search and subdomains.issubset(self.subdomains):
                 # 在全搜索过程中发现搜索出的结果有完全重复的结果就停止搜索
                 break
-            # 合并搜索子域名搜索结果
             self.subdomains = self.subdomains.union(subdomains)
             if '>Next</a>' not in resp.text:  # 搜索页面没有出现下一页时停止搜索
                 break

@@ -26,7 +26,6 @@ class SecurityTrailsAPI(Query):
         prefixs = resp.json()['subdomains']
         subdomains = [f'{prefix}.{self.domain}' for prefix in prefixs]
         if subdomains:
-            # 合并搜索子域名搜索结果
             self.subdomains = self.subdomains.union(subdomains)
 
     def run(self):

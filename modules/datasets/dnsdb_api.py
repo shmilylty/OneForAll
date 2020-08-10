@@ -20,11 +20,7 @@ class DNSdbAPI(Query):
         self.proxy = self.get_proxy(self.source)
         url = f'{self.addr}*.{self.domain}'
         resp = self.get(url)
-        if not resp:
-            return
-        subdomains = self.match_subdomains(resp.text)
-        # 合并搜索子域名搜索结果
-        self.subdomains = self.subdomains.union(subdomains)
+        self.subdomains = self.collect_subdomains(resp)
 
     def run(self):
         """

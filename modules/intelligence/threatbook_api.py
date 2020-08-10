@@ -20,10 +20,7 @@ class ThreatBookAPI(Query):
         params = {'apikey': self.key,
                   'resource': self.domain}
         resp = self.post(self.addr, params)
-        if not resp:
-            return
-        subdomains = self.match_subdomains(resp.text)
-        self.subdomains = self.subdomains.union(subdomains)
+        self.subdomains = self.collect_subdomains(resp)
 
     def run(self):
         """

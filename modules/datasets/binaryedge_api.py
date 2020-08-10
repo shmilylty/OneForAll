@@ -20,10 +20,7 @@ class BinaryEdgeAPI(Query):
         self.proxy = self.get_proxy(self.source)
         url = self.addr + self.domain
         resp = self.get(url)
-        if not resp:
-            return
-        subdomains = self.match_subdomains(resp.text)
-        self.subdomains = self.subdomains.union(subdomains)
+        self.subdomains = self.collect_subdomains(resp)
 
     def run(self):
         """

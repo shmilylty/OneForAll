@@ -22,12 +22,9 @@ class SiteDossier(Query):
             self.proxy = self.get_proxy(self.source)
             url = f'{self.addr}{self.domain}/{self.page_num}'
             resp = self.get(url)
-            if not resp:
-                return
-            subdomains = self.match_subdomains(resp.text)
+            subdomains = self.match_subdomains(resp)
             if not subdomains:  # 搜索没有发现子域名则停止搜索
                 break
-            # 合并搜索子域名搜索结果
             self.subdomains = self.subdomains.union(subdomains)
             # 搜索页面没有出现下一页时停止搜索
             if 'Show next 100 items' not in resp.text:

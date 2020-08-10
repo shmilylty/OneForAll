@@ -48,7 +48,8 @@ class CloudFlareAPI(Query):
                     return
             elif zones_resp.status_code == 403:
                 logger.log('DEBUG',
-                           f'{self.domain} is banned or not a registered domain, so cannot be added to Cloudflare.')
+                           f'{self.domain} is banned or not a registered domain, '
+                           f'so cannot be added to Cloudflare.')
                 return
             else:
                 logger.log('DEBUG',
@@ -67,12 +68,14 @@ class CloudFlareAPI(Query):
         if create_zone_resp.json()['success']:
             return create_zone_resp.json()['result']['id']
         else:
-            logger.log('DEBUG', f'{self.domain} is temporarily banned and cannot be added to Cloudflare')
+            logger.log('DEBUG', f'{self.domain} is temporarily banned '
+                                f'and cannot be added to Cloudflare')
             return False
 
     def list_dns(self, zone_id):
         page = 1
-        list_dns_resp = self.get(self.addr + f'zones/{zone_id}/dns_records', params={'page': page, 'per_page': 10})
+        list_dns_resp = self.get(self.addr + f'zones/{zone_id}/dns_records',
+                                 params={'page': page, 'per_page': 10})
         if not list_dns_resp:
             logger.log('DEBUG',
                        f'{list_dns_resp.status_code} {list_dns_resp.text}')
