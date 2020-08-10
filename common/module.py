@@ -208,8 +208,19 @@ class Module(object):
             logger.log('TRACE', f'{module} module does not use proxy')
             return self.proxy
 
-    def match_subdomains(self, html, distinct=True, fuzzy=True):
-        return utils.match_subdomains(self.domain, html, distinct, fuzzy)
+    def match_subdomains(self, resp, distinct=True, fuzzy=True):
+        if not resp:
+            return set()
+        elif isinstance(resp, str):
+            return utils.match_subdomains(self.domain, resp, distinct, fuzzy)
+        elif hasattr(resp, 'text'):
+            return utils.match_subdomains(self.domain, resp.text, distinct, fuzzy)
+        else:
+            return set()
+
+    def collect_subdomains(self, resp):
+        subdomains = self.match_subdomains(resp)
+        return self.subdomains.union(subdomains)
 
     def save_json(self):
         """

@@ -23,12 +23,7 @@ class DNSdumpster(Query):
         data = {'csrfmiddlewaretoken': self.cookie.get('csrftoken'),
                 'targetip': self.domain}
         resp = self.post(self.addr, data)
-        if not resp:
-            return
-        subdomains = self.match_subdomains(resp.text)
-        if subdomains:
-            # 合并搜索子域名搜索结果
-            self.subdomains = self.subdomains.union(subdomains)
+        self.subdomains = self.collect_subdomains(resp)
 
     def run(self):
         """

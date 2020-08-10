@@ -39,10 +39,7 @@ class CensysAPI(Query):
         for page in range(2, pages + 1):
             data['page'] = page
             resp = self.post(self.addr, json=data, auth=(self.id, self.secret))
-            if not resp:
-                return
-            subdomains = self.match_subdomains(resp.text)
-            self.subdomains = self.subdomains.union(subdomains)
+            self.subdomains = self.collect_subdomains(resp)
 
     def run(self):
         """

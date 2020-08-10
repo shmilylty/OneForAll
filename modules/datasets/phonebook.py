@@ -33,10 +33,7 @@ class PhoneBook(Query):
             return
         url = f'{addr}/result?k={key}&id={ids}&limit=10000'
         resp = self.get(url)
-        if not resp:
-            return
-        subdomains = self.match_subdomains(resp.text)
-        self.subdomains = self.subdomains.union(subdomains)
+        self.subdomains = self.collect_subdomains(resp)
 
     def run(self):
         """

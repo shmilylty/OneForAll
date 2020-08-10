@@ -33,9 +33,7 @@ class GoogleAPI(Search):
                       'q': word, 'fields': 'items/link',
                       'start': self.page_num, 'num': self.per_page_num}
             resp = self.get(self.addr, params)
-            if not resp:
-                return
-            subdomains = self.match_subdomains(resp.text)
+            subdomains = self.match_subdomains(resp)
             if not subdomains:
                 break
             if not full_search and subdomains.issubset(self.subdomains):

@@ -18,19 +18,11 @@ class AlienVault(Query):
         base = 'https://otx.alienvault.com/api/v1/indicators/domain'
         dns = f'{base}/{self.domain}/passive_dns'
         resp = self.get(dns)
-        if not resp:
-            return
-        json = resp.json()
-        subdomains = self.match_subdomains(str(json))
-        self.subdomains = self.subdomains.union(subdomains)
+        self.subdomains = self.collect_subdomains(resp)
 
         url = f'{base}/{self.domain}/url_list'
         resp = self.get(url)
-        if not resp:
-            return
-        json = resp.json()
-        subdomains = self.match_subdomains(str(json))
-        self.subdomains = self.subdomains.union(subdomains)
+        self.subdomains = self.collect_subdomains(resp)
 
     def run(self):
         """

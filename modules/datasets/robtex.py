@@ -30,12 +30,7 @@ class Robtex(Query):
                 ip = record.get('rrdata')
                 url = self.addr + 'reverse/' + ip
                 resp = self.get(url)
-                if not resp:
-                    return
-                subdomains = self.match_subdomains(resp.text)
-                if subdomains:
-                    # 合并搜索子域名搜索结果
-                    self.subdomains = self.subdomains.union(subdomains)
+                self.subdomains = self.collect_subdomains(resp)
 
     def run(self):
         """

@@ -17,13 +17,7 @@ class HackerTarget(Query):
         self.proxy = self.get_proxy(self.source)
         params = {'q': self.domain}
         resp = self.get(self.addr, params)
-        if not resp:
-            return
-        if resp.status_code == 200:
-            subdomains = self.match_subdomains(resp.text)
-            if subdomains:
-                # 合并搜索子域名搜索结果
-                self.subdomains = self.subdomains.union(subdomains)
+        self.subdomains = self.collect_subdomains(resp)
 
     def run(self):
         """

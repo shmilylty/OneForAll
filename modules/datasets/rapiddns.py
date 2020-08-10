@@ -17,11 +17,7 @@ class RapidDNS(Query):
         url = f'http://rapiddns.io/subdomain/{self.domain}'
         params = {'full': '1'}
         resp = self.get(url, params)
-        if not resp:
-            return
-        subdomains = self.match_subdomains(resp.text)
-        # 合并搜索子域名搜索结果
-        self.subdomains = self.subdomains.union(subdomains)
+        self.subdomains = self.collect_subdomains(resp)
 
     def run(self):
         """

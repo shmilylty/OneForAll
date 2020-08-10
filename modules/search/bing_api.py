@@ -34,15 +34,12 @@ class BingAPI(Search):
                       'count': self.per_page_num,
                       'offset': self.page_num}
             resp = self.get(self.addr, params)
-            if not resp:
-                return
-            subdomains = self.match_subdomains(resp.text)
+            subdomains = self.match_subdomains(resp)
             if not subdomains:  # 搜索没有发现子域名则停止搜索
                 break
             if not full_search and subdomains.issubset(self.subdomains):
                 # 在全搜索过程中发现搜索出的结果有完全重复的结果就停止搜索
                 break
-            # 合并搜索子域名搜索结果
             self.subdomains = self.subdomains.union(subdomains)
             self.page_num += self.per_page_num
             if self.page_num >= self.limit_num:  # 搜索条数限制

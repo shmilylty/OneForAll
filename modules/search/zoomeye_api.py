@@ -46,9 +46,7 @@ class ZoomEyeAPI(Search):
             self.header.update({'Authorization': 'JWT ' + access_token})
             params = {'query': 'hostname:' + self.domain, 'page': page_num}
             resp = self.get(self.addr, params)
-            if not resp:
-                return
-            subdomains = self.match_subdomains(resp.text)
+            subdomains = self.match_subdomains(resp)
             if not subdomains:  # 搜索没有发现子域名则停止搜索
                 break
             self.subdomains = self.subdomains.union(subdomains)

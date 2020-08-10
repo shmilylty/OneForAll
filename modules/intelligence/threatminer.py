@@ -18,11 +18,7 @@ class ThreatMiner(Query):
         params = {'e': 'subdomains_container',
                   'q': self.domain, 't': 0, 'rt': 10}
         resp = self.get(self.addr, params)
-        if not resp:
-            return
-        subdomains = self.match_subdomains(resp.text)
-        # 合并搜索子域名搜索结果
-        self.subdomains = self.subdomains.union(subdomains)
+        self.subdomains = self.collect_subdomains(resp)
 
     def run(self):
         """
