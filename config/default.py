@@ -73,7 +73,8 @@ only_save_valid = True  # 是否在处理爆破结果时只存入解析成功的
 check_time = 10  # 检查字典配置停留时间(默认10秒)
 enable_fuzz = False  # 是否使用fuzz模式枚举域名
 fuzz_place = None  # 指定爆破的位置 指定的位置用`@`表示 示例：www.@.example.com
-fuzz_rule = None  # fuzz域名的正则 示例：'[a-z][0-9]' 表示第一位是字母 第二位是数字
+fuzz_rule = None  # fuzz域名使用的正则表达式 示例：'[a-z][0-9]' 表示第一位是字母 第二位是数字
+fuzz_list = None  # fuzz域名使用的字典路径
 brute_ip_blacklist = {'0.0.0.0', '0.0.0.1'}  # IP黑名单 子域解析到IP黑名单则标记为非法子域
 ip_appear_maximum = 100  # 多个子域解析到同一IP次数超过100次则标记为非法(泛解析)子域
 
