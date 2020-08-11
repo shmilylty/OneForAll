@@ -29,5 +29,12 @@
     "yunjiasu",
     "skyparkcdn",
     "x-content-type-options",
-    "x-download-options"
+    "x-download-options",
+    "x-proxy-node",
+    "access-control-max-age",
+    "age",
+    "etag",
+    "expires",
+    "pragma",
+    "cache-control"
 ]
