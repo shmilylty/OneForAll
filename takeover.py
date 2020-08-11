@@ -131,7 +131,7 @@ class Takeover(Module):
 
     def run(self):
         start = time.time()
-        logger.log('INFOR', f'Start runing {self.source} module')
+        logger.log('INFOR', f'Start running {self.source} module')
         self.subdomains = utils.get_domains(self.target)
         self.format = utils.check_format(self.format, len(self.subdomains))
         timestamp = utils.get_timestamp()
