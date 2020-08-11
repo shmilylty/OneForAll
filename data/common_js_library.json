@@ -617,5 +617,11 @@
     "ramdajs.js",
     "formstone.js",
     "tether.js",
-    "upup.js"
+    "upup.js",
+    "iconfont.js",
+    "iconfont2.js",
+    "jwplayer.js",
+    "polyfills.js",
+    "md5.js",
+    "mifihybrid.js"
 ]
