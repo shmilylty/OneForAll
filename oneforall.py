@@ -259,7 +259,8 @@ class OneForAll(object):
         self.config()
         self.domains = utils.get_domains(self.target)
         if self.domains:
-            for self.domain in self.domains:
+            for domain in self.domains:
+                self.domain = utils.get_main_domain(domain)
                 self.main()
             utils.export_all(self.alive, self.format, self.path, self.datas)
         else:

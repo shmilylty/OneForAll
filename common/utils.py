@@ -110,6 +110,17 @@ def split_list(ls, size):
     return [ls[i:i + size] for i in range(0, len(ls), size)]
 
 
+def read_target(target):
+    domains = list()
+    with open(target, encoding='utf-8', errors='ignore') as file:
+        for line in file:
+            line = line.lower().strip()
+            domain = Domain(line).match()
+            if domain:
+                domains.append(domain)
+    return domains
+
+
 def get_domains(target):
     """
     Get domains
@@ -126,12 +137,8 @@ def get_domains(target):
     elif isinstance(target, str):
         path = Path(target)
         if path.exists() and path.is_file():
-            with open(target, encoding='utf-8', errors='ignore') as file:
-                for line in file:
-                    line = line.lower().strip()
-                    domain = Domain(line).match()
-                    if domain:
-                        domains.append(domain)
+            results = read_target(target)
+            domains = domains.extend(results)
         else:
             target = target.lower().strip()
             domain = Domain(target).match()
@@ -142,6 +149,7 @@ def get_domains(target):
         logger.log('FATAL', f'Get {count} domains')
         exit(1)
     logger.log('INFOR', f'Get {count} domains')
+    logger.log('DEBUG', f'The obtained domains \n{domains}')
     return domains
 
 
