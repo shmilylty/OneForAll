@@ -101,10 +101,11 @@ def filter_name(path, black_name):
     for name in black_name:
         if path.endswith(name):
             return True
-    black_ext = ['io.js', 'ui.js', 'fp.js', 'en.js', 'dev.js', 'min.js', 'umd.js',
-                 'esm.js', 'all.js', 'cjs.js', 'prod.js', 'slim.js', 'core.js',
-                 'global.js', 'bundle.js', 'browser.js', 'brands.js', 'simple.js',
-                 'common.js', 'development.js', 'production.js']
+    black_ext = ['io.js', 'ui.js', 'fp.js', 'en.js', 'en-us,js', 'zh.js', 'zh-cn.js',
+                 'zh_cn.js', 'dev.js', 'min.js', 'umd.js', 'esm.js', 'all.js', 'cjs.js', 'prod.js',
+                 'slim.js', 'core.js', 'global.js', 'bundle.js', 'browser.js',
+                 'brands.js', 'simple.js', 'common.js', 'development.js', 'banner.js',
+                 'production.js']
     for ext in black_ext:
         if path.endswith(ext):
             return True
@@ -143,7 +144,7 @@ def get_black_name():
 
 
 def match_subdomains(domain, text):
-    subdomains = utils.match_subdomains(domain, text)
+    subdomains = utils.match_subdomains(domain, text, fuzzy=False)
     logger.log('DEBUG', f'matched subdomains: {subdomains}')
     return subdomains
 
