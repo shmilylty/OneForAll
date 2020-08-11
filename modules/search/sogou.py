@@ -10,13 +10,12 @@ class Sogou(Search):
         self.addr = 'https://www.sogou.com/web'
         self.limit_num = 1000  # 限制搜索条数
 
-    def search(self, domain, filtered_subdomain='', full_search=False):
+    def search(self, domain, filtered_subdomain=''):
         """
         发送搜索请求并做子域匹配
 
         :param str domain: 域名
         :param str filtered_subdomain: 过滤的子域
-        :param bool full_search: 全量搜索
         """
         self.page_num = 1
         while True:
@@ -26,13 +25,8 @@ class Sogou(Search):
             payload = {'query': word, 'page': self.page_num,
                        "num": self.per_page_num}
             resp = self.get(self.addr, payload)
-            if not resp:
-                return
-            subdomains = self.match_subdomains(resp.text, fuzzy=False)
-            if not subdomains:
-                break
-            if not full_search and subdomains.issubset(self.subdomains):
-                # 在全搜索过程中发现搜索出的结果有完全重复的结果就停止搜索
+            subdomains = self.match_subdomains(resp, fuzzy=False)
+            if not self.check_subdomains(subdomains):
                 break
             self.subdomains = self.subdomains.union(subdomains)
             self.page_num += 1
@@ -48,8 +42,7 @@ class Sogou(Search):
         类执行入口
         """
         self.begin()
-
-        self.search(self.domain, full_search=True)
+        self.search(self.domain)
 
         # 排除同一子域搜索结果过多的子域以发现新的子域
         for statement in self.filter(self.domain, self.subdomains):
@@ -57,13 +50,8 @@ class Sogou(Search):
 
         # 递归搜索下一层的子域
         if self.recursive_search:
-            # 从1开始是之前已经做过1层子域搜索了,当前实际递归层数是layer+1
-            for layer_num in range(1, self.recursive_times):
-                for subdomain in self.subdomains:
-                    # 进行下一层子域搜索的限制条件
-                    count = subdomain.count('.') - self.domain.count('.')
-                    if count == layer_num:
-                        self.search(subdomain)
+            for subdomain in self.recursive_subdomain():
+                self.search(subdomain)
         self.finish()
         self.save_json()
         self.gen_result()

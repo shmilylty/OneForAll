@@ -102,8 +102,10 @@ request_verify = False  # 请求SSL验证
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 # 搜索模块设置
-enable_recursive_search = False  # 递归搜索子域
-search_recursive_times = 2  # 递归搜索层数
+# 开启全量搜索会尽量去获取搜索引擎搜索的全部结果，不过搜索耗时可能会过长
+enable_full_search = False  # 启用全量搜索(默认False)
+enable_recursive_search = False  # 递归搜索子域(默认False)
+search_recursive_times = 2  # 递归搜索层数(默认2)
 
 # DNS解析设置
 resolve_coroutine_num = 64

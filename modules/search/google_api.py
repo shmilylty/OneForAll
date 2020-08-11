@@ -15,13 +15,12 @@ class GoogleAPI(Search):
         self.id = api.google_api_id
         self.per_page_num = 10  # 每次只能请求10个结果
 
-    def search(self, domain, filtered_subdomain='', full_search=False):
+    def search(self, domain, filtered_subdomain=''):
         """
         发送搜索请求并做子域匹配
 
         :param str domain: 域名
         :param str filtered_subdomain: 过滤的子域
-        :param bool full_search: 全量搜索
         """
         self.page_num = 1
         while True:
@@ -34,10 +33,7 @@ class GoogleAPI(Search):
                       'start': self.page_num, 'num': self.per_page_num}
             resp = self.get(self.addr, params)
             subdomains = self.match_subdomains(resp)
-            if not subdomains:
-                break
-            if not full_search and subdomains.issubset(self.subdomains):
-                # 在全搜索过程中发现搜索出的结果有完全重复的结果就停止搜索
+            if not self.check_subdomains(subdomains):
                 break
             self.subdomains = self.subdomains.union(subdomains)
             self.page_num += self.per_page_num
@@ -51,7 +47,7 @@ class GoogleAPI(Search):
         if not self.check(self.id, self.key):
             return
         self.begin()
-        self.search(self.domain, full_search=True)
+        self.search(self.domain)
 
         # 排除同一子域搜索结果过多的子域以发现新的子域
         for statement in self.filter(self.domain, self.subdomains):
@@ -59,13 +55,8 @@ class GoogleAPI(Search):
 
         # 递归搜索下一层的子域
         if self.recursive_search:
-            # 从1开始是之前已经做过1层子域搜索了,当前实际递归层数是layer+1
-            for layer_num in range(1, self.recursive_times):
-                for subdomain in self.subdomains:
-                    # 进行下一层子域搜索的限制条件
-                    count = subdomain.count('.') - self.domain.count('.')
-                    if count == layer_num:
-                        self.search(subdomain)
+            for subdomain in self.recursive_subdomain():
+                self.search(subdomain)
         self.finish()
         self.save_json()
         self.gen_result()
