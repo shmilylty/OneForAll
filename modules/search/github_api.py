@@ -60,7 +60,7 @@ class GithubAPI(Search):
             if resp.status_code != 200:
                 logger.log('ERROR', f'{self.source} module query failed')
                 break
-            subdomains = self.match_subdomains(resp.text)
+            subdomains = self.match_subdomains(resp)
             if not subdomains:
                 break
             self.subdomains = self.subdomains.union(subdomains)

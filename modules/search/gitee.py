@@ -34,11 +34,8 @@ class Gitee(Search):
             if 'class="empty-box"' in resp.text:
                 break
             soup = BeautifulSoup(resp.text, 'html.parser')
-            subdomains = self.match_subdomains(soup.text, fuzzy=False)
-            if not subdomains:
-                break
-            if not full_search and subdomains.issubset(self.subdomains):
-                # 在全搜索中发现搜索出的结果有完全重复的结果就停止搜索
+            subdomains = self.match_subdomains(soup, fuzzy=False)
+            if not self.check_subdomains(subdomains):
                 break
             self.subdomains = self.subdomains.union(subdomains)
             if '<li class="disabled"><a href="###">' in resp.text:
