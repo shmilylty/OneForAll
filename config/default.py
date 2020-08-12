@@ -65,10 +65,7 @@ brute_recursive_depth = 2  # 递归爆破深度(默认2层)
 recursive_nextlist_path = data_storage_dir.joinpath('next_subnames.txt')
 enable_check_dict = False  # 是否开启字典配置检查提示(默认False)
 delete_generated_dict = True  # 是否删除爆破时临时生成的字典(默认True)
-#  是否删除爆破时massdns输出的解析结果 (默认True)
-#  massdns输出的结果中包含更详细解析结果
-#  注意: 当爆破的字典较大或使用递归爆破或目标域名存在泛解析时生成的文件可能会很大
-delete_massdns_result = True
+delete_massdns_result = True  # 是否删除爆破时massdns输出的解析结果 (默认True)
 only_save_valid = True  # 是否在处理爆破结果时只存入解析成功的子域
 check_time = 10  # 检查字典配置停留时间(默认10秒)
 enable_fuzz = False  # 是否使用fuzz模式枚举域名
