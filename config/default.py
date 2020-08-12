@@ -95,7 +95,6 @@ proxy_pool = [{'http': 'http://127.0.0.1:1080',
 
 
 # 网络请求设置
-enable_fake_header = True  # 启用伪造请求头
 request_delay = 1  # 请求时延
 request_timeout = 60  # 请求超时
 request_verify = False  # 请求SSL验证
@@ -150,7 +149,6 @@ verify_ssl = False
 # aiohttp 支持 HTTP/HTTPS形式的代理
 aiohttp_proxy = None  # 示例 proxy="http://user:pass@some.proxy.com"
 allow_redirects = True  # 允许请求跳转
-fake_header = True  # 使用伪造请求头
 # 为了保证请求质量 请谨慎更改以下设置
 # request_method只能是HEAD或GET,HEAD请求方法更快，但是不能获取响应体并提取从中title及banner
 request_method = 'GET'  # 使用请求方法，默认GET
@@ -167,6 +165,7 @@ subdomains_common = {'i', 'w', 'm', 'en', 'us', 'zh', 'w3', 'app', 'bbs',
                      'store', 'mobile'}
 
 # 请求头设置
+# 可以在headers里添加自定义请求头
 headers = {
     'Accept': 'text/html,application/xhtml+xml,'
               'application/xml;q=0.9,*/*;q=0.8',
@@ -175,6 +174,9 @@ headers = {
     'Cache-Control': 'max-age=0',
     'DNT': '1',
     'Referer': 'https://www.google.com/',
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '
+                  '(KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36',
     'Upgrade-Insecure-Requests': '1',
     'X-Forwarded-For': '127.0.0.1'
 }
+random_user_agent = True  # 使用随机UA(默认True，开启可以覆盖header的设置)
