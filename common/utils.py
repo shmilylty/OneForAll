@@ -49,30 +49,24 @@ def gen_fake_header():
     """
     Generate fake request headers
     """
-    ua = random.choice(user_agents)
-    headers = {
-        'Accept': 'text/html,application/xhtml+xml,'
-                  'application/xml;q=0.9,*/*;q=0.8',
-        'Accept-Encoding': 'gzip, deflate',
-        'Accept-Language': 'en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7',
-        'Cache-Control': 'max-age=0',
-        'DNT': '1',
-        'Referer': 'https://www.google.com/',
-        'Upgrade-Insecure-Requests': '1',
-        'User-Agent': ua,
-        'X-Forwarded-For': '127.0.0.1'
-    }
+    headers = settings.headers
+    if not isinstance(headers, dict):
+        headers = dict()
+    if settings.random_user_agent:
+        ua = random.choice(user_agents)
+        headers['User-Agent'] = ua
+    headers['Accept-Encoding'] = 'gzip, deflate'
     return headers
 
 
 def get_random_header():
     """
-    Get random proxy
+    Get random header
     """
-    header = None
-    if settings.fake_header:
-        header = gen_fake_header()
-    return header
+    headers = gen_fake_header()
+    if not isinstance(headers, dict):
+        headers = None
+    return headers
 
 
 def get_random_proxy():

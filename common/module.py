@@ -182,9 +182,10 @@ class Module(object):
 
         :return: header
         """
-        # logger.log('DEBUG', f'Get request header')
-        if settings.enable_fake_header:
-            return utils.gen_fake_header()
+        headers = utils.gen_fake_header()
+        if isinstance(headers, dict):
+            self.header = headers
+            return headers
         else:
             return self.header
 
