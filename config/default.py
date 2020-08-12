@@ -165,3 +165,16 @@ subdomains_common = {'i', 'w', 'm', 'en', 'us', 'zh', 'w3', 'app', 'bbs',
                      'web', 'www', 'job', 'docs', 'news', 'blog', 'data',
                      'help', 'live', 'mall', 'blogs', 'files', 'forum',
                      'store', 'mobile'}
+
+# 请求头设置
+headers = {
+    'Accept': 'text/html,application/xhtml+xml,'
+              'application/xml;q=0.9,*/*;q=0.8',
+    'Accept-Encoding': 'gzip, deflate',
+    'Accept-Language': 'en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7',
+    'Cache-Control': 'max-age=0',
+    'DNT': '1',
+    'Referer': 'https://www.google.com/',
+    'Upgrade-Insecure-Requests': '1',
+    'X-Forwarded-For': '127.0.0.1'
+}
