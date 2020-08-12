@@ -137,8 +137,7 @@ def get_domains(target):
     elif isinstance(target, str):
         path = Path(target)
         if path.exists() and path.is_file():
-            results = read_target(target)
-            domains = domains.extend(results)
+            domains = read_target(target)
         else:
             target = target.lower().strip()
             domain = Domain(target).match()
