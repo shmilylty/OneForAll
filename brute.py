@@ -681,6 +681,7 @@ class Brute(Module):
             # 数据库导出
             if self.export:
                 dbexport.export(self.domain,
+                                type='table',
                                 alive=self.alive,
                                 limit='resolve',
                                 path=self.path,
