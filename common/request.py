@@ -188,8 +188,8 @@ def get_connector():
 async def async_request(urls):
     results = list()
     connector = get_connector()
-    header = utils.get_random_header()
-    async with ClientSession(connector=connector, headers=header) as session:
+    headers = utils.get_random_header()
+    async with ClientSession(connector=connector, headers=headers) as session:
         tasks = []
         for i, url in enumerate(urls):
             task = asyncio.ensure_future(fetch(session, 'GET', url))
@@ -213,8 +213,8 @@ async def bulk_request(data, port):
     logger.log('INFOR', f'Use {method} method to request')
     logger.log('INFOR', 'Async subdomains request in progress')
     connector = get_connector()
-    header = utils.get_random_header()
-    async with ClientSession(connector=connector, headers=header) as session:
+    headers = utils.get_random_header()
+    async with ClientSession(connector=connector, headers=headers) as session:
         tasks = []
         for i, data in enumerate(to_req_data):
             url = data.get('url')
