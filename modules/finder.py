@@ -116,7 +116,11 @@ def filter_name(path, black_name):
 
 
 def filter_url(domain, url, black_name):
-    raw_url = parse.urlparse(url)
+    try:
+        raw_url = parse.urlparse(url)
+    except Exception as e:  # 解析失败则跳过该URL
+        logger.log('DEBUG', url, e.args)
+        return True
     scheme = raw_url.scheme.lower()
     if not scheme:
         return True
