@@ -17,11 +17,7 @@ class Ximcx(Query):
         self.proxy = self.get_proxy(self.source)
         data = {'domain': self.domain}
         resp = self.post(self.addr, data=data)
-        if not resp:
-            return
-        json = resp.json()
-        subdomains = self.match_subdomains(str(json))
-        self.subdomains = self.subdomains.union(subdomains)
+        self.subdomains = self.collect_subdomains(resp)
 
     def run(self):
         """
