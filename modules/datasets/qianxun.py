@@ -25,7 +25,10 @@ class QianXun(Query):
             url = f'https://www.dnsscan.cn/dns.html?' \
                   f'keywords={self.domain}&page={num}'
             resp = self.post(url, data)
-            self.subdomains = self.collect_subdomains(resp)
+            subdomains = self.match_subdomains(resp)
+            if not subdomains:  # 没有发现子域名则停止查询
+                break
+            self.subdomains = self.subdomains.union(subdomains)
             if '<div id="page" class="pagelist">' not in resp.text:
                 break
             if '<li class="disabled"><span>&raquo;</span></li>' in resp.text:
