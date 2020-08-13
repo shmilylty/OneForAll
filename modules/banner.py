@@ -4,8 +4,9 @@ import time
 import json
 import string
 import hashlib
+import tqdm
 
-from multiprocessing import Process, freeze_support
+from multiprocessing import Pool, Process, freeze_support
 from multiprocessing import Manager
 
 from bs4 import BeautifulSoup
@@ -23,47 +24,90 @@ class MultiIdentify(Module):
         self.module = 'Identify'
         self.source = 'Identify'
         self.start = time.time()  # 模块开始执行时间
+        self.rule_dir = settings.data_storage_dir.joinpath('rules')
 
     def run(self, data):
         logger.log('INFOR', f'Start Identify module')
         freeze_support()
         task_queue = Manager().Queue()
         done_queue = Manager().Queue()
+        n = 0
         for d in data:
-            task_queue.put(d)
+            if d.get('request'):
+                n += 1
+                task_queue.put(d)
         processes_num = min(settings.banner_process_number, os.cpu_count())
         logger.log('INFOR', f'Creating {processes_num} processes to identify')
-        result_data = []
-        _p = []
+        p = Process(target=self.listener, args=(n, done_queue,))
+        p.start()
+        pool = Pool(processes_num)
+        rules = self.load_rules()
+        _identify = Identify(rules)
         for i in range(processes_num):
-            _identify = Identify()
-            p = Process(target=_identify.run, args=(task_queue, done_queue))
-            _p.append(p)
-        for p in _p:
-            p.start()
-        for p in _p:
-            p.join()
-        while not done_queue.empty():
-            result_data.append(done_queue.get())
+            pool.apply_async(func=_identify.run, args=(task_queue, done_queue))
+        pool.close()
+        pool.join()
+        p.join()
+        result_data = done_queue.get()
         self.end = time.time()
         self.elapse = round(self.end - self.start, 1)
         logger.log('INFOR', f'The Identify module took {self.elapse} seconds')
         return result_data
 
+    def listener(self, total, done_queue):
+        par = tqdm.tqdm(total=total, desc='Identify Progress', ncols=80)
+        result_data = []
+        while len(result_data) < total:
+            result_data.append(done_queue.get())
+            par.update()
+        done_queue.put(result_data)
+
+    def load_rules(self):
+        new_rules = {}
+        new_rule_types = set()
+        for rule_type in os.listdir(self.rule_dir):
+            rule_type_dir = os.path.join(self.rule_dir, rule_type)
+            if not os.path.isdir(rule_type_dir):
+                continue
+            new_rule_types.add(rule_type)
+            for i in os.listdir(rule_type_dir):
+                if not i.endswith('.json'):
+                    continue
+
+                with open(os.path.join(rule_type_dir, i), encoding='utf-8') as fd:
+                    try:
+                        data = json.load(fd)
+                        for match in data['matches']:
+                            if 'regexp' in match:  # 默认 大小写不敏感 可信度100%
+                                match['regexp'] = re.compile(
+                                    match['regexp'], re.I)
+                            if 'certainty' not in match:
+                                match['certainty'] = 100
+
+                        data['origin'] = rule_type
+                        key = '%s_%s' % (rule_type, data['name'])
+                        new_rules[key] = data
+                    except Exception as e:
+                        logger.log('ERROR', f'Parse {i} failed, error: {e}')
+
+        RULES = new_rules
+        RULE_TYPES = new_rule_types
+        return len(RULES), RULES, RULE_TYPES
+
 
 class Identify(object):
-    def __init__(self):
+    def __init__(self, rules):
         self.start = time.time()  # 模块开始执行时间
-        self.rule_dir = settings.data_storage_dir.joinpath('rules')
         self._targets = {}
-        self.rules_num, self.RULES, self.RULE_TYPES = self.load_rules()
         self._cond_parser = Condition()
         self.url = ''
+        self.rules_num, self.RULES, self.RULE_TYPES = rules
 
     def run(self, task_queue, done_queue):
         while not task_queue.empty():
             item = task_queue.get()
             if not item.get('request'):
+                done_queue.put(item)
                 continue
             self.url = item.get('url')
             implies = set()
@@ -123,38 +167,6 @@ class Identify(object):
                 result.append(banner['name'])
         result = ','.join(result)
         return result
-
-    def load_rules(self):
-        new_rules = {}
-        new_rule_types = set()
-        for rule_type in os.listdir(self.rule_dir):
-            rule_type_dir = os.path.join(self.rule_dir, rule_type)
-            if not os.path.isdir(rule_type_dir):
-                continue
-            new_rule_types.add(rule_type)
-            for i in os.listdir(rule_type_dir):
-                if not i.endswith('.json'):
-                    continue
-
-                with open(os.path.join(rule_type_dir, i), encoding='utf-8') as fd:
-                    try:
-                        data = json.load(fd)
-                        for match in data['matches']:
-                            if 'regexp' in match:  # 默认 大小写不敏感 可信度100%
-                                match['regexp'] = re.compile(
-                                    match['regexp'], re.I)
-                            if 'certainty' not in match:
-                                match['certainty'] = 100
-
-                        data['origin'] = rule_type
-                        key = '%s_%s' % (rule_type, data['name'])
-                        new_rules[key] = data
-                    except Exception as e:
-                        logger.log('ERROR', f'Parse {i} failed, error: {e}')
-
-        RULES = new_rules
-        RULE_TYPES = new_rule_types
-        return len(RULES), RULES, RULE_TYPES
 
     def parse(self, item):
         script = []
