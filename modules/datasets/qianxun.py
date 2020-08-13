@@ -26,6 +26,8 @@ class QianXun(Query):
                   f'keywords={self.domain}&page={num}'
             resp = self.post(url, data)
             self.subdomains = self.collect_subdomains(resp)
+            if resp is None:
+                break
             if '<div id="page" class="pagelist">' not in resp.text:
                 break
             if '<li class="disabled"><span>&raquo;</span></li>' in resp.text:
