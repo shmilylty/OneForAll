@@ -641,7 +641,7 @@ def call_massdns(massdns_path, dict_path, ns_path, output_path, log_path,
           f'--hashmap-size {concurrent_num} --resolvers {ns_path} ' \
           f'--resolve-count {resolve_num} --type {query_type} ' \
           f'--flush --output J --outfile {output_path} ' \
-          f'--root --error-log {log_path} {dict_path}'
+          f'--root --error-log {log_path} {dict_path} --filter OK'
     logger.log('DEBUG', f'Run command {cmd}')
     subprocess.run(args=cmd, shell=True)
     logger.log('DEBUG', f'Finished massdns')
