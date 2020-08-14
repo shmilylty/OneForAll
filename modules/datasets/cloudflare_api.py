@@ -1,4 +1,4 @@
-from config import api
+from config import settings
 from common.query import Query
 from config.log import logger
 from time import sleep
@@ -11,7 +11,7 @@ class CloudFlareAPI(Query):
         self.domain = domain
         self.module = 'Dataset'
         self.source = 'CloudFlareAPIQuery'
-        self.token = api.cloudflare_api_token
+        self.token = settings.cloudflare_api_token
         self.addr = 'https://api.cloudflare.com/client/v4/'
         self.header = self.get_header()
         self.header.update({'Authorization': 'Bearer ' + self.token})

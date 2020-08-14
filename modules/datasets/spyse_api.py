@@ -1,4 +1,4 @@
-from config import api
+from config import settings
 from common.query import Query
 
 
@@ -8,7 +8,7 @@ class SpyseAPI(Query):
         self.domain = domain
         self.module = 'Dataset'
         self.source = 'SpyseAPIQuery'
-        self.token = api.spyse_api_token
+        self.token = settings.spyse_api_token
 
     def query(self):
         """

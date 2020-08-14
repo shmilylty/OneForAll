@@ -32,6 +32,7 @@ logger.level(name='ERROR', color='<red><bold>', icon='❌️')
 logger.level(name='FATAL', no=50, color='<RED><bold>', icon='☠️')
 
 # 如果你想在命令终端静默运行OneForAll，可以将以下一行中的level设置为QUITE
-logger.add(sys.stderr, level='INFOR', format=stdout_fmt, enqueue=True)  # 命令终端日志级别默认为INFOR
-logger.add(log_path, level='DEBUG', format=logfile_fmt, enqueue=True,
-           encoding='utf-8')  # 日志文件默认为级别为DEBUG
+# 命令终端日志级别默认为INFOR
+logger.add(sys.stderr, level='INFOR', format=stdout_fmt, enqueue=True)
+# 日志文件默认为级别为DEBUG
+logger.add(log_path, level='DEBUG', format=logfile_fmt, enqueue=True)

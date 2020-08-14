@@ -1,7 +1,7 @@
 import base64
 import time
 
-from config import api
+from config import settings
 from common.search import Search
 
 
@@ -13,8 +13,8 @@ class FoFa(Search):
         self.source = 'FoFaAPISearch'
         self.addr = 'https://fofa.so/api/v1/search/all'
         self.delay = 1
-        self.email = api.fofa_api_email
-        self.key = api.fofa_api_key
+        self.email = settings.fofa_api_email
+        self.key = settings.fofa_api_key
 
     def search(self):
         """
