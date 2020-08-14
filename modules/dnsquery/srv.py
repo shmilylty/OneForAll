@@ -37,8 +37,9 @@ class BruteSRV(Module):
         """
         self.gen_names()
 
-        for i in range(self.thread_num):
+        for num in range(self.thread_num):
             thread = BruteThread(self.names_que, self.answers_que)
+            thread.name = f'BruteThread-{num}'
             thread.daemon = True
             thread.start()
 
