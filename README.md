@@ -247,15 +247,15 @@ FLAGS
 如果你有其他很棒的想法请务必告诉我！😎
 
 ## 🌲目录结构
-项目的目录结构说明请参阅[directory_structure](https://github.com/shmilylty/OneForAll/tree/master/docs/directory_structure.md)。
-项目中子域字典来源说明请参阅[dictionary source](https://github.com/shmilylty/OneForAll/tree/master/docs/dictionary_source.md)。
+
+项目的目录结构说明请参阅[directory_structure.md](https://github.com/shmilylty/OneForAll/tree/master/docs/directory_structure.md)。
+
+项目中子域字典来源说明请参阅[dictionary source.md](https://github.com/shmilylty/OneForAll/tree/master/docs/dictionary_source.md)。
 
 
 ## 👏用到框架
 
-* [aiodns](https://github.com/saghul/aiodns) - 简单DNS异步解析库。
 * [aiohttp](https://github.com/aio-libs/aiohttp) - 异步http客户端/服务器框架
-* [aiomultiprocess](https://github.com/jreese/aiomultiprocess) - 将Python代码提升到更高的性能水平(multiprocessing和asyncio结合，实现异步多进程多协程)
 * [beautifulsoup4](https://pypi.org/project/beautifulsoup4/) - 可以轻松从HTML或XML文件中提取数据的Python库
 * [fire](https://github.com/google/python-fire) - Python Fire是一个纯粹根据任何Python对象自动生成命令行界面（CLI）的库
 * [loguru](https://github.com/Delgan/loguru) - 旨在带来愉快的日志记录Python库
