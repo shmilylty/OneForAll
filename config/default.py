@@ -105,7 +105,6 @@ enable_recursive_search = False  # 递归搜索子域(默认False)
 search_recursive_times = 2  # 递归搜索层数(默认2)
 
 # DNS解析设置
-resolve_coroutine_num = 64
 resolver_nameservers = [
     '223.5.5.5',  # AliDNS
     '119.29.29.29',  # DNSPod
@@ -151,8 +150,7 @@ allow_redirects = True  # 允许请求跳转
 request_method = 'GET'  # 使用请求方法，默认GET
 sockread_timeout = 6  # 每个请求socket读取超时时间，默认6秒
 sockconn_timeout = 3  # 每个请求socket连接超时时间，默认3秒
-# 限制同一时间打开的连接总数
-limit_open_conn = 800  # 默认800
+limit_open_conn = None  # 限制同一时间打开的连接总数，默认None将根据系统内存大小自动设置
 # 限制同一时间在同一个端点((host, port, is_ssl) 3者都一样的情况)打开的连接数
 limit_per_host = 10  # 0表示不限制,默认10
 
@@ -169,6 +167,7 @@ headers = {
     'Accept-Encoding': 'gzip, deflate',
     'Accept-Language': 'en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7',
     'Cache-Control': 'max-age=0',
+    'Connection': 'close',
     'DNT': '1',
     'Referer': 'https://www.google.com/',
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '

@@ -146,21 +146,6 @@ def get_domains(target):
     return domains
 
 
-def get_semaphore():
-    """
-    获取查询并发值
-
-    :return: 并发整型值
-    """
-    system = platform.system()
-    if system == 'Windows':
-        return 800
-    elif system == 'Linux':
-        return 800
-    elif system == 'Darwin':
-        return 800
-
-
 def check_dir(dir_path):
     if not dir_path.exists():
         logger.log('INFOR', f'{dir_path} does not exist, directory will be created')
@@ -459,8 +444,8 @@ def set_id_none(data):
 def get_filtered_data(data):
     filtered_data = []
     for item in data:
-        valid = item.get('resolve')
-        if valid == 0:
+        resolve = item.get('resolve')
+        if resolve != 1:
             filtered_data.append(item)
     return filtered_data
 
@@ -504,27 +489,21 @@ def get_process_num():
 
 
 def get_coroutine_num():
-    coroutine_num = settings.resolve_coroutine_num
-    if isinstance(coroutine_num, int):
-        return max(64, coroutine_num)
-    elif coroutine_num is None:
-        mem = psutil.virtual_memory()
-        total_mem = mem.total
-        g_size = 1024 * 1024 * 1024
-        if total_mem <= 1 * g_size:
-            return 64
-        elif total_mem <= 2 * g_size:
-            return 128
-        elif total_mem <= 4 * g_size:
-            return 256
-        elif total_mem <= 8 * g_size:
-            return 512
-        elif total_mem <= 16 * g_size:
-            return 1024
-        else:
-            return 2048
-    else:
+    mem = psutil.virtual_memory()
+    total_mem = mem.total
+    g_size = 1024 * 1024 * 1024
+    if total_mem <= 1 * g_size:
+        return 32
+    elif total_mem <= 2 * g_size:
         return 64
+    elif total_mem <= 4 * g_size:
+        return 128
+    elif total_mem <= 8 * g_size:
+        return 256
+    elif total_mem <= 16 * g_size:
+        return 512
+    else:
+        return 1024
 
 
 def uniq_dict_list(dict_list):

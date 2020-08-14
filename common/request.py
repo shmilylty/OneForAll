@@ -14,9 +14,10 @@ from config import settings
 
 def get_limit_conn():
     limit_open_conn = settings.limit_open_conn
-    if limit_open_conn is None:  # 默认情况
-        limit_open_conn = utils.get_semaphore()
-    return limit_open_conn
+    if isinstance(limit_open_conn, int):
+        return max(32, limit_open_conn)
+    else:
+        return utils.get_coroutine_num()
 
 
 def get_ports(port):
@@ -42,8 +43,8 @@ def gen_req_data(data, ports):
     new_data = []
     for data in data:
         resolve = data.get('resolve')
-        # 解析失败(0)的子域不进行http请求探测
-        if resolve == 0:
+        # 解析不成功的子域不进行http请求探测
+        if resolve != 1:
             continue
         subdomain = data.get('subdomain')
         for port in ports:
@@ -169,7 +170,8 @@ def request_callback(future, index, datas):
         else:
             datas[index]['alive'] = 1
         headers = resp.headers
-        # datas[index]['banner'] = utils.get_sample_banner(headers) 采用webanalyzer的指纹识别 原banner识别弃用
+        # 采用webanalyzer的指纹识别 原banner识别弃用
+        # datas[index]['banner'] = utils.get_sample_banner(headers)
         datas[index]['header'] = json.dumps(dict(headers))
         if isinstance(text, str):
             title = get_title(text).strip()
@@ -216,11 +218,13 @@ async def bulk_request(data, port):
     headers = utils.get_random_header()
     async with ClientSession(connector=connector, headers=headers) as session:
         tasks = []
-        for i, data in enumerate(to_req_data):
+        for num, data in enumerate(to_req_data):
             url = data.get('url')
-            task = asyncio.ensure_future(fetch(session, method, url))
+            task = asyncio.create_task(fetch(session, method, url))
+            task.set_name(f'RequestTask-{num}')
+            # logger.log('TRACE', f'RequestTask-{num} {url}')
             task.add_done_callback(functools.partial(request_callback,
-                                                     index=i,
+                                                     index=num,
                                                      datas=to_req_data))
             tasks.append(task)
         if tasks:
