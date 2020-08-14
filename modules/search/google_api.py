@@ -1,5 +1,5 @@
 import time
-from config import api
+from config import settings
 from common.search import Search
 
 
@@ -11,8 +11,8 @@ class GoogleAPI(Search):
         self.source = 'GoogleAPISearch'
         self.addr = 'https://www.googleapis.com/customsearch/v1'
         self.delay = 1
-        self.key = api.google_api_key
-        self.id = api.google_api_id
+        self.key = settings.google_api_key
+        self.id = settings.google_api_id
         self.per_page_num = 10  # 每次只能请求10个结果
 
     def search(self, domain, filtered_subdomain=''):

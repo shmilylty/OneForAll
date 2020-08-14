@@ -1,4 +1,4 @@
-from config import api
+from config import settings
 from common.query import Query
 from config.log import logger
 
@@ -10,7 +10,7 @@ class IPv4InfoAPI(Query):
         self.module = 'Dataset'
         self.source = 'IPv4InfoAPIQuery'
         self.addr = ' http://ipv4info.com/api_v1/'
-        self.api = api.ipv4info_api_key
+        self.api = settings.ipv4info_api_key
 
     def query(self):
         """

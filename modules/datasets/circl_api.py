@@ -1,4 +1,4 @@
-from config import api
+from config import settings
 from common.query import Query
 
 
@@ -9,8 +9,8 @@ class CirclAPI(Query):
         self.module = 'Dataset'
         self.source = 'CirclAPIQuery'
         self.addr = 'https://www.circl.lu/pdns/query/'
-        self.user = api.circl_api_username
-        self.pwd = api.circl_api_password
+        self.user = settings.circl_api_username
+        self.pwd = settings.circl_api_password
 
     def query(self):
         """

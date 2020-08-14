@@ -1,4 +1,4 @@
-from config import api
+from config import settings
 from common.query import Query
 
 
@@ -9,7 +9,7 @@ class VirusTotalAPI(Query):
         self.module = 'Intelligence'
         self.source = 'VirusTotalAPIQuery'
         self.addr = 'https://www.virustotal.com/vtapi/v2/domain/report'
-        self.key = api.virustotal_api_key
+        self.key = settings.virustotal_api_key
 
     def query(self):
         """
