@@ -239,3 +239,4 @@ $RECYCLE.BIN/
 
 # User-defined settings
 config/setting.py
+config/api.py
