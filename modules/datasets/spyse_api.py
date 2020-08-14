@@ -1,4 +1,4 @@
-from config import api
+from config import settings
 from common.query import Query
 
 
@@ -8,7 +8,7 @@ class SpyseAPI(Query):
         self.domain = domain
         self.module = 'Dataset'
         self.source = 'SpyseAPIQuery'
-        self.token = api.spyse_api_token
+        self.token = settings.spyse_api_token
 
     def query(self):
         """
@@ -27,7 +27,7 @@ class SpyseAPI(Query):
                 return
             json = resp.json()
             subdomains = self.match_subdomains(str(json))
-            if not subdomains:  # 搜索没有发现子域名则停止搜索
+            if not subdomains:  # 没有发现子域名则停止查询
                 break
             self.subdomains = self.subdomains.union(subdomains)
             offset += limit

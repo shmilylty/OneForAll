@@ -8,7 +8,7 @@ github自动接管
 import json
 import base64
 import requests
-from config import api
+from config import settings
 
 HEADERS = {
     "Accept": "application/json, text/javascript, */*; q=0.01",
@@ -21,8 +21,8 @@ def github_takeover(url):
     # 读取config配置文件
     repo_name = url
     print('[*]正在读取配置文件')
-    user = api.github_api_user
-    token = api.github_api_token
+    user = settings.github_api_user
+    token = settings.github_api_token
     headers = {
         "Authorization": 'token ' + token,
         "Accept": "application/vnd.github.switcheroo-preview+json"

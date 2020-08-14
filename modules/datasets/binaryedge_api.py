@@ -1,4 +1,4 @@
-from config import api
+from config import settings
 from common.query import Query
 
 
@@ -9,7 +9,7 @@ class BinaryEdgeAPI(Query):
         self.module = 'Dataset'
         self.source = 'BinaryEdgeAPIQuery'
         self.addr = 'https://api.binaryedge.io/v2/query/domains/subdomain/'
-        self.api = api.binaryedge_api
+        self.api = settings.binaryedge_api
 
     def query(self):
         """

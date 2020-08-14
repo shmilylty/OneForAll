@@ -1,4 +1,4 @@
-from config import api
+from config import settings
 from common.query import Query
 
 
@@ -9,7 +9,7 @@ class DNSdbAPI(Query):
         self.module = 'Dataset'
         self.source = 'DNSdbAPIQuery'
         self.addr = 'https://api.dnsdb.info/lookup/rrset/name/'
-        self.api = api.dnsdb_api_key
+        self.api = settings.dnsdb_api_key
 
     def query(self):
         """
