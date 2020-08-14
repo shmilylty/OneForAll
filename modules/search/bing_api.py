@@ -1,5 +1,5 @@
 import time
-from config import api
+from config import settings
 from common.search import Search
 
 
@@ -10,8 +10,8 @@ class BingAPI(Search):
         self.module = 'Search'
         self.source = 'BingAPISearch'
         self.addr = 'https://api.cognitive.microsoft.com/bing/v7.0/search'
-        self.id = api.bing_api_id
-        self.key = api.bing_api_key
+        self.id = settings.bing_api_id
+        self.key = settings.bing_api_key
         self.limit_num = 1000  # 必应同一个搜索关键词限制搜索条数
         self.delay = 1  # 必应自定义搜索限制时延1秒
 

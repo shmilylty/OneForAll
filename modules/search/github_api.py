@@ -1,5 +1,5 @@
 import requests
-from config import api
+from config import settings
 from common.search import Search
 from config.log import logger
 
@@ -13,7 +13,7 @@ class GithubAPI(Search):
         self.domain = domain
         self.session = requests.Session()
         self.auth_url = 'https://api.github.com'
-        self.token = api.github_api_token
+        self.token = settings.github_api_token
 
     def auth_github(self):
         """

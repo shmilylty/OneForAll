@@ -1,4 +1,4 @@
-from config import api
+from config import settings
 from common.query import Query
 
 
@@ -9,7 +9,7 @@ class ThreatBookAPI(Query):
         self.module = 'Intelligence'
         self.source = 'ThreatBookAPIQuery'
         self.addr = 'https://api.threatbook.cn/v3/domain/sub_domains'
-        self.key = api.threatbook_api_key
+        self.key = settings.threatbook_api_key
 
     def query(self):
         """

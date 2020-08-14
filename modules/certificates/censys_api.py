@@ -1,4 +1,4 @@
-from config import api
+from config import settings
 from common.query import Query
 from config.log import logger
 
@@ -10,8 +10,8 @@ class CensysAPI(Query):
         self.module = 'Certificate'
         self.source = "CensysAPIQuery"
         self.addr = 'https://www.censys.io/api/v1/search/certificates'
-        self.id = api.censys_api_id
-        self.secret = api.censys_api_secret
+        self.id = settings.censys_api_id
+        self.secret = settings.censys_api_secret
         self.delay = 3.0  # Censys 接口查询速率限制 最快2.5秒查1次
 
     def query(self):
