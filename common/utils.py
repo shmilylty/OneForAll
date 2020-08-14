@@ -606,14 +606,14 @@ def check_version(local):
     try:
         resp = requests.get(url=api, headers=header, proxies=proxy,
                             timeout=timeout, verify=verify)
-        json = resp.json()
-        latest = json['tag_name']
+        resp_json = resp.json()
+        latest = resp_json['tag_name']
     except Exception as e:
         logger.log('ERROR', 'An error occurred while checking the latest version')
         logger.log('ERROR', e.args)
         return
     if latest > local:
-        change = json.get("body")
+        change = resp_json.get("body")
         logger.log('ALERT', f'The current version is {local} '
                             f'but the latest version is {latest}')
         logger.log('ALERT', f'The {latest} version mainly has the following changes')
