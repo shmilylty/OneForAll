@@ -15,7 +15,8 @@
 
 📢 Please read this document to help you start quickly!
 
-**🐍Installation requirements**
+<details>
+<summary><b>🐍Installation requirements</b></summary>
 
 OneForAll is developed and tested based on [Python 3.8.0](https://www.python.org/downloads/release/python-380/). Recommend use release higher than Python 3.8.0 (Windows platform must use Python 3.8.0 or later). For more information on installing the Python environment, please read [Python 3 installation Guide](https://pythonguidecn.readthedocs.io/zh/latest/starting/installation.html#python-3).
 
@@ -29,8 +30,10 @@ If you see the following output, there is no problem with the Python environment
 Python 3.8.0
 pip 19.2.2 from C:\Users\shmilylty\AppData\Roaming\Python\Python37\site-packages\pip (python 3.8)
 ```
+</details>
 
-**✔Installation steps (from Git)**
+<details>
+<summary><b>✔Installation steps (for Git)</b></summary>
 
 1. **Download**
 
@@ -69,16 +72,20 @@ git fetch --all
 git reset --hard origin/master
 git pull
 ```
+</details>
 
-**✔Installation steps (from Docker)**
+<details>
+<summary><b>✔Installation steps (for Docker)</b></summary>
 
 ```shell
 docker pull shmilylty/oneforall
 docker run -it --rm -v ~/results:/OneForAll/results oneforall
 ```
 Result will be saved in `~/results`.
+</details>
 
-**✨Usage**
+<details>
+<summary><b>✨OneForAll usage</b></summary>
 
 1. If you are use pip3, run the following command: 
 ```bash
@@ -98,8 +105,10 @@ python3 run python oneforall.py --target example.com --burte True run
 # or
 pipenv run python oneforall.py --target example.com --burte True run
 ```
+</details>
 
-**🧐Instructions for results**
+<details>
+<summary><b>🧐Instructions for results</b></summary>
 
 Let's take the command `python3 oneforall.py --target example.com run` as an example. When command finished in the default configuration, OneForAll will generate results in the results directory: 
 
@@ -120,8 +129,10 @@ Let's take the command `python3 oneforall.py --target example.com run` as an exa
 `example_com_last_result` table stores the results of subdomain collection last time. 
 
 `example_com_now_result` table stores the collection results of the current subdomains. Usually using this table is enough.
+</details>
 
-**🤔Instructions for Use**
+<details>
+<summary><b>🤔Instructions for Use</b></summary>
 
 The CLI only provide some common parameters. For more configuration, please read [config.py](https://github.com/shmilylty/OneForAll/tree/master/config/setting.py). IF you have any suggestions, welcome feedback. Some modules need access API (most of which are freely available after registered accounts). If you need , please go to [api.py](https://github.com/shmilylty/OneForAll/tree/master/config/api.py) to configure the API. If not used, just ignore the error message. (For module detailes, please read [collection module description](https://github.com/shmilylty/OneForAll/tree/master/docs/collection_modules.md))
 
@@ -194,6 +205,7 @@ COMMANDS
 
      version
 ```
+</details>
 
 ## 🎉Why OneForAll？
 
@@ -227,31 +239,16 @@ At present, OneForAll is under development, there must be a lot of problems and 
 * **Support subdmain verification**, default enable, automatically resolve DNS, request subdomain to obtain response, and determine subdomain alive or not.
 * **Support subdomain takeover**, default enable, supports bulk inspection, and automatic takeover subdomain (only Github, remains to be improved at present).
 * **Powerful processing feature**, support automatic deduplicate, DNS resolve, HTTP request, filter valid subdomains and information for subdomains. Supported export formats: `rst`, `csv`, `tsv`, `json`, `yaml`, `html`, `xls`, `xlsx`, `dbf`, `latex`, `ods`.
-* **Very fast**, [collection module](https://github.com/shmilylty/OneForAll/tree/master/collect.py) uses multi-threading, [brute module](https://github.com/shmilylty/OneForAll/tree/master/brute.py) uses [massdns](https://github.com/blechschmidt/massdns), the speed can at least reach 10000pps by the default configuration. DNS resolve and HTTP requests use async-coroutine. [subdomain takeover](https://github.com/shmilylty/OneForAll/tree/master/takeover.py) uses multi-threading.
+* **Very fast**, [collection module](https://github.com/shmilylty/OneForAll/tree/master/collect.py) uses multi-threading, [brute module](https://github.com/shmilylty/OneForAll/tree/master/brute.py) uses [MassDNS](https://github.com/blechschmidt/massdns), MassDNS is capable of resolving over 350,000 names per second using publicly available resolvers. DNS resolve and HTTP requests use async-coroutine. [subdomain takeover](https://github.com/shmilylty/OneForAll/tree/master/takeover.py) uses multi-threading.
 * **Good experience**, each module has a progress bar, and save results asynchronously.
 
 If you have any other good ideas, please let me know!😎
 
 ## 🌲Directory structure
 
-For the description of the project's directory structure, please refer to [directory_structure](https://github.com/shmilylty/OneForAll/tree/master/docs/directory_structure.md).
+For the description of the project's directory structure, please refer to [directory_structure.md](https://github.com/shmilylty/OneForAll/tree/master/docs/directory_structure.md).
 
-Description of the subdomain dictionary source:
-
-1. Some common subdomain dictionary in open source tool.
-2. List of the most popular subdomains published by domain service providers.
- * [DNSPod](https://github.com/DNSPod/oh-my-free-data)
-3. Research results by security researchers:
- * [the_most_popular_subdomains_on_the_internet](https://bitquark.co.uk/blog/2016/02/29/the_most_popular_subdomains_on_the_internet)
- * [The most popular subdomains on the internet (2017 edition)](https://medium.com/@cmeister2/the-most-popular-subdomains-on-the-internet-2017-edition-a6b9c8a20fd8)
- * [Top 100000 Subdomains in Certificate Transparency](https://github.com/internetwache/CT_subdomains)
-4. Common naming rules:
-* single letter, single letter + single number, double letter, double letter + single number, double letter + double number, three letters, four letters; 
-* single number, double number, three numbers;
-5. The names of tools and software that are common in companies or DevOps. 
-6. Common Chinese Pinyin words and common English words.
-7. Optimize sorting and remove dirty data from the dictionary obtained above.
-8. You are very welcome to contribute a better dictionary.
+For a description of the source of the subdomain dictionary, please refer to [dictionary_source.md](https://github.com/shmilylty/OneForAll/tree/master/docs/en-us/dictionary_source.md).
 
 ## 👏Framework used
 
