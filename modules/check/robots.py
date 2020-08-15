@@ -26,10 +26,7 @@ class CheckRobots(Module):
             self.header = self.get_header()
             self.proxy = self.get_proxy(self.source)
             resp = self.get(url, check=False, allow_redirects=False)
-            if not resp:
-                return
-            if resp and len(resp.content):
-                self.subdomains = self.match_subdomains(resp.text)
+            self.subdomains = self.collect_subdomains(resp)
 
     def run(self):
         """

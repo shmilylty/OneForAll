@@ -31,10 +31,7 @@ class CheckRobots(Module):
             self.proxy = self.get_proxy(self.source)
             self.timeout = 10
             resp = self.get(url, check=False)
-            if not resp:
-                return
-            if resp and len(resp.content):
-                self.subdomains = self.match_subdomains(resp.text)
+            self.subdomains = self.collect_subdomains(resp)
 
     def run(self):
         """

@@ -49,7 +49,8 @@ class CheckCSP(Module):
             logger.log('DEBUG', f'Failed to get header of {self.domain} domain')
             return
         if not csp:
-            logger.log('DEBUG', f'There is no Content-Security-Policy in the header of {self.domain}')
+            logger.log('DEBUG', f'There is no Content-Security-Policy in the header '
+                                f'of {self.domain}')
             return
         self.subdomains = self.match_subdomains(csp)
 
