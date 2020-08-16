@@ -40,7 +40,11 @@ def check_header_key(header):
 def check_cdn_cidr(content):
     ips = set(content.split(','))
     for ip in ips:
-        ip = ipaddress.ip_address(ip)
+        try:
+            ip = ipaddress.ip_address(ip)
+        except Exception as e:
+            logger.log('DEBUG', e.args)
+            return False
         for cidr in cdn_ip_cidr:
             if ip in ipaddress.ip_network(cidr):
                 return True
