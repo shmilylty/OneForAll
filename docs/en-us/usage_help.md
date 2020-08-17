@@ -82,7 +82,7 @@ The OneForAll command line interface is based on [Fire](https://github.com/googl
    - First, it is mainly compared with the pan-parsed IP set and TTL values, see [this article](http://sh3ll.me/archives/201704041222.txt).
 
    - Second, the number of times to resolve to the same IP collection multiple times (the default is 10, which can be set to size in config.py).
-
+ 
    - Third, considering the blasting efficiency, there is no HTTP response volume similarity comparison and response volume content judgment,  this function has not been implemented yet, and will be implemented if necessary.
 
 

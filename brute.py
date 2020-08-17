@@ -465,7 +465,7 @@ class Brute(Module):
 
     Example：
         brute.py --target domain.com --word True run
-        brute.py --target ./domains.txt --word True run
+        brute.py --targets ./domains.txt --word True run
         brute.py --target domain.com --word True --process 1 run
         brute.py --target domain.com --word True --wordlist subnames.txt run
         brute.py --target domain.com --word True --recursive True --depth 2 run
@@ -475,10 +475,11 @@ class Brute(Module):
     Note:
         --alive  True/False           Only export alive subdomains or not (default False)
         --format rst/csv/tsv/json/yaml/html/jira/xls/xlsx/dbf/latex/ods (result format)
-        --path   Result directory (default directory is ./results)
+        --path   Result path (default None, automatically generated)
 
 
-    :param str  target:     One domain or File path of one domain per line (required)
+    :param str  target:     One domain (target or targets must be provided)
+    :param str  targets:    File path of one domain per line
     :param int  process:    Number of processes (default 1)
     :param int  concurrent: Number of concurrent (default 10000)
     :param bool word:       Use word mode generate dictionary (default False)
@@ -494,17 +495,17 @@ class Brute(Module):
     :param bool export:     Export the results (default True)
     :param str  format:     Result format (default csv)
     :param str  path:       Result directory (default None)
-
     """
 
-    def __init__(self, target, process=None, concurrent=None, word=False,
-                 wordlist=None, recursive=False, depth=None, nextlist=None,
+    def __init__(self, target=None, targets=None, process=None, concurrent=None,
+                 word=False, wordlist=None, recursive=False, depth=None, nextlist=None,
                  fuzz=False, place=None, rule=None, fuzzlist=None, export=True,
                  alive=True, format='csv', path=None):
         Module.__init__(self)
         self.module = 'Brute'
         self.source = 'Brute'
         self.target = target
+        self.targets = targets
         self.process_num = process or utils.get_process_num()
         self.concurrent_num = concurrent or settings.brute_concurrent_num
         self.word = word
@@ -649,7 +650,7 @@ class Brute(Module):
         logger.log('INFOR', f'Start running {self.source} module')
         if self.check_env:
             utils.check_env()
-        self.domains = utils.get_domains(self.target)
+        self.domains = utils.get_domains(self.target, self.targets)
         all_subdomains = list()
         for self.domain in self.domains:
             self.check_brute_params()
