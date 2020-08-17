@@ -269,10 +269,13 @@ class OneForAll(object):
         self.config_param()
         self.check_param()
         self.domains = utils.get_domains(self.target, self.targets)
-        for domain in self.domains:
-            self.domain = utils.get_main_domain(domain)
-            self.main()
-        utils.export_all(self.alive, self.format, self.path, self.datas)
+        if self.domains:
+            for domain in self.domains:
+                self.domain = utils.get_main_domain(domain)
+                self.main()
+            utils.export_all(self.alive, self.format, self.path, self.datas)
+        else:
+            logger.log('FATAL', 'Failed to obtain domain')
         logger.log('INFOR', 'Finished OneForAll')
 
     @staticmethod

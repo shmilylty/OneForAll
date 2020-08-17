@@ -51,7 +51,7 @@ class MultiIdentify(Module):
         result_data = done_queue.get()
         self.end = time.time()
         self.elapse = round(self.end - self.start, 1)
-        logger.log('INFOR', f'The Identify module took {self.elapse} seconds')
+        logger.log('ALERT', f'The Identify module took {self.elapse} seconds')
         return result_data
 
     def listener(self, total, done_queue):

@@ -152,8 +152,7 @@ def get_domains(target, targets=None):
     domains = list(target_domains.union(targets_domains))
     logger.log('INFOR', f'Get {len(domains)} domains')
     if not domains:
-        logger.log('FATAL', f'Did not get a valid domain name')
-        exit(1)
+        logger.log('ERROR', f'Did not get a valid domain name')
     logger.log('DEBUG', f'The obtained domains \n{domains}')
     return domains
 
