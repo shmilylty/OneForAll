@@ -68,17 +68,17 @@ class OneForAll(object):
         --alive  True/False           Only export alive subdomains or not (default False)
         --port   small/medium/large  See details in ./config/setting.py(default small)
         --format rst/csv/tsv/json/yaml/html/jira/xls/xlsx/dbf/latex/ods (result format)
-        --path   Result path (default directory is ./results)
+        --path   Result path (default None, automatically generated)
 
-    :param str target:     One domain (target or targets must be required)
-    :param str targets:    File path of one domain per line
+    :param str  target:     One domain (target or targets must be provided)
+    :param str  targets:    File path of one domain per line
     :param bool brute:     Use brute module (default False)
     :param bool dns:       Use DNS resolution (default True)
     :param bool req:       HTTP request subdomains (default True)
-    :param str port:       The port range to request (default small port is 80,443)
+    :param str  port:       The port range to request (default small port is 80,443)
     :param bool alive:     Only export alive subdomains (default False)
-    :param str format:     Result format (default csv)
-    :param str path:       Result path (default None, automatically generated)
+    :param str  format:     Result format (default csv)
+    :param str  path:       Result path (default None, automatically generated)
     :param bool takeover:  Scan subdomain takeover (default False)
     """
 
@@ -269,13 +269,10 @@ class OneForAll(object):
         self.config_param()
         self.check_param()
         self.domains = utils.get_domains(self.target, self.targets)
-        if self.domains:
-            for domain in self.domains:
-                self.domain = utils.get_main_domain(domain)
-                self.main()
-            utils.export_all(self.alive, self.format, self.path, self.datas)
-        else:
-            logger.log('FATAL', 'Failed to obtain domain')
+        for domain in self.domains:
+            self.domain = utils.get_main_domain(domain)
+            self.main()
+        utils.export_all(self.alive, self.format, self.path, self.datas)
         logger.log('INFOR', 'Finished OneForAll')
 
     @staticmethod
