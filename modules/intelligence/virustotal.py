@@ -10,7 +10,6 @@ class VirusTotal(Query):
         Query.__init__(self)
         self.source = 'VirusTotalQuery'
         self.module = 'Intelligence'
-        self.addr = 'https://www.virustotal.com/ui/domains/{}/subdomains'
         self.domain = domain
 
     def query(self):
@@ -24,26 +23,16 @@ class VirusTotal(Query):
                                 'TE': 'Trailers'})
             self.proxy = self.get_proxy(self.source)
             params = {'limit': '40', 'cursor': next_cursor}
-            resp = self.get(url=self.addr.format(self.domain), params=params)
+            addr = f'https://www.virustotal.com/ui/domains/{self.domain}/subdomains'
+            resp = self.get(url=addr, params=params)
             if not resp:
-                return
-            data = resp.json()
-            subdomains = set()
-            datas = data.get('data')
-
-            if datas:
-                for data in datas:
-                    subdomain = data.get('id')
-                    if subdomain:
-                        subdomains.add(subdomain)
-            else:
+                break
+            subdomains = self.match_subdomains(resp)
+            if not subdomains:
                 break
             self.subdomains = self.subdomains.union(subdomains)
-            meta = data.get('meta')
-            if meta:
-                next_cursor = meta.get('cursor')
-            else:
-                break
+            data = resp.json()
+            next_cursor = data.get('meta').get('cursor')
 
     def run(self):
         """
@@ -68,4 +57,4 @@ def run(domain):
 
 
 if __name__ == '__main__':
-    run('example.com')
+    run('mi.com')
