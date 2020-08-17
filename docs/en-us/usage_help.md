@@ -15,62 +15,65 @@ The OneForAll command line interface is based on [Fire](https://github.com/googl
    ```
    ```bash
    NAME
-       oneforall.py - OneForAll help Information
+       oneforall.py - OneForAll help summary page
    
    SYNOPSIS
-       oneforall.py --target=TARGET <flags>
+       oneforall.py COMMAND | <flags>
    
    DESCRIPTION
        OneForAll is a powerful subdomain integration tool
    
        Example:
            python3 oneforall.py version
+           python3 oneforall.py check
            python3 oneforall.py --target example.com run
-           python3 oneforall.py --target ./domains.txt run
-           python3 oneforall.py --target example.com --valid None run
+           python3 oneforall.py --targets ./domains.txt run
+           python3 oneforall.py --target example.com --alive False run
            python3 oneforall.py --target example.com --brute True run
-           python3 oneforall.py --target example.com --port small run
+           python3 oneforall.py --target example.com --port medium run
            python3 oneforall.py --target example.com --format csv run
            python3 oneforall.py --target example.com --dns False run
            python3 oneforall.py --target example.com --req False run
            python3 oneforall.py --target example.com --takeover False run
            python3 oneforall.py --target example.com --show True run
+
    
        Note:
-           Parameter valid optional value 1, 0, none indicates that the export is 
-           valid, invalid, and all subdomains, respectively.
-           Parameter port have optional values 'default' 'small', 'large',
-           See config.py configuration for details.
-           Parameter format have optional values 'txt', 'rst', 'csv', 'tsv', 'json', 
-           'yaml', 'html', 'jira', 'xls', 'xlsx', 'dbf', 'latex', 'ods'.
-           If the parameter path is None, the appropriate file is generated in the 
-           project result directory based on the format parameter and the domain 
-           name.
-           Parameter path default None uses the OneForAll result directory generation path
-   
-   ARGUMENTS
-       TARGET
-           Single domain name or file path for one domain name per line (required)
-   
+           --alive  True/False         Only export alive subdomains or not (default False)
+           --port   small/medium/large  See details in ./config/setting.py(default small)
+           --format rst/csv/tsv/json/yaml/html/jira/xls/xlsx/dbf/latex/ods (result format)
+           --path   Result path (default None, automatically generated)
+
    FLAGS
+       --target=TARGET
+        One domain (target or targets parameters must be provided)
+       --targets=TARGETS
+           File path of one domain per line
        --brute=BRUTE
-           Use blasting module (default False)
+           Use brute module (default False)
        --dns=DNS
-           DNS resolve subdomain (default True)
+           Use DNS resolution (default True)
        --req=REQ
-           HTTP request subdomain (default True)
+           HTTP request subdomains (default True)
        --port=PORT
-           Port range for request authentication (default 80 port)
-       --valid=VALID
-           Export validity of subdomains (default None)
+           The port range to request (default small port is 80,443)
+       --alive=ALIVE
+           Only export alive subdomains (default False)
        --format=FORMAT
-           Export format (default xls)
+           Result format (default csv)
        --path=PATH
-           Export path (default None)
+           Result path (default None, automatically generated)
        --takeover=TAKEOVER
-           Check subdomain takeover (default False)
-       --show=SHOW
-           Terminal display exported data (default False)
+           Scan subdomain takeover (default False)
+
+   COMMANDS
+       COMMAND is one of the following:
+
+       check
+         Check if there is a new version and exit
+
+       version
+         Print version information and exit
    ```
    
 2. **aiobrute.py help**
