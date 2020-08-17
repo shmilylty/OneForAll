@@ -8,24 +8,26 @@ class VirusTotalAPI(Query):
         self.domain = domain
         self.module = 'Intelligence'
         self.source = 'VirusTotalAPIQuery'
-        self.addr = 'https://www.virustotal.com/vtapi/v2/domain/report'
         self.key = settings.virustotal_api_key
 
     def query(self):
         """
         向接口查询子域并做子域匹配
         """
-        self.header = self.get_header()
-        self.proxy = self.get_proxy(self.source)
-        params = {'apikey': self.key, 'domain': self.domain}
-        resp = self.get(self.addr, params)
-        if not resp:
-            return
-        json = resp.json()
-        data = json.get('subdomains')
-        if data:
-            subdomains = set(data)
+        next_cursor = ''
+        while True:
+            self.header = self.get_header()
+            self.header.update({'x-apikey': self.key})
+            self.proxy = self.get_proxy(self.source)
+            params = {'limit': '40', 'cursor': next_cursor}
+            addr = f'https://www.virustotal.com/api/v3/domains/{self.domain}/subdomains'
+            resp = self.get(url=addr, params=params)
+            subdomains = self.match_subdomains(resp)
+            if not subdomains:
+                break
             self.subdomains = self.subdomains.union(subdomains)
+            data = resp.json()
+            next_cursor = data.get('meta').get('cursor')
 
     def run(self):
         """
@@ -52,4 +54,4 @@ def run(domain):
 
 
 if __name__ == '__main__':
-    run('example.com')
+    run('mi.com')
