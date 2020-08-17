@@ -488,19 +488,24 @@ def get_process_num():
         return 1
 
 
-def get_coroutine_num():
+def get_coroutine_count():
+    """
+    根据内存大小获取并发数量
+    """
     mem = psutil.virtual_memory()
     total_mem = mem.total
     g_size = 1024 * 1024 * 1024
-    if total_mem <= 1 * g_size:
+    if total_mem < 1 * g_size:
+        return 16
+    elif total_mem < 2 * g_size:
         return 32
-    elif total_mem <= 2 * g_size:
+    elif total_mem < 4 * g_size:
         return 64
-    elif total_mem <= 4 * g_size:
+    elif total_mem < 8 * g_size:
         return 128
-    elif total_mem <= 8 * g_size:
+    elif total_mem < 16 * g_size:
         return 256
-    elif total_mem <= 16 * g_size:
+    elif total_mem < 32 * g_size:
         return 512
     else:
         return 1024
