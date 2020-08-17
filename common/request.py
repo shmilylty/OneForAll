@@ -13,11 +13,13 @@ from config import settings
 
 
 def get_limit_conn():
-    limit_open_conn = settings.limit_open_conn
-    if isinstance(limit_open_conn, int):
-        return max(32, limit_open_conn)
+    count = settings.limit_open_conn
+    if isinstance(count, int):
+        count = max(16, count)
     else:
-        return utils.get_coroutine_num()
+        count = utils.get_coroutine_count()
+    logger.log('DEBUG', f'Request coroutine {count}')
+    return count
 
 
 def get_ports(port):
@@ -79,7 +81,7 @@ async def fetch(session, method, url):
     :return: 响应对象和响应文本
     """
     timeout = aiohttp.ClientTimeout(total=None,
-                                    connect=None,
+                                    connect=5.0,
                                     sock_read=settings.sockread_timeout,
                                     sock_connect=settings.sockconn_timeout)
     try:
@@ -180,10 +182,10 @@ def request_callback(future, index, datas):
 
 
 def get_connector():
-    limit_open_conn = get_limit_conn()
+    count = get_limit_conn()
     return aiohttp.TCPConnector(ttl_dns_cache=300,
                                 ssl=settings.verify_ssl,
-                                limit=limit_open_conn,
+                                limit=count,
                                 limit_per_host=settings.limit_per_host)
 
 
@@ -191,19 +193,20 @@ async def async_request(urls):
     results = list()
     connector = get_connector()
     headers = utils.get_random_header()
-    async with ClientSession(connector=connector, headers=headers) as session:
-        tasks = []
-        for i, url in enumerate(urls):
-            task = asyncio.ensure_future(fetch(session, 'GET', url))
-            tasks.append(task)
-        if tasks:
-            futures = asyncio.as_completed(tasks)
-            for future in tqdm.tqdm(futures,
-                                    total=len(tasks),
-                                    desc='Request Progress',
-                                    ncols=80):
-                result = await future
-                results.append(result)
+    session = ClientSession(connector=connector, headers=headers)
+    tasks = []
+    for i, url in enumerate(urls):
+        task = asyncio.ensure_future(fetch(session, 'GET', url))
+        tasks.append(task)
+    if tasks:
+        futures = asyncio.as_completed(tasks)
+        for future in tqdm.tqdm(futures,
+                                total=len(tasks),
+                                desc='Request Progress',
+                                ncols=80):
+            result = await future
+            results.append(result)
+    await session.close()
     return results
 
 
@@ -216,24 +219,23 @@ async def bulk_request(data, port):
     logger.log('INFOR', 'Async subdomains request in progress')
     connector = get_connector()
     headers = utils.get_random_header()
-    async with ClientSession(connector=connector, headers=headers) as session:
-        tasks = []
-        for num, data in enumerate(to_req_data):
-            url = data.get('url')
-            task = asyncio.create_task(fetch(session, method, url))
-            task.set_name(f'RequestTask-{num}')
-            # logger.log('TRACE', f'RequestTask-{num} {url}')
-            task.add_done_callback(functools.partial(request_callback,
-                                                     index=num,
-                                                     datas=to_req_data))
-            tasks.append(task)
-        if tasks:
-            futures = asyncio.as_completed(tasks)
-            for future in tqdm.tqdm(futures,
-                                    total=len(tasks),
-                                    desc='Request Progress',
-                                    ncols=80):
-                await future
+    session = ClientSession(connector=connector, headers=headers)
+    tasks = []
+    for num, data in enumerate(to_req_data):
+        url = data.get('url')
+        task = asyncio.ensure_future(fetch(session, method, url))
+        task.add_done_callback(functools.partial(request_callback,
+                                                 index=num,
+                                                 datas=to_req_data))
+        tasks.append(task)
+    if tasks:
+        futures = asyncio.as_completed(tasks, timeout=1*60)
+        for future in tqdm.tqdm(futures,
+                                total=len(tasks),
+                                desc='Request Progress',
+                                ncols=80):
+            await future
+    await session.close()
     return to_req_data + no_req_data
 
 
