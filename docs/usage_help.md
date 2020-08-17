@@ -15,52 +15,64 @@ OneForAll命令行界面基于[Fire](https://github.com/google/python-fire/)实�
    ```
    ```bash
    NAME
-       oneforall.py - OneForAll是一款功能强大的子域收集工具
+       oneforall.py - OneForAll使用帮助
    
    SYNOPSIS
-       oneforall.py --target=TARGET <flags>
+       oneforall.py COMMAND | <flags>
    
    DESCRIPTION
-       Version: 0.0.4
-       Project: https://git.io/fjHT1
+       OneForAll是一款功能强大的子域收集工具
    
        Example:
+           python3 oneforall.py version
+           python3 oneforall.py check
            python3 oneforall.py --target example.com run
-           python3 oneforall.py --target ./domains.txt run
+           python3 oneforall.py --targets ./domains.txt run
+           python3 oneforall.py --target example.com --alive False run
            python3 oneforall.py --target example.com --brute True run
-           python3 oneforall.py --target example.com --verify False run
-           python3 oneforall.py --target example.com --valid None run
            python3 oneforall.py --target example.com --port medium run
            python3 oneforall.py --target example.com --format csv run
+           python3 oneforall.py --target example.com --dns False run
+           python3 oneforall.py --target example.com --req False run
+           python3 oneforall.py --target example.com --takeover False run
            python3 oneforall.py --target example.com --show True run
    
        Note:
-           参数valid可选值1，0，None分别表示导出有效，无效，全部子域
-           参数verify为True会尝试解析和请求子域并根据结果给子域有效性打上标签
-           参数port可选值有'small', 'medium', 'large', 'xlarge'，详见config.py配置
-           参数format可选格式有'csv', 'tsv', 'json', 'yaml', 'html', 'xls', 'xlsx',
-                             'dbf', 'latex', 'ods'
-           参数path为None会根据format参数和域名名称在项目结果目录生成相应文件
-   
-   ARGUMENTS
-       TARGET
-           单个域名或者每行一个域名的文件路径(必需参数)
-   
+           --alive  True/False          只导出存活子域(默认False)
+           --port   small/medium/large  详见./config/setting.py(默认small)
+           --format rst/csv/tsv/json/yaml/html/jira/xls/xlsx/dbf/latex/ods (结果格式，默认CSV)
+           --path   结果路径(默认None，自动生成)
+
    FLAGS
+       --target=TARGET
+           单个域名(必须提供target或targets参数)
+       --targets=TARGETS
+           每行一个域名的文件路径
        --brute=BRUTE
            使用爆破模块(默认False)
-       --verify=VERIFY
-           验证子域有效性(默认True)
+       --dns=DNS
+           开启子域解析(默认True)
+       --req=REQ
+           开启子域请求(默认True)
        --port=PORT
            请求验证的端口范围(默认medium)
-       --valid=VALID
-           导出子域的有效性(默认1)
-       --path=PATH
-           导出路径(默认None)
+       --alive=ALIVE
+           只导出存活子域(默认False)
        --format=FORMAT
-           导出格式(默认xlsx)
-       --show=SHOW
-           终端显示导出数据(默认False)
+           结果格式(默认csv)
+       --path=PATH
+           结果路径(默认None，自动生成)
+       --takeover=TAKEOVER
+           开启子域接管检查(默认False)
+
+   COMMANDS
+       COMMAND is one of the following:
+
+       check
+         检查新版本并退出
+
+       version
+         打印版本信息并退出
    ```
 
 2. aiobrute.py使用帮助
