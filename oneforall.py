@@ -54,7 +54,7 @@ class OneForAll(object):
         python3 oneforall.py version
         python3 oneforall.py check
         python3 oneforall.py --target example.com run
-        python3 oneforall.py --target ./domains.txt run
+        python3 oneforall.py --targets ./domains.txt run
         python3 oneforall.py --target example.com --alive False run
         python3 oneforall.py --target example.com --brute True run
         python3 oneforall.py --target example.com --port medium run
@@ -68,22 +68,24 @@ class OneForAll(object):
         --alive  True/False           Only export alive subdomains or not (default False)
         --port   small/medium/large  See details in ./config/setting.py(default small)
         --format rst/csv/tsv/json/yaml/html/jira/xls/xlsx/dbf/latex/ods (result format)
-        --path   Result directory (default directory is ./results)
+        --path   Result path (default directory is ./results)
 
-    :param str target:     One domain or File path of one domain per line (required)
+    :param str target:     One domain (target or targets must be required)
+    :param str targets:    File path of one domain per line
     :param bool brute:     Use brute module (default False)
     :param bool dns:       Use DNS resolution (default True)
     :param bool req:       HTTP request subdomains (default True)
     :param str port:       The port range to request (default small port is 80,443)
     :param bool alive:     Only export alive subdomains (default False)
     :param str format:     Result format (default csv)
-    :param str path:       Result directory (default None)
+    :param str path:       Result path (default None, automatically generated)
     :param bool takeover:  Scan subdomain takeover (default False)
     """
 
-    def __init__(self, target, brute=None, dns=None, req=None, port=None,
-                 alive=None, format=None, path=None, takeover=None):
+    def __init__(self, target=None, targets=None, brute=None, dns=None, req=None,
+                 port=None, alive=None, format=None, path=None, takeover=None):
         self.target = target
+        self.targets = targets
         self.brute = brute
         self.dns = dns
         self.req = req
@@ -101,9 +103,9 @@ class OneForAll(object):
         self.origin_table = str()  # The table name of the origin result
         self.resolve_table = str()  # The table name of the resolute result
 
-    def config(self):
+    def config_param(self):
         """
-        Configuration parameter
+        Config parameter
         """
         if self.brute is None:
             self.brute = bool(settings.enable_brute_module)
@@ -121,6 +123,14 @@ class OneForAll(object):
             self.format = settings.result_save_format
         if self.path is None:
             self.path = settings.result_save_path
+
+    def check_param(self):
+        """
+        Check parameter
+        """
+        if self.target is None and self.targets is None:
+            logger.log('FATAL', 'You must provide either target or targets parameter')
+            exit(1)
 
     def export(self, table):
         """
@@ -256,8 +266,9 @@ class OneForAll(object):
         logger.log('DEBUG', 'Python ' + utils.python_version())
         logger.log('DEBUG', 'OneForAll ' + version)
         logger.log('INFOR', 'Start running OneForAll')
-        self.config()
-        self.domains = utils.get_domains(self.target)
+        self.config_param()
+        self.check_param()
+        self.domains = utils.get_domains(self.target, self.targets)
         if self.domains:
             for domain in self.domains:
                 self.domain = utils.get_main_domain(domain)
