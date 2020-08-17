@@ -56,6 +56,7 @@ def check_cdn_asn(asn):
 
 
 def check_cdn(data):
+    logger.log('DEBUG', f'Start cdn check module')
     for index, item in enumerate(data):
         cname = item.get('cname')
         if cname:
@@ -85,5 +86,5 @@ def check_cdn(data):
 
 
 def save_db(name, data):
-    logger.log('INFOR', f'Saving cdn check results')
+    logger.log('DEBUG', f'Saving cdn check results')
     utils.save_db(name, data, 'cdn')
