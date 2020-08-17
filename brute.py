@@ -638,7 +638,7 @@ class Brute(Module):
         delete_file(dict_path, output_paths)
         end = time.time()
         self.elapse = round(end - start, 1)
-        logger.log('INFOR', f'{self.source} module takes {self.elapse} seconds, '
+        logger.log('ALERT', f'{self.source} module takes {self.elapse} seconds, '
                             f'found {len(self.subdomains)} subdomains of {domain}')
         logger.log('DEBUG', f'{self.source} module found subdomains of {domain}:\n'
                             f'{self.subdomains}')

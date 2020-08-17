@@ -158,7 +158,7 @@ class Takeover(Module):
             logger.log('FATAL', f'Failed to obtain domain')
         end = time.time()
         elapse = round(end - start, 1)
-        logger.log('INFOR', f'{self.source} module takes {elapse} seconds, '
+        logger.log('ALERT', f'{self.source} module takes {elapse} seconds, '
                             f'There are {len(self.results)} subdomains exists takeover')
         logger.log('INFOR', f'Subdomain takeover results: {self.path}')
         logger.log('INFOR', f'Finished {self.source} module')
