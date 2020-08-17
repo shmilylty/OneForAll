@@ -61,12 +61,13 @@ python oneforall.py --help
 
 3. **更新**
 
-❗注意：如果你之前已经克隆了项目运行之前请**备份**自己修改过的文件到项目外的地方（如**config.py**），然后执行以下命令**更新**项目：
+执行以下命令**更新**项目（可保存对`/config/setting.py`和`/config/api.py`的修改）：
 
 ```bash
-git fetch --all
-git reset --hard origin/master
-git pull
+git stash        # 暂存本地的修改
+git fetch --all  # 拉取项目更新
+git pull         # 下载覆盖
+git stash pop    # 释放本地修改
 ```
 </details>
 

@@ -65,12 +65,13 @@ For other system platforms, please read [dependency installation](https://github
 
 3. **Update**
 
-❗Note: If you have cloned the project before, please backup modified files (such as **./config**) before updating, then run the following command to **update** project:
+Run the following command to **update** project ( maintain your updates to `/config/setting.py`and`/config/api.py`):
 
 ```bash
-git fetch --all
-git reset --hard origin/master
-git pull
+git stash        # Stash local Git changes
+git fetch --all  # Fetch updates
+git pull         # Pull updates
+git stash pop    # Apply the local Git changes stash
 ```
 </details>
 
