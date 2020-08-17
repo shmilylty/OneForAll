@@ -223,9 +223,7 @@ async def bulk_request(data, port):
     tasks = []
     for num, data in enumerate(to_req_data):
         url = data.get('url')
-        name = f'RequestTask-{num}'
-        task = asyncio.create_task(fetch(session, method, url), name=name)
-        logger.log('DEBUG', f'RequestTask-{num} {url}')
+        task = asyncio.ensure_future(fetch(session, method, url))
         task.add_done_callback(functools.partial(request_callback,
                                                  index=num,
                                                  datas=to_req_data))
