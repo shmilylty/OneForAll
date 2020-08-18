@@ -231,12 +231,6 @@ class OneForAll(object):
             self.data = iscdn.check_cdn(self.data)
             iscdn.save_db(self.domain, self.data)
 
-        # Identify banner module
-        if settings.enable_banner_identify:
-            identifier = banner.MultiIdentify()
-            self.data = identifier.run(self.data)
-            banner.save_db(self.domain, self.data)
-
         # Add the final result list to the total data list
         self.datas.extend(self.data)
 

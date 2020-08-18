@@ -16,7 +16,7 @@ enable_dns_resolve = True  # 使用DNS解析子域(默认True)
 enable_http_request = True  # 使用HTTP请求子域(默认True)
 enable_finder_module = True  # 开启finder模块,开启会从响应体和JS中再次发现子域(默认True)
 enable_cdn_check = True  # 开启cdn检查模块(默认True)
-enable_banner_identify = False  # 开启WEB指纹识别模块(默认True)
+enable_banner_identify = True  # 开启WEB指纹识别模块(默认True)
 enable_takeover_check = False  # 开启子域接管风险检查(默认False)
 # 参数可选值有'small', 'medium', 'large'
 http_request_port = 'small'  # HTTP请求子域(默认'small'，探测80,443端口)
@@ -35,7 +35,7 @@ enable_partial_module = []  # 启用部分收集模块 必须禁用enable_all_mo
 # 只使用ask和baidu搜索引擎收集子域的示例
 # enable_partial_module = [('modules.search', 'ask')
 #                          ('modules.search', 'baidu')]
-module_thread_timeout = 180.0  # 每个收集模块线程超时时间(默认3分钟)
+module_thread_timeout = 120.0  # 每个收集模块线程超时时间(默认2分钟)
 
 # 爆破模块设置
 brute_wildcard_check = True  # 开启泛解析检测(默认True)
