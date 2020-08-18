@@ -639,7 +639,6 @@ def call_massdns(massdns_path, dict_path, ns_path, output_path, log_path,
           f'--root --error-log {log_path} {dict_path} --filter OK ' \
           f'--sndbuf 0 --rcvbuf 0'
     logger.log('DEBUG', f'Run command {cmd}')
-    print(cmd)
     subprocess.run(args=cmd, shell=True)
     logger.log('DEBUG', f'Finished massdns')
 
