@@ -172,8 +172,8 @@ def request_callback(future, index, datas):
         else:
             datas[index]['alive'] = 1
         headers = resp.headers
-        # 采用webanalyzer的指纹识别 原banner识别弃用
-        # datas[index]['banner'] = utils.get_sample_banner(headers)
+        if settings.enable_banner_identify:
+            datas[index]['banner'] = utils.get_sample_banner(headers)
         datas[index]['header'] = json.dumps(dict(headers))
         if isinstance(text, str):
             title = get_title(text).strip()
