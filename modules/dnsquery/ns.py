@@ -7,7 +7,7 @@ class QueryNS(Lookup):
         self.domain = domain
         self.module = 'dnsquery'
         self.source = "QueryNS"
-        self.type = 'NS'  # 利用的DNS记录的NS记录收集子域
+        self.qtype = 'NS'  # 利用的DNS记录的NS记录收集子域
 
     def run(self):
         """

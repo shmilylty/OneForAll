@@ -7,7 +7,7 @@ class QuerySOA(Lookup):
         self.domain = domain
         self.module = 'dnsquery'
         self.source = "QuerySOA"
-        self.type = 'SOA'  # 利用的DNS记录的SOA记录收集子域
+        self.qtype = 'SOA'  # 利用的DNS记录的SOA记录收集子域
 
     def run(self):
         """

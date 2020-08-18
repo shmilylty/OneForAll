@@ -26,9 +26,8 @@ class Module(object):
         self.timeout = settings.request_timeout  # 请求超时时间
         self.verify = settings.request_verify  # 请求SSL验证
         self.domain = str()  # 当前进行子域名收集的主域
-        self.type = 'A'  # 对主域进行子域收集时利用的DNS记录查询类型(默认利用A记录)
         self.subdomains = set()  # 存放发现的子域
-        self.records = dict()  # 存放子域解析记录
+        self.infos = dict()  # 存放子域有关信息
         self.results = list()  # 存放模块结果
         self.start = time.time()  # 模块开始执行时间
         self.end = None  # 模块结束执行时间
@@ -244,18 +243,9 @@ class Module(object):
                       'elapse': self.elapse,
                       'find': len(self.subdomains),
                       'subdomains': list(self.subdomains),
-                      'records': self.records}
+                      'infos': self.infos}
             json.dump(result, file, ensure_ascii=False, indent=4)
         return True
-
-    def gen_record(self, subdomains, record):
-        """
-        Generate record dictionary
-        """
-        item = dict()
-        item['content'] = record
-        for subdomain in subdomains:
-            self.records[subdomain] = item
 
     def gen_result(self, find=0, brute=None, valid=0):
         """
@@ -265,7 +255,6 @@ class Module(object):
         if not len(self.subdomains):  # 该模块一个子域都没有发现的情况
             logger.log('DEBUG', f'{self.source} module result is empty')
             result = {'id': None,
-                      'type': self.type,
                       'alive': None,
                       'request': None,
                       'resolve': None,
@@ -303,29 +292,14 @@ class Module(object):
             for subdomain in self.subdomains:
                 url = 'http://' + subdomain
                 level = subdomain.count('.') - self.domain.count('.')
-                record = self.records.get(subdomain)
-                if record is None:
-                    record = dict()
-                resolve = record.get('resolve')
-                request = record.get('request')
-                alive = record.get('alive')
-                if self.type != 'A':  # 不是利用的DNS记录的A记录查询子域默认都有效
-                    resolve = 1
-                    request = 1
-                    alive = 1
-                reason = record.get('reason')
-                resolver = record.get('resolver')
-                cname = record.get('cname')
-                content = record.get('content')
-                times = record.get('times')
-                ttl = record.get('ttl')
-                public = record.get('public')
-                cdn = record.get('cdn')
-                cidr = record.get('cidr')
-                asn = record.get('asn')
-                org = record.get('org')
-                ip2region = record.get('ip2region')
-                ip2location = record.get('ip2location')
+                info = self.infos.get(subdomain)
+                if info is None:
+                    info = dict()
+                cname = info.get('cname')
+                content = info.get('content')
+                times = info.get('times')
+                ttl = info.get('ttl')
+                public = info.get('public')
                 if isinstance(cname, list):
                     cname = ','.join(cname)
                     content = ','.join(content)
@@ -333,10 +307,9 @@ class Module(object):
                     ttl = ','.join([str(num) for num in ttl])
                     public = ','.join([str(num) for num in public])
                 result = {'id': None,
-                          'type': self.type,
-                          'alive': alive,
-                          'request': request,
-                          'resolve': resolve,
+                          'alive': info.get('alive'),
+                          'request': info.get('request'),
+                          'resolve': info.get('resolve'),
                           'new': None,
                           'url': url,
                           'subdomain': subdomain,
@@ -345,21 +318,21 @@ class Module(object):
                           'cname': cname,
                           'content': content,
                           'public': public,
-                          'cdn': cdn,
+                          'cdn': info.get('cdn'),
                           'status': None,
-                          'reason': reason,
+                          'reason': info.get('reason'),
                           'title': None,
                           'banner': None,
                           'header': None,
                           'response': None,
                           'times': times,
                           'ttl': ttl,
-                          'cidr': cidr,
-                          'asn': asn,
-                          'org': org,
-                          'ip2region': ip2region,
-                          'ip2location': ip2location,
-                          'resolver': resolver,
+                          'cidr': info.get('cidr'),
+                          'asn': info.get('asn'),
+                          'org': info.get('org'),
+                          'ip2region': info.get('ip2region'),
+                          'ip2location': info.get('ip2location'),
+                          'resolver': info.get('resolver'),
                           'module': self.module,
                           'source': self.source,
                           'elapse': self.elapse,
