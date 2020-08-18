@@ -70,7 +70,7 @@ def deal_output(output_path):
     logger.log('INFOR', f'Processing resolved results')
     records = dict()  # 用来记录所有域名解析数据
     ip_asn = IPAsnInfo()
-    ip_geo = IpGeoInfo
+    ip_geo = IpGeoInfo()
     db_path = settings.data_storage_dir.joinpath('ip2region.db')
     ip_reg = IpRegInfo(db_path)
     with open(output_path) as fd:
