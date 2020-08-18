@@ -92,10 +92,6 @@ def deal_output(output_path):
             qname = items.get('name')[:-1]  # 去除最右边的`.`点号
             status = items.get('status')
             if status != 'NOERROR':
-                info['alive'] = 0
-                info['resolve'] = 0
-                info['reason'] = status
-                infos[qname] = info
                 continue
             data = items.get('data')
             if 'answers' not in data:
