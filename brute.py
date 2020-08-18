@@ -607,7 +607,6 @@ class Brute(Module):
         ns_path = get_nameservers_path(self.enable_wildcard, ns_ip_list)
 
         dict_set = self.gen_brute_dict(domain)
-        dict_len = len(dict_set)
 
         dict_name = f'generated_subdomains_{domain}_{timestring}.txt'
         dict_path = temp_dir.joinpath(dict_name)
@@ -642,7 +641,7 @@ class Brute(Module):
                             f'found {len(self.subdomains)} subdomains of {domain}')
         logger.log('DEBUG', f'{self.source} module found subdomains of {domain}:\n'
                             f'{self.subdomains}')
-        self.gen_result(brute=dict_len, valid=len(self.subdomains))
+        self.gen_result()
         self.save_db()
         return self.subdomains
 

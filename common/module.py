@@ -247,7 +247,7 @@ class Module(object):
             json.dump(result, file, ensure_ascii=False, indent=4)
         return True
 
-    def gen_result(self, find=0, brute=None, valid=0):
+    def gen_result(self):
         """
         Generate results
         """
@@ -284,9 +284,7 @@ class Module(object):
                       'module': self.module,
                       'source': self.source,
                       'elapse': self.elapse,
-                      'find': find,
-                      'brute': brute,
-                      'valid': valid}
+                      'find': None}
             self.results.append(result)
         else:
             for subdomain in self.subdomains:
@@ -336,9 +334,7 @@ class Module(object):
                           'module': self.module,
                           'source': self.source,
                           'elapse': self.elapse,
-                          'find': find,
-                          'brute': brute,
-                          'valid': valid}
+                          'find': len(self.subdomains)}
                 self.results.append(result)
 
     def save_db(self):
