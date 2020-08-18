@@ -47,7 +47,7 @@ def update_data(data, infos):
         else:
             items['resolve'] = 0
             items['alive'] = 0
-            items['reason'] = 'NORECORD'
+            items['reason'] = 'NoResult'
         data[index] = items
     return data
 
@@ -97,7 +97,7 @@ def deal_output(output_path):
             if 'answers' not in data:
                 info['alive'] = 0
                 info['resolve'] = 0
-                info['reason'] = 'NOANSWER'
+                info['reason'] = 'NoAnswer'
                 infos[qname] = info
                 continue
             flag = False
@@ -146,7 +146,7 @@ def deal_output(output_path):
             if not flag:
                 info['alive'] = 0
                 info['resolve'] = 0
-                info['reason'] = 'NOARECORD'
+                info['reason'] = 'NoARecord'
                 infos[qname] = info
     return infos
 
