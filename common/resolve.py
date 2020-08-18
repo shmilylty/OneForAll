@@ -9,6 +9,12 @@ from common.ipgeo import IpGeoInfo
 from common.ipreg import IpRegInfo
 
 
+ip_asn = IPAsnInfo()
+ip_geo = IpGeoInfo()
+db_path = settings.data_storage_dir.joinpath('ip2region.db')
+ip_reg = IpRegInfo(db_path)
+
+
 def filter_subdomain(data):
     """
     过滤出无解析内容的子域到新的子域列表
@@ -71,13 +77,61 @@ def save_subdomains(save_path, subdomain_list):
         exit(1)
 
 
+def gen_infos(data, qname, info, infos):
+    flag = False
+    cname = list()
+    ips = list()
+    public = list()
+    ttls = list()
+    cidrs = list()
+    asns = list()
+    orgs = list()
+    locs = list()
+    regs = list()
+    answers = data.get('answers')
+    for answer in answers:
+        if answer.get('type') == 'A':
+            flag = True
+            cname.append(answer.get('name')[:-1])  # 去除最右边的`.`点号
+            ip = answer.get('data')
+            ips.append(ip)
+            ttl = answer.get('ttl')
+            ttls.append(str(ttl))
+            is_public = utils.ip_is_public(ip)
+            public.append(str(is_public))
+            asn_info = ip_asn.find(ip)
+            cidrs.append(asn_info.get('cidr'))
+            asns.append(asn_info.get('asn'))
+            orgs.append(asn_info.get('org'))
+            loc = f'{ip_geo.get_country_long(ip)} ' \
+                  f'{ip_geo.get_region(ip)} ' \
+                  f'{ip_geo.get_city(ip)}'
+            locs.append(loc)
+            reg = ip_reg.memory_search(ip).get('region').decode('utf-8')
+            regs.append(reg)
+            info['resolve'] = 1
+            info['reason'] = 'OK'
+            info['cname'] = ','.join(cname)
+            info['content'] = ','.join(ips)
+            info['public'] = ','.join(public)
+            info['ttl'] = ','.join(ttls)
+            info['cidr'] = ','.join(cidrs)
+            info['asn'] = ','.join(asns)
+            info['org'] = ','.join(orgs)
+            info['ip2location'] = ','.join(locs)
+            info['ip2region'] = ','.join(regs)
+            infos[qname] = info
+    if not flag:
+        info['alive'] = 0
+        info['resolve'] = 0
+        info['reason'] = 'NoARecord'
+        infos[qname] = info
+    return infos
+
+
 def deal_output(output_path):
     logger.log('INFOR', f'Processing resolved results')
     infos = dict()  # 用来记录所有域名有关信息
-    ip_asn = IPAsnInfo()
-    ip_geo = IpGeoInfo()
-    db_path = settings.data_storage_dir.joinpath('ip2region.db')
-    ip_reg = IpRegInfo(db_path)
     with open(output_path) as fd:
         for line in fd:
             line = line.strip()
@@ -100,54 +154,7 @@ def deal_output(output_path):
                 info['reason'] = 'NoAnswer'
                 infos[qname] = info
                 continue
-            flag = False
-            cname = list()
-            ips = list()
-            public = list()
-            ttls = list()
-            cidrs = list()
-            asns = list()
-            orgs = list()
-            locs = list()
-            regs = list()
-            answers = data.get('answers')
-            for answer in answers:
-                if answer.get('type') == 'A':
-                    flag = True
-                    cname.append(answer.get('name')[:-1])  # 去除最右边的`.`点号
-                    ip = answer.get('data')
-                    ips.append(ip)
-                    ttl = answer.get('ttl')
-                    ttls.append(str(ttl))
-                    is_public = utils.ip_is_public(ip)
-                    public.append(str(is_public))
-                    asn_info = ip_asn.find(ip)
-                    cidrs.append(asn_info.get('cidr'))
-                    asns.append(asn_info.get('asn'))
-                    orgs.append(asn_info.get('org'))
-                    loc = f'{ip_geo.get_country_long(ip)} ' \
-                          f'{ip_geo.get_region(ip)} ' \
-                          f'{ip_geo.get_city(ip)}'
-                    locs.append(loc)
-                    reg = ip_reg.memory_search(ip).get('region').decode('utf-8')
-                    regs.append(reg)
-                    info['resolve'] = 1
-                    info['reason'] = status
-                    info['cname'] = ','.join(cname)
-                    info['content'] = ','.join(ips)
-                    info['public'] = ','.join(public)
-                    info['ttl'] = ','.join(ttls)
-                    info['cidr'] = ','.join(cidrs)
-                    info['asn'] = ','.join(asns)
-                    info['org'] = ','.join(orgs)
-                    info['ip2location'] = ','.join(locs)
-                    info['ip2region'] = ','.join(regs)
-                    infos[qname] = info
-            if not flag:
-                info['alive'] = 0
-                info['resolve'] = 0
-                info['reason'] = 'NoARecord'
-                infos[qname] = info
+            infos = gen_infos(data, qname, info, infos)
     return infos
 
 
