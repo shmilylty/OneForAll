@@ -27,11 +27,11 @@ class Finder(Module):
             self.finish()  # 未发现新的子域就直接返回
             return data
         self.subdomains = new_subdomains
+        self.finish()
         self.gen_result()
         temp_data = resolve.run_resolve(domain, self.results)
         fina_data = request.run_request(domain, temp_data, port)
         data = data + fina_data
-        self.finish()
         logger.log('INFOR', f'Saving finder results')
         utils.save_db(domain, data, 'finder')
         return data
