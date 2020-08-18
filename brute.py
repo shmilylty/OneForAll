@@ -292,13 +292,13 @@ def check_dict():
         exit(0)
 
 
-def gen_records(items, records, subdomains, ip_times, wc_ips, wc_ttl):
+def gen_result_infos(items, infos, subdomains, ip_times, wc_ips, wc_ttl):
     qname = items.get('name')[:-1]  # 去除最右边的`.`点号
     reason = items.get('status')
     resolver = items.get('resolver')
     data = items.get('data')
     answers = data.get('answers')
-    record = dict()
+    info = dict()
     cname = list()
     ips = list()
     public = list()
@@ -327,17 +327,17 @@ def gen_records(items, records, subdomains, ip_times, wc_ips, wc_ttl):
         logger.log('TRACE', f'All query result of {qname} no A record{answers}')
     # 为了优化内存 只添加有A记录且通过判断的子域到记录中
     if have_a_record and all(is_valid_flags):
-        record['resolve'] = 1
-        record['reason'] = reason
-        record['ttl'] = ttls
-        record['cname'] = cname
-        record['content'] = ips
-        record['public'] = public
-        record['times'] = times
-        record['resolver'] = resolver
-        records[qname] = record
+        info['resolve'] = 1
+        info['reason'] = reason
+        info['ttl'] = ttls
+        info['cname'] = cname
+        info['content'] = ips
+        info['public'] = public
+        info['times'] = times
+        info['resolver'] = resolver
+        infos[qname] = info
         subdomains.append(qname)
-    return records, subdomains
+    return infos, subdomains
 
 
 def stat_ip_times(result_paths):
@@ -373,7 +373,7 @@ def stat_ip_times(result_paths):
 
 def deal_output(output_paths, ip_times, wildcard_ips, wildcard_ttl):
     logger.log('INFOR', f'Processing result')
-    records = dict()  # 用来记录所有域名解析数据
+    infos = dict()  # 用来记录所有域名有关信息
     subdomains = list()  # 用来保存所有通过有效性检查的子域
     for output_path in output_paths:
         logger.log('DEBUG', f'Processing {output_path}')
@@ -396,10 +396,10 @@ def deal_output(output_paths, ip_times, wildcard_ips, wildcard_ttl):
                 if 'answers' not in data:
                     logger.log('TRACE', f'Processing {line}, {qname} no response')
                     continue
-                records, subdomains = gen_records(items, records, subdomains,
-                                                  ip_times, wildcard_ips,
-                                                  wildcard_ttl)
-    return records, subdomains
+                infos, subdomains = gen_result_infos(items, infos, subdomains,
+                                                     ip_times, wildcard_ips,
+                                                     wildcard_ttl)
+    return infos, subdomains
 
 
 def check_by_compare(ip, ttl, wc_ips, wc_ttl):
@@ -633,8 +633,8 @@ class Brute(Module):
                 output_path = temp_dir.joinpath(output_name)
                 output_paths.append(output_path)
         ip_times = stat_ip_times(output_paths)
-        self.records, self.subdomains = deal_output(output_paths, ip_times,
-                                                    wildcard_ips, wildcard_ttl)
+        self.infos, self.subdomains = deal_output(output_paths, ip_times,
+                                                  wildcard_ips, wildcard_ttl)
         delete_file(dict_path, output_paths)
         end = time.time()
         self.elapse = round(end - start, 1)

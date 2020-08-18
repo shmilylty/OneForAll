@@ -7,7 +7,7 @@ class QuerySPF(Lookup):
         self.domain = domain
         self.module = 'dnsquery'
         self.source = "QuerySPF"
-        self.type = 'SPF'  # 利用的DNS记录的SPF记录收集子域
+        self.qtype = 'SPF'  # 利用的DNS记录的SPF记录收集子域
 
     def run(self):
         """

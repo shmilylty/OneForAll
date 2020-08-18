@@ -7,7 +7,7 @@ class QueryTXT(Lookup):
         self.domain = domain
         self.module = 'dnsquery'
         self.source = "QueryTXT"
-        self.type = 'TXT'  # 利用的DNS记录的TXT记录收集子域
+        self.qtype = 'TXT'  # 利用的DNS记录的TXT记录收集子域
 
     def run(self):
         """

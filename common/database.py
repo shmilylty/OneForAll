@@ -54,7 +54,6 @@ class Database(object):
         logger.log('TRACE', f'Creating {table_name} table')
         self.query(f'create table "{table_name}" ('
                    f'id integer primary key,'
-                   f'type text,'
                    f'alive int,'
                    f'request int,'
                    f'resolve int,'
@@ -102,12 +101,12 @@ class Database(object):
         if results:
             try:
                 self.conn.bulk_query(
-                    f'insert into "{table_name}" (id, type, alive, resolve, request, new,'
+                    f'insert into "{table_name}" (id, alive, resolve, request, new,'
                     f'url, subdomain, port, level, cname, content, public, cdn, status,'
                     f'reason, title, banner, header, response, times, ttl, cidr, asn, org,'
                     f' ip2region, ip2location, resolver, module, source, elapse, find,'
                     f'brute, valid) '
-                    f'values (:id, :type, :alive, :resolve, :request, :new, :url, '
+                    f'values (:id, :alive, :resolve, :request, :new, :url, '
                     f':subdomain, :port, :level, :cname, :content, :public, :cdn, :status,'
                     f':reason, :title, :banner, :header, :response, :times, :ttl, :cidr,'
                     f':asn, :org, :ip2region, :ip2location, :resolver, :module, :source,'
@@ -231,7 +230,7 @@ class Database(object):
         :param str limit: limit value
         """
         table_name = table_name.replace('.', '_')
-        query = f'select id, type, new, alive, request, resolve, url, subdomain, level,' \
+        query = f'select id, new, alive, request, resolve, url, subdomain, level,' \
                 f'cname, content, public, cdn, port, status, reason, title, banner,' \
                 f'times, ttl, cidr, asn, org, ip2region, ip2location, resolver, module,' \
                 f'source, elapse, find, brute, valid from "{table_name}"'
