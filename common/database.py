@@ -83,9 +83,7 @@ class Database(object):
                    f'module text,'
                    f'source text,'
                    f'elapse float,'
-                   f'find int,'
-                   f'brute int,'
-                   f'valid int)')
+                   f'find int)')
 
     def save_db(self, table_name, results, module_name=None):
         """
@@ -104,13 +102,12 @@ class Database(object):
                     f'insert into "{table_name}" (id, alive, resolve, request, new,'
                     f'url, subdomain, port, level, cname, content, public, cdn, status,'
                     f'reason, title, banner, header, response, times, ttl, cidr, asn, org,'
-                    f' ip2region, ip2location, resolver, module, source, elapse, find,'
-                    f'brute, valid) '
+                    f' ip2region, ip2location, resolver, module, source, elapse, find) '
                     f'values (:id, :alive, :resolve, :request, :new, :url, '
                     f':subdomain, :port, :level, :cname, :content, :public, :cdn, :status,'
                     f':reason, :title, :banner, :header, :response, :times, :ttl, :cidr,'
                     f':asn, :org, :ip2region, :ip2location, :resolver, :module, :source,'
-                    f':elapse, :find, :brute, :valid)', results)
+                    f':elapse, :find)', results)
             except Exception as e:
                 logger.log('ERROR', e)
 
@@ -232,8 +229,7 @@ class Database(object):
         table_name = table_name.replace('.', '_')
         query = f'select id, new, alive, request, resolve, url, subdomain, level,' \
                 f'cname, content, public, cdn, port, status, reason, title, banner,' \
-                f'times, ttl, cidr, asn, org, ip2region, ip2location, resolver, module,' \
-                f'source, elapse, find, brute, valid from "{table_name}"'
+                f'cidr, asn, org, ip2region, ip2location, source from "{table_name}"'
         if alive and limit:
             if limit in ['resolve', 'request']:
                 where = f' where {limit} = 1'
