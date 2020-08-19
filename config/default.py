@@ -5,7 +5,6 @@ OneForAll默认配置
 
 import pathlib
 import warnings
-import urllib3
 
 # 路径设置
 relative_directory = pathlib.Path(__file__).parent.parent  # OneForAll代码相对路径
@@ -96,9 +95,8 @@ proxy_pool = [{'http': 'http://127.0.0.1:1080',
 request_delay = 1  # 请求时延
 request_timeout = 60  # 请求超时
 request_verify = False  # 请求SSL验证
-# 禁用安全警告信息
+# 禁用所有警告信息
 warnings.filterwarnings("ignore")
-urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 # 搜索模块设置
 # 开启全量搜索会尽量去获取搜索引擎搜索的全部结果，不过搜索耗时可能会过长
