@@ -71,6 +71,7 @@ class Database(object):
                    f'title text,'
                    f'banner text,'
                    f'header text,'
+                   f'history text,'
                    f'response text,'
                    f'times text,'
                    f'ttl text,'
@@ -99,15 +100,16 @@ class Database(object):
         if results:
             try:
                 self.conn.bulk_query(
-                    f'insert into "{table_name}" (id, alive, resolve, request, new,'
-                    f'url, subdomain, port, level, cname, content, public, cdn, status,'
-                    f'reason, title, banner, header, response, times, ttl, cidr, asn, org,'
-                    f' ip2region, ip2location, resolver, module, source, elapse, find) '
+                    f'insert into "{table_name}" '
+                    f'(id, alive, resolve, request, new, url, subdomain, port, level,'
+                    f'cname, content, public, cdn, status, reason, title, banner, header,'
+                    f'history, response, times, ttl, cidr, asn, org, ip2region,'
+                    f'ip2location, resolver, module, source, elapse, find) '
                     f'values (:id, :alive, :resolve, :request, :new, :url, '
-                    f':subdomain, :port, :level, :cname, :content, :public, :cdn, :status,'
-                    f':reason, :title, :banner, :header, :response, :times, :ttl, :cidr,'
-                    f':asn, :org, :ip2region, :ip2location, :resolver, :module, :source,'
-                    f':elapse, :find)', results)
+                    f':subdomain, :port, :level, :cname, :content, :public, :cdn,'
+                    f':status, :reason, :title, :banner, :header, :history, :response,'
+                    f':times, :ttl, :cidr, :asn, :org, :ip2region, :ip2location,'
+                    f':resolver, :module, :source, :elapse, :find)', results)
             except Exception as e:
                 logger.log('ERROR', e)
 
