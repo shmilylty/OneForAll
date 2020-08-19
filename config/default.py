@@ -4,6 +4,7 @@ OneForAll默认配置
 """
 
 import pathlib
+import warnings
 import urllib3
 
 # 路径设置
@@ -96,6 +97,7 @@ request_delay = 1  # 请求时延
 request_timeout = 60  # 请求超时
 request_verify = False  # 请求SSL验证
 # 禁用安全警告信息
+warnings.filterwarnings("ignore")
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 # 搜索模块设置
