@@ -116,8 +116,12 @@ def read_target_file(target):
     with open(target, encoding='utf-8', errors='ignore') as file:
         for line in file:
             domain = match_main_domain(line)
-            if domain:
-                domains.add(domain)
+            if not domain:
+                continue
+            domain = get_main_domain(domain)
+            if not domain:
+                continue
+            domains.add(domain)
     return domains
 
 
@@ -125,8 +129,12 @@ def get_from_target(target):
     domains = set()
     if isinstance(target, str):
         domain = match_main_domain(target)
-        if domain:
-            domains.add(domain)
+        if not domain:
+            return domains
+        domain = get_main_domain(domain)
+        if not domain:
+            return domains
+        domains.add(domain)
     return domains
 
 
@@ -618,6 +626,8 @@ def check_version(local):
 
 
 def get_main_domain(domain):
+    if not isinstance(domain, str):
+        return None
     return Domain(domain).registered()
 
 
