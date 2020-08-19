@@ -154,10 +154,10 @@ limit_open_conn = None  # 限制同一时间打开的连接总数，默认None�
 # 限制同一时间在同一个端点((host, port, is_ssl) 3者都一样的情况)打开的连接数
 limit_per_host = 10  # 0表示不限制,默认10
 
-subdomains_common = {'i', 'w', 'm', 'en', 'us', 'zh', 'w3', 'app', 'bbs',
-                     'web', 'www', 'job', 'docs', 'news', 'blog', 'data',
-                     'help', 'live', 'mall', 'blogs', 'files', 'forum',
-                     'store', 'mobile'}
+common_subnames = {'i', 'w', 'm', 'en', 'us', 'zh', 'w3', 'app', 'bbs',
+                   'web', 'www', 'job', 'docs', 'news', 'blog', 'data',
+                   'help', 'live', 'mall', 'blogs', 'files', 'forum',
+                   'store', 'mobile'}
 
 # 请求头设置
 # 可以在headers里添加自定义请求头

@@ -26,8 +26,7 @@ class Search(Module):
         :rtype: str
         """
         statements_list = []
-        subdomains_temp = set(map(lambda x: x + '.' + domain,
-                                  settings.subdomains_common))
+        subdomains_temp = set(map(lambda x: x + '.' + domain, settings.common_subnames))
         subdomains_temp = list(subdomain.intersection(subdomains_temp))
         for i in range(0, len(subdomains_temp), 2):  # 同时排除2个子域
             statements_list.append(''.join(set(map(lambda s: ' -site:' + s,
