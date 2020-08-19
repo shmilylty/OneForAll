@@ -18,7 +18,7 @@ from common import utils, resolve, request
 from common.database import Database
 from modules.collect import Collect
 from modules.finder import Finder
-from modules import iscdn, banner
+from modules import iscdn
 from config import settings
 from config.log import logger
 from takeover import Takeover
