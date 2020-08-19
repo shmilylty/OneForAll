@@ -81,7 +81,7 @@ async def fetch(session, method, url):
     :return: 响应对象和响应文本
     """
     timeout = aiohttp.ClientTimeout(total=None,
-                                    connect=5.0,
+                                    connect=None,
                                     sock_read=settings.sockread_timeout,
                                     sock_connect=settings.sockconn_timeout)
     try:
@@ -175,6 +175,8 @@ def request_callback(future, index, datas):
         if settings.enable_banner_identify:
             datas[index]['banner'] = utils.get_sample_banner(headers)
         datas[index]['header'] = json.dumps(dict(headers))
+        history = resp.history
+        datas[index]['history'] = str(history)
         if isinstance(text, str):
             title = get_title(text).strip()
             datas[index]['title'] = utils.remove_invalid_string(title)
@@ -229,7 +231,7 @@ async def bulk_request(data, port):
                                                  datas=to_req_data))
         tasks.append(task)
     if tasks:
-        futures = asyncio.as_completed(tasks, timeout=1*60)
+        futures = asyncio.as_completed(tasks)
         for future in tqdm.tqdm(futures,
                                 total=len(tasks),
                                 desc='Request Progress',

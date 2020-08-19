@@ -1,5 +1,4 @@
 import re
-import json
 import time
 from urllib import parse
 
@@ -37,9 +36,10 @@ class Finder(Module):
         return data
 
 
+file_path = settings.data_storage_dir.joinpath('common_js_library.json')
+black_name = utils.load_json(file_path)
 # Regular expression comes from https://github.com/GerbenJavado/LinkFinder
-def find_url(html):
-    pattern_raw = r"""
+expression = r"""
     (?:"|')                               # Start newline delimiter
     (
         ((?:[a-zA-Z]{1,10}://|//)           # Match a scheme [a-Z]*1-10 or //
@@ -61,8 +61,11 @@ def find_url(html):
     )
     (?:"|')                                 # End newline delimiter
     """
-    pattern = re.compile(pattern_raw, re.VERBOSE)
-    result = re.finditer(pattern, html)
+url_pattern = re.compile(expression, re.VERBOSE)
+
+
+def find_new_urls(html):
+    result = re.finditer(url_pattern, html)
     if result is None:
         return None
     urls = set()
@@ -72,7 +75,7 @@ def find_url(html):
     return urls
 
 
-def process_url(req_url, rel_url):
+def convert_url(req_url, rel_url):
     black_url = ["javascript:"]  # Add some keyword for filter url.
     raw_url = parse.urlparse(req_url)
     netloc = raw_url.netloc
@@ -97,7 +100,7 @@ def process_url(req_url, rel_url):
     return result
 
 
-def filter_name(path, black_name):
+def filter_name(path):
     for name in black_name:
         if path.endswith(name):
             return True
@@ -115,7 +118,7 @@ def filter_name(path, black_name):
     return False
 
 
-def filter_url(domain, url, black_name):
+def filter_url(domain, url):
     try:
         raw_url = parse.urlparse(url)
     except Exception as e:  # 解析失败则跳过该URL
@@ -138,42 +141,58 @@ def filter_url(domain, url, black_name):
         return True
     if path.endswith('min.js'):
         return True
-    return filter_name(path, black_name)
-
-
-def get_black_name():
-    path = settings.data_storage_dir.joinpath('common_js_library.json')
-    with open(path) as fp:
-        return json.load(fp)
+    return filter_name(path)
 
 
 def match_subdomains(domain, text):
-    subdomains = utils.match_subdomains(domain, text, fuzzy=False)
-    logger.log('DEBUG', f'matched subdomains: {subdomains}')
+    if isinstance(text, str):
+        subdomains = utils.match_subdomains(domain, text, fuzzy=False)
+    else:
+        logger.log('DEBUG', f'abnormal object: {type(text)}')
+        subdomains = set()
+    logger.log('TRACE', f'matched subdomains: {subdomains}')
     return subdomains
+
+
+def find_in_resp(domain, url, html):
+    logger.log('TRACE', f'matching subdomains from response of {url}')
+    return match_subdomains(domain, html)
+
+
+def find_in_history(domain, url, history):
+    logger.log('TRACE', f'matching subdomains from history of {url}')
+    return match_subdomains(domain, history)
+
+
+def find_js_urls(domain, req_url, rsp_html):
+    js_urls = set()
+    new_urls = find_new_urls(rsp_html)
+    if not new_urls:
+        return js_urls
+    for rel_url in new_urls:
+        url = convert_url(req_url, rel_url)
+        if not filter_url(domain, url):
+            js_urls.add(url)
+    return js_urls
 
 
 def find_subdomains(domain, data):
     subdomains = set()
     js_urls = set()
-    black_name = get_black_name()
-    for item in data:
-        req_url = item.get('url')
-        rsp_html = item.get('response')
+    for infos in data:
+        jump_history = infos.get('history')
+        req_url = infos.get('url')
+        subdomains = subdomains.union(find_in_history(domain, req_url, jump_history))
+        rsp_html = infos.get('response')
         if not rsp_html:
+            logger.log('DEBUG', f'an abnormal response occurred in the request {req_url}')
             continue
-        logger.log('DEBUG', f'matching subdomains from response of {req_url}')
-        subdomains = subdomains.union(match_subdomains(domain, rsp_html))
-        urls = find_url(rsp_html)
-        if not urls:
-            continue
-        for rel_url in urls:
-            url = process_url(req_url, rel_url)
-            if not filter_url(domain, url, black_name):
-                js_urls.add(url)
+        subdomains = subdomains.union(find_in_resp(domain, req_url, rsp_html))
+        js_urls = js_urls.union(find_js_urls(domain, req_url, rsp_html))
+
     resp_data = request.urls_request(js_urls)
     for resp, text in resp_data:
-        if text:
-            logger.log('DEBUG', f'matching subdomains from response of {resp.url}')
-            subdomains = subdomains.union(match_subdomains(domain, text))
+        if not text:
+            continue
+        subdomains = subdomains.union(find_in_resp(domain, resp.url, text))
     return subdomains
