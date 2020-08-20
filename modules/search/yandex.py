@@ -36,7 +36,7 @@ class Yandex(Search):
             subdomains = self.match_subdomains(resp, fuzzy=False)
             if not self.check_subdomains(subdomains):
                 break
-            self.subdomains = self.subdomains.union(subdomains)
+            self.subdomains.update(subdomains)
             if '>next</a>' not in resp.text:  # 搜索页面没有出现下一页时停止搜索
                 break
             self.page_num += 1

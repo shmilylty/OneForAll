@@ -99,6 +99,7 @@ docker run -it --rm -v ~/results:/OneForAll/results -v ~/.config:/OneForAll/conf
 1. 如果你是通过pip3安装的依赖则使用以下命令运行示例：   
 ```bash
 python3 oneforall.py --target example.com run
+python3 oneforall.py --targets ./example.txt run
 ```
 
 ![Example](./docs/usage_example.svg)
@@ -172,7 +173,7 @@ DESCRIPTION
     Example:
         python3 oneforall.py version
         python3 oneforall.py --target example.com run
-        python3 oneforall.py --target ./domains.txt run
+        python3 oneforall.py --targets ./domains.txt run
         python3 oneforall.py --target example.com --valid None run
         python3 oneforall.py --target example.com --brute True run
         python3 oneforall.py --target example.com --port small run
@@ -191,7 +192,9 @@ DESCRIPTION
 
 ARGUMENTS
     TARGET
-        单个域名或者每行一个域名的文件路径(必需参数)
+        单个域名(二选一必需参数)
+    TARGETS
+        每行一个域名的文件路径(二选一必需参数)
 
 FLAGS
     --brute=BRUTE

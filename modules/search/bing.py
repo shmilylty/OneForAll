@@ -36,7 +36,7 @@ class Bing(Search):
             subdomains = self.match_subdomains(resp, fuzzy=False)
             if not self.check_subdomains(subdomains):
                 break
-            self.subdomains = self.subdomains.union(subdomains)
+            self.subdomains.update(subdomains)
             # 搜索页面没有出现下一页时停止搜索
             if '<div class="sw_next">' not in resp.text:
                 break

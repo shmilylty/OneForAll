@@ -25,7 +25,7 @@ class VirusTotalAPI(Query):
             subdomains = self.match_subdomains(resp)
             if not subdomains:
                 break
-            self.subdomains = self.subdomains.union(subdomains)
+            self.subdomains.update(subdomains)
             data = resp.json()
             next_cursor = data.get('meta').get('cursor')
 

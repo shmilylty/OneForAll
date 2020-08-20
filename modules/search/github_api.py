@@ -63,7 +63,7 @@ class GithubAPI(Search):
             subdomains = self.match_subdomains(resp)
             if not subdomains:
                 break
-            self.subdomains = self.subdomains.union(subdomains)
+            self.subdomains.update(subdomains)
             page += 1
             try:
                 resp_json = resp.json()

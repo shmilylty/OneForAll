@@ -34,7 +34,7 @@ class WZPCQuery(Query):
             subdomains = self.match_subdomains(resp.text)
             if not subdomains:  # 没有发现子域名则停止查询
                 break
-            self.subdomains = self.subdomains.union(subdomains)
+            self.subdomains.update(subdomains)
             if not subdomains:
                 break
             if page_num > 10:
