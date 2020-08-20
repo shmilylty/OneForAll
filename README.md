@@ -172,7 +172,7 @@ DESCRIPTION
     Example:
         python3 oneforall.py version
         python3 oneforall.py --target example.com run
-        python3 oneforall.py --target ./domains.txt run
+        python3 oneforall.py --targets ./domains.txt run
         python3 oneforall.py --target example.com --valid None run
         python3 oneforall.py --target example.com --brute True run
         python3 oneforall.py --target example.com --port small run
