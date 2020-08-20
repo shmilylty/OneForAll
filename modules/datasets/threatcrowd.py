@@ -26,7 +26,7 @@ class ThreatCrowd(Query):
         if resp.status_code != 200:
             return
         subdomains = self.match_subdomains(resp.text)
-        self.subdomains = self.subdomains.union(subdomains)
+        self.subdomains.update(subdomains)
 
     def run(self):
         """

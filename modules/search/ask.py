@@ -30,7 +30,7 @@ class Ask(Search):
             subdomains = self.match_subdomains(resp, fuzzy=False)
             if not self.check_subdomains(subdomains):
                 break
-            self.subdomains = self.subdomains.union(subdomains)
+            self.subdomains.update(subdomains)
             self.page_num += 1
             if '>Next<' not in resp.text:
                 break

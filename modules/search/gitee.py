@@ -37,7 +37,7 @@ class Gitee(Search):
             subdomains = self.match_subdomains(soup, fuzzy=False)
             if not self.check_subdomains(subdomains):
                 break
-            self.subdomains = self.subdomains.union(subdomains)
+            self.subdomains.update(subdomains)
             if '<li class="disabled"><a href="###">' in resp.text:
                 break
             page_num += 1

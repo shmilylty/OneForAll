@@ -46,7 +46,7 @@ class CheckAXFR(Module):
         for name in names:
             full_domain = str(name) + '.' + self.domain
             subdomain = self.match_subdomains(full_domain)
-            self.subdomains = self.subdomains.union(subdomain)
+            self.subdomains.update(subdomain)
             record = zone[name].to_text(name)
             self.results.append(record)
         if self.results:

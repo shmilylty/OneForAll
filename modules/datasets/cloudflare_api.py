@@ -81,7 +81,7 @@ class CloudFlareAPI(Query):
                        f'{list_dns_resp.status_code} {list_dns_resp.text}')
             return
         subdomains = self.match_subdomains(list_dns_resp.text)
-        self.subdomains = self.subdomains.union(subdomains)
+        self.subdomains.update(subdomains)
         if not self.subdomains:
             # waiting for cloudflare enumerate subdomains
             sleep(5)
@@ -96,7 +96,7 @@ class CloudFlareAPI(Query):
                     return
                 total_pages = list_dns_resp.json()['result_info']['total_pages']
                 subdomains = (self.match_subdomains(list_dns_resp.text))
-                self.subdomains = self.subdomains.union(subdomains)
+                self.subdomains.update(subdomains)
                 page += 1
                 if page > total_pages:
                     break

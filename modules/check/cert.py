@@ -32,7 +32,7 @@ class CheckCert(Module):
             logger.log('DEBUG', e.args)
             return
         subdomains = self.match_subdomains(str(cert_dict))
-        self.subdomains = self.subdomains.union(subdomains)
+        self.subdomains.update(subdomains)
 
     def run(self):
         """

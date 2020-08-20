@@ -35,7 +35,7 @@ class GoogleAPI(Search):
             subdomains = self.match_subdomains(resp)
             if not self.check_subdomains(subdomains):
                 break
-            self.subdomains = self.subdomains.union(subdomains)
+            self.subdomains.update(subdomains)
             self.page_num += self.per_page_num
             if self.page_num > 100:  # 免费的API只能查询前100条结果
                 break

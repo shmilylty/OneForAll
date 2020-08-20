@@ -38,7 +38,7 @@ class Yahoo(Search):
             subdomains = self.match_subdomains(text, fuzzy=False)
             if not self.check_subdomains(subdomains):
                 break
-            self.subdomains = self.subdomains.union(subdomains)
+            self.subdomains.update(subdomains)
             if '>Next</a>' not in resp.text:  # 搜索页面没有出现下一页时停止搜索
                 break
             self.page_num += self.per_page_num

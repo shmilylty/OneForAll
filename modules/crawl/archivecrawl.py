@@ -28,7 +28,7 @@ class ArchiveCrawl(Crawl):
                 url = resp.data.get('url')
                 subdomains = self.match_subdomains(self.get_maindomain(domain),
                                                    url + resp.text)
-                self.subdomains = self.subdomains.union(subdomains)
+                self.subdomains.update(subdomains)
 
     def run(self):
         """
