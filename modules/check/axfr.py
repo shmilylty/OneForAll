@@ -33,14 +33,16 @@ class CheckAXFR(Module):
 
         :param server: domain server
         """
-        logger.log('DEBUG', f'Trying to perform domain transfer in {server} of {self.domain}')
+        logger.log('DEBUG', f'Trying to perform domain transfer in {server} '
+                            f'of {self.domain}')
         try:
             xfr = dns.query.xfr(where=server, zone=self.domain,
                                 timeout=5.0, lifetime=10.0)
             zone = dns.zone.from_xfr(xfr)
         except Exception as e:
             logger.log('DEBUG', e.args)
-            logger.log('DEBUG', f'Domain transfer to server {server} of {self.domain} failed')
+            logger.log('DEBUG', f'Domain transfer to server {server} of '
+                                f'{self.domain} failed')
             return
         names = zone.nodes.keys()
         for name in names:
@@ -50,7 +52,8 @@ class CheckAXFR(Module):
             record = zone[name].to_text(name)
             self.results.append(record)
         if self.results:
-            logger.log('DEBUG', f'Found the domain transfer record of {self.domain} on {server}')
+            logger.log('DEBUG', f'Found the domain transfer record of '
+                                f'{self.domain} on {server}')
             logger.log('DEBUG', '\n'.join(self.results))
             self.results = []
 

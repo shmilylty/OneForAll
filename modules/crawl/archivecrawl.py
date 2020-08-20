@@ -26,8 +26,7 @@ class ArchiveCrawl(Crawl):
         for resp in cdx.iter(url, limit=limit):
             if resp.data.get('status') not in ['301', '302']:
                 url = resp.data.get('url')
-                subdomains = self.match_subdomains(self.get_maindomain(domain),
-                                                   url + resp.text)
+                subdomains = self.match_subdomains(domain, url + resp.text)
                 self.subdomains.update(subdomains)
 
     def run(self):
