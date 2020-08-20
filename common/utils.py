@@ -685,11 +685,13 @@ def is_subname(name):
 
 
 def ip_to_int(ip):
+    if isinstance(ip, int):
+        return ip
     try:
         ipv4 = IPv4Address(ip)
     except Exception as e:
         logger.log('ERROR', e.args)
-        return None
+        return 0
     return int(ipv4)
 
 
