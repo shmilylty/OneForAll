@@ -728,3 +728,13 @@ def match_subdomains(domain, html, distinct=True, fuzzy=True):
         return set(deal)
     else:
         return list(deal)
+
+
+def check_random_subdomain(subdomains):
+    if not subdomains:
+        logger.log('ALERT', f'The generated dictionary is empty')
+        return False
+    for subdomain in subdomains:
+        if subdomain:
+            logger.log('ALERT', f'Please check whether {subdomain} is correct or not')
+            return True
