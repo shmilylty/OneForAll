@@ -154,6 +154,13 @@ def get_title(markup):
     return 'None'
 
 
+def get_jump_urls(history):
+    urls = list()
+    for resp in history:
+        urls.append(str(resp.url))
+    return urls
+
+
 def request_callback(future, index, datas):
     resp, text = future.result()
     if isinstance(resp, BaseException):
@@ -176,7 +183,7 @@ def request_callback(future, index, datas):
             datas[index]['banner'] = utils.get_sample_banner(headers)
         datas[index]['header'] = json.dumps(dict(headers))
         history = resp.history
-        datas[index]['history'] = str(history)
+        datas[index]['history'] = json.dumps(get_jump_urls(history))
         if isinstance(text, str):
             title = get_title(text).strip()
             datas[index]['title'] = utils.remove_invalid_string(title)
