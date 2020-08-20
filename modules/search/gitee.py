@@ -13,7 +13,7 @@ class Gitee(Search):
         self.domain = domain
         self.header = self.get_header()
 
-    def search(self, full_search=False):
+    def search(self):
         """
         向接口查询子域并做子域匹配
         """
