@@ -28,7 +28,7 @@ class Database(object):
         if not db_path:  # 数据库路径为空连接默认数据库
             db_path = f'{protocol}{settings.result_save_dir}/result.sqlite3'
         else:
-            db_path = protocol + db_path
+            db_path = f'{protocol}{db_path}'
         db = records.Database(db_path)  # 不存在数据库时会新建一个数据库
         logger.log('TRACE', f'Use the database: {db_path}')
         return db.get_connection()
@@ -38,8 +38,8 @@ class Database(object):
             results = self.conn.query(sql)
         except Exception as e:
             logger.log('ERROR', e.args)
-        else:
-            return results
+            return None
+        return results
 
     def create_table(self, table_name):
         """
