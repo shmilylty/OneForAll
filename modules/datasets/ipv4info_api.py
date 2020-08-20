@@ -35,7 +35,7 @@ class IPv4InfoAPI(Query):
             subdomains = self.match_subdomains(str(json))
             if not subdomains:
                 break
-            self.subdomains = self.subdomains.union(subdomains)
+            self.subdomains.update(subdomains)
             # 不直接使用subdomains是因为可能里面会出现不符合标准的子域名
             subdomains = json.get('Subdomains')
             if subdomains and len(subdomains) < 300:

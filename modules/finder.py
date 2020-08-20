@@ -163,7 +163,7 @@ def find_subdomains(domain, data):
         if not rsp_html:
             continue
         logger.log('DEBUG', f'matching subdomains from response of {req_url}')
-        subdomains = subdomains.union(match_subdomains(domain, rsp_html))
+        subdomains.update(match_subdomains(domain, rsp_html))
         urls = find_url(rsp_html)
         if not urls:
             continue
@@ -175,5 +175,5 @@ def find_subdomains(domain, data):
     for resp, text in resp_data:
         if text:
             logger.log('DEBUG', f'matching subdomains from response of {resp.url}')
-            subdomains = subdomains.union(match_subdomains(domain, text))
+            subdomains.update(match_subdomains(domain, text))
     return subdomains

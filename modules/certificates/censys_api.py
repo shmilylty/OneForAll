@@ -34,7 +34,7 @@ class CensysAPI(Query):
             logger.log('ALERT', f'{self.source} module {status}')
             return
         subdomains = self.match_subdomains(resp.text)
-        self.subdomains = self.subdomains.union(subdomains)
+        self.subdomains.update(subdomains)
         pages = json.get('metadata').get('pages')
         for page in range(2, pages + 1):
             data['page'] = page

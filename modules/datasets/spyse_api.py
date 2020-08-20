@@ -29,7 +29,7 @@ class SpyseAPI(Query):
             subdomains = self.match_subdomains(str(json))
             if not subdomains:  # 没有发现子域名则停止查询
                 break
-            self.subdomains = self.subdomains.union(subdomains)
+            self.subdomains.update(subdomains)
             offset += limit
             if len(json.get('data').get('items')) < limit:
                 break

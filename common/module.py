@@ -220,7 +220,8 @@ class Module(object):
 
     def collect_subdomains(self, resp):
         subdomains = self.match_subdomains(resp)
-        return self.subdomains.union(subdomains)
+        self.subdomains.update(subdomains)
+        return self.subdomains
 
     def save_json(self):
         """

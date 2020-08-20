@@ -40,7 +40,7 @@ class Google(Search):
             subdomains = self.match_subdomains(resp, fuzzy=False)
             if not self.check_subdomains(subdomains):
                 break
-            self.subdomains = self.subdomains.union(subdomains)
+            self.subdomains.update(subdomains)
             page_num += per_page_num
             if 'start=' + str(page_num) not in resp.text:
                 break

@@ -50,7 +50,7 @@ class NetCraft(Query):
             subdomains = self.match_subdomains(resp)
             if not subdomains:  # 搜索没有发现子域名则停止搜索
                 break
-            self.subdomains = self.subdomains.union(subdomains)
+            self.subdomains.update(subdomains)
             if 'Next Page' not in resp.text:  # 搜索页面没有出现下一页时停止搜索
                 break
             last = re.search(r'&last=.*' + self.domain, resp.text).group(0)

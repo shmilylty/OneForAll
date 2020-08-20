@@ -247,7 +247,7 @@ def collect_wildcard_record(domain, authoritative_ns):
             continue
         if ip is None:
             continue
-        ips = ips.union(ip)
+        ips.update(ip)
         # 统计每个泛解析IP出现次数
         for addr in ip:
             count = ips_stat.setdefault(addr, 0)

@@ -21,7 +21,7 @@ class Crtsh(Query):
             return
         text = resp.text.replace(r'\n', ' ')
         subdomains = self.match_subdomains(text)
-        self.subdomains = self.subdomains.union(subdomains)
+        self.subdomains.update(subdomains)
 
     def run(self):
         """

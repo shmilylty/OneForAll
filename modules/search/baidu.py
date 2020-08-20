@@ -25,7 +25,7 @@ class Baidu(Search):
         for find_res in bs.find_all('a', {'class': 'c-showurl'}):
             url = find_res.get('href')
             subdomains = self.match_location(url)
-            subdomains_all = subdomains_all.union(subdomains)
+            subdomains_all.update(subdomains)
         return subdomains_all
 
     def search(self, domain, filtered_subdomain=''):
@@ -54,7 +54,7 @@ class Baidu(Search):
                 subdomains = self.match_subdomains(resp, fuzzy=False)
             if not self.check_subdomains(subdomains):
                 break
-            self.subdomains = self.subdomains.union(subdomains)
+            self.subdomains.update(subdomains)
             self.page_num += self.per_page_num
             # 搜索页面没有出现下一页时停止搜索
             if '&pn={next_pn}&'.format(next_pn=self.page_num) not in resp.text:

@@ -23,6 +23,6 @@ class Lookup(Module):
         for item in answer:
             record = item.to_text()
             subdomains = self.match_subdomains(record)
-            self.subdomains = self.subdomains.union(subdomains)
+            self.subdomains.update(subdomains)
             logger.log('DEBUG', record)
         return self.subdomains
