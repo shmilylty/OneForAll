@@ -13,7 +13,9 @@ from config import settings
 HEADERS = {
     "Accept": "application/json, text/javascript, */*; q=0.01",
     "Accept-Language": "zh-CN,zh;q=0.9",
-    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36",
+    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_5) "
+                  "AppleWebKit/537.36 (KHTML, like Gecko) "
+                  "Chrome/63.0.3239.84 Safari/537.36",
 }
 
 
@@ -73,8 +75,9 @@ def github_takeover(url):
                     },
                     "content": cname_url64
                 }
-                html_url = 'https://api.github.com/repos/' + user + '/' + repo_name + '/contents/index.html'
-                url_url = 'https://api.github.com/repos/' + user + '/' + repo_name + '/contents/CNAME'
+                base_url = 'https://api.github.com/repos/'
+                html_url = base_url + user + '/' + repo_name + '/contents/index.html'
+                url_url = base_url + user + '/' + repo_name + '/contents/CNAME'
                 html_r = requests.put(url=html_url, data=json.dumps(html_dict),
                                       headers=headers)  # 上传index.html
                 cname_r = requests.put(url=url_url, data=json.dumps(url_dict),
