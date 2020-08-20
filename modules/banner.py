@@ -388,8 +388,8 @@ class Condition(object):
 
             else:
                 name = []
-                while self.index < len(
-                        self.condstr) and self.condstr[self.index] in self.allow_character:
+                while self.index < len(self.condstr) and self.condstr[self.index] \
+                        in self.allow_character:
                     name.append(self.condstr[self.index])
                     self.index += 1
 

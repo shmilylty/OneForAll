@@ -52,7 +52,7 @@ class BruteSRV(Module):
             for item in answer:
                 record = str(item)
                 subdomains = self.match_subdomains(record)
-                self.subdomains = self.subdomains.union(subdomains)
+                self.subdomains.update(subdomains)
 
     def run(self):
         """

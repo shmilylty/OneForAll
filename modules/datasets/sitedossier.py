@@ -25,7 +25,7 @@ class SiteDossier(Query):
             subdomains = self.match_subdomains(resp)
             if not subdomains:  # 没有发现子域名则停止查询
                 break
-            self.subdomains = self.subdomains.union(subdomains)
+            self.subdomains.update(subdomains)
             # 搜索页面没有出现下一页时停止搜索
             if 'Show next 100 items' not in resp.text:
                 break

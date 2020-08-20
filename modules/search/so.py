@@ -31,7 +31,7 @@ class So(Search):
             subdomains = self.match_subdomains(resp, fuzzy=False)
             if not self.check_subdomains(subdomains):
                 break
-            self.subdomains = self.subdomains.union(subdomains)
+            self.subdomains.update(subdomains)
             page_num += 1
             # 搜索页面没有出现下一页时停止搜索
             if '<a id="snext"' not in resp.text:

@@ -28,7 +28,7 @@ class QianXun(Query):
             subdomains = self.match_subdomains(resp)
             if not subdomains:  # 没有发现子域名则停止查询
                 break
-            self.subdomains = self.subdomains.union(subdomains)
+            self.subdomains.update(subdomains)
             if '<div id="page" class="pagelist">' not in resp.text:
                 break
             if '<li class="disabled"><span>&raquo;</span></li>' in resp.text:

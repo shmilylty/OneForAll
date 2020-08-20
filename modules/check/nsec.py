@@ -23,8 +23,7 @@ class CheckNSEC(Module):
                 record = item.to_text()
                 subdomains = self.match_subdomains(record)
                 subdomain = ''.join(subdomains)  # 其实这里的subdomains的长度为1 也就是说只会有一个子域
-                self.subdomains = self.subdomains.union(subdomains)
-                self.gen_record(subdomains, record)
+                self.subdomains.update(subdomains)
             if subdomain == self.domain:  # 当查出子域为主域 说明完成了一个循环 不再继续查询
                 break
             domain = subdomain
