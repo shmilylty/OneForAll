@@ -182,17 +182,17 @@ def find_subdomains(domain, data):
     for infos in data:
         jump_history = infos.get('history')
         req_url = infos.get('url')
-        subdomains = subdomains.union(find_in_history(domain, req_url, jump_history))
+        subdomains.update(find_in_history(domain, req_url, jump_history))
         rsp_html = infos.get('response')
         if not rsp_html:
             logger.log('DEBUG', f'an abnormal response occurred in the request {req_url}')
             continue
-        subdomains = subdomains.union(find_in_resp(domain, req_url, rsp_html))
-        js_urls = js_urls.union(find_js_urls(domain, req_url, rsp_html))
+        subdomains.update(find_in_resp(domain, req_url, rsp_html))
+        js_urls.update(find_js_urls(domain, req_url, rsp_html))
 
     resp_data = request.urls_request(js_urls)
     for resp, text in resp_data:
         if not text:
             continue
-        subdomains = subdomains.union(find_in_resp(domain, resp.url, text))
+        subdomains.update(find_in_resp(domain, resp.url, text))
     return subdomains
