@@ -17,6 +17,7 @@ from brute import Brute
 from common import utils, resolve, request
 from common.database import Database
 from modules.collect import Collect
+from modules.srv import BruteSRV
 from modules.finder import Finder
 from modules import iscdn
 from config import settings
@@ -190,6 +191,10 @@ class OneForAll(object):
 
         collect = Collect(self.domain, export=False)
         collect.run()
+
+        srv = BruteSRV(self.domain)
+        srv.run()
+
         if self.brute:
             # Due to there will be a large number of dns resolution requests,
             # may cause other network tasks to be error
