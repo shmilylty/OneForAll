@@ -51,7 +51,7 @@ brute_status_format = 'ansi'  # 爆破时状态输出格式（默认asni，可�
 brute_process_num = 1  # 默认1
 brute_concurrent_num = 2000  # 并发查询数量(默认2000，最大推荐10000)
 brute_socket_num = 1  # 爆破时每个进程下的socket数量
-brute_resolve_num = 10  # 解析失败时尝试换名称服务器重查次数
+brute_resolve_num = 15  # 解析失败时尝试换名称服务器重查次数
 # 爆破所使用的字典路径 默认data/subdomains.txt
 brute_wordlist_path = data_storage_dir.joinpath('subnames.txt')
 # 爆破所使用的字典路径 默认data/cn_nameservers.txt
@@ -92,9 +92,9 @@ proxy_pool = [{'http': 'http://127.0.0.1:1080',
 
 
 # 网络请求设置
-request_delay = 1  # 请求时延
-request_timeout = 60  # 请求超时
-request_verify = False  # 请求SSL验证
+request_delay = 1  # 请求时延(默认1秒)
+request_timeout = 30  # 请求超时(默认30秒)
+request_verify = False  # 请求SSL验证(默认False)
 # 禁用所有警告信息
 warnings.filterwarnings("ignore")
 
