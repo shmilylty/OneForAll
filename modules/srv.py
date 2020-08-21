@@ -16,7 +16,7 @@ class BruteSRV(Module):
         self.domain = domain
         self.module = 'BruteSRV'
         self.source = "BruteSRV"
-        self.qtype = 'SRV'  # 利用的DNS记录的SRV记录查询子域
+        self.qtype = 'SRV'
         self.thread_num = 20
         self.names_queue = queue.Queue()
         self.answers_queue = queue.Queue()
@@ -46,9 +46,6 @@ class BruteSRV(Module):
                 self.subdomains.update(subdomains)
 
     def run(self):
-        """
-        类执行入口
-        """
         self.begin()
         self.fill_queue()
         self.do_brute()
