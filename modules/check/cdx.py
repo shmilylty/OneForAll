@@ -4,15 +4,12 @@
 from common.check import Check
 
 
-class CheckCDX(Check):
-    """
-    检查crossdomain.xml文件收集子域名
-    """
-    def __init__(self, domain: str):
+class CrossDomain(Check):
+    def __init__(self, domain):
         Check.__init__(self)
         self.domain = domain
-        self.module = 'Check'
-        self.source = "CrossDomainXml"
+        self.module = 'check'
+        self.source = "CrossDomainCheck"
 
     def check(self):
         """
@@ -39,7 +36,7 @@ def run(domain):
 
     :param domain: 域名
     """
-    check = CheckCDX(domain)
+    check = CrossDomain(domain)
     check.run()
 
 
