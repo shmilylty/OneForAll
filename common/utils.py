@@ -112,7 +112,7 @@ def match_main_domain(domain):
 
 
 def read_target_file(target):
-    domains = set()
+    domains = list()
     with open(target, encoding='utf-8', errors='ignore') as file:
         for line in file:
             domain = match_main_domain(line)
@@ -121,8 +121,9 @@ def read_target_file(target):
             domain = get_main_domain(domain)
             if not domain:
                 continue
-            domains.add(domain)
-    return domains
+            domains.append(domain)
+    sorted_domains = sorted(set(domains), key=domains.index)
+    return sorted_domains
 
 
 def get_from_target(target):
