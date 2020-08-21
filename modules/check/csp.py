@@ -3,19 +3,19 @@ Collect subdomains from ContentSecurityPolicy
 """
 import requests
 
-from common.check import Check
 from config.log import logger
+from common.check import Check
 
 
-class CheckCSP(Check):
+class CSP(Check):
     """
     Collect subdomains from ContentSecurityPolicy
     """
     def __init__(self, domain, header):
         Check.__init__(self)
         self.domain = domain
-        self.module = 'Check'
-        self.source = 'ContentSecurityPolicy'
+        self.module = 'check'
+        self.source = 'CSPCheck'
         self.csp_header = header
 
     def grab_header(self):
@@ -72,7 +72,7 @@ def run(domain, header=None):
     :param str domain: 域名
     :param dict or None header: 响应头
     """
-    check = CheckCSP(domain, header)
+    check = CSP(domain, header)
     check.run()
 
 

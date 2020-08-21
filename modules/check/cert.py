@@ -4,16 +4,16 @@
 import socket
 import ssl
 
-from common.module import Module
 from config.log import logger
+from common.check import Check
 
 
-class CheckCert(Module):
+class CertInfo(Check):
     def __init__(self, domain):
-        Module.__init__(self)
+        Check.__init__(self)
         self.domain = domain
-        self.port = 443  # ssl port
-        self.module = 'Check'
+        self.port = 443
+        self.module = 'check'
         self.source = 'CertInfo'
 
     def check(self):
@@ -50,7 +50,7 @@ def run(domain):
 
     :param str domain: 域名
     """
-    check = CheckCert(domain)
+    check = CertInfo(domain)
     check.run()
 
 

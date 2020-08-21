@@ -4,15 +4,12 @@
 from common.check import Check
 
 
-class CheckRobots(Check):
-    """
-    检查sitemap收集子域名
-    """
+class Sitemap(Check):
     def __init__(self, domain):
         Check.__init__(self)
         self.domain = domain
-        self.module = 'Check'
-        self.source = 'Sitemap'
+        self.module = 'check'
+        self.source = 'SitemapCheck'
 
     def check(self):
         """
@@ -39,7 +36,7 @@ def run(domain):
 
     :param str domain: 域名
     """
-    check = CheckRobots(domain)
+    check = Sitemap(domain)
     check.run()
 
 
