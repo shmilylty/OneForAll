@@ -12,7 +12,6 @@ class CertInfo(Check):
     def __init__(self, domain):
         Check.__init__(self)
         self.domain = domain
-        self.port = 443
         self.module = 'check'
         self.source = 'CertInfo'
 
@@ -22,10 +21,11 @@ class CertInfo(Check):
         """
         try:
             ctx = ssl.create_default_context()
-            sock = ctx.wrap_socket(socket.socket(),
-                                   server_hostname=self.domain)
-            sock.connect((self.domain, self.port))
-            cert_dict = sock.getpeercert()
+            sock = socket.socket()
+            sock.settimeout(10)
+            wrap_sock = ctx.wrap_socket(sock, server_hostname=self.domain)
+            wrap_sock.connect((self.domain, 443))
+            cert_dict = wrap_sock.getpeercert()
         except Exception as e:
             logger.log('DEBUG', e.args)
             return
