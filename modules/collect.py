@@ -1,10 +1,8 @@
-import time
 import threading
 import importlib
 
 from config.log import logger
 from config import settings
-from common import utils
 
 
 class Collect(object):
@@ -21,7 +19,6 @@ class Collect(object):
             # The crawl module has some problems
             modules = ['certificates', 'check', 'datasets',
                        'dnsquery', 'intelligence', 'search']
-            # modules = ['certificates']
             for module in modules:
                 module_path = settings.module_dir.joinpath(module)
                 for path in module_path.rglob('*.py'):
