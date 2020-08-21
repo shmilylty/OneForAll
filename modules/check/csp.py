@@ -3,16 +3,16 @@ Collect subdomains from ContentSecurityPolicy
 """
 import requests
 
-from common.module import Module
+from common.check import Check
 from config.log import logger
 
 
-class CheckCSP(Module):
+class CheckCSP(Check):
     """
     Collect subdomains from ContentSecurityPolicy
     """
     def __init__(self, domain, header):
-        Module.__init__(self)
+        Check.__init__(self)
         self.domain = domain
         self.module = 'Check'
         self.source = 'ContentSecurityPolicy'
@@ -34,8 +34,7 @@ class CheckCSP(Module):
             self.proxy = self.get_proxy(self.source)
             response = self.get(url, check=False)
             if response:
-                csp_header = response.headers
-                break
+                return response.headers
         return csp_header
 
     def check(self):

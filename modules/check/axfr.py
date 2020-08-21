@@ -19,7 +19,6 @@ class CheckAXFR(Module):
     """
     DNS zone transfer vulnerability base class
     """
-
     def __init__(self, domain: str):
         Module.__init__(self)
         self.domain = domain
