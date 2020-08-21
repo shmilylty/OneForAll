@@ -112,9 +112,8 @@ resolver_nameservers = [
     '8.8.8.8',  # Google DNS
     '1.1.1.1'  # CloudFlare DNS
 ]  # 指定查询的DNS域名服务器
-resolver_timeout = 5.0  # 解析超时时间
-resolver_lifetime = 60.0  # 解析存活时间
-limit_resolve_conn = 500  # 限制同一时间解析的数量(默认500)
+resolver_timeout = 5.0  # 解析超时时间(默认5.0秒)
+resolver_lifetime = 10.0  # 解析存活时间(默认10.0秒)
 
 # 请求端口探测设置
 # 你可以在端口列表添加自定义端口
