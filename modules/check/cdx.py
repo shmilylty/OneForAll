@@ -1,16 +1,15 @@
 """
 检查crossdomain.xml文件收集子域名
 """
+from common.check import Check
 
-from common.module import Module
 
-
-class CheckCDX(Module):
+class CheckCDX(Check):
     """
     检查crossdomain.xml文件收集子域名
     """
     def __init__(self, domain: str):
-        Module.__init__(self)
+        Check.__init__(self)
         self.domain = domain
         self.module = 'Check'
         self.source = "CrossDomainXml"
@@ -19,15 +18,8 @@ class CheckCDX(Module):
         """
         检查crossdomain.xml收集子域名
         """
-        urls = [f'http://{self.domain}/crossdomain.xml',
-                f'https://{self.domain}/crossdomain.xml',
-                f'http://www.{self.domain}/crossdomain.xml',
-                f'https://www.{self.domain}/crossdomain.xml']
-        for url in urls:
-            self.header = self.get_header()
-            self.proxy = self.get_proxy(self.source)
-            resp = self.get(url, check=False)
-            self.subdomains = self.collect_subdomains(resp)
+        filenames = {'crossdomain.xml'}
+        self.to_check(filenames)
 
     def run(self):
         """

@@ -73,7 +73,7 @@ class Module(object):
         :param dict params: request parameters
         :param bool check: check response
         :param kwargs: other params
-        :return: requests's response object
+        :return: response object
         """
         try:
             resp = requests.head(url,
@@ -93,16 +93,20 @@ class Module(object):
             return resp
         return None
 
-    def get(self, url, params=None, check=True, **kwargs):
+    def get(self, url, params=None, check=True, ignore=False, **kwargs):
         """
         Custom get request
 
         :param str  url: request url
         :param dict params: request parameters
         :param bool check: check response
+        :param bool ignore: ignore error
         :param kwargs: other params
-        :return: requests's response object
+        :return: response object
         """
+        level = 'ERROR'
+        if ignore:
+            level = 'DEBUG'
         try:
             resp = requests.get(url,
                                 params=params,
@@ -113,7 +117,7 @@ class Module(object):
                                 verify=self.verify,
                                 **kwargs)
         except Exception as e:
-            logger.log('ERROR', e.args)
+            logger.log(level, e.args)
             return None
         if not check:
             return resp
@@ -129,7 +133,7 @@ class Module(object):
         :param dict data: request data
         :param bool check: check response
         :param kwargs: other params
-        :return: requests's response object
+        :return: response object
         """
         try:
             resp = requests.post(url,
