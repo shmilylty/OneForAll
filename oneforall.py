@@ -189,7 +189,7 @@ class OneForAll(object):
         self.origin_table = self.domain + '_origin_result'
         self.resolve_table = self.domain + '_resolve_result'
 
-        collect = Collect(self.domain, export=False)
+        collect = Collect(self.domain)
         collect.run()
 
         srv = BruteSRV(self.domain)
