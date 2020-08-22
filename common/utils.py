@@ -614,7 +614,7 @@ def check_version(local):
         latest = resp_json['tag_name']
     except Exception as e:
         logger.log('ERROR', 'An error occurred while checking the latest version')
-        logger.log('ERROR', e.args)
+        logger.log('DEBUG', e.args)
         return
     if latest > local:
         change = resp_json.get("body")
