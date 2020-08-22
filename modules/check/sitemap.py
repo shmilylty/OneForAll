@@ -15,7 +15,7 @@ class Sitemap(Check):
         """
         正则匹配域名的sitemap文件中的子域
         """
-        filenames = {'sitemap.xml', 'sitemap.txt', 'sitemap.html'}
+        filenames = {'sitemap.xml', 'sitemap.txt', 'sitemap.html', 'sitemapindex.xml'}
         self.to_check(filenames)
 
     def run(self):
