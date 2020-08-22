@@ -22,6 +22,7 @@ tablib = "*"
 psutil = "*"
 tenacity = "*"
 ip2location = "*"
+treelib = "*"
 
 [requires]
 python_version = "3.8"
