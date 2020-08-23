@@ -245,7 +245,7 @@ class OneForAll(object):
         # Scan subdomain takeover
         if self.takeover:
             subdomains = utils.get_subdomains(self.data)
-            takeover = Takeover(subdomains)
+            takeover = Takeover(targets=subdomains)
             takeover.run()
         return self.data
 
