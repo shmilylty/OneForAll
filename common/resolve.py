@@ -5,12 +5,10 @@ from config.log import logger
 from config import settings
 from common import utils
 from common.ipasn import IPAsnInfo
-from common.ipgeo import IpGeoInfo
 from common.ipreg import IpRegData
 
 
 ip_asn = IPAsnInfo()
-ip_geo = IpGeoInfo()
 ip_reg = IpRegData()
 
 
@@ -85,8 +83,8 @@ def gen_infos(data, qname, info, infos):
     cidrs = list()
     asns = list()
     orgs = list()
-    locs = list()
-    regs = list()
+    addrs = list()
+    isps = list()
     answers = data.get('answers')
     for answer in answers:
         if answer.get('type') == 'A':
@@ -102,12 +100,10 @@ def gen_infos(data, qname, info, infos):
             cidrs.append(asn_info.get('cidr'))
             asns.append(asn_info.get('asn'))
             orgs.append(asn_info.get('org'))
-            loc = f'{ip_geo.get_country_long(ip)} ' \
-                  f'{ip_geo.get_region(ip)} ' \
-                  f'{ip_geo.get_city(ip)}'
-            locs.append(loc)
-            reg = ip_reg.query(ip).get('addr')
-            regs.append(reg)
+            addr = ip_reg.query(ip).get('addr')
+            addrs.append(addr)
+            isp = ip_reg.query(ip).get('isp')
+            isps.append(isp)
             info['resolve'] = 1
             info['reason'] = 'OK'
             info['cname'] = ','.join(cname)
@@ -117,8 +113,8 @@ def gen_infos(data, qname, info, infos):
             info['cidr'] = ','.join(cidrs)
             info['asn'] = ','.join(asns)
             info['org'] = ','.join(orgs)
-            info['ip2location'] = ','.join(locs)
-            info['ip2region'] = ','.join(regs)
+            info['addr'] = ','.join(addrs)
+            info['isp'] = ','.join(isps)
             infos[qname] = info
     if not flag:
         info['alive'] = 0
