@@ -266,7 +266,9 @@ class IpRegData(IpRegInfo):
         else:
             result = self.btree_search(ip)
         addr_list = result.get('region').split('|')
-        isp = addr_list[-1]
         addr = ''.join(filter(lambda x: x != '0', addr_list[:-1]))
+        isp = addr_list[-1]
+        if isp == '0':
+            isp = '未知'
         info = {'addr': addr, 'isp': isp}
         return info
