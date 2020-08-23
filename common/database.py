@@ -78,8 +78,8 @@ class Database(object):
                    f'cidr text,'
                    f'asn text,'
                    f'org text,'
-                   f'ip2region text,'
-                   f'ip2location text,'
+                   f'addr text,'
+                   f'isp text,'
                    f'resolver text,'
                    f'module text,'
                    f'source text,'
@@ -103,13 +103,13 @@ class Database(object):
                     f'insert into "{table_name}" '
                     f'(id, alive, resolve, request, new, url, subdomain, port, level,'
                     f'cname, content, public, cdn, status, reason, title, banner, header,'
-                    f'history, response, times, ttl, cidr, asn, org, ip2region,'
-                    f'ip2location, resolver, module, source, elapse, find) '
-                    f'values (:id, :alive, :resolve, :request, :new, :url, '
+                    f'history, response, times, ttl, cidr, asn, org, addr, isp, resolver,'
+                    f'module, source, elapse, find) '
+                    f'values (:id, :alive, :resolve, :request, :new, :url,'
                     f':subdomain, :port, :level, :cname, :content, :public, :cdn,'
                     f':status, :reason, :title, :banner, :header, :history, :response,'
-                    f':times, :ttl, :cidr, :asn, :org, :ip2region, :ip2location,'
-                    f':resolver, :module, :source, :elapse, :find)', results)
+                    f':times, :ttl, :cidr, :asn, :org, :addr, :isp, :resolver, :module,'
+                    f':source, :elapse, :find)', results)
             except Exception as e:
                 logger.log('ERROR', e)
 
@@ -231,7 +231,7 @@ class Database(object):
         table_name = table_name.replace('.', '_')
         query = f'select id, new, alive, request, resolve, url, subdomain, level,' \
                 f'cname, content, public, cdn, port, status, reason, title, banner,' \
-                f'cidr, asn, org, ip2region, ip2location, source from "{table_name}"'
+                f'cidr, asn, org, addr, isp, source from "{table_name}"'
         if alive and limit:
             if limit in ['resolve', 'request']:
                 where = f' where {limit} = 1'
