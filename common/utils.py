@@ -118,9 +118,6 @@ def read_target_file(target):
             domain = match_main_domain(line)
             if not domain:
                 continue
-            domain = get_main_domain(domain)
-            if not domain:
-                continue
             domains.append(domain)
     sorted_domains = sorted(set(domains), key=domains.index)
     return sorted_domains
@@ -130,9 +127,6 @@ def get_from_target(target):
     domains = set()
     if isinstance(target, str):
         domain = match_main_domain(target)
-        if not domain:
-            return domains
-        domain = get_main_domain(domain)
         if not domain:
             return domains
         domains.add(domain)
