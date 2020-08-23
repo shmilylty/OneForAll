@@ -8,7 +8,7 @@ Example
 from oneforall import OneForAll
 
 if __name__ == '__main__':
-    test = OneForAll(target='17wo.cn')
+    test = OneForAll(target='hackfun.org')
     test.brute = True
     test.req = True
     test.takeover = True
