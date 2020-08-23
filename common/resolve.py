@@ -6,13 +6,12 @@ from config import settings
 from common import utils
 from common.ipasn import IPAsnInfo
 from common.ipgeo import IpGeoInfo
-from common.ipreg import IpRegInfo
+from common.ipreg import IpRegData
 
 
 ip_asn = IPAsnInfo()
 ip_geo = IpGeoInfo()
-db_path = settings.data_storage_dir.joinpath('ip2region.db')
-ip_reg = IpRegInfo(db_path)
+ip_reg = IpRegData()
 
 
 def filter_subdomain(data):
@@ -107,7 +106,7 @@ def gen_infos(data, qname, info, infos):
                   f'{ip_geo.get_region(ip)} ' \
                   f'{ip_geo.get_city(ip)}'
             locs.append(loc)
-            reg = ip_reg.memory_search(ip).get('region').decode('utf-8')
+            reg = ip_reg.query(ip).get('addr')
             regs.append(reg)
             info['resolve'] = 1
             info['reason'] = 'OK'
