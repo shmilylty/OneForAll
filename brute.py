@@ -533,14 +533,13 @@ class Brute(Module):
     Example：
         brute.py --target domain.com --word True run
         brute.py --targets ./domains.txt --word True run
-        brute.py --target domain.com --word True --process 1 run
+        brute.py --target domain.com --word True --concurrent 2000 run
         brute.py --target domain.com --word True --wordlist subnames.txt run
         brute.py --target domain.com --word True --recursive True --depth 2 run
         brute.py --target d.com --fuzz True --place m.*.d.com --rule '[a-z]' run
         brute.py --target d.com --fuzz True --place m.*.d.com --fuzzlist subnames.txt run
 
     Note:
-        --alive  True/False           Only export alive subdomains or not (default False)
         --format rst/csv/tsv/json/yaml/html/jira/xls/xlsx/dbf/latex/ods (result format)
         --path   Result path (default None, automatically generated)
 
@@ -548,7 +547,7 @@ class Brute(Module):
     :param str  target:     One domain (target or targets must be provided)
     :param str  targets:    File path of one domain per line
     :param int  process:    Number of processes (default 1)
-    :param int  concurrent: Number of concurrent (default 10000)
+    :param int  concurrent: Number of concurrent (default 2000)
     :param bool word:       Use word mode generate dictionary (default False)
     :param str  wordlist:   Dictionary path used in word mode (default use ./config/default.py)
     :param bool recursive:  Use recursion (default False)

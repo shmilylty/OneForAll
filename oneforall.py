@@ -66,7 +66,6 @@ class OneForAll(object):
         python3 oneforall.py --target example.com --show True run
 
     Note:
-        --alive  True/False           Only export alive subdomains or not (default False)
         --port   small/medium/large  See details in ./config/setting.py(default small)
         --format rst/csv/tsv/json/yaml/html/jira/xls/xlsx/dbf/latex/ods (result format)
         --path   Result path (default None, automatically generated)
