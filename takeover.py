@@ -52,11 +52,11 @@ class Takeover(Module):
         --format rst/csv/tsv/json/yaml/html/jira/xls/xlsx/dbf/latex/ods (result format)
         --path   Result directory (default directory is ./results)
 
-    :param str  target:     One domain (target or targets must be provided)
-    :param str  targets:    File path of one domain per line
-    :param int thread:  threads number (default 20)
-    :param str format:  Result format (default csv)
-    :param str path:    Result directory (default None)
+    :param str target:   One domain (target or targets must be provided)
+    :param str targets:  File path of one domain per line
+    :param int thread:   threads number (default 20)
+    :param str format:   Result format (default csv)
+    :param str path:     Result directory (default None)
     """
 
     def __init__(self, target=None, targets=None, thread=20, path=None, format='csv'):

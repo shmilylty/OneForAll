@@ -29,7 +29,6 @@ def export(target, type='target', db=None, alive=False, limit=None, path=None, f
         python3 dbexport.py --target table_name --tb True --show False
 
     Note:
-        --alive  True/False           Only export alive subdomains or not (default False)
         --format rst/csv/tsv/json/yaml/html/jira/xls/xlsx/dbf/latex/ods (result format)
         --path   Result directory (default directory is ./results)
 
@@ -82,4 +81,3 @@ def export(target, type='target', db=None, alive=False, limit=None, path=None, f
 
 if __name__ == '__main__':
     fire.Fire(export)
-    # export('example.com')
