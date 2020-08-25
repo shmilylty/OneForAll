@@ -37,8 +37,6 @@ enable_partial_module = []  # 启用部分收集模块 必须禁用enable_all_mo
 #                          ('modules.search', 'baidu')]
 
 # 爆破模块设置
-brute_wildcard_check = True  # 开启泛解析检测(默认True)
-brute_wildcard_deal = True  # 开启泛解析处理(默认True)
 brute_concurrent_num = 2000  # 爆破时并发查询数量(默认2000，最大推荐10000)
 # 爆破所使用的字典路径 默认data/subdomains.txt
 brute_wordlist_path = data_storage_dir.joinpath('subnames.txt')
@@ -66,25 +64,18 @@ brute_ip_blacklist = {'0.0.0.0', '0.0.0.1'}  # IP黑名单 子域解析到IP黑�
 ip_appear_maximum = 100  # 多个子域解析到同一IP次数超过100次则标记为非法(泛解析)子域
 
 # 代理设置
-enable_proxy = False  # 是否使用代理(全局开关)
+enable_request_proxy = False  # 是否使用代理(全局开关)
 proxy_all_module = False  # 代理所有模块
 proxy_partial_module = ['GoogleQuery', 'AskSearch', 'DuckDuckGoSearch',
                         'GoogleAPISearch', 'GoogleSearch', 'YahooSearch',
                         'YandexSearch', 'CrossDomainXml',
                         'ContentSecurityPolicy']  # 代理自定义的模块
-proxy_pool = [{'http': 'http://127.0.0.1:1080',
-               'https': 'https://127.0.0.1:1080'}]  # 代理池
-# proxy_pool = [{'http': 'socks5h://127.0.0.1:10808',
-#                'https': 'socks5h://127.0.0.1:10808'}]  # 代理池
+request_proxy_pool = [{'http': 'http://127.0.0.1:1080',
+                       'https': 'https://127.0.0.1:1080'}]  # 代理池
+# request_proxy_pool = [{'http': 'socks5h://127.0.0.1:10808',
+#                        'https': 'socks5h://127.0.0.1:10808'}]  # 代理池
 
 # 搜索模块设置
 enable_recursive_search = False  # 递归搜索子域
 search_recursive_times = 2  # 递归搜索层数
 
-# aiohttp有关配置
-# aiohttp 支持 HTTP/HTTPS形式的代理
-aiohttp_proxy = None  # 示例 proxy="http://user:pass@some.proxy.com"
-# 为了保证请求质量 请谨慎更改以下设置
-sockread_timeout = 6  # 每个请求socket读取超时时间，默认6秒
-sockconn_timeout = 3  # 每个请求socket连接超时时间，默认3秒
-limit_open_conn = None  # 限制同一时间打开的连接总数，默认None将根据系统内存大小自动设置

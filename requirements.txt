@@ -1,6 +1,3 @@
-aiohttp==3.6.2
-async-timeout==3.0.1
-attrs==20.1.0
 beautifulsoup4==4.9.1
 bs4==0.0.1
 certifi==2020.6.20
@@ -14,12 +11,9 @@ exrex==0.10.5
 fire==0.3.1
 future==0.18.2
 idna==2.10
-IP2Location==8.4.1
 jdcal==1.4.1
 loguru==0.5.1
-multidict==4.7.6
 openpyxl==2.4.11
-psutil==5.7.2
 pyparsing==2.4.7
 PySocks==1.7.1
 records==0.5.3
@@ -37,4 +31,3 @@ tqdm==4.48.2
 treelib==1.6.1
 urllib3==1.25.10
 win32-setctime==1.0.1
-yarl==1.5.1
