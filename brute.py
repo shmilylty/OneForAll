@@ -592,8 +592,6 @@ class Brute(Module):
         self.domain = str()  # 当前正在进行爆破的域名
         self.ips_times = dict()  # IP集合出现次数
         self.enable_wildcard = False  # 当前域名是否使用泛解析
-        self.wildcard_check = settings.brute_wildcard_check
-        self.wildcard_deal = settings.brute_wildcard_deal
         self.check_env = True
         self.quite = False
 

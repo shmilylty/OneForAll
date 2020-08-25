@@ -22,9 +22,9 @@ class Module(object):
         self.cookie = None
         self.header = dict()
         self.proxy = None
-        self.delay = settings.request_delay  # 请求睡眠时延
-        self.timeout = settings.request_timeout  # 请求超时时间
-        self.verify = settings.request_verify  # 请求SSL验证
+        self.delay = 1  # 请求睡眠时延
+        self.timeout = settings.request_timeout_second  # 请求超时时间
+        self.verify = settings.request_ssl_verify  # 请求SSL验证
         self.domain = str()  # 当前进行子域名收集的主域
         self.subdomains = set()  # 存放发现的子域
         self.infos = dict()  # 存放子域有关信息
@@ -199,7 +199,7 @@ class Module(object):
         :param str module: module name
         :return: proxy
         """
-        if not settings.enable_proxy:
+        if not settings.enable_request_proxy:
             logger.log('TRACE', f'All modules do not use proxy')
             return self.proxy
         if settings.proxy_all_module:
