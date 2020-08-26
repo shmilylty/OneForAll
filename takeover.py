@@ -83,14 +83,14 @@ class Takeover(Module):
         utils.save_data(self.path, data)
 
     def compare(self, subdomain, cname, responses):
-        domain_resp = self.get('http://' + subdomain, check=False)
-        cname_resp = self.get('http://' + cname, check=False)
+        domain_resp = self.get('http://' + subdomain, check=False, ignore=True)
+        cname_resp = self.get('http://' + cname, check=False, ignore=True)
         if domain_resp is None or cname_resp is None:
             return
 
         for resp in responses:
             if resp in domain_resp.text and resp in cname_resp.text:
-                logger.log('ALERT', f'{subdomain}Subdomain takeover threat found')
+                logger.log('ALERT', f'{subdomain} takeover threat found')
                 self.results.append([subdomain, cname])
                 break
 
@@ -142,13 +142,13 @@ class Takeover(Module):
             # 创建待检查的子域队列
             for domain in self.subdomains:
                 self.subdomainq.put(domain)
+            # 进度线程
+            progress_thread = Thread(target=self.progress)
+            progress_thread.start()
             # 检查线程
             for _ in range(self.thread):
-                check_thread = Thread(target=self.check, daemon=True)
+                check_thread = Thread(target=self.check)
                 check_thread.start()
-            # 进度线程
-            progress_thread = Thread(target=self.progress, daemon=True)
-            progress_thread.start()
 
             self.subdomainq.join()
             self.save()
@@ -164,4 +164,3 @@ class Takeover(Module):
 
 if __name__ == '__main__':
     fire.Fire(Takeover)
-

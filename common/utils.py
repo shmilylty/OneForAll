@@ -719,11 +719,17 @@ def get_url_resp(url):
 
 
 def decode_resp_text(resp):
+    content = resp.content
+    if not content:
+        return str('')
     try:
-        text = resp.text(encoding='utf-8', errors='strict')  # 先尝试用utf-8严格解码
-    except UnicodeError:
+        # 先尝试用utf-8严格解码
+        content = str(content, encoding='utf-8', errors='strict')
+    except (LookupError, TypeError, UnicodeError):
         try:
-            text = resp.text(encoding='gb18030', errors='strict')  # 再尝试用gb18030严格解码
-        except UnicodeError:
-            text = resp.text(encoding=None, errors='ignore')  # 最后尝试自动解码
-    return text
+            # 再尝试用gb18030严格解码
+            content = str(content, encoding='gb18030', errors='strict')
+        except (LookupError, TypeError, UnicodeError):
+            # 最后尝试自动解码
+            content = str(content,  errors='replace')
+    return content
