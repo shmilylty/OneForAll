@@ -1,21 +1,18 @@
-#!/usr/bin/env python3
-
 """
 检查域名证书收集子域名
 """
 import socket
 import ssl
 
-from common.module import Module
 from config.log import logger
+from common.check import Check
 
 
-class CheckCert(Module):
+class CertInfo(Check):
     def __init__(self, domain):
-        Module.__init__(self)
+        Check.__init__(self)
         self.domain = domain
-        self.port = 443  # ssl port
-        self.module = 'Check'
+        self.module = 'check'
         self.source = 'CertInfo'
 
     def check(self):
@@ -24,10 +21,11 @@ class CheckCert(Module):
         """
         try:
             ctx = ssl.create_default_context()
-            sock = ctx.wrap_socket(socket.socket(),
-                                   server_hostname=self.domain)
-            sock.connect((self.domain, self.port))
-            cert_dict = sock.getpeercert()
+            sock = socket.socket()
+            sock.settimeout(10)
+            wrap_sock = ctx.wrap_socket(sock, server_hostname=self.domain)
+            wrap_sock.connect((self.domain, 443))
+            cert_dict = wrap_sock.getpeercert()
         except Exception as e:
             logger.log('DEBUG', e.args)
             return
@@ -52,7 +50,7 @@ def run(domain):
 
     :param str domain: 域名
     """
-    check = CheckCert(domain)
+    check = CertInfo(domain)
     check.run()
 
 

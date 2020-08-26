@@ -17,6 +17,7 @@ from brute import Brute
 from common import utils, resolve, request
 from common.database import Database
 from modules.collect import Collect
+from modules.srv import BruteSRV
 from modules.finder import Finder
 from modules import iscdn
 from config import settings
@@ -65,7 +66,6 @@ class OneForAll(object):
         python3 oneforall.py --target example.com --show True run
 
     Note:
-        --alive  True/False           Only export alive subdomains or not (default False)
         --port   small/medium/large  See details in ./config/setting.py(default small)
         --format rst/csv/tsv/json/yaml/html/jira/xls/xlsx/dbf/latex/ods (result format)
         --path   Result path (default None, automatically generated)
@@ -188,8 +188,12 @@ class OneForAll(object):
         self.origin_table = self.domain + '_origin_result'
         self.resolve_table = self.domain + '_resolve_result'
 
-        collect = Collect(self.domain, export=False)
+        collect = Collect(self.domain)
         collect.run()
+
+        srv = BruteSRV(self.domain)
+        srv.run()
+
         if self.brute:
             # Due to there will be a large number of dns resolution requests,
             # may cause other network tasks to be error
@@ -240,7 +244,7 @@ class OneForAll(object):
         # Scan subdomain takeover
         if self.takeover:
             subdomains = utils.get_subdomains(self.data)
-            takeover = Takeover(subdomains)
+            takeover = Takeover(targets=subdomains)
             takeover.run()
         return self.data
 

@@ -4,7 +4,7 @@
 [![codecov](https://codecov.io/gh/shmilylty/OneForAll/branch/master/graph/badge.svg)](https://codecov.io/gh/shmilylty/OneForAll)
 [![Maintainability](https://api.codeclimate.com/v1/badges/1287668a6b4c72af683e/maintainability)](https://codeclimate.com/github/shmilylty/OneForAll/maintainability)
 [![License](https://img.shields.io/github/license/shmilylty/OneForAll)](https://github.com/shmilylty/OneForAll/tree/master/LICENSE)
-[![python](https://img.shields.io/badge/python-3.8-blue)](https://github.com/shmilylty/OneForAll/tree/master/)
+[![python](https://img.shields.io/badge/python-3.6|3.7|3.8-blue)](https://github.com/shmilylty/OneForAll/tree/master/)
 [![python](https://img.shields.io/badge/release-v0.3.0-brightgreen)](https://github.com/shmilylty/OneForAll/releases)
 
 👊**OneForAll是一款功能强大的子域收集工具**  📝[English Document](https://github.com/shmilylty/OneForAll/tree/master/docs/en-us/README.md)
@@ -14,21 +14,6 @@
 ## 🚀上手指南
 
 📢 请务必花一点时间阅读此文档，有助于你快速熟悉OneForAll！
-
-<details>
-<summary><b>🐍安装要求</b></summary>
-
-OneForAll基于[Python 3.8.0]( https://www.python.org/downloads/release/python-380/ )开发和测试，请使用高于Python 3.8.0的稳定发行版本，其他版本可能会出现一些问题（Windows平台必须使用3.8.0以上版本），安装Python环境可以参考[Python 3 安装指南](https://pythonguidecn.readthedocs.io/zh/latest/starting/installation.html#python-3)。运行以下命令检查Python和pip3版本：
-```bash
-python -V
-pip3 -V
-```
-如果你看到类似以下的输出便说明Python环境没有问题：
-```bash
-Python 3.8.0
-pip 19.2.2 from C:\Users\shmilylty\AppData\Roaming\Python\Python38\site-packages\pip (python 3.8)
-```
-</details>
 
 <details>
 <summary><b>✔安装步骤（git 版）</b></summary>

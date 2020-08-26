@@ -4,7 +4,7 @@
 [![codecov](https://codecov.io/gh/shmilylty/OneForAll/branch/master/graph/badge.svg)](https://codecov.io/gh/shmilylty/OneForAll)
 [![Maintainability](https://api.codeclimate.com/v1/badges/1287668a6b4c72af683e/maintainability)](https://codeclimate.com/github/shmilylty/OneForAll/maintainability)
 [![License](https://img.shields.io/github/license/shmilylty/OneForAll)](https://github.com/shmilylty/OneForAll/tree/master/LICENSE)
-[![python](https://img.shields.io/badge/python-3.8-blue)](https://github.com/shmilylty/OneForAll/tree/master/)
+[![python](https://img.shields.io/badge/python-3.6|3.7|3.8-blue)](https://github.com/shmilylty/OneForAll/tree/master/)
 [![python](https://img.shields.io/badge/release-v0.3.0-brightgreen)](https://github.com/shmilylty/OneForAll/releases)
 
 👊**OneForAll is a powerful subdomain integration tool**  📝[中文文档](https://github.com/shmilylty/OneForAll/tree/master/README.md)
@@ -14,23 +14,6 @@
 ## 🚀Start Guide
 
 📢 Please read this document to help you start quickly!
-
-<details>
-<summary><b>🐍Installation requirements</b></summary>
-
-OneForAll is developed and tested based on [Python 3.8.0](https://www.python.org/downloads/release/python-380/). Recommend use release higher than Python 3.8.0 (Windows platform must use Python 3.8.0 or later). For more information on installing the Python environment, please read [Python 3 installation Guide](https://pythonguidecn.readthedocs.io/zh/latest/starting/installation.html#python-3).
-
-After installation python, run the following command to check the Python and pip3 versions:
-```bash
-python -V
-pip3 -V
-```
-If you see the following output, there is no problem with the Python environment:
-```bash
-Python 3.8.0
-pip 19.2.2 from C:\Users\shmilylty\AppData\Roaming\Python\Python37\site-packages\pip (python 3.8)
-```
-</details>
 
 <details>
 <summary><b>✔Installation steps (for Git)</b></summary>

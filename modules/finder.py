@@ -190,9 +190,10 @@ def find_subdomains(domain, data):
         subdomains.update(find_in_resp(domain, req_url, rsp_html))
         js_urls.update(find_js_urls(domain, req_url, rsp_html))
 
-    resp_data = request.urls_request(js_urls)
-    for resp, text in resp_data:
-        if not text:
+    resp_data = request.bulk_request(js_urls)
+    for resp in resp_data:
+        if not resp:
             continue
+        text = utils.decode_resp_text(resp)
         subdomains.update(find_in_resp(domain, resp.url, text))
     return subdomains

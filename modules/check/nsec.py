@@ -1,16 +1,16 @@
 # https://www.icann.org/resources/pages/dnssec-what-is-it-why-important-2019-03-20-zh
 # https://appsecco.com/books/subdomain-enumeration/active_techniques/zone_walking.html
 
-from common.module import Module
 from common import utils
+from common.check import Check
 
 
-class CheckNSEC(Module):
+class NSEC(Check):
     def __init__(self, domain):
-        Module.__init__(self)
+        Check.__init__(self)
         self.domain = domain
         self.module = 'check'
-        self.source = "CheckNSEC"
+        self.source = "NSECCheck"
 
     def walk(self):
         domain = self.domain
@@ -47,7 +47,7 @@ def run(domain):
 
     :param str domain: 域名
     """
-    brute = CheckNSEC(domain)
+    brute = NSEC(domain)
     brute.run()
 
 

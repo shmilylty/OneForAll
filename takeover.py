@@ -20,7 +20,6 @@ from config.log import logger
 from config import settings
 from common import utils
 from common.module import Module
-from common.domain import Domain
 
 
 def get_fingerprint():
@@ -41,34 +40,32 @@ def get_cname(subdomain):
         return answer.to_text()  # 一个子域只有一个CNAME记录
 
 
-def get_maindomain(subdomain):
-    return Domain(subdomain).registered()
-
-
 class Takeover(Module):
     """
     OneForAll subdomain takeover module
 
     Example:
         python3 takeover.py --target www.example.com  --format csv run
-        python3 takeover.py --target ./subdomains.txt --thread 10 run
+        python3 takeover.py --targets ./subdomains.txt --thread 10 run
 
     Note:
         --format rst/csv/tsv/json/yaml/html/jira/xls/xlsx/dbf/latex/ods (result format)
         --path   Result directory (default directory is ./results)
 
-    :param any target:  One domain or File path of one domain per line (required)
-    :param int thread:  threads number (default 100)
-    :param str format:  Result format (default csv)
-    :param str path:    Result directory (default None)
+    :param str target:   One domain (target or targets must be provided)
+    :param str targets:  File path of one domain per line
+    :param int thread:   threads number (default 20)
+    :param str format:   Result format (default csv)
+    :param str path:     Result directory (default None)
     """
 
-    def __init__(self, target, thread=100, path=None, format='csv'):
+    def __init__(self, target=None, targets=None, thread=20, path=None, format='csv'):
         Module.__init__(self)
         self.subdomains = set()
         self.module = 'Check'
         self.source = 'Takeover'
         self.target = target
+        self.targets = targets
         self.thread = thread
         self.path = path
         self.format = format
@@ -101,10 +98,10 @@ class Takeover(Module):
         cname = get_cname(subdomain)
         if cname is None:
             return
-        maindomain = get_maindomain(cname)
+        main_domain = utils.get_main_domain(cname)
         for fingerprint in self.fingerprints:
             cnames = fingerprint.get('cname')
-            if maindomain not in cnames:
+            if main_domain not in cnames:
                 continue
             responses = fingerprint.get('response')
             self.compare(subdomain, cname, responses)
@@ -116,7 +113,6 @@ class Takeover(Module):
             self.subdomainq.task_done()
 
     def progress(self):
-        # 设置进度
         bar = tqdm()
         bar.total = len(self.subdomains)
         bar.desc = 'Check Progress'
@@ -127,12 +123,14 @@ class Takeover(Module):
             bar.update()
             if done == bar.total:  # 完成队列中所有子域的检查退出
                 break
-        # bar.close()
 
     def run(self):
         start = time.time()
         logger.log('INFOR', f'Start running {self.source} module')
-        self.subdomains = utils.get_domains(self.target)
+        if isinstance(self.targets, set):
+            self.subdomains = self.targets
+        else:
+            self.subdomains = utils.get_domains(self.target, self.targets)
         self.format = utils.check_format(self.format, len(self.subdomains))
         timestamp = utils.get_timestamp()
         name = f'takeover_check_result_{timestamp}'

@@ -35,4 +35,4 @@ logger.level(name='FATAL', no=50, color='<RED><bold>', icon='☠️')
 # 命令终端日志级别默认为INFOR
 logger.add(sys.stderr, level='INFOR', format=stdout_fmt, enqueue=True)
 # 日志文件默认为级别为DEBUG
-logger.add(log_path, level='DEBUG', format=logfile_fmt, enqueue=True)
+logger.add(log_path, level='DEBUG', format=logfile_fmt, enqueue=True, encoding='utf-8')

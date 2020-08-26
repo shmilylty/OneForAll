@@ -9,7 +9,6 @@ class Domain(object):
 
     :param str string: input string
     """
-
     def __init__(self, string):
         self.string = str(string)
         self.regexp = r'\b((?=[a-z0-9-]{1,63}\.)(xn--)?[a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{2,63}\b'

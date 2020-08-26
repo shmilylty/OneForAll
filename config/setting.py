@@ -35,11 +35,8 @@ enable_partial_module = []  # 启用部分收集模块 必须禁用enable_all_mo
 # 只使用ask和baidu搜索引擎收集子域的示例
 # enable_partial_module = [('modules.search', 'ask')
 #                          ('modules.search', 'baidu')]
-module_thread_timeout = 120.0  # 每个收集模块线程超时时间(默认2分钟)
 
 # 爆破模块设置
-brute_wildcard_check = True  # 开启泛解析检测(默认True)
-brute_wildcard_deal = True  # 开启泛解析处理(默认True)
 brute_concurrent_num = 2000  # 爆破时并发查询数量(默认2000，最大推荐10000)
 # 爆破所使用的字典路径 默认data/subdomains.txt
 brute_wordlist_path = data_storage_dir.joinpath('subnames.txt')
@@ -66,37 +63,19 @@ fuzz_rule = None  # fuzz域名的正则 示例：'[a-z][0-9]' 表示第一位是
 brute_ip_blacklist = {'0.0.0.0', '0.0.0.1'}  # IP黑名单 子域解析到IP黑名单则标记为非法子域
 ip_appear_maximum = 100  # 多个子域解析到同一IP次数超过100次则标记为非法(泛解析)子域
 
-# banner识别模块设置
-banner_process_number = 4  # 识别进程数量(默认4)
-
 # 代理设置
-enable_proxy = False  # 是否使用代理(全局开关)
+enable_request_proxy = False  # 是否使用代理(全局开关)
 proxy_all_module = False  # 代理所有模块
 proxy_partial_module = ['GoogleQuery', 'AskSearch', 'DuckDuckGoSearch',
                         'GoogleAPISearch', 'GoogleSearch', 'YahooSearch',
                         'YandexSearch', 'CrossDomainXml',
                         'ContentSecurityPolicy']  # 代理自定义的模块
-proxy_pool = [{'http': 'http://127.0.0.1:1080',
-               'https': 'https://127.0.0.1:1080'}]  # 代理池
-# proxy_pool = [{'http': 'socks5h://127.0.0.1:10808',
-#                'https': 'socks5h://127.0.0.1:10808'}]  # 代理池
-
-
-# 网络请求设置
-request_delay = 1  # 请求时延
-request_timeout = 60  # 请求超时
-request_verify = False  # 请求SSL验证
+request_proxy_pool = [{'http': 'http://127.0.0.1:1080',
+                       'https': 'https://127.0.0.1:1080'}]  # 代理池
+# request_proxy_pool = [{'http': 'socks5h://127.0.0.1:10808',
+#                        'https': 'socks5h://127.0.0.1:10808'}]  # 代理池
 
 # 搜索模块设置
 enable_recursive_search = False  # 递归搜索子域
 search_recursive_times = 2  # 递归搜索层数
 
-# aiohttp有关配置
-# aiohttp 支持 HTTP/HTTPS形式的代理
-aiohttp_proxy = None  # 示例 proxy="http://user:pass@some.proxy.com"
-# 为了保证请求质量 请谨慎更改以下设置
-sockread_timeout = 6  # 每个请求socket读取超时时间，默认6秒
-sockconn_timeout = 3  # 每个请求socket连接超时时间，默认3秒
-limit_open_conn = None  # 限制同一时间打开的连接总数，默认None将根据系统内存大小自动设置
-# 限制同一时间在同一个端点((host, port, is_ssl) 3者都一样的情况)打开的连接数
-limit_per_host = 10  # 0表示不限制,默认10
