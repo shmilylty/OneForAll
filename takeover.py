@@ -143,11 +143,13 @@ class Takeover(Module):
             for domain in self.subdomains:
                 self.subdomainq.put(domain)
             # 进度线程
-            progress_thread = Thread(target=self.progress)
+            progress_thread = Thread(target=self.progress, name='ProgressThread',
+                                     daemon=True)
             progress_thread.start()
             # 检查线程
-            for _ in range(self.thread):
-                check_thread = Thread(target=self.check)
+            for i in range(self.thread):
+                check_thread = Thread(target=self.check, name=f'CheckThread{i}',
+                                      daemon=True)
                 check_thread.start()
 
             self.subdomainq.join()
