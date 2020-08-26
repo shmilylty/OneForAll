@@ -113,6 +113,14 @@ def get_jump_urls(history):
     return urls
 
 
+def get_progress_bar(total):
+    bar = tqdm.tqdm()
+    bar.total = total
+    bar.desc = 'Request Progress'
+    bar.ncols = 80
+    return bar
+
+
 def get(url, resp_queue, session):
     timeout = settings.request_timeout_second
     redirect = settings.request_allow_redirect
@@ -132,16 +140,13 @@ def request(urls_queue, resp_queue, session):
         urls_queue.task_done()
 
 
-def progress(urls, resp_queue):
-    bar = tqdm.tqdm()
-    bar.total = len(urls)
-    bar.desc = 'Request Progress'
-    bar.ncols = 80
+def progress(bar, total, urls_queue):
     while True:
-        done = resp_queue.qsize()
+        remaining = urls_queue.qsize()
+        done = total - remaining
         bar.n = done
         bar.update()
-        if done == bar.total:
+        if remaining == 0:
             break
 
 
@@ -163,10 +168,12 @@ def bulk_request(urls):
     resp_queue = Queue()
     for url in urls:
         urls_queue.put(url)
+    total = len(urls)
     session = get_session()
     thread_count = req_thread_count()
+    bar = get_progress_bar(total)
 
-    progress_thread = Thread(target=progress, args=(urls, resp_queue))
+    progress_thread = Thread(target=progress, args=(bar, total, urls_queue))
     progress_thread.start()
 
     for _ in range(thread_count):
