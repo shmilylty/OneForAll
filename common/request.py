@@ -166,11 +166,13 @@ def bulk_request(urls):
     session = get_session()
     thread_count = req_thread_count()
 
-    progress_thread = Thread(target=progress, args=(urls, resp_queue))
+    progress_thread = Thread(target=progress, name='ProgressThread',
+                             args=(urls, resp_queue))
     progress_thread.start()
 
-    for _ in range(thread_count):
-        request_thread = Thread(target=request, args=(urls_queue, resp_queue, session))
+    for i in range(thread_count):
+        request_thread = Thread(target=request, name=f'RequestThread-{i}',
+                                args=(urls_queue, resp_queue, session))
         request_thread.start()
 
     urls_queue.join()
