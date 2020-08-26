@@ -49,9 +49,8 @@ class Collect(object):
         # Create subdomain collection threads
         for collect_func in self.collect_funcs:
             func_obj, func_name = collect_func
-            thread = threading.Thread(target=func_obj,
-                                      name=func_name,
-                                      args=(self.domain,))
+            thread = threading.Thread(target=func_obj, name=func_name,
+                                      args=(self.domain,), daemon=True)
             threads.append(thread)
         # Start all threads
         for thread in threads:
