@@ -83,8 +83,8 @@ class Takeover(Module):
         utils.save_data(self.path, data)
 
     def compare(self, subdomain, cname, responses):
-        domain_resp = self.get('http://' + subdomain, check=False)
-        cname_resp = self.get('http://' + cname, check=False)
+        domain_resp = self.get('http://' + subdomain, check=False, ignore=True)
+        cname_resp = self.get('http://' + cname, check=False, ignore=True)
         if domain_resp is None or cname_resp is None:
             return
 
@@ -164,4 +164,3 @@ class Takeover(Module):
 
 if __name__ == '__main__':
     fire.Fire(Takeover)
-
