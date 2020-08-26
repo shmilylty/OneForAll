@@ -1,32 +1,22 @@
 """
 检查内容安全策略收集子域名收集子域名
 """
-from common.module import Module
+from common.check import Check
 
 
-class CheckRobots(Module):
-    """
-    检查robots.txt收集子域名
-    """
+class Robots(Check):
     def __init__(self, domain):
-        Module.__init__(self)
+        Check.__init__(self)
         self.domain = domain
-        self.module = 'Check'
-        self.source = 'Robots'
+        self.module = 'check'
+        self.source = 'RobotsCheck'
 
     def check(self):
         """
         正则匹配域名的robots.txt文件中的子域
         """
-        urls = [f'http://{self.domain}/robots.txt',
-                f'https://{self.domain}/robots.txt',
-                f'http://www.{self.domain}/robots.txt',
-                f'https://www.{self.domain}/robots.txt']
-        for url in urls:
-            self.header = self.get_header()
-            self.proxy = self.get_proxy(self.source)
-            resp = self.get(url, check=False, allow_redirects=False)
-            self.subdomains = self.collect_subdomains(resp)
+        filenames = {'robots.txt'}
+        self.to_check(filenames)
 
     def run(self):
         """
@@ -46,7 +36,7 @@ def run(domain):
 
     :param str domain: 域名
     """
-    check = CheckRobots(domain)
+    check = Robots(domain)
     check.run()
 
 

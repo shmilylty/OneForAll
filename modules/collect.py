@@ -1,38 +1,24 @@
-import time
 import threading
 import importlib
 
-import dbexport
 from config.log import logger
 from config import settings
-from common import utils
 
 
 class Collect(object):
-    """
-    Collect subdomains
-    """
-
-    def __init__(self, domain, export=True):
-        self.domain = utils.get_main_domain(domain)
-        self.elapse = 0.0
+    def __init__(self, domain):
+        self.domain = domain
         self.modules = []
         self.collect_funcs = []
-        self.path = None
-        self.export = export
-        self.format = 'csv'
 
     def get_mod(self):
         """
         Get modules
         """
         if settings.enable_all_module:
-            # modules = ['brute', 'certificates', 'crawl',
-            # 'datasets', 'intelligence', 'search']
             # The crawl module has some problems
             modules = ['certificates', 'check', 'datasets',
                        'dnsquery', 'intelligence', 'search']
-            # modules = ['certificates']
             for module in modules:
                 module_path = settings.module_dir.joinpath(module)
                 for path in module_path.rglob('*.py'):
@@ -55,7 +41,6 @@ class Collect(object):
         """
         Class entrance
         """
-        start = time.time()
         logger.log('INFOR', f'Start collecting subdomains of {self.domain}')
         self.get_mod()
         self.import_func()
@@ -66,8 +51,7 @@ class Collect(object):
             func_obj, func_name = collect_func
             thread = threading.Thread(target=func_obj,
                                       name=func_name,
-                                      args=(self.domain,),
-                                      daemon=True)
+                                      args=(self.domain,))
             threads.append(thread)
         # Start all threads
         for thread in threads:
@@ -81,15 +65,6 @@ class Collect(object):
         for thread in threads:
             if thread.is_alive():
                 logger.log('ALERT', f'{thread.name} module thread timed out')
-
-        # Export
-        if self.export:
-            if not self.path:
-                name = f'{self.domain}.{self.format}'
-                self.path = settings.result_save_dir.joinpath(name)
-            dbexport.export(self.domain, type='table', path=self.path, format=self.format)
-        end = time.time()
-        self.elapse = round(end - start, 1)
 
 
 if __name__ == '__main__':

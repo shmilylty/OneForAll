@@ -5,14 +5,11 @@ from config.log import logger
 from config import settings
 from common import utils
 from common.ipasn import IPAsnInfo
-from common.ipgeo import IpGeoInfo
-from common.ipreg import IpRegInfo
+from common.ipreg import IpRegData
 
 
 ip_asn = IPAsnInfo()
-ip_geo = IpGeoInfo()
-db_path = settings.data_storage_dir.joinpath('ip2region.db')
-ip_reg = IpRegInfo(db_path)
+ip_reg = IpRegData()
 
 
 def filter_subdomain(data):
@@ -82,12 +79,12 @@ def gen_infos(data, qname, info, infos):
     cname = list()
     ips = list()
     public = list()
-    ttls = list()
-    cidrs = list()
-    asns = list()
-    orgs = list()
-    locs = list()
-    regs = list()
+    ttl = list()
+    cidr = list()
+    asn = list()
+    org = list()
+    addr = list()
+    isp = list()
     answers = data.get('answers')
     for answer in answers:
         if answer.get('type') == 'A':
@@ -95,31 +92,26 @@ def gen_infos(data, qname, info, infos):
             cname.append(answer.get('name')[:-1])  # 去除最右边的`.`点号
             ip = answer.get('data')
             ips.append(ip)
-            ttl = answer.get('ttl')
-            ttls.append(str(ttl))
-            is_public = utils.ip_is_public(ip)
-            public.append(str(is_public))
+            ttl.append(str(answer.get('ttl')))
+            public.append(str(utils.ip_is_public(ip)))
             asn_info = ip_asn.find(ip)
-            cidrs.append(asn_info.get('cidr'))
-            asns.append(asn_info.get('asn'))
-            orgs.append(asn_info.get('org'))
-            loc = f'{ip_geo.get_country_long(ip)} ' \
-                  f'{ip_geo.get_region(ip)} ' \
-                  f'{ip_geo.get_city(ip)}'
-            locs.append(loc)
-            reg = ip_reg.memory_search(ip).get('region').decode('utf-8')
-            regs.append(reg)
+            cidr.append(asn_info.get('cidr'))
+            asn.append(asn_info.get('asn'))
+            org.append(asn_info.get('org'))
+            ip_info = ip_reg.query(ip)
+            addr.append(ip_info.get('addr'))
+            isp.append(ip_info.get('isp'))
             info['resolve'] = 1
             info['reason'] = 'OK'
             info['cname'] = ','.join(cname)
             info['content'] = ','.join(ips)
             info['public'] = ','.join(public)
-            info['ttl'] = ','.join(ttls)
-            info['cidr'] = ','.join(cidrs)
-            info['asn'] = ','.join(asns)
-            info['org'] = ','.join(orgs)
-            info['ip2location'] = ','.join(locs)
-            info['ip2region'] = ','.join(regs)
+            info['ttl'] = ','.join(ttl)
+            info['cidr'] = ','.join(cidr)
+            info['asn'] = ','.join(asn)
+            info['org'] = ','.join(org)
+            info['addr'] = ','.join(addr)
+            info['isp'] = ','.join(isp)
             infos[qname] = info
     if not flag:
         info['alive'] = 0

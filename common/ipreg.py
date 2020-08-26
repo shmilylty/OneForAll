@@ -10,6 +10,8 @@ import socket
 import struct
 import sys
 
+from config import settings
+
 
 class IpRegInfo(object):
     __INDEX_BLOCK_LENGTH = 12
@@ -39,7 +41,8 @@ class IpRegInfo(object):
             self.__dbBinStr = self.__f.read()  # read all the contents in file
             self.__indexSPtr = self.get_long(self.__dbBinStr, 0)
             self.__indexLPtr = self.get_long(self.__dbBinStr, 4)
-            self.__indexCount = int((self.__indexLPtr - self.__indexSPtr) / self.__INDEX_BLOCK_LENGTH) + 1
+            self.__indexCount = int((self.__indexLPtr - self.__indexSPtr) /
+                                    self.__INDEX_BLOCK_LENGTH) + 1
 
         l, h, data_ptr = (0, self.__indexCount, 0)
         while l <= h:
@@ -67,14 +70,16 @@ class IpRegInfo(object):
         " binary search method
         " param: ip
         """
-        if not ip.isdigit(): ip = self.ip2long(ip)
+        if not ip.isdigit():
+            ip = self.ip2long(ip)
 
         if self.__indexCount == 0:
             self.__f.seek(0)
             super_block = self.__f.read(8)
             self.__indexSPtr = self.get_long(super_block, 0)
             self.__indexLPtr = self.get_long(super_block, 4)
-            self.__indexCount = int((self.__indexLPtr - self.__indexSPtr) / self.__INDEX_BLOCK_LENGTH) + 1
+            self.__indexCount = int((self.__indexLPtr - self.__indexSPtr) /
+                                    self.__INDEX_BLOCK_LENGTH) + 1
 
         l, h, data_ptr = (0, self.__indexCount, 0)
         while l <= h:
@@ -208,10 +213,9 @@ class IpRegInfo(object):
         self.__f.seek(data_ptr)
         data = self.__f.read(data_len)
 
-        return {
-            "city_id": self.get_long(data, 0),
-            "region": data[4:]
-        }
+        info = {"city_id": self.get_long(data, 0),
+                "region": data[4:].decode('utf-8')}
+        return info
 
     @staticmethod
     def ip2long(ip):
@@ -244,3 +248,27 @@ class IpRegInfo(object):
         self.__dbBinStr = None
         self.__headerPtr = None
         self.__headerSip = None
+
+
+class IpRegData(IpRegInfo):
+    def __init__(self):
+        path = settings.data_storage_dir.joinpath('ip2region.db')
+        IpRegInfo.__init__(self, path)
+
+    def query(self, ip, algorithm='memory'):
+        algorithms = ['memory', 'binary', 'btree']
+        if algorithm not in algorithms:
+            raise Exception(f"Only three query algorithms are supported: {algorithms}")
+        if algorithm == 'memory':
+            result = self.memory_search(ip)
+        elif algorithm == 'binary':
+            result = self.binary_search(ip)
+        else:
+            result = self.btree_search(ip)
+        addr_list = result.get('region').split('|')
+        addr = ''.join(filter(lambda x: x != '0', addr_list[:-1]))
+        isp = addr_list[-1]
+        if isp == '0':
+            isp = '未知'
+        info = {'addr': addr, 'isp': isp}
+        return info

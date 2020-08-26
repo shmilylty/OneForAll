@@ -6,6 +6,9 @@ OneForAll默认配置
 import pathlib
 import warnings
 
+# 禁用所有警告信息
+warnings.filterwarnings("ignore")
+
 # 路径设置
 relative_directory = pathlib.Path(__file__).parent.parent  # OneForAll代码相对路径
 module_dir = relative_directory.joinpath('modules')  # OneForAll模块目录
@@ -40,7 +43,7 @@ enable_partial_module = []  # 启用部分收集模块 必须禁用enable_all_mo
 # 只使用ask和baidu搜索引擎收集子域的示例
 # enable_partial_module = [('modules.search', 'ask')
 #                          ('modules.search', 'baidu')]
-module_thread_timeout = 120.0  # 每个收集模块线程超时时间(默认2分钟)
+module_thread_timeout = 90.0  # 每个收集模块线程超时时间(默认90秒)
 
 # 爆破模块设置
 enable_wildcard_check = True  # 开启泛解析检测(默认True)
@@ -51,7 +54,7 @@ brute_status_format = 'ansi'  # 爆破时状态输出格式（默认asni，可�
 brute_process_num = 1  # 默认1
 brute_concurrent_num = 2000  # 并发查询数量(默认2000，最大推荐10000)
 brute_socket_num = 1  # 爆破时每个进程下的socket数量
-brute_resolve_num = 10  # 解析失败时尝试换名称服务器重查次数
+brute_resolve_num = 15  # 解析失败时尝试换名称服务器重查次数
 # 爆破所使用的字典路径 默认data/subdomains.txt
 brute_wordlist_path = data_storage_dir.joinpath('subnames.txt')
 # 爆破所使用的字典路径 默认data/cn_nameservers.txt
@@ -79,24 +82,39 @@ ip_appear_maximum = 100  # 多个子域解析到同一IP次数超过100次则标
 banner_process_number = 4  # 识别进程数量(默认4)
 
 # 代理设置
-enable_proxy = False  # 是否使用代理(全局开关)
+enable_request_proxy = False  # 是否使用代理(全局开关，默认False)
 proxy_all_module = False  # 代理所有模块
 proxy_partial_module = ['GoogleQuery', 'AskSearch', 'DuckDuckGoSearch',
                         'GoogleAPISearch', 'GoogleSearch', 'YahooSearch',
                         'YandexSearch', 'CrossDomainXml',
                         'ContentSecurityPolicy']  # 代理自定义的模块
-proxy_pool = [{'http': 'http://127.0.0.1:1080',
-               'https': 'https://127.0.0.1:1080'}]  # 代理池
-# proxy_pool = [{'http': 'socks5h://127.0.0.1:10808',
-#                'https': 'socks5h://127.0.0.1:10808'}]  # 代理池
+request_proxy_pool = [{'http': 'http://127.0.0.1:1080',
+                       'https': 'https://127.0.0.1:1080'}]  # 代理池
+# request_proxy_pool = [{'http': 'socks5h://127.0.0.1:10808',
+#                        'https': 'socks5h://127.0.0.1:10808'}]  # 代理池
 
 
-# 网络请求设置
-request_delay = 1  # 请求时延
-request_timeout = 60  # 请求超时
-request_verify = False  # 请求SSL验证
-# 禁用所有警告信息
-warnings.filterwarnings("ignore")
+# 请求设置
+request_thread_count = None  # 请求线程数量(默认None，则根据内存大小设置)
+request_timeout_second = 30  # 请求超时秒数(默认30秒)
+request_ssl_verify = False  # 请求SSL验证(默认False)
+request_allow_redirect = True  # 请求允许重定向(默认True)
+request_redirect_limit = 10  # 请求跳转限制(默认10次)
+# 默认请求头 可以在headers里添加自定义请求头
+request_default_headers = {
+    'Accept': 'text/html,application/xhtml+xml,'
+              'application/xml;q=0.9,*/*;q=0.8',
+    'Accept-Encoding': 'gzip, deflate',
+    'Accept-Language': 'en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7',
+    'Cache-Control': 'max-age=0',
+    'DNT': '1',
+    'Referer': 'https://www.google.com/',
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '
+                  '(KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36',
+    'Upgrade-Insecure-Requests': '1',
+    'X-Forwarded-For': '127.0.0.1'
+}
+enable_random_ua = True  # 使用随机UA(默认True，开启可以覆盖request_default_headers的UA)
 
 # 搜索模块设置
 # 开启全量搜索会尽量去获取搜索引擎搜索的全部结果，不过搜索耗时可能会过长
@@ -112,9 +130,8 @@ resolver_nameservers = [
     '8.8.8.8',  # Google DNS
     '1.1.1.1'  # CloudFlare DNS
 ]  # 指定查询的DNS域名服务器
-resolver_timeout = 5.0  # 解析超时时间
-resolver_lifetime = 60.0  # 解析存活时间
-limit_resolve_conn = 500  # 限制同一时间解析的数量(默认500)
+resolver_timeout = 5.0  # 解析超时时间(默认5.0秒)
+resolver_lifetime = 10.0  # 解析存活时间(默认10.0秒)
 
 # 请求端口探测设置
 # 你可以在端口列表添加自定义端口
@@ -140,41 +157,10 @@ large_ports = [80, 81, 280, 300, 443, 591, 593, 832, 888, 901, 981, 1010, 1080,
                18092, 20000, 20720, 24465, 28017, 28080, 30821, 43110, 61600]
 ports = {'small': small_ports, 'medium': medium_ports, 'large': large_ports}
 
-# aiohttp有关配置
-verify_ssl = False
-# aiohttp 支持 HTTP/HTTPS形式的代理
-aiohttp_proxy = None  # 示例 proxy="http://user:pass@some.proxy.com"
-allow_redirects = True  # 允许请求跳转
-# 为了保证请求质量 请谨慎更改以下设置
-# request_method只能是HEAD或GET,HEAD请求方法更快，但是不能获取响应体并提取从中title及banner
-request_method = 'GET'  # 使用请求方法，默认GET
-sockread_timeout = 6  # 每个请求socket读取超时时间，默认6秒
-sockconn_timeout = 3  # 每个请求socket连接超时时间，默认3秒
-limit_open_conn = None  # 限制同一时间打开的连接总数，默认None将根据系统内存大小自动设置
-# 限制同一时间在同一个端点((host, port, is_ssl) 3者都一样的情况)打开的连接数
-limit_per_host = 10  # 0表示不限制,默认10
-
 common_subnames = {'i', 'w', 'm', 'en', 'us', 'zh', 'w3', 'app', 'bbs',
                    'web', 'www', 'job', 'docs', 'news', 'blog', 'data',
                    'help', 'live', 'mall', 'blogs', 'files', 'forum',
                    'store', 'mobile'}
-
-# 请求头设置
-# 可以在headers里添加自定义请求头
-headers = {
-    'Accept': 'text/html,application/xhtml+xml,'
-              'application/xml;q=0.9,*/*;q=0.8',
-    'Accept-Encoding': 'gzip, deflate',
-    'Accept-Language': 'en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7',
-    'Cache-Control': 'max-age=0',
-    'DNT': '1',
-    'Referer': 'https://www.google.com/',
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '
-                  '(KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36',
-    'Upgrade-Insecure-Requests': '1',
-    'X-Forwarded-For': '127.0.0.1'
-}
-random_user_agent = True  # 使用随机UA(默认True，开启可以覆盖header的设置)
 
 # 模块API配置
 # Censys可以免费注册获取API：https://censys.io/api

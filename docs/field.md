@@ -84,19 +84,19 @@ DNS解析返回的TTL值
 
 ### cidr
 
-IP2LOCATION-ASN库查询出的CIDR
+ip2location库查询出的CIDR
 
 ### asn
 
-IP2LOCATION-ASN库查询出的ASN
+ip2location库查询出的ASN
 
-### ip2region
+### addr
 
 ip2region库查询出的物理地址
 
-### ip2location
+### isp
 
-ip2location库查询出的物理地址
+ip2region库查询出的网络服务提供商
 
 ### resolver
 

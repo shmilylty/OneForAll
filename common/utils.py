@@ -10,7 +10,6 @@ import subprocess
 from ipaddress import IPv4Address, ip_address
 from stat import S_IXUSR
 
-import psutil
 import tenacity
 import requests
 from pathlib import Path
@@ -49,10 +48,10 @@ def gen_fake_header():
     """
     Generate fake request headers
     """
-    headers = settings.headers
+    headers = settings.request_default_headers
     if not isinstance(headers, dict):
         headers = dict()
-    if settings.random_user_agent:
+    if settings.enable_random_ua:
         ua = random.choice(user_agents)
         headers['User-Agent'] = ua
     headers['Accept-Encoding'] = 'gzip, deflate'
@@ -74,7 +73,7 @@ def get_random_proxy():
     Get random proxy
     """
     try:
-        return random.choice(settings.proxy_pool)
+        return random.choice(settings.request_proxy_pool)
     except IndexError:
         return None
 
@@ -83,7 +82,7 @@ def get_proxy():
     """
     Get proxy
     """
-    if settings.enable_proxy:
+    if settings.enable_request_proxy:
         return get_random_proxy()
     return None
 
@@ -112,26 +111,21 @@ def match_main_domain(domain):
 
 
 def read_target_file(target):
-    domains = set()
+    domains = list()
     with open(target, encoding='utf-8', errors='ignore') as file:
         for line in file:
             domain = match_main_domain(line)
             if not domain:
                 continue
-            domain = get_main_domain(domain)
-            if not domain:
-                continue
-            domains.add(domain)
-    return domains
+            domains.append(domain)
+    sorted_domains = sorted(set(domains), key=domains.index)
+    return sorted_domains
 
 
 def get_from_target(target):
     domains = set()
     if isinstance(target, str):
         domain = match_main_domain(target)
-        if not domain:
-            return domains
-        domain = get_main_domain(domain)
         if not domain:
             return domains
         domains.add(domain)
@@ -507,27 +501,8 @@ def get_process_num():
         return 1
 
 
-def get_coroutine_count():
-    """
-    根据内存大小获取并发数量
-    """
-    mem = psutil.virtual_memory()
-    total_mem = mem.total
-    g_size = 1024 * 1024 * 1024
-    if total_mem < 1 * g_size:
-        return 16
-    elif total_mem < 2 * g_size:
-        return 32
-    elif total_mem < 4 * g_size:
-        return 64
-    elif total_mem < 8 * g_size:
-        return 128
-    elif total_mem < 16 * g_size:
-        return 256
-    elif total_mem < 32 * g_size:
-        return 512
-    else:
-        return 1024
+def get_request_count():
+    return os.cpu_count() * 10
 
 
 def uniq_dict_list(dict_list):
@@ -567,7 +542,6 @@ def check_net():
 
 def check_pre():
     logger.log('INFOR', 'Checking dependent environment')
-    system = platform.system()
     implementation = platform.python_implementation()
     version = platform.python_version()
     if implementation != 'CPython':
@@ -576,16 +550,6 @@ def check_pre():
     if version < '3.6':
         logger.log('FATAL', 'OneForAll requires Python 3.6 or higher')
         exit(1)
-    if system == 'Windows' and implementation == 'CPython' and version < '3.8':
-        logger.log('FATAL', 'OneForAll requires Python 3.8 '
-                            'or higher when running on Windows')
-        exit(1)
-    if system in {"Linux", "Darwin"}:
-        try:
-            import uvloop
-        except ImportError:
-            logger.log('ALERT', f'Please install the uvloop library manually '
-                                f'to accelerate subdomain requests')
 
 
 def check_env():
@@ -604,8 +568,8 @@ def check_version(local):
     api = 'https://api.github.com/repos/shmilylty/OneForAll/releases/latest'
     header = get_random_header()
     proxy = get_proxy()
-    timeout = settings.request_timeout
-    verify = settings.request_verify
+    timeout = settings.request_timeout_second
+    verify = settings.request_ssl_verify
     try:
         resp = requests.get(url=api, headers=header, proxies=proxy,
                             timeout=timeout, verify=verify)
@@ -613,7 +577,7 @@ def check_version(local):
         latest = resp_json['tag_name']
     except Exception as e:
         logger.log('ERROR', 'An error occurred while checking the latest version')
-        logger.log('ERROR', e.args)
+        logger.log('DEBUG', e.args)
         return
     if latest > local:
         change = resp_json.get("body")
@@ -740,3 +704,26 @@ def check_random_subdomain(subdomains):
         if subdomain:
             logger.log('ALERT', f'Please check whether {subdomain} is correct or not')
             return True
+
+
+def get_url_resp(url):
+    timeout = settings.request_timeout
+    verify = settings.request_verify
+    try:
+        resp = requests.get(url, params=None, timeout=timeout, verify=verify)
+    except Exception as e:
+        logger.log('DEBUG', f'Error request {url}')
+        logger.log('DEBUG', e.args)
+        return None
+    return resp
+
+
+def decode_resp_text(resp):
+    try:
+        text = resp.text(encoding='utf-8', errors='strict')  # 先尝试用utf-8严格解码
+    except UnicodeError:
+        try:
+            text = resp.text(encoding='gb18030', errors='strict')  # 再尝试用gb18030严格解码
+        except UnicodeError:
+            text = resp.text(encoding=None, errors='ignore')  # 最后尝试自动解码
+    return text

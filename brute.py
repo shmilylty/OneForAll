@@ -10,7 +10,6 @@ OneForAll subdomain brute module
 import gc
 import json
 import time
-import random
 import secrets
 
 import exrex
@@ -21,67 +20,137 @@ from dns.resolver import NXDOMAIN, YXDOMAIN, NoAnswer, NoNameservers
 
 import dbexport
 from common import utils
+from common import similarity
 from config import settings
 from common.module import Module
 from config.log import logger
 
 
-@tenacity.retry(stop=tenacity.stop_after_attempt(3))
-def do_query_a(domain, resolver):
+def config_resolver(nameservers):
+    """
+    配置DNS解析器
+
+    :param nameservers: 名称解析服务器地址
+    """
+    resolver = utils.dns_resolver()
+    resolver.nameservers = nameservers
+    resolver.rotate = True  # 随机使用NS
+    resolver.cache = None  # 不使用DNS缓存
+    return resolver
+
+
+def gen_random_subdomains(domain, count):
+    """
+    生成指定数量的随机子域域名列表
+
+    :param domain: 主域
+    :param count: 数量
+    """
+    subdomains = set()
+    if count < 1:
+        return subdomains
+    for _ in range(count):
+        token = secrets.token_hex(4)
+        subdomains.add(f'{token}.{domain}')
+    return subdomains
+
+
+def query_a_record(subdomain, resolver):
+    """
+    查询子域A记录
+
+    :param subdomain: 子域
+    :param resolver: DNS解析器
+    """
     try:
-        answer = resolver.query(domain, 'A')
-    # If resolve random subdomain raise timeout error, try again
-    except Timeout as e:
-        logger.log('ALERT', f'DNS resolve timeout, retrying')
-        logger.log('DEBUG', e.args)
-        raise tenacity.TryAgain
-    # If resolve random subdomain raise NXDOMAIN, YXDOMAIN, NoAnswer, NoNameservers error
-    # It means that there is no A record of random subdomain and not use wildcard dns record
-    except (NXDOMAIN, YXDOMAIN, NoAnswer, NoNameservers) as e:
-        logger.log('DEBUG', e.args)
-        logger.log('INFOR', f'{domain} seems not use wildcard dns record')
-        return False
+        answer = resolver.query(subdomain, 'A')
     except Exception as e:
-        logger.log('ALERT', f'Detect {domain} wildcard dns record error')
-        logger.log('FATAL', e.args)
-        exit(1)
-    else:
-        if answer.rrset is None:
-            logger.log('ALERT', f'DNS resolve dont have result, retrying')
-            raise tenacity.TryAgain
-        ttl = answer.ttl
-        name = answer.name
-        ips = {item.address for item in answer}
-        logger.log('ALERT', f'{domain} use wildcard dns record')
-        logger.log('ALERT', f'{domain} resolve to: {name} '
-                            f'IP: {ips} TTL: {ttl}')
+        logger.log('DEBUG', f'Query {subdomain} wildcard dns record error')
+        logger.log('DEBUG', e.args)
+        return False
+    if answer.rrset is None:
+        return False
+    ttl = answer.ttl
+    name = answer.name
+    ips = {item.address for item in answer}
+    logger.log('ALERT', f'{subdomain} resolve to: {name} '
+                        f'IP: {ips} TTL: {ttl}')
+    return True
+
+
+def all_resolve_success(subdomains):
+    """
+    判断是否所有子域都解析成功
+
+    :param subdomains: 子域列表
+    """
+    resolver = utils.dns_resolver()
+    resolver.cache = None  # 不使用DNS缓存
+    status = set()
+    for subdomain in subdomains:
+        status.add(query_a_record(subdomain, resolver))
+    return all(status)
+
+
+def all_request_success(subdomains):
+    """
+    判断是否所有子域都请求成功
+
+    :param subdomains: 子域列表
+    """
+    result = list()
+    for subdomain in subdomains:
+        url = f'http://{subdomain}'
+        resp = utils.get_url_resp(url)
+        if resp:
+            logger.log('ALERT', f'Request: {url} Status: {resp.status_code} '
+                                f'Size: {len(resp.content)}')
+            result.append(resp.text)
+        else:
+            result.append(resp)
+    return all(result), result
+
+
+def any_similar_html(resp_list):
+    """
+    判断是否有一组HTML页面结构相似
+
+    :param resp_list: 响应HTML页面
+    """
+    html_doc1, html_doc2, html_doc3 = resp_list
+    if similarity.is_similar(html_doc1, html_doc2):
         return True
+    if similarity.is_similar(html_doc1, html_doc3):
+        return True
+    if similarity.is_similar(html_doc2, html_doc3):
+        return True
+    return False
 
 
-def detect_wildcard(domain, authoritative_ns):
+def detect_wildcard(domain):
     """
     Detect use wildcard dns record or not
 
     :param  str  domain:  domain
-    :param  list authoritative_ns: authoritative name server
     :return bool use wildcard dns record or not
     """
     logger.log('INFOR', f'Detecting {domain} use wildcard dns record or not')
-    token = secrets.token_hex(4)
-    random_subdomain = f'{token}.{domain}'
-    resolver = utils.dns_resolver()
-    resolver.nameservers = authoritative_ns
-    resolver.rotate = True
-    resolver.cache = None
-    try:
-        wildcard = do_query_a(random_subdomain, resolver)
-    except Exception as e:
-        logger.log('DEBUG', e.args)
-        logger.log('ALERT', f'Multiple detection errors, so temporarily {domain} '
-                            f'does not use wildcard dns record')
+    random_subdomains = gen_random_subdomains(domain, 3)
+    if not all_resolve_success(random_subdomains):
         return False
+    is_all_success, all_request_resp = all_request_success(random_subdomains)
+    if not is_all_success:
+        return True
+    return any_similar_html(all_request_resp)
+
+
+def is_enable_wildcard(domain):
+    is_enable = detect_wildcard(domain)
+    if is_enable:
+        logger.log('ALERT', f'The domain {domain} enables wildcard')
     else:
-        return wildcard
+        logger.log('ALERT', f'The domain {domain} disables wildcard')
+    return is_enable
 
 
 def gen_subdomains(expression, path):
@@ -229,9 +298,9 @@ def collect_wildcard_record(domain, authoritative_ns):
     if not authoritative_ns:
         return list(), int()
     resolver = utils.dns_resolver()
-    resolver.nameservers = authoritative_ns
-    resolver.rotate = True
-    resolver.cache = None
+    resolver.nameservers = authoritative_ns  # 使用权威名称服务器
+    resolver.rotate = True  # 随机使用NS
+    resolver.cache = None  # 不使用DNS缓存
     ips = set()
     ttl = int()
     ips_stat = dict()
@@ -464,14 +533,13 @@ class Brute(Module):
     Example：
         brute.py --target domain.com --word True run
         brute.py --targets ./domains.txt --word True run
-        brute.py --target domain.com --word True --process 1 run
+        brute.py --target domain.com --word True --concurrent 2000 run
         brute.py --target domain.com --word True --wordlist subnames.txt run
         brute.py --target domain.com --word True --recursive True --depth 2 run
         brute.py --target d.com --fuzz True --place m.*.d.com --rule '[a-z]' run
         brute.py --target d.com --fuzz True --place m.*.d.com --fuzzlist subnames.txt run
 
     Note:
-        --alive  True/False           Only export alive subdomains or not (default False)
         --format rst/csv/tsv/json/yaml/html/jira/xls/xlsx/dbf/latex/ods (result format)
         --path   Result path (default None, automatically generated)
 
@@ -479,7 +547,7 @@ class Brute(Module):
     :param str  target:     One domain (target or targets must be provided)
     :param str  targets:    File path of one domain per line
     :param int  process:    Number of processes (default 1)
-    :param int  concurrent: Number of concurrent (default 10000)
+    :param int  concurrent: Number of concurrent (default 2000)
     :param bool word:       Use word mode generate dictionary (default False)
     :param str  wordlist:   Dictionary path used in word mode (default use ./config/default.py)
     :param bool recursive:  Use recursion (default False)
@@ -524,8 +592,6 @@ class Brute(Module):
         self.domain = str()  # 当前正在进行爆破的域名
         self.ips_times = dict()  # IP集合出现次数
         self.enable_wildcard = False  # 当前域名是否使用泛解析
-        self.wildcard_check = settings.brute_wildcard_check
-        self.wildcard_deal = settings.brute_wildcard_deal
         self.check_env = True
         self.quite = False
 
@@ -596,7 +662,7 @@ class Brute(Module):
         wildcard_ttl = int()  # 泛解析TTL整型值
         ns_list = query_domain_ns(self.domain)
         ns_ip_list = query_domain_ns_a(ns_list)  # DNS权威名称服务器对应A记录列表
-        self.enable_wildcard = detect_wildcard(domain, ns_ip_list)
+        self.enable_wildcard = is_enable_wildcard(domain)
 
         if self.enable_wildcard:
             wildcard_ips, wildcard_ttl = collect_wildcard_record(domain,

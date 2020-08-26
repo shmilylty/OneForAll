@@ -11,19 +11,15 @@ import dns.resolver
 import dns.zone
 
 from common import utils
-from common.module import Module
+from common.check import Check
 from config.log import logger
 
 
-class CheckAXFR(Module):
-    """
-    DNS zone transfer vulnerability base class
-    """
-
-    def __init__(self, domain: str):
-        Module.__init__(self)
+class AXFR(Check):
+    def __init__(self, domain):
+        Check.__init__(self)
         self.domain = domain
-        self.module = 'Check'
+        self.module = 'check'
         self.source = 'AXFRCheck'
         self.results = []
 
@@ -92,7 +88,7 @@ def run(domain):
 
     :param str domain: 域名
     """
-    check = CheckAXFR(domain)
+    check = AXFR(domain)
     check.run()
 
 

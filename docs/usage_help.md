@@ -38,7 +38,6 @@ OneForAll命令行界面基于[Fire](https://github.com/google/python-fire/)实�
            python3 oneforall.py --target example.com --show True run
    
        Note:
-           --alive  True/False          只导出存活子域(默认False)
            --port   small/medium/large  详见./config/setting.py(默认small)
            --format rst/csv/tsv/json/yaml/html/jira/xls/xlsx/dbf/latex/ods (结果格式，默认CSV)
            --path   结果路径(默认None，自动生成)
@@ -90,63 +89,56 @@ OneForAll命令行界面基于[Fire](https://github.com/google/python-fire/)实�
 
    ```bash
    NAME
-       aiobrute.py - OneForAll多进程多协程异步子域爆破模块
+       brute.py - OneForAll子域爆破模块
    
    SYNOPSIS
-       aiobrute.py --target=TARGET <flags>
+       brute.py <flags>
    
    DESCRIPTION
        Example：
-           python3 aiobrute.py --target example.com run
-           python3 aiobrute.py --target ./domains.txt run
-           python3 aiobrute.py --target example.com --process 4 --coroutine 64 run
-           python3 aiobrute.py --target example.com --wordlist subdomains.txt run
-           python3 aiobrute.py --target example.com --recursive True --depth 2 run
-           python3 aiobrute.py --target m.{fuzz}.a.bz --fuzz True --rule [a-z] run
-   
+            brute.py --target domain.com --word True run
+            brute.py --targets ./domains.txt --word True run
+            brute.py --target domain.com --word True --coroutine 2000 run
+            brute.py --target domain.com --word True --wordlist subnames.txt run
+            brute.py --target domain.com --word True --recursive True --depth 2 run
+            brute.py --target d.com --fuzz True --place m.*.d.com --rule '[a-z]' run
+            brute.py --target d.com --fuzz True --place m.*.d.com --fuzzlist subnames.txt run
+
        Note:
-           参数segment的设置受CPU性能，网络带宽，运营商限制等问题影响，默认设置500个子域为任务组，
-           当你觉得你的环境不受以上因素影响，当前爆破速度较慢，那么强烈建议根据字典大小调整大小：
-           十万字典建议设置为5000，百万字典设置为50000
-           参数valid可选值1，0，None，分别表示导出有效，无效，全部子域
-           参数format可选格式：'csv', 'tsv', 'json', 'yaml', 'html', 'xls', 'xlsx',
-                             'dbf', 'latex', 'ods'
-           参数path为None会根据format参数和域名名称在项目结果目录生成相应文件
-   
-   ARGUMENTS
-       TARGET
-           单个域名或者每行一个域名的文件路径
-   
-   FLAGS
-       --process=PROCESS
-           爆破的进程数(默认CPU核心数)
-       --coroutine=COROUTINE
-           每个爆破进程下的协程数(默认64)
-       --wordlist=WORDLIST
-           指定爆破所使用的字典路径(默认使用config.py配置)
-       --segment=SEGMENT
-           爆破任务分割(默认500)
-       --recursive=RECURSIVE
-           是否使用递归爆破(默认False)
-       --depth=DEPTH
-           递归爆破的深度(默认2)
-       --namelist=NAMELIST
-           指定递归爆破所使用的字典路径(默认使用config.py配置)
-       --fuzz=FUZZ
-           是否使用fuzz模式进行爆破(默认False，开启须指定fuzz正则规则)
-       --rule=RULE
-           fuzz模式使用的正则规则(默认使用config.py配置)
-       --export=EXPORT
-           是否导出爆破结果(默认True)
-       --valid=VALID
-           导出子域的有效性(默认None)
-       --format=FORMAT
-           导出格式(默认xlsx)
-       --path=PATH
-           导出路径(默认None)
-       --show=SHOW
-           终端显示导出数据(默认False)
-   
+           --format rst/csv/tsv/json/yaml/html/jira/xls/xlsx/dbf/latex/ods (结果格式，默认CSV)
+           --path   导出路径(默认None，自动生成)
+
+       FLAGS
+           --target=TARGET
+               单个域名(必须提供target或targets参数)
+           --targets=TARGETS
+               每行一个域名的文件路径
+           --process=PROCESS
+               爆破的进程数(默认CPU核心数)
+           --coroutine=COROUTINE
+               每个爆破进程下的协程数(默认2000)
+           --wordlist=WORDLIST
+               指定爆破所使用的字典路径(默认使用config.py配置)
+           --recursive=RECURSIVE
+               是否使用递归爆破(默认False)
+           --depth=DEPTH
+               递归爆破的深度(默认2)
+           --nextlist=NEXTLIST
+               指定递归爆破所使用的字典路径(默认使用config.py配置)
+           --fuzz=FUZZ
+               是否使用fuzz模式进行爆破(默认False)
+           --rule=RULE
+               fuzz模式使用的正则规则(默认使用config.py配置)
+           --fuzzlist=FUZZLIST
+               指定fuzz模式所使用的字典路径(默认使用config.py配置)
+           --export=EXPORT
+               是否导出爆破结果(默认True)
+           --alive=ALIVE
+               只导出存活子域(默认False)
+           --format=FORMAT
+               导出格式(默认csv)
+           --path=PATH
+               导出路径(默认None)
    ```
 
 
@@ -200,24 +192,26 @@ OneForAll命令行界面基于[Fire](https://github.com/google/python-fire/)实�
        dbexport.py - OneForAll数据库导出模块
    
    SYNOPSIS
-       dbexport.py TABLE <flags>
+       dbexport.py TARGET <flags>
    
    DESCRIPTION
        Example:
-           python3 dbexport.py --table name --format csv --path= ./result.csv
-           python3 dbexport.py --db result.db --table name --show False
+           python3 dbexport.py --target name --format csv --dir= ./result.csv
+           python3 dbexport.py --db result.db --target name --show False
+           python3 dbexport.py --target table_name --tb True --show False
    
        Note:
-           参数port可选值有'small', 'medium', 'large', 'xlarge'，详见config.py配置
-           参数format可选格式有'csv', 'tsv', 'json', 'yaml', 'html', 'xls', 'xlsx',
-                             'dbf', 'latex', 'ods'
-           参数path为None会根据format参数和域名名称在项目结果目录生成相应文件
+           --type   target/table        要导出的目标类型(默认target)
+           --format rst/csv/tsv/json/yaml/html/jira/xls/xlsx/dbf/latex/ods (结果格式，默认CSV)
+           --path   结果路径(默认None，自动生成)
    
    POSITIONAL ARGUMENTS
-       TABLE
-           要导出的表
+       TARGET
+           要导出的目标类型
    
    FLAGS
+       --type=TYPE
+           要导出的目标类型(默认target)
        --db=DB
            要导出的数据库路径(默认为results/result.sqlite3)
        --valid=VALID
