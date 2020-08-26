@@ -110,9 +110,9 @@ pipenv run python oneforall.py --target example.com run
 ```
 3. 开启爆破模块运行（使用massdns进行爆破，网络占用极大，可能会阻塞网络）
 ```bash
-python3 run python oneforall.py --target example.com --burte True run
+python3 run python oneforall.py --target example.com --brute True run
 # or
-pipenv run python oneforall.py --target example.com --burte True run
+pipenv run python oneforall.py --target example.com --brute True run
 ```
 </details>
 
