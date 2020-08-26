@@ -707,8 +707,8 @@ def check_random_subdomain(subdomains):
 
 
 def get_url_resp(url):
-    timeout = settings.request_timeout
-    verify = settings.request_verify
+    timeout = settings.request_timeout_second
+    verify = settings.request_ssl_verify
     try:
         resp = requests.get(url, params=None, timeout=timeout, verify=verify)
     except Exception as e:
