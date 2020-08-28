@@ -8,16 +8,15 @@ verify_ssl = true
 [packages]
 tqdm = "*"
 loguru = "*"
+sqlalchemy = "*"
 dnspython = "*"
 requests = "*"
-records = "*"
 tldextract = "*"
 exrex = "*"
 fire = "*"
 bs4 = "*"
 pysocks = "*"
 cloudscraper = "*"
-tablib = "*"
 tenacity = "*"
 treelib = "*"
 
