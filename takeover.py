@@ -13,7 +13,7 @@ from threading import Thread
 from queue import Queue
 
 import fire
-from tablib import Dataset
+from common.tablib.tablib import Dataset
 from tqdm import tqdm
 
 from config.log import logger
