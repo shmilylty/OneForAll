@@ -2,9 +2,9 @@
 SQLite database initialization and operation
 """
 
-import records
+from common import records
 
-from records import Connection
+from common.records import Connection
 from config.log import logger
 from config import settings
 

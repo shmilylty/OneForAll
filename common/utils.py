@@ -13,7 +13,7 @@ from stat import S_IXUSR
 import tenacity
 import requests
 from pathlib import Path
-from records import Record, RecordCollection
+from common.records import Record, RecordCollection
 from dns.resolver import Resolver
 
 from common.domain import Domain
@@ -731,5 +731,5 @@ def decode_resp_text(resp):
             content = str(content, encoding='gb18030', errors='strict')
         except (LookupError, TypeError, UnicodeError):
             # 最后尝试自动解码
-            content = str(content,  errors='replace')
+            content = str(content, errors='replace')
     return content
