@@ -1,7 +1,7 @@
-""" Tablib - JSON Support
-"""
 import decimal
 import json
+import csv
+from io import StringIO
 from uuid import UUID
 
 from . import tablib
@@ -16,7 +16,12 @@ def serialize_objects_handler(obj):
         return obj
 
 
-class JSONFormat:
+"""
+Tablib - JSON Support
+"""
+
+
+class JSONFormat(object):
     title = 'json'
     extensions = ('json',)
 
@@ -58,14 +63,11 @@ class JSONFormat:
             return False
 
 
-""" Tablib - *SV Support.
+""" Tablib - CSV Support.
 """
 
-import csv
-from io import StringIO
 
-
-class CSVFormat:
+class CSVFormat(object):
     title = 'csv'
     extensions = ('csv',)
 
@@ -114,7 +116,8 @@ class CSVFormat:
     def detect(cls, stream, delimiter=None):
         """Returns True if given stream is valid CSV."""
         try:
-            csv.Sniffer().sniff(stream.read(1024), delimiters=delimiter or cls.DEFAULT_DELIMITER)
+            csv.Sniffer().sniff(stream.read(1024),
+                                delimiters=delimiter or cls.DEFAULT_DELIMITER)
             return True
         except Exception:
             return False
