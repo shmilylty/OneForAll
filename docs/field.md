@@ -36,7 +36,7 @@
 
 cname记录
 
-### content
+### ip
 
 解析到的IP
 
