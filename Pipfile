@@ -17,6 +17,7 @@ bs4 = "*"
 cloudscraper = "*"
 tenacity = "*"
 treelib = "*"
+sqlalchemy = "*"
 
 [requires]
 python_version = "3.8"
