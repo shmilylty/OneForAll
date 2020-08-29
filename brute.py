@@ -398,7 +398,7 @@ def gen_result_infos(items, infos, subdomains, ip_times, wc_ips, wc_ttl):
         info['reason'] = reason
         info['ttl'] = ttls
         info['cname'] = cname
-        info['content'] = ips
+        info['ip'] = ips
         info['public'] = public
         info['times'] = times
         info['resolver'] = resolver

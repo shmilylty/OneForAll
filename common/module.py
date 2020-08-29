@@ -269,7 +269,7 @@ class Module(object):
                       'port': None,
                       'level': None,
                       'cname': None,
-                      'content': None,
+                      'ip': None,
                       'public': None,
                       'cdn': None,
                       'status': None,
@@ -300,13 +300,13 @@ class Module(object):
                 if info is None:
                     info = dict()
                 cname = info.get('cname')
-                content = info.get('content')
+                ip = info.get('ip')
                 times = info.get('times')
                 ttl = info.get('ttl')
                 public = info.get('public')
                 if isinstance(cname, list):
                     cname = ','.join(cname)
-                    content = ','.join(content)
+                    ip = ','.join(ip)
                     times = ','.join([str(num) for num in times])
                     ttl = ','.join([str(num) for num in ttl])
                     public = ','.join([str(num) for num in public])
@@ -320,7 +320,7 @@ class Module(object):
                           'port': 80,
                           'level': level,
                           'cname': cname,
-                          'content': content,
+                          'ip': ip,
                           'public': public,
                           'cdn': info.get('cdn'),
                           'status': None,

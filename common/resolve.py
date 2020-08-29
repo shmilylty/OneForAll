@@ -22,7 +22,7 @@ def filter_subdomain(data):
     logger.log('DEBUG', f'Filtering subdomains to be resolved')
     subdomains = []
     for data in data:
-        if not data.get('content'):
+        if not data.get('ip'):
             subdomain = data.get('subdomain')
             subdomains.append(subdomain)
     return subdomains
@@ -41,7 +41,7 @@ def update_data(data, infos):
         logger.log('ERROR', f'No valid resolved result')
         return data
     for index, items in enumerate(data):
-        if items.get('content'):
+        if items.get('ip'):
             continue
         subdomain = items.get('subdomain')
         record = infos.get(subdomain)
@@ -104,7 +104,7 @@ def gen_infos(data, qname, info, infos):
             info['resolve'] = 1
             info['reason'] = 'OK'
             info['cname'] = ','.join(cname)
-            info['content'] = ','.join(ips)
+            info['ip'] = ','.join(ips)
             info['public'] = ','.join(public)
             info['ttl'] = ','.join(ttl)
             info['cidr'] = ','.join(cidr)

@@ -63,7 +63,7 @@ class Database(object):
                    f'port int,'
                    f'level int,'
                    f'cname text,'
-                   f'content text,'
+                   f'ip text,'
                    f'public int,'
                    f'cdn int,'
                    f'status int,'
@@ -102,11 +102,11 @@ class Database(object):
                 self.conn.bulk_query(
                     f'insert into "{table_name}" '
                     f'(id, alive, resolve, request, new, url, subdomain, port, level,'
-                    f'cname, content, public, cdn, status, reason, title, banner, header,'
+                    f'cname, ip, public, cdn, status, reason, title, banner, header,'
                     f'history, response, times, ttl, cidr, asn, org, addr, isp, resolver,'
                     f'module, source, elapse, find) '
                     f'values (:id, :alive, :resolve, :request, :new, :url,'
-                    f':subdomain, :port, :level, :cname, :content, :public, :cdn,'
+                    f':subdomain, :port, :level, :cname, :ip, :public, :cdn,'
                     f':status, :reason, :title, :banner, :header, :history, :response,'
                     f':times, :ttl, :cidr, :asn, :org, :addr, :isp, :resolver, :module,'
                     f':source, :elapse, :find)', results)
@@ -230,7 +230,7 @@ class Database(object):
         """
         table_name = table_name.replace('.', '_')
         query = f'select id, new, alive, request, resolve, url, subdomain, level,' \
-                f'cname, content, public, cdn, port, status, reason, title, banner,' \
+                f'cname, ip, public, cdn, port, status, reason, title, banner,' \
                 f'cidr, asn, org, addr, isp, source from "{table_name}"'
         if alive and limit:
             if limit in ['resolve', 'request']:
