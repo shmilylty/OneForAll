@@ -54,7 +54,8 @@ class MultiIdentify(Module):
         logger.log('ALERT', f'The Identify module took {self.elapse} seconds')
         return result_data
 
-    def listener(self, total, done_queue):
+    @staticmethod
+    def listener(total, done_queue):
         par = tqdm.tqdm(total=total, desc='Identify Progress', ncols=80)
         result_data = []
         while len(result_data) < total:
@@ -157,7 +158,8 @@ class Identify(object):
             done_queue.put(item)
         return
 
-    def deal_output(self, banners):
+    @staticmethod
+    def deal_output(banners):
         result = []
         for banner in banners:
             if 'version' in banner:
