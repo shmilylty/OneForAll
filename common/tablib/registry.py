@@ -4,7 +4,7 @@ from collections import OrderedDict
 from .format import JSONFormat, CSVFormat
 
 
-class Registry:
+class Registry(object):
     _formats = OrderedDict()
 
     def register(self, key, format_or_path):

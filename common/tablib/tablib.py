@@ -2,6 +2,7 @@ from collections import OrderedDict
 from io import BytesIO, StringIO
 from .registry import registry
 
+
 def normalize_input(stream):
     """
     Accept either a str/bytes stream or a file-like object and always return a
@@ -12,6 +13,7 @@ def normalize_input(stream):
     elif isinstance(stream, bytes):
         return BytesIO(stream)
     return stream
+
 
 def import_set(stream, format=None, **kwargs):
     """Return dataset of given stream (file-like object, string, or bytestring)."""
@@ -288,7 +290,8 @@ class Dataset:
 
         if self.headers:
             if dicts:
-                data = [dict_pack(list(zip(self.headers, data_row))) for data_row in _data]
+                data = [dict_pack(list(zip(self.headers, data_row)))
+                        for data_row in _data]
             else:
                 data = [list(self.headers)] + list(_data)
         else:
@@ -319,8 +322,8 @@ class Dataset:
 
     def _get_dict(self):
         """A native Python representation of the :class:`Dataset` object. If headers have
-        been set, a list of Python dictionaries will be returned. If no headers have been set,
-        a list of tuples (rows) will be returned instead.
+        been set, a list of Python dictionaries will be returned. If no headers have been
+        set, a list of tuples (rows) will be returned instead.
 
         A dataset object can also be imported by setting the `Dataset.dict` attribute: ::
 
@@ -464,7 +467,7 @@ class Dataset:
     def add_formatter(self, col, handler):
         """Adds a formatter to the :class:`Dataset`.
 
-        .. versionadded:: 0.9.5
+        .. version added:: 0.9.5
 
         :param col: column to. Accepts index int or header str.
         :param handler: reference to callback function to execute against
@@ -488,7 +491,8 @@ class Dataset:
         """Removes all duplicate rows from the :class:`Dataset` object
         while maintaining the original order."""
         seen = set()
-        self._data[:] = [row for row in self._data if not (tuple(row) in seen or seen.add(tuple(row)))]
+        self._data[:] = [row for row in self._data if
+                         not (tuple(row) in seen or seen.add(tuple(row)))]
 
     def wipe(self):
         """Removes all content and headers from the :class:`Dataset` object."""
@@ -519,12 +523,12 @@ registry.register_builtins()
 
 
 class InvalidDimensions(Exception):
-    "Invalid size"
+    """Invalid size"""
 
 
 class InvalidDatasetIndex(Exception):
-    "Outside of Dataset size"
+    """Outside of Dataset size"""
 
 
 class UnsupportedFormat(NotImplementedError):
-    "Format is not supported"
+    """Format is not supported"""

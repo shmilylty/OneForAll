@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 import os
 from sys import stdout
 from collections import OrderedDict
@@ -121,7 +119,8 @@ class RecordCollection(object):
                 yield self[i]
             else:
                 # Throws StopIteration when done.
-                # Prevent StopIteration bubbling from generator, following https://www.python.org/dev/peps/pep-0479/
+                # Prevent StopIteration bubbling from generator,
+                # following https://www.python.org/dev/peps/pep-0479/
                 try:
                     yield next(self)
                 except StopIteration:
@@ -234,7 +233,8 @@ class RecordCollection(object):
         try:
             self[1]
         except IndexError:
-            return self.first(default=default, as_dict=as_dict, as_ordereddict=as_ordereddict)
+            return self.first(default=default, as_dict=as_dict,
+                              as_ordereddict=as_ordereddict)
         else:
             raise ValueError('RecordCollection contained more than one row. '
                              'Expects only one row when using '
