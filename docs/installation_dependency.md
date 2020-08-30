@@ -15,7 +15,7 @@ python oneforall.py --help
 
 ### Ubuntu/Debian系统(包括kali)
 
-1. 安装git和git
+1. 安装git和pip3
 ```bash
 sudo apt update
 sudo apt install git python3-pip -y
@@ -38,7 +38,7 @@ python3 oneforall.py --help
 
 ### RHEL/Centos系统
 
-1. 安装git和git
+1. 安装git和pip3
 ```bash
 sudo yum update
 sudo yum install git python3-pip -y
