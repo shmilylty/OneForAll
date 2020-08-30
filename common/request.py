@@ -52,9 +52,10 @@ def gen_req_url(domain, port):
     return url
 
 
-def gen_req_urls(data, ports):
+def gen_req_data(data, ports):
     logger.log('INFOR', 'Generating request urls')
-    urls = set()
+    req_data = list()
+    req_urls = set()
     for info in data:
         resolve = info.get('resolve')
         # 解析不成功的子域不进行http请求探测
@@ -62,8 +63,13 @@ def gen_req_urls(data, ports):
             continue
         subdomain = info.get('subdomain')
         for port in ports:
-            urls.add(gen_req_url(subdomain, port))
-    return urls
+            tmp_info = info.copy()
+            tmp_info['port'] = port
+            url = gen_req_url(subdomain, port)
+            tmp_info['url'] = url
+            req_data.append(tmp_info)
+            req_urls.add(url)
+    return req_data, req_urls
 
 
 def get_html_title(markup):
@@ -193,7 +199,6 @@ def bulk_request(urls):
 def gen_new_info(info, resp):
     port = resp.raw._pool.port
     info['port'] = port
-    info['url'] = resp.url
     info['reason'] = resp.reason
     code = resp.status_code
     info['status'] = code
@@ -216,6 +221,7 @@ def gen_new_info(info, resp):
 
 
 def gen_new_data(data, resp_list):
+    # to fix: 重复结果
     new_data = list()
     for resp in resp_list:
         subdomain = resp.raw._pool.host
@@ -237,7 +243,7 @@ def run_request(domain, data, port):
     logger.log('INFOR', f'Start requesting subdomains of {domain}')
     data = utils.set_id_none(data)
     ports = get_port_seq(port)
-    req_urls = gen_req_urls(data, ports)
+    req_data, req_urls = gen_req_data(data, ports)
     resp_list = bulk_request(req_urls)
     new_data = gen_new_data(data, resp_list)
     count = utils.count_alive(new_data)
