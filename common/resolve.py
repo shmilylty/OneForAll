@@ -24,7 +24,8 @@ def filter_subdomain(data):
     for data in data:
         if not data.get('ip'):
             subdomain = data.get('subdomain')
-            subdomains.append(subdomain)
+            if subdomain:
+                subdomains.append(subdomain)
     return subdomains
 
 
