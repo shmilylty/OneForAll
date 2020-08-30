@@ -19,6 +19,7 @@ from common.database import Database
 from modules.collect import Collect
 from modules.srv import BruteSRV
 from modules.finder import Finder
+from modules.altdns import Altdns
 from modules import iscdn
 from config import settings
 from config.log import logger
@@ -229,6 +230,11 @@ class OneForAll(object):
         if settings.enable_finder_module:
             finder = Finder()
             self.data = finder.run(self.domain, self.data, self.port)
+
+        # altdns module
+        if settings.enable_altdns_module:
+            finder = Altdns(self.domain)
+            self.data = finder.run(self.data, self.port)
 
         # check cdn module
         if settings.enable_cdn_check:

@@ -23,6 +23,7 @@ enable_brute_module = False  # 使用爆破模块(默认False)
 enable_dns_resolve = True  # 使用DNS解析子域(默认True)
 enable_http_request = True  # 使用HTTP请求子域(默认True)
 enable_finder_module = True  # 开启finder模块,开启会从响应体和JS中再次发现子域(默认True)
+enable_altdns_module = False  # 开启altdns模块,开启会利用置换技术重组子域再次发现新子域(默认True)
 enable_cdn_check = True  # 开启cdn检查模块(默认True)
 enable_banner_identify = True  # 开启WEB指纹识别模块(默认True)
 enable_takeover_check = False  # 开启子域接管风险检查(默认False)
@@ -77,6 +78,11 @@ fuzz_rule = None  # fuzz域名使用的正则表达式 示例：'[a-z][0-9]' 表
 fuzz_list = None  # fuzz域名使用的字典路径
 brute_ip_blacklist = {'0.0.0.0', '0.0.0.1'}  # IP黑名单 子域解析到IP黑名单则标记为非法子域
 ip_appear_maximum = 100  # 多个子域解析到同一IP次数超过100次则标记为非法(泛解析)子域
+
+
+# altdns模块设置
+enable_fast_alt = True  # 是否开启快速置换(默认True，只使用部分置换规则)
+
 
 # banner识别模块设置
 banner_process_number = 4  # 识别进程数量(默认4)
