@@ -237,14 +237,12 @@ def run_request(domain, data, port):
     logger.log('INFOR', f'Start requesting subdomains of {domain}')
     data = utils.set_id_none(data)
     ports = get_port_seq(port)
-    filtered_data = utils.get_filtered_data(data)
     req_urls = gen_req_urls(data, ports)
     resp_list = bulk_request(req_urls)
     new_data = gen_new_data(data, resp_list)
-    data = new_data + filtered_data
-    count = utils.count_alive(data)
+    count = utils.count_alive(new_data)
     logger.log('INFOR', f'Found that {domain} has {count} alive subdomains')
-    return data
+    return new_data
 
 
 def save_db(name, data):
