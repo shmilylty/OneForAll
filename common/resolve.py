@@ -47,7 +47,7 @@ def update_data(data, infos):
         record = infos.get(subdomain)
         if record:
             items.update(record)
-        data[index] = items
+            data[index] = items
     return data
 
 
