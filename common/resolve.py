@@ -47,9 +47,11 @@ def update_data(data, infos):
         record = infos.get(subdomain)
         if record:
             items.update(record)
-            data[index] = items
         else:
-            data.pop(index)
+            items['resolve'] = 0
+            items['alive'] = 0
+            items['reason'] = 'NoResult'
+        data[index] = items
     return data
 
 
