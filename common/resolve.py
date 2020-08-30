@@ -48,6 +48,8 @@ def update_data(data, infos):
         if record:
             items.update(record)
             data[index] = items
+        else:
+            data.pop(index)
     return data
 
 
