@@ -171,8 +171,7 @@ DESCRIPTION
     Note:
         参数alive可选值True，False分别表示导出存活，全部子域结果
         参数port可选值有'default', 'small', 'large', 详见config.py配置
-        参数format可选格式有'rst', 'csv', 'tsv', 'json', 'yaml', 'html',
-                          'jira', 'xls', 'xlsx', 'dbf', 'latex', 'ods'
+        参数format可选格式有 'csv','json'
         参数path默认None使用OneForAll结果目录生成路径
 
 ARGUMENTS
