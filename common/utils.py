@@ -201,12 +201,7 @@ def check_format(format, count):
     :param count: 数量
     :return: 导出格式
     """
-    formats = ['rst', 'csv', 'tsv', 'json', 'yaml', 'html',
-               'jira', 'xls', 'xlsx', 'dbf', 'latex', 'ods']
-    if format == 'xls' and count > 65000:
-        logger.log('ALERT', '\'xls\' file is limited to 65000 lines')
-        logger.log('ALERT', 'So use xlsx format replace')
-        return 'xlsx'
+    formats = ['csv', 'json', ]
     if format in formats:
         return format
     else:

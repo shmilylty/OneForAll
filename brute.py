@@ -274,7 +274,7 @@ def get_wildcard_record(domain, resolver):
         raise tenacity.TryAgain
     except (NXDOMAIN, YXDOMAIN, NoAnswer, NoNameservers) as e:
         logger.log('DEBUG', e.args)
-        logger.log('INFOR', f'{domain} dont have A record on authoritative name server')
+        logger.log('DEBUG', f'{domain} dont have A record on authoritative name server')
         return None, None
     except Exception as e:
         logger.log('ERROR', e.args)
@@ -314,7 +314,7 @@ def collect_wildcard_record(domain, authoritative_ns):
             logger.log('ALERT', f'Multiple query errors,'
                                 f'try to query a new random subdomain')
             continue
-        if ip is None:
+        if ip is None:  # TODO 当权威服务器查询出的结果只有cname没有ip结果时会死循环
             continue
         ips.update(ip)
         # 统计每个泛解析IP出现次数
@@ -727,7 +727,7 @@ class Brute(Module):
             if self.recursive_brute:
                 for layer_num in range(1, self.recursive_depth):
                     # 之前已经做过1层子域爆破 当前实际递归层数是layer+1
-                    logger.log('INFOR', f'Start recursively brute the {layer_num+1} layer'
+                    logger.log('INFOR', f'Start recursively brute the {layer_num + 1} layer'
                                         f' subdomain of {self.domain}')
                     for subdomain in all_subdomains:
                         self.place = '*.' + subdomain

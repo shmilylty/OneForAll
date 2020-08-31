@@ -160,7 +160,7 @@ DESCRIPTION
     Note:
         --alive  True/False           Only export alive subdomains or not (default False)
         --port   default/small/large  See details in ./config/setting.py(default port 80)
-        --format rst/csv/tsv/json/yaml/html/jira/xls/xlsx/dbf/latex/ods (result format)
+        --format csv/json (result format)
         --path   Result directory (default directory is ./results)
 
 ARGUMENTS
