@@ -304,6 +304,7 @@ def collect_wildcard_record(domain, authoritative_ns):
     ips = set()
     ttl = int()
     ips_stat = dict()
+    ips_check = list()
     while True:
         token = secrets.token_hex(4)
         random_subdomain = f'{token}.{domain}'
@@ -314,7 +315,15 @@ def collect_wildcard_record(domain, authoritative_ns):
             logger.log('ALERT', f'Multiple query errors,'
                                 f'try to query a new random subdomain')
             continue
-        if ip is None:  # TODO 当权威服务器查询出的结果只有cname没有ip结果时会死循环
+        # 每5次查询检查结果列表 如果都没结果则结束查询
+        ips_check.append(ip)
+        if len(ips_check) == 5:
+            if not any(ips_check):
+                logger.log('ALERT', 'The query ends because there are '
+                                    'no results for 5 consecutive queries.')
+                break
+            ips_check = list()
+        if ip is None:
             continue
         ips.update(ip)
         # 统计每个泛解析IP出现次数
