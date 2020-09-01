@@ -702,12 +702,13 @@ def check_random_subdomain(subdomains):
 
 
 def get_url_resp(url):
+    logger.log('INFOR', f'Attempting to request {url}')
     timeout = settings.request_timeout_second
     verify = settings.request_ssl_verify
     try:
         resp = requests.get(url, params=None, timeout=timeout, verify=verify)
     except Exception as e:
-        logger.log('DEBUG', f'Error request {url}')
+        logger.log('ALERT', f'Error request {url}')
         logger.log('DEBUG', e.args)
         return None
     return resp
