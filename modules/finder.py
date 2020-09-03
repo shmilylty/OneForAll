@@ -191,7 +191,7 @@ def find_subdomains(domain, data):
         js_urls.update(find_js_urls(domain, req_url, rsp_html))
 
     resp_data = request.bulk_request(js_urls)
-    for resp in resp_data:
+    for _, resp in resp_data:
         if not resp:
             continue
         text = utils.decode_resp_text(resp)
