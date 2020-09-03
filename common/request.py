@@ -136,7 +136,7 @@ def get(url, resp_queue, session):
     except Exception as e:
         logger.log('DEBUG', e.args)
         return
-    resp_queue.put(resp)
+    resp_queue.put((url, resp))
 
 
 def request(urls_queue, resp_queue, session):
@@ -191,8 +191,7 @@ def bulk_request(urls):
     urls_queue.join()
 
     while not resp_queue.empty():
-        resp = resp_queue.get()
-        resp_list.append(resp)
+        resp_list.append(resp_queue.get())
     return resp_list
 
 
@@ -221,12 +220,10 @@ def gen_new_info(info, resp):
 
 
 def gen_new_data(data, resp_list):
-    # to fix: 重复结果
     new_data = list()
-    for resp in resp_list:
-        subdomain = resp.raw._pool.host
+    for url, resp in resp_list:
         for info in data:
-            if info.get('subdomain') == subdomain:
+            if info.get('url') == url:
                 new_data.append(gen_new_info(info, resp))
     return new_data
 
@@ -245,7 +242,7 @@ def run_request(domain, data, port):
     ports = get_port_seq(port)
     req_data, req_urls = gen_req_data(data, ports)
     resp_list = bulk_request(req_urls)
-    new_data = gen_new_data(data, resp_list)
+    new_data = gen_new_data(req_data, resp_list)
     count = utils.count_alive(new_data)
     logger.log('INFOR', f'Found that {domain} has {count} alive subdomains')
     return new_data
