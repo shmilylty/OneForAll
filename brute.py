@@ -303,6 +303,7 @@ def collect_wildcard_record(domain, authoritative_ns):
     resolver.cache = None  # 不使用DNS缓存
     ips = set()
     ttl = int()
+    ttls_check = list()
     ips_stat = dict()
     ips_check = list()
     while True:
@@ -317,12 +318,18 @@ def collect_wildcard_record(domain, authoritative_ns):
             continue
         # 每5次查询检查结果列表 如果都没结果则结束查询
         ips_check.append(ip)
+        ttls_check.append(ttl)
         if len(ips_check) == 5:
             if not any(ips_check):
                 logger.log('ALERT', 'The query ends because there are '
                                     'no results for 5 consecutive queries.')
                 break
             ips_check = list()
+        if len(ttls_check) == 5 and len(set(ttls_check)) == 5:
+            logger.log('ALERT', 'The query ends because there are '
+                                '5 different TTL results for 5 consecutive queries.')
+            ips, ttl = set(), int()
+            break
         if ip is None:
             continue
         ips.update(ip)
