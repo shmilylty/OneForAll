@@ -196,8 +196,6 @@ def bulk_request(urls):
 
 
 def gen_new_info(info, resp):
-    port = resp.raw._pool.port
-    info['port'] = port
     info['reason'] = resp.reason
     code = resp.status_code
     info['status'] = code
