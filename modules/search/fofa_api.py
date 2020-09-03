@@ -32,7 +32,7 @@ class FoFa(Search):
                      'qbase64': query_data,
                      'page': self.page_num,
                      'full': 'true',
-                     'size': 10000}
+                     'size': 5000}
             resp = self.get(self.addr, query)
             if not resp:
                 return
@@ -42,7 +42,7 @@ class FoFa(Search):
                 break
             self.subdomains.update(subdomains)
             size = resp_json.get('size')
-            if size < 10000:
+            if size < 5000:
                 break
             self.page_num += 1
 
