@@ -1,49 +1,5 @@
 from collections import OrderedDict
-from io import BytesIO, StringIO
-from .registry import registry
-
-
-def normalize_input(stream):
-    """
-    Accept either a str/bytes stream or a file-like object and always return a
-    file-like object.
-    """
-    if isinstance(stream, str):
-        return StringIO(stream)
-    elif isinstance(stream, bytes):
-        return BytesIO(stream)
-    return stream
-
-
-def import_set(stream, format=None, **kwargs):
-    """Return dataset of given stream (file-like object, string, or bytestring)."""
-
-    return Dataset().load(normalize_input(stream), format, **kwargs)
-
-
-def detect_format(stream):
-    """Return format name of given stream (file-like object, string, or bytestring)."""
-    stream = normalize_input(stream)
-    fmt_title = None
-    for fmt in registry.formats():
-        try:
-            if fmt.detect(stream):
-                fmt_title = fmt.title
-                break
-        except AttributeError:
-            pass
-        finally:
-            if hasattr(stream, 'seek'):
-                stream.seek(0)
-    return fmt_title
-
-
-def get_format(format):
-    """
-    Determine if the format is available
-    :param format:
-    :return:
-    """
+from .format import registry
 
 
 class Row:
@@ -173,78 +129,6 @@ class Dataset:
     def __len__(self):
         return self.height
 
-    def __getitem__(self, key):
-        if isinstance(key, str):
-            if key in self.headers:
-                pos = self.headers.index(key)  # get 'key' index from each data
-                return [row[pos] for row in self._data]
-            else:
-                raise KeyError
-        else:
-            _results = self._data[key]
-            if isinstance(_results, Row):
-                return _results.tuple
-            else:
-                return [result.tuple for result in _results]
-
-    def __setitem__(self, key, value):
-        self._validate(value)
-        self._data[key] = Row(value)
-
-    def __delitem__(self, key):
-        if isinstance(key, str):
-
-            if key in self.headers:
-
-                pos = self.headers.index(key)
-                del self.headers[pos]
-
-                for i, row in enumerate(self._data):
-                    del row[pos]
-                    self._data[i] = row
-            else:
-                raise KeyError
-        else:
-            del self._data[key]
-
-    def __repr__(self):
-        try:
-            return '<%s dataset>' % (self.title.lower())
-        except AttributeError:
-            return '<dataset object>'
-
-    def __str__(self):
-        result = []
-
-        # Add str representation of headers.
-        if self.__headers:
-            result.append([str(h) for h in self.__headers])
-
-        # Add str representation of rows.
-        result.extend(list(map(str, row)) for row in self._data)
-
-        lens = [list(map(len, row)) for row in result]
-        field_lens = list(map(max, zip(*lens)))
-
-        # delimiter between header and data
-        if self.__headers:
-            result.insert(1, ['-' * length for length in field_lens])
-
-        format_string = '|'.join('{%s:%s}' % item for item in enumerate(field_lens))
-
-        return '\n'.join(format_string.format(*row) for row in result)
-
-    # ---------
-    # Internals
-    # ---------
-
-    def _get_in_format(self, fmt_key, **kwargs):
-        return registry.get_format(fmt_key).export_set(self, **kwargs)
-
-    def _set_in_format(self, fmt_key, in_stream, **kwargs):
-        in_stream = normalize_input(in_stream)
-        return registry.get_format(fmt_key).import_set(self, in_stream, **kwargs)
-
     def _validate(self, row=None, col=None, safety=False):
         """Assures size of every row in dataset is of proper proportions."""
         if row:
@@ -365,22 +249,6 @@ class Dataset:
 
     dict = property(_get_dict, _set_dict)
 
-    def _clean_col(self, col):
-        """Prepares the given column for insert/append."""
-
-        col = list(col)
-
-        if self.headers:
-            header = [col.pop(0)]
-        else:
-            header = []
-
-        if len(col) == 1 and hasattr(col[0], '__call__'):
-            col = list(map(col[0], self._data))
-        col = tuple(header + col)
-
-        return col
-
     @property
     def height(self):
         """The number of rows currently in the :class:`Dataset`.
@@ -464,29 +332,6 @@ class Dataset:
     # Misc
     # ----
 
-    def add_formatter(self, col, handler):
-        """Adds a formatter to the :class:`Dataset`.
-
-        .. version added:: 0.9.5
-
-        :param col: column to. Accepts index int or header str.
-        :param handler: reference to callback function to execute against
-                        each cell value.
-        """
-
-        if isinstance(col, str):
-            if col in self.headers:
-                col = self.headers.index(col)  # get 'key' index from each data
-            else:
-                raise KeyError
-
-        if not col > self.width:
-            self._formatters.append((col, handler))
-        else:
-            raise InvalidDatasetIndex
-
-        return True
-
     def remove_duplicates(self):
         """Removes all duplicate rows from the :class:`Dataset` object
         while maintaining the original order."""
@@ -498,25 +343,6 @@ class Dataset:
         """Removes all content and headers from the :class:`Dataset` object."""
         self._data = list()
         self.__headers = None
-
-    def load(self, in_stream, format, **kwargs):
-        """
-        Import `in_stream` to the :class:`Databook` object using the `format`.
-        `in_stream` can be a file-like object, a string, or a bytestring.
-
-        :param \\*\\*kwargs: (optional) custom configuration to the format `import_book`.
-        """
-
-        stream = normalize_input(in_stream)
-        if not format:
-            format = detect_format(stream)
-
-        fmt = registry.get_format(format)
-        if not hasattr(fmt, 'import_book'):
-            raise UnsupportedFormat('Format {} cannot be loaded.'.format(format))
-
-        fmt.import_book(self, stream, **kwargs)
-        return self
 
 
 registry.register_builtins()

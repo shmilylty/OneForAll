@@ -305,32 +305,6 @@ class Database(object):
         with self.get_connection() as conn:
             conn.bulk_query(query, *multiparams)
 
-    def query_file(self, path, fetchall=False, **params):
-        """Like Database.query, but takes a filename to load a query from."""
-
-        with self.get_connection() as conn:
-            return conn.query_file(path, fetchall, **params)
-
-    def bulk_query_file(self, path, *multiparams):
-        """Like Database.bulk_query, but takes a filename to load a query from."""
-
-        with self.get_connection() as conn:
-            conn.bulk_query_file(path, *multiparams)
-
-    @contextmanager
-    def transaction(self):
-        """A context manager for executing a transaction on this Database."""
-
-        conn = self.get_connection()
-        tx = conn.transaction()
-        try:
-            yield conn
-            tx.commit()
-        except:
-            tx.rollback()
-        finally:
-            conn.close()
-
 
 class Connection(object):
     """A Database connection."""
@@ -378,49 +352,6 @@ class Connection(object):
 
         self._conn.execute(text(query), *multiparams)
 
-    def query_file(self, path, fetchall=False, **params):
-        """Like Connection.query, but takes a filename to load a query from."""
-
-        # If path doesn't exists
-        if not os.path.exists(path):
-            raise IOError("File '{}' not found!".format(path))
-
-        # If it's a directory
-        if os.path.isdir(path):
-            raise IOError("'{}' is a directory!".format(path))
-
-        # Read the given .sql file into memory.
-        with open(path) as f:
-            query = f.read()
-
-        # Defer processing to self.query method.
-        return self.query(query=query, fetchall=fetchall, **params)
-
-    def bulk_query_file(self, path, *multiparams):
-        """Like Connection.bulk_query, but takes a filename to load a query
-        from.
-        """
-
-        # If path doesn't exists
-        if not os.path.exists(path):
-            raise IOError("File '{}'' not found!".format(path))
-
-        # If it's a directory
-        if os.path.isdir(path):
-            raise IOError("'{}' is a directory!".format(path))
-
-        # Read the given .sql file into memory.
-        with open(path) as f:
-            query = f.read()
-
-        self._conn.execute(text(query), *multiparams)
-
-    def transaction(self):
-        """Returns a transaction object. Call ``commit`` or ``rollback``
-        on the returned object as appropriate."""
-
-        return self._conn.begin()
-
 
 def _reduce_datetimes(row):
     """Receives a row, converts datetimes to strings."""
@@ -431,10 +362,3 @@ def _reduce_datetimes(row):
         if hasattr(row[i], 'isoformat'):
             row[i] = row[i].isoformat()
     return tuple(row)
-
-
-def print_bytes(content):
-    try:
-        stdout.buffer.write(content)
-    except AttributeError:
-        stdout.write(content)
