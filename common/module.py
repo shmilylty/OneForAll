@@ -75,8 +75,10 @@ class Module(object):
         :param kwargs: other params
         :return: response object
         """
+        session = requests.Session()
+        session.trust_env = False
         try:
-            resp = requests.head(url,
+            resp = session.head(url,
                                  params=params,
                                  cookies=self.cookie,
                                  headers=self.header,
@@ -104,18 +106,20 @@ class Module(object):
         :param kwargs: other params
         :return: response object
         """
+        session = requests.Session()
+        session.trust_env = False
         level = 'ERROR'
         if ignore:
             level = 'DEBUG'
         try:
-            resp = requests.get(url,
-                                params=params,
-                                cookies=self.cookie,
-                                headers=self.header,
-                                proxies=self.proxy,
-                                timeout=self.timeout,
-                                verify=self.verify,
-                                **kwargs)
+            resp = session.get(url,
+                               params=params,
+                               cookies=self.cookie,
+                               headers=self.header,
+                               proxies=self.proxy,
+                               timeout=self.timeout,
+                               verify=self.verify,
+                               **kwargs)
         except Exception as e:
             logger.log(level, e.args)
             return None
@@ -135,15 +139,17 @@ class Module(object):
         :param kwargs: other params
         :return: response object
         """
+        session = requests.Session()
+        session.trust_env = False
         try:
-            resp = requests.post(url,
-                                 data=data,
-                                 cookies=self.cookie,
-                                 headers=self.header,
-                                 proxies=self.proxy,
-                                 timeout=self.timeout,
-                                 verify=self.verify,
-                                 **kwargs)
+            resp = session.post(url,
+                                data=data,
+                                cookies=self.cookie,
+                                headers=self.header,
+                                proxies=self.proxy,
+                                timeout=self.timeout,
+                                verify=self.verify,
+                                **kwargs)
         except Exception as e:
             logger.log('ERROR', e.args)
             return None
@@ -162,14 +168,16 @@ class Module(object):
         :param kwargs: other params
         :return: requests's response object
         """
+        session = requests.Session()
+        session.trust_env = False
         try:
-            resp = requests.delete(url,
-                                   cookies=self.cookie,
-                                   headers=self.header,
-                                   proxies=self.proxy,
-                                   timeout=self.timeout,
-                                   verify=self.verify,
-                                   **kwargs)
+            resp = session.delete(url,
+                                  cookies=self.cookie,
+                                  headers=self.header,
+                                  proxies=self.proxy,
+                                  timeout=self.timeout,
+                                  verify=self.verify,
+                                  **kwargs)
         except Exception as e:
             logger.log('ERROR', e.args)
             return None
