@@ -521,8 +521,10 @@ def check_net():
             'http://www.apple.com', 'http://microsoft.com']
     url = random.choice(urls)
     logger.log('INFOR', f'Trying to access {url}')
+    session = requests.Session()
+    session.trust_env = False
     try:
-        rsp = requests.get(url)
+        rsp = session.get(url, proxies=get_proxy())
     except Exception as e:
         logger.log('ERROR', e.args)
         logger.log('ALERT', 'Can not access Internet, retrying')
@@ -565,8 +567,10 @@ def check_version(local):
     proxy = get_proxy()
     timeout = settings.request_timeout_second
     verify = settings.request_ssl_verify
+    session = requests.Session()
+    session.trust_env = False
     try:
-        resp = requests.get(url=api, headers=header, proxies=proxy,
+        resp = session.get(url=api, headers=header, proxies=proxy,
                             timeout=timeout, verify=verify)
         resp_json = resp.json()
         latest = resp_json['tag_name']
@@ -705,8 +709,10 @@ def get_url_resp(url):
     logger.log('INFOR', f'Attempting to request {url}')
     timeout = settings.request_timeout_second
     verify = settings.request_ssl_verify
+    session = requests.Session()
+    session.trust_env = False
     try:
-        resp = requests.get(url, params=None, timeout=timeout, verify=verify)
+        resp = session.get(url, params=None, timeout=timeout, verify=verify)
     except Exception as e:
         logger.log('ALERT', f'Error request {url}')
         logger.log('DEBUG', e.args)

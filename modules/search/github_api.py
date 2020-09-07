@@ -12,6 +12,7 @@ class GithubAPI(Search):
         self.addr = 'https://api.github.com/search/code'
         self.domain = domain
         self.session = requests.Session()
+        self.session.trust_env = False
         self.auth_url = 'https://api.github.com'
         self.token = settings.github_api_token
 

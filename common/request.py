@@ -2,7 +2,6 @@ import json
 from threading import Thread
 from queue import Queue
 
-
 import tqdm
 import requests
 from bs4 import BeautifulSoup
@@ -161,6 +160,7 @@ def get_session():
     verify = settings.request_ssl_verify
     redirect_limit = settings.request_redirect_limit
     session = requests.Session()
+    session.trust_env = False
     session.headers = header
     session.verify = verify
     session.max_redirects = redirect_limit
