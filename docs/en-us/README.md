@@ -41,7 +41,7 @@ You can use pip3 install requirements, the following is an example of using **pi
 cd OneForAll/
 python -m pip install -U pip setuptools wheel
 pip3 install -r requirements.txt
-python oneforall.py --help
+python3 oneforall.py --help
 ```
 
 For other system platforms, please read [dependency installation](https://github.com/shmilylty/OneForAll/tree/master/docs/installation_dependency.md). If you compile failed during the installation, you can find solution in the [troubleshooting.md](https://github.com/shmilylty/OneForAll/tree/master/docs/troubleshooting.md) documentation. If still not resolved, welcome [issues](https://github.com/shmilylty/OneForAll/issues).
