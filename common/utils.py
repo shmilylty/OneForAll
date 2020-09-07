@@ -152,7 +152,8 @@ def get_domains(target, targets=None):
     target_domains = get_from_target(target)
     targets_domains = get_from_targets(targets)
     domains = list(target_domains.union(targets_domains))
-    domains = sorted(domains, key=targets_domains.index) # 按照targets原本的index排序
+    if targets_domains:
+        domains = sorted(domains, key=targets_domains.index) # 按照targets原本的index排序
     logger.log('INFOR', f'Get {len(domains)} domains')
     if not domains:
         logger.log('ERROR', f'Did not get a valid domain name')
