@@ -79,13 +79,13 @@ class Module(object):
         session.trust_env = False
         try:
             resp = session.head(url,
-                                 params=params,
-                                 cookies=self.cookie,
-                                 headers=self.header,
-                                 proxies=self.proxy,
-                                 timeout=self.timeout,
-                                 verify=self.verify,
-                                 **kwargs)
+                                params=params,
+                                cookies=self.cookie,
+                                headers=self.header,
+                                proxies=self.proxy,
+                                timeout=self.timeout,
+                                verify=self.verify,
+                                **kwargs)
         except Exception as e:
             logger.log('ERROR', e.args)
             return None
@@ -95,7 +95,7 @@ class Module(object):
             return resp
         return None
 
-    def get(self, url, params=None, check=True, ignore=False, **kwargs):
+    def get(self, url, params=None, check=True, ignore=False,raise_error=False, **kwargs):
         """
         Custom get request
 
@@ -103,6 +103,7 @@ class Module(object):
         :param dict params: request parameters
         :param bool check: check response
         :param bool ignore: ignore error
+        :param bool raise_error: raise error or not
         :param kwargs: other params
         :return: response object
         """
@@ -121,6 +122,10 @@ class Module(object):
                                verify=self.verify,
                                **kwargs)
         except Exception as e:
+            if raise_error:
+                if isinstance(e, requests.exceptions.ConnectTimeout):
+                    logger.log(level, e.args)
+                    raise e
             logger.log(level, e.args)
             return None
         if not check:
