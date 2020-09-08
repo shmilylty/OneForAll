@@ -79,10 +79,8 @@ fuzz_list = None  # fuzz域名使用的字典路径
 brute_ip_blacklist = {'0.0.0.0', '0.0.0.1'}  # IP黑名单 子域解析到IP黑名单则标记为非法子域
 ip_appear_maximum = 100  # 多个子域解析到同一IP次数超过100次则标记为非法(泛解析)子域
 
-
 # altdns模块设置
 enable_fast_alt = True  # 是否开启快速置换(默认True，只使用部分置换规则)
-
 
 # banner识别模块设置
 banner_process_number = 4  # 识别进程数量(默认4)
@@ -102,7 +100,7 @@ request_proxy_pool = [{'http': 'http://127.0.0.1:1080',
 
 # 请求设置
 request_thread_count = None  # 请求线程数量(默认None，则根据内存大小设置)
-request_timeout_second = (3,15)  # 请求超时秒数(默认connect3秒，read15秒)
+request_timeout_second = (3.05, 27)  # 请求超时秒数(默认connect timout推荐略大于3秒，read秒)
 request_ssl_verify = False  # 请求SSL验证(默认False)
 request_allow_redirect = True  # 请求允许重定向(默认True)
 request_redirect_limit = 10  # 请求跳转限制(默认10次)
