@@ -153,7 +153,7 @@ def get_domains(target, targets=None):
     targets_domains = get_from_targets(targets)
     domains = list(target_domains.union(targets_domains))
     if targets_domains:
-        domains = sorted(domains, key=targets_domains.index) # 按照targets原本的index排序
+        domains = sorted(domains, key=targets_domains.index)  # 按照targets原本的index排序
     logger.log('INFOR', f'Get {len(domains)} domains')
     if not domains:
         logger.log('ERROR', f'Did not get a valid domain name')
@@ -324,18 +324,6 @@ def remove_invalid_string(string):
     return re.sub(r'[\000-\010]|[\013-\014]|[\016-\037]', r'', string)
 
 
-def check_value(values):
-    if not isinstance(values, dict):
-        return values
-    for key, value in values.items():
-        if value is None:
-            continue
-        if isinstance(value, str) and len(value) > 32767:
-            # Excel文件中单元格值长度不能超过32767
-            values[key] = value[:32767]
-    return values
-
-
 def export_all_results(path, name, format, datas):
     path = check_path(path, name, format)
     logger.log('ALERT', f'The subdomain result for all main domains: {path}')
@@ -347,8 +335,6 @@ def export_all_results(path, name, format, datas):
             row.pop('response')
         keys = row.keys()
         values = row.values()
-        if format in {'xls', 'xlsx'}:
-            values = check_value(values)
         row_list.append(Record(keys, values))
     rows = RecordCollection(iter(row_list))
     content = rows.export(format)

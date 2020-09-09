@@ -15,10 +15,6 @@ from common.database import Database
 from config.log import logger
 
 
-def domain_to_table(table):
-    return table.replace('.', '_') + "_now_result"
-
-
 def export(target, type='target', db=None, alive=False, limit=None, path=None, format='csv', show=False):
     """
     OneForAll export from database module
@@ -52,14 +48,7 @@ def export(target, type='target', db=None, alive=False, limit=None, path=None, f
                 rows = database.export_data(table_name, alive, limit)
                 if rows is None:
                     continue
-                format = utils.check_format(format, len(rows))
-                path = utils.check_path(path, target, format)
-                if show:
-                    print(rows.dataset)
-                data = rows.export(format)
-                utils.save_data(path, data)
-                logger.log('ALERT', f'The subdomain result for {table_name}: {path}')
-                data = rows.as_dict()
+                data = export_data(format, path, rows, show, table_name, target)
                 datas.extend(data)
         database.close()
         if len(domains) > 1:
@@ -67,16 +56,25 @@ def export(target, type='target', db=None, alive=False, limit=None, path=None, f
     elif type == 'table':
         database = Database(db)
         rows = database.export_data(target, alive, limit)
-        format = utils.check_format(format, len(rows))
-        path = utils.check_path(path, target, format)
-        if show:
-            print(rows.dataset)
-        data = rows.export(format)
+        data = export_data(format, path, rows, show, target, target)
         database.close()
-        utils.save_data(path, data)
-        logger.log('ALERT', f'The subdomain result for {target}: {path}')
-        data_dict = rows.as_dict()
-        return data_dict
+        return data
+
+
+def export_data(format, path, rows, show, table_name, target):
+    format = utils.check_format(format, len(rows))
+    path = utils.check_path(path, target, format)
+    if show:
+        print(rows.dataset)
+    data = rows.export(format)
+    utils.save_data(path, data)
+    logger.log('ALERT', f'The subdomain result for {table_name}: {path}')
+    data = rows.as_dict()
+    return data, format, path
+
+
+def domain_to_table(table):
+    return table.replace('.', '_') + "_now_result"
 
 
 if __name__ == '__main__':
