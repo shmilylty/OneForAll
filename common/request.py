@@ -1,6 +1,7 @@
 import json
 from threading import Thread
 from queue import Queue
+from operator import attrgetter
 
 import tqdm
 import requests
@@ -243,7 +244,8 @@ def run_request(domain, data, port):
     new_data = gen_new_data(req_data, resp_list)
     count = utils.count_alive(new_data)
     logger.log('INFOR', f'Found that {domain} has {count} alive subdomains')
-    return new_data
+    sorted_data = utils.sort_by_subdomain(new_data)
+    return sorted_data
 
 
 def save_db(name, data):
