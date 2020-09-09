@@ -37,9 +37,9 @@ git clone https://github.com/shmilylty/OneForAll.git
 
 ```bash
 cd OneForAll/
-python -m pip install -U pip setuptools wheel -i https://mirrors.aliyun.com/pypi/simple/
+python3 -m pip install -U pip setuptools wheel -i https://mirrors.aliyun.com/pypi/simple/
 pip3 install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
-python oneforall.py --help
+python3 oneforall.py --help
 ```
 
 其他系统平台的请参考[依赖安装](https://github.com/shmilylty/OneForAll/tree/master/docs/installation_dependency.md)，如果在安装依赖过程中发现编译某个依赖库失败时可以参考[troubleshooting.md](https://github.com/shmilylty/OneForAll/tree/master/docs/troubleshooting.md)中解决方法，如果还没有解决欢迎加群反馈。
@@ -80,6 +80,8 @@ docker run -it --rm -v ~/results:/OneForAll/results -v ~/.config:/OneForAll/conf
 
 <details>
 <summary><b>✨使用演示</b></summary>
+
+如果你的主机不在中国，请把 [setting](https://github.com/shmilylty/OneForAll/blob/master/config/setting.py#L46) 中`brute_nameservers_path`选项的`cn_nameservers.txt`修改为`nameservers.txt`。
 
 1. 如果你是通过pip3安装的依赖则使用以下命令运行示例：   
 ```bash

@@ -39,7 +39,7 @@ You can use pip3 install requirements, the following is an example of using **pi
 
 ```bash
 cd OneForAll/
-python -m pip install -U pip setuptools wheel
+python3 -m pip install -U pip setuptools wheel
 pip3 install -r requirements.txt
 python3 oneforall.py --help
 ```
@@ -70,6 +70,8 @@ Result will be saved in `~/results`.
 
 <details>
 <summary><b>✨OneForAll usage</b></summary>
+
+If your computer are not in China, change [setting](https://github.com/shmilylty/OneForAll/blob/master/config/setting.py#L46) `brute_nameservers_path` param `cn_nameservers.txt` to `nameservers.txt` plz.
 
 1. If you are use pip3, run the following command: 
 ```bash
