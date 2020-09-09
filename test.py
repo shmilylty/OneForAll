@@ -6,11 +6,18 @@ Example
 """
 
 from oneforall import OneForAll
+from dbexport import export
 
-if __name__ == '__main__':
-    test = OneForAll(target='freebuf.com')
+
+def oneforall(target):
+    test = OneForAll(target=target)
     test.brute = True
     test.req = True
     test.takeover = True
     test.run()
-    result = test.datas
+
+
+if __name__ == '__main__':
+    TARGET = 'freebuf.com'
+    oneforall(target=TARGET)
+    export(target=TARGET)
