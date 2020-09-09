@@ -718,7 +718,7 @@ class Brute(Module):
         self.elapse = round(end - start, 1)
         logger.log('ALERT', f'{self.source} module takes {self.elapse} seconds, '
                             f'found {len(self.subdomains)} subdomains of {domain}')
-        logger.log('DEBUG', f'{self.source} module found subdomains of {domain}:\n'
+        logger.log('DEBUG', f'{self.source} module found subdomains of {domain}: '
                             f'{self.subdomains}')
         self.gen_result()
         self.save_db()
