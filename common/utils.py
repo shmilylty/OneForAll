@@ -723,3 +723,7 @@ def decode_resp_text(resp):
             # 最后尝试自动解码
             content = str(content, errors='replace')
     return content
+
+
+def sort_by_subdomain(data):
+    return sorted(data, key=lambda item: item.get('subdomain'))
