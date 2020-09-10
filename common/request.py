@@ -135,7 +135,7 @@ def get(url, resp_list, session):
         resp = session.get(url, timeout=timeout, allow_redirects=redirect, proxies=proxy)
     except Exception as e:
         logger.log('DEBUG', e.args)
-        return
+        resp = e
     resp_list.append((url, resp))
 
 
@@ -194,6 +194,11 @@ def bulk_request(urls):
 
 
 def gen_new_info(info, resp):
+    if isinstance(resp, Exception):
+        info['reason'] = str(resp.args)
+        info['request'] = 0
+        info['alive'] = 0
+        return info
     info['reason'] = resp.reason
     code = resp.status_code
     info['status'] = code
