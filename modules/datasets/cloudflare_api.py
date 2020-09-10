@@ -28,7 +28,10 @@ class CloudFlareAPI(Query):
                 return
         else:
             return
-        account_id = account_id_resp.json()['result'][0]['id']
+        result = account_id_resp.json()['result']
+        if not result:
+            return
+        account_id = result[0]['id']
         # query domain zone, if it not exist, create
         zones_resp = self.get(self.addr + 'zones',
                               params={'name': self.domain}, check=False)
