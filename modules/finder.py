@@ -1,6 +1,7 @@
 import re
 import time
 from urllib import parse
+from requests import Response
 
 from common import utils
 from common import resolve
@@ -192,7 +193,7 @@ def find_subdomains(domain, data):
 
     resp_data = request.bulk_request(js_urls)
     for _, resp in resp_data:
-        if not resp:
+        if not isinstance(resp, Response):
             continue
         text = utils.decode_resp_text(resp)
         subdomains.update(find_in_resp(domain, resp.url, text))
