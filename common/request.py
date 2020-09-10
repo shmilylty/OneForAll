@@ -127,7 +127,7 @@ def get_progress_bar(total):
     return bar
 
 
-def get(url, resp_queue, session):
+def get(url, resp_list, session):
     timeout = settings.request_timeout_second
     redirect = settings.request_allow_redirect
     proxy = utils.get_proxy()
@@ -136,13 +136,13 @@ def get(url, resp_queue, session):
     except Exception as e:
         logger.log('DEBUG', e.args)
         return
-    resp_queue.put((url, resp))
+    resp_list.append((url, resp))
 
 
-def request(urls_queue, resp_queue, session):
+def request(urls_queue, resp_list, session):
     while not urls_queue.empty():
         url = urls_queue.get()
-        get(url, resp_queue, session)
+        get(url, resp_list, session)
         urls_queue.task_done()
 
 
@@ -172,7 +172,6 @@ def bulk_request(urls):
     logger.log('INFOR', 'Requesting urls in bulk')
     resp_list = list()
     urls_queue = Queue()
-    resp_queue = Queue()
     for url in urls:
         urls_queue.put(url)
     total = len(urls)
@@ -186,13 +185,11 @@ def bulk_request(urls):
 
     for i in range(thread_count):
         request_thread = Thread(target=request, name=f'RequestThread-{i}',
-                                args=(urls_queue, resp_queue, session), daemon=True)
+                                args=(urls_queue, resp_list, session), daemon=True)
         request_thread.start()
 
     urls_queue.join()
 
-    while not resp_queue.empty():
-        resp_list.append(resp_queue.get())
     return resp_list
 
 
