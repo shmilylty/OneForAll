@@ -16,6 +16,22 @@
 📢 请务必花一点时间阅读此文档，有助于你快速熟悉OneForAll！
 
 <details>
+<summary><b>🐍安装要求</b></summary>
+
+OneForAll基于[Python 3.6.0]( https://www.python.org/downloads/release/python-360/ )开发和测试，OneForAll需要高于Python 3.6.0的版本才能运行。
+安装Python环境可以参考[Python 3 安装指南](https://pythonguidecn.readthedocs.io/zh/latest/starting/installation.html#python-3)。运行以下命令检查Python和pip3版本：
+```bash
+python -V
+pip3 -V
+```
+如果你看到类似以下的输出便说明Python环境没有问题：
+```bash
+Python 3.8.0
+pip 19.2.2 from C:\Users\shmilylty\AppData\Roaming\Python\Python38\site-packages\pip (python 3.8)
+```
+</details>
+
+<details>
 <summary><b>✔安装步骤（git 版）</b></summary>
 
 1. **下载**
