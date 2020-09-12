@@ -126,7 +126,7 @@ def get_from_target(target):
     domains = set()
     if isinstance(target, str):
         if target.endswith('.txt'):
-            logger.log('FETAL', 'Use targets parameter for multiple domain names')
+            logger.log('FATAL', 'Use targets parameter for multiple domain names')
             exit(1)
         domain = match_main_domain(target)
         if not domain:
