@@ -31,7 +31,6 @@ git clone https://gitee.com/shmilylty/OneForAll.git
 cd OneForAll/
 sudo apt install python3-dev python3-pip python3-testresources -y
 sudo python3 -m pip install -U pip setuptools wheel -i https://mirrors.aliyun.com/pypi/simple/
-sudo pip3 install uvloop -i https://mirrors.aliyun.com/pypi/simple/
 sudo pip3 install --ignore-installed -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
 python3 oneforall.py --help
 ```
@@ -54,7 +53,6 @@ git clone https://gitee.com/shmilylty/OneForAll.git
 cd OneForAll/
 sudo yum install gcc python3-devel python3-pip -y
 sudo python3 -m pip install -U pip setuptools wheel -i https://mirrors.aliyun.com/pypi/simple/
-sudo pip3 install uvloop -i https://mirrors.aliyun.com/pypi/simple/
 sudo pip3 install --ignore-installed -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
 python3 oneforall.py --help
 ```
@@ -71,6 +69,5 @@ git clone https://gitee.com/shmilylty/OneForAll.git
 cd OneForAll/
 python3 -m pip install -U pip setuptools wheel -i https://mirrors.aliyun.com/pypi/simple/
 pip3 install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
-pip3 install uvloop -i https://mirrors.aliyun.com/pypi/simple/
 python3 oneforall.py --help
 ```
