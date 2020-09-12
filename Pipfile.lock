@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "b73543264fb05b4cf1e331e782b66e43171c7b0cb9157796308c14aa62f11356"
+            "sha256": "7ad607a807779ea8674fd9d46eb4474f11349f766d94d721c23ad2b29a033105"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -44,14 +44,6 @@
                 "sha256:fc323ffcaeaed0e0a02bf4d117757b98aed530d9ed4531e3e15460124c106691"
             ],
             "version": "==3.0.4"
-        },
-        "cloudscraper": {
-            "hashes": [
-                "sha256:793095bbc37aae84a5c38d9f66b56f3c83a00f0b1ff2d334f75a2b8f88b924af",
-                "sha256:a7ae28b5dc4e4ef0789ef608c42a4382bf6d3e3dd6b8117c2e3633103131ae43"
-            ],
-            "index": "pypi",
-            "version": "==1.2.46"
         },
         "colorama": {
             "hashes": [
@@ -98,18 +90,11 @@
         },
         "loguru": {
             "hashes": [
-                "sha256:70201d5fce26da89b7a5f168caa2bb674e06b969829f56737db1d6472e53e7c3",
-                "sha256:e5d362a43cd2fc2da63551d79a6830619c4d5b3a8b976515748026f92f351b61"
+                "sha256:5aecbf13bc8e2f6e5a5d0475460a345b44e2885464095ea7de44e8795857ad33",
+                "sha256:a5e5e196b9958feaf534ac2050171d16576bae633074ce3e73af7dda7e9a58ae"
             ],
             "index": "pypi",
-            "version": "==0.5.1"
-        },
-        "pyparsing": {
-            "hashes": [
-                "sha256:c203ec8783bf771a155b207279b9bccb8dea02d8f0c9e5f8ead507bc3246ecc1",
-                "sha256:ef9d7589ef3c200abe66653d3f1ab1033c3c419ae9b9bdb1240a85b024efc88b"
-            ],
-            "version": "==2.4.7"
+            "version": "==0.5.2"
         },
         "pysocks": {
             "hashes": [
@@ -136,13 +121,6 @@
                 "sha256:dfe5dae75c12481f68ba353183c53a65e6044c923e64c24b2209f6c7570ca953"
             ],
             "version": "==1.5.1"
-        },
-        "requests-toolbelt": {
-            "hashes": [
-                "sha256:380606e1d10dc85c3bd47bf5a6095f815ec007be7a8b69c878507068df059e6f",
-                "sha256:968089d4584ad4ad7c171454f0a5c6dac23971e9472521ea3b6d49d610aa6fc0"
-            ],
-            "version": "==0.9.1"
         },
         "six": {
             "hashes": [
@@ -242,11 +220,11 @@
         },
         "win32-setctime": {
             "hashes": [
-                "sha256:568fd636c68350bcc54755213fe01966fe0a6c90b386c0776425944a0382abef",
-                "sha256:b47e5023ec7f0b4962950902b15bc56464a380d869f59d27dbf9ab423b23e8f9"
+                "sha256:02b4c5959ca0b195f45c98115826c6e8a630b7cf648e724feaab1a5aa6250640",
+                "sha256:47aa7c43548c1fc0a4f026d1944b748b37036df116c7c4cf908e82638d854313"
             ],
             "markers": "sys_platform == 'win32'",
-            "version": "==1.0.1"
+            "version": "==1.0.2"
         }
     },
     "develop": {}
