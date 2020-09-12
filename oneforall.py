@@ -8,9 +8,9 @@ OneForAll is a powerful subdomain integration tool
 :license: GNU General Public License v3.0, see LICENSE for more details.
 """
 
+import fire
 from datetime import datetime
 
-import fire
 
 import dbexport
 from brute import Brute
@@ -82,7 +82,6 @@ class OneForAll(object):
     :param str  path:       Result path (default None, automatically generated)
     :param bool takeover:  Scan subdomain takeover (default False)
     """
-
     def __init__(self, target=None, targets=None, brute=None, dns=None, req=None,
                  port=None, alive=None, format=None, path=None, takeover=None):
         self.target = target
