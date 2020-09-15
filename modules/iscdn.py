@@ -17,11 +17,6 @@ cdn_cname_keyword = utils.load_json(data_dir.joinpath('cdn_cname_keywords.json')
 cdn_header_key = utils.load_json(data_dir.joinpath('cdn_header_keys.json'))
 
 
-def check_cname_count(cnames):
-    if len(cnames) > 1:
-        return True
-
-
 def check_cname_keyword(cname):
     names = cname.lower().split(',')
     for name in names:

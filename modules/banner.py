@@ -43,7 +43,7 @@ class MultiIdentify(Module):
         pool = Pool(processes_num)
         rules = self.load_rules()
         _identify = Identify(rules)
-        for i in range(processes_num):
+        for _ in range(processes_num):
             pool.apply_async(func=_identify.run, args=(task_queue, done_queue))
         pool.close()
         pool.join()
@@ -116,7 +116,6 @@ class Identify(object):
             self.parse(item)
             banners = []
             for name, rule in self.RULES.items():
-                # print(name)
                 r = self._check_rule(rule)
                 if r:
                     if 'implies' in rule:
