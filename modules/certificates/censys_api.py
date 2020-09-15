@@ -45,7 +45,7 @@ class CensysAPI(Query):
         """
         类执行入口
         """
-        if not self.check(self.id, self.secret):
+        if not self.have_api(self.id, self.secret):
             return
         self.begin()
         self.query()
