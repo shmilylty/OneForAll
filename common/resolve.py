@@ -21,9 +21,9 @@ def filter_subdomain(data):
     """
     logger.log('DEBUG', f'Filtering subdomains to be resolved')
     subdomains = []
-    for data in data:
-        if not data.get('ip'):
-            subdomain = data.get('subdomain')
+    for infos in data:
+        if not infos.get('ip'):
+            subdomain = infos.get('subdomain')
             if subdomain:
                 subdomains.append(subdomain)
     return subdomains
