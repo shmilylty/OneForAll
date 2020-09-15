@@ -33,8 +33,7 @@ class GithubAPI(Search):
             msg = resp_json.get('message')
             logger.log('ERROR', msg)
             return False
-        else:
-            return True
+        return True
 
     def search(self):
         """
@@ -104,4 +103,4 @@ def run(domain):
 
 
 if __name__ == '__main__':
-    run('exmaple.com')
+    run('example.com')
