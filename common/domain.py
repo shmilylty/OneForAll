@@ -23,8 +23,7 @@ class Domain(object):
         result = re.search(self.regexp, self.string, re.I)
         if result:
             return result.group()
-        else:
-            return None
+        return None
 
     def extract(self):
         """
@@ -43,8 +42,7 @@ class Domain(object):
         result = self.match()
         if result:
             return ext(result)
-        else:
-            return None
+        return None
 
     def registered(self):
         """
@@ -60,5 +58,4 @@ class Domain(object):
         result = self.extract()
         if result:
             return result.registered_domain
-        else:
-            return None
+        return None
