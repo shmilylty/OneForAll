@@ -109,7 +109,7 @@ class CloudFlareAPI(Query):
         """
         class entrance
         """
-        if not self.check(self.token):
+        if not self.have_api(self.token):
             return
         self.begin()
         self.query()

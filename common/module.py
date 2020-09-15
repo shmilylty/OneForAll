@@ -33,7 +33,7 @@ class Module(object):
         self.end = None  # 模块结束执行时间
         self.elapse = None  # 模块执行耗时
 
-    def check(self, *apis):
+    def have_api(self, *apis):
         """
         Simply check whether the api information configure or not
 
