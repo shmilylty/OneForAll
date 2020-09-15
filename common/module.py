@@ -95,7 +95,7 @@ class Module(object):
             return resp
         return None
 
-    def get(self, url, params=None, check=True, ignore=False,raise_error=False, **kwargs):
+    def get(self, url, params=None, check=True, ignore=False, raise_error=False, **kwargs):
         """
         Custom get request
 
@@ -171,7 +171,7 @@ class Module(object):
         :param str  url: request url
         :param bool check: check response
         :param kwargs: other params
-        :return: requests's response object
+        :return: response object
         """
         session = requests.Session()
         session.trust_env = False
