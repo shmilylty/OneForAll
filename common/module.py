@@ -202,8 +202,7 @@ class Module(object):
         if isinstance(headers, dict):
             self.header = headers
             return headers
-        else:
-            return self.header
+        return self.header
 
     def get_proxy(self, module):
         """
