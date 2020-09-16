@@ -2,6 +2,7 @@ test
 test2
 t
 dev
+uat
 1
 2
 3
@@ -102,6 +103,9 @@ ldap
 lab
 go
 demo
+nginx
+aws
+ext
 console
 cms
 auth
