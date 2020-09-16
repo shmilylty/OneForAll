@@ -50,7 +50,7 @@ class FoFa(Search):
         """
         类执行入口
         """
-        if not self.check(self.email, self.key):
+        if not self.have_api(self.email, self.key):
             return
         self.begin()
         self.search()

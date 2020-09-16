@@ -25,7 +25,7 @@ class ChinazAPI(Query):
         """
         类执行入口
         """
-        if not self.check(self.api):
+        if not self.have_api(self.api):
             return
         self.begin()
         self.query()

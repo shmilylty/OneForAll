@@ -44,7 +44,7 @@ class GoogleAPI(Search):
         """
         类执行入口
         """
-        if not self.check(self.id, self.key):
+        if not self.have_api(self.id, self.key):
             return
         self.begin()
         self.search(self.domain)

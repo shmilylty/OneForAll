@@ -23,16 +23,15 @@ class ZoomEyeAPI(Search):
         data = {'username': self.user, 'password': self.pwd}
         resp = self.post(url=url, json=data)
         if not resp:
-            logger.log('FATAL', f'{self.source} module login failed,'
-                                f' can not get access token')
-            exit(1)
+            logger.log('ALERT', f'{self.source} module login failed')
+            return None
         data = resp.json()
         if resp.status_code == 200:
             logger.log('DEBUG', f'{self.source} module login success')
             return data.get('access_token')
         else:
             logger.log('ALERT', data.get('message'))
-            exit(1)
+            return None
 
     def search(self):
         """
@@ -40,6 +39,8 @@ class ZoomEyeAPI(Search):
         """
         page_num = 1
         access_token = self.login()
+        if not access_token:
+            return
         while True:
             time.sleep(self.delay)
             self.header = self.get_header()
@@ -61,7 +62,7 @@ class ZoomEyeAPI(Search):
         """
         类执行入口
         """
-        if not self.check(self.user, self.pwd):
+        if not self.have_api(self.user, self.pwd):
             return
         self.begin()
         self.search()

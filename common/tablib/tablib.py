@@ -143,10 +143,9 @@ class Dataset:
 
         if is_valid:
             return True
-        else:
-            if not safety:
-                raise InvalidDimensions
-            return False
+        if not safety:
+            raise InvalidDimensions
+        return False
 
     def _package(self, dicts=True, ordered=True):
         """Packages Dataset into lists of dictionaries for transmission."""
@@ -274,7 +273,8 @@ class Dataset:
         """
         Export :class:`Dataset` object to `format`.
 
-        :param \\*\\*kwargs: (optional) custom configuration to the format `export_set`.
+        :param format: export format
+        :param kwargs: (optional) custom configuration to the format `export_set`.
         """
         fmt = registry.get_format(format)
         if not hasattr(fmt, 'export_set'):

@@ -25,7 +25,7 @@ class CirclAPI(Query):
         """
         类执行入口
         """
-        if not self.check(self.user, self.pwd):
+        if not self.have_api(self.user, self.pwd):
             return
         self.begin()
         self.query()
