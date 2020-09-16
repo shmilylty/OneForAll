@@ -578,7 +578,6 @@ class Brute(Module):
     :param str  format:     Result format (default csv)
     :param str  path:       Result directory (default None)
     """
-
     def __init__(self, target=None, targets=None, process=None, concurrent=None,
                  word=False, wordlist=None, recursive=False, depth=None, nextlist=None,
                  fuzz=False, place=None, rule=None, fuzzlist=None, export=True,

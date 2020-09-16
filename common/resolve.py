@@ -39,7 +39,7 @@ def update_data(data, infos):
     """
     logger.log('DEBUG', f'Updating resolved results')
     if not infos:
-        logger.log('ERROR', f'No valid resolved result')
+        logger.log('ALERT', f'No valid resolved result')
         return data
     for index, items in enumerate(data):
         if items.get('ip'):
