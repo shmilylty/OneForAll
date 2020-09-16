@@ -506,10 +506,8 @@ def delete_file(*paths):
 @tenacity.retry(stop=tenacity.stop_after_attempt(3))
 def check_net():
     logger.log('INFOR', 'Checking Internet environment')
-    urls = ['http://www.example.com', 'http://www.baidu.com',
-            'http://www.bing.com', 'http://www.taobao.com',
-            'http://www.linkedin.com', 'http://www.msn.com',
-            'http://www.apple.com', 'http://microsoft.com']
+    urls = ['http://www.baidu.com', 'http://www.bing.com',
+            'http://www.apple.com', 'http://www.microsoft.com']
     url = random.choice(urls)
     logger.log('INFOR', f'Trying to access {url}')
     session = requests.Session()
