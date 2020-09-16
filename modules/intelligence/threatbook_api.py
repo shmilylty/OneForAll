@@ -26,7 +26,7 @@ class ThreatBookAPI(Query):
         """
         类执行入口
         """
-        if not self.check(self.key):
+        if not self.have_api(self.key):
             return
         self.begin()
         self.query()

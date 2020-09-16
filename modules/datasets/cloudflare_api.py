@@ -42,8 +42,7 @@ class CloudFlareAPI(Query):
                     if zone_id:
                         self.list_dns(zone_id)
                         return
-                    else:
-                        return
+                    return
                 elif zones_resp.json()['success']:
                     zone_id = self.create_zone(account_id)
                     if zone_id:
@@ -60,14 +59,12 @@ class CloudFlareAPI(Query):
         return
 
     def create_zone(self, account_id):
-        data = {"name": self.domain, "account": {"id": account_id}, "jump_start": True,
-                "type": "full"}
-        create_zone_resp = self.post(
-            self.addr + 'zones', json=data, check=False)
+        data = {"name": self.domain, "account": {"id": account_id},
+                "jump_start": True, "type": "full"}
+        create_zone_resp = self.post(self.addr + 'zones', json=data, check=False)
         if not create_zone_resp:
-            logger.log('DEBUG',
-                       f'{create_zone_resp.status_code} {create_zone_resp.text}')
-            return
+            logger.log('DEBUG', f'{create_zone_resp.status_code} {create_zone_resp.text}')
+            return False
         if create_zone_resp.json()['success']:
             return create_zone_resp.json()['result']['id']
         else:
@@ -109,7 +106,7 @@ class CloudFlareAPI(Query):
         """
         class entrance
         """
-        if not self.check(self.token):
+        if not self.have_api(self.token):
             return
         self.begin()
         self.query()

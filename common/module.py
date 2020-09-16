@@ -33,7 +33,7 @@ class Module(object):
         self.end = None  # 模块结束执行时间
         self.elapse = None  # 模块执行耗时
 
-    def check(self, *apis):
+    def have_api(self, *apis):
         """
         Simply check whether the api information configure or not
 
@@ -95,7 +95,7 @@ class Module(object):
             return resp
         return None
 
-    def get(self, url, params=None, check=True, ignore=False,raise_error=False, **kwargs):
+    def get(self, url, params=None, check=True, ignore=False, raise_error=False, **kwargs):
         """
         Custom get request
 
@@ -171,7 +171,7 @@ class Module(object):
         :param str  url: request url
         :param bool check: check response
         :param kwargs: other params
-        :return: requests's response object
+        :return: response object
         """
         session = requests.Session()
         session.trust_env = False
@@ -202,8 +202,7 @@ class Module(object):
         if isinstance(headers, dict):
             self.header = headers
             return headers
-        else:
-            return self.header
+        return self.header
 
     def get_proxy(self, module):
         """

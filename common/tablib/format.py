@@ -9,7 +9,7 @@ from uuid import UUID
 from collections import OrderedDict
 
 
-class Registry(object):
+class Registry:
     _formats = OrderedDict()
 
     def register(self, key, format_or_path):
@@ -47,7 +47,7 @@ Tablib - JSON Support
 """
 
 
-class JSONFormat(object):
+class JSONFormat:
     title = 'json'
     extensions = ('json',)
 
@@ -61,7 +61,7 @@ class JSONFormat(object):
 """
 
 
-class CSVFormat(object):
+class CSVFormat:
     title = 'csv'
     extensions = ('csv',)
 

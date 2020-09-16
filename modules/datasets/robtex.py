@@ -10,7 +10,6 @@ class Robtex(Query):
         self.domain = domain
         self.module = 'Dataset'
         self.source = "RobtexQuery"
-        self.addr = 'https://freeapi.robtex.com/pdns/'
 
     def query(self):
         """
@@ -18,17 +17,18 @@ class Robtex(Query):
         """
         self.header = self.get_header()
         self.proxy = self.get_proxy(self.source)
-        url = self.addr + 'forward/' + self.domain
+        base_addr = 'https://freeapi.robtex.com/pdns/'
+        url = f'{base_addr}/forward/{self.domain}'
         resp = self.get(url)
         if not resp:
             return
         text_list = resp.text.splitlines()
-        text_json = list(map(lambda x: json.loads(x), text_list))
-        for record in text_json:
+        for item in text_list:
+            record = json.loads(item)
             if record.get('rrtype') in ['A', 'AAAA']:
                 time.sleep(self.delay)  # Robtex有查询频率限制
                 ip = record.get('rrdata')
-                url = self.addr + 'reverse/' + ip
+                url = f'{base_addr}/reverse/{ip}'
                 resp = self.get(url)
                 self.subdomains = self.collect_subdomains(resp)
 
@@ -55,4 +55,4 @@ def run(domain):
 
 
 if __name__ == '__main__':
-    run('example.com')
+    run('google.com')
