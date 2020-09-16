@@ -19,7 +19,7 @@ temp_save_dir = result_save_dir.joinpath('temp')
 
 # OneForAll入口参数设置
 enable_check_version = True  # 开启最新版本检查
-enable_brute_module = False  # 使用爆破模块(默认False)
+enable_brute_module = True  # 使用爆破模块(默认True)
 enable_dns_resolve = True  # 使用DNS解析子域(默认True)
 enable_http_request = True  # 使用HTTP请求子域(默认True)
 enable_finder_module = True  # 开启finder模块,开启会从响应体和JS中再次发现子域(默认True)
