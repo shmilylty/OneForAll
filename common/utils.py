@@ -818,6 +818,3 @@ def default_nameserver():
     except dns.resolver.NoResolverConfiguration:
         logger.log('ERROR', 'Resolver configuration could not be read or specified no nameservers.')
         exit(0)
-
-
-auto_select_nameserver()
