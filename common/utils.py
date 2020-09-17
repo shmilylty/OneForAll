@@ -1,23 +1,24 @@
 import json
 import os
+import platform
+import random
 import re
+import string
+import subprocess
 import sys
 import time
-import string
-import random
-import platform
-import subprocess
 from ipaddress import IPv4Address, ip_address
+from pathlib import Path
 from stat import S_IXUSR
 
-import tenacity
+import dns
 import requests
-from pathlib import Path
-from common.records import Record, RecordCollection
+import tenacity
 from dns.resolver import Resolver
 
-from common.domain import Domain
 from common.database import Database
+from common.domain import Domain
+from common.records import Record, RecordCollection
 from config import settings
 from config.log import logger
 
@@ -728,3 +729,95 @@ def decode_resp_text(resp):
 
 def sort_by_subdomain(data):
     return sorted(data, key=lambda item: item.get('subdomain'))
+
+
+def ping(host, path):
+    """
+
+    :param host:
+    :param path:
+    :return:
+    """
+    param = '-n' if platform.system().lower() == 'windows' else '-c'
+
+    command = ['ping', param, '3', host]
+    with open(path, "w") as f:
+        return subprocess.call(command, stdout=f, stderr=f)
+
+
+def ping_avg_time(nameserver):
+    """
+
+    :param nameserver:
+    :return:
+    """
+    temp_path = settings.temp_save_dir.joinpath('ping')
+    ping(nameserver, path=temp_path)
+    with open(temp_path, 'r')as f:
+        text = f.readlines()[-1]
+        if '100.0% packet loss' in text:
+            logger.log('ALERT', f'100.0% packet loss, ping {nameserver} failed.')
+            return None
+        elif 'round-trip' in text:
+            avg_time = re.findall(r'\d+\.\d+', text)[1]
+            logger.log('INFOR', f'ping {nameserver} average time {avg_time} ms.')
+            return avg_time
+        else:
+            logger.log('ALERT', f'{text}')
+            return None
+
+
+def auto_select_nameserver():
+    """"""
+    logger.log('INFOR', f'Ping test start, to select nameservers.')
+    avg_time1 = ping_avg_time('114.114.114.114')
+    avg_time2 = ping_avg_time('8.8.8.8')
+    if avg_time1 and avg_time2:
+        if avg_time1 < avg_time2:
+            change_nameservers_file('cn')
+            logger.log('INFOR', f'Ping test finished, use cn nameservers.')
+        else:
+            change_nameservers_file('common')
+            logger.log('INFOR', f'Ping test finished, use common nameservers.')
+    elif avg_time1 and not avg_time2:
+        change_nameservers_file('cn')
+        logger.log('INFOR', f'Ping test finished, use cn nameservers.')
+    elif not avg_time1 and avg_time1:
+        change_nameservers_file('common')
+        logger.log('INFOR', f'Ping test finished, use common nameservers.')
+    elif not avg_time1 and not avg_time1:
+        change_nameservers_file('default')
+        logger.log('INFOR', f'Ping test finished, use default nameservers.')
+        return
+
+
+def change_nameservers_file(option):
+    text = ''
+    if option == 'cn':
+        with open(settings.data_storage_dir.joinpath('cn_nameservers.txt'), 'r') as f:
+            text = f.read()
+    elif option == 'common':
+        with open(settings.data_storage_dir.joinpath('common_nameservers.txt'), 'r') as f:
+            text = f.read()
+    elif option == 'default':
+        for n in default_nameserver():
+            text = '\n'.join(n)
+    with open(settings.data_storage_dir.joinpath('nameservers.txt'), 'w') as f:
+        f.write(text)
+    return
+
+
+def default_nameserver():
+    """
+
+    :return: system default nameservers
+    """
+    try:
+        dns_resolver: Resolver = dns.resolver.Resolver()
+        return dns_resolver.nameservers
+    except dns.resolver.NoResolverConfiguration:
+        logger.log('ERROR', 'Resolver configuration could not be read or specified no nameservers.')
+        exit(0)
+
+
+auto_select_nameserver()

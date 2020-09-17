@@ -264,6 +264,7 @@ class OneForAll(object):
         dt = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         print(f'[*] Starting OneForAll @ {dt}\n')
         utils.check_env()
+        utils.auto_select_nameserver()
         if settings.enable_check_version:
             utils.check_version(version)
         logger.log('DEBUG', 'Python ' + utils.python_version())
