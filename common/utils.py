@@ -732,29 +732,17 @@ def sort_by_subdomain(data):
 
 
 def ping(host, path):
-    """
-
-    :param host:
-    :param path:
-    :return:
-    """
     param = '-n' if platform.system().lower() == 'windows' else '-c'
-
     command = ['ping', param, '3', host]
     with open(path, "w") as f:
         return subprocess.call(command, stdout=f, stderr=f)
 
 
 def ping_avg_time(nameserver):
-    """
-
-    :param nameserver:
-    :return:
-    """
     check_dir(settings.temp_save_dir)
     temp_path = settings.temp_save_dir.joinpath('ping')
     ping(nameserver, path=temp_path)
-    with open(temp_path, 'r')as f:
+    with open(temp_path, 'r') as f:
         text = f.readlines()[-1]
         if '100.0% packet loss' in text:
             logger.log('ALERT', f'100.0% packet loss, ping {nameserver} failed.')
@@ -769,7 +757,6 @@ def ping_avg_time(nameserver):
 
 
 def auto_select_nameserver():
-    """"""
     logger.log('INFOR', f'Ping test start, to select nameservers.')
     avg_time1 = ping_avg_time('114.114.114.114')
     avg_time2 = ping_avg_time('8.8.8.8')
