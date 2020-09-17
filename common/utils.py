@@ -796,13 +796,10 @@ def change_nameservers_file(option):
 
 
 def default_nameserver():
-    """
-
-    :return: system default nameservers
-    """
     try:
-        dns_resolver: Resolver = dns.resolver.Resolver()
-        return dns_resolver.nameservers
+        resolver = dns.resolver.Resolver()
+        return resolver.nameservers
     except dns.resolver.NoResolverConfiguration:
-        logger.log('ERROR', 'Resolver configuration could not be read or specified no nameservers.')
-        exit(0)
+        logger.log('ERROR', 'Resolver configuration could not be read '
+                            'or specified no nameservers.')
+        exit(1)
