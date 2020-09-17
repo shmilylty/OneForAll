@@ -751,6 +751,7 @@ def ping_avg_time(nameserver):
     :param nameserver:
     :return:
     """
+    check_dir(settings.temp_save_dir)
     temp_path = settings.temp_save_dir.joinpath('ping')
     ping(nameserver, path=temp_path)
     with open(temp_path, 'r')as f:
