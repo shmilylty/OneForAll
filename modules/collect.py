@@ -15,18 +15,16 @@ class Collect(object):
         """
         Get modules
         """
-        if settings.enable_all_module:
-            # The crawl module has some problems
-            modules = ['certificates', 'check', 'datasets',
-                       'dnsquery', 'intelligence', 'search']
-            for module in modules:
-                module_path = settings.module_dir.joinpath(module)
-                for path in module_path.rglob('*.py'):
-                    # Classes to be imported
-                    import_module = ('modules.' + module, path.stem)
-                    self.modules.append(import_module)
-        else:
-            self.modules = settings.enable_partial_module
+        modules = ['certificates', 'check', 'datasets',
+                   'dnsquery', 'intelligence', 'search'] if \
+                settings.enable_all_module else settings.enable_partial_module
+        # The crawl module has some problems
+        for module in modules:
+            module_path = settings.module_dir.joinpath(module)
+            for path in module_path.rglob('*.py'):
+                # Classes to be imported
+                import_module = ('modules.' + module, path.stem)
+                self.modules.append(import_module)
 
     def import_func(self):
         """
