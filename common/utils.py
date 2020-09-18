@@ -743,7 +743,9 @@ def ping_avg_time(nameserver):
     temp_path = settings.temp_save_dir.joinpath('ping')
     ping(nameserver, path=temp_path)
     with open(temp_path, 'r') as f:
+        print(platform.system())
         text = f.read()
+        print(text)
         if '100.0% packet loss' in text or '100% 丢失' in text:
             logger.log('ALERT', f'100.0% packet loss, ping {nameserver} failed.')
             return None
