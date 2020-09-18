@@ -733,7 +733,7 @@ def sort_by_subdomain(data):
 
 def ping(host, path):
     param = '-n' if platform.system().lower() == 'windows' else '-c'
-    command = ['ping', param, '3', host]
+    command = ['ping', param, '5', host]
     with open(path, "w") as f:
         return subprocess.call(command, stdout=f, stderr=f)
 
@@ -743,12 +743,16 @@ def ping_avg_time(nameserver):
     temp_path = settings.temp_save_dir.joinpath('ping')
     ping(nameserver, path=temp_path)
     with open(temp_path, 'r') as f:
-        text = f.readlines()[-1]
-        if '100.0% packet loss' in text:
+        text = f.read()
+        if '100.0% packet loss' in text or '100% 丢失' in text:
             logger.log('ALERT', f'100.0% packet loss, ping {nameserver} failed.')
             return None
-        elif 'round-trip' in text:
-            avg_time = re.findall(r'\d+\.\d+', text)[1]
+        elif platform.system() in ('Darwin', 'Linux'):
+            avg_time = re.findall(r'\d+\.\d+', f.readlines()[-1])[1]
+            logger.log('INFOR', f'ping {nameserver} average time {avg_time} ms.')
+            return avg_time
+        elif platform.system() == 'Windows':
+            avg_time = re.findall(r'(?:Average|平均).+(\d.)ms', text)[0]
             logger.log('INFOR', f'ping {nameserver} average time {avg_time} ms.')
             return avg_time
         else:
