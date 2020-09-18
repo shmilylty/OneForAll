@@ -748,7 +748,7 @@ def ping_avg_time(nameserver):
             logger.log('ALERT', f'100.0% packet loss, ping {nameserver} failed.')
             return None
         elif platform.system() in ('Darwin', 'Linux'):
-            avg_time = re.findall(r'\d+\.\d+', f.readlines()[-1])[1]
+            avg_time = re.findall(r'(?:min/avg/max/.+ )(?:\d+\.\d+)/(\d+\.\d+)/', text)[0]
             logger.log('INFOR', f'ping {nameserver} average time {avg_time} ms.')
             return avg_time
         elif platform.system() == 'Windows':
