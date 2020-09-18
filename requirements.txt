@@ -23,3 +23,4 @@ tqdm==4.48.2
 treelib==1.6.1
 urllib3==1.25.10
 win32-setctime==1.0.2 ; sys_platform == 'win32'
+cdx_toolkit
