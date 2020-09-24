@@ -752,7 +752,7 @@ def ping_avg_time(nameserver):
             logger.log('INFOR', f'ping {nameserver} average time {avg_time} ms.')
             return avg_time
         elif platform.system() == 'Windows':
-            avg_time = re.findall(r'(?:Average|平均).+(\d.)ms', text)[0]
+            avg_time = re.findall(r'(?:Average|平均).+(\d.?)ms', text)[0]
             logger.log('INFOR', f'ping {nameserver} average time {avg_time} ms.')
             return avg_time
         else:
