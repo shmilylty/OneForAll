@@ -8,7 +8,6 @@ class ShodanAPI(Search):
         self.domain = domain
         self.module = 'Search'
         self.source = 'ShodanAPISearch'
-        self.addr = 'https://api.shodan.io/shodan/host/search'
         self.key = settings.shodan_api_key
 
     def search(self):
@@ -17,17 +16,14 @@ class ShodanAPI(Search):
         """
         self.header = self.get_header()
         self.proxy = self.get_proxy(self.source)
-        query = 'hostname:.' + self.domain
-        page = 1
-        while True:
-            params = {'key': self.key, 'page': page, 'query': query,
-                      'minify': True, 'facets': {'hostnames'}}
-            resp = self.get(self.addr, params)
-            subdomains = self.match_subdomains(resp)
-            if not subdomains:  # 搜索没有发现子域名则停止搜索
-                break
-            self.subdomains.update(subdomains)
-            page += 1
+        url = f'https://api.shodan.io/dns/domain/{self.domain}?key={self.key}'
+        resp = self.get(url)
+        if not resp:
+            return
+        data = resp.json()
+        names = data.get('subdomains')
+        subdomain_str = str(set(map(lambda name: f'{name}.{self.domain}', names)))
+        self.subdomains = self.collect_subdomains(subdomain_str)
 
     def run(self):
         """
@@ -54,4 +50,4 @@ def run(domain):
 
 
 if __name__ == '__main__':
-    run('example.com')
+    run('freebuf.com')
