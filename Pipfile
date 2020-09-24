@@ -9,14 +9,14 @@ verify_ssl = true
 tqdm = "*"
 loguru = "*"
 dnspython = "*"
-requests = {extras = ["socks"],version = "*"}
-tldextract = "*"
 exrex = "*"
 fire = "*"
 bs4 = "*"
 tenacity = "*"
 treelib = "*"
 sqlalchemy = "*"
+requests = "*"
+pysocks = "*"
 
 [requires]
 python_version = "3.8"
