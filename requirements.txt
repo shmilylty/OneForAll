@@ -9,17 +9,15 @@ exrex==0.10.5
 fire==0.3.1
 future==0.18.2
 idna==2.10
-loguru==0.5.2
+loguru==0.5.3
 pysocks==1.7.1
-requests-file==1.5.1
-requests[socks]==2.24.0
+requests==2.24.0
 six==1.15.0
 soupsieve==2.0.1
 sqlalchemy==1.3.19
 tenacity==6.2.0
 termcolor==1.1.0
-tldextract==2.2.3
-tqdm==4.48.2
+tqdm==4.49.0
 treelib==1.6.1
 urllib3==1.25.10
 win32-setctime==1.0.2 ; sys_platform == 'win32'

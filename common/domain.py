@@ -1,5 +1,5 @@
 import re
-import tldextract
+from common import tldextract
 from config import settings
 
 
@@ -38,7 +38,7 @@ class Domain(object):
         """
         data_storage_dir = settings.data_storage_dir
         extract_cache_file = data_storage_dir.joinpath('public_suffix_list.dat')
-        ext = tldextract.TLDExtract(extract_cache_file, None)
+        ext = tldextract.TLDExtract(extract_cache_file)
         result = self.match()
         if result:
             return ext(result)
