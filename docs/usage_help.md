@@ -48,7 +48,7 @@ OneForAll命令行界面基于[Fire](https://github.com/google/python-fire/)实�
        --targets=TARGETS
            每行一个域名的文件路径
        --brute=BRUTE
-           使用爆破模块(默认False)
+           使用爆破模块(默认True)
        --dns=DNS
            开启子域解析(默认True)
        --req=REQ

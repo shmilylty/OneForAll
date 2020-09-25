@@ -200,7 +200,7 @@ ARGUMENTS
 
 FLAGS
     --brute=BRUTE
-        使用爆破模块(默认False)
+        使用爆破模块(默认True)
     --dns=DNS
         DNS解析子域(默认True)
     --req=REQ
