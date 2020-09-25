@@ -191,7 +191,7 @@ ARGUMENTS
 
 FLAGS
     --brute=BRUTE
-        Use brute module (default False)
+        Use brute module (default True)
     --dns=DNS
         Use DNS resolution (default True)
     --req=REQ
