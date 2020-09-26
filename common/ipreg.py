@@ -1,4 +1,3 @@
-# encoding = uft-8
 """
 " ip2region python searcher client module
 "
@@ -6,9 +5,9 @@
 " Date : 2015-11-06
 """
 import io
+import sys
 import socket
 import struct
-import sys
 
 from config import settings
 
@@ -55,7 +54,7 @@ class IpRegInfo(object):
             else:
                 eip = self.get_long(self.__dbBinStr, p + 4)
                 if ip > eip:
-                    l = m + 1;
+                    l = m + 1
                 else:
                     data_ptr = self.get_long(self.__dbBinStr, p + 8)
                     break
@@ -181,7 +180,7 @@ class IpRegInfo(object):
             else:
                 eip = self.get_long(index, offset + 4)
                 if ip > eip:
-                    l = m + 1;
+                    l = m + 1
                 else:
                     data_prt = self.get_long(index, offset + 8)
                     break
