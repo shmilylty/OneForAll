@@ -87,7 +87,7 @@ class Module(object):
                                 verify=self.verify,
                                 **kwargs)
         except Exception as e:
-            logger.log('ERROR', e.args)
+            logger.log('ERROR', e.args[0])
             return None
         if not check:
             return resp
@@ -124,9 +124,9 @@ class Module(object):
         except Exception as e:
             if raise_error:
                 if isinstance(e, requests.exceptions.ConnectTimeout):
-                    logger.log(level, e.args)
+                    logger.log(level, e.args[0])
                     raise e
-            logger.log(level, e.args)
+            logger.log(level, e.args[0])
             return None
         if not check:
             return resp
@@ -156,7 +156,7 @@ class Module(object):
                                 verify=self.verify,
                                 **kwargs)
         except Exception as e:
-            logger.log('ERROR', e.args)
+            logger.log('ERROR', e.args[0])
             return None
         if not check:
             return resp
@@ -184,7 +184,7 @@ class Module(object):
                                   verify=self.verify,
                                   **kwargs)
         except Exception as e:
-            logger.log('ERROR', e.args)
+            logger.log('ERROR', e.args[0])
             return None
         if not check:
             return resp

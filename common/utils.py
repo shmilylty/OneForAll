@@ -1,12 +1,14 @@
-import json
 import os
-import platform
-import random
 import re
-import string
-import subprocess
 import sys
 import time
+import json
+import socket
+import random
+import string
+import platform
+import subprocess
+from urllib.parse import scheme_chars
 from ipaddress import IPv4Address, ip_address
 from pathlib import Path
 from stat import S_IXUSR
@@ -33,6 +35,9 @@ user_agents = [
     'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:61.0) '
     'Gecko/20100101 Firefox/68.0',
     'Mozilla/5.0 (X11; Linux i586; rv:31.0) Gecko/20100101 Firefox/68.0']
+
+IP_RE = re.compile(r'^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$')  # pylint: disable=line-too-long
+SCHEME_RE = re.compile(r'^([' + scheme_chars + ']+:)?//')
 
 
 def gen_random_ip():
@@ -748,12 +753,18 @@ def ping_avg_time(nameserver):
             logger.log('ALERT', f'100.0% packet loss, ping {nameserver} failed.')
             return None
         elif platform.system() in ('Darwin', 'Linux'):
-            avg_time = re.findall(r'(?:min/avg/max/.+ )(?:\d+\.\d+)/(\d+\.\d+)/', text)[0]
-            logger.log('INFOR', f'ping {nameserver} average time {avg_time} ms.')
+            try:
+                avg_time = re.findall(r'(?:min/avg/max/.+ )(?:\d+\.\d+)/(\d+\.\d+)/', text)[0]
+                logger.log('INFOR', f'ping {nameserver} average time {avg_time} ms.')
+            except IndexError:
+                return None
             return avg_time
         elif platform.system() == 'Windows':
-            avg_time = re.findall(r'(?:Average|平均).+(\d.)ms', text)[0]
-            logger.log('INFOR', f'ping {nameserver} average time {avg_time} ms.')
+            try:
+                avg_time = re.findall(r'(?:Average|平均).+(\d.?)ms', text)[0]
+                logger.log('INFOR', f'ping {nameserver} average time {avg_time} ms.')
+            except IndexError:
+                return None
             return avg_time
         else:
             logger.log('ALERT', f'{text}')
@@ -807,3 +818,18 @@ def default_nameserver():
         logger.log('ERROR', 'Resolver configuration could not be read '
                             'or specified no nameservers.')
         exit(1)
+
+
+def looks_like_ip(maybe_ip):
+    """Does the given str look like an IP address?"""
+    if not maybe_ip[0].isdigit():
+        return False
+
+    try:
+        socket.inet_aton(maybe_ip)
+        return True
+    except (AttributeError, UnicodeError):
+        if IP_RE.match(maybe_ip):
+            return True
+    except socket.error:
+        return False
