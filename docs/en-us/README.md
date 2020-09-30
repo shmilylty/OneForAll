@@ -106,7 +106,7 @@ pipenv run python oneforall.py --target example.com run
 
 3. Turn on brute modules, run the following command(Use massdns for enumerating subdomains, the network may be blocked): 
 ```bash
-python3 run python oneforall.py --target example.com --brute True run
+python3 oneforall.py --target example.com --brute True run
 # or
 pipenv run python oneforall.py --target example.com --brute True run
 ```
@@ -191,7 +191,7 @@ ARGUMENTS
 
 FLAGS
     --brute=BRUTE
-        Use brute module (default False)
+        Use brute module (default True)
     --dns=DNS
         Use DNS resolution (default True)
     --req=REQ
