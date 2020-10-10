@@ -40,7 +40,7 @@ DESCRIPTION
 
    Note:
        --port   small/medium/large  See details in ./config/setting.py(default small)
-       --format rst/csv/tsv/json/yaml/html/jira/xls/xlsx/dbf/latex/ods (result format)
+       --format csv/json (result format)
        --path   Result path (default None, automatically generated)
 
 FLAGS
