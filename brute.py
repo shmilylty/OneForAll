@@ -556,7 +556,7 @@ class Brute(Module):
         brute.py --target d.com --fuzz True --place m.*.d.com --fuzzlist subnames.txt run
 
     Note:
-        --format rst/csv/tsv/json/yaml/html/jira/xls/xlsx/dbf/latex/ods (result format)
+        --format csv/json (result format)
         --path   Result path (default None, automatically generated)
 
 
@@ -614,7 +614,9 @@ class Brute(Module):
         logger.log('INFOR', f'Generating dictionary for {domain}')
         dict_set = set()
         # 如果domain不是self.subdomain 而是self.domain的子域则生成递归爆破字典
-        if self.place is None:
+        if self.word:
+            self.place = ''
+        if not self.place:
             self.place = '*.' + domain
         wordlist = self.wordlist
         main_domain = utils.get_main_domain(domain)
@@ -728,13 +730,15 @@ class Brute(Module):
         if self.check_env:
             utils.check_env()
         self.domains = utils.get_domains(self.target, self.targets)
-        all_subdomains = list()
         for self.domain in self.domains:
+            self.results = list()  # 置空
+            all_subdomains = list()
             self.check_brute_params()
             if self.recursive_brute:
                 logger.log('INFOR', f'Start recursively brute the 1 layer subdomain'
                                     f' of {self.domain}')
             valid_subdomains = self.main(self.domain)
+
             all_subdomains.extend(valid_subdomains)
 
             # 递归爆破下一层的子域
@@ -742,8 +746,8 @@ class Brute(Module):
             if self.recursive_brute:
                 for layer_num in range(1, self.recursive_depth):
                     # 之前已经做过1层子域爆破 当前实际递归层数是layer+1
-                    logger.log('INFOR', f'Start recursively brute the {layer_num + 1} layer'
-                                        f' subdomain of {self.domain}')
+                    logger.log('INFOR', f'Start recursively brute the {layer_num + 1} '
+                                        f'layer subdomain of {self.domain}')
                     for subdomain in all_subdomains:
                         self.place = '*.' + subdomain
                         # 进行下一层子域爆破的限制条件
@@ -752,7 +756,7 @@ class Brute(Module):
                             valid_subdomains = self.main(subdomain)
                             all_subdomains.extend(valid_subdomains)
 
-            logger.log('INFOR', f'Finished {self.source} module\'s brute {self.domain}')
+            logger.log('INFOR', f'Finished {self.source} module to brute {self.domain}')
             if not self.path:
                 name = f'{self.domain}_brute_result.{self.format}'
                 self.path = settings.result_save_dir.joinpath(name)

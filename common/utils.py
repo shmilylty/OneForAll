@@ -494,7 +494,7 @@ def get_process_num():
 
 
 def get_request_count():
-    return os.cpu_count() * 10
+    return 32
 
 
 def uniq_dict_list(dict_list):
