@@ -31,23 +31,26 @@ matrix:
       python: 3.9-dev       # this works for Linux but is ignored on macOS or Windows
       before_install:
         - pip3 install -U pip
-    - name: "Python 3.6 on macOS"
+    - name: "Python 3.6 on MacOS"
       os: osx
       osx_image: xcode9.2     # Python 3.6 running on macOS 10.12
       language: shell       # 'language: python' is an error on Travis CI macOS
       before_install:
+        - python3 --version
         - pip3 install -U pip
-    - name: "Python 3.7 on macOS"
+    - name: "Python 3.7 on MacOS"
       os: osx
       osx_image: xcode10.2  # Python 3.7 running on macOS 10.14
       language: shell       # 'language: python' is an error on Travis CI macOS
       before_install:
+        - python3 --version
         - pip3 install -U pip
-    - name: "Python 3.8 on macOS"
+    - name: "Python 3.8 on MacOS"
       os: osx
       osx_image: xcode12.2  # Python 3.7 running on macOS 10.15
       language: shell       # 'language: python' is an error on Travis CI macOS
       before_install:
+        - python3 --version
         - pip3 install -U pip
     - name: "Python 3.6 on Windows"
       os: windows
@@ -73,7 +76,7 @@ matrix:
       os: windows           # Windows 10.0.17134 N/A Build 17134
       language: shell
       before_install:
-        - choco install python --version 3.7.0
+        - choco install python --version 3.8.0
         - python -m pip install --upgrade pip
         - chcp.com 65001
       env: 
