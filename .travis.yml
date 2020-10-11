@@ -8,27 +8,44 @@ language: python
 matrix:
   include:
     - name: "Python 3.6 on Linux"
+      os: linux
+      dist: xenial
       python: 3.6           # this works for Linux but is ignored on macOS or Windows
       before_install:
         - pip3 install -U pip
     - name: "Python 3.7 on Xenial Linux"
-      python: 3.7           # this works for Linux but is ignored on macOS or Windows
+      os: linux
       dist: xenial          # required for Python >= 3.7
+      python: 3.7           # this works for Linux but is ignored on macOS or Windows
       before_install:
         - pip3 install -U pip
     - name: "Python 3.8 on Xenial Linux"
-      python: 3.8-dev           # this works for Linux but is ignored on macOS or Windows
+      os: linux
       dist: xenial          # required for Python >= 3.7
+      python: 3.8           # this works for Linux but is ignored on macOS or Windows
       before_install:
         - pip3 install -U pip
     - name: "Python 3.9 on Xenial Linux"
-        python: 3.9-dev           # this works for Linux but is ignored on macOS or Windows
-        dist: xenial          # required for Python >= 3.7
-        before_install:
-          - pip3 install -U pip
+      os: linux
+      dist: xenial          # required for Python >= 3.7
+      python: 3.9-dev       # this works for Linux but is ignored on macOS or Windows
+      before_install:
+        - pip3 install -U pip
+    - name: "Python 3.6 on macOS"
+      os: osx
+      osx_image: xcode9.2     # Python 3.6 running on macOS 10.12
+      language: shell       # 'language: python' is an error on Travis CI macOS
+      before_install:
+        - pip3 install -U pip
     - name: "Python 3.7 on macOS"
       os: osx
-      osx_image: xcode10.2  # Python 3.7 running on macOS 10.14.3
+      osx_image: xcode10.2  # Python 3.7 running on macOS 10.14
+      language: shell       # 'language: python' is an error on Travis CI macOS
+      before_install:
+        - pip3 install -U pip
+    - name: "Python 3.8 on macOS"
+      os: osx
+      osx_image: xcode12.2  # Python 3.7 running on macOS 10.15
       language: shell       # 'language: python' is an error on Travis CI macOS
       before_install:
         - pip3 install -U pip
@@ -36,7 +53,7 @@ matrix:
         os: windows
         language: shell
         before_install:
-          - choco install python --version 3.6
+          - choco install python --version 3.6.0
           - python -m pip install --upgrade pip
           - chcp.com 65001
         env:
@@ -46,7 +63,7 @@ matrix:
         os: windows
         language: shell
         before_install:
-          - choco install python --version 3.7
+          - choco install python --version 3.7.0
           - python -m pip install --upgrade pip
           - chcp.com 65001
         env:
@@ -56,7 +73,7 @@ matrix:
       os: windows           # Windows 10.0.17134 N/A Build 17134
       language: shell
       before_install:
-        - choco install python --version 3.7
+        - choco install python --version 3.7.0
         - python -m pip install --upgrade pip
         - chcp.com 65001
       env: 
@@ -66,7 +83,7 @@ matrix:
         os: windows           # Windows 10.0.17134 N/A Build 17134
         language: shell
         before_install:
-          - choco install python --version 3.9
+          - choco install python --version 3.9.0
           - python -m pip install --upgrade pip
           - chcp.com 65001
         env:
