@@ -10,7 +10,7 @@ def get_db_path():
     db_path = data_storage_dir.joinpath('ip2location.db')
     if db_path.exists():
         return db_path
-    zf = zipfile.ZipFile(zip_path)
+    zf = zipfile.ZipFile(str(zip_path))
     zf.extract('ip2location.db', data_storage_dir)
     return db_path
 
