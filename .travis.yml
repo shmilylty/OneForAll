@@ -1,11 +1,9 @@
-sudo: true
-
 notifications:
   email: false
 
 language: python
 
-matrix:
+jobs:
   include:
     - name: "Python 3.6 on Linux"
       os: linux
@@ -33,7 +31,7 @@ matrix:
         - pip3 install -U pip
     - name: "Python 3.6 on MacOS"
       os: osx
-      osx_image: xcode9.2     # Python 3.6 running on macOS 10.12
+      osx_image: xcode9.4     # Python 3.6 running on macOS 10.13
       language: shell       # 'language: python' is an error on Travis CI macOS
       before_install:
         - python3 --version
