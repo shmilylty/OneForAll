@@ -94,7 +94,7 @@ def get_html_title(markup):
         return h2.text
 
     h3 = soup.h3
-    if h2:
+    if h3:
         return h3.text
 
     desc = soup.find('meta', attrs={'name': 'description'})
