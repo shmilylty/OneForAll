@@ -265,7 +265,7 @@ Thanks to these great Python libraries!
 
 ## 🔖Version control
 
-The project uses [SemVer](https://semver.org/) for version management, and you can view the available version in [Releases](https://github.com/shmilylty/OneForAll/releases), You can check [changes.md](https://github.com/shmilylty/OneForAll/tree/master/docs/changes.md)) for historical changes.
+The project uses [SemVer](https://semver.org/) for version management, and you can view the available version in [Releases](https://github.com/shmilylty/OneForAll/releases), You can refer to the [change record instructions](https://github.com/shmilylty/OneForAll/tree/master/docs/changes.md) for historical changes.
 
 ## ⌛Follow-up plan
 
