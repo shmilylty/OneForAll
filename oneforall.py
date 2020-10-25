@@ -83,10 +83,11 @@ class OneForAll(object):
     :param bool takeover:  Scan subdomain takeover (default False)
     """
     def __init__(self, target=None, targets=None, brute=None, dns=None, req=None,
-                 port=None, alive=None, format=None, path=None, takeover=None):
+                 port=None, alive=None, format=None, path=None, takeover=None, bk_cname=[]):
         self.target = target
         self.targets = targets
         self.brute = brute
+        self.bk_cname = bk_cname
         self.dns = dns
         self.req = req
         self.port = port
@@ -197,7 +198,7 @@ class OneForAll(object):
         if self.brute:
             # Due to there will be a large number of dns resolution requests,
             # may cause other network tasks to be error
-            brute = Brute(self.domain, word=True, export=False)
+            brute = Brute(self.domain, word=True, export=False, bk_cname=self.bk_cname)
             brute.check_env = False
             brute.quite = True
             brute.run()
