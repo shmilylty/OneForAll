@@ -28,8 +28,8 @@ pip3 -V
 ```
 If you see the following output, there is no problem with the Python environment:
 ```bash
-Python 3.8.0
-pip 19.2.2 from C:\Users\shmilylty\AppData\Roaming\Python\Python37\site-packages\pip (python 3.8)
+Python 3.6.0
+pip 19.2.2 from C:\Users\shmilylty\AppData\Roaming\Python\Python36\site-packages\pip (python 3.6)
 ```
 </details>
 
@@ -53,7 +53,7 @@ git clone https://github.com/shmilylty/OneForAll.git
 2. **Installation**
 
 
-You can use pip3 install requirements, the following is an example of using **pip3** to install dependencies under **Windows**: (Note: If your Python3 is installed in the system Program Files In the directory, such as: `C:\Program Files\Python38`, please run the following as an administrator!)
+You can use pip3 install requirements, the following is an example of using **pip3** to install dependencies under **Windows**: (Note: If your Python3 is installed in the system Program Files In the directory, such as: `C:\Program Files\Python36`, please run the following as an administrator!)
 
 ```bash
 cd OneForAll/
@@ -62,7 +62,7 @@ pip3 install -r requirements.txt
 python3 oneforall.py --help
 ```
 
-For other system platforms, please read [dependency installation](https://github.com/shmilylty/OneForAll/tree/master/docs/installation_dependency.md). If you compile failed during the installation, you can find solution in the [troubleshooting.md](https://github.com/shmilylty/OneForAll/tree/master/docs/troubleshooting.md) documentation. If still not resolved, welcome [issues](https://github.com/shmilylty/OneForAll/issues).
+For other system platforms, please read [dependency installation](https://github.com/shmilylty/OneForAll/tree/master/docs/installation_dependency.md). If you compile failed during the installation, you can find solution in [Q&A](https://github.com/shmilylty/OneForAll/tree/master/docs/troubleshooting.md) documentation. If still not resolved, welcome [issues](https://github.com/shmilylty/OneForAll/issues).
 
 3. **Update**
 
@@ -91,7 +91,8 @@ Result will be saved in `~/results`.
 
 If your computer are not in China, change [setting](https://github.com/shmilylty/OneForAll/blob/master/config/setting.py#L46) `brute_nameservers_path` param `cn_nameservers.txt` to `nameservers.txt` plz.
 
-1. If you are use pip3, run the following command: 
+If you are use pip3, run the following command: 
+
 ```bash
 python3 oneforall.py --target example.com run
 python3 oneforall.py --targets ./example.txt run
@@ -99,17 +100,6 @@ python3 oneforall.py --targets ./example.txt run
 
 ![Example](../usage_example.svg)
 
-2. If you use pipenv, run the following command: 
-```bash
-pipenv run python oneforall.py --target example.com run
-```
-
-3. Turn on brute modules, run the following command(Use massdns for enumerating subdomains, the network may be blocked): 
-```bash
-python3 oneforall.py --target example.com --brute True run
-# or
-pipenv run python oneforall.py --target example.com --brute True run
-```
 </details>
 
 <details>
@@ -134,20 +124,23 @@ Let's take the command `python3 oneforall.py --target example.com run` as an exa
 `example_com_last_result` table stores the results of subdomain collection last time. 
 
 `example_com_now_result` table stores the collection results of the current subdomains. Usually using this table is enough.
+
+For more information, please see [Field explanation](./docs/field.md).
+
 </details>
 
 <details>
 <summary><b>🤔Instructions for Use</b></summary>
 
-The CLI only provide some common parameters. For more configuration, please read [config.py](https://github.com/shmilylty/OneForAll/tree/master/config/setting.py). IF you have any suggestions, welcome feedback. Some modules need access API (most of which are freely available after registered accounts). If you need , please go to [api.py](https://github.com/shmilylty/OneForAll/tree/master/config/api.py) to configure the API. If not used, just ignore the error message. (For module detailes, please read [collection module description](https://github.com/shmilylty/OneForAll/tree/master/docs/collection_modules.md))
+The CLI only provide some common parameters. For more configuration, please read [setting.py](https://github.com/shmilylty/OneForAll/tree/master/config/setting.py). IF you have any suggestions, welcome feedback. Some modules need access API (most of which are freely available after registered accounts). If you need , please go to [api.py](https://github.com/shmilylty/OneForAll/tree/master/config/api.py) to configure the API. If not used, just ignore the error message. (For module detailes, please read [collection module description](https://github.com/shmilylty/OneForAll/tree/master/docs/collection_modules.md))
 
 The OneForAll command line interface is based on [Fire](https://github.com/google/python-fire/). For more advanced usage of Fire, please refer to [using the Fire CLI](https://github.com/google/Python-fire/blob/master/docs/using-cli.md), if you have any doubts during the use, please feel free to give me feedback.
 
 [oneforall.py](https://github.com/shmilylty/OneForAll/tree/master/oneforall.py) is the program main entrence, and oneforall.py can call [brute.py](https://github.com/shmilylty/OneForAll/tree/master/brute.py), [takerover.py](https://github.com/shmilylty/OneForAll/tree/master/takerover.py), [dbexport.py ](https://github.com/shmilylty/OneForAll/tree/master/dbexport.py) and other modules. But you can also use these modules separately, if you want, please refer to the [usage help](https://github.com/shmilylty/OneForAll/tree/master/docs/en-us/usage_help.md).
 
-❗ Note: When you encounter some problems or doubts during use, please search answers on [issues](https://github.com/shmilylty/OneForAll/issues) first. You can also read [troubleshooting.md](https://github.com/shmilylty/OneForAll/tree/master/docs/troubleshooting.md).
+❗ Note: When you encounter some problems or doubts during use, please search answers on [issues](https://github.com/shmilylty/OneForAll/issues) first. You can also read [Q&A](https://github.com/shmilylty/OneForAll/tree/master/docs/troubleshooting.md).
 
-**OneForAll help summary page**
+**OneForAll help summary**
 
 The following help information may not be up to date. You can use `python oneforall.py --help` to get the latest help information.
 
@@ -245,7 +238,7 @@ At present, OneForAll is under development, there must be a lot of problems and 
 * **Support subdomain brute force**, can use dictionary mode or custom fuzz mode. Supports bulk brute and recursive brute, and automatically determine wildcard or not and processing.
 * **Support subdmain verification**, default enable, automatically resolve DNS, request subdomain to obtain response, and determine subdomain alive or not.
 * **Support subdomain takeover**, default enable, supports bulk inspection, and automatic takeover subdomain (only Github, remains to be improved at present).
-* **Powerful processing feature**, support automatic deduplicate, DNS resolve, HTTP request, filter valid subdomains and information for subdomains. Supported export formats: `rst`, `csv`, `tsv`, `json`, `yaml`, `html`, `xls`, `xlsx`, `dbf`, `latex`, `ods`.
+* **Powerful processing feature**, support automatic deduplicate, DNS resolve, HTTP request, filter valid subdomains and information for subdomains. Supported export formats: `txt`, `csv`, `json`.
 * **Very fast**, [collection module](https://github.com/shmilylty/OneForAll/tree/master/collect.py) uses multi-threading, [brute module](https://github.com/shmilylty/OneForAll/tree/master/brute.py) uses [MassDNS](https://github.com/blechschmidt/massdns), MassDNS is capable of resolving over 350,000 names per second using publicly available resolvers. DNS resolve and HTTP requests use async-coroutine. [subdomain takeover](https://github.com/shmilylty/OneForAll/tree/master/takeover.py) uses multi-threading.
 * **Good experience**, each module has a progress bar, and save results asynchronously.
 
@@ -253,9 +246,9 @@ If you have any other good ideas, please let me know!😎
 
 ## 🌲Directory structure
 
-For the description of the project's directory structure, please refer to [directory_structure.md](https://github.com/shmilylty/OneForAll/tree/master/docs/directory_structure.md).
+For more information, please see [Directory structure description](https://github.com/shmilylty/OneForAll/tree/master/docs/directory_structure.md).
 
-For a description of the source of the subdomain dictionary, please refer to [dictionary_source.md](https://github.com/shmilylty/OneForAll/tree/master/docs/en-us/dictionary_source.md).
+Some help and instructions are also provided in the [docs](https://github.com/shmilylty/OneForAll/tree/master/docs/) directory of this project, such as [dictionary Source description](https://github.com/shmilylty/OneForAll/tree/master/docs/dictionary_source.md), [wildcard judgment process](https://github.com/shmilylty/OneForAll/tree/master/docs/wildcard_judgment.png).
 
 ## 👏Framework used
 
@@ -270,9 +263,9 @@ For a description of the source of the subdomain dictionary, please refer to [di
 
 Thanks to these great Python libraries!
 
-## 🙏Contribution
+## 🔖Version control
 
-Very warmly welcome all people to make OneForAll better together!
+The project uses [SemVer](https://semver.org/) for version management, and you can view the available version in [Releases](https://github.com/shmilylty/OneForAll/releases), You can refer to the [change record instructions](https://github.com/shmilylty/OneForAll/tree/master/docs/changes.md) for historical changes.
 
 ## ⌛Follow-up plan
 
@@ -283,16 +276,16 @@ Very warmly welcome all people to make OneForAll better together!
 
 For more details, read [todo.md](https://github.com/shmilylty/OneForAll/tree/master/docs/todo.md).
 
-## 🔖Version control
+## 🙏Contribution
 
-The project uses [SemVer](https://semver.org/) for version management, and you can view the available version in [Releases](https://github.com/shmilylty/OneForAll/releases), You can check [changes.md](https://github.com/shmilylty/OneForAll/tree/master/docs/changes.md)) for historical changes.
+Very warmly welcome all people to make OneForAll better together!
 
 ## 👨‍💻Contributors
 
 * **[Jing Ling](https://github.com/shmilylty)**
   * Core developer
 
-You can see all the developers involved in the project in [contributors.md](https://github.com/shmilylty/OneForAll/tree/master/docs/contributors.md).
+You can view all contributors and their contributions in the [contributor documentation](https://github.com/shmilylty/OneForAll/tree/master/docs/contributors.md)) and thank them for making OneForAll more powerful and useful.
 
 ## 📄License
 
