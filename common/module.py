@@ -60,7 +60,7 @@ class Module(object):
         self.elapse = round(self.end - self.start, 1)
         logger.log('DEBUG', f'Finished {self.source} module to '
                             f'collect {self.domain}\'s subdomains')
-        logger.log('INFOR', f'The {self.source} module took {self.elapse} seconds '
+        logger.log('INFOR', f'{self.source} module took {self.elapse} seconds '
                             f'found {len(self.subdomains)} subdomains')
         logger.log('DEBUG', f'{self.source} module found subdomains of {self.domain}\n'
                             f'{self.subdomains}')
