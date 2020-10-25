@@ -54,7 +54,7 @@ jobs:
       os: windows
       language: shell
       before_install:
-        - choco install python --version 3.6.0
+        - choco install python --version 3.6.1
         - python -m pip install --upgrade pip
         - chcp.com 65001
       env:

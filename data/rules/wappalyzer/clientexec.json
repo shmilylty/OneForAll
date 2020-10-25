@@ -1,9 +1,0 @@
-{
-    "name": "Clientexec",
-    "website": "http://www.clientexec.com",
-    "matches": [
-        {
-            "regexp": "clientexec\\.[^>]*\\s?=\\s?[^>]*;"
-        }
-    ]
-}

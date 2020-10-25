@@ -1,9 +1,0 @@
-{
-    "name": "Mastercard",
-    "website": "https://www.mastercard.com",
-    "matches": [
-        {
-            "regexp": "<[^>]+aria-labelledby=\"pi-mastercard"
-        }
-    ]
-}
