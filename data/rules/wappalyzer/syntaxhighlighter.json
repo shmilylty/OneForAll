@@ -1,9 +1,0 @@
-{
-    "name": "SyntaxHighlighter",
-    "website": "https://github.com/syntaxhighlighter",
-    "matches": [
-        {
-            "regexp": "<(?:script|link)[^>]*sh(?:Core|Brush|ThemeDefault)"
-        }
-    ]
-}

@@ -1,9 +1,0 @@
-{
-    "name": "Duda",
-    "website": "https://www.duda.co/website-builder",
-    "matches": [
-        {
-            "regexp": "<div[^>]*id=\"P6iryBW0Wu\""
-        }
-    ]
-}
