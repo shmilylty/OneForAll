@@ -157,7 +157,7 @@ def gen_subdomains(expression, path):
     """
     Generate subdomains
 
-    :param  str  expression: generate subdomains's expression
+    :param  str  expression: generate subdomains expression
     :param  str  path: path of wordlist
     :return set  subdomains: list of subdomains
     """
@@ -188,7 +188,7 @@ def gen_fuzz_subdomains(expression, rule, fuzzlist):
     """
     Generate subdomains based on fuzz mode
 
-    :param  str  expression: generate subdomains's expression
+    :param  str  expression: generate subdomains expression
     :param  str  rule: regexp rule
     :param  str  fuzzlist: fuzz dictionary
     :return set  subdomains: list of subdomains
@@ -217,7 +217,7 @@ def gen_word_subdomains(expression, path):
     """
     Generate subdomains based on word mode
 
-    :param  str  expression: generate subdomains's expression
+    :param  str  expression: generate subdomains expression
     :param  str  path: path of wordlist
     :return set  subdomains: list of subdomains
     """
@@ -375,14 +375,14 @@ def check_dict():
         exit(0)
 
 
-def gen_result_infos(items, infos, subdomains, ip_times, wc_ips, wc_ttl, bk_cname):
+def gen_result_infos(items, infos, subdomains, ip_times, wc_ips, wc_ttl):
     qname = items.get('name')[:-1]  # 去除最右边的`.`点号
     reason = items.get('status')
     resolver = items.get('resolver')
     data = items.get('data')
     answers = data.get('answers')
     info = dict()
-    cname = list()
+    cnames = list()
     ips = list()
     public = list()
     times = list()
@@ -397,13 +397,14 @@ def gen_result_infos(items, infos, subdomains, ip_times, wc_ips, wc_ttl, bk_cnam
         have_a_record = True
         ttl = answer.get('ttl')
         ttls.append(ttl)
-        cname.append(answer.get('name')[:-1])  # 去除最右边的`.`点号
+        cname = answer.get('name')[:-1]
+        cnames.append(cname)  # 去除最右边的`.`点号
         ip = answer.get('data')
         ips.append(ip)
         public.append(utils.ip_is_public(ip))
         num = ip_times.get(ip)
         times.append(num)
-        isvalid, reason = is_valid_subdomain(ip, ttl, num, wc_ips, wc_ttl, cname, bk_cname)
+        isvalid, reason = is_valid_subdomain(ip, ttl, num, wc_ips, wc_ttl, cname)
         logger.log('TRACE', f'{ip} effective: {isvalid} reason: {reason}')
         is_valid_flags.append(isvalid)
     if not have_a_record:
@@ -413,7 +414,7 @@ def gen_result_infos(items, infos, subdomains, ip_times, wc_ips, wc_ttl, bk_cnam
         info['resolve'] = 1
         info['reason'] = reason
         info['ttl'] = ttls
-        info['cname'] = cname
+        info['cname'] = cnames
         info['ip'] = ips
         info['public'] = public
         info['times'] = times
@@ -454,7 +455,7 @@ def stat_ip_times(result_paths):
     return times
 
 
-def deal_output(output_paths, ip_times, wildcard_ips, wildcard_ttl, bk_cname):
+def deal_output(output_paths, ip_times, wildcard_ips, wildcard_ttl):
     logger.log('INFOR', f'Processing result')
     infos = dict()  # 用来记录所有域名有关信息
     subdomains = list()  # 用来保存所有通过有效性检查的子域
@@ -480,8 +481,7 @@ def deal_output(output_paths, ip_times, wildcard_ips, wildcard_ttl, bk_cname):
                     logger.log('TRACE', f'Processing {line}, {qname} no response')
                     continue
                 infos, subdomains = gen_result_infos(items, infos, subdomains,
-                                                     ip_times, wildcard_ips,
-                                                     wildcard_ttl, bk_cname)
+                                                     ip_times, wildcard_ips, wildcard_ttl)
     return infos, subdomains
 
 
@@ -515,10 +515,11 @@ def check_ip_times(times):
     return False
 
 
-def is_valid_subdomain(ip, ttl, times, wc_ips, wc_ttl, cname, bk_cname):
+def is_valid_subdomain(ip, ttl, times, wc_ips, wc_ttl, cname):
     ip_blacklist = settings.brute_ip_blacklist
-    if cname in bk_cname:
-        return 0, 'cname blacklist' # 有些泛解析会统一解析到一个cname上
+    cname_blacklist = settings.brute_cname_blacklist
+    if cname in cname_blacklist:
+        return 0, 'cname blacklist'  # 有些泛解析会统一解析到一个cname上
     if ip in ip_blacklist:  # 解析ip在黑名单ip则为非法子域
         return 0, 'IP blacklist'
     if all([wc_ips, wc_ttl]):  # 有泛解析记录才进行对比
@@ -583,11 +584,10 @@ class Brute(Module):
     def __init__(self, target=None, targets=None, process=None, concurrent=None,
                  word=False, wordlist=None, recursive=False, depth=None, nextlist=None,
                  fuzz=False, place=None, rule=None, fuzzlist=None, export=True,
-                 alive=True, format='csv', path=None, bk_cname=[]):
+                 alive=True, format='csv', path=None):
         Module.__init__(self)
         self.module = 'Brute'
         self.source = 'Brute'
-        self.bk_cname = bk_cname
         self.target = target
         self.targets = targets
         self.process_num = process or utils.get_process_num()
@@ -716,7 +716,7 @@ class Brute(Module):
                 output_paths.append(output_path)
         ip_times = stat_ip_times(output_paths)
         self.infos, self.subdomains = deal_output(output_paths, ip_times,
-                                                  wildcard_ips, wildcard_ttl, self.bk_cname)
+                                                  wildcard_ips, wildcard_ttl)
         delete_file(dict_path, output_paths)
         end = time.time()
         self.elapse = round(end - start, 1)
