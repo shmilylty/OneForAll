@@ -6,7 +6,7 @@
 
 ```python
 enable_all_module = False  # 不开启所有模块
-enable_partial_module = [('modules.search', 'ask')，('modules.search', 'baidu')]  # 只使用ask和baidu搜索引擎收集子域
+enable_partial_module = [('modules.search', 'ask'), ('modules.search', 'baidu')]  # 只使用ask和baidu搜索引擎收集子域
 ```
 
 如果你指定使用某些模块使用代理可以在[api.py](../oneforall/config/api.py)中设置：

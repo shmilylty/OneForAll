@@ -332,7 +332,7 @@ class ParseException(Exception):
 
 
 class Token(object):
-    def __init__(self, type: TOKEN_TYPE, name: str = '', value: bool = False):
+    def __init__(self, type, name='', value=False):
         self.type = type
         self.name = name
         self.value = value
