@@ -1,6 +1,0 @@
-{
-    "name": "Apache Wicket",
-    "website": "http://wicket.apache.org",
-    "matches": [],
-    "implies": "Java"
-}

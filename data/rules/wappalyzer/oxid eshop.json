@@ -1,9 +1,0 @@
-{
-    "name": "OXID eShop",
-    "website": "https://en.oxid-esales.com/en/home.html",
-    "matches": [
-        {
-            "regexp": "<!--[^-]*OXID eShop"
-        }
-    ]
-}

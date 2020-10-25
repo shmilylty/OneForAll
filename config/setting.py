@@ -60,6 +60,8 @@ enable_fuzz = False  # 是否使用fuzz模式枚举域名
 fuzz_place = None  # 指定爆破的位置 指定的位置用`*`表示 示例：www.*.example.com
 fuzz_rule = None  # fuzz域名的正则 示例：'[a-z][0-9]' 表示第一位是字母 第二位是数字
 brute_ip_blacklist = {'0.0.0.0', '0.0.0.1'}  # IP黑名单 子域解析到IP黑名单则标记为非法子域
+# CNAME黑名单 子域解析到CNAME黑名单则标记为非法子域
+brute_cname_blacklist = {'nonexist.sdo.com', 'shop.taobao.com'}
 ip_appear_maximum = 100  # 多个子域解析到同一IP次数超过100次则标记为非法(泛解析)子域
 
 # 代理设置

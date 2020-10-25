@@ -1,9 +1,0 @@
-{
-    "name": "Kubernetes Dashboard",
-    "website": "https://kubernetes.io/",
-    "matches": [
-        {
-            "regexp": "<html ng-app=\"kubernetesDashboard\">"
-        }
-    ]
-}

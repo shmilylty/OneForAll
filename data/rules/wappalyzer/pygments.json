@@ -1,9 +1,0 @@
-{
-    "name": "Pygments",
-    "website": "http://pygments.org",
-    "matches": [
-        {
-            "regexp": "<link[^>]+pygments\\.css[\"']"
-        }
-    ]
-}

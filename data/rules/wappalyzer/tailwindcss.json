@@ -1,9 +1,0 @@
-{
-    "name": "tailwindcss",
-    "website": "https://tailwindcss.com/",
-    "matches": [
-        {
-            "regexp": "<link[^>]+?href=\"[^\"]+tailwindcss(?:\\.min)?\\.css"
-        }
-    ]
-}

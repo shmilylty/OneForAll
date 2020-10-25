@@ -1,11 +1,10 @@
 import os
-from sys import stdout
 from collections import OrderedDict
-from contextlib import contextmanager
 from inspect import isclass
 
-from .tablib import tablib
 from sqlalchemy import create_engine, exc, inspect, text
+
+from .tablib import tablib
 
 DATABASE_URL = os.environ.get('DATABASE_URL')
 
