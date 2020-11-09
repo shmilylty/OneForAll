@@ -97,8 +97,6 @@ docker run -it --rm -v ~/results:/OneForAll/results -v ~/.config:/OneForAll/conf
 <details>
 <summary><b>✨使用演示</b></summary>
 
-如果你的主机不在中国，请把 [setting](https://github.com/shmilylty/OneForAll/blob/master/config/setting.py#L46) 中`brute_nameservers_path`选项的`cn_nameservers.txt`修改为`nameservers.txt`。
-
 如果你是通过pip3安装的依赖则使用以下命令运行示例：   
 ```bash
 python3 oneforall.py --target example.com run

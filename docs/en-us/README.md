@@ -89,8 +89,6 @@ Result will be saved in `~/results`.
 <details>
 <summary><b>✨OneForAll usage</b></summary>
 
-If your computer are not in China, change [setting](https://github.com/shmilylty/OneForAll/blob/master/config/setting.py#L46) `brute_nameservers_path` param `cn_nameservers.txt` to `nameservers.txt` plz.
-
 If you are use pip3, run the following command: 
 
 ```bash
