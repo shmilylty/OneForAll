@@ -176,16 +176,16 @@ def check_dir(dir_path):
         dir_path.mkdir(parents=True, exist_ok=True)
 
 
-def check_path(path, name, format):
+def check_path(path, name, fmt):
     """
     检查结果输出目录路径
 
     :param path: 保存路径
     :param name: 导出名字
-    :param format: 保存格式
+    :param fmt: 保存格式
     :return: 保存路径
     """
-    filename = f'{name}.{format}'
+    filename = f'{name}.{fmt}'
     default_path = settings.result_save_dir.joinpath(filename)
     if isinstance(path, str):
         path = repr(path).replace('\\', '/')  # 将路径中的反斜杠替换为正斜杠
@@ -204,19 +204,18 @@ def check_path(path, name, format):
     return path
 
 
-def check_format(format, count):
+def check_format(fmt):
     """
     检查导出格式
 
-    :param format: 传入的导出格式
-    :param count: 数量
+    :param fmt: 传入的导出格式
     :return: 导出格式
     """
     formats = ['csv', 'json', ]
-    if format in formats:
-        return format
+    if fmt in formats:
+        return fmt
     else:
-        logger.log('ALERT', f'Does not support {format} format')
+        logger.log('ALERT', f'Does not support {fmt} format')
         logger.log('ALERT', 'So use csv format by default')
         return 'csv'
 
@@ -333,8 +332,8 @@ def remove_invalid_string(string):
     return re.sub(r'[\000-\010]|[\013-\014]|[\016-\037]', r'', string)
 
 
-def export_all_results(path, name, format, datas):
-    path = check_path(path, name, format)
+def export_all_results(path, name, fmt, datas):
+    path = check_path(path, name, fmt)
     logger.log('ALERT', f'The subdomain result for all main domains: {path}')
     row_list = list()
     for row in datas:
@@ -346,7 +345,7 @@ def export_all_results(path, name, format, datas):
         values = row.values()
         row_list.append(Record(keys, values))
     rows = RecordCollection(iter(row_list))
-    content = rows.export(format)
+    content = rows.export(fmt)
     save_data(path, content)
 
 
@@ -366,19 +365,19 @@ def export_all_subdomains(alive, path, name, datas):
     save_data(path, data)
 
 
-def export_all(alive, format, path, datas):
+def export_all(alive, fmt, path, datas):
     """
     将所有结果数据导出
 
     :param bool alive: 只导出存活子域结果
-    :param str format: 导出文件格式
+    :param str fmt: 导出文件格式
     :param str path: 导出文件路径
     :param list datas: 待导出的结果数据
     """
-    format = check_format(format, len(datas))
+    fmt = check_format(fmt)
     timestamp = get_timestring()
     name = f'all_subdomain_result_{timestamp}'
-    export_all_results(path, name, format, datas)
+    export_all_results(path, name, fmt, datas)
     export_all_subdomains(alive, path, name, datas)
 
 
@@ -430,8 +429,16 @@ def python_version():
     return sys.version
 
 
-def count_alive(data):
+def calc_alive(data):
     return len(list(filter(lambda item: item.get('alive') == 1, data)))
+
+
+def count_alive(name):
+    db = Database()
+    result = db.count_alive(name)
+    count = result.scalar()
+    db.close()
+    return count
 
 
 def get_subdomains(data):
@@ -833,3 +840,23 @@ def looks_like_ip(maybe_ip):
             return True
     except socket.error:
         return False
+
+
+def deal_data(domain):
+    db = Database()
+    db.remove_invalid(domain)
+    db.deduplicate_subdomain(domain)
+    db.close()
+
+
+def get_data(domain):
+    db = Database()
+    data = db.get_data(domain).as_dict()
+    db.close()
+    return data
+
+
+def clear_data(domain):
+    db = Database()
+    db.drop_table(domain)
+    db.close()

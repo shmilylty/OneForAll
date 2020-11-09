@@ -164,7 +164,7 @@ DESCRIPTION
         python3 oneforall.py --target example.com --alive False run
         python3 oneforall.py --target example.com --brute True run
         python3 oneforall.py --target example.com --port medium run
-        python3 oneforall.py --target example.com --format csv run
+        python3 oneforall.py --target example.com --fmt csv run
         python3 oneforall.py --target example.com --dns False run
         python3 oneforall.py --target example.com --req False run
         python3 oneforall.py --target example.com --takeover False run
@@ -173,7 +173,7 @@ DESCRIPTION
     Note:
         --alive  True/False           Only export alive subdomains or not (default False)
         --port   default/small/large  See details in ./config/setting.py(default port 80)
-        --format csv/json (result format)
+        --fmt csv/json (result format)
         --path   Result directory (default directory is ./results)
 
 ARGUMENTS
@@ -193,7 +193,7 @@ FLAGS
         The port range request to the subdomains (default port 80)
     --alive=ALIVE
         Only export alive subdomains (default False)
-    --format=FORMAT
+    --fmt=FMT
         Result format (default csv)
     --path=PATH
         Result directory (default None)
@@ -270,7 +270,6 @@ The project uses [SemVer](https://semver.org/) for version management, and you c
 ## ⌛Follow-up plan
 
 - [ ] Continuous optimize and improve of each module
-- [x] Subdomain monitoring (mark newly discovered subdomain)
 - [x] Subdomain collection crawler (collect subdomains from static files such as JS)
 - [ ] Implementation of front-end interface for powerful interaction
 

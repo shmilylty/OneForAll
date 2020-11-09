@@ -384,7 +384,6 @@ def gen_result_infos(items, infos, subdomains, ip_times, wc_ips, wc_ttl):
     info = dict()
     cnames = list()
     ips = list()
-    public = list()
     times = list()
     ttls = list()
     is_valid_flags = list()
@@ -401,7 +400,6 @@ def gen_result_infos(items, infos, subdomains, ip_times, wc_ips, wc_ttl):
         cnames.append(cname)  # 去除最右边的`.`点号
         ip = answer.get('data')
         ips.append(ip)
-        public.append(utils.ip_is_public(ip))
         num = ip_times.get(ip)
         times.append(num)
         isvalid, reason = is_valid_subdomain(ip, ttl, num, wc_ips, wc_ttl, cname)
@@ -416,7 +414,6 @@ def gen_result_infos(items, infos, subdomains, ip_times, wc_ips, wc_ttl):
         info['ttl'] = ttls
         info['cname'] = cnames
         info['ip'] = ips
-        info['public'] = public
         info['times'] = times
         info['resolver'] = resolver
         infos[qname] = info
@@ -559,7 +556,7 @@ class Brute(Module):
         brute.py --target d.com --fuzz True --place m.*.d.com --fuzzlist subnames.txt run
 
     Note:
-        --format csv/json (result format)
+        --fmt csv/json (result fmt)
         --path   Result path (default None, automatically generated)
 
 
@@ -578,13 +575,13 @@ class Brute(Module):
     :param str  rule:       Specify the regexp rules used in fuzz mode (required if use fuzz mode)
     :param str  fuzzlist:   Dictionary path used in fuzz mode (default use ./config/default.py)
     :param bool export:     Export the results (default True)
-    :param str  format:     Result format (default csv)
+    :param str  fmt:        Result format (default csv)
     :param str  path:       Result directory (default None)
     """
     def __init__(self, target=None, targets=None, process=None, concurrent=None,
                  word=False, wordlist=None, recursive=False, depth=None, nextlist=None,
                  fuzz=False, place=None, rule=None, fuzzlist=None, export=True,
-                 alive=True, format='csv', path=None):
+                 alive=True, fmt='csv', path=None):
         Module.__init__(self)
         self.module = 'Brute'
         self.source = 'Brute'
@@ -603,7 +600,7 @@ class Brute(Module):
         self.fuzzlist = fuzzlist or settings.fuzz_list
         self.export = export
         self.alive = alive
-        self.format = format
+        self.fmt = fmt
         self.path = path
         self.bulk = False  # 是否是批量爆破场景
         self.domains = list()  # 待爆破的所有域名集合
@@ -761,7 +758,7 @@ class Brute(Module):
 
             logger.log('INFOR', f'Finished {self.source} module to brute {self.domain}')
             if not self.path:
-                name = f'{self.domain}_brute_result.{self.format}'
+                name = f'{self.domain}_brute_result.{self.fmt}'
                 self.path = settings.result_save_dir.joinpath(name)
             # 数据库导出
             if self.export:
@@ -770,7 +767,7 @@ class Brute(Module):
                                 alive=self.alive,
                                 limit='resolve',
                                 path=self.path,
-                                format=self.format)
+                                fmt=self.fmt)
 
 
 if __name__ == '__main__':
