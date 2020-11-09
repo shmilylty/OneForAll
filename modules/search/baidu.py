@@ -57,7 +57,7 @@ class Baidu(Search):
             self.subdomains.update(subdomains)
             self.page_num += self.per_page_num
             # 搜索页面没有出现下一页时停止搜索
-            if '&pn={next_pn}&'.format(next_pn=self.page_num) not in resp.text:
+            if f'&pn={self.page_num}&' not in resp.text:
                 break
             if self.page_num >= self.limit_num:  # 搜索条数限制
                 break
