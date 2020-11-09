@@ -62,8 +62,8 @@ brute_wordlist_path = data_storage_dir.joinpath('subnames.txt')
 authoritative_dns_path = data_storage_dir.joinpath('authoritative_dns.txt')
 enable_recursive_brute = False  # 是否使用递归爆破(默认False)
 brute_recursive_depth = 2  # 递归爆破深度(默认2层)
-# 爆破下一层子域所使用的字典路径 默认data/next_subdomains.txt
-recursive_nextlist_path = data_storage_dir.joinpath('next_subnames.txt')
+# 爆破下一层子域所使用的字典路径 默认data/subnames_next.txt
+recursive_nextlist_path = data_storage_dir.joinpath('subnames_next.txt')
 enable_check_dict = False  # 是否开启字典配置检查提示(默认False)
 delete_generated_dict = True  # 是否删除爆破时临时生成的字典(默认True)
 delete_massdns_result = True  # 是否删除爆破时massdns输出的解析结果 (默认True)
