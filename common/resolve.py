@@ -155,8 +155,7 @@ def run_resolve(domain, data):
     output_name = f'resolved_result_{domain}_{timestring}.json'
     output_path = temp_dir.joinpath(output_name)
     log_path = result_dir.joinpath('massdns.log')
-
-    ns_path = settings.brute_nameservers_path
+    ns_path = utils.get_ns_path()
 
     logger.log('INFOR', f'Running massdns to resolve subdomains')
     utils.call_massdns(massdns_path, save_path, ns_path,

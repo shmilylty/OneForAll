@@ -518,15 +518,16 @@ def delete_file(*paths):
 
 @tenacity.retry(stop=tenacity.stop_after_attempt(3))
 def check_net():
-    logger.log('INFOR', 'Checking Internet environment')
-    urls = ['http://www.baidu.com', 'http://www.bing.com',
-            'http://www.apple.com', 'http://www.microsoft.com']
+    urls = ['http://ipinfo.io/json', 'http://ipconfig.io/json']
     url = random.choice(urls)
-    logger.log('INFOR', f'Trying to access {url}')
+    header = {'User_Agent': 'curl'}
+    timeout = settings.request_timeout_second
+    verify = settings.request_ssl_verify
+    logger.log('DEBUG', f'Trying to access {url}')
     session = requests.Session()
     session.trust_env = False
     try:
-        rsp = session.get(url, proxies=get_proxy())
+        rsp = session.get(url, headers=header, timeout=timeout, verify=verify)
     except Exception as e:
         logger.log('ERROR', e.args)
         logger.log('ALERT', 'Can not access Internet, retrying')
@@ -536,10 +537,16 @@ def check_net():
                             f'{rsp.status_code} {rsp.reason}')
         logger.log('ALERT', 'Can not access Internet normally, retrying')
         raise tenacity.TryAgain
-    logger.log('INFOR', 'Access to Internet OK')
+    logger.log('DEBUG', 'Access to Internet OK')
+    country = rsp.json().get('country').lower()
+    if country in ['cn', 'china']:
+        logger.log('DEBUG', f'The host in china')
+        return True, True
+    else:
+        return True, False
 
 
-def check_pre():
+def check_dep():
     logger.log('INFOR', 'Checking dependent environment')
     implementation = platform.python_implementation()
     version = platform.python_version()
@@ -551,15 +558,15 @@ def check_pre():
         exit(1)
 
 
-def check_env():
-    logger.log('INFOR', 'Checking the environment')
+def get_net_env():
+    logger.log('INFOR', 'Checking network environment')
     try:
-        check_net()
+        result = check_net()
     except Exception as e:
         logger.log('DEBUG', e.args)
-        logger.log('FATAL', 'Can not access Internet')
-        exit(1)
-    check_pre()
+        logger.log('ALERT', 'Can not access Internet')
+        return False, None
+    return result
 
 
 def check_version(local):
@@ -577,7 +584,7 @@ def check_version(local):
         resp_json = resp.json()
         latest = resp_json['tag_name']
     except Exception as e:
-        logger.log('ERROR', 'An error occurred while checking the latest version')
+        logger.log('ALERT', 'An error occurred while checking the latest version')
         logger.log('DEBUG', e.args)
         return
     if latest > local:
@@ -743,90 +750,6 @@ def sort_by_subdomain(data):
     return sorted(data, key=lambda item: item.get('subdomain'))
 
 
-def ping(host, path):
-    param = '-n' if platform.system().lower() == 'windows' else '-c'
-    command = ['ping', param, '5', host]
-    with open(path, "w") as f:
-        return subprocess.call(command, stdout=f, stderr=f)
-
-
-def ping_avg_time(nameserver):
-    check_dir(settings.temp_save_dir)
-    temp_path = settings.temp_save_dir.joinpath('ping')
-    ping(nameserver, path=temp_path)
-    with open(temp_path, 'r') as f:
-        text = f.read()
-        if '100.0% packet loss' in text or '100% packet loss' in text or '100% 丢失' in text:
-            logger.log('ALERT', f'100.0% packet loss, ping {nameserver} failed.')
-            return None
-        elif platform.system() in ('Darwin', 'Linux'):
-            try:
-                avg_time = re.findall(r'(?:min/avg/max/.+ )(?:\d+\.\d+)/(\d+\.\d+)/', text)[0]
-                logger.log('INFOR', f'ping {nameserver} average time {avg_time} ms.')
-            except IndexError:
-                return None
-            return avg_time
-        elif platform.system() == 'Windows':
-            try:
-                avg_time = re.findall(r'(?:Average|平均).+(\d.?)ms', text)[0]
-                logger.log('INFOR', f'ping {nameserver} average time {avg_time} ms.')
-            except IndexError:
-                return None
-            return avg_time
-        else:
-            logger.log('ALERT', f'{text}')
-            return None
-
-
-def auto_select_nameserver():
-    logger.log('INFOR', f'Ping test start, to select nameservers.')
-    avg_time1 = ping_avg_time('114.114.114.114')
-    avg_time2 = ping_avg_time('8.8.8.8')
-    if avg_time1 and avg_time2:
-        if avg_time1 < avg_time2:
-            change_nameservers_file('cn')
-            logger.log('INFOR', f'Ping test finished, use cn nameservers.')
-        else:
-            change_nameservers_file('common')
-            logger.log('INFOR', f'Ping test finished, use common nameservers.')
-    elif avg_time1 and not avg_time2:
-        change_nameservers_file('cn')
-        logger.log('INFOR', f'Ping test finished, use cn nameservers.')
-    elif not avg_time1 and avg_time1:
-        change_nameservers_file('common')
-        logger.log('INFOR', f'Ping test finished, use common nameservers.')
-    elif not avg_time1 and not avg_time1:
-        change_nameservers_file('default')
-        logger.log('INFOR', f'Ping test finished, use default nameservers.')
-        return
-
-
-def change_nameservers_file(option):
-    text = ''
-    if option == 'cn':
-        with open(settings.data_storage_dir.joinpath('cn_nameservers.txt'), 'r') as f:
-            text = f.read()
-    elif option == 'common':
-        with open(settings.data_storage_dir.joinpath('common_nameservers.txt'), 'r') as f:
-            text = f.read()
-    elif option == 'default':
-        for n in default_nameserver():
-            text = '\n'.join(n)
-    with open(settings.data_storage_dir.joinpath('nameservers.txt'), 'w') as f:
-        f.write(text)
-    return
-
-
-def default_nameserver():
-    try:
-        resolver = dns.resolver.Resolver()
-        return resolver.nameservers
-    except dns.resolver.NoResolverConfiguration:
-        logger.log('ERROR', 'Resolver configuration could not be read '
-                            'or specified no nameservers.')
-        exit(1)
-
-
 def looks_like_ip(maybe_ip):
     """Does the given str look like an IP address?"""
     if not maybe_ip[0].isdigit():
@@ -860,3 +783,18 @@ def clear_data(domain):
     db = Database()
     db.drop_table(domain)
     db.close()
+
+
+def get_ns_path(in_china=None, enable_wildcard=None, ns_ip_list=None):
+    data_dir = settings.data_storage_dir
+    path = data_dir.joinpath('nameservers.txt')
+    if in_china:
+        path = data_dir.joinpath('nameservers_cn.txt')
+    if not enable_wildcard:
+        return path
+    if not ns_ip_list:
+        return path
+    path = settings.authoritative_dns_path
+    ns_data = '\n'.join(ns_ip_list)
+    save_data(path, ns_data)
+    return path

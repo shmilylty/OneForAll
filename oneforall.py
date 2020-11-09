@@ -97,6 +97,8 @@ class OneForAll(object):
         self.domains = set()  # All domains that are to be collected
         self.data = list()  # The subdomain results of the current domain
         self.datas = list()  # All subdomain results of the domain
+        self.in_china = None
+        self.access_internet = False
 
     def config_param(self):
         """
@@ -144,8 +146,12 @@ class OneForAll(object):
         :return: subdomain results
         :rtype: list
         """
-        collect = Collect(self.domain)
-        collect.run()
+        if not self.access_internet:
+            logger.log('ALERT', 'Because it cannot access the Internet, '
+                                'OneForAll will not execute the subdomain collection module!')
+        if self.access_internet:
+            collect = Collect(self.domain)
+            collect.run()
 
         srv = BruteSRV(self.domain)
         srv.run()
@@ -154,7 +160,7 @@ class OneForAll(object):
             # Due to there will be a large number of dns resolution requests,
             # may cause other network tasks to be error
             brute = Brute(self.domain, word=True, export=False)
-            brute.check_env = False
+            brute.in_china = self.in_china
             brute.quite = True
             brute.run()
 
@@ -214,12 +220,12 @@ class OneForAll(object):
         print(oneforall_banner)
         dt = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         print(f'[*] Starting OneForAll @ {dt}\n')
-        utils.check_env()
-        utils.auto_select_nameserver()
-        if settings.enable_check_version:
-            utils.check_version(version)
         logger.log('DEBUG', 'Python ' + utils.python_version())
         logger.log('DEBUG', 'OneForAll ' + version)
+        utils.check_dep()
+        self.access_internet, self.in_china = utils.get_net_env()
+        if self.access_internet and settings.enable_check_version:
+            utils.check_version(version)
         logger.log('INFOR', 'Start running OneForAll')
         self.config_param()
         self.check_param()

@@ -349,18 +349,6 @@ def collect_wildcard_record(domain, authoritative_ns):
     return ips, ttl
 
 
-def get_nameservers_path(enable_wildcard, ns_ip_list):
-    path = settings.brute_nameservers_path
-    if not enable_wildcard:
-        return path
-    if not ns_ip_list:
-        return path
-    path = settings.authoritative_dns_path
-    ns_data = '\n'.join(ns_ip_list)
-    utils.save_data(path, ns_data)
-    return path
-
-
 def check_dict():
     if not settings.enable_check_dict:
         return
@@ -607,8 +595,8 @@ class Brute(Module):
         self.domain = str()  # 当前正在进行爆破的域名
         self.ips_times = dict()  # IP集合出现次数
         self.enable_wildcard = False  # 当前域名是否使用泛解析
-        self.check_env = True
         self.quite = False
+        self.in_china = None
 
     def gen_brute_dict(self, domain):
         logger.log('INFOR', f'Generating dictionary for {domain}')
@@ -684,7 +672,7 @@ class Brute(Module):
         if self.enable_wildcard:
             wildcard_ips, wildcard_ttl = collect_wildcard_record(domain,
                                                                  ns_ip_list)
-        ns_path = get_nameservers_path(self.enable_wildcard, ns_ip_list)
+        ns_path = utils.get_ns_path(self.in_china, self.enable_wildcard, ns_ip_list)
 
         dict_set = self.gen_brute_dict(domain)
 
@@ -727,8 +715,8 @@ class Brute(Module):
 
     def run(self):
         logger.log('INFOR', f'Start running {self.source} module')
-        if self.check_env:
-            utils.check_env()
+        if self.in_china is None:
+            _, self.in_china = utils.get_net_env()
         self.domains = utils.get_domains(self.target, self.targets)
         for self.domain in self.domains:
             self.results = list()  # 置空
