@@ -275,7 +275,6 @@ class Module(object):
                       'alive': None,
                       'request': None,
                       'resolve': None,
-                      'new': None,
                       'url': None,
                       'subdomain': None,
                       'port': None,
@@ -315,25 +314,22 @@ class Module(object):
                 ip = info.get('ip')
                 times = info.get('times')
                 ttl = info.get('ttl')
-                public = info.get('public')
                 if isinstance(cname, list):
                     cname = ','.join(cname)
                     ip = ','.join(ip)
                     times = ','.join([str(num) for num in times])
                     ttl = ','.join([str(num) for num in ttl])
-                    public = ','.join([str(num) for num in public])
                 result = {'id': None,
                           'alive': info.get('alive'),
                           'request': info.get('request'),
                           'resolve': info.get('resolve'),
-                          'new': None,
                           'url': url,
                           'subdomain': subdomain,
                           'port': 80,
                           'level': level,
                           'cname': cname,
                           'ip': ip,
-                          'public': public,
+                          'public': info.get('public'),
                           'cdn': info.get('cdn'),
                           'status': None,
                           'reason': info.get('reason'),
