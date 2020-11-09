@@ -41,7 +41,7 @@ def enrich_info(data):
         data[index]['org'] = ','.join(org)
         data[index]['addr'] = ','.join(addr)
         data[index]['isp'] = ','.join(isp)
-        return data
+    return data
 
 
 class Enrich(object):
