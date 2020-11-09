@@ -4,12 +4,6 @@ import json
 from config.log import logger
 from config import settings
 from common import utils
-from common.ipasn import IPAsnInfo
-from common.ipreg import IpRegData
-
-
-ip_asn = IPAsnInfo()
-ip_reg = IpRegData()
 
 
 def filter_subdomain(data):
@@ -79,13 +73,7 @@ def gen_infos(data, qname, info, infos):
     flag = False
     cname = list()
     ips = list()
-    public = list()
     ttl = list()
-    cidr = list()
-    asn = list()
-    org = list()
-    addr = list()
-    isp = list()
     answers = data.get('answers')
     for answer in answers:
         if answer.get('type') == 'A':
@@ -94,25 +82,11 @@ def gen_infos(data, qname, info, infos):
             ip = answer.get('data')
             ips.append(ip)
             ttl.append(str(answer.get('ttl')))
-            public.append(str(utils.ip_is_public(ip)))
-            asn_info = ip_asn.find(ip)
-            cidr.append(asn_info.get('cidr'))
-            asn.append(asn_info.get('asn'))
-            org.append(asn_info.get('org'))
-            ip_info = ip_reg.query(ip)
-            addr.append(ip_info.get('addr'))
-            isp.append(ip_info.get('isp'))
             info['resolve'] = 1
             info['reason'] = 'OK'
             info['cname'] = ','.join(cname)
             info['ip'] = ','.join(ips)
-            info['public'] = ','.join(public)
             info['ttl'] = ','.join(ttl)
-            info['cidr'] = ','.join(cidr)
-            info['asn'] = ','.join(asn)
-            info['org'] = ','.join(org)
-            info['addr'] = ','.join(addr)
-            info['isp'] = ','.join(isp)
             infos[qname] = info
     if not flag:
         info['alive'] = 0
