@@ -15,17 +15,17 @@ from common.database import Database
 from config.log import logger
 
 
-def export(target, type='target', db=None, alive=False, limit=None, path=None, format='csv', show=False):
+def export(target, type='target', db=None, alive=False, limit=None, path=None, fmt='csv', show=False):
     """
     OneForAll export from database module
 
     Example:
-        python3 dbexport.py --target name --format csv --dir= ./result.csv
+        python3 dbexport.py --target name --fmt csv --dir= ./result.csv
         python3 dbexport.py --db result.db --target name --show False
         python3 dbexport.py --target table_name --tb True --show False
 
     Note:
-        --format rst/csv/tsv/json/yaml/html/jira/xls/xlsx/dbf/latex/ods (result format)
+        --fmt csv/json (result format)
         --path   Result directory (default directory is ./results)
 
     :param str  target:  Table to be exported
@@ -33,7 +33,7 @@ def export(target, type='target', db=None, alive=False, limit=None, path=None, f
     :param str  db:      Database path to be exported (default ./results/result.sqlite3)
     :param bool alive:   Only export the results of alive subdomains (default False)
     :param str  limit:   Export limit (default None)
-    :param str  format:  Result format (default csv)
+    :param str  fmt:     Result format (default csv)
     :param str  path:    Result directory (default None)
     :param bool show:    Displays the exported data in terminal (default False)
     """
@@ -48,29 +48,29 @@ def export(target, type='target', db=None, alive=False, limit=None, path=None, f
                 rows = database.export_data(table_name, alive, limit)
                 if rows is None:
                     continue
-                data = export_data(format, path, rows, show, table_name, target)
+                data = export_data(fmt, path, rows, show, table_name, target)
                 datas.extend(data)
         database.close()
         if len(domains) > 1:
-            utils.export_all(alive, format, path, datas)
+            utils.export_all(alive, fmt, path, datas)
     elif type == 'table':
         database = Database(db)
         rows = database.export_data(target, alive, limit)
-        data = export_data(format, path, rows, show, target, target)
+        data, _, _ = export_data(fmt, path, rows, show, target, target)
         database.close()
         return data
 
 
-def export_data(format, path, rows, show, table_name, target):
-    format = utils.check_format(format, len(rows))
-    path = utils.check_path(path, target, format)
+def export_data(fmt, path, rows, show, table_name, target):
+    fmt = utils.check_format(fmt)
+    path = utils.check_path(path, target, fmt)
     if show:
         print(rows.dataset)
-    data = rows.export(format)
+    data = rows.export(fmt)
     utils.save_data(path, data)
     logger.log('ALERT', f'The subdomain result for {table_name}: {path}')
     data = rows.as_dict()
-    return data, format, path
+    return data, fmt, path
 
 
 def domain_to_table(table):
