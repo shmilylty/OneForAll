@@ -71,20 +71,22 @@ def save_subdomains(save_path, subdomain_list):
 
 def gen_infos(data, qname, info, infos):
     flag = False
-    cname = list()
+    cnames = list()
     ips = list()
     ttl = list()
     answers = data.get('answers')
     for answer in answers:
         if answer.get('type') == 'A':
             flag = True
-            cname.append(answer.get('name')[:-1])  # 去除最右边的`.`点号
+            name = answer.get('name')
+            cname = name[:-1].lower()  # 去除最右边的`.`点号
+            cnames.append(cname)
             ip = answer.get('data')
             ips.append(ip)
             ttl.append(str(answer.get('ttl')))
             info['resolve'] = 1
             info['reason'] = 'OK'
-            info['cname'] = ','.join(cname)
+            info['cname'] = ','.join(cnames)
             info['ip'] = ','.join(ips)
             info['ttl'] = ','.join(ttl)
             infos[qname] = info
