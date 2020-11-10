@@ -17,7 +17,7 @@ class Robtex(Query):
         """
         self.header = self.get_header()
         self.proxy = self.get_proxy(self.source)
-        base_addr = 'https://freeapi.robtex.com/pdns/'
+        base_addr = 'https://freeapi.robtex.com/pdns'
         url = f'{base_addr}/forward/{self.domain}'
         resp = self.get(url)
         if not resp:
