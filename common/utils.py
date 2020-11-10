@@ -163,7 +163,6 @@ def get_domains(target, targets=None):
     domains = list(target_domains.union(targets_domains))
     if targets_domains:
         domains = sorted(domains, key=targets_domains.index)  # 按照targets原本的index排序
-    logger.log('INFOR', f'Get {len(domains)} domains')
     if not domains:
         logger.log('ERROR', f'Did not get a valid domain name')
     logger.log('DEBUG', f'The obtained domains \n{domains}')
@@ -225,7 +224,7 @@ def load_json(path):
         return json.load(fp)
 
 
-def save_db(name, data, module):
+def save_to_db(name, data, module):
     """
     Save request results to database
 
@@ -240,7 +239,7 @@ def save_db(name, data, module):
     db.close()
 
 
-def save_data(path, data):
+def save_to_file(path, data):
     """
     保存数据到文件
 
@@ -259,21 +258,6 @@ def save_data(path, data):
     except Exception as e:
         logger.log('ERROR', e.args)
         return False
-
-
-def remove_data(path):
-    """
-    删除保存数据的文件
-
-    :param path: 路径
-    :return: 删除成功与否
-    """
-    try:
-        path.unlink()
-    except Exception as e:
-        logger.log('ERROR', e.args)
-        return False
-    return True
 
 
 def check_response(method, resp):
@@ -346,7 +330,7 @@ def export_all_results(path, name, fmt, datas):
         row_list.append(Record(keys, values))
     rows = RecordCollection(iter(row_list))
     content = rows.export(fmt)
-    save_data(path, content)
+    save_to_file(path, content)
 
 
 def export_all_subdomains(alive, path, name, datas):
@@ -362,7 +346,7 @@ def export_all_subdomains(alive, path, name, datas):
         else:
             subdomains.add(subdomain)
     data = '\n'.join(subdomains)
-    save_data(path, data)
+    save_to_file(path, data)
 
 
 def export_all(alive, fmt, path, datas):
@@ -796,5 +780,5 @@ def get_ns_path(in_china=None, enable_wildcard=None, ns_ip_list=None):
         return path
     path = settings.authoritative_dns_path
     ns_data = '\n'.join(ns_ip_list)
-    save_data(path, ns_data)
+    save_to_file(path, ns_data)
     return path

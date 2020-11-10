@@ -80,7 +80,7 @@ class Takeover(Module):
             data = str(self.results)
         else:
             data = self.results.export(self.fmt)
-        utils.save_data(self.path, data)
+        utils.save_to_file(self.path, data)
 
     def compare(self, subdomain, cname, responses):
         domain_resp = self.get('http://' + subdomain, check=False, ignore=True)

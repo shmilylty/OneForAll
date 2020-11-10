@@ -196,4 +196,4 @@ class Altdns(Module):
         resolved_data = resolve.run_resolve(self.domain, self.results)
         request.run_request(self.domain, resolved_data, port)
         logger.log('INFOR', f'Saving altdns results')
-        utils.save_db(self.domain, data, 'altdns')
+        utils.save_to_db(self.domain, data, 'altdns')
