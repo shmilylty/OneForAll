@@ -384,8 +384,8 @@ def gen_result_infos(items, infos, subdomains, ip_times, wc_ips, wc_ttl):
         have_a_record = True
         ttl = answer.get('ttl')
         ttls.append(ttl)
-        cname = answer.get('name')[:-1]
-        cnames.append(cname)  # 去除最右边的`.`点号
+        cname = answer.get('name')[:-1].lower()  # 去除最右边的`.`点号
+        cnames.append(cname)
         ip = answer.get('data')
         ips.append(ip)
         num = ip_times.get(ip)
