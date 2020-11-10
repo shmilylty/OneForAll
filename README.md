@@ -97,8 +97,6 @@ docker run -it --rm -v ~/results:/OneForAll/results -v ~/.config:/OneForAll/conf
 <details>
 <summary><b>✨使用演示</b></summary>
 
-如果你的主机不在中国，请把 [setting](https://github.com/shmilylty/OneForAll/blob/master/config/setting.py#L46) 中`brute_nameservers_path`选项的`cn_nameservers.txt`修改为`nameservers.txt`。
-
 如果你是通过pip3安装的依赖则使用以下命令运行示例：   
 ```bash
 python3 oneforall.py --target example.com run
@@ -170,7 +168,7 @@ DESCRIPTION
         python3 oneforall.py --target example.com --valid None run
         python3 oneforall.py --target example.com --brute True run
         python3 oneforall.py --target example.com --port small run
-        python3 oneforall.py --target example.com --format csv run
+        python3 oneforall.py --target example.com --fmt csv run
         python3 oneforall.py --target example.com --dns False run
         python3 oneforall.py --target example.com --req False run
         python3 oneforall.py --target example.com --takeover False run
@@ -179,7 +177,7 @@ DESCRIPTION
     Note:
         参数alive可选值True，False分别表示导出存活，全部子域结果
         参数port可选值有'default', 'small', 'large', 详见config.py配置
-        参数format可选格式有 'csv','json'
+        参数fmt可选格式有 'csv','json'
         参数path默认None使用OneForAll结果目录生成路径
 
 ARGUMENTS
@@ -199,7 +197,7 @@ FLAGS
         请求验证子域的端口范围(默认只探测80端口)
     --valid=VALID
         只导出存活的子域结果(默认False)
-    --format=FORMAT
+    --fmt=FMT
         结果保存格式(默认csv)
     --path=PATH
         结果保存路径(默认None)
@@ -269,7 +267,6 @@ FLAGS
 ## ⌛后续计划
 
 - [ ] 各模块持续优化和完善
-- [x] 子域监控（标记每次新发现的子域）
 - [x] 子域收集爬虫实现（包括从JS等静态资源文件中收集子域）
 - [ ] 操作强大交互人性的前端界面实现
 

@@ -47,11 +47,11 @@ D:.
 |
 +---data 存放一些所需数据
 |       authoritative_dns.txt   临时存放开启了泛解析域名的权威DNS名称服务器IP地址
-|       big_subnames.txt        子域爆破超大字典
-|       cn_nameservers.txt      中国主流名称服务器IP地址
+|       subnames_big.7z        子域爆破超大字典
+|       nameservers_cn.txt      中国主流名称服务器IP地址
 |       fingerprints.json       检查子域接管风险的指纹
 |       nameservers.txt         全球主流名称服务器IP地址
-|       next_subnames.txt       下一层子域字典
+|       subnames_next.txt       下一层子域字典
 |       public_suffix_list.dat  顶级域名后缀
 |       srv_prefixes.json       常见SRV记录前缀名
 |       subnames.txt            子域爆破常见字典
