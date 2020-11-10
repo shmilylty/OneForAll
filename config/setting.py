@@ -18,8 +18,8 @@ enable_finder_module = True  # 开启finder模块,开启会从响应体和JS中�
 enable_cdn_check = True  # 开启cdn检查模块(默认True)
 enable_banner_identify = True  # 开启WEB指纹识别模块(默认True)
 enable_takeover_check = False  # 开启子域接管风险检查(默认False)
-# 参数可选值有'small', 'medium', 'large'
-http_request_port = 'small'  # HTTP请求子域(默认'small'，探测80,443端口)
+# HTTP请求子域的端口范围 参数可选值有 'small', 'medium', 'large'
+http_request_port = 'small'  # 请求端口范围(默认 'small'，表示请求子域的80,443端口)
 # 参数可选值True，False分别表示导出存活，全部子域结果
 result_export_alive = False  # 只导出存活的子域结果(默认False)
 result_save_format = 'csv'  # 子域结果保存文件格式(默认csv)
@@ -36,18 +36,12 @@ enable_partial_module = []  # 启用部分收集模块 必须禁用enable_all_mo
 
 # 爆破模块设置
 brute_concurrent_num = 2000  # 爆破时并发查询数量(默认2000，最大推荐10000)
-# 爆破所使用的字典路径 默认data/subdomains.txt
-brute_wordlist_path = data_storage_dir.joinpath('subnames.txt')
-# 爆破所使用的DNS服务器路径 默认data/cn_nameservers.txt 如果你不在中国请改为nameservers.txt
-# DNS resolve server file path default data/nameservers.txt
-# If your computer's location are not in China, change `cn_nameservers.txt` to `nameservers.txt` plz.
-brute_nameservers_path = data_storage_dir.joinpath('cn_nameservers.txt')
-# 域名的权威DNS名称服务器的保存路径 当域名开启了泛解析时会使用该名称服务器来进行A记录查询
-authoritative_dns_path = data_storage_dir.joinpath('authoritative_dns.txt')
+# 爆破所使用的字典路径(默认None则使用data/subdomains.txt，自定义字典请使用绝对路径)
+brute_wordlist_path = None
 enable_recursive_brute = False  # 是否使用递归爆破(默认False)
 brute_recursive_depth = 2  # 递归爆破深度(默认2层)
-# 爆破下一层子域所使用的字典路径 默认data/next_subdomains.txt
-recursive_nextlist_path = data_storage_dir.joinpath('next_subnames.txt')
+# 爆破下一层子域所使用的字典路径(默认None则使用data/subnames_next.txt，自定义字典请使用绝对路径)
+recursive_nextlist_path = None
 enable_check_dict = False  # 是否开启字典配置检查提示(默认False)
 delete_generated_dict = True  # 是否删除爆破时临时生成的字典(默认True)
 #  是否删除爆破时massdns输出的解析结果 (默认True)

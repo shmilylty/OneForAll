@@ -349,18 +349,6 @@ def collect_wildcard_record(domain, authoritative_ns):
     return ips, ttl
 
 
-def get_nameservers_path(enable_wildcard, ns_ip_list):
-    path = settings.brute_nameservers_path
-    if not enable_wildcard:
-        return path
-    if not ns_ip_list:
-        return path
-    path = settings.authoritative_dns_path
-    ns_data = '\n'.join(ns_ip_list)
-    utils.save_data(path, ns_data)
-    return path
-
-
 def check_dict():
     if not settings.enable_check_dict:
         return
@@ -384,7 +372,6 @@ def gen_result_infos(items, infos, subdomains, ip_times, wc_ips, wc_ttl):
     info = dict()
     cnames = list()
     ips = list()
-    public = list()
     times = list()
     ttls = list()
     is_valid_flags = list()
@@ -401,7 +388,6 @@ def gen_result_infos(items, infos, subdomains, ip_times, wc_ips, wc_ttl):
         cnames.append(cname)  # 去除最右边的`.`点号
         ip = answer.get('data')
         ips.append(ip)
-        public.append(utils.ip_is_public(ip))
         num = ip_times.get(ip)
         times.append(num)
         isvalid, reason = is_valid_subdomain(ip, ttl, num, wc_ips, wc_ttl, cname)
@@ -416,7 +402,6 @@ def gen_result_infos(items, infos, subdomains, ip_times, wc_ips, wc_ttl):
         info['ttl'] = ttls
         info['cname'] = cnames
         info['ip'] = ips
-        info['public'] = public
         info['times'] = times
         info['resolver'] = resolver
         infos[qname] = info
@@ -559,7 +544,7 @@ class Brute(Module):
         brute.py --target d.com --fuzz True --place m.*.d.com --fuzzlist subnames.txt run
 
     Note:
-        --format csv/json (result format)
+        --fmt csv/json (result fmt)
         --path   Result path (default None, automatically generated)
 
 
@@ -578,13 +563,13 @@ class Brute(Module):
     :param str  rule:       Specify the regexp rules used in fuzz mode (required if use fuzz mode)
     :param str  fuzzlist:   Dictionary path used in fuzz mode (default use ./config/default.py)
     :param bool export:     Export the results (default True)
-    :param str  format:     Result format (default csv)
+    :param str  fmt:        Result format (default csv)
     :param str  path:       Result directory (default None)
     """
     def __init__(self, target=None, targets=None, process=None, concurrent=None,
                  word=False, wordlist=None, recursive=False, depth=None, nextlist=None,
                  fuzz=False, place=None, rule=None, fuzzlist=None, export=True,
-                 alive=True, format='csv', path=None):
+                 alive=True, fmt='csv', path=None):
         Module.__init__(self)
         self.module = 'Brute'
         self.source = 'Brute'
@@ -603,15 +588,15 @@ class Brute(Module):
         self.fuzzlist = fuzzlist or settings.fuzz_list
         self.export = export
         self.alive = alive
-        self.format = format
+        self.fmt = fmt
         self.path = path
         self.bulk = False  # 是否是批量爆破场景
         self.domains = list()  # 待爆破的所有域名集合
         self.domain = str()  # 当前正在进行爆破的域名
         self.ips_times = dict()  # IP集合出现次数
         self.enable_wildcard = False  # 当前域名是否使用泛解析
-        self.check_env = True
         self.quite = False
+        self.in_china = None
 
     def gen_brute_dict(self, domain):
         logger.log('INFOR', f'Generating dictionary for {domain}')
@@ -668,6 +653,13 @@ class Brute(Module):
                 logger.log('FATAL', f'Incorrect domain for fuzz')
                 exit(1)
 
+    def init_dict_path(self):
+        data_dir = settings.data_storage_dir
+        if self.wordlist is None:
+            self.wordlist = settings.brute_wordlist_path or data_dir.joinpath('subnames.txt')
+        if self.recursive_nextlist is None:
+            self.recursive_nextlist = settings.recursive_nextlist_path or data_dir.joinpath('subnames_next.txt')
+
     def main(self, domain):
         start = time.time()
         logger.log('INFOR', f'Blasting {domain} ')
@@ -687,7 +679,7 @@ class Brute(Module):
         if self.enable_wildcard:
             wildcard_ips, wildcard_ttl = collect_wildcard_record(domain,
                                                                  ns_ip_list)
-        ns_path = get_nameservers_path(self.enable_wildcard, ns_ip_list)
+        ns_path = utils.get_ns_path(self.in_china, self.enable_wildcard, ns_ip_list)
 
         dict_set = self.gen_brute_dict(domain)
 
@@ -730,12 +722,13 @@ class Brute(Module):
 
     def run(self):
         logger.log('INFOR', f'Start running {self.source} module')
-        if self.check_env:
-            utils.check_env()
+        if self.in_china is None:
+            _, self.in_china = utils.get_net_env()
         self.domains = utils.get_domains(self.target, self.targets)
         for self.domain in self.domains:
             self.results = list()  # 置空
             all_subdomains = list()
+            self.init_dict_path()
             self.check_brute_params()
             if self.recursive_brute:
                 logger.log('INFOR', f'Start recursively brute the 1 layer subdomain'
@@ -761,7 +754,7 @@ class Brute(Module):
 
             logger.log('INFOR', f'Finished {self.source} module to brute {self.domain}')
             if not self.path:
-                name = f'{self.domain}_brute_result.{self.format}'
+                name = f'{self.domain}_brute_result.{self.fmt}'
                 self.path = settings.result_save_dir.joinpath(name)
             # 数据库导出
             if self.export:
@@ -770,7 +763,7 @@ class Brute(Module):
                                 alive=self.alive,
                                 limit='resolve',
                                 path=self.path,
-                                format=self.format)
+                                fmt=self.fmt)
 
 
 if __name__ == '__main__':
