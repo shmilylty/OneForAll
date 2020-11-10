@@ -653,6 +653,13 @@ class Brute(Module):
                 logger.log('FATAL', f'Incorrect domain for fuzz')
                 exit(1)
 
+    def init_dict_path(self):
+        data_dir = settings.data_storage_dir
+        if self.wordlist is None:
+            self.wordlist = settings.brute_wordlist_path or data_dir.joinpath('subnames.txt')
+        if self.recursive_nextlist is None:
+            self.recursive_nextlist = settings.recursive_nextlist_path or data_dir.joinpath('subnames_next.txt')
+
     def main(self, domain):
         start = time.time()
         logger.log('INFOR', f'Blasting {domain} ')
@@ -721,6 +728,7 @@ class Brute(Module):
         for self.domain in self.domains:
             self.results = list()  # 置空
             all_subdomains = list()
+            self.init_dict_path()
             self.check_brute_params()
             if self.recursive_brute:
                 logger.log('INFOR', f'Start recursively brute the 1 layer subdomain'
