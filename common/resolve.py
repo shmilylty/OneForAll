@@ -58,13 +58,13 @@ def save_db(name, data):
     :param list data: data to be saved
     """
     logger.log('INFOR', f'Saving resolved results')
-    utils.save_db(name, data, 'resolve')
+    utils.save_to_db(name, data, 'resolve')
 
 
 def save_subdomains(save_path, subdomain_list):
     logger.log('DEBUG', f'Saving resolved subdomain')
     subdomain_data = '\n'.join(subdomain_list)
-    if not utils.save_data(save_path, subdomain_data):
+    if not utils.save_to_file(save_path, subdomain_data):
         logger.log('FATAL', 'Save resolved subdomain error')
         exit(1)
 

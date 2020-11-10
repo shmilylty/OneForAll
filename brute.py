@@ -18,7 +18,7 @@ import tenacity
 from dns.exception import Timeout
 from dns.resolver import NXDOMAIN, YXDOMAIN, NoAnswer, NoNameservers
 
-import dbexport
+import export
 from common import utils
 from common import similarity
 from config import settings
@@ -517,7 +517,7 @@ def is_valid_subdomain(ip, ttl, times, wc_ips, wc_ttl, cname):
 
 def save_brute_dict(dict_path, dict_set):
     dict_data = '\n'.join(dict_set)
-    if not utils.save_data(dict_path, dict_data):
+    if not utils.save_to_file(dict_path, dict_data):
         logger.log('FATAL', 'Saving dictionary error')
         exit(1)
 
@@ -758,12 +758,11 @@ class Brute(Module):
                 self.path = settings.result_save_dir.joinpath(name)
             # 数据库导出
             if self.export:
-                dbexport.export(self.domain,
-                                type='table',
-                                alive=self.alive,
-                                limit='resolve',
-                                path=self.path,
-                                fmt=self.fmt)
+                export.export_data(self.domain,
+                                   alive=self.alive,
+                                   limit='resolve',
+                                   path=self.path,
+                                   fmt=self.fmt)
 
 
 if __name__ == '__main__':

@@ -12,7 +12,7 @@ import fire
 from datetime import datetime
 
 
-import dbexport
+import export
 from brute import Brute
 from common import utils, resolve, request
 from modules.collect import Collect
@@ -129,15 +129,14 @@ class OneForAll(object):
             logger.log('FATAL', 'You must provide either target or targets parameter')
             exit(1)
 
-    def export(self, table):
+    def export_data(self):
         """
         Export data from the database
 
-        :param table: table name
-        :return: export data
+        :return: exported data
         :rtype: list
         """
-        return dbexport.export(table, type='table', alive=self.alive, fmt=self.fmt)
+        return export.export_data(self.domain, alive=self.alive, fmt=self.fmt)
 
     def main(self):
         """
@@ -167,7 +166,7 @@ class OneForAll(object):
         utils.deal_data(self.domain)
         # Export results without resolve
         if not self.dns:
-            return self.export(self.domain)
+            return self.export_data()
 
         self.data = utils.get_data(self.domain)
 
@@ -179,7 +178,7 @@ class OneForAll(object):
 
         # Export results without HTTP request
         if not self.req:
-            return self.export(self.domain)
+            return self.export_data()
 
         # HTTP request
         utils.clear_data(self.domain)
@@ -201,7 +200,7 @@ class OneForAll(object):
             enrich.run()
 
         # Export
-        self.datas.extend(self.export(self.domain))
+        self.datas.extend(self.export_data())
 
         # Scan subdomain takeover
         if self.takeover:
@@ -230,13 +229,16 @@ class OneForAll(object):
         self.config_param()
         self.check_param()
         self.domains = utils.get_domains(self.target, self.targets)
-        if self.domains:
-            for domain in self.domains:
-                self.domain = utils.get_main_domain(domain)
-                self.main()
-            utils.export_all(self.alive, self.fmt, self.path, self.datas)
-        else:
+        count = len(self.domains)
+        logger.log('INFOR', f'Got {count} domains')
+        if not count:
             logger.log('FATAL', 'Failed to obtain domain')
+            exit(1)
+        for domain in self.domains:
+            self.domain = utils.get_main_domain(domain)
+            self.main()
+        if count > 1:
+            utils.export_all(self.alive, self.fmt, self.path, self.datas)
         logger.log('INFOR', 'Finished OneForAll')
 
     @staticmethod
