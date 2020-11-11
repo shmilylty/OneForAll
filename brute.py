@@ -271,7 +271,7 @@ def get_wildcard_record(domain, resolver):
     except Timeout as e:
         logger.log('ALERT', f'Query timeout, retrying')
         logger.log('DEBUG', e.args)
-        raise tenacity.TryAgain
+        raise e
     except (NXDOMAIN, YXDOMAIN, NoAnswer, NoNameservers) as e:
         logger.log('DEBUG', e.args)
         logger.log('DEBUG', f'{domain} dont have A record on authoritative name server')

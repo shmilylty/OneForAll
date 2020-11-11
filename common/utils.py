@@ -500,7 +500,8 @@ def delete_file(*paths):
             logger.log('ERROR', e.args)
 
 
-@tenacity.retry(stop=tenacity.stop_after_attempt(3))
+@tenacity.retry(stop=tenacity.stop_after_attempt(3),
+                wait=tenacity.wait_fixed(2))
 def check_net():
     urls = ['http://ipinfo.io/json', 'http://ipconfig.io/json']
     url = random.choice(urls)
@@ -514,17 +515,12 @@ def check_net():
         rsp = session.get(url, headers=header, timeout=timeout, verify=verify)
     except Exception as e:
         logger.log('ERROR', e.args)
-        logger.log('ALERT', 'Can not access Internet, retrying')
-        raise tenacity.TryAgain
-    if rsp.status_code != 200:
-        logger.log('ALERT', f'{rsp.request.method} {rsp.request.url} '
-                            f'{rsp.status_code} {rsp.reason}')
-        logger.log('ALERT', 'Can not access Internet normally, retrying')
-        raise tenacity.TryAgain
+        logger.log('ALERT', 'Unable to access Internet, retrying...')
+        raise e
     logger.log('DEBUG', 'Access to Internet OK')
     country = rsp.json().get('country').lower()
     if country in ['cn', 'china']:
-        logger.log('DEBUG', f'The host in china')
+        logger.log('DEBUG', f'The computer is located in China')
         return True, True
     else:
         return True, False
@@ -548,7 +544,7 @@ def get_net_env():
         result = check_net()
     except Exception as e:
         logger.log('DEBUG', e.args)
-        logger.log('ALERT', 'Can not access Internet')
+        logger.log('ALERT', 'Please check your network environment.')
         return False, None
     return result
 
