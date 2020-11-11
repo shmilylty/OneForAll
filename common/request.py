@@ -219,10 +219,7 @@ def bulk_request(domain, req_data, ret=False):
     urls_queue = Queue()
     total = len(req_data)
     for index, info in enumerate(req_data):
-        try:
-            url = info.get('url')
-        except Exception:
-            pass
+        url = info.get('url')
         urls_queue.put((index, url))
     session = get_session()
     thread_count = req_thread_count()
