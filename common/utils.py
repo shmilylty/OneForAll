@@ -523,6 +523,7 @@ def check_net():
         logger.log('DEBUG', f'The computer is located in China')
         return True, True
     else:
+        logger.log('DEBUG', f'The computer is not located in China')
         return True, False
 
 
