@@ -476,14 +476,6 @@ def ip_is_public(ip_str):
     return 1
 
 
-def get_process_num():
-    process_num = settings.brute_process_num
-    if isinstance(process_num, int):
-        return min(os.cpu_count(), process_num)
-    else:
-        return 1
-
-
 def get_request_count():
     return 32
 

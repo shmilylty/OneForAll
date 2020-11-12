@@ -20,6 +20,7 @@ from modules.srv import BruteSRV
 from modules.finder import Finder
 from modules.altdns import Altdns
 from modules.enrich import Enrich
+from modules import wildcard
 from config import settings
 from config.log import logger
 from takeover import Takeover
@@ -99,6 +100,7 @@ class OneForAll(object):
         self.datas = list()  # All subdomain results of the domain
         self.in_china = None
         self.access_internet = False
+        self.enable_wildcard = False
 
     def config_param(self):
         """
@@ -149,6 +151,8 @@ class OneForAll(object):
             logger.log('ALERT', 'Because it cannot access the Internet, '
                                 'OneForAll will not execute the subdomain collection module!')
         if self.access_internet:
+            self.enable_wildcard = wildcard.detect_wildcard(self.domain)
+
             collect = Collect(self.domain)
             collect.run()
 
@@ -159,6 +163,7 @@ class OneForAll(object):
             # Due to there will be a large number of dns resolution requests,
             # may cause other network tasks to be error
             brute = Brute(self.domain, word=True, export=False)
+            brute.enable_wildcard = self.enable_wildcard
             brute.in_china = self.in_china
             brute.quite = True
             brute.run()

@@ -72,7 +72,8 @@ class Database(object):
                    f'header text,'
                    f'history text,'
                    f'response text,'
-                   f'times text,'
+                   f'ip_times text,'
+                   f'cname_times text,'
                    f'ttl text,'
                    f'cidr text,'
                    f'asn text,'
@@ -91,13 +92,13 @@ class Database(object):
             f'insert into "{table_name}" '
             f'(id, alive, resolve, request, url, subdomain, port, level,'
             f'cname, ip, public, cdn, status, reason, title, banner, header,'
-            f'history, response, times, ttl, cidr, asn, org, addr, isp, resolver,'
-            f'module, source, elapse, find) '
+            f'history, response, ip_times, cname_times, ttl, cidr, asn, org,'
+            f'addr, isp, resolver, module, source, elapse, find) '
             f'values (:id, :alive, :resolve, :request, :url,'
             f':subdomain, :port, :level, :cname, :ip, :public, :cdn,'
             f':status, :reason, :title, :banner, :header, :history, :response,'
-            f':times, :ttl, :cidr, :asn, :org, :addr, :isp, :resolver, :module,'
-            f':source, :elapse, :find)', **result)
+            f':ip_times, :cname_times, :ttl, :cidr, :asn, :org, :addr, :isp,'
+            f':resolver, :module, :source, :elapse, :find)', **result)
 
     def save_db(self, table_name, results, module_name=None):
         """
@@ -114,15 +115,15 @@ class Database(object):
             try:
                 self.conn.bulk_query(
                     f'insert into "{table_name}" '
-                    f'(id, alive, resolve, request, url, subdomain, port, level,'
-                    f'cname, ip, public, cdn, status, reason, title, banner, header,'
-                    f'history, response, times, ttl, cidr, asn, org, addr, isp, resolver,'
-                    f'module, source, elapse, find) '
-                    f'values (:id, :alive, :resolve, :request, :url,'
+                    f'(id, alive, resolve, request, url, subdomain, port, level, '
+                    f'cname, ip, public, cdn, status, reason, title, banner, header, '
+                    f'history, response, ip_times, cname_times, ttl, cidr, asn, org, '
+                    f'addr, isp, resolver, module, source, elapse, find) '
+                    f'values (:id, :alive, :resolve, :request, :url, '
                     f':subdomain, :port, :level, :cname, :ip, :public, :cdn,'
-                    f':status, :reason, :title, :banner, :header, :history, :response,'
-                    f':times, :ttl, :cidr, :asn, :org, :addr, :isp, :resolver, :module,'
-                    f':source, :elapse, :find)', results)
+                    f':status, :reason, :title, :banner, :header, :history, :response, '
+                    f':ip_times, :cname_times, :ttl, :cidr, :asn, :org, :addr, :isp, '
+                    f':resolver, :module, :source, :elapse, :find)', results)
             except Exception as e:
                 logger.log('ERROR', e)
 
