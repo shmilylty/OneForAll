@@ -217,16 +217,19 @@ def bulk_request(domain, req_data, ret=False):
     logger.log('INFOR', 'Requesting urls in bulk')
     resp_queue = Queue()
     urls_queue = Queue()
-    total = len(req_data)
+    task_count = len(req_data)
     for index, info in enumerate(req_data):
         url = info.get('url')
         urls_queue.put((index, url))
     session = get_session()
     thread_count = req_thread_count()
-    bar = get_progress_bar(total)
+    if task_count <= req_thread_count():
+        # 如果请求任务数很小不用创建很多线程了
+        thread_count = task_count
+    bar = get_progress_bar(task_count)
 
     progress_thread = Thread(target=progress, name='ProgressThread',
-                             args=(bar, total, urls_queue), daemon=True)
+                             args=(bar, task_count, urls_queue), daemon=True)
     progress_thread.start()
 
     for i in range(thread_count):
@@ -237,7 +240,7 @@ def bulk_request(domain, req_data, ret=False):
         urls_queue.join()
         return resp_queue
     save_thread = Thread(target=save, name=f'SaveThread',
-                         args=(domain, total, req_data, resp_queue), daemon=True)
+                         args=(domain, task_count, req_data, resp_queue), daemon=True)
     save_thread.start()
     urls_queue.join()
     save_thread.join()
