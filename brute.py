@@ -20,137 +20,10 @@ from dns.resolver import NXDOMAIN, YXDOMAIN, NoAnswer, NoNameservers
 
 import export
 from common import utils
-from common import similarity
 from config import settings
 from common.module import Module
+from modules import wildcard
 from config.log import logger
-
-
-def config_resolver(nameservers):
-    """
-    配置DNS解析器
-
-    :param nameservers: 名称解析服务器地址
-    """
-    resolver = utils.dns_resolver()
-    resolver.nameservers = nameservers
-    resolver.rotate = True  # 随机使用NS
-    resolver.cache = None  # 不使用DNS缓存
-    return resolver
-
-
-def gen_random_subdomains(domain, count):
-    """
-    生成指定数量的随机子域域名列表
-
-    :param domain: 主域
-    :param count: 数量
-    """
-    subdomains = set()
-    if count < 1:
-        return subdomains
-    for _ in range(count):
-        token = secrets.token_hex(4)
-        subdomains.add(f'{token}.{domain}')
-    return subdomains
-
-
-def query_a_record(subdomain, resolver):
-    """
-    查询子域A记录
-
-    :param subdomain: 子域
-    :param resolver: DNS解析器
-    """
-    try:
-        answer = resolver.query(subdomain, 'A')
-    except Exception as e:
-        logger.log('DEBUG', f'Query {subdomain} wildcard dns record error')
-        logger.log('DEBUG', e.args)
-        return False
-    if answer.rrset is None:
-        return False
-    ttl = answer.ttl
-    name = answer.name
-    ips = {item.address for item in answer}
-    logger.log('ALERT', f'{subdomain} resolve to: {name} '
-                        f'IP: {ips} TTL: {ttl}')
-    return True
-
-
-def all_resolve_success(subdomains):
-    """
-    判断是否所有子域都解析成功
-
-    :param subdomains: 子域列表
-    """
-    resolver = utils.dns_resolver()
-    resolver.cache = None  # 不使用DNS缓存
-    status = set()
-    for subdomain in subdomains:
-        status.add(query_a_record(subdomain, resolver))
-    return all(status)
-
-
-def all_request_success(subdomains):
-    """
-    判断是否所有子域都请求成功
-
-    :param subdomains: 子域列表
-    """
-    result = list()
-    for subdomain in subdomains:
-        url = f'http://{subdomain}'
-        resp = utils.get_url_resp(url)
-        if resp:
-            logger.log('ALERT', f'Request: {url} Status: {resp.status_code} '
-                                f'Size: {len(resp.content)}')
-            result.append(resp.text)
-        else:
-            result.append(resp)
-    return all(result), result
-
-
-def any_similar_html(resp_list):
-    """
-    判断是否有一组HTML页面结构相似
-
-    :param resp_list: 响应HTML页面
-    """
-    html_doc1, html_doc2, html_doc3 = resp_list
-    if similarity.is_similar(html_doc1, html_doc2):
-        return True
-    if similarity.is_similar(html_doc1, html_doc3):
-        return True
-    if similarity.is_similar(html_doc2, html_doc3):
-        return True
-    return False
-
-
-def detect_wildcard(domain):
-    """
-    Detect use wildcard dns record or not
-
-    :param  str  domain:  domain
-    :return bool use wildcard dns record or not
-    """
-    logger.log('INFOR', f'Detecting {domain} use wildcard dns record or not')
-    random_subdomains = gen_random_subdomains(domain, 3)
-    if not all_resolve_success(random_subdomains):
-        return False
-    is_all_success, all_request_resp = all_request_success(random_subdomains)
-    if not is_all_success:
-        return True
-    return any_similar_html(all_request_resp)
-
-
-def is_enable_wildcard(domain):
-    is_enable = detect_wildcard(domain)
-    if is_enable:
-        logger.log('ALERT', f'The domain {domain} enables wildcard')
-    else:
-        logger.log('ALERT', f'The domain {domain} disables wildcard')
-    return is_enable
 
 
 def gen_subdomains(expression, path):
@@ -261,94 +134,6 @@ def query_domain_ns(domain):
     return ns
 
 
-@tenacity.retry(stop=tenacity.stop_after_attempt(2))
-def get_wildcard_record(domain, resolver):
-    logger.log('INFOR', f"Query {domain} 's wildcard dns record "
-                        f"in authoritative name server")
-    try:
-        answer = resolver.query(domain, 'A')
-    # 如果查询随机域名A记录时抛出Timeout异常则重新查询
-    except Timeout as e:
-        logger.log('ALERT', f'Query timeout, retrying')
-        logger.log('DEBUG', e.args)
-        raise e
-    except (NXDOMAIN, YXDOMAIN, NoAnswer, NoNameservers) as e:
-        logger.log('DEBUG', e.args)
-        logger.log('DEBUG', f'{domain} dont have A record on authoritative name server')
-        return None, None
-    except Exception as e:
-        logger.log('ERROR', e.args)
-        logger.log('ERROR', f'Query {domain} wildcard dns record in '
-                            f'authoritative name server error')
-        exit(1)
-    else:
-        if answer.rrset is None:
-            logger.log('DEBUG', f'No record of query result')
-            return None, None
-        name = answer.name
-        ip = {item.address for item in answer}
-        ttl = answer.ttl
-        logger.log('INFOR', f'{domain} results on authoritative name server: {name} '
-                            f'IP: {ip} TTL: {ttl}')
-        return ip, ttl
-
-
-def collect_wildcard_record(domain, authoritative_ns):
-    logger.log('INFOR', f'Collecting wildcard dns record for {domain}')
-    if not authoritative_ns:
-        return list(), int()
-    resolver = utils.dns_resolver()
-    resolver.nameservers = authoritative_ns  # 使用权威名称服务器
-    resolver.rotate = True  # 随机使用NS
-    resolver.cache = None  # 不使用DNS缓存
-    ips = set()
-    ttl = int()
-    ttls_check = list()
-    ips_stat = dict()
-    ips_check = list()
-    while True:
-        token = secrets.token_hex(4)
-        random_subdomain = f'{token}.{domain}'
-        try:
-            ip, ttl = get_wildcard_record(random_subdomain, resolver)
-        except Exception as e:
-            logger.log('DEBUG', e.args)
-            logger.log('ALERT', f'Multiple query errors,'
-                                f'try to query a new random subdomain')
-            continue
-        # 每5次查询检查结果列表 如果都没结果则结束查询
-        ips_check.append(ip)
-        ttls_check.append(ttl)
-        if len(ips_check) == 5:
-            if not any(ips_check):
-                logger.log('ALERT', 'The query ends because there are '
-                                    'no results for 5 consecutive queries.')
-                break
-            ips_check = list()
-        if len(ttls_check) == 5 and len(set(ttls_check)) == 5:
-            logger.log('ALERT', 'The query ends because there are '
-                                '5 different TTL results for 5 consecutive queries.')
-            ips, ttl = set(), int()
-            break
-        if ip is None:
-            continue
-        ips.update(ip)
-        # 统计每个泛解析IP出现次数
-        for addr in ip:
-            count = ips_stat.setdefault(addr, 0)
-            ips_stat[addr] = count + 1
-        # 筛选出出现次数2次以上的IP地址
-        addrs = list()
-        for addr, times in ips_stat.items():
-            if times >= 2:
-                addrs.append(addr)
-        # 大部分的IP地址出现次数大于2次停止收集泛解析IP记录
-        if len(addrs) / len(ips) >= 0.8:
-            break
-    logger.log('DEBUG', f'Collected the wildcard dns record of {domain}\n{ips}\n{ttl}')
-    return ips, ttl
-
-
 def check_dict():
     if not settings.enable_check_dict:
         return
@@ -363,7 +148,7 @@ def check_dict():
         exit(0)
 
 
-def gen_result_infos(items, infos, subdomains, ip_times, wc_ips, wc_ttl):
+def gen_result_infos(items, infos, subdomains, appear_times, wc_ips, wc_ttl):
     qname = items.get('name')[:-1]  # 去除最右边的`.`点号
     reason = items.get('status')
     resolver = items.get('resolver')
@@ -372,25 +157,27 @@ def gen_result_infos(items, infos, subdomains, ip_times, wc_ips, wc_ttl):
     info = dict()
     cnames = list()
     ips = list()
-    times = list()
+    ip_times = list()
+    cname_times = list()
     ttls = list()
     is_valid_flags = list()
     have_a_record = False
     for answer in answers:
         if answer.get('type') != 'A':
-            logger.log('TRACE', f'The query result of {qname} has no A record\n{answer}')
             continue
-        logger.log('TRACE', f'The query result of {qname} no A record\n{answer}')
         have_a_record = True
         ttl = answer.get('ttl')
         ttls.append(ttl)
-        cname = answer.get('name')[:-1].lower()  # 去除最右边的`.`点号
+        name = answer.get('name')  # 去除最右边的`.`点号
+        cname = name[:-1].lower()  # 去除最右边的`.`点号
         cnames.append(cname)
+        cname_num = appear_times.get(cname)
+        cname_times.append(cname_num)
         ip = answer.get('data')
         ips.append(ip)
-        num = ip_times.get(ip)
-        times.append(num)
-        isvalid, reason = is_valid_subdomain(ip, ttl, num, wc_ips, wc_ttl, cname)
+        ip_num = appear_times.get(ip)
+        ip_times.append(ip_num)
+        isvalid, reason = wildcard.is_wildcard_subdomain(ip, ttl, ip_num, wc_ips, wc_ttl, cname, cname_num)
         logger.log('TRACE', f'{ip} effective: {isvalid} reason: {reason}')
         is_valid_flags.append(isvalid)
     if not have_a_record:
@@ -402,117 +189,83 @@ def gen_result_infos(items, infos, subdomains, ip_times, wc_ips, wc_ttl):
         info['ttl'] = ttls
         info['cname'] = cnames
         info['ip'] = ips
-        info['times'] = times
+        info['ip_times'] = ip_times
+        info['cname_times'] = cname_times
         info['resolver'] = resolver
         infos[qname] = info
         subdomains.append(qname)
     return infos, subdomains
 
 
-def stat_ip_times(result_paths):
+def stat_appear_times(result_path):
     logger.log('INFOR', f'Counting IP')
     times = dict()
-    for result_path in result_paths:
-        logger.log('DEBUG', f'Reading {result_path}')
-        with open(result_path) as fd:
-            for line in fd:
-                line = line.strip()
-                try:
-                    items = json.loads(line)
-                except Exception as e:
-                    logger.log('ERROR', e.args)
-                    logger.log('ERROR', f'Error parsing {result_path} '
-                                        f'line {line} Skip this line')
-                    continue
-                status = items.get('status')
-                if status != 'NOERROR':
-                    continue
-                data = items.get('data')
-                if 'answers' not in data:
-                    continue
-                answers = data.get('answers')
-                for answer in answers:
-                    if answer.get('type') == 'A':
-                        ip = answer.get('data')
-                        # 取值 如果是首次出现的IP集合 出现次数先赋值0
-                        value = times.setdefault(ip, 0)
-                        times[ip] = value + 1
+    logger.log('DEBUG', f'Reading {result_path}')
+    with open(result_path) as fd:
+        for line in fd:
+            line = line.strip()
+            try:
+                items = json.loads(line)
+            except Exception as e:
+                logger.log('ERROR', e.args)
+                logger.log('ERROR', f'Error parsing {result_path} '
+                                    f'line {line} Skip this line')
+                continue
+            status = items.get('status')
+            if status != 'NOERROR':
+                continue
+            data = items.get('data')
+            if 'answers' not in data:
+                continue
+            answers = data.get('answers')
+            for answer in answers:
+                if answer.get('type') == 'A':
+                    ip = answer.get('data')
+                    # 取值 如果是首次出现的IP集合 出现次数先赋值0
+                    value_one = times.setdefault(ip, 0)
+                    times[ip] = value_one + 1
+                    name = answer.get('data')
+                    cname = name[:-1].lower()  # 去除最右边的`.`点号
+                    # 取值 如果是首次出现的IP集合 出现次数先赋值0
+                    value_two = times.setdefault(cname, 0)
+                    times[cname] = value_two + 1
+                if answer.get('type') == 'CNAME':
+                    name = answer.get('data')
+                    cname = name[:-1].lower()  # 去除最右边的`.`点号
+                    # 取值 如果是首次出现的IP集合 出现次数先赋值0
+                    value_three = times.setdefault(cname, 0)
+                    times[cname] = value_three + 1
     return times
 
 
-def deal_output(output_paths, ip_times, wildcard_ips, wildcard_ttl):
+def deal_output(output_path, appear_times, wildcard_ips, wildcard_ttl):
     logger.log('INFOR', f'Processing result')
     infos = dict()  # 用来记录所有域名有关信息
     subdomains = list()  # 用来保存所有通过有效性检查的子域
-    for output_path in output_paths:
-        logger.log('DEBUG', f'Processing {output_path}')
-        with open(output_path) as fd:
-            for line in fd:
-                line = line.strip()
-                try:
-                    items = json.loads(line)
-                except Exception as e:
-                    logger.log('ERROR', e.args)
-                    logger.log('ERROR', f'Error parsing {line} Skip this line')
-                    continue
-                qname = items.get('name')[:-1]  # 去除最右边的`.`点号
-                status = items.get('status')
-                if status != 'NOERROR':
-                    logger.log('TRACE', f'Found {qname}\'s result {status} '
-                                        f'while processing {line}')
-                    continue
-                data = items.get('data')
-                if 'answers' not in data:
-                    logger.log('TRACE', f'Processing {line}, {qname} no response')
-                    continue
-                infos, subdomains = gen_result_infos(items, infos, subdomains,
-                                                     ip_times, wildcard_ips, wildcard_ttl)
+    logger.log('DEBUG', f'Processing {output_path}')
+    with open(output_path) as fd:
+        for line in fd:
+            line = line.strip()
+            try:
+                items = json.loads(line)
+            except Exception as e:
+                logger.log('ERROR', e.args)
+                logger.log('ERROR', f'Error parsing {line} Skip this line')
+                continue
+            qname = items.get('name')[:-1]  # 去除最右边的`.`点号
+            status = items.get('status')
+            if status != 'NOERROR':
+                logger.log('TRACE', f'Found {qname}\'s result {status} '
+                                    f'while processing {line}')
+                continue
+            data = items.get('data')
+            if 'answers' not in data:
+                logger.log('TRACE', f'Processing {line}, {qname} no response')
+                continue
+            infos, subdomains = gen_result_infos(items, infos, subdomains,
+                                                 appear_times, wildcard_ips,
+                                                 wildcard_ttl)
     return infos, subdomains
-
-
-def check_by_compare(ip, ttl, wc_ips, wc_ttl):
-    """
-    Use TTL comparison to detect wildcard dns record
-
-    :param  set ip:     A record IP address set
-    :param  int ttl:    A record TTL value
-    :param  set wc_ips: wildcard dns record IP address set
-    :param  int wc_ttl: wildcard dns record TTL value
-    :return bool: result
-    """
-    # Reference：http://sh3ll.me/archives/201704041222.txt
-    if ip not in wc_ips:
-        return False  # 子域IP不在泛解析IP集合则不是泛解析
-    if ttl != wc_ttl and ttl % 60 == 0 and wc_ttl % 60 == 0:
-        return False
-    return True
-
-
-def check_ip_times(times):
-    """
-    Use IP address times to determine wildcard or not
-
-    :param  times: IP address times
-    :return bool:  result
-    """
-    if times > settings.ip_appear_maximum:
-        return True
-    return False
-
-
-def is_valid_subdomain(ip, ttl, times, wc_ips, wc_ttl, cname):
-    ip_blacklist = settings.brute_ip_blacklist
-    cname_blacklist = settings.brute_cname_blacklist
-    if cname in cname_blacklist:
-        return 0, 'cname blacklist'  # 有些泛解析会统一解析到一个cname上
-    if ip in ip_blacklist:  # 解析ip在黑名单ip则为非法子域
-        return 0, 'IP blacklist'
-    if all([wc_ips, wc_ttl]):  # 有泛解析记录才进行对比
-        if check_by_compare(ip, ttl, wc_ips, wc_ttl):
-            return 0, 'IP wildcard'
-    if check_ip_times(times):
-        return 0, 'IP exceeded'
-    return 1, 'OK'
 
 
 def save_brute_dict(dict_path, dict_set):
@@ -522,12 +275,11 @@ def save_brute_dict(dict_path, dict_set):
         exit(1)
 
 
-def delete_file(dict_path, output_paths):
+def delete_file(dict_path, output_path):
     if settings.delete_generated_dict:
         dict_path.unlink()
     if settings.delete_massdns_result:
-        for output_path in output_paths:
-            output_path.unlink()
+        output_path.unlink()
 
 
 class Brute(Module):
@@ -550,7 +302,6 @@ class Brute(Module):
 
     :param str  target:     One domain (target or targets must be provided)
     :param str  targets:    File path of one domain per line
-    :param int  process:    Number of processes (default 1)
     :param int  concurrent: Number of concurrent (default 2000)
     :param bool word:       Use word mode generate dictionary (default False)
     :param str  wordlist:   Dictionary path used in word mode (default use ./config/default.py)
@@ -566,16 +317,15 @@ class Brute(Module):
     :param str  fmt:        Result format (default csv)
     :param str  path:       Result directory (default None)
     """
-    def __init__(self, target=None, targets=None, process=None, concurrent=None,
-                 word=False, wordlist=None, recursive=False, depth=None, nextlist=None,
-                 fuzz=False, place=None, rule=None, fuzzlist=None, export=True,
-                 alive=True, fmt='csv', path=None):
+    def __init__(self, target=None, targets=None, concurrent=None,
+                 word=False, wordlist=None, recursive=False, depth=None,
+                 nextlist=None, fuzz=False, place=None, rule=None, fuzzlist=None,
+                 export=True, alive=True, fmt='csv', path=None):
         Module.__init__(self)
         self.module = 'Brute'
         self.source = 'Brute'
         self.target = target
         self.targets = targets
-        self.process_num = process or utils.get_process_num()
         self.concurrent_num = concurrent or settings.brute_concurrent_num
         self.word = word
         self.wordlist = wordlist or settings.brute_wordlist_path
@@ -594,7 +344,7 @@ class Brute(Module):
         self.domains = list()  # 待爆破的所有域名集合
         self.domain = str()  # 当前正在进行爆破的域名
         self.ips_times = dict()  # IP集合出现次数
-        self.enable_wildcard = False  # 当前域名是否使用泛解析
+        self.enable_wildcard = None  # 当前域名是否使用泛解析
         self.quite = False
         self.in_china = None
 
@@ -674,11 +424,11 @@ class Brute(Module):
         wildcard_ttl = int()  # 泛解析TTL整型值
         ns_list = query_domain_ns(self.domain)
         ns_ip_list = query_domain_ns_a(ns_list)  # DNS权威名称服务器对应A记录列表
-        self.enable_wildcard = is_enable_wildcard(domain)
+        if self.enable_wildcard is None:
+            self.enable_wildcard = wildcard.detect_wildcard(domain)
 
         if self.enable_wildcard:
-            wildcard_ips, wildcard_ttl = collect_wildcard_record(domain,
-                                                                 ns_ip_list)
+            wildcard_ips, wildcard_ttl = wildcard.collect_wildcard_record(domain, ns_ip_list)
         ns_path = utils.get_ns_path(self.in_china, self.enable_wildcard, ns_ip_list)
 
         dict_set = self.gen_brute_dict(domain)
@@ -696,20 +446,11 @@ class Brute(Module):
         logger.log('INFOR', f'Running massdns to brute subdomains')
         utils.call_massdns(massdns_path, dict_path, ns_path, output_path,
                            log_path, quiet_mode=self.quite,
-                           process_num=self.process_num,
                            concurrent_num=self.concurrent_num)
-        output_paths = []
-        if self.process_num == 1:
-            output_paths.append(output_path)
-        else:
-            for i in range(self.process_num):
-                output_name = f'resolved_result_{domain}_{timestring}.json{i}'
-                output_path = temp_dir.joinpath(output_name)
-                output_paths.append(output_path)
-        ip_times = stat_ip_times(output_paths)
-        self.infos, self.subdomains = deal_output(output_paths, ip_times,
+        appear_times = stat_appear_times(output_path)
+        self.infos, self.subdomains = deal_output(output_path, appear_times,
                                                   wildcard_ips, wildcard_ttl)
-        delete_file(dict_path, output_paths)
+        delete_file(dict_path, output_path)
         end = time.time()
         self.elapse = round(end - start, 1)
         logger.log('ALERT', f'{self.source} module takes {self.elapse} seconds, '

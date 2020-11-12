@@ -51,8 +51,6 @@ enable_wildcard_check = True  # 开启泛解析检测(默认True)
 enable_wildcard_deal = True  # 开启泛解析处理(默认True)
 brute_massdns_path = None  # 默认None自动选择 如需填写请填写绝对路径
 brute_status_format = 'ansi'  # 爆破时状态输出格式（默认asni，可选json）
-# 爆破时使用的进程数(根据计算机中CPU数量情况设置 不宜大于逻辑CPU个数)
-brute_process_num = 1  # 默认1
 brute_concurrent_num = 2000  # 并发查询数量(默认2000，最大推荐10000)
 brute_socket_num = 1  # 爆破时每个进程下的socket数量
 brute_resolve_num = 15  # 解析失败时尝试换名称服务器重查次数

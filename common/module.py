@@ -290,7 +290,8 @@ class Module(object):
                       'header': None,
                       'history': None,
                       'response': None,
-                      'times': None,
+                      'ip_times': None,
+                      'cname_times': None,
                       'ttl': None,
                       'cidr': None,
                       'asn': None,
@@ -312,12 +313,14 @@ class Module(object):
                     info = dict()
                 cname = info.get('cname')
                 ip = info.get('ip')
-                times = info.get('times')
+                ip_times = info.get('ip_times')
+                cname_times = info.get('cname_times')
                 ttl = info.get('ttl')
                 if isinstance(cname, list):
                     cname = ','.join(cname)
                     ip = ','.join(ip)
-                    times = ','.join([str(num) for num in times])
+                    ip_times = ','.join([str(num) for num in ip_times])
+                    cname_times = ','.join([str(num) for num in cname_times])
                     ttl = ','.join([str(num) for num in ttl])
                 result = {'id': None,
                           'alive': info.get('alive'),
@@ -338,7 +341,8 @@ class Module(object):
                           'header': None,
                           'history': None,
                           'response': None,
-                          'times': times,
+                          'ip_times': ip_times,
+                          'cname_times': cname_times,
                           'ttl': ttl,
                           'cidr': info.get('cidr'),
                           'asn': info.get('asn'),
