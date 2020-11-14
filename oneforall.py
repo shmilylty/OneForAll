@@ -185,6 +185,10 @@ class OneForAll(object):
         if not self.req:
             return self.export_data()
 
+        if self.enable_wildcard:
+            # deal wildcard
+            self.data = wildcard.deal_wildcard(self.data)
+
         # HTTP request
         utils.clear_data(self.domain)
         request.run_request(self.domain, self.data, self.port)
