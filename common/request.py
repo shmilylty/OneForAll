@@ -223,7 +223,7 @@ def bulk_request(domain, req_data, ret=False):
         urls_queue.put((index, url))
     session = get_session()
     thread_count = req_thread_count()
-    if task_count <= req_thread_count():
+    if task_count <= thread_count:
         # 如果请求任务数很小不用创建很多线程了
         thread_count = task_count
     bar = get_progress_bar(task_count)
