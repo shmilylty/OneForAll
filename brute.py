@@ -177,7 +177,7 @@ def gen_result_infos(items, infos, subdomains, appear_times, wc_ips, wc_ttl):
         ips.append(ip)
         ip_num = appear_times.get(ip)
         ip_times.append(ip_num)
-        isvalid, reason = wildcard.is_wildcard_subdomain(ip, ttl, ip_num, wc_ips, wc_ttl, cname, cname_num)
+        isvalid, reason = wildcard.is_valid_subdomain(ip, ip_num, cname, cname_num, ttl, wc_ttl, wc_ips)
         logger.log('TRACE', f'{ip} effective: {isvalid} reason: {reason}')
         is_valid_flags.append(isvalid)
     if not have_a_record:
@@ -198,7 +198,7 @@ def gen_result_infos(items, infos, subdomains, appear_times, wc_ips, wc_ttl):
 
 
 def stat_appear_times(result_path):
-    logger.log('INFOR', f'Counting IP')
+    logger.log('INFOR', f'Counting IP cname appear times')
     times = dict()
     logger.log('DEBUG', f'Reading {result_path}')
     with open(result_path) as fd:

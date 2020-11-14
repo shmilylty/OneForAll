@@ -254,12 +254,13 @@ def check_cname_times(times):
     return False
 
 
-def is_wildcard_subdomain(ip, ttl, ip_num, wc_ips, wc_ttl, cname, cname_num):
+def is_valid_subdomain(ip=None, ip_num=None, cname=None, cname_num=None,
+                       ttl=None, wc_ttl=None, wc_ips=None):
     ip_blacklist = settings.brute_ip_blacklist
     cname_blacklist = settings.brute_cname_blacklist
-    if cname in cname_blacklist:
+    if cname and cname in cname_blacklist:
         return 0, 'cname blacklist'  # 有些泛解析会统一解析到一个cname上
-    if ip in ip_blacklist:  # 解析ip在黑名单ip则为非法子域
+    if ip and ip in ip_blacklist:  # 解析ip在黑名单ip则为非法子域
         return 0, 'IP blacklist'
     if all([wc_ips, wc_ttl]):  # 有泛解析记录才进行对比
         if check_by_compare(ip, ttl, wc_ips, wc_ttl):
@@ -269,3 +270,45 @@ def is_wildcard_subdomain(ip, ttl, ip_num, wc_ips, wc_ttl, cname, cname_num):
     if cname_num and check_cname_times(cname_num):
         return 0, 'cname exceeded'
     return 1, 'OK'
+
+
+def stat_times(data):
+    times = dict()
+    for info in data:
+        ips = info.get('ip').split(',')
+        for ip in ips:
+            value_one = times.setdefault(ip, 0)
+            times[ip] = value_one + 1
+        cnames = info.get('cname').split(',')
+        for cname in cnames:
+            value_two = times.setdefault(cname, 0)
+            times[cname] = value_two + 1
+    return times
+
+
+def check_valid_subdomain(appear_times, cnames, ips):
+    for cname in cnames:
+        cname_num = appear_times.get(cname)
+        isvalid, reason = is_valid_subdomain(cname=cname, cname_num=cname_num)
+        if not isvalid:
+            return False, reason
+    for ip in ips:
+        ip_num = appear_times.get(ip)
+        isvalid, reason = is_valid_subdomain(ip=ip, ip_num=ip_num)
+        if not isvalid:
+            return False, reason
+    return True, 'OK'
+
+
+def deal_wildcard(data):
+    new_data = list()
+    appear_times = stat_times(data)
+    for info in data:
+        subdomain = info.get('subdomain')
+        cnames = info.get('cname').split(',')
+        ips = info.get('ip').split(',')
+        isvalid, reason = check_valid_subdomain(appear_times, cnames, ips)
+        logger.log('DEBUG', f'{subdomain} is {isvalid} subdomain reason because {reason}')
+        if isvalid:
+            new_data.append(info)
+    return new_data
