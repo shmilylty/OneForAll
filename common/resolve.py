@@ -35,6 +35,7 @@ def update_data(data, infos):
     if not infos:
         logger.log('ALERT', f'No valid resolved result')
         return data
+    new_data = list()
     for index, items in enumerate(data):
         if items.get('ip'):
             continue
@@ -42,11 +43,10 @@ def update_data(data, infos):
         record = infos.get(subdomain)
         if record:
             items.update(record)
+            new_data.append(items)
         else:
-            items['resolve'] = 0
-            items['alive'] = 0
-            items['reason'] = 'NoResult'
-        data[index] = items
+            subdomain = items.get('subdomain')
+            logger.log('DEBUG', f'{subdomain} resolution has no result')
     return data
 
 
@@ -91,6 +91,7 @@ def gen_infos(data, qname, info, infos):
             info['ttl'] = ','.join(ttl)
             infos[qname] = info
     if not flag:
+        logger.log('DEBUG', f'Resolving {qname} have not a record')
         info['alive'] = 0
         info['resolve'] = 0
         info['reason'] = 'NoARecord'
@@ -115,9 +116,11 @@ def deal_output(output_path):
             qname = items.get('name')[:-1]  # 去除最右边的`.`点号
             status = items.get('status')
             if status != 'NOERROR':
+                logger.log('DEBUG', f'Resolving {qname}: {status}')
                 continue
             data = items.get('data')
             if 'answers' not in data:
+                logger.log('DEBUG', f'Resolving {qname} have not any answers')
                 info['alive'] = 0
                 info['resolve'] = 0
                 info['reason'] = 'NoAnswer'
