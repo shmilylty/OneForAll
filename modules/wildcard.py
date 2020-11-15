@@ -275,28 +275,38 @@ def is_valid_subdomain(ip=None, ip_num=None, cname=None, cname_num=None,
 def stat_times(data):
     times = dict()
     for info in data:
-        ips = info.get('ip').split(',')
-        for ip in ips:
-            value_one = times.setdefault(ip, 0)
-            times[ip] = value_one + 1
-        cnames = info.get('cname').split(',')
-        for cname in cnames:
-            value_two = times.setdefault(cname, 0)
-            times[cname] = value_two + 1
+        ip_str = info.get('ip')
+        if isinstance(ip_str, str):
+            ips = ip_str.split(',')
+            for ip in ips:
+                value_one = times.setdefault(ip, 0)
+                times[ip] = value_one + 1
+        cname_str = info.get('cname')
+        if isinstance(cname_str, str):
+            cnames = cname_str.split(',')
+            for cname in cnames:
+                value_two = times.setdefault(cname, 0)
+                times[cname] = value_two + 1
     return times
 
 
-def check_valid_subdomain(appear_times, cnames, ips):
-    for cname in cnames:
-        cname_num = appear_times.get(cname)
-        isvalid, reason = is_valid_subdomain(cname=cname, cname_num=cname_num)
-        if not isvalid:
-            return False, reason
-    for ip in ips:
-        ip_num = appear_times.get(ip)
-        isvalid, reason = is_valid_subdomain(ip=ip, ip_num=ip_num)
-        if not isvalid:
-            return False, reason
+def check_valid_subdomain(appear_times, info):
+    ip_str = info.get('ip')
+    if ip_str:
+        ips = ip_str.split(',')
+        for ip in ips:
+            ip_num = appear_times.get(ip)
+            isvalid, reason = is_valid_subdomain(ip=ip, ip_num=ip_num)
+            if not isvalid:
+                return False, reason
+    cname_str = info.get('cname')
+    if cname_str:
+        cnames = cname_str.split(',')
+        for cname in cnames:
+            cname_num = appear_times.get(cname)
+            isvalid, reason = is_valid_subdomain(cname=cname, cname_num=cname_num)
+            if not isvalid:
+                return False, reason
     return True, 'OK'
 
 
@@ -305,9 +315,7 @@ def deal_wildcard(data):
     appear_times = stat_times(data)
     for info in data:
         subdomain = info.get('subdomain')
-        cnames = info.get('cname').split(',')
-        ips = info.get('ip').split(',')
-        isvalid, reason = check_valid_subdomain(appear_times, cnames, ips)
+        isvalid, reason = check_valid_subdomain(appear_times, info)
         logger.log('DEBUG', f'{subdomain} is {isvalid} subdomain reason because {reason}')
         if isvalid:
             new_data.append(info)
