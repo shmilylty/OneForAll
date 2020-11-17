@@ -47,7 +47,7 @@ def update_data(data, infos):
         else:
             subdomain = items.get('subdomain')
             logger.log('DEBUG', f'{subdomain} resolution has no result')
-    return data
+    return new_data
 
 
 def save_db(name, data):
