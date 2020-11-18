@@ -1,7 +1,6 @@
 import json
 from threading import Thread
 from queue import Queue
-from operator import attrgetter
 
 import tqdm
 import requests
@@ -9,6 +8,7 @@ from bs4 import BeautifulSoup
 
 from common import utils
 from config.log import logger
+from common.database import Database
 from config import settings
 
 
@@ -127,7 +127,7 @@ def get_progress_bar(total):
     return bar
 
 
-def get(url, resp_list, session):
+def get_resp(url, session):
     timeout = settings.request_timeout_second
     redirect = settings.request_allow_redirect
     proxy = utils.get_proxy()
@@ -136,13 +136,14 @@ def get(url, resp_list, session):
     except Exception as e:
         logger.log('DEBUG', e.args)
         resp = e
-    resp_list.append((url, resp))
+    return resp
 
 
-def request(urls_queue, resp_list, session):
+def request(urls_queue, resp_queue, session):
     while not urls_queue.empty():
-        url = urls_queue.get()
-        get(url, resp_list, session)
+        index, url = urls_queue.get()
+        resp = get_resp(url, session)
+        resp_queue.put((index, resp))
         urls_queue.task_done()
 
 
@@ -166,31 +167,6 @@ def get_session():
     session.verify = verify
     session.max_redirects = redirect_limit
     return session
-
-
-def bulk_request(urls):
-    logger.log('INFOR', 'Requesting urls in bulk')
-    resp_list = list()
-    urls_queue = Queue()
-    for url in urls:
-        urls_queue.put(url)
-    total = len(urls)
-    session = get_session()
-    thread_count = req_thread_count()
-    bar = get_progress_bar(total)
-
-    progress_thread = Thread(target=progress, name='ProgressThread',
-                             args=(bar, total, urls_queue), daemon=True)
-    progress_thread.start()
-
-    for i in range(thread_count):
-        request_thread = Thread(target=request, name=f'RequestThread-{i}',
-                                args=(urls_queue, resp_list, session), daemon=True)
-        request_thread.start()
-
-    urls_queue.join()
-
-    return resp_list
 
 
 def gen_new_info(info, resp):
@@ -220,13 +196,54 @@ def gen_new_info(info, resp):
     return info
 
 
-def gen_new_data(data, resp_list):
-    new_data = list()
-    for url, resp in resp_list:
-        for info in data:
-            if info.get('url') == url:
-                new_data.append(gen_new_info(info, resp))
-    return new_data
+def save(name, total, req_data, resp_queue):
+    db = Database()
+    db.create_table(name)
+    i = 0
+    while True:
+        if not resp_queue.empty():
+            i += 1
+            index, resp = resp_queue.get()
+            old_info = req_data[index]
+            new_info = gen_new_info(old_info, resp)
+            db.insert_table(name, new_info)
+            resp_queue.task_done()
+        if i >= total:
+            break
+    db.close()
+
+
+def bulk_request(domain, req_data, ret=False):
+    logger.log('INFOR', 'Requesting urls in bulk')
+    resp_queue = Queue()
+    urls_queue = Queue()
+    task_count = len(req_data)
+    for index, info in enumerate(req_data):
+        url = info.get('url')
+        urls_queue.put((index, url))
+    session = get_session()
+    thread_count = req_thread_count()
+    if task_count <= thread_count:
+        # 如果请求任务数很小不用创建很多线程了
+        thread_count = task_count
+    bar = get_progress_bar(task_count)
+
+    progress_thread = Thread(target=progress, name='ProgressThread',
+                             args=(bar, task_count, urls_queue), daemon=True)
+    progress_thread.start()
+
+    for i in range(thread_count):
+        request_thread = Thread(target=request, name=f'RequestThread-{i}',
+                                args=(urls_queue, resp_queue, session), daemon=True)
+        request_thread.start()
+    if ret:
+        urls_queue.join()
+        return resp_queue
+    save_thread = Thread(target=save, name=f'SaveThread',
+                         args=(domain, task_count, req_data, resp_queue), daemon=True)
+    save_thread.start()
+    urls_queue.join()
+    save_thread.join()
 
 
 def run_request(domain, data, port):
@@ -242,20 +259,6 @@ def run_request(domain, data, port):
     data = utils.set_id_none(data)
     ports = get_port_seq(port)
     req_data, req_urls = gen_req_data(data, ports)
-    resp_list = bulk_request(req_urls)
-    new_data = gen_new_data(req_data, resp_list)
-    count = utils.count_alive(new_data)
+    bulk_request(domain, req_data)
+    count = utils.count_alive(domain)
     logger.log('INFOR', f'Found that {domain} has {count} alive subdomains')
-    sorted_data = utils.sort_by_subdomain(new_data)
-    return sorted_data
-
-
-def save_db(name, data):
-    """
-    Save request results to database
-
-    :param str  name: table name
-    :param list data: data to be saved
-    """
-    logger.log('INFOR', f'Saving requested results')
-    utils.save_db(name, data, 'request')

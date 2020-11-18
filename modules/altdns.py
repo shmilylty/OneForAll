@@ -193,9 +193,7 @@ class Altdns(Module):
         self.end = time.time()
         self.elapse = round(self.end - self.start, 1)
         self.gen_result()
-        temp_data = resolve.run_resolve(self.domain, self.results)
-        fina_data = request.run_request(self.domain, temp_data, port)
-        data = data + fina_data
+        resolved_data = resolve.run_resolve(self.domain, self.results)
+        request.run_request(self.domain, resolved_data, port)
         logger.log('INFOR', f'Saving altdns results')
-        utils.save_db(self.domain, data, 'altdns')
-        return data
+        utils.save_to_db(self.domain, data, 'altdns')

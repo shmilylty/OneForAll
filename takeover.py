@@ -45,21 +45,21 @@ class Takeover(Module):
     OneForAll subdomain takeover module
 
     Example:
-        python3 takeover.py --target www.example.com  --format csv run
+        python3 takeover.py --target www.example.com  --fmt csv run
         python3 takeover.py --targets ./subdomains.txt --thread 10 run
 
     Note:
-        --format rst/csv/tsv/json/yaml/html/jira/xls/xlsx/dbf/latex/ods (result format)
+        --fmt txt/csv/json (result format)
         --path   Result directory (default directory is ./results)
 
     :param str target:   One domain (target or targets must be provided)
     :param str targets:  File path of one domain per line
     :param int thread:   threads number (default 20)
-    :param str format:   Result format (default csv)
+    :param str fmt:      Result format (default csv)
     :param str path:     Result directory (default None)
     """
 
-    def __init__(self, target=None, targets=None, thread=20, path=None, format='csv'):
+    def __init__(self, target=None, targets=None, thread=20, path=None, fmt='csv'):
         Module.__init__(self)
         self.subdomains = set()
         self.module = 'Check'
@@ -68,7 +68,7 @@ class Takeover(Module):
         self.targets = targets
         self.thread = thread
         self.path = path
-        self.format = format
+        self.fmt = fmt
         self.fingerprints = None
         self.subdomainq = Queue()
         self.cnames = list()
@@ -76,11 +76,11 @@ class Takeover(Module):
 
     def save(self):
         logger.log('DEBUG', 'Saving results')
-        if self.format == 'txt':
+        if self.fmt == 'txt':
             data = str(self.results)
         else:
-            data = self.results.export(self.format)
-        utils.save_data(self.path, data)
+            data = self.results.export(self.fmt)
+        utils.save_to_file(self.path, data)
 
     def compare(self, subdomain, cname, responses):
         domain_resp = self.get('http://' + subdomain, check=False, ignore=True)
@@ -131,10 +131,10 @@ class Takeover(Module):
             self.subdomains = self.targets
         else:
             self.subdomains = utils.get_domains(self.target, self.targets)
-        self.format = utils.check_format(self.format, len(self.subdomains))
+        self.fmt = utils.check_format(self.fmt)
         timestamp = utils.get_timestamp()
         name = f'takeover_check_result_{timestamp}'
-        self.path = utils.check_path(self.path, name, self.format)
+        self.path = utils.check_path(self.path, name, self.fmt)
         if self.subdomains:
             logger.log('INFOR', f'Checking subdomain takeover')
             self.fingerprints = get_fingerprint()
