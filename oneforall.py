@@ -32,7 +32,7 @@ blue = '\033[01;34m'
 red = '\033[1;31m'
 end = '\033[0m'
 
-version = 'v0.4.0'
+version = 'v0.4.1'
 message = white + '{' + red + version + ' #dev' + white + '}'
 
 oneforall_banner = f"""
