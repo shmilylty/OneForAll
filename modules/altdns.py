@@ -7,6 +7,7 @@ import itertools
 
 from config import settings
 
+from modules import wildcard
 from common import utils
 from common import resolve
 from common import request
@@ -75,14 +76,16 @@ class Altdns(Module):
         # test1.example.com -> test2.example.com, test3.example.com, ...
         # test01.example.com -> test02.example.com, test03.example.com, ...
 
+        count = 0
         digits = re.findall(r'\d{1,3}', subname)
-
         for d in digits:
             for m in range(self.num_count):
                 replacement = str(int(d) + 1 + m).zfill(len(d))
                 tmp_domain = subname.replace(d, replacement)
                 new_domain = f'{tmp_domain}.{self.domain}'
                 self.new_subdomains.add(new_domain)
+                count += 1
+        logger.log('DEBUG', f'The increase_num generated {count} subdomains')
 
     def decrease_num(self, subname):
         """
@@ -94,8 +97,8 @@ class Altdns(Module):
         # test4.example.com -> test3.example.com, test2.example.com, ...
         # test04.example.com -> test03.example.com, test02.example.com, ...
 
+        count = 0
         digits = re.findall(r'\d{1,3}', subname)
-
         for d in digits:
             for m in range(self.num_count):
                 new_digit = (int(d) - 1 - m)
@@ -106,6 +109,8 @@ class Altdns(Module):
                 tmp_domain = subname.replace(d, replacement)
                 new_domain = f'{tmp_domain}.{self.domain}'
                 self.new_subdomains.add(new_domain)
+                count += 1
+        logger.log('DEBUG', f'The decrease_num generated {count} subdomains')
 
     def insert_word(self, parts):
         """
@@ -118,12 +123,15 @@ class Altdns(Module):
         #                           test.1.foo.WORD.example.com,
         #                           ...
 
+        count = 0
         for word in self.words:
             for index in range(len(parts)):
                 tmp_parts = parts.copy()
                 tmp_parts.insert(index, word)
                 new_domain = '.'.join(tmp_parts)
                 self.new_subdomains.add(new_domain)
+                count += 1
+        logger.log('DEBUG', f'The insert_word generated {count} subdomains')
 
     def add_word(self, subnames):
         """
@@ -131,6 +139,7 @@ class Altdns(Module):
         append existing content with `-WORD`
         """
 
+        count = 0
         for word in self.words:
             for index, name in enumerate(subnames):
                 # Prepend with `-`
@@ -146,6 +155,8 @@ class Altdns(Module):
                 tmp_subnames[index] = f'{name}-{word}'
                 new_subname = '.'.join(tmp_subnames + [self.domain])
                 self.new_subdomains.add(new_subname)
+                count += 1
+        logger.log('DEBUG', f'The add_word generated {count} subdomains')
 
     def replace_word(self, subname):
         """
@@ -158,6 +169,7 @@ class Altdns(Module):
         #                            WORD4.1.foo.example.com,
         #                            ..
 
+        count = 0
         for word in self.words:
             if word not in subname:
                 continue
@@ -167,6 +179,8 @@ class Altdns(Module):
                 new_subname = subname.replace(word, word_alt)
                 new_subdomain = f'{new_subname}.{self.domain}'
                 self.new_subdomains.add(new_subdomain)
+                count += 1
+        logger.log('DEBUG', f'The replace_word generated {count} subdomains')
 
     def gen_new_subdomains(self):
         for subdomain in self.now_subdomains:
@@ -194,6 +208,5 @@ class Altdns(Module):
         self.elapse = round(self.end - self.start, 1)
         self.gen_result()
         resolved_data = resolve.run_resolve(self.domain, self.results)
-        request.run_request(self.domain, resolved_data, port)
-        logger.log('INFOR', f'Saving altdns results')
-        utils.save_to_db(self.domain, data, 'altdns')
+        valid_data = wildcard.deal_wildcard(resolved_data)  # 强制开启泛解析处理
+        request.run_request(self.domain, valid_data, port)
