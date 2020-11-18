@@ -8,6 +8,9 @@ OneForAll遵守[语义化版本格式](https://semver.org/)。
 # Unreleased
 
 # Released
+## [0.4.1](https://github.com/shmilylty/oneforall/releases/tag/v0.4.1) - 2020-11-18
+- 修复了数字开头主域（如58.com）出现数据库报错的问题
+
 ## [0.4.0](https://github.com/shmilylty/oneforall/releases/tag/v0.4.0) - 2020-11-18
 - 重构了子域请求模块，解决了内存占用过大问题
 - 新增了子域置换模块，能从现有的子域发现更多新子域
