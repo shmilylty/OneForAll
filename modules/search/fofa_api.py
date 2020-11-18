@@ -21,7 +21,7 @@ class FoFa(Search):
         发送搜索请求并做子域匹配
         """
         self.page_num = 1
-        subdomain_encode = f'domain="{self.domain}" || cert="{self.domain}"'.encode('utf-8')
+        subdomain_encode = f'domain="{self.domain}"'.encode('utf-8')
         query_data = base64.b64encode(subdomain_encode)
         while True:
             time.sleep(self.delay)
