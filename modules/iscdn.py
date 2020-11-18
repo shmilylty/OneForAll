@@ -3,6 +3,7 @@ import ipaddress
 
 from config import settings
 from common import utils
+from common.database import Database
 from config.log import logger
 
 data_dir = settings.data_storage_dir
@@ -18,6 +19,8 @@ cdn_header_key = utils.load_json(data_dir.joinpath('cdn_header_keys.json'))
 
 
 def check_cname_keyword(cname):
+    if not cname:
+        return False
     names = cname.lower().split(',')
     for name in names:
         for keyword in cdn_cname_keyword.keys():
@@ -26,14 +29,22 @@ def check_cname_keyword(cname):
 
 
 def check_header_key(header):
-    header = set(map(lambda x: x.lower(), header.keys()))
-    for key in cdn_header_key:
-        if key in header:
-            return True
+    if isinstance(header, str):
+        header = json.loads(header)
+    if isinstance(header, dict):
+        header = set(map(lambda x: x.lower(), header.keys()))
+        for key in cdn_header_key:
+            if key in header:
+                return True
+    else:
+        return False
 
 
-def check_cdn_cidr(content):
-    ips = set(content.split(','))
+def check_cdn_cidr(ips):
+    if isinstance(ips, str):
+        ips = set(ips.split(','))
+    else:
+        return False
     for ip in ips:
         try:
             ip = ipaddress.ip_address(ip)
@@ -46,39 +57,30 @@ def check_cdn_cidr(content):
 
 
 def check_cdn_asn(asn):
-    if str(asn) in cdn_asn_list:
-        return True
+    if isinstance(asn, str):
+        if asn in cdn_asn_list:
+            return True
+    return False
 
 
-def check_cdn(data):
-    logger.log('DEBUG', f'Start cdn check module')
+def do_check(data):
+    logger.log('DEBUG', f'Checking cdn')
     for index, item in enumerate(data):
         cname = item.get('cname')
-        if cname:
-            if check_cname_keyword(cname):
-                data[index]['cdn'] = 1
-                continue
+        if check_cname_keyword(cname):
+            data[index]['cdn'] = 1
+            continue
         header = item.get('header')
-        if header:
-            header = json.loads(header)
-            if check_header_key(header):
-                data[index]['cdn'] = 1
-                continue
+        if check_header_key(header):
+            data[index]['cdn'] = 1
+            continue
         ip = item.get('ip')
-        if ip:
-            if check_cdn_cidr(ip):
-                data[index]['cdn'] = 1
-                continue
+        if check_cdn_cidr(ip):
+            data[index]['cdn'] = 1
+            continue
         asn = item.get('asn')
-        if asn:
-            asn = asn[2:]  # 去除AS
-            if check_cdn_asn(asn):
-                data[index]['cdn'] = 1
-                continue
+        if check_cdn_asn(asn):
+            data[index]['cdn'] = 1
+            continue
         data[index]['cdn'] = 0
     return data
-
-
-def save_db(name, data):
-    logger.log('DEBUG', f'Saving cdn check results')
-    utils.save_db(name, data, 'cdn')

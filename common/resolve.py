@@ -4,12 +4,6 @@ import json
 from config.log import logger
 from config import settings
 from common import utils
-from common.ipasn import IPAsnInfo
-from common.ipreg import IpRegData
-
-
-ip_asn = IPAsnInfo()
-ip_reg = IpRegData()
 
 
 def filter_subdomain(data):
@@ -41,6 +35,7 @@ def update_data(data, infos):
     if not infos:
         logger.log('ALERT', f'No valid resolved result')
         return data
+    new_data = list()
     for index, items in enumerate(data):
         if items.get('ip'):
             continue
@@ -48,12 +43,11 @@ def update_data(data, infos):
         record = infos.get(subdomain)
         if record:
             items.update(record)
+            new_data.append(items)
         else:
-            items['resolve'] = 0
-            items['alive'] = 0
-            items['reason'] = 'NoResult'
-        data[index] = items
-    return data
+            subdomain = items.get('subdomain')
+            logger.log('DEBUG', f'{subdomain} resolution has no result')
+    return new_data
 
 
 def save_db(name, data):
@@ -64,57 +58,40 @@ def save_db(name, data):
     :param list data: data to be saved
     """
     logger.log('INFOR', f'Saving resolved results')
-    utils.save_db(name, data, 'resolve')
+    utils.save_to_db(name, data, 'resolve')
 
 
 def save_subdomains(save_path, subdomain_list):
     logger.log('DEBUG', f'Saving resolved subdomain')
     subdomain_data = '\n'.join(subdomain_list)
-    if not utils.save_data(save_path, subdomain_data):
+    if not utils.save_to_file(save_path, subdomain_data):
         logger.log('FATAL', 'Save resolved subdomain error')
         exit(1)
 
 
 def gen_infos(data, qname, info, infos):
     flag = False
-    cname = list()
+    cnames = list()
     ips = list()
-    public = list()
     ttl = list()
-    cidr = list()
-    asn = list()
-    org = list()
-    addr = list()
-    isp = list()
     answers = data.get('answers')
     for answer in answers:
         if answer.get('type') == 'A':
             flag = True
-            cname.append(answer.get('name')[:-1])  # 去除最右边的`.`点号
+            name = answer.get('name')
+            cname = name[:-1].lower()  # 去除最右边的`.`点号
+            cnames.append(cname)
             ip = answer.get('data')
             ips.append(ip)
             ttl.append(str(answer.get('ttl')))
-            public.append(str(utils.ip_is_public(ip)))
-            asn_info = ip_asn.find(ip)
-            cidr.append(asn_info.get('cidr'))
-            asn.append(asn_info.get('asn'))
-            org.append(asn_info.get('org'))
-            ip_info = ip_reg.query(ip)
-            addr.append(ip_info.get('addr'))
-            isp.append(ip_info.get('isp'))
             info['resolve'] = 1
             info['reason'] = 'OK'
-            info['cname'] = ','.join(cname)
+            info['cname'] = ','.join(cnames)
             info['ip'] = ','.join(ips)
-            info['public'] = ','.join(public)
             info['ttl'] = ','.join(ttl)
-            info['cidr'] = ','.join(cidr)
-            info['asn'] = ','.join(asn)
-            info['org'] = ','.join(org)
-            info['addr'] = ','.join(addr)
-            info['isp'] = ','.join(isp)
             infos[qname] = info
     if not flag:
+        logger.log('DEBUG', f'Resolving {qname} have not a record')
         info['alive'] = 0
         info['resolve'] = 0
         info['reason'] = 'NoARecord'
@@ -139,9 +116,11 @@ def deal_output(output_path):
             qname = items.get('name')[:-1]  # 去除最右边的`.`点号
             status = items.get('status')
             if status != 'NOERROR':
+                logger.log('DEBUG', f'Resolving {qname}: {status}')
                 continue
             data = items.get('data')
             if 'answers' not in data:
+                logger.log('DEBUG', f'Resolving {qname} have not any answers')
                 info['alive'] = 0
                 info['resolve'] = 0
                 info['reason'] = 'NoAnswer'
@@ -181,8 +160,7 @@ def run_resolve(domain, data):
     output_name = f'resolved_result_{domain}_{timestring}.json'
     output_path = temp_dir.joinpath(output_name)
     log_path = result_dir.joinpath('massdns.log')
-
-    ns_path = settings.brute_nameservers_path
+    ns_path = utils.get_ns_path()
 
     logger.log('INFOR', f'Running massdns to resolve subdomains')
     utils.call_massdns(massdns_path, save_path, ns_path,
