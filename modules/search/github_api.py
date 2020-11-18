@@ -1,3 +1,5 @@
+import time
+
 import requests
 from config import settings
 from common.search import Search
@@ -50,6 +52,7 @@ class GithubAPI(Search):
             return
         page = 1
         while True:
+            time.sleep(self.delay)
             params = {'q': self.domain, 'per_page': 100,
                       'page': page, 'sort': 'indexed'}
             try:
