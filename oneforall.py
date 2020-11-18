@@ -147,6 +147,8 @@ class OneForAll(object):
         :return: subdomain results
         :rtype: list
         """
+        utils.init_table(self.domain)
+
         if not self.access_internet:
             logger.log('ALERT', 'Because it cannot access the Internet, '
                                 'OneForAll will not execute the subdomain collection module!')
