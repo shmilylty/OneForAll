@@ -771,3 +771,10 @@ def get_ns_path(in_china=None, enable_wildcard=None, ns_ip_list=None):
     ns_data = '\n'.join(ns_ip_list)
     save_to_file(path, ns_data)
     return path
+
+
+def init_table(domain):
+    db = Database()
+    db.drop_table(domain)
+    db.create_table(domain)
+    db.close()
