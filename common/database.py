@@ -221,7 +221,7 @@ class Database(object):
         """
         table_name = table_name.replace('.', '_')
         logger.log('TRACE', f'Get all the data from {table_name} table')
-        return self.query(f'select * from {table_name}')
+        return self.query(f'select * from "{table_name}"')
 
     def export_data(self, table_name, alive, limit):
         """
@@ -234,7 +234,7 @@ class Database(object):
         table_name = table_name.replace('.', '_')
         sql = f'select id, alive, request, resolve, url, subdomain, level,' \
               f'cname, ip, public, cdn, port, status, reason, title, banner,' \
-              f'cidr, asn, org, addr, isp, source from {table_name} order by subdomain'
+              f'cidr, asn, org, addr, isp, source from "{table_name}" order by subdomain'
         if alive and limit:
             if limit in ['resolve', 'request']:
                 where = f' where {limit} = 1'
@@ -247,26 +247,26 @@ class Database(object):
 
     def count_alive(self, table_name):
         table_name = table_name.replace('.', '_')
-        sql = f'select count() from {table_name} where alive = 1'
+        sql = f'select count() from "{table_name}" where alive = 1'
         return self.query(sql)
 
     def get_resp_by_url(self, table_name, url):
         table_name = table_name.replace('.', '_')
-        sql = f'select response from {table_name} where url = "{url}"'
+        sql = f'select response from "{table_name}" where url = "{url}"'
         logger.log('TRACE', f'Get response data from {url}')
         return self.query(sql).scalar()
 
     def get_data_by_fields(self, table_name, fields):
         table_name = table_name.replace('.', '_')
         field_str = ', '.join(fields)
-        sql = f"select {field_str} from {table_name}"
+        sql = f'select {field_str} from "{table_name}"'
         logger.log('TRACE', f'Get specified field data {fields} from {table_name} table')
         return self.query(sql)
 
     def update_data_by_url(self, table_name, info, url):
         table_name = table_name.replace('.', '_')
         field_str = ', '.join(map(lambda kv: f'{kv[0]} = "{kv[1]}"', info.items()))
-        sql = f'update {table_name} set {field_str} where url = "{url}"'
+        sql = f'update "{table_name}" set {field_str} where url = "{url}"'
         return self.query(sql)
 
     def close(self):
