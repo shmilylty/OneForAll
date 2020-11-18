@@ -46,7 +46,7 @@ def export_data(target, db=None, alive=False, limit=None, path=None, fmt='csv', 
             rows = database.export_data(table_name, alive, limit)
             if rows is None:
                 continue
-            data, _, _ = do_export(fmt, path, rows, show, table_name, target)
+            data, _, _ = do_export(fmt, path, rows, show, domain, target)
             datas.extend(data)
     database.close()
     if len(domains) > 1:
@@ -54,14 +54,14 @@ def export_data(target, db=None, alive=False, limit=None, path=None, fmt='csv', 
     return datas
 
 
-def do_export(fmt, path, rows, show, table_name, target):
+def do_export(fmt, path, rows, show, domain, target):
     fmt = utils.check_format(fmt)
     path = utils.check_path(path, target, fmt)
     if show:
         print(rows.dataset)
     data = rows.export(fmt)
     utils.save_to_file(path, data)
-    logger.log('ALERT', f'The subdomain result for {table_name}: {path}')
+    logger.log('ALERT', f'The subdomain result for {domain}: {path}')
     data = rows.as_dict()
     return data, fmt, path
 
