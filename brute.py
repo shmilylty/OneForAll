@@ -296,7 +296,7 @@ class Brute(Module):
         brute.py --target d.com --fuzz True --place m.*.d.com --fuzzlist subnames.txt run
 
     Note:
-        --fmt csv/json (result fmt)
+        --fmt csv/json (result format)
         --path   Result path (default None, automatically generated)
 
 
