@@ -234,7 +234,7 @@ class Database(object):
         table_name = table_name.replace('.', '_')
         sql = f'select id, alive, request, resolve, url, subdomain, level,' \
               f'cname, ip, public, cdn, port, status, reason, title, banner,' \
-              f'cidr, asn, org, addr, isp, source from "{table_name}" order by subdomain'
+              f'cidr, asn, org, addr, isp, source from "{table_name}" '
         if alive and limit:
             if limit in ['resolve', 'request']:
                 where = f' where {limit} = 1'
@@ -242,6 +242,7 @@ class Database(object):
         elif alive:
             where = f' where alive = 1'
             sql += where
+        sql += ' order by subdomain'
         logger.log('TRACE', f'Get the data from {table_name} table')
         return self.query(sql)
 
