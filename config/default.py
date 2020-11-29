@@ -75,7 +75,12 @@ brute_ip_blacklist = {'0.0.0.0', '0.0.0.1'}  # IP黑名单 子域解析到IP黑�
 ip_appear_maximum = 100  # 多个子域解析到同一IP次数超过100次则标记为非法(泛解析)子域
 
 # altdns模块设置
-enable_fast_alt = True  # 是否开启快速置换(默认True，只使用部分置换规则)
+altdns_increase_num = True
+altdns_decrease_num = True
+altdns_replace_word = False
+altdns_insert_word = False
+altdns_add_word = False
+
 
 # banner识别模块设置
 banner_process_number = 4  # 识别进程数量(默认4)
