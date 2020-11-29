@@ -186,11 +186,15 @@ class Altdns(Module):
         for subdomain in self.now_subdomains:
             subname, parts = split_domain(subdomain)
             subnames = subname.split('.')
-            self.increase_num(subname)
-            self.decrease_num(subname)
-            self.replace_word(subname)
-            if not settings.enable_fast_alt:
+            if settings.altdns_increase_num:
+                self.increase_num(subname)
+            if settings.altdns_decrease_num:
+                self.decrease_num(subname)
+            if settings.altdns_replace_word:
+                self.replace_word(subname)
+            if settings.altdns_insert_word:
                 self.insert_word(parts)
+            if settings.altdns_add_word:
                 self.add_word(subnames)
         count = len(self.new_subdomains)
         logger.log('DEBUG', f'The altdns module generated {count} subdomains')
