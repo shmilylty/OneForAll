@@ -233,6 +233,8 @@ FLAGS
   7. 利用搜索引擎发现子域（目前有18个模块：`ask`, `baidu`, `bing`, `bing_api`, `duckduckgo`, `exalead`, `fofa_api`, `gitee`, `github`, `github_api`, `google`, `google_api`, `shodan_api`, `so`, `sogou`, `yahoo`, `yandex`, `zoomeye_api`），在搜索模块中除特殊搜索引擎，通用的搜索引擎都支持自动排除搜索，全量搜索，递归搜索。
 * **支持子域爆破**，该模块有常规的字典爆破，也有自定义的fuzz模式，支持批量爆破和递归爆破，自动判断泛解析并处理。
 * **支持子域验证**，默认开启子域验证，自动解析子域DNS，自动请求子域获取title和banner，并综合判断子域存活情况。
+* **支持子域爬取**，根据已有的子域，请求子域响应体以及响应体里的JS，从中再次发现新的子域。
+* **支持子域置换**，根据已有的子域，使用子域替换技术再次发现新的子域。
 * **支持子域接管**，默认开启子域接管风险检查，支持子域自动接管（目前只有Github，有待完善），支持批量检查。
 * **处理功能强大**，发现的子域结果支持自动去除，自动DNS解析，HTTP请求探测，自动筛选出有效子域，拓展子域的Banner信息，最终支持的导出格式有`txt`, `csv`, `json`。
 * **速度极快**，[收集模块](https://github.com/shmilylty/OneForAll/tree/master/collect.py)使用多线程调用，[爆破模块](https://github.com/shmilylty/OneForAll/tree/master/brute.py)使用[massdns](https://github.com/blechschmidt/massdns)，DNS解析速度每秒可解析350000以上个域名，子域验证中DNS解析和HTTP请求使用异步多协程，多线程检查[子域接管](https://github.com/shmilylty/OneForAll/tree/master/takeover.py)风险。
@@ -267,7 +269,6 @@ FLAGS
 ## ⌛后续计划
 
 - [ ] 各模块持续优化和完善
-- [x] 子域收集爬虫实现（包括从JS等静态资源文件中收集子域）
 - [ ] 操作强大交互人性的前端界面实现
 
 更多信息请参阅[后续开发计划](https://github.com/shmilylty/OneForAll/tree/master/docs/todo.md)。
