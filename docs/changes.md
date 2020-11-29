@@ -8,6 +8,10 @@ OneForAll遵守[语义化版本格式](https://semver.org/)。
 # Unreleased
 
 # Released
+## [0.4.3](https://github.com/shmilylty/oneforall/releases/tag/v0.4.3) - 2020-11-23
+- 修复了已知问题
+- 更新了文档
+
 ## [0.4.2](https://github.com/shmilylty/oneforall/releases/tag/v0.4.2) - 2020-11-23
 - 添加了数据表初始化处理流程，修复了#163中出现的问题。
 
