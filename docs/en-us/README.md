@@ -234,7 +234,9 @@ At present, OneForAll is under development, there must be a lot of problems and 
 6. Use 6 threat intelligence modules: `alienvault`, `riskiq_ api`, `threatbook_ api`, `threatkeeper `, `virustotal`, `virustotal_ api`, which need to be added and improved.
 7. Use 16 search engines modules: `ask`, `baidu`, `bing`, `bing_api`, `fofa_api`, `gitee`, `github_api`, `google`, `google_api`, `shodan_api`, `so`, `sogou`, `yahoo`, `yandex`, `zoomeye_api`, except for special search engines. General search engines support automatic exclusion of search, full search and recursive search. 
 * **Support subdomain brute force**, can use dictionary mode or custom fuzz mode. Supports bulk brute and recursive brute, and automatically determine wildcard or not and processing.
-* **Support subdmain verification**, default enable, automatically resolve DNS, request subdomain to obtain response, and determine subdomain alive or not.
+* **Support subdomain verification**, default enable, automatically resolve DNS, request subdomain to obtain response, and determine subdomain alive or not.
+* **Support subdomain crawling**, according to the existing subdomains, the response body of the request subdomain and the JS in the response body can be found again from the new subdomain.
+* **Support subdomain replacement**, according to the existing subdomain, use subdomain replacement technology to discover new subdomains again.
 * **Support subdomain takeover**, default enable, supports bulk inspection, and automatic takeover subdomain (only Github, remains to be improved at present).
 * **Powerful processing feature**, support automatic deduplicate, DNS resolve, HTTP request, filter valid subdomains and information for subdomains. Supported export formats: `txt`, `csv`, `json`.
 * **Very fast**, [collection module](https://github.com/shmilylty/OneForAll/tree/master/collect.py) uses multi-threading, [brute module](https://github.com/shmilylty/OneForAll/tree/master/brute.py) uses [MassDNS](https://github.com/blechschmidt/massdns), MassDNS is capable of resolving over 350,000 names per second using publicly available resolvers. DNS resolve and HTTP requests use async-coroutine. [subdomain takeover](https://github.com/shmilylty/OneForAll/tree/master/takeover.py) uses multi-threading.
@@ -268,7 +270,6 @@ The project uses [SemVer](https://semver.org/) for version management, and you c
 ## ⌛Follow-up plan
 
 - [ ] Continuous optimize and improve of each module
-- [x] Subdomain collection crawler (collect subdomains from static files such as JS)
 - [ ] Implementation of front-end interface for powerful interaction
 
 For more details, read [todo.md](https://github.com/shmilylty/OneForAll/tree/master/docs/todo.md).
