@@ -1,4 +1,3 @@
-import os
 import re
 import sys
 import time
@@ -10,10 +9,10 @@ import platform
 import subprocess
 from urllib.parse import scheme_chars
 from ipaddress import IPv4Address, ip_address
+from distutils.version import StrictVersion
 from pathlib import Path
 from stat import S_IXUSR
 
-import dns
 import requests
 import tenacity
 from dns.resolver import Resolver
@@ -526,7 +525,7 @@ def check_dep():
     if implementation != 'CPython':
         logger.log('FATAL', f'OneForAll only passed the test under CPython')
         exit(1)
-    if version < '3.6':
+    if StrictVersion(version) < StrictVersion('3.6'):
         logger.log('FATAL', 'OneForAll requires Python 3.6 or higher')
         exit(1)
 
