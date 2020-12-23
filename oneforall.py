@@ -138,7 +138,7 @@ class OneForAll(object):
         :return: exported data
         :rtype: list
         """
-        return export.export_data(self.domain, alive=self.alive, fmt=self.fmt)
+        return export.export_data(self.domain, alive=self.alive, fmt=self.fmt, path=self.path)
 
     def main(self):
         """
