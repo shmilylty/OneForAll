@@ -609,7 +609,7 @@ def get_massdns_path(massdns_dir):
         if machine == 'amd64':
             massdns_dir = massdns_dir.joinpath('windows', 'x64')
         else:
-            massdns_dir = massdns_dir.joinpath('windows', 'x84')
+            massdns_dir = massdns_dir.joinpath('windows', 'x86')
     path = massdns_dir.joinpath(name)
     path.chmod(S_IXUSR)
     if not path.exists():
