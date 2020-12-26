@@ -605,7 +605,7 @@ def get_massdns_path(massdns_dir):
     machine = platform.machine().lower()
     name = f'massdns_{system}_{machine}'
     if system == 'windows':
-        name = name + '.exe'
+        name = f'massdns.exe'
         if machine == 'amd64':
             massdns_dir = massdns_dir.joinpath('windows', 'x64')
         else:
