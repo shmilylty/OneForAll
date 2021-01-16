@@ -41,8 +41,7 @@ save_module_result = False  # 保存各模块发现结果为json文件(默认Fal
 enable_all_module = True  # 启用所有收集模块(默认True)
 enable_partial_module = []  # 启用部分收集模块 必须禁用enable_all_module才能生效
 # 只使用ask和baidu搜索引擎收集子域的示例
-# enable_partial_module = [('modules.search', 'ask')
-#                          ('modules.search', 'baidu')]
+# enable_partial_module = ['modules.search.ask', 'modules.search.baidu']
 module_thread_timeout = 90.0  # 每个收集模块线程超时时间(默认90秒)
 
 # 爆破模块设置
