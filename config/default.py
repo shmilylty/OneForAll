@@ -28,7 +28,7 @@ enable_enrich_module = True  # 开启enrich模块，开启会富化出信息，�
 enable_banner_identify = True  # 开启WEB指纹识别模块(默认True)
 enable_takeover_check = False  # 开启子域接管风险检查(默认False)
 # 参数可选值有 'small', 'medium', 'large'
-http_request_port = 'small'  # HTTP请求子域(默认'small'，探测80,443端口)
+http_request_port = 'small'  # HTTP请求子域(默认 'small'，探测80,443端口)
 # 参数可选值True，False分别表示导出存活，全部子域结果
 result_export_alive = False  # 只导出存活的子域结果(默认False)
 # 参数可选格式有 'csv', 'json'
