@@ -30,10 +30,9 @@ result_save_path = None  # 子域结果保存文件路径(默认None)
 # 收集模块设置
 save_module_result = False  # 保存各模块发现结果为json文件(默认False)
 enable_all_module = True  # 启用所有收集模块(默认True)
-enable_partial_module = []  # 启用部分收集模块 必须禁用enable_all_module才能生效
+enable_partial_module = ['modules.search.baidu']  # 启用部分收集模块 必须禁用enable_all_module才能生效
 # 只使用ask和baidu搜索引擎收集子域的示例
-# enable_partial_module = [('modules.search', 'ask')
-#                          ('modules.search', 'baidu')]
+# enable_partial_module = ['modules.search.ask', 'modules.search.baidu']
 
 # 爆破模块设置
 brute_concurrent_num = 2000  # 爆破时并发查询数量(默认2000，最大推荐10000)
