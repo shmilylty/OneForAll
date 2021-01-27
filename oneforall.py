@@ -173,7 +173,9 @@ class OneForAll(object):
         utils.deal_data(self.domain)
         # Export results without resolve
         if not self.dns:
-            return self.export_data()
+            self.data = self.export_data()
+            self.datas.extend(self.data)
+            return self.data
 
         self.data = utils.get_data(self.domain)
 
@@ -185,7 +187,9 @@ class OneForAll(object):
 
         # Export results without HTTP request
         if not self.req:
-            return self.export_data()
+            self.data = self.export_data()
+            self.datas.extend(self.data)
+            return self.data
 
         if self.enable_wildcard:
             # deal wildcard
@@ -210,8 +214,8 @@ class OneForAll(object):
             enrich = Enrich(self.domain)
             enrich.run()
 
-        # Export
-        self.datas.extend(self.export_data())
+        self.data = self.export_data()
+        self.datas.extend(self.data)
 
         # Scan subdomain takeover
         if self.takeover:
