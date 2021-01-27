@@ -38,6 +38,7 @@ def update_data(data, infos):
     new_data = list()
     for index, items in enumerate(data):
         if items.get('ip'):
+            new_data.append(items)
             continue
         subdomain = items.get('subdomain')
         record = infos.get(subdomain)
