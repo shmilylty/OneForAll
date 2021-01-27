@@ -55,11 +55,11 @@
         },
         "dnspython": {
             "hashes": [
-                "sha256:044af09374469c3a39eeea1a146e8cac27daec951f1f1f157b1962fc7cb9d1b7",
-                "sha256:40bb3c24b9d4ec12500f0124288a65df232a3aa749bb0c39734b782873a2544d"
+                "sha256:95d12f6ef0317118d2a1a6fc49aac65ffec7eb8087474158f42f26a639135216",
+                "sha256:e4a87f0b573201a0f3727fa18a516b055fd1107e0e5477cded4a2de497df1dd4"
             ],
             "index": "pypi",
-            "version": "==2.0.0"
+            "version": "==2.1.0"
         },
         "exrex": {
             "hashes": [
@@ -70,10 +70,10 @@
         },
         "fire": {
             "hashes": [
-                "sha256:9736a16227c3d469e5d2d296bce5b4d8fa8d7851e953bda327a455fc2994307f"
+                "sha256:c5e2b8763699d1142393a46d0e3e790c5eb2f0706082df8f647878842c216a62"
             ],
             "index": "pypi",
-            "version": "==0.3.1"
+            "version": "==0.4.0"
         },
         "future": {
             "hashes": [
@@ -188,11 +188,11 @@
         },
         "tqdm": {
             "hashes": [
-                "sha256:0cd81710de29754bf17b6fee07bdb86f956b4fa20d3078f02040f83e64309416",
-                "sha256:f4f80b96e2ceafea69add7bf971b8403b9cba8fb4451c1220f91c79be4ebd208"
+                "sha256:4621f6823bab46a9cc33d48105753ccbea671b68bab2c50a9f0be23d4065cb5a",
+                "sha256:fe3d08dd00a526850568d542ff9de9bbc2a09a791da3c334f3213d8d0bbbca65"
             ],
             "index": "pypi",
-            "version": "==4.55.0"
+            "version": "==4.56.0"
         },
         "treelib": {
             "hashes": [
