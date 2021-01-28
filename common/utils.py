@@ -1,3 +1,4 @@
+import os
 import re
 import sys
 import time
@@ -476,7 +477,7 @@ def ip_is_public(ip_str):
 
 
 def get_request_count():
-    return 32
+    return os.cpu_count() * 16
 
 
 def uniq_dict_list(dict_list):
