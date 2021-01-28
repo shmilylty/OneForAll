@@ -1,6 +1,6 @@
 # coding=utf-8
 """
-OneForAll配置
+OneForAll自定义配置
 """
 
 import pathlib

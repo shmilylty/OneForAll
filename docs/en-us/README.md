@@ -123,7 +123,7 @@ Let's take the command `python3 oneforall.py --target example.com run` as an exa
 
 `example_com_now_result` table stores the collection results of the current subdomains. Usually using this table is enough.
 
-For more information, please see [Field explanation](./docs/field.md).
+For more information, please see [Field explanation](../field.md).
 
 </details>
 
@@ -221,7 +221,7 @@ Problems with other tools
 
 In order to solve the above problems, OneForAll born! As its name, OneForAll is committed to becoming the only one subdomain integration tool you need. We hope that one day OneForAll can be called "probably the best subdomain tool"
 
-At present, OneForAll is under development, there must be a lot of problems and areas for improvement. Welcome to submit [Issues](https://github.com/shmilylty/OneForAll/issues) or [PR](https://github.com/shmilylty/OneForAll/pulls), If you like, star please✨. You can contact me through QQ group [**824414244**](//shang.qq.com/wpa/qunwpa?idkey=125d3689b60445cdbb11e4ddff38036b7f6f2abbf4f7957df5dddba81aa90771) or twitter [tweet](https://twitter.com/shmilylty) to me: 👨‍👨‍👦‍👦.
+At present, OneForAll is under development, there must be a lot of problems and areas for improvement. Welcome to submit [Issues](https://github.com/shmilylty/OneForAll/issues) or [PR](https://github.com/shmilylty/OneForAll/pulls), If you like, star please✨. You can contact me through QQ group [**824414244**](https://shang.qq.com/wpa/qunwpa?idkey=125d3689b60445cdbb11e4ddff38036b7f6f2abbf4f7957df5dddba81aa90771) or twitter [tweet](https://twitter.com/shmilylty) to me: 👨‍👨‍👦‍👦.
 
 ## 👍Features
 
