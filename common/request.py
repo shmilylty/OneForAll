@@ -208,7 +208,7 @@ def save(name, total, req_data, resp_queue):
             new_info = gen_new_info(old_info, resp)
             db.insert_table(name, new_info)
             resp_queue.task_done()
-        if i >= total:
+        if i >= total:  # 得存入完所有请求结果才能结束
             break
     db.close()
 
