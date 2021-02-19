@@ -21,7 +21,6 @@ class NetCraft(Query):
         """
         绕过NetCraft的JS验证
         """
-        self.header = self.get_header()  # Netcraft会检查User-Agent
         resp = self.get(self.init)
         if not resp:
             return False
@@ -36,12 +35,13 @@ class NetCraft(Query):
         """
         向接口查询子域并做子域匹配
         """
+        self.header = self.get_header()  # NetCraft会检查User-Agent
+        self.proxy = self.get_proxy(self.source)
         if not self.bypass_verification():
             return
         last = ''
         while True:
             time.sleep(self.delay)
-            self.header = self.get_header()
             self.proxy = self.get_proxy(self.source)
             params = {'restriction': 'site ends with',
                       'host': '.' + self.domain,
