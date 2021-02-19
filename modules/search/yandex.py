@@ -20,6 +20,8 @@ class Yandex(Search):
         :param str domain: 域名
         :param str filtered_subdomain: 过滤的子域
         """
+        self.header = self.get_header()
+        self.proxy = self.get_proxy(self.source)
         self.page_num = 0  # 二次搜索重新置0
         resp = self.get(self.init)
         if not resp:
@@ -27,7 +29,6 @@ class Yandex(Search):
         self.cookie = resp.cookies  # 获取cookie
         while True:
             time.sleep(self.delay)
-            self.header = self.get_header()
             self.proxy = self.get_proxy(self.source)
             query = 'site:.' + domain + filtered_subdomain
             params = {'text': query, 'p': self.page_num,

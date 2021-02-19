@@ -19,9 +19,9 @@ class Bing(Search):
         :param str domain: 域名
         :param str filtered_subdomain: 过滤的子域
         """
-        self.page_num = 0  # 二次搜索重新置0
         self.header = self.get_header()
         self.proxy = self.get_proxy(self.source)
+        self.page_num = 0  # 二次搜索重新置0
         resp = self.get(self.init)
         if not resp:
             return
