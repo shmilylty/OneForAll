@@ -74,7 +74,7 @@ request_proxy_pool = [{'http': 'http://127.0.0.1:1080',
 
 # 请求设置
 request_thread_count = None  # 请求线程数量(默认None，则根据情况自动设置)
-request_timeout_second = (3.05, 27)  # 请求超时秒数(默认connect timout推荐略大于3秒)
+request_timeout_second = (13, 27)  # 请求超时秒数(默认connect timout推荐略大于3秒)
 request_ssl_verify = False  # 请求SSL验证(默认False)
 request_allow_redirect = True  # 请求允许重定向(默认True)
 request_redirect_limit = 10  # 请求跳转限制(默认10次)
