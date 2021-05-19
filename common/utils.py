@@ -495,7 +495,7 @@ def delete_file(*paths):
 @tenacity.retry(stop=tenacity.stop_after_attempt(3),
                 wait=tenacity.wait_fixed(2))
 def check_net():
-    urls = ['http://ipinfo.io/json', 'http://ipconfig.io/json']
+    urls = ['http://ip-api.com/json/']
     url = random.choice(urls)
     header = {'User_Agent': 'curl'}
     timeout = settings.request_timeout_second
