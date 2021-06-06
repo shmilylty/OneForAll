@@ -88,7 +88,7 @@ config
 
 ```shell
 docker pull shmilylty/oneforall
-docker run -it --rm -v ~/results:/OneForAll/results -v ~/.config:/OneForAll/config oneforall --target example.com run
+docker run -it --rm -v ~/results:/OneForAll/results -v ~/.config:/OneForAll/config shmilylty/oneforall --target example.com run
 ```
 参数直接加在指令末尾，结果会输出在本地目录`~/results`，如需保存到其他位置，可以自行修改
 </details>
