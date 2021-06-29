@@ -283,7 +283,7 @@ Very warmly welcome all people to make OneForAll better together!
 * **[Jing Ling](https://github.com/shmilylty)**
   * Core developer
 
-You can view all contributors and their contributions in the [contributor documentation](https://github.com/shmilylty/OneForAll/tree/master/docs/contributors.md)) and thank them for making OneForAll more powerful and useful.
+You can view all contributors and their contributions in the [contributor documentation](https://github.com/shmilylty/OneForAll/tree/master/docs/contributors.md) and thank them for making OneForAll more powerful and useful.
 
 ## 📄License
 
@@ -294,6 +294,8 @@ The project has signed a GPL-3.0 license, for more information, please read [LIC
 Thanks to the various subdomain collection projects of online open source!
 
 Thanks ace of [A-Team](https://github.com/QAX-A-Team) for their enthusiastic and unselfish answers!
+
+Developed with drive and [PyCharm](https://www.jetbrains.com/pycharm/)!
 
 ## 📜Disclaimer 
 
