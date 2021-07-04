@@ -1,6 +1,5 @@
 import time
 
-import requests
 from config import settings
 from common.search import Search
 from config.log import logger
@@ -13,6 +12,7 @@ class GithubAPI(Search):
         self.module = 'Search'
         self.addr = 'https://api.github.com/search/code'
         self.domain = domain
+        self.delay = 5
         self.token = settings.github_api_token
 
     def search(self):
@@ -81,4 +81,4 @@ def run(domain):
 
 
 if __name__ == '__main__':
-    run('mi.com')
+    run('freebuf.com')
