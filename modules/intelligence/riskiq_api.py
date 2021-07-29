@@ -16,7 +16,7 @@ class RiskIQ(Query):
         """
         向接口查询子域并做子域匹配
         """
-        self.header = self.get_header()
+        self.header = {}
         self.proxy = self.get_proxy(self.source)
         params = {'query': self.domain}
         resp = self.get(url=self.addr,

@@ -57,5 +57,5 @@ class Domain(object):
         """
         result = self.extract()
         if result:
-            return result.registered_domain
+            return result.fqdn
         return None
