@@ -7,7 +7,7 @@ class ThreatMiner(Query):
         self.domain = domain
         self.module = 'Intelligence'
         self.source = 'ThreatMinerQuery'
-        self.addr = 'https://www.threatminer.org/getData.php'
+        self.addr = 'https://api.threatminer.org/v2/domain.php'
 
     def query(self):
         """
@@ -15,8 +15,7 @@ class ThreatMiner(Query):
         """
         self.header = self.get_header()
         self.proxy = self.get_proxy(self.source)
-        params = {'e': 'subdomains_container',
-                  'q': self.domain, 't': 0, 'rt': 10}
+        params = {'q': self.domain, 'rt': 5}
         resp = self.get(self.addr, params)
         self.subdomains = self.collect_subdomains(resp)
 
