@@ -21,7 +21,8 @@ class DNSDumpster(Query):
             return
         self.cookie = resp.cookies
         data = {'csrfmiddlewaretoken': self.cookie.get('csrftoken'),
-                'targetip': self.domain}
+                'targetip': self.domain,
+                'user':'free'}
         resp = self.post(self.addr, data)
         self.subdomains = self.collect_subdomains(resp)
 
