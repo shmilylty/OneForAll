@@ -54,7 +54,7 @@ def gen_fake_header():
     """
     Generate fake request headers
     """
-    headers = settings.request_default_headers
+    headers = settings.request_default_headers.copy()
     if not isinstance(headers, dict):
         headers = dict()
     if settings.enable_random_ua:
