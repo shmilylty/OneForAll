@@ -23,16 +23,15 @@ enable_brute_module = True  # 使用爆破模块(默认True)
 enable_dns_resolve = True  # 使用DNS解析子域(默认True)
 enable_http_request = True  # 使用HTTP请求子域(默认True)
 enable_finder_module = True  # 开启finder模块,开启会从响应体和JS中再次发现子域(默认True)
-enable_altdns_module = False  # 开启altdns模块,开启会利用置换技术重组子域再次发现新子域(默认True)
-enable_cdn_check = True  # 开启cdn检查模块(默认True)
+enable_altdns_module = True  # 开启altdns模块,开启会利用置换技术重组子域再次发现新子域(默认True)
+enable_enrich_module = True  # 开启enrich模块，开启会富化出信息，如ip的cdn，cidr，asn，org，addr和isp等信息
 enable_banner_identify = True  # 开启WEB指纹识别模块(默认True)
 enable_takeover_check = False  # 开启子域接管风险检查(默认False)
-# 参数可选值有'small', 'medium', 'large'
-http_request_port = 'small'  # HTTP请求子域(默认'small'，探测80,443端口)
+# 参数可选值有 'small', 'medium', 'large'
+http_request_port = 'small'  # HTTP请求子域(默认 'small'，探测80,443端口)
 # 参数可选值True，False分别表示导出存活，全部子域结果
 result_export_alive = False  # 只导出存活的子域结果(默认False)
-# 参数可选格式有'rst', 'csv', 'tsv', 'json', 'yaml', 'html',
-# 'jira', 'xls', 'xlsx', 'dbf', 'latex', 'ods'
+# 参数可选格式有 'csv', 'json'
 result_save_format = 'csv'  # 子域结果保存文件格式(默认csv)
 # 参数path默认None使用OneForAll结果目录自动生成路径
 result_save_path = None  # 子域结果保存文件路径(默认None)
@@ -42,8 +41,7 @@ save_module_result = False  # 保存各模块发现结果为json文件(默认Fal
 enable_all_module = True  # 启用所有收集模块(默认True)
 enable_partial_module = []  # 启用部分收集模块 必须禁用enable_all_module才能生效
 # 只使用ask和baidu搜索引擎收集子域的示例
-# enable_partial_module = [('modules.search', 'ask')
-#                          ('modules.search', 'baidu')]
+# enable_partial_module = ['modules.search.ask', 'modules.search.baidu']
 module_thread_timeout = 90.0  # 每个收集模块线程超时时间(默认90秒)
 
 # 爆破模块设置
@@ -51,22 +49,17 @@ enable_wildcard_check = True  # 开启泛解析检测(默认True)
 enable_wildcard_deal = True  # 开启泛解析处理(默认True)
 brute_massdns_path = None  # 默认None自动选择 如需填写请填写绝对路径
 brute_status_format = 'ansi'  # 爆破时状态输出格式（默认asni，可选json）
-# 爆破时使用的进程数(根据计算机中CPU数量情况设置 不宜大于逻辑CPU个数)
-brute_process_num = 1  # 默认1
 brute_concurrent_num = 2000  # 并发查询数量(默认2000，最大推荐10000)
 brute_socket_num = 1  # 爆破时每个进程下的socket数量
 brute_resolve_num = 15  # 解析失败时尝试换名称服务器重查次数
-# 爆破所使用的字典路径 默认data/subdomains.txt
-brute_wordlist_path = data_storage_dir.joinpath('subnames.txt')
-# 爆破所使用的字典路径 默认data/cn_nameservers.txt
-# 如果你不在中国请改为nameservers.txt
-brute_nameservers_path = data_storage_dir.joinpath('cn_nameservers.txt')
+# 爆破所使用的字典路径(默认None则使用data/subdomains.txt，自定义字典请使用绝对路径)
+brute_wordlist_path = None
 # 域名的权威DNS名称服务器的保存路径 当域名开启了泛解析时会使用该名称服务器来进行A记录查询
 authoritative_dns_path = data_storage_dir.joinpath('authoritative_dns.txt')
 enable_recursive_brute = False  # 是否使用递归爆破(默认False)
 brute_recursive_depth = 2  # 递归爆破深度(默认2层)
-# 爆破下一层子域所使用的字典路径 默认data/next_subdomains.txt
-recursive_nextlist_path = data_storage_dir.joinpath('next_subnames.txt')
+# 爆破下一层子域所使用的字典路径(默认None则使用data/subnames_next.txt，自定义字典请使用绝对路径)
+recursive_nextlist_path = None
 enable_check_dict = False  # 是否开启字典配置检查提示(默认False)
 delete_generated_dict = True  # 是否删除爆破时临时生成的字典(默认True)
 delete_massdns_result = True  # 是否删除爆破时massdns输出的解析结果 (默认True)
@@ -80,7 +73,12 @@ brute_ip_blacklist = {'0.0.0.0', '0.0.0.1'}  # IP黑名单 子域解析到IP黑�
 ip_appear_maximum = 100  # 多个子域解析到同一IP次数超过100次则标记为非法(泛解析)子域
 
 # altdns模块设置
-enable_fast_alt = True  # 是否开启快速置换(默认True，只使用部分置换规则)
+altdns_increase_num = True
+altdns_decrease_num = True
+altdns_replace_word = False
+altdns_insert_word = False
+altdns_add_word = False
+
 
 # banner识别模块设置
 banner_process_number = 4  # 识别进程数量(默认4)
@@ -99,8 +97,8 @@ request_proxy_pool = [{'http': 'http://127.0.0.1:1080',
 
 
 # 请求设置
-request_thread_count = None  # 请求线程数量(默认None，则根据内存大小设置)
-request_timeout_second = (3.05, 27)  # 请求超时秒数(默认connect timout推荐略大于3秒，read秒)
+request_thread_count = None  # 请求线程数量(默认None，则根据情况自动设置)
+request_timeout_second = (13, 27)  # 请求超时秒数(默认connect timout推荐略大于3秒)
 request_ssl_verify = False  # 请求SSL验证(默认False)
 request_allow_redirect = True  # 请求允许重定向(默认True)
 request_redirect_limit = 10  # 请求跳转限制(默认10次)

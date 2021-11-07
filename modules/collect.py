@@ -23,7 +23,7 @@ class Collect(object):
                 module_path = settings.module_dir.joinpath(module)
                 for path in module_path.rglob('*.py'):
                     import_module = f'modules.{module}.{path.stem}'
-                    self.modules.append([import_module, path.stem])
+                    self.modules.append(import_module)
         else:
             self.modules = settings.enable_partial_module
 
@@ -31,7 +31,8 @@ class Collect(object):
         """
         Import do function
         """
-        for module, name in self.modules:
+        for module in self.modules:
+            name = module.split('.')[-1]
             import_object = importlib.import_module(module)
             func = getattr(import_object, 'run')
             self.collect_funcs.append([func, name])

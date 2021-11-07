@@ -1,23 +1,22 @@
--i https://mirrors.aliyun.com/pypi/simple/
-beautifulsoup4==4.9.1
+beautifulsoup4==4.9.3
 bs4==0.0.1
-certifi==2020.6.20
-chardet==3.0.4
-colorama==0.4.3 ; sys_platform == 'win32'
-dnspython==2.0.0
+certifi==2020.12.5
+chardet==4.0.0
+colorama==0.4.4
+dnspython==2.1.0
 exrex==0.10.5
-fire==0.3.1
+fire==0.4.0
 future==0.18.2
 idna==2.10
 loguru==0.5.3
-pysocks==1.7.1
-requests==2.24.0
+PySocks==1.7.1
+requests==2.25.1
 six==1.15.0
-soupsieve==2.0.1
-sqlalchemy==1.3.19
-tenacity==6.2.0
+soupsieve==2.2.1
+SQLAlchemy==1.3.22
+tenacity==7.0.0
 termcolor==1.1.0
-tqdm==4.49.0
+tqdm==4.59.0
 treelib==1.6.1
-urllib3==1.25.10
-win32-setctime==1.0.2 ; sys_platform == 'win32'
+urllib3==1.26.4
+win32-setctime==1.0.3

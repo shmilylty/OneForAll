@@ -57,7 +57,6 @@ class Database(object):
                    f'alive int,'
                    f'request int,'
                    f'resolve int,'
-                   f'new int,'
                    f'url text,'
                    f'subdomain text,'
                    f'port int,'
@@ -73,7 +72,8 @@ class Database(object):
                    f'header text,'
                    f'history text,'
                    f'response text,'
-                   f'times text,'
+                   f'ip_times text,'
+                   f'cname_times text,'
                    f'ttl text,'
                    f'cidr text,'
                    f'asn text,'
@@ -85,6 +85,20 @@ class Database(object):
                    f'source text,'
                    f'elapse float,'
                    f'find int)')
+
+    def insert_table(self, table_name, result):
+        table_name = table_name.replace('.', '_')
+        self.conn.query(
+            f'insert into "{table_name}" '
+            f'(id, alive, resolve, request, url, subdomain, port, level,'
+            f'cname, ip, public, cdn, status, reason, title, banner, header,'
+            f'history, response, ip_times, cname_times, ttl, cidr, asn, org,'
+            f'addr, isp, resolver, module, source, elapse, find) '
+            f'values (:id, :alive, :resolve, :request, :url,'
+            f':subdomain, :port, :level, :cname, :ip, :public, :cdn,'
+            f':status, :reason, :title, :banner, :header, :history, :response,'
+            f':ip_times, :cname_times, :ttl, :cidr, :asn, :org, :addr, :isp,'
+            f':resolver, :module, :source, :elapse, :find)', **result)
 
     def save_db(self, table_name, results, module_name=None):
         """
@@ -101,15 +115,15 @@ class Database(object):
             try:
                 self.conn.bulk_query(
                     f'insert into "{table_name}" '
-                    f'(id, alive, resolve, request, new, url, subdomain, port, level,'
-                    f'cname, ip, public, cdn, status, reason, title, banner, header,'
-                    f'history, response, times, ttl, cidr, asn, org, addr, isp, resolver,'
-                    f'module, source, elapse, find) '
-                    f'values (:id, :alive, :resolve, :request, :new, :url,'
+                    f'(id, alive, resolve, request, url, subdomain, port, level, '
+                    f'cname, ip, public, cdn, status, reason, title, banner, header, '
+                    f'history, response, ip_times, cname_times, ttl, cidr, asn, org, '
+                    f'addr, isp, resolver, module, source, elapse, find) '
+                    f'values (:id, :alive, :resolve, :request, :url, '
                     f':subdomain, :port, :level, :cname, :ip, :public, :cdn,'
-                    f':status, :reason, :title, :banner, :header, :history, :response,'
-                    f':times, :ttl, :cidr, :asn, :org, :addr, :isp, :resolver, :module,'
-                    f':source, :elapse, :find)', results)
+                    f':status, :reason, :title, :banner, :header, :history, :response, '
+                    f':ip_times, :cname_times, :ttl, :cidr, :asn, :org, :addr, :isp, '
+                    f':resolver, :module, :source, :elapse, :find)', results)
             except Exception as e:
                 logger.log('ERROR', e)
 
@@ -178,7 +192,7 @@ class Database(object):
 
     def deduplicate_subdomain(self, table_name):
         """
-        Deduplicates of subdomains in the table
+        Deduplicate subdomains in the table
 
         :param str table_name: table name
         """
@@ -199,17 +213,6 @@ class Database(object):
         self.query(f'delete from "{table_name}" where '
                    f'subdomain is null or resolve == 0')
 
-    def deal_table(self, deal_table_name, backup_table_name):
-        """
-        Process the table when the collection task is complete
-
-        :param str deal_table_name: Pending table name
-        :param str backup_table_name: Table name for backup
-        """
-        self.copy_table(deal_table_name, backup_table_name)
-        self.remove_invalid(deal_table_name)
-        self.deduplicate_subdomain(deal_table_name)
-
     def get_data(self, table_name):
         """
         Get all the data in the table
@@ -229,18 +232,43 @@ class Database(object):
         :param str limit: limit value
         """
         table_name = table_name.replace('.', '_')
-        query = f'select id, new, alive, request, resolve, url, subdomain, level,' \
-                f'cname, ip, public, cdn, port, status, reason, title, banner,' \
-                f'cidr, asn, org, addr, isp, source from "{table_name}"'
+        sql = f'select id, alive, request, resolve, url, subdomain, level,' \
+              f'cname, ip, public, cdn, port, status, reason, title, banner,' \
+              f'cidr, asn, org, addr, isp, source from "{table_name}" '
         if alive and limit:
             if limit in ['resolve', 'request']:
                 where = f' where {limit} = 1'
-                query += where
+                sql += where
         elif alive:
             where = f' where alive = 1'
-            query += where
+            sql += where
+        sql += ' order by subdomain'
         logger.log('TRACE', f'Get the data from {table_name} table')
-        return self.query(query)
+        return self.query(sql)
+
+    def count_alive(self, table_name):
+        table_name = table_name.replace('.', '_')
+        sql = f'select count() from "{table_name}" where alive = 1'
+        return self.query(sql)
+
+    def get_resp_by_url(self, table_name, url):
+        table_name = table_name.replace('.', '_')
+        sql = f'select response from "{table_name}" where url = "{url}"'
+        logger.log('TRACE', f'Get response data from {url}')
+        return self.query(sql).scalar()
+
+    def get_data_by_fields(self, table_name, fields):
+        table_name = table_name.replace('.', '_')
+        field_str = ', '.join(fields)
+        sql = f'select {field_str} from "{table_name}"'
+        logger.log('TRACE', f'Get specified field data {fields} from {table_name} table')
+        return self.query(sql)
+
+    def update_data_by_url(self, table_name, info, url):
+        table_name = table_name.replace('.', '_')
+        field_str = ', '.join(map(lambda kv: f'{kv[0]} = "{kv[1]}"', info.items()))
+        sql = f'update "{table_name}" set {field_str} where url = "{url}"'
+        return self.query(sql)
 
     def close(self):
         """

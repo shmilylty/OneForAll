@@ -12,39 +12,21 @@ class NetCraft(Query):
         self.domain = domain
         self.module = 'Dataset'
         self.source = 'NetCraftQuery'
-        self.init = 'https://searchdns.netcraft.com/'
-        self.addr = 'https://searchdns.netcraft.com/?restriction=site+contains'
+        self.addr = 'https://searchdns.netcraft.com/?restriction=site+contains&position=limited'
         self.page_num = 1
         self.per_page_num = 20
-
-    def bypass_verification(self):
-        """
-        绕过NetCraft的JS验证
-        """
-        self.header = self.get_header()  # Netcraft会检查User-Agent
-        resp = self.get(self.init)
-        if not resp:
-            return False
-        self.cookie = resp.cookies
-        cookie_value = self.cookie['netcraft_js_verification_challenge']
-        cookie_encode = parse.unquote(cookie_value).encode('utf-8')
-        verify_taken = hashlib.sha1(cookie_encode).hexdigest()
-        self.cookie['netcraft_js_verification_response'] = verify_taken
-        return True
 
     def query(self):
         """
         向接口查询子域并做子域匹配
         """
-        if not self.bypass_verification():
-            return
+        self.header = self.get_header()  # NetCraft会检查User-Agent
+        self.proxy = self.get_proxy(self.source)
         last = ''
         while True:
             time.sleep(self.delay)
-            self.header = self.get_header()
             self.proxy = self.get_proxy(self.source)
-            params = {'restriction': 'site ends with',
-                      'host': '.' + self.domain,
+            params = {'host': '*.' + self.domain,
                       'from': self.page_num}
             resp = self.get(self.addr + last, params)
             subdomains = self.match_subdomains(resp)

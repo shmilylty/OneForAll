@@ -21,7 +21,7 @@ class FoFa(Search):
         发送搜索请求并做子域匹配
         """
         self.page_num = 1
-        subdomain_encode = f'domain={self.domain} || cert={self.domain}'.encode('utf-8')
+        subdomain_encode = f'domain="{self.domain}"'.encode('utf-8')
         query_data = base64.b64encode(subdomain_encode)
         while True:
             time.sleep(self.delay)
@@ -32,7 +32,7 @@ class FoFa(Search):
                      'qbase64': query_data,
                      'page': self.page_num,
                      'full': 'true',
-                     'size': 5000}
+                     'size': 1000}
             resp = self.get(self.addr, query)
             if not resp:
                 return
@@ -42,7 +42,7 @@ class FoFa(Search):
                 break
             self.subdomains.update(subdomains)
             size = resp_json.get('size')
-            if size < 5000:
+            if size < 1000:
                 break
             self.page_num += 1
 

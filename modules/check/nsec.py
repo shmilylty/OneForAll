@@ -26,6 +26,9 @@ class NSEC(Check):
                 self.subdomains.update(subdomains)
             if subdomain == self.domain:  # 当查出子域为主域 说明完成了一个循环 不再继续查询
                 break
+            if domain != self.domain:  # 防止出现wwdmas.cn 000.000.wwdmas.cn 000.000.000.wwdmas.cn情况
+                if domain.split('.')[0] == subdomain.split('.')[0]:
+                    break
             domain = subdomain
         return self.subdomains
 

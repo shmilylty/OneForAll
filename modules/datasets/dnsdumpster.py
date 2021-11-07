@@ -1,12 +1,12 @@
 from common.query import Query
 
 
-class DNSdumpster(Query):
+class DNSDumpster(Query):
     def __init__(self, domain):
         Query.__init__(self)
         self.domain = domain
         self.module = 'Dataset'
-        self.source = "DNSdumpsterQuery"
+        self.source = "DNSDumpsterQuery"
         self.addr = 'https://dnsdumpster.com/'
 
     def query(self):
@@ -21,7 +21,8 @@ class DNSdumpster(Query):
             return
         self.cookie = resp.cookies
         data = {'csrfmiddlewaretoken': self.cookie.get('csrftoken'),
-                'targetip': self.domain}
+                'targetip': self.domain,
+                'user':'free'}
         resp = self.post(self.addr, data)
         self.subdomains = self.collect_subdomains(resp)
 
@@ -43,10 +44,9 @@ def run(domain):
 
     :param str domain: 域名
     """
-    query = DNSdumpster(domain)
+    query = DNSDumpster(domain)
     query.run()
 
 
 if __name__ == '__main__':
-
-    run('example.com')
+    run('mi.com')

@@ -21,13 +21,14 @@ class Yahoo(Search):
         :param str domain: 域名
         :param str filtered_subdomain: 过滤的子域
         """
+        self.header = self.get_header()
+        self.proxy = self.get_proxy(self.source)
         resp = self.get(self.init)
         if not resp:
             return
         self.cookie = resp.cookies  # 获取cookie Yahoo在搜索时需要带上cookie
         while True:
             time.sleep(self.delay)
-            self.header = self.get_header()
             self.proxy = self.get_proxy(self.source)
             query = 'site:.' + domain + filtered_subdomain
             params = {'p': query, 'b': self.page_num, 'pz': self.per_page_num}

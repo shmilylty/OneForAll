@@ -7,6 +7,7 @@ from common import utils
 from common import resolve
 from common import request
 from common.module import Module
+from common.database import Database
 from config import settings
 from config.log import logger
 
@@ -25,16 +26,11 @@ class Finder(Module):
         new_subdomains = found_subdomains - existing_subdomains
         if not len(new_subdomains):
             self.finish()  # 未发现新的子域就直接返回
-            return data
         self.subdomains = new_subdomains
         self.finish()
         self.gen_result()
-        temp_data = resolve.run_resolve(domain, self.results)
-        fina_data = request.run_request(domain, temp_data, port)
-        data = data + fina_data
-        logger.log('INFOR', f'Saving finder results')
-        utils.save_db(domain, data, 'finder')
-        return data
+        resolved_data = resolve.run_resolve(domain, self.results)
+        request.run_request(domain, resolved_data, port)
 
 
 file_path = settings.data_storage_dir.joinpath('common_js_library.json')
@@ -177,22 +173,31 @@ def find_js_urls(domain, req_url, rsp_html):
     return js_urls
 
 
+def convert_to_dict(url_list):
+    url_dict = []
+    for url in url_list:
+        url_dict.append({'url': url})
+    return url_dict
+
 def find_subdomains(domain, data):
     subdomains = set()
     js_urls = set()
+    db = Database()
     for infos in data:
         jump_history = infos.get('history')
         req_url = infos.get('url')
         subdomains.update(find_in_history(domain, req_url, jump_history))
-        rsp_html = infos.get('response')
+        rsp_html = db.get_resp_by_url(domain, req_url)
         if not rsp_html:
             logger.log('DEBUG', f'an abnormal response occurred in the request {req_url}')
             continue
         subdomains.update(find_in_resp(domain, req_url, rsp_html))
         js_urls.update(find_js_urls(domain, req_url, rsp_html))
 
-    resp_data = request.bulk_request(js_urls)
-    for _, resp in resp_data:
+    req_data = convert_to_dict(js_urls)
+    resp_data = request.bulk_request(domain, req_data, ret=True)
+    while not resp_data.empty():
+        _, resp = resp_data.get()
         if not isinstance(resp, Response):
             continue
         text = utils.decode_resp_text(resp)

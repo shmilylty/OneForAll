@@ -5,7 +5,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/1287668a6b4c72af683e/maintainability)](https://codeclimate.com/github/shmilylty/OneForAll/maintainability)
 [![License](https://img.shields.io/github/license/shmilylty/OneForAll)](https://github.com/shmilylty/OneForAll/tree/master/LICENSE)
 [![python](https://img.shields.io/badge/python-3.6|3.7|3.8-blue)](https://github.com/shmilylty/OneForAll/tree/master/)
-[![python](https://img.shields.io/badge/release-v0.3.0-brightgreen)](https://github.com/shmilylty/OneForAll/releases)
+[![python](https://img.shields.io/badge/release-v0.4.3-brightgreen)](https://github.com/shmilylty/OneForAll/releases)
 
 👊**OneForAll是一款功能强大的子域收集工具**  📝[English Document](https://github.com/shmilylty/OneForAll/tree/master/docs/en-us/README.md)
 
@@ -88,7 +88,7 @@ config
 
 ```shell
 docker pull shmilylty/oneforall
-docker run -it --rm -v ~/results:/OneForAll/results -v ~/.config:/OneForAll/config oneforall --target example.com run
+docker run -it --rm -v ~/results:/OneForAll/results -v ~/.config:/OneForAll/config shmilylty/oneforall --target example.com run
 ```
 参数直接加在指令末尾，结果会输出在本地目录`~/results`，如需保存到其他位置，可以自行修改
 </details>
@@ -96,8 +96,6 @@ docker run -it --rm -v ~/results:/OneForAll/results -v ~/.config:/OneForAll/conf
 
 <details>
 <summary><b>✨使用演示</b></summary>
-
-如果你的主机不在中国，请把 [setting](https://github.com/shmilylty/OneForAll/blob/master/config/setting.py#L46) 中`brute_nameservers_path`选项的`cn_nameservers.txt`修改为`nameservers.txt`。
 
 如果你是通过pip3安装的依赖则使用以下命令运行示例：   
 ```bash
@@ -170,7 +168,7 @@ DESCRIPTION
         python3 oneforall.py --target example.com --valid None run
         python3 oneforall.py --target example.com --brute True run
         python3 oneforall.py --target example.com --port small run
-        python3 oneforall.py --target example.com --format csv run
+        python3 oneforall.py --target example.com --fmt csv run
         python3 oneforall.py --target example.com --dns False run
         python3 oneforall.py --target example.com --req False run
         python3 oneforall.py --target example.com --takeover False run
@@ -179,7 +177,7 @@ DESCRIPTION
     Note:
         参数alive可选值True，False分别表示导出存活，全部子域结果
         参数port可选值有'default', 'small', 'large', 详见config.py配置
-        参数format可选格式有 'csv','json'
+        参数fmt可选格式有 'csv','json'
         参数path默认None使用OneForAll结果目录生成路径
 
 ARGUMENTS
@@ -199,7 +197,7 @@ FLAGS
         请求验证子域的端口范围(默认只探测80端口)
     --valid=VALID
         只导出存活的子域结果(默认False)
-    --format=FORMAT
+    --fmt=FMT
         结果保存格式(默认csv)
     --path=PATH
         结果保存路径(默认None)
@@ -235,6 +233,8 @@ FLAGS
   7. 利用搜索引擎发现子域（目前有18个模块：`ask`, `baidu`, `bing`, `bing_api`, `duckduckgo`, `exalead`, `fofa_api`, `gitee`, `github`, `github_api`, `google`, `google_api`, `shodan_api`, `so`, `sogou`, `yahoo`, `yandex`, `zoomeye_api`），在搜索模块中除特殊搜索引擎，通用的搜索引擎都支持自动排除搜索，全量搜索，递归搜索。
 * **支持子域爆破**，该模块有常规的字典爆破，也有自定义的fuzz模式，支持批量爆破和递归爆破，自动判断泛解析并处理。
 * **支持子域验证**，默认开启子域验证，自动解析子域DNS，自动请求子域获取title和banner，并综合判断子域存活情况。
+* **支持子域爬取**，根据已有的子域，请求子域响应体以及响应体里的JS，从中再次发现新的子域。
+* **支持子域置换**，根据已有的子域，使用子域替换技术再次发现新的子域。
 * **支持子域接管**，默认开启子域接管风险检查，支持子域自动接管（目前只有Github，有待完善），支持批量检查。
 * **处理功能强大**，发现的子域结果支持自动去除，自动DNS解析，HTTP请求探测，自动筛选出有效子域，拓展子域的Banner信息，最终支持的导出格式有`txt`, `csv`, `json`。
 * **速度极快**，[收集模块](https://github.com/shmilylty/OneForAll/tree/master/collect.py)使用多线程调用，[爆破模块](https://github.com/shmilylty/OneForAll/tree/master/brute.py)使用[massdns](https://github.com/blechschmidt/massdns)，DNS解析速度每秒可解析350000以上个域名，子域验证中DNS解析和HTTP请求使用异步多协程，多线程检查[子域接管](https://github.com/shmilylty/OneForAll/tree/master/takeover.py)风险。
@@ -269,8 +269,6 @@ FLAGS
 ## ⌛后续计划
 
 - [ ] 各模块持续优化和完善
-- [x] 子域监控（标记每次新发现的子域）
-- [x] 子域收集爬虫实现（包括从JS等静态资源文件中收集子域）
 - [ ] 操作强大交互人性的前端界面实现
 
 更多信息请参阅[后续开发计划](https://github.com/shmilylty/OneForAll/tree/master/docs/todo.md)。
