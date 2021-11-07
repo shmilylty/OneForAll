@@ -11,7 +11,6 @@ class Gitee(Search):
         self.module = 'Search'
         self.addr = 'https://search.gitee.com/'
         self.domain = domain
-        self.header = self.get_header()
 
     def search(self):
         """
@@ -20,6 +19,8 @@ class Gitee(Search):
         page_num = 1
         while True:
             time.sleep(self.delay)
+            self.header = self.get_header()
+            self.proxy = self.get_proxy(self.source)
             params = {'pageno': page_num, 'q': self.domain, 'type': 'code'}
             try:
                 resp = self.get(self.addr, params=params)

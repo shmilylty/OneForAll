@@ -8,6 +8,31 @@ OneForAll遵守[语义化版本格式](https://semver.org/)。
 # Unreleased
 
 # Released
+## [0.4.3](https://github.com/shmilylty/oneforall/releases/tag/v0.4.3) - 2020-11-29
+- 修复了已知问题
+- 更新了文档
+
+## [0.4.2](https://github.com/shmilylty/oneforall/releases/tag/v0.4.2) - 2020-11-23
+- 添加了数据表初始化处理流程，修复了#163中出现的问题。
+
+## [0.4.1](https://github.com/shmilylty/oneforall/releases/tag/v0.4.1) - 2020-11-18
+- 修复了数字开头主域（如58.com）出现数据库报错的问题
+
+## [0.4.0](https://github.com/shmilylty/oneforall/releases/tag/v0.4.0) - 2020-11-18
+- 重构了子域请求模块，解决了内存占用过大问题
+- 新增了子域置换模块，能从现有的子域发现更多新子域
+- 新增了数据富化模块，富化出更多有用的信息
+- 新增了finder模块，能从响应体和JS及跳转历史收集子域
+- 重构了泛解析探测，泛解析探测更加准确
+- 实现了配置插拔式设计
+- 实现了版本更新检查、运行环境检查、网络环境检查
+- 优化了子域爆破模块
+- 优化了泛解析处理
+- 优化了子域字典
+- 删除和优化了部分收集模块
+- 修复了一些反馈的bug
+- 更新了文档
+
 ## [0.3.0](https://github.com/shmilylty/oneforall/releases/tag/v0.3.0) - 2020-05-13
 - 重构了项目目录结构
 - 修改了输出显示为英文

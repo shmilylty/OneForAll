@@ -245,5 +245,10 @@
         "name":"readme",
         "cname":["readme.io"],
         "response":["Project doesnt exist... yet!"]
+    },
+    {
+        "name":"alibaba_oss",
+        "cname":["aliyuncs.com"],
+        "response":["NoSuchBucket", "The specified bucket does not exist."]
     }
 ]

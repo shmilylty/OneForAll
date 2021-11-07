@@ -36,7 +36,7 @@ A clear and concise description of the actual results (optional, such as any err
 Screenshot of complete OneForAll execution process (recommended upload)
 
 **Log upload**
-Upload oneforall.log log files (it is recommended to upload logs in case of complex problems)
+Upload oneforall.log files (it is recommended to upload logs in case of complex problems)
 
 **Supplementary information**
 Some other supplementary notes about bug
