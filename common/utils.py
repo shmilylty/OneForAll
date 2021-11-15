@@ -605,6 +605,9 @@ def get_massdns_path(massdns_dir):
     system = platform.system().lower()
     machine = platform.machine().lower()
     name = f'massdns_{system}_{machine}'
+    # 表示是mac m1
+    if name == f"massdns_darwin_arm64":
+        name = f"massdns_darwin_x86_64"
     if system == 'windows':
         name = f'massdns.exe'
         if machine == 'amd64':
