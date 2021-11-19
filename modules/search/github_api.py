@@ -23,6 +23,8 @@ class GithubAPI(Search):
         self.proxy = self.get_proxy(self.source)
         self.header.update(
             {'Accept': 'application/vnd.github.v3.text-match+json'})
+        self.header.update(
+            {'Authorization': 'token ' + self.token})
 
         page = 1
         while True:
