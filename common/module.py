@@ -1,10 +1,10 @@
 """
 Module base class
 """
-
 import json
 import threading
 import time
+import functools
 
 import requests
 from config.log import logger
@@ -13,6 +13,26 @@ from common import utils
 from common.database import Database
 
 lock = threading.Lock()
+
+
+def webhook_decorator(*, webhook_url, enable=False):
+    """
+    webhook的装饰器
+    """
+
+    def decorator(f):
+        @functools.wraps(f)
+        def wrapper(self):
+            if not enable:
+                return wrapper
+            f(self)
+            session = requests.Session()
+            for _result in self.results:
+                session.post(webhook_url, data=_result, verify=False)
+
+        return wrapper
+
+    return decorator
 
 
 class Module(object):
@@ -264,6 +284,7 @@ class Module(object):
             json.dump(result, file, ensure_ascii=False, indent=4)
         return True
 
+    @webhook_decorator(webhook_url=settings.webhook_url, enable=settings.enable_webhook)
     def gen_result(self):
         """
         Generate results
@@ -367,3 +388,4 @@ class Module(object):
         db.save_db(self.domain, self.results, self.source)
         db.close()
         lock.release()
+

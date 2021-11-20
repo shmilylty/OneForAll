@@ -98,3 +98,7 @@ enable_random_ua = True  # 使用随机UA(默认True，开启可以覆盖request
 # 搜索模块设置
 enable_recursive_search = False  # 递归搜索子域
 search_recursive_times = 2  # 递归搜索层数
+
+# webhook
+enable_webhook = False  # 默认False
+webhook_url = "http://127.0.0.1:8888"  # webhook，支持解析post form的API
