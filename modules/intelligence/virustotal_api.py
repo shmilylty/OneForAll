@@ -28,6 +28,8 @@ class VirusTotalAPI(Query):
             self.subdomains.update(subdomains)
             data = resp.json()
             next_cursor = data.get('meta').get('cursor')
+            if not next_cursor:
+                break
 
     def run(self):
         """
