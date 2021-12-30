@@ -8,7 +8,7 @@ class RiskIQ(Query):
         self.domain = domain
         self.module = 'Intelligence'
         self.source = 'RiskIQAPIQuery'
-        self.addr = 'https://api.passivetotal.org/v2/enrichment/subdomains'
+        self.addr = 'https://api.riskiq.net/pt/v2/enrichment/subdomains'
         self.user = settings.riskiq_api_username
         self.key = settings.riskiq_api_key
 
@@ -17,6 +17,7 @@ class RiskIQ(Query):
         向接口查询子域并做子域匹配
         """
         self.header = self.get_header()
+        self.header.update({'Accept': 'application/json'})
         self.proxy = self.get_proxy(self.source)
         params = {'query': self.domain}
         resp = self.get(url=self.addr,
