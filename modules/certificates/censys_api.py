@@ -9,7 +9,7 @@ class CensysAPI(Query):
         self.domain = domain
         self.module = 'Certificate'
         self.source = "CensysAPIQuery"
-        self.addr = 'https://www.censys.io/api/v1/search/certificates'
+        self.addr = 'https://search.censys.io/api/v1/search/certificates'
         self.id = settings.censys_api_id
         self.secret = settings.censys_api_secret
         self.delay = 3.0  # Censys 接口查询速率限制 最快2.5秒查1次

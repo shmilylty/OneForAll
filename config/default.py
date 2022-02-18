@@ -240,3 +240,9 @@ github_api_token = ''
 
 # obtain Cloudflare API key from https://dash.cloudflare.com/profile/api-tokens
 cloudflare_api_token = ''
+
+# https://hunter.qianxin.com/home/userInfo
+hunter_api_key = ''
+
+# https://api-docs.fullhunt.io/
+fullhunt_api_key = ''

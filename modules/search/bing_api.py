@@ -9,7 +9,7 @@ class BingAPI(Search):
         self.domain = domain
         self.module = 'Search'
         self.source = 'BingAPISearch'
-        self.addr = 'https://api.cognitive.microsoft.com/bing/v7.0/search'
+        self.addr = 'https://api.bing.microsoft.com/v7.0/search'
         self.id = settings.bing_api_id
         self.key = settings.bing_api_key
         self.limit_num = 1000  # 必应同一个搜索关键词限制搜索条数
