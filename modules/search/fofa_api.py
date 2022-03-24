@@ -11,7 +11,7 @@ class FoFa(Search):
         self.domain = domain
         self.module = 'Search'
         self.source = 'FoFaAPISearch'
-        self.addr = 'https://fofa.so/api/v1/search/all'
+        self.addr = 'https://fofa.info/api/v1/search/all'
         self.delay = 1
         self.email = settings.fofa_api_email
         self.key = settings.fofa_api_key
