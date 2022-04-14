@@ -25,11 +25,6 @@
         "response":["Sorry, this shop is currently unavailable.", "Only one step left!"]
     },
     {
-        "name":"instapage",
-        "cname":["pageserve.co", "secure.pageserve.co", "https://instapage.com/"],
-        "response":["Looks Like You're Lost","The page you're looking for is no longer available."]
-    },
-    {
         "name":"desk",
         "cname":["desk.com"],
         "response":["Please try again or try Desk.com free for 14 days.", "Sorry, We Couldn't Find That Page"]
