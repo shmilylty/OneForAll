@@ -130,11 +130,11 @@ def get_wildcard_record(domain, resolver):
                         f"in authoritative name server")
     try:
         answer = resolver.query(domain, 'A')
-    # 如果查询随机域名A记录时抛出Timeout异常则重新查询
+
     except Timeout as e:
         logger.log('ALERT', f'Query timeout, retrying')
         logger.log('DEBUG', e.args)
-        raise e
+        return None, None
     except (NXDOMAIN, YXDOMAIN, NoAnswer, NoNameservers) as e:
         logger.log('DEBUG', e.args)
         logger.log('DEBUG', f'{domain} dont have A record on authoritative name server')
