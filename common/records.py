@@ -230,7 +230,7 @@ class RecordCollection(object):
 
         # Ensure that we don't have more than one row.
         try:
-            self[1]
+            return self[1]
         except IndexError:
             return self.first(default=default, as_dict=as_dict,
                               as_ordereddict=as_ordereddict)
