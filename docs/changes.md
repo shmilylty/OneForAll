@@ -8,6 +8,9 @@ OneForAll遵守[语义化版本格式](https://semver.org/)。
 # Unreleased
 
 # Released
+## [0.4.5](https://github.com/shmilylty/oneforall/releases/tag/v0.4.5) - 2022-07-10
+- 修复了#254
+
 ## [0.4.4](https://github.com/shmilylty/oneforall/releases/tag/v0.4.4) - 2022-07-03
 - 修复了多个已知问题
 - 添加了多个查询接口
