@@ -7,6 +7,9 @@ censys_api_secret = ''
 # 免费的API有效期只有1个月，到期之后可以再次生成，每月可以查询250次。
 binaryedge_api = ''
 
+# BeVigil API: https://bevigil.com/osint-api
+bevigil_api = ''
+
 # Chinaz可以免费注册获取API：http://api.chinaz.com/ApiDetails/Alexa
 chinaz_api = ''
 
