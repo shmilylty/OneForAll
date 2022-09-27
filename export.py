@@ -60,6 +60,8 @@ def do_export(fmt, path, rows, show, domain, target):
     if show:
         print(rows.dataset)
     data = rows.export(fmt)
+    if fmt == 'csv':
+        data = '\ufeff' + data
     utils.save_to_file(path, data)
     logger.log('ALERT', f'The subdomain result for {domain}: {path}')
     data = rows.as_dict()
