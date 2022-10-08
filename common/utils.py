@@ -330,6 +330,8 @@ def export_all_results(path, name, fmt, datas):
         row_list.append(Record(keys, values))
     rows = RecordCollection(iter(row_list))
     content = rows.export(fmt)
+    if fmt == 'csv':
+        content = '\ufeff' + content
     save_to_file(path, content)
 
 
