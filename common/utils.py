@@ -497,28 +497,35 @@ def delete_file(*paths):
 @tenacity.retry(stop=tenacity.stop_after_attempt(3),
                 wait=tenacity.wait_fixed(2))
 def check_net():
-    urls = ['http://ip-api.com/json/']
-    url = random.choice(urls)
-    header = {'User_Agent': 'curl'}
-    timeout = settings.request_timeout_second
-    verify = settings.request_ssl_verify
-    logger.log('DEBUG', f'Trying to access {url}')
-    session = requests.Session()
-    session.trust_env = False
-    try:
-        rsp = session.get(url, headers=header, timeout=timeout, verify=verify)
-    except Exception as e:
-        logger.log('ERROR', e.args)
-        logger.log('ALERT', 'Unable to access Internet, retrying...')
-        raise e
-    logger.log('DEBUG', 'Access to Internet OK')
-    country = rsp.json().get('country').lower()
-    if country in ['cn', 'china']:
-        logger.log('DEBUG', f'The computer is located in China')
-        return True, True
-    else:
-        logger.log('DEBUG', f'The computer is not located in China')
-        return True, False
+    times = 0
+    while True:
+        times += 1
+        urls = ['https://www.baidu.com', 'https://www.bing.com',
+                'https://www.cloudflare.com', 'https://www.akamai.com/',
+                'https://www.fastly.com/', 'https://www.amazon.com/']
+        url = random.choice(urls)
+        logger.log('DEBUG', f'Trying to access {url}')
+        header = get_random_header()
+        proxy = get_proxy()
+        timeout = settings.request_timeout_second
+        verify = settings.request_ssl_verify
+        session = requests.Session()
+        session.trust_env = False
+        session = requests.Session()
+        session.trust_env = False
+        try:
+            rsp = session.get(url, headers=header, proxies=proxy,
+                              timeout=timeout, verify=verify)
+        except Exception as e:
+            logger.log('ERROR', e.args)
+            logger.log('ALERT', f'Unable to access Internet, retrying for the {times}th time')
+        else:
+            if rsp.status_code == 200:
+                logger.log('DEBUG', 'Access to Internet OK')
+                return True
+        if times >= 3:
+            logger.log('ALERT', 'Access to Internet failed')
+            return False
 
 
 def check_dep():
@@ -540,7 +547,7 @@ def get_net_env():
     except Exception as e:
         logger.log('DEBUG', e.args)
         logger.log('ALERT', 'Please check your network environment.')
-        return False, None
+        return False
     return result
 
 

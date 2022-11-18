@@ -98,7 +98,6 @@ class OneForAll(object):
         self.domains = set()  # All domains that are to be collected
         self.data = list()  # The subdomain results of the current domain
         self.datas = list()  # All subdomain results of the domain
-        self.in_china = None
         self.access_internet = False
         self.enable_wildcard = False
 
@@ -166,7 +165,6 @@ class OneForAll(object):
             # may cause other network tasks to be error
             brute = Brute(self.domain, word=True, export=False)
             brute.enable_wildcard = self.enable_wildcard
-            brute.in_china = self.in_china
             brute.quite = True
             brute.run()
 
@@ -237,7 +235,7 @@ class OneForAll(object):
         logger.log('DEBUG', 'Python ' + utils.python_version())
         logger.log('DEBUG', 'OneForAll ' + version)
         utils.check_dep()
-        self.access_internet, self.in_china = utils.get_net_env()
+        self.access_internet = utils.get_net_env()
         if self.access_internet and settings.enable_check_version:
             utils.check_version(version)
         logger.log('INFOR', 'Start running OneForAll')

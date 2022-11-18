@@ -10,6 +10,7 @@ relative_directory = pathlib.Path(__file__).parent.parent  # OneForAll代码相�
 data_storage_dir = relative_directory.joinpath('data')  # 数据存放目录
 
 # OneForAll入口参数设置
+enable_check_network = True  # 开启网络环境检查
 enable_check_version = True  # 开启最新版本检查
 enable_brute_module = True  # 使用爆破模块(默认True)
 enable_dns_resolve = True  # 使用DNS解析子域(默认True)
@@ -38,6 +39,7 @@ enable_partial_module = []  # 启用部分收集模块 必须禁用enable_all_mo
 brute_concurrent_num = 2000  # 爆破时并发查询数量(默认2000，最大推荐10000)
 # 爆破所使用的字典路径(默认None则使用data/subdomains.txt，自定义字典请使用绝对路径)
 brute_wordlist_path = None
+use_china_nameservers = True  # 使用中国域名服务器 如果你所在网络不在中国则建议设置False
 enable_recursive_brute = False  # 是否使用递归爆破(默认False)
 brute_recursive_depth = 2  # 递归爆破深度(默认2层)
 # 爆破下一层子域所使用的字典路径(默认None则使用data/subnames_next.txt，自定义字典请使用绝对路径)

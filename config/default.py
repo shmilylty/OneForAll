@@ -18,6 +18,7 @@ result_save_dir = relative_directory.joinpath('results')  # 结果保存目录
 temp_save_dir = result_save_dir.joinpath('temp')
 
 # OneForAll入口参数设置
+enable_check_network = True  # 开启网络环境检查
 enable_check_version = True  # 开启最新版本检查
 enable_brute_module = True  # 使用爆破模块(默认True)
 enable_dns_resolve = True  # 使用DNS解析子域(默认True)
@@ -54,6 +55,7 @@ brute_socket_num = 1  # 爆破时每个进程下的socket数量
 brute_resolve_num = 15  # 解析失败时尝试换名称服务器重查次数
 # 爆破所使用的字典路径(默认None则使用data/subdomains.txt，自定义字典请使用绝对路径)
 brute_wordlist_path = None
+use_china_nameservers = True  # 使用中国域名服务器 如果你所在网络不在中国则建议设置False
 # 域名的权威DNS名称服务器的保存路径 当域名开启了泛解析时会使用该名称服务器来进行A记录查询
 authoritative_dns_path = data_storage_dir.joinpath('authoritative_dns.txt')
 enable_recursive_brute = False  # 是否使用递归爆破(默认False)
