@@ -124,7 +124,6 @@ def detect_wildcard(domain):
     return is_enable
 
 
-@tenacity.retry(stop=tenacity.stop_after_attempt(2))
 def get_wildcard_record(domain, resolver):
     logger.log('INFOR', f"Query {domain} 's wildcard dns record "
                         f"in authoritative name server")
@@ -166,7 +165,6 @@ def collect_wildcard_record(domain, authoritative_ns):
     resolver.cache = None  # 不使用DNS缓存
     ips = set()
     ttl = int()
-    ttls_check = list()
     ips_stat = dict()
     ips_check = list()
     while True:
@@ -178,21 +176,20 @@ def collect_wildcard_record(domain, authoritative_ns):
             logger.log('DEBUG', e.args)
             logger.log('ALERT', f'Multiple query errors,'
                                 f'try to query a new random subdomain')
-            continue
-        # 每5次查询检查结果列表 如果都没结果则结束查询
+            # 查询出错退出循环
+            break
+        # 每5次连续查询后检查结果列表
         ips_check.append(ip)
-        ttls_check.append(ttl)
+        # 如果出现50个以上的泛解析则结束查询
+        if len(ips) >= 50:
+            break
+        # 如果连续5次查询都没结果则结束查询
         if len(ips_check) == 5:
             if not any(ips_check):
                 logger.log('ALERT', 'The query ends because there are '
                                     'no results for 5 consecutive queries.')
                 break
             ips_check = list()
-        if len(ttls_check) == 5 and len(set(ttls_check)) == 5:
-            logger.log('ALERT', 'The query ends because there are '
-                                '5 different TTL results for 5 consecutive queries.')
-            ips, ttl = set(), int()
-            break
         if ip is None:
             continue
         ips.update(ip)
@@ -206,7 +203,7 @@ def collect_wildcard_record(domain, authoritative_ns):
             if times >= 2:
                 addrs.append(addr)
         # 大部分的IP地址出现次数大于2次停止收集泛解析IP记录
-        if len(addrs) / len(ips) >= 0.8:
+        if len(addrs) / len(ips) >= 0.7:
             break
     logger.log('DEBUG', f'Collected the wildcard dns record of {domain}\n{ips}\n{ttl}')
     return ips, ttl
