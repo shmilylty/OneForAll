@@ -342,7 +342,6 @@ class Brute(Module):
         self.ips_times = dict()  # IP集合出现次数
         self.enable_wildcard = None  # 当前域名是否使用泛解析
         self.quite = False
-        self.in_china = None
 
     def gen_brute_dict(self, domain):
         logger.log('INFOR', f'Generating dictionary for {domain}')
@@ -425,7 +424,7 @@ class Brute(Module):
 
         if self.enable_wildcard:
             wildcard_ips, wildcard_ttl = wildcard.collect_wildcard_record(domain, ns_ip_list)
-        ns_path = utils.get_ns_path(self.in_china, self.enable_wildcard, ns_ip_list)
+        ns_path = utils.get_ns_path(settings.use_china_nameservers, self.enable_wildcard, ns_ip_list)
 
         dict_set = self.gen_brute_dict(domain)
 
@@ -459,8 +458,6 @@ class Brute(Module):
 
     def run(self):
         logger.log('INFOR', f'Start running {self.source} module')
-        if self.in_china is None:
-            _, self.in_china = utils.get_net_env()
         self.domains = utils.get_domains(self.target, self.targets)
         for self.domain in self.domains:
             self.results = list()  # 置空
