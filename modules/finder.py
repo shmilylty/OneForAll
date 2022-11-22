@@ -179,6 +179,7 @@ def convert_to_dict(url_list):
         url_dict.append({'url': url})
     return url_dict
 
+
 def find_subdomains(domain, data):
     subdomains = set()
     js_urls = set()
