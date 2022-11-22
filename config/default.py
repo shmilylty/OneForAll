@@ -215,8 +215,7 @@ threatbook_api_key = ''
 virustotal_api_key = ''
 
 # https://www.zoomeye.org/doc?channel=api
-zoomeye_api_usermail = ''
-zoomeye_api_password = ''
+zoomeye_api_key = ''
 
 # Spyse可以免费注册获取API: https://spyse.com/
 spyse_api_token = ''

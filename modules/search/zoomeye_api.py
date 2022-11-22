@@ -1,7 +1,6 @@
 import time
 from config import settings
 from common.search import Search
-from config.log import logger
 
 
 class ZoomEyeAPI(Search):
@@ -10,59 +9,47 @@ class ZoomEyeAPI(Search):
         self.domain = domain
         self.module = 'Search'
         self.source = 'ZoomEyeAPISearch'
-        self.addr = 'https://api.zoomeye.org/web/search'
+        self.addr = 'https://api.zoomeye.org/domain/search'
         self.delay = 2
-        self.user = settings.zoomeye_api_usermail
-        self.pwd = settings.zoomeye_api_password
-
-    def login(self):
-        """
-        登陆获取查询taken
-        """
-        url = 'https://api.zoomeye.org/user/login'
-        data = {'username': self.user, 'password': self.pwd}
-        resp = self.post(url=url, json=data)
-        if not resp:
-            logger.log('ALERT', f'{self.source} module login failed')
-            return None
-        data = resp.json()
-        if resp.status_code == 200:
-            logger.log('DEBUG', f'{self.source} module login success')
-            return data.get('access_token')
-        else:
-            logger.log('ALERT', data.get('message'))
-            return None
+        self.key = settings.zoomeye_api_key
 
     def search(self):
         """
         发送搜索请求并做子域匹配
         """
-        page_num = 1
-        access_token = self.login()
-        if not access_token:
-            return
+        self.per_page_num = 30
+        self.page_num = 1
         while True:
             time.sleep(self.delay)
             self.header = self.get_header()
+            self.header.update({'API-KEY': self.key})
             self.proxy = self.get_proxy(self.source)
-            self.header.update({'Authorization': 'JWT ' + access_token})
-            params = {'query': 'hostname:' + self.domain, 'page': page_num}
+
+            params = {'q': self.domain,
+                      'page': self.page_num,
+                      'type': 1}
             resp = self.get(self.addr, params)
+            if not resp:
+                return
+            if resp.status_code == 403:
+                break
+            resp_json = resp.json()
             subdomains = self.match_subdomains(resp)
             if not subdomains:  # 搜索没有发现子域名则停止搜索
                 break
             self.subdomains.update(subdomains)
-            page_num += 1
-            if page_num > 500:
+            total = resp_json.get('total')
+            self.page_num += 1
+            if self.page_num * self.per_page_num >= int(total):
                 break
-            if resp.status_code == 403:
+            if self.page_num > 400:
                 break
 
     def run(self):
         """
         类执行入口
         """
-        if not self.have_api(self.user, self.pwd):
+        if not self.have_api(self.key):
             return
         self.begin()
         self.search()
@@ -83,4 +70,4 @@ def run(domain):
 
 
 if __name__ == '__main__':
-    run('mi.com')
+    run('zhipin.com')
