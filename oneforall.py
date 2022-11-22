@@ -68,7 +68,7 @@ class OneForAll(object):
 
     Note:
         --port   small/medium/large  See details in ./config/setting.py(default small)
-        --fmt csv/json (result format)
+        --fmt    csv/json (result format)
         --path   Result path (default None, automatically generated)
 
     :param str  target:     One domain (target or targets must be provided)
