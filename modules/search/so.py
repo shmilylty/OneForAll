@@ -72,4 +72,4 @@ def run(domain):
 
 
 if __name__ == '__main__':
-    run('example.com')
+    run('mi.com')
