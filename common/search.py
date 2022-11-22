@@ -69,8 +69,9 @@ class Search(Module):
     def recursive_subdomain(self):
         # 递归搜索下一层的子域
         # 从1开始是之前已经做过1层子域搜索了,当前实际递归层数是layer+1
+        subdomains = self.subdomains.copy()
         for layer_num in range(1, self.recursive_times):
-            for subdomain in self.subdomains:
+            for subdomain in subdomains:
                 # 进行下一层子域搜索的限制条件
                 count = subdomain.count('.') - self.domain.count('.')
                 if count == layer_num:
