@@ -15,6 +15,7 @@ class Crtsh(Query):
         """
         self.header = self.get_header()
         self.proxy = self.get_proxy(self.source)
+        self.timeout = 90
         params = {'q': f'%.{self.domain}', 'output': 'json'}
         resp = self.get(self.addr, params)
         if not resp:
@@ -46,4 +47,4 @@ def run(domain):
 
 
 if __name__ == '__main__':
-    run('example.com')
+    run('huawei.com')
