@@ -86,3 +86,6 @@ fullhunt_api_key = ''
 
 # 登录quake之后可在个人中心获取key https://quake.360.net/quake/#/personal?tab=message
 quake_api_key = ''
+
+#https://www.racent.com/ctlog F2>Network抓包获取Token
+racent_api_token = ''
