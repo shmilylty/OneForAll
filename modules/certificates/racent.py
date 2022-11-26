@@ -2,7 +2,7 @@ from config import settings
 from common.query import Query
 
 
-class DatasetApi(Query):
+class Racent(Query):
     def __init__(self, domain):
         Query.__init__(self)
         self.domain = domain
@@ -18,7 +18,6 @@ class DatasetApi(Query):
         self.header = self.get_header()
         self.proxy = self.get_proxy(self.source)
         params = {'token': self.api, 'keyword': self.domain}
-        print(self.addr, params)
         resp = self.get(self.addr, params)
         self.subdomains = self.collect_subdomains(resp)
 
@@ -42,7 +41,7 @@ def run(domain):
 
     :param str domain: 域名
     """
-    query = DatasetApi(domain)
+    query = Racent(domain)
     query.run()
 
 
