@@ -7,7 +7,7 @@ class Racent(Query):
         Query.__init__(self)
         self.domain = domain
         self.module = 'Certificate'
-        self.source = 'Racent'
+        self.source = 'RacentQuery'
         self.addr = 'https://face.racent.com/tool/query_ctlog'
         self.api = settings.racent_api_token
 

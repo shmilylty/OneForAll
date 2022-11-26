@@ -6,8 +6,7 @@ class Dnsgrep(Query):
         Query.__init__(self)
         self.domain = domain
         self.module = 'Dataset'
-        self.source = 'Dnsgrep'
-        self.addr = 'https://www.dnsgrep.cn/subdomain/{domain}'
+        self.source = 'DnsgrepQuery'
 
     def query(self):
         """
@@ -15,8 +14,8 @@ class Dnsgrep(Query):
         """
         self.header = self.get_header()
         self.proxy = self.get_proxy(self.source)
-        self.addr = self.addr.format(domain=self.domain)
-        resp = self.get(self.addr)
+        url = 'https://www.dnsgrep.cn/subdomain/' + self.domain
+        resp = self.get(url)
         self.subdomains = self.collect_subdomains(resp)
 
     def run(self):
