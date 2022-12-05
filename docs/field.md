@@ -60,7 +60,7 @@ HTTP响应的状态码
 
 网络连接情况及详情
 
-###title
+### title
 
 网站标题
 
@@ -69,9 +69,11 @@ HTTP响应的状态码
 网站指纹信息
 
 ### history
+
 请求时URL跳转历史
 
 ### response
+
 响应体文本内容
 
 ### times
