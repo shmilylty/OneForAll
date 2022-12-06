@@ -6,7 +6,7 @@ from common import records
 
 from common.records import Connection
 from config.log import logger
-from config import setting
+from config import settings
 
 
 class Database(object):
