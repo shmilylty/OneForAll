@@ -29,4 +29,4 @@ jobs:
         password: ${{ secrets.DOCKER_HUB_PASS }}
     
     - name: Build the Docker image
-      run: docker buildx build --push --platform linux/amd64,linux/arm64,linux/i386 -t tardis07/oneforall:latest .
+      run: docker buildx build --push --platform linux/amd64,linux/arm64 -t tardis07/oneforall:latest .
