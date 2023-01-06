@@ -1,4 +1,4 @@
-FROM python:3.8-alpine3.10
+FROM --platform=$TARGETPLATFORM python:3.8-alpine3.10
 MAINTAINER milktea@vmoe.info
 
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
@@ -10,7 +10,7 @@ RUN git clone https://github.com/blechschmidt/massdns
 WORKDIR /massdns
 RUN make 
 ADD . /OneForAll/
-RUN mv /massdns/bin/massdns /OneForAll/thirdparty/massdns/massdns_linux_x86_64
+RUN mv /massdns/bin/massdns /OneForAll/thirdparty/massdns/massdns_linux_$(uname -m)
 RUN mkdir /OneForAll/results
 WORKDIR /OneForAll/
 
