@@ -424,6 +424,9 @@ class Brute(Module):
 
         if self.enable_wildcard:
             wildcard_ips, wildcard_ttl = wildcard.collect_wildcard_record(domain, ns_ip_list)
+            
+        if 'use_china_nameservers' not in dir(settings): 
+            settings.use_china_nameservers=None
         ns_path = utils.get_ns_path(settings.use_china_nameservers, self.enable_wildcard, ns_ip_list)
 
         dict_set = self.gen_brute_dict(domain)
