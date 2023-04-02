@@ -1,4 +1,6 @@
 from common.query import Query
+import json
+import os
 
 
 class Crtsh(Query):
@@ -21,7 +23,40 @@ class Crtsh(Query):
         if not resp:
             return
         text = resp.text.replace(r'\n', ' ')
+        """
+        * > altdns
+        """
+        subDomains = set()
+        try:
+            jsonData = json.loads(text)
+        except Exception as e:
+            pass
+        for i in range(len(jsonData)):
+            try:
+                name_value = str(jsonData[i]['name_value'])
+            except Exception as e:
+                pass
+            if '*' in name_value:
+                try:
+                    if 'certificates' in os.path.dirname(os.path.abspath(__file__)):
+                        dictFile = open("../../data/altdns_wordlist.txt", "r", encoding='utf8')
+                    else:
+                        dictFile = open("./data/altdns_wordlist.txt", "r", encoding='utf8')
+                    for line in dictFile.readlines():
+                        altdns = line.strip()
+                        result = name_value.replace('*', altdns)
+                        if self.domain in result:
+                            subDomains.add(result)
+                except Exception as e:
+                    pass
+        if len(subDomains) > 0:
+            for x in subDomains:
+                text = text + ',' + x + ','
+        """
+        * > altdns end
+        """
         subdomains = self.match_subdomains(text)
+        print(subdomains)
         self.subdomains.update(subdomains)
 
     def run(self):
@@ -47,4 +82,4 @@ def run(domain):
 
 
 if __name__ == '__main__':
-    run('huawei.com')
+    run('163.com')
