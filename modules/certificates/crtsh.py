@@ -56,7 +56,6 @@ class Crtsh(Query):
         * > altdns end
         """
         subdomains = self.match_subdomains(text)
-        print(subdomains)
         self.subdomains.update(subdomains)
 
     def run(self):
