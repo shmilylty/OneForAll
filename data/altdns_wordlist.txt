@@ -655,6 +655,10 @@ restful-gateway
 grafana-dashboard
 kylin-system-cube
 grafana-management
+apollo
+apolloconfig
+apolloadmin
+apolloservice
 ws
 lucene
 beam
@@ -979,3 +983,4 @@ cotton
 kie
 android
 infratest
+zabbix
