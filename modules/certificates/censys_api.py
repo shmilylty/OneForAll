@@ -9,7 +9,7 @@ class CensysAPI(Query):
         self.domain = domain
         self.module = 'Certificate'
         self.source = "CensysAPIQuery"
-        self.addr = 'https://search.censys.io/api/v1/search/certificates'
+        self.addr = 'https://search.censys.io/api/v2/certificates/search'
         self.id = settings.censys_api_id
         self.secret = settings.censys_api_secret
         self.delay = 3.0  # Censys 接口查询速率限制 最快2.5秒查1次
@@ -20,26 +20,30 @@ class CensysAPI(Query):
         """
         self.header = self.get_header()
         self.proxy = self.get_proxy(self.source)
-        data = {
-            'query': f'parsed.names: {self.domain}',
-            'page': 1,
-            'fields': ['parsed.subject_dn', 'parsed.names'],
-            'flatten': True}
-        resp = self.post(self.addr, json=data, auth=(self.id, self.secret))
+        params = {
+            'q': f'names: {self.domain}',
+            'per_page': 100,
+        }
+        resp = self.get(self.addr, params=params, auth=(self.id, self.secret))
         if not resp:
             return
         json = resp.json()
         status = json.get('status')
-        if status != 'ok':
+        if status != 'OK':
             logger.log('ALERT', f'{self.source} module {status}')
             return
         subdomains = self.match_subdomains(resp.text)
         self.subdomains.update(subdomains)
-        pages = json.get('metadata').get('pages')
-        for page in range(2, pages + 1):
-            data['page'] = page
-            resp = self.post(self.addr, json=data, auth=(self.id, self.secret))
-            self.subdomains = self.collect_subdomains(resp)
+        next_cursor = json.get("result").get("links").get("next")
+        while next_cursor:
+            tmp_params = {
+                'q': f'names: {self.domain}',
+                'per_page': 100,
+                "cursor": next_cursor
+            }
+            tmp_resp = self.get(self.addr, params=tmp_params, auth=(self.id, self.secret))
+            self.subdomains = self.collect_subdomains(tmp_resp)
+            next_cursor = tmp_resp.json().get("result").get("links").get("next")
 
     def run(self):
         """
