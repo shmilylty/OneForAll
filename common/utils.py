@@ -10,7 +10,7 @@ import platform
 import subprocess
 from urllib.parse import scheme_chars
 from ipaddress import IPv4Address, ip_address
-from distutils.version import LooseVersion
+from looseversion import LooseVersion
 from pathlib import Path
 from stat import S_IXUSR
 
