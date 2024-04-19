@@ -7,7 +7,7 @@ class QueryMX(Lookup):
         self.domain = domain
         self.module = 'dnsquery'
         self.source = "QueryMX"
-        self.type = 'MX'  # 利用的DNS记录的MX记录收集子域
+        self.qtype = 'MX'  # 利用的DNS记录的MX记录收集子域
 
     def run(self):
         """
