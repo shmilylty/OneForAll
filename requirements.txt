@@ -1,6 +1,6 @@
 beautifulsoup4==4.11.1
 bs4==0.0.1
-certifi==2022.06.15
+certifi==2023.7.22
 chardet==5.0.0
 colorama==0.4.4
 dnspython==2.2.1
