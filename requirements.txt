@@ -4,7 +4,6 @@ certifi==2022.06.15
 chardet==5.0.0
 colorama==0.4.4
 dnspython==2.2.1
-exrex==0.10.5
 fire==0.4.0
 future==0.18.2
 idna==3.3
@@ -20,3 +19,6 @@ tqdm==4.64.0
 treelib==1.6.1
 urllib3==1.26.9
 win32-setctime==1.1.0
+looseversion
+exrex
+
