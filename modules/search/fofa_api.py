@@ -23,7 +23,7 @@ class FoFa(Search):
         self.page_num = 1
         subdomain_encode = f'domain="{self.domain}"'.encode('utf-8')
         query_data = base64.b64encode(subdomain_encode)
-        while True:
+        while 100 * self.page_num < settings.cam_records_maximum_per_domain:
             time.sleep(self.delay)
             self.header = self.get_header()
             self.proxy = self.get_proxy(self.source)
@@ -32,7 +32,7 @@ class FoFa(Search):
                      'qbase64': query_data,
                      'page': self.page_num,
                      'full': 'true',
-                     'size': 1000}
+                     'size': min(1000, settings.cam_records_maximum_per_domain)}
             resp = self.get(self.addr, query)
             if not resp:
                 return
@@ -42,7 +42,7 @@ class FoFa(Search):
                 break
             self.subdomains.update(subdomains)
             size = resp_json.get('size')
-            if size < 1000:
+            if size < min(1000, settings.cam_records_maximum_per_domain):
                 break
             self.page_num += 1
 

@@ -22,7 +22,7 @@ class Hunter(Search):
         self.page_num = 1
         subdomain_encode = f'domain_suffix="{self.domain}"'.encode('utf-8')
         query_data = base64.b64encode(subdomain_encode)
-        while True:
+        while 100 * self.page_num < settings.cam_records_maximum_per_domain:
             time.sleep(self.delay)
             self.header = self.get_header()
             self.proxy = self.get_proxy(self.source)
