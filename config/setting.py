@@ -40,7 +40,7 @@ brute_concurrent_num = 2000  # 爆破时并发查询数量(默认2000，最大�
 # 爆破所使用的字典路径(默认None则使用data/subdomains.txt，自定义字典请使用绝对路径)
 brute_wordlist_path = None
 use_china_nameservers = True  # 使用中国域名服务器 如果你所在网络不在中国则建议设置False
-enable_recursive_brute = True  # 是否使用递归爆破(默认False)
+enable_recursive_brute = False  # 是否使用递归爆破(默认False)
 brute_recursive_depth = 2  # 递归爆破深度(默认2层)
 # 爆破下一层子域所使用的字典路径(默认None则使用data/subnames_next.txt，自定义字典请使用绝对路径)
 recursive_nextlist_path = None
