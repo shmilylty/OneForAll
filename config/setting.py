@@ -100,3 +100,9 @@ enable_random_ua = True  # 使用随机UA(默认True，开启可以覆盖request
 # 搜索模块设置
 enable_recursive_search = False  # 递归搜索子域
 search_recursive_times = 2  # 递归搜索层数
+
+# 网络空间测绘引擎设置
+cam_records_maximum_per_domain = 1000   # 对于单个主域名，在测绘引擎中的最多查询多少条记录，防止泛解析和CDN浪费积分，对 fofa, hunter, quake, zoomeye 生效，最低为100
+
+# 是否从输入的数据中使用tldextract提取主域名。若设为 False，OneForAll会直接将输入的域名作为主域名，比如北京分公司的域名 beijing.10086.com 就不会被解析成母公司的域名 10086.com
+use_tld_extract = True
