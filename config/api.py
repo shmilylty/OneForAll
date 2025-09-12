@@ -89,3 +89,6 @@ quake_api_key = ''
 
 #https://www.racent.com/ctlog F2>Network抓包获取Token
 racent_api_token = ''
+
+# https://windvane.lichoin.com/
+windvane_api_token = ''
