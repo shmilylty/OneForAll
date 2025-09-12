@@ -250,3 +250,6 @@ hunter_api_key = ''
 
 # https://api-docs.fullhunt.io/
 fullhunt_api_key = ''
+
+# https://windvane.lichoin.com/
+windvane_api_token = ''
