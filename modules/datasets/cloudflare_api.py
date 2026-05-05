@@ -32,21 +32,17 @@ class CloudFlareAPI(Query):
         if not result:
             return
         account_id = result[0]['id']
-        # query domain zone, if it not exist, create
+        # query domain zone, if it not exist, do not create
         zones_resp = self.get(self.addr + 'zones',
                               params={'name': self.domain}, check=False)
         if zones_resp:
             if zones_resp.status_code == 200:
                 if zones_resp.json()['success'] and not zones_resp.json()['result']:
-                    zone_id = self.create_zone(account_id)
-                    if zone_id:
-                        self.list_dns(zone_id)
-                        return
+                    logger.log('DEBUG', f'{self.domain} zone does not exist in Cloudflare account. Skipping.')
                     return
                 elif zones_resp.json()['success']:
-                    zone_id = self.create_zone(account_id)
-                    if zone_id:
-                        self.list_dns(zone_id)
+                    zone_id = zones_resp.json()['result'][0]['id']
+                    self.list_dns(zone_id)
                     return
             elif zones_resp.status_code == 403:
                 logger.log('DEBUG',
@@ -57,20 +53,6 @@ class CloudFlareAPI(Query):
                 logger.log('DEBUG',
                            f'{zones_resp.status_code} {zones_resp.text}')
         return
-
-    def create_zone(self, account_id):
-        data = {"name": self.domain, "account": {"id": account_id},
-                "jump_start": True, "type": "full"}
-        create_zone_resp = self.post(self.addr + 'zones', json=data, check=False)
-        if not create_zone_resp:
-            logger.log('DEBUG', f'{create_zone_resp.status_code} {create_zone_resp.text}')
-            return False
-        if create_zone_resp.json()['success']:
-            return create_zone_resp.json()['result']['id']
-        else:
-            logger.log('DEBUG', f'{self.domain} is temporarily banned '
-                                f'and cannot be added to Cloudflare')
-            return False
 
     def list_dns(self, zone_id):
         page = 1
