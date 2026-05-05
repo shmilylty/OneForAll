@@ -1,9 +1,10 @@
 import base64
 import time
+import urllib.parse
 
 from config import settings
 from common.search import Search
-
+from common.module_status import ModuleRunStatus
 
 class FoFa(Search):
     def __init__(self, domain):
@@ -15,15 +16,21 @@ class FoFa(Search):
         self.delay = 1
         self.email = settings.fofa_api_email
         self.key = settings.fofa_api_key
+        self.status = ModuleRunStatus.SKIPPED
 
     def search(self):
         """
         发送搜索请求并做子域匹配
         """
+        if not self.email or not self.key:
+            self.status = ModuleRunStatus.AUTH_FAILED
+            return
+
         self.page_num = 1
         subdomain_encode = f'domain="{self.domain}"'.encode('utf-8')
-        query_data = base64.b64encode(subdomain_encode)
-        while 100 * self.page_num < settings.cam_records_maximum_per_domain:
+        query_data = base64.b64encode(subdomain_encode).decode('utf-8')
+        
+        while True:
             time.sleep(self.delay)
             self.header = self.get_header()
             self.proxy = self.get_proxy(self.source)
@@ -32,17 +39,56 @@ class FoFa(Search):
                      'qbase64': query_data,
                      'page': self.page_num,
                      'full': 'true',
-                     'size': min(1000, settings.cam_records_maximum_per_domain)}
-            resp = self.get(self.addr, query)
+                     'size': 1000,
+                     'fields': 'host,ip,port,protocol,domain,title,server,country,city'}
+            
+            resp = self.get(self.addr, query, check=False, ignore=True)
             if not resp:
+                self.status = ModuleRunStatus.NETWORK_ERROR
                 return
-            resp_json = resp.json()
-            subdomains = self.match_subdomains(resp)
-            if not subdomains:  # 搜索没有发现子域名则停止搜索
+            
+            if resp.status_code in [401, 403]:
+                self.status = ModuleRunStatus.AUTH_FAILED
+                return
+            elif resp.status_code == 402:
+                self.status = ModuleRunStatus.QUOTA_EXCEEDED
+                return
+            elif resp.status_code == 429:
+                self.status = ModuleRunStatus.RATE_LIMITED
+                return
+            elif resp.status_code != 200:
+                self.status = ModuleRunStatus.FAILED
+                return
+                
+            try:
+                resp_json = resp.json()
+            except Exception:
+                self.status = ModuleRunStatus.PARSE_ERROR
+                return
+
+            if resp_json.get('error'):
+                self.status = ModuleRunStatus.FAILED
+                return
+
+            results = resp_json.get('results', [])
+            if not results:
+                if not self.subdomains:
+                    self.status = ModuleRunStatus.EMPTY
+                else:
+                    self.status = ModuleRunStatus.SUCCESS
                 break
-            self.subdomains.update(subdomains)
-            size = resp_json.get('size')
-            if size < min(1000, settings.cam_records_maximum_per_domain):
+
+            for item in results:
+                host = item[0]
+                if host.startswith('http'):
+                    parsed = urllib.parse.urlparse(host)
+                    host = parsed.hostname
+                if host and host.endswith(self.domain):
+                    self.subdomains.add(host)
+
+            self.status = ModuleRunStatus.SUCCESS
+            size = resp_json.get('size', 0)
+            if self.page_num * 1000 >= size:
                 break
             self.page_num += 1
 
@@ -51,6 +97,7 @@ class FoFa(Search):
         类执行入口
         """
         if not self.have_api(self.email, self.key):
+            self.status = ModuleRunStatus.SKIPPED
             return
         self.begin()
         self.search()
@@ -58,7 +105,6 @@ class FoFa(Search):
         self.save_json()
         self.gen_result()
         self.save_db()
-
 
 def run(domain):
     """
@@ -68,7 +114,6 @@ def run(domain):
     """
     search = FoFa(domain)
     search.run()
-
 
 if __name__ == '__main__':
     run('example.com')

@@ -39,10 +39,69 @@ result_save_path = None  # 子域结果保存文件路径(默认None)
 
 # 收集模块设置
 save_module_result = False  # 保存各模块发现结果为json文件(默认False)
-enable_all_module = True  # 启用所有收集模块(默认True)
+enable_all_module = False  # 启用所有收集模块(默认False)
 enable_partial_module = []  # 启用部分收集模块 必须禁用enable_all_module才能生效
 # 只使用ask和baidu搜索引擎收集子域的示例
 # enable_partial_module = ['modules.search.ask', 'modules.search.baidu']
+
+recommended_modules = [
+    "modules.search.fofa_api",
+    "modules.search.hunter_api",
+    "modules.search.quake_api",
+    "modules.search.shodan_api",
+    "modules.certificates.crtsh",
+    "modules.certificates.certspotter",
+    "modules.datasets.securitytrails_api",
+    "modules.datasets.urlscan",
+    "modules.intelligence.alienvault",
+    "modules.intelligence.virustotal_api",
+    "modules.intelligence.threatminer"
+]
+
+deprecated_modules = [
+    "modules.search.bing_api",
+    "modules.datasets.chinaz",
+    "modules.datasets.chinaz_api",
+    "modules.datasets.ipv4info_api",
+    "modules.datasets.sublist3r",
+    "modules.datasets.spyse_api",
+    "modules.datasets.passivedns_api",
+    "modules.intelligence.riskiq_api",
+    "modules.intelligence.threatbook_api"
+]
+
+unstable_modules = [
+    "modules.search.google",
+    "modules.search.bing",
+    "modules.search.baidu",
+    "modules.search.ask",
+    "modules.search.so",
+    "modules.search.sogou",
+    "modules.search.yahoo",
+    "modules.search.yandex",
+    "modules.search.gitee",
+    "modules.search.wzsearch"
+]
+
+module_status_mapping = {
+    "modules.search.fofa_api": "stable",
+    "modules.search.hunter_api": "stable",
+    "modules.search.quake_api": "stable",
+    "modules.search.shodan_api": "stable",
+    "modules.certificates.crtsh": "stable",
+    "modules.certificates.certspotter": "stable",
+    "modules.datasets.securitytrails_api": "stable",
+    "modules.datasets.urlscan": "stable",
+    "modules.intelligence.alienvault": "stable",
+    "modules.intelligence.virustotal_api": "stable",
+    "modules.intelligence.threatminer": "stable",
+    "modules.certificates.censys_api": "legacy_supported",
+    "modules.search.zoomeye_api": "needs_migration",
+    "modules.datasets.dnsdb_api": "needs_migration",
+    "modules.datasets.bevigil": "stable",
+    "modules.datasets.cloudflare_api": "stable"
+}
+module_status = module_status_mapping.copy()
 module_thread_timeout = 90.0  # 每个收集模块线程超时时间(默认90秒)
 
 # 爆破模块设置
@@ -101,7 +160,7 @@ request_proxy_pool = [{'http': 'http://127.0.0.1:1080',
 # 请求设置
 request_thread_count = None  # 请求线程数量(默认None，则根据情况自动设置)
 request_timeout_second = (13, 27)  # 请求超时秒数(默认connect timout推荐略大于3秒)
-request_ssl_verify = False  # 请求SSL验证(默认False)
+request_ssl_verify = True  # 请求SSL验证(默认True)
 request_allow_redirect = True  # 请求允许重定向(默认True)
 request_redirect_limit = 10  # 请求跳转限制(默认10次)
 # 默认请求头 可以在headers里添加自定义请求头

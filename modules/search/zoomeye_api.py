@@ -3,6 +3,8 @@ from config import settings
 from common.search import Search
 
 
+from common.module_status import ModuleRunStatus
+
 class ZoomEyeAPI(Search):
     def __init__(self, domain):
         Search.__init__(self)
@@ -12,12 +14,14 @@ class ZoomEyeAPI(Search):
         self.addr = 'https://api.zoomeye.org/domain/search'
         self.delay = 2
         self.key = settings.zoomeye_api_key
+        self.status = ModuleRunStatus.SKIPPED
 
     def search(self):
         """
         发送搜索请求并做子域匹配
         """
-        self.per_page_num = 30
+        self.status = ModuleRunStatus.SKIPPED # Needs migration
+        return
         self.page_num = 1
         while self.per_page_num * self.page_num < settings.cam_records_maximum_per_domain:
             time.sleep(self.delay)
