@@ -11,6 +11,7 @@ from config.log import logger
 from config import settings
 from common import utils
 from common.database import Database
+from common.module_status import record_module_run
 
 lock = threading.Lock()
 
@@ -32,6 +33,31 @@ class Module(object):
         self.start = time.time()  # 模块开始执行时间
         self.end = None  # 模块结束执行时间
         self.elapse = None  # 模块执行耗时
+        self.status = 'unknown'  # Module status
+        self.run_meta = {
+            'module_name': self.module,
+            'status': self.status,
+            'count': 0,
+            'error_message': '',
+            'elapsed_ms': 0
+        }
+
+    def update_run_status(self, status, error_message=''):
+        self.status = status
+        self.run_meta['module_name'] = self.module
+        self.run_meta['status'] = status
+        self.run_meta['count'] = len(self.subdomains)
+        self.run_meta['error_message'] = error_message or ''
+        if self.start:
+            self.run_meta['elapsed_ms'] = int(max(time.time() - self.start, 0) * 1000)
+        record_module_run(
+            module_name=self.module,
+            status=self.run_meta['status'],
+            count=self.run_meta['count'],
+            error_message=self.run_meta['error_message'],
+            elapsed_ms=self.run_meta['elapsed_ms']
+        )
+        return self.run_meta
 
     def have_api(self, *apis):
         """
@@ -58,6 +84,17 @@ class Module(object):
         """
         self.end = time.time()
         self.elapse = round(self.end - self.start, 1)
+        self.run_meta['module_name'] = self.module
+        self.run_meta['count'] = len(self.subdomains)
+        self.run_meta['elapsed_ms'] = int(max(self.end - self.start, 0) * 1000)
+        self.run_meta['status'] = self.status
+        record_module_run(
+            module_name=self.module,
+            status=self.run_meta['status'],
+            count=self.run_meta['count'],
+            error_message=self.run_meta['error_message'],
+            elapsed_ms=self.run_meta['elapsed_ms']
+        )
         logger.log('DEBUG', f'Finished {self.source} module to '
                             f'collect {self.domain}\'s subdomains')
         logger.log('INFOR', f'{self.source} module took {self.elapse} seconds '
@@ -134,18 +171,23 @@ class Module(object):
             return resp
         return None
 
-    def post(self, url, data=None, check=True, **kwargs):
+    def post(self, url, data=None, check=True, ignore=False, raise_error=False, **kwargs):
         """
         Custom post request
 
         :param str  url: request url
         :param dict data: request data
         :param bool check: check response
+        :param bool ignore: ignore error
+        :param bool raise_error: raise error or not
         :param kwargs: other params
         :return: response object
         """
         session = requests.Session()
         session.trust_env = False
+        level = 'ERROR'
+        if ignore:
+            level = 'DEBUG'
         try:
             resp = session.post(url,
                                 data=data,
@@ -156,7 +198,11 @@ class Module(object):
                                 verify=self.verify,
                                 **kwargs)
         except Exception as e:
-            logger.log('ERROR', e.args[0])
+            if raise_error:
+                if isinstance(e, requests.exceptions.ConnectTimeout):
+                    logger.log(level, e.args[0])
+                    raise e
+            logger.log(level, e.args[0])
             return None
         if not check:
             return resp
