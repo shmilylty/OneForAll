@@ -26,8 +26,8 @@ class IPAsnInfo(Database):
             ip = ip_to_int(ip)
         else:
             return info
-        sql = f'SELECT * FROM asn WHERE ip_from <= {ip} AND ip_to >= {ip} LIMIT 1;'
-        result = self.query(sql)
+        sql = 'SELECT * FROM asn WHERE ip_from <= ? AND ip_to >= ? LIMIT 1;'
+        result = self.query(sql, (ip, ip))
         if not hasattr(result, 'dataset'):
             return info
         asn = result.as_dict()
