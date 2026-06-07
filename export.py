@@ -57,6 +57,9 @@ def export_data(target, db=None, alive=False, limit=None, path=None, fmt='csv', 
 def do_export(fmt, path, rows, show, domain, target):
     fmt = utils.check_format(fmt)
     path = utils.check_path(path, target, fmt)
+    if rows is None:
+        logger.log('ERROR', f'No data found for {domain}')
+        return [], fmt, path
     if show:
         print(rows.dataset)
     data = rows.export(fmt)
