@@ -17,6 +17,8 @@ chinaz_api = ''
 # cognitive-services/bing-web-search-api/#web-json
 bing_api_id = ''
 bing_api_key = ''
+# bing_api_addr默认空使用https://api.bing.microsoft.com/v7.0/search
+bing_api_addr = ''
 
 # SecurityTrails可以免费注册获取API：https://securitytrails.com/corp/api
 securitytrails_api = ''
@@ -32,6 +34,8 @@ fofa_api_key = ''  # fofa用户key
 google_api_id = ''  # Google API自定义搜索引擎id
 # https://developers.google.com/custom-search/v1/overview#api_key
 google_api_key = ''  # Google API自定义搜索key
+# google_api_addr默认空使用https://www.googleapis.com/customsearch/v1
+google_api_addr = ''
 
 # https://api.passivetotal.org/api/docs/
 riskiq_api_username = ''

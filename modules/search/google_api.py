@@ -9,7 +9,7 @@ class GoogleAPI(Search):
         self.domain = domain
         self.module = 'Search'
         self.source = 'GoogleAPISearch'
-        self.addr = 'https://www.googleapis.com/customsearch/v1'
+        self.addr = settings.google_api_addr or 'https://www.googleapis.com/customsearch/v1'
         self.delay = 1
         self.key = settings.google_api_key
         self.id = settings.google_api_id
